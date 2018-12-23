@@ -6,11 +6,6 @@ $.ajax({
     success: function(data, jqXHR, textStatus) {graphFromCSV(data)}
 })
 
-function showHelp(){
-    if(document.getElementById('help-popup').style.display == 'none') {document.getElementById('help-popup').style.display = "block";}
-    else {document.getElementById('help-popup').style.display = "none";}
-}
-
 function breakWords(string){
     broken = ''
     string.split(' ').forEach(element => {
