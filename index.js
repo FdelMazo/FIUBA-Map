@@ -4,6 +4,11 @@ $.ajax({
     success: function(data, jqXHR, textStatus) {graphFromCSV(data)}
 })
 
+function showHelp(){
+    if(document.getElementById('help-popup').style.display == 'none') {document.getElementById('help-popup').style.display = "block";}
+    else {document.getElementById('help-popup').style.display = "none";}
+}
+
 function breakWords(string){
     broken = ''
     string.split(' ').forEach(element => {
@@ -26,7 +31,7 @@ function getNode(rowCells){
     if (creditos!=0){name+=' -- ' + creditos + ' créditos'}
     if (categoria.indexOf('x')!==-1){name+= ' -- ' + categoria}
 
-    return {id:codigo, label:label, title:name, group:categoria, level:nivel,cid:1}
+    return {id:codigo, label:label, title:name, group:categoria, value: creditos,level:nivel,cid:1}
 }
 
 function graphFromCSV(data) {
@@ -78,14 +83,14 @@ function graphFromCSV(data) {
         joinCondition:function(nodeOptions) {
             return nodeOptions.group === 'Materias Electivas';
         },
-        clusterNodeProperties: {id: 'ME', shape:'circle', label: "Materias Electivas", group:'Materias Electivas', level:7}
+        clusterNodeProperties: {id: 'Materias Electivas', shape:'circle', label: "Materias Electivas", group:'Materias Electivas', level:7}
     };
 
     clusterIndustrial = {
         joinCondition:function(nodeOptions) {
             return nodeOptions.group === 'Orientacion: Gestión Industrial de Sistemas';
         },
-        clusterNodeProperties: {id: 'IND', shape:'square', label: breakWords('Orientacion: Gestión Industrial de Sistemas'),group:'Orientacion: Gestión Industrial de Sistemas', level:8}
+        clusterNodeProperties: {id: 'Materias de Gestión Industrial de Sistemas', shape:'square', label: breakWords('Orientacion: Gestión Industrial de Sistemas'),group:'Orientacion: Gestión Industrial de Sistemas', level:8}
 
     };
 
@@ -93,14 +98,14 @@ function graphFromCSV(data) {
         joinCondition:function(nodeOptions) {
             return nodeOptions.group === 'Orientacion: Sistemas Distribuidos';
         },
-        clusterNodeProperties: {id: 'SD', shape:'hexagon', label: breakWords('Orientacion: Sistemas Distribuidos'),group:'Orientacion: Sistemas Distribuidos', level:8}
+        clusterNodeProperties: {id: 'Materias de Sistemas Distribuidos', shape:'hexagon', label: breakWords('Orientacion: Sistemas Distribuidos'),group:'Orientacion: Sistemas Distribuidos', level:8}
     };
 
     clusterProduccion = {
         joinCondition:function(nodeOptions) {
             return nodeOptions.group === 'Orientacion: Sistemas de Producción';
         },
-        clusterNodeProperties: {id: 'SP', shape:'triangle', label: breakWords('Orientacion: Sistemas de Producción'),group:'Orientacion: Sistemas de Producción', level:8}                
+        clusterNodeProperties: {id: 'Materias de Sistemas de Producción', shape:'triangle', label: breakWords('Orientacion: Sistemas de Producción'),group:'Orientacion: Sistemas de Producción', level:8}                
     };
 
     network.cluster(clusterElectivas);
@@ -109,11 +114,30 @@ function graphFromCSV(data) {
     network.cluster(clusterProduccion);
 
     network.on("selectNode", function(params) {
-        if (params.nodes.length == 1) {
-            if (network.isCluster(params.nodes[0]) == true) {
-                network.openCluster(params.nodes[0]);
-            }
+        if (network.isCluster(params.nodes[0]) == true) {
+            network.openCluster(params.nodes[0]);
         }
-    });
+        else {
+            var allNodes = nodes.get({returnType:"Object"})
+            $('#selected-var').text(params.nodes[0] + ' ' + allNodes[params.nodes[0]]['label'])
+            var neighborsFrom = network.getConnectedNodes(params.nodes,'from')
+            var neighborsTo = network.getConnectedNodes(params.nodes,'to')
+            var neighborsFromStr = ''
+            neighborsFrom.forEach(element => {
+                if(!network.isCluster(element)){neighborsFromStr += allNodes[element]['label'] + ', '}
+            });
+            
+            neighborsFromStr = neighborsFromStr.slice(0,neighborsFromStr.length-2)
 
+            var neighborsToStr = ''
+            neighborsTo.forEach(element => {
+                if(!network.isCluster(element)){neighborsToStr += allNodes[element]['label'] + ', '}
+            });
+
+            neighborsToStr = neighborsToStr.slice(0,neighborsToStr.length-2)
+
+            $('#selected-from-var').text(neighborsFromStr)
+            $('#selected-to-var').text(neighborsToStr)
+        }   
+    });
 }
