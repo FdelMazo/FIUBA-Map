@@ -1,3 +1,5 @@
+var FUERON_SELECCIONADOS = []
+
 $.ajax({
     url: 'data/informatica-1986.csv',
     dataType: 'text',
