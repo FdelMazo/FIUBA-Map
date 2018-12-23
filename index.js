@@ -67,7 +67,6 @@ function graphFromCSV(data) {
         },
         edges:{
             arrows: {
-                middle: {enabled: true, scaleFactor:1, type:'arrow'},
                 to: {enabled: true, scaleFactor:1, type:'arrow'}
             },
         },
