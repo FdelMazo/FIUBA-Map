@@ -66,11 +66,15 @@ def main():
         wr = csv.writer(f)
         wr.writerow(['codigo', 'materia','creditos','correlativas','categoria'])
         wr.writerow(['CBC', 'Ciclo Básico Común','0',' ','CBC'])
+        wr.writerow(['75.61', 'Taller de Programación III','6','66.74-75.74','Orientacion: Gestion Industrial de Sistemas (opción tesis)']) #Caso muuuuy particular
 
-    materias(filename, 'obligatorias',wholeText, 'DISTRIBUCION DE ASIGNATURAS','ORIENTACION')
-    materias(filename, 'electivas',wholeText, 'ASIGNATURAS ELECTIVAS',fields=4,discard=[])
-    materias(filename, 'gestion industrial de sistemas',wholeText, 'ORIENTACION EN GESTION INDUSTRIAL DE SISTEMAS', 'OPCION TESIS')
-    materias(filename, 'sistemas distribuidos',wholeText, 'ORIENTACION EN SISTEMAS DISTRIBUIDOS', 'OPCION TESIS')
-    materias(filename, 'sistemas de produccion',wholeText, 'ORIENTACION EN SISTEMAS DE PRODUCCION', 'OPCION TESIS')
+
+    materias(filename, 'Materias Obligatorias',wholeText, 'DISTRIBUCION DE ASIGNATURAS','ORIENTACION')
+    materias(filename, 'Materias Electivas',wholeText, 'ASIGNATURAS ELECTIVAS',fields=4,discard=[])
+    materias(filename, 'Orientacion: Gestión Industrial de Sistemas',wholeText, 'ORIENTACION EN GESTION INDUSTRIAL DE SISTEMAS', 'OPCION TESIS')
+    materias(filename, 'Orientacion: Sistemas Distribuidos',wholeText, 'ORIENTACION EN SISTEMAS DISTRIBUIDOS', 'OPCION TESIS')
+    materias(filename, 'Orientacion: Sistemas de Producción',wholeText, 'ORIENTACION EN SISTEMAS DE PRODUCCION', 'OPCION TESIS')
+    materias(filename, 'Opción Tésis',wholeText, 'OPCION TESIS DE INGENIERIA EN INFORMATICA', 'OPCION TRABAJO PROFESIONAL DE INGENIERIA EN INFORMATICA')
+    materias(filename, 'Opción Trabajo Profesional',wholeText, 'OPCION TRABAJO PROFESIONAL DE INGENIERIA EN INFORMATICA', 'TOTAL DE LA CARRERA (CBC + SEGUNDO CICLO)')    
 
 main()

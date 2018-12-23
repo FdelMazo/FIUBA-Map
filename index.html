@@ -23,10 +23,10 @@
         var allRows = data.split(/\r?\n|\r/);
         for (var singleRow = 1; singleRow < allRows.length-1; singleRow++) {
             var rowCells = allRows[singleRow].split(',');
-            var name = '[' + rowCells[0] + '] ' + rowCells[1] + ' -- ' + rowCells[2] + ' créditos'
+            var name = '[' + rowCells[0] + '] ' + rowCells[1] + ' -- ' + rowCells[2] + ' créditos' + ' -- (' + rowCells[4] + ')'
             if ($.inArray(rowCells[0],nodes_arr) == -1) {
                 nodes_arr.push(rowCells[0])
-                nodes.add({id:rowCells[0], label:rowCells[1], title:name})
+                nodes.add({id:rowCells[0], label:rowCells[1], title:name, group:rowCells[4]})
             }
 
             var correlativas = rowCells[3].split('-')
@@ -42,7 +42,7 @@
             edges: edges
         };
         var options = {
-
+            nodes: {}
         };
 
         var network = new vis.Network(container, data, options);
