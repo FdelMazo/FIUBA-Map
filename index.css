@@ -1,0 +1,10 @@
+#grafo {
+    border: solid 1px black;
+    width: 90%;
+    height: 90%;
+    margin: 0 auto;
+}
+body {
+    text-align: center;
+    align-content: center;
+}

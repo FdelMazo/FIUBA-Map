@@ -1,7 +1,7 @@
 codigo,materia,creditos,correlativas,categoria,nivel_en_grafo
-CBC,Ciclo Básico Común,0, ,Ciclo Básico Común,0
-140,140 créditos  aprobados,0,CBC, ,9
-71.40,Legislación y Ejercicio Profesional de la Ingeniería en Informática,4,140, ,10
+CBC,Ciclo Básico Común,0,x,Ciclo Básico Común,0
+140, 140 créditos aprobados,0,CBC,xx,9
+71.40,Legislación y Ejercicio Profesional de la Ingeniería en Informática,4,140,xxx,10
 75.00,Tesis,12,71.40,Opción Tesis,11
 75.99,Trabajo Profesional,6,71.40,Opción Trabajo Profesional,11
 61.03,Análisis Matemático II A,8,CBC,Materias Obligatorias,1

@@ -64,7 +64,7 @@ def main():
         wr = csv.writer(f)
         wr.writerow(['codigo', 'materia','creditos','correlativas','categoria','nivel_en_grafo'])
         wr.writerow(['CBC', 'Ciclo Básico Común','0','x','Ciclo Básico Común','0'])
-        wr.writerow(['140', '140 créditos  aprobados','0','CBC','xx','9'])
+        wr.writerow(['140', ' 140 créditos aprobados','0','CBC','xx','9'])
 
         wr.writerow(['71.40', 'Legislación y Ejercicio Profesional de la Ingeniería en Informática','4','140','xxx','10'])
         wr.writerow(['75.00', 'Tesis','12','71.40','Opción Tesis','11'])
