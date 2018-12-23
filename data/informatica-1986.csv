@@ -1,5 +1,5 @@
 codigo,materia,creditos,correlativas,categoria
-CBC,Ciclo Básico Común,0, ,CBC
+CBC,Ciclo Básico Común,0, ,Ciclo Básico Común
 75.61,Taller de Programación III,6,66.74-75.74,Orientacion: Gestion Industrial de Sistemas (opción tesis)
 61.03,Análisis Matemático II A,8,CBC,Materias Obligatorias
 62.01,Física I A,8,CBC,Materias Obligatorias
@@ -79,11 +79,10 @@ CBC,Ciclo Básico Común,0, ,CBC
 75.71,Seminario de Ingeniería en Informática I,3,75.07,Materias Electivas
 75.72,Seminario de Ingeniería en Informática II,3,75.06-75.44,Materias Electivas
 75.73,Arquitectura de Software,4,75.07-75.09,Materias Electivas
-78.01,Idioma Inglés (*),4,CBC,Materias Electivas
-78.02,Idioma Alemán (*),4,CBC,Materias Electivas
-78.03,Idioma Francés (*),4,CBC,Materias Electivas
-78.04,Idioma Italiano (*),4,CBC,Materias Electivas
-78.05,Idioma Portugués (*),4,CBC,Materias Electivas
+78.02,Idioma Alemán,4,CBC,Idiomas
+78.03,Idioma Francés,4,CBC,Idiomas
+78.04,Idioma Italiano,4,CBC,Idiomas
+78.05,Idioma Portugués,4,CBC,Idiomas
 71.13,Información en las Organizaciones,6,71.12,Orientacion: Gestión Industrial de Sistemas
 75.44,Administración y Control de Proyectos Informáticos I,6,71.12-75.10,Orientacion: Gestión Industrial de Sistemas
 75.45,Taller de Desarrollo de Proyectos I,6,75.10,Orientacion: Gestión Industrial de Sistemas

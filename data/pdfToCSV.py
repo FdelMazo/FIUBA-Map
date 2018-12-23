@@ -43,7 +43,7 @@ def materias(filename, categoria, wholeText, start, end=None, fields=5, discard=
         asignatura_clean = []
         for x in a:
             if discard and a.index(x) in discard: continue
-            asignatura_clean.append(x.replace('\n','').strip())
+            asignatura_clean.append(x.replace('\n','').replace(' (*)','').strip())
         asignaturas_clean.append(tuple([*asignatura_clean,categoria]))
         
     ASIGNATURAS.extend(asignaturas_clean)
@@ -65,12 +65,13 @@ def main():
     with open(filename, 'w') as f:
         wr = csv.writer(f)
         wr.writerow(['codigo', 'materia','creditos','correlativas','categoria'])
-        wr.writerow(['CBC', 'Ciclo Básico Común','0',' ','CBC'])
+        wr.writerow(['CBC', 'Ciclo Básico Común','0',' ','Ciclo Básico Común'])
         wr.writerow(['75.61', 'Taller de Programación III','6','66.74-75.74','Orientacion: Gestion Industrial de Sistemas (opción tesis)']) #Caso muuuuy particular
 
 
     materias(filename, 'Materias Obligatorias',wholeText, 'DISTRIBUCION DE ASIGNATURAS','ORIENTACION')
-    materias(filename, 'Materias Electivas',wholeText, 'ASIGNATURAS ELECTIVAS',fields=4,discard=[])
+    materias(filename, 'Materias Electivas',wholeText, 'ASIGNATURAS ELECTIVAS','78.01',fields=4,discard=[])
+    materias(filename, 'Idiomas',wholeText, 'Idioma Inglés','Solo se tendrá',fields=4,discard=[])
     materias(filename, 'Orientacion: Gestión Industrial de Sistemas',wholeText, 'ORIENTACION EN GESTION INDUSTRIAL DE SISTEMAS', 'OPCION TESIS')
     materias(filename, 'Orientacion: Sistemas Distribuidos',wholeText, 'ORIENTACION EN SISTEMAS DISTRIBUIDOS', 'OPCION TESIS')
     materias(filename, 'Orientacion: Sistemas de Producción',wholeText, 'ORIENTACION EN SISTEMAS DE PRODUCCION', 'OPCION TESIS')

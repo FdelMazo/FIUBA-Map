@@ -17,6 +17,7 @@
 
     function graphFromCSV(data) {
         var nodes_arr = new Array()
+        var groups_arr = new Array()
         var nodes = new vis.DataSet([])
         var edges = new vis.DataSet([])
 
@@ -29,9 +30,14 @@
                 nodes.add({id:rowCells[0], label:rowCells[1], title:name, group:rowCells[4]})
             }
 
+            if ($.inArray(rowCells[4],groups_arr) == -1) {
+                groups_arr.push(rowCells[4])
+                nodes.add({id:rowCells[4], label:rowCells[4], group:rowCells[4]})
+            }
+
             var correlativas = rowCells[3].split('-')
             correlativas.forEach(x => {
-                edges.add({from:rowCells[0],to:x})
+                edges.add({from:x,to:rowCells[0]})
             });
         } 
         
@@ -42,7 +48,11 @@
             edges: edges
         };
         var options = {
-            nodes: {}
+            edges:{
+                arrows: {
+                    to:     {enabled: true, scaleFactor:1, type:'arrow'}
+                },
+            }
         };
 
         var network = new vis.Network(container, data, options);
