@@ -1,0 +1,145 @@
+codigo,materia,creditos,correlativas,categoria,nivel_en_grafo
+CBC,Ciclo Básico Común,0,x,Ciclo Básico Común,0
+81.01,Análisis Matemático II,8,CBC,Materias Obligatorias,1
+81.02,Álgebra II,8,CBC,Materias Obligatorias,1
+95.14,Algoritmos y Programación I,6,CBC,Materias Obligatorias,1
+81.11,Matemática Discreta,6,CBC,Materias Obligatorias,2
+95.57,Organización del Computador,8,95.14,Materias Obligatorias,2
+95.15,Algoritmos y Programación II,6,95.14,Materias Obligatorias,2
+81.04,Probabilidad y Estadística B,6,81.01-81.02,Materias Obligatorias,3
+91.39,Estructuras y Procesos Organizacionales,6,22 créditos aprobados,Materias Obligatorias,3
+95.58,Organización de Datos,6,95.57-95.15,Materias Obligatorias,3
+95.02,Algoritmos y Programación III,6,95.15,Materias Obligatorias,3
+91.41,Economía,de las Organizaciones,64,Materias Obligatorias,4
+95.03,Sistemas Operativos,6,95.58,Materias Obligatorias,4
+95.20,Métodos y Modelos en la Ingeniería de Software I,6,95.02-95.58,Materias Obligatorias,4
+95.08,Taller de Programación,4,95.02-95.57,Materias Obligatorias,4
+91.04,Modelos y Optimización I,6,81.01-81.02-81.11-95.15,Materias Obligatorias,5
+95.21,Métodos y Modelos en la Ingeniería de Software II,6,95.20,Materias Obligatorias,5
+95.05,Base de Datos,6,95.20,Materias Obligatorias,5
+91.42,Administración de las Organizaciones,4,91.41-95.20,Materias Obligatorias,5
+91.05,Modelos y Optimización II,4,81.04-91.04,Materias Obligatorias,6
+95.24,Administración y Control de Proyectos Informáticos I,6,91.42-95.21,Materias Obligatorias,6
+95.59,Diseño Operación y Gestión de Servicios Informáticos,4,91.42-95.21,Materias Obligatorias,6
+95.60,Redes y Aplicaciones Distribuidas,6,95.05-95.03,Materias Obligatorias,6
+95.61,Trabajo Profesional de Licenciatura en Análisis de Sistemas,12,95.24-95.59-95.60,Materias Obligatorias,9
+91.40,Legislación y Ejercicio Profesional en Sistemas e Informática,4,100 créditos aprobados,Materias Obligatorias,9
+95.30,Estándares de Calidad y Modelos de Referencia,4,95.24,Materias Obligatorias,9
+86.36,Criptografía y Seguridad Informática,6,95.60,Materias Electivas,7
+91.24,Macroeconomía y Estructura Económica  Argentina,6,91.39,Materias Electivas,7
+91.06,Modelos y Optimización III,6,91.05,Materias Electivas,7
+91.37,Emprendimientos en Ingeniería,3,95.24,Materias Electivas,7
+91.35,Análisis de Casos,3,91.05,Materias Electivas,7
+95.04,Análisis Numérico I,6,81.01-81.02-95.14,Materias Electivas,7
+95.06,Teoría de Algoritmos I,6,81.11-95.15,Materias Electivas,7
+95.07,Teoría de Lenguajes de Programación,4,95.15,Materias Electivas,7
+95.19,Simulación,6,81.04-95.15,Materias Electivas,7
+95.25,Inteligencia Artificial,6,95.02,Materias Electivas,7
+95.35,Evaluación e Implantación de Sistemas,4,95.24,Materias Electivas,7
+95.37,Evaluación de Proyectos y Manejo de  Riesgos,4,95.24,Materias Electivas,7
+95.09,Técnicas de Programación Concurrente I,6,95.03,Materias Electivas,7
+95.48,Lenguajes Formales,6,81.11,Materias Electivas,7
+95.49,Lenguajes de Programación,6,95.48,Materias Electivas,7
+95.62,Innovación Tecnológica,4,95.24,Materias Electivas,7
+95.63,Desarrollo de Aplicaciones Mainframe,4,95.05-95.15,Materias Electivas,7
+95.64,Auditoria de Sistemas,4,95.24,Materias Electivas,7
+95.65,Diseño y Desarrollo de Interfaces de Usuario,4,95.20,Materias Electivas,7
+95.66,Bases de Datos Multidimensionales,4,95.05,Materias Electivas,7
+95.67,Minería de Datos,4,95.05,Materias Electivas,7
+95.68,Desarrollo con Nuevas Tecnologías,4,95.02,Materias Electivas,7
+95.69,Seminario de Sistemas de Información y Gestión,4,91.42 -,Materias Electivas,7
+95.21,95.70,Seminario de Metodologías de Desarrollo de Sistemas,48,Materias Electivas,7
+95.21,95.71,Arquitecturas y Configuraciones,48,Materias Electivas,7
+95.03,98.01,Idioma Inglés (**),48,Materias Electivas,7
+98.02,Idioma Alemán (**),4,CBC,Materias Electivas,7
+98.03,Idioma Francés (**),4,CBC,Materias Electivas,7
+98.04,Idioma Italiano (**),4,CBC,Materias Electivas,7
+98.05,Idioma Portugués (**),4,CBC,Materias Electivas,7
+81.01,Análisis Matemático II,8,61.03,Materias Electivas,7
+81.02,Álgebra II,8,61.08,Materias Electivas,7
+81.04,Probabilidad y Estadística B,6,61.09,Materias Electivas,7
+81.11,Matemática Discreta,6,61.07,Materias Electivas,7
+86.36,Criptografía y Seguridad Informática,6,,Materias Electivas,7
+91.04,Modelos y Optimización I,6,71.14,Materias Electivas,7
+91.05,Modelos y Optimización II,4,71.15,Materias Electivas,7
+71.18,Estructura Económica Argentina,4,91.06,Materias Electivas,7
+91.05,ELEC,71.20,71.15,Materias Electivas,7
+91.34,Macroeconomía y Estructura Económica Argentina,6,,Materias Electivas,7
+91.39,Estructuras y Procesos Organizacionales,6,OBL,Materias Electivas,7
+71.12,+,71.13,Información en las Organizaciones,Materias Electivas,7
+71.12,OBL,OBL,3,Materias Electivas,7
+91.05,ELEC,71.58,71.15,Materias Electivas,7
+91.37,Emprendimientos en Ingeniería,3,,Materias Electivas,7
+91.40,Legislación y Ejercicio Profesional en Sistemas e Informática,4,71.17,Materias Electivas,7
+91.41,Economía de las Organizaciones,4,71.46,Materias Electivas,7
+71.13,ELEC,91.42,91.41-95.20,Materias Electivas,7
+71.16,Administración de Proyectos,6,95.02,Materias Electivas,7
+95.15,OBL,75.07,75.41,Materias Electivas,7
+95.04,Análisis Numérico I,6,75.12,Materias Electivas,7
+95.05,Base de Datos,6,75.15,Materias Electivas,7
+75.09,OBL,95.06,81.11-95.15,Materias Electivas,7
+75.29,Teoría de Algoritmos I,6,95.07,Materias Electivas,7
+95.15,ELEC,75.24,75.41,Materias Electivas,7
+95.08,Taller de Programación,4,75.42,Materias Electivas,7
+95.14,Algoritmos y Programación I,6,75.40,Materias Electivas,7
+95.15,Algoritmos y Programación II,6,75.41,Materias Electivas,7
+75.40,OBL,95.03,95.58,Materias Electivas,7
+75.08,Sistemas Operativos,6,95.19,Materias Electivas,7
+75.26,Simulación,6,95.20,Materias Electivas,7
+95.21,Métodos y Modelos en la Ingeniería de Software I,+,6,Materias Electivas,7
+95.20,OBL,OBL,75.10,Materias Electivas,7
+75.09,OBL,OBL,6,Materias Electivas,7
+75.18,Proyectos Informáticos,6,95.25,Materias Electivas,7
+95.02,ELEC,75.23,Inteligencia Artificial,Materias Electivas,7
+75.41,61.09-71.14,ELEC,Estándares de Calidad y Modelos de Referencia,Materias Electivas,7
+95.24,OBL,,,Materias Electivas,7
+95.35,Evaluación e Implantación de Sistemas,4,75.17,Materias Electivas,7
+75.10,OBL,95.37,95.24,Materias Electivas,7
+95.09,Técnicas de,Programación Concurrente I,ELEC,Materias Electivas,7
+75.22,Concurrencia,8,95.48,Materias Electivas,7
+81.11,ELEC,75.14,61.07,Materias Electivas,7
+95.49,Lenguajes de Programación,6,75.16,Materias Electivas,7
+75.14,ELEC,95.57,95.14,Materias Electivas,7
+75.03,Organización del Computador,8,95.58,Materias Electivas,7
+75.06,Organización de Datos,6,95.59,Materias Electivas,7
+95.60,Redes y Aplicaciones Distribuidas,6,75.33,Materias Electivas,7
+95.61,Trabajo Profesional de Licenciatura en Análisis de Sistemas,12,,Materias Electivas,7
+95.62,Innovación Tecnológica,4,,Materias Electivas,7
+95.63,Desarrollo de Aplicaciones Mainframe,4,75.27,Materias Electivas,7
+75.07,ELEC,95.64,95.24,Materias Electivas,7
+95.65,Diseño y Desarrollo de Interfaces de Usuario,4,,Materias Electivas,7
+95.66,Bases de Datos Multidimensionales,4,,Materias Electivas,7
+95.67,Minería de Datos,4,,Materias Electivas,7
+95.68,Desarrollo con Nuevas Tecnologías,4,75.71,Materias Electivas,7
+75.07,ELEC,95.69,91.42 -,Materias Electivas,7
+95.21,ELEC,,,Materias Electivas,7
+95.70,Seminario de Metodologías de Desarrollo de Sistemas,4,,Materias Electivas,7
+95.71,Arquitecturas y Configuraciones,4,,Materias Electivas,7
+78.01,Idioma Inglés,4,98.01,Materias Electivas,7
+98.02,Idioma,Alemán (**),ELEC,Materias Electivas,7
+78.02,Idioma Alemán,4,98.03,Materias Electivas,7
+78.03,Idioma Francés,4,98.04,Materias Electivas,7
+78.04,Idioma Italiano,4,98.05,Materias Electivas,7
+78.05,Idioma Portugués,4,,Materias Electivas,7
+75.19,Teoría de Comunicación,6,,Materias Electivas,7
+75.20,Arquitecturas y Configuración,6,,Materias Electivas,7
+75.32,Práctica Profesional,3,,Materias Electivas,7
+75.34,Redes y Teleprocesamientos II,6,,Materias Electivas,7
+75.36,Seminario de Lógica y Bases de Datos,3,,Materias Electivas,7
+75.38,Análisis Numérico II A,6,,Materias Electivas,7
+75.39,Aplicaciones Informáticas,6,,Materias Electivas,7
+75.72,Seminario de Ingeniería de Informática II,3,(**) El estudiante podrá cursar sólo un idioma en carácter de asignatura electiva,Materias Electivas,7
+86.36,Criptografía y Seguridad Informática,6,66.69,Materias Electivas,7
+75.43,ELEC,91.35,91.05,Materias Electivas,7
+71.41,Análisis y Resolución de Problemas,6,91.40,Materias Electivas,7
+71.40,Legislación y Ejercicio Profesional de la Ingeniería en Informática,4,95.07,Materias Electivas,7
+95.15,ELEC,75.31,75.41,Materias Electivas,7
+95.09,Técnicas de Programación Concurrente I,6,75.59,Materias Electivas,7
+75.08,ELEC,95.24,91.42-95.21,Materias Electivas,7
+75.44,Administración y Control de Proyectos Informáticos I,6,95.35,Materias Electivas,7
+95.24,ELEC,75.56,75.46-75.48,Materias Electivas,7
+95.37,Evaluación de Proyectos y Manejo de Riesgos,4,75.58,Materias Electivas,7
+95.57,Organización del Computador,8,66.70,Materias Electivas,7
+66.02,Estructura del Computador,+,6,Materias Electivas,7
+62.03,OBL,OBL,6,Materias Electivas,7
+75.43,Introducción a los Sistemas Distribuidos,6,(*) La Comisión Curricular de la Carrera de Licenciatura en Análisis de Sistemas no recomendará otorgar créditos por cualquiera de las,Materias Electivas,7

@@ -1,10 +1,12 @@
 var FUERON_SELECCIONADOS = []
 
-$.ajax({
-    url: 'data/informatica-1986.csv',
-    dataType: 'text',
-    success: function(data, jqXHR, textStatus) {graphFromCSV(data)}
-})
+function wrapper(archivo){
+    $.ajax({
+        url: archivo,
+        dataType: 'text',
+        success: function(data, jqXHR, textStatus) {graphFromCSV(data)}
+    })
+}
 
 function breakWords(string){
     broken = ''
