@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>FIUBA-Map | Ingeniería en Informática</title>
-        <meta charset="utf-8"><!-- html5 version of http-equiv="Content-Type"... -->
+        <meta charset="utf-8">
         <meta name="description" content="Ingeniería en Informática, plan 1986">
         <link rel="author" href="https://github.com/FdelMazo/" />
         <link rel="canonical" href="https://fdelmazo.github.io/FIUBA-Map/informatica.html" />
@@ -18,7 +18,6 @@
         <link href="vis.min.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="index.js"></script>
         <link href="index.css" rel="stylesheet" type="text/css" />
-        <meta charset="utf-8">
         <script>main('data/informatica-1986.csv')</script>
     </head>
 
@@ -32,21 +31,18 @@
             </a>
         </h1>
 
-        <h2>Ingeniería en Informática<br>Plan 1986</h2>       
+        <h2>Ingeniería en Informática - Plan 1986</h2>       
 
-        <div id='menu'>
-            <ul>
-                <li><a class="active" href="informatica.html">Ingeniería en Informática</a></li>
-                <li><a href="sistemas.html">Análisis de Sistemas</a></li>
-            </ul>
-        </div>
-            
+        <ul id='menu'>
+            <li class='right'><a>Creditos: <var id='creditos-var'> 0 </var></a></li>
+        </ul>
+
         <div id="grafo"></div>
-        <div class='left'>
-                <p id='selected'>Seleccionada: <var id='selected-var'></var></p>
-                <p id='selected-from'>Requiere: <var id='selected-from-var'></var></p>
-                <p id='selected-to'>Habilita: <var id='selected-to-var'></var></p>
-        </div>
-
+        
+        <ul>
+            <li class='active right'><a href="informatica.html">Ingeniería en Informática</a></li>
+            <li class='right'><a href="sistemas.html">Análisis de Sistemas</a></li>
+        </ul>
+        
     </body>
 </html>

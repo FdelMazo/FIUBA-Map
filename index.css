@@ -1,29 +1,20 @@
 h1 {
-    padding-top: 1em;
+    padding-top: 0.5em;
 }
 
 #grafo {
     border: solid 1px black;
+    margin: 0;
 }
 
 body {
     text-align: center;
-    width: 90%;
-    height: 90%;
-    margin: 0 auto;
+    max-width: 95%;
+    margin: auto;
 }
 
-.left{
-    text-align: left
-}
-
-.right{
-    text-align: right
-}
-
-#menu {
-    display: table;
-    margin: 0 auto;
+.right {
+    float:right
 }
 
 ul {
@@ -31,25 +22,25 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-}
-
-li {
     background-color: #333;
-    float: left;
+}
+  
+li {
+  float: left;
 }
 
 li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 1em 0.5em;
-    text-decoration: none;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
 li a:hover:not(.active) {
-    background-color: #111;
+  background-color: #111;
 }
 
 .active {
-    background-color: #4CAF50;
+  background-color: #4CAF50;
 }

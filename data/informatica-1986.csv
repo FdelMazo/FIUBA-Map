@@ -1,9 +1,5 @@
-codigo,materia,creditos,correlativas,categoria,nivel_en_grafo
-CBC,Ciclo Básico Común,0,x,Ciclo Básico Común,0
-140, 140 créditos aprobados,0,CBC,xx,9
-71.40,Legislación y Ejercicio Profesional de la Ingeniería en Informática,4,140,xxx,10
-75.00,Tesis,12,71.40,Opción Tesis,11
-75.99,Trabajo Profesional,6,71.40,Opción Trabajo Profesional,11
+codigo,materia,creditos,correlativas,grupo,nivel
+CBC,Ciclo Básico Común,0,,CBC,0
 61.03,Análisis Matemático II A,8,CBC,Materias Obligatorias,1
 62.01,Física I A,8,CBC,Materias Obligatorias,1
 75.40,Algoritmos y Programación I,6,CBC,Materias Obligatorias,1
@@ -29,6 +25,22 @@ CBC,Ciclo Básico Común,0,x,Ciclo Básico Común,0
 75.15,Base de Datos,6,75.06-75.09,Materias Obligatorias,6
 75.43,Introducción a los Sistemas Distribuidos,6,66.20-62.15-75.08,Materias Obligatorias,6
 75.52,Taller de Programación II,4,71.14-75.07-75.42,Materias Obligatorias,6
+71.13,Información en las Organizaciones,6,71.12,Gestion Industrial de Sistemas,8
+75.44,Administración y Control de Proyectos Informáticos I,6,71.12-75.10,Gestion Industrial de Sistemas,8
+75.45,Taller de Desarrollo de Proyectos I,6,75.10,Gestion Industrial de Sistemas,8
+75.46,Administración y Control de Proyectos Informáticos II,6,75.44,Gestion Industrial de Sistemas,8
+75.47,Taller de Desarrollo de Proyectos II,6,75.44-75.45,Gestion Industrial de Sistemas,8
+75.48,Calidad en Desarrollo de Sistemas,4,75.45,Gestion Industrial de Sistemas,8
+66.06,Análisis de Circuitos,10,61.10-62.03,Sistemas Distribuidos,8
+75.59,Técnicas de Programación Concurrente I,6,75. 08,Sistemas Distribuidos,8
+66.74,Señales y Sistemas,6,61.09-66.06,Sistemas Distribuidos,8
+75.74,Sistemas Distribuidos I,6,61.10-75.43-75.59,Sistemas Distribuidos,8
+64.05,Estática y Resistencia de Materiales B,6,61.03-61.08,Sistemas de Producción,8
+75.65,Manufactura Integrada por Computadora (CIM) I,6,75.15-75.52,Sistemas de Producción,8
+75.67,Sistemas Automáticos de Diagnóstico y Detección Fallas I,6,71.14,Sistemas de Producción,8
+72.01,Materiales Industriales I,6,63.01-64.05,Sistemas de Producción,8
+75.66,Manufactura Integrada por Computadora (CIM) II,6,75.65,Sistemas de Producción,8
+75.68,Sistemas de Soporte para Celdas Producción Flexible,4,75.65-75.67,Sistemas de Producción,8
 61.07,Matemática Discreta,6,CBC,Materias Electivas,7
 61.18,Ecuaciones Diferenciales Ordinarias,6,61.03-61.08,Materias Electivas,7
 61.19,Análisis Funcional,6,61.10,Materias Electivas,7
@@ -57,7 +69,7 @@ CBC,Ciclo Básico Común,0,x,Ciclo Básico Común,0
 71.20,Modelos y Optimización III,6,71.15,Materias Electivas,7
 71.41,Análisis y Resolución de Problemas,6,71.15,Materias Electivas,7
 71.42,Circuitos de Información en la Empresa,4,71.46,Materias Electivas,7
-71.44,Recursos Humanos,4,140,Materias Electivas,7
+71.44,Recursos Humanos,4,140 créditos,Materias Electivas,7
 71.46,Ingeniería Económica,6,71.13,Materias Electivas,7
 75.14,Lenguajes Formales,6,61.09,Materias Electivas,7
 75.16,Lenguajes de Programación,6,75.14,Materias Electivas,7
@@ -82,24 +94,8 @@ CBC,Ciclo Básico Común,0,x,Ciclo Básico Común,0
 75.71,Seminario de Ingeniería en Informática I,3,75.07,Materias Electivas,7
 75.72,Seminario de Ingeniería en Informática II,3,75.06-75.44,Materias Electivas,7
 75.73,Arquitectura de Software,4,75.07-75.09,Materias Electivas,7
-78.01,Idioma Inglés,4,CBC,Materias Electivas,7
-78.02,Idioma Alemán,4,CBC,Materias Electivas,7
-78.03,Idioma Francés,4,CBC,Materias Electivas,7
-78.04,Idioma Italiano,4,CBC,Materias Electivas,7
-78.05,Idioma Portugués,4,CBC,Materias Electivas,7
-71.13,Información en las Organizaciones,6,71.12,Orientacion: Gestión Industrial de Sistemas,8
-75.44,Administración y Control de Proyectos Informáticos I,6,71.12-75.10,Orientacion: Gestión Industrial de Sistemas,8
-75.45,Taller de Desarrollo de Proyectos I,6,75.10,Orientacion: Gestión Industrial de Sistemas,8
-75.46,Administración y Control de Proyectos Informáticos II,6,75.44,Orientacion: Gestión Industrial de Sistemas,8
-75.47,Taller de Desarrollo de Proyectos II,6,75.44-75.45,Orientacion: Gestión Industrial de Sistemas,8
-75.48,Calidad en Desarrollo de Sistemas,4,75.45,Orientacion: Gestión Industrial de Sistemas,8
-66.06,Análisis de Circuitos,10,61.10-62.03,Orientacion: Sistemas Distribuidos,8
-75.59,Técnicas de Programación Concurrente I,6,75. 08,Orientacion: Sistemas Distribuidos,8
-66.74,Señales y Sistemas,6,61.09-66.06,Orientacion: Sistemas Distribuidos,8
-75.74,Sistemas Distribuidos I,6,61.10-75.43-75.59,Orientacion: Sistemas Distribuidos,8
-64.05,Estática y Resistencia de Materiales B,6,61.03-61.08,Orientacion: Sistemas de Producción,8
-75.65,Manufactura Integrada por Computadora (CIM) I,6,75.15-75.52,Orientacion: Sistemas de Producción,8
-75.67,Sistemas Automáticos de Diagnóstico y Detección Fallas I,6,71.14,Orientacion: Sistemas de Producción,8
-72.01,Materiales Industriales I,6,63.01-64.05,Orientacion: Sistemas de Producción,8
-75.66,Manufactura Integrada por Computadora (CIM) II,6,75.65,Orientacion: Sistemas de Producción,8
-75.68,Sistemas de Soporte para Celdas Producción Flexible,4,75.65-75.67,Orientacion: Sistemas de Producción,8
+78.01,Idioma Inglés (*),4,CBC,Materias Electivas,7
+78.02,Idioma Alemán (*),4,CBC,Materias Electivas,7
+78.03,Idioma Francés (*),4,CBC,Materias Electivas,7
+78.04,Idioma Italiano (*),4,CBC,Materias Electivas,7
+78.05,Idioma Portugués (*),4,CBC,Materias Electivas,7

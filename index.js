@@ -1,8 +1,8 @@
 var FUERON_SELECCIONADOS = []
 
-function wrapper(archivo){
+function main(file){
     $.ajax({
-        url: archivo,
+        url: file,
         dataType: 'text',
         success: function(data, jqXHR, textStatus) {graphFromCSV(data)}
     })
@@ -19,41 +19,49 @@ function breakWords(string){
 
 function getNode(rowCells){
     var codigo = rowCells[0]
-    var materia = rowCells[1]
-    var label = breakWords(materia)
+    var label = breakWords(rowCells[1])
     var creditos = rowCells[2]
-    var correlativas = rowCells[3]
-    var categoria = rowCells[4]
+    var grupo = rowCells[4]
     var nivel = rowCells[5]
-    var name = '[' + codigo + ']\n ' + materia
-    
-    if (creditos!=0){name+=' -- ' + creditos + ' créditos'}
-    if (categoria.indexOf('x')!==-1){name+= ' -- ' + categoria}
 
-    return {id:codigo, label:label, title:name, group:categoria, value: creditos,level:nivel,cid:1}
+    return {id:codigo, label:label, group:grupo, value: parseInt(creditos), aprobada: false,level:nivel, cid: parseInt(nivel), categoria: grupo}
 }
 
-function graphFromCSV(data) {
-    var nodes_arr = new Array()
-    var nodes = new vis.DataSet([])
-    var edges = new vis.DataSet([])
+function createClusterPerGroup(group){
+    var cluster = {
+        joinCondition : function(nodeOptions) {
+            return nodeOptions.group === group;
+        },
+        clusterNodeProperties : {id: group, label: group}   
+    }
+    return cluster
+}
+
+function csvToNodesAndEdges(data){
+    var nodes_ids = []
+    var nodes = []
+    var edges = []
+    var grupos = []
 
     var allRows = data.split(/\r?\n|\r/);
     for (var singleRow = 1; singleRow < allRows.length-1; singleRow++) {
-        var rowCells = allRows[singleRow].split(',');
-        if ($.inArray(rowCells[0],nodes_arr) == -1) {
-            nodes_arr.push(rowCells[0])
-            nodes.add(getNode(rowCells))
+        var rowCells = allRows[singleRow].split(',');        
+        if (!nodes_ids.includes(rowCells[0])) {
+            nodes_ids.push(rowCells[0])
+            nodes.push(getNode(rowCells))
         }
 
         var correlativas = rowCells[3].split('-')
         correlativas.forEach(x => {
-            edges.add({from:x,to:rowCells[0]})
+            edges.push({from:x,to:rowCells[0]})
         });
-    } 
-    
-    var container = document.getElementById('grafo');
 
+        if (!grupos.includes(rowCells[4])) {grupos.push(rowCells[4])}
+    }
+    return [new vis.DataSet(nodes), new vis.DataSet(edges), grupos]
+}
+
+function create_network(container, nodes, edges){
     var data = {
         nodes: nodes,
         edges: edges
@@ -61,7 +69,7 @@ function graphFromCSV(data) {
 
     var options = {
         nodes:{
-            shape:'box'
+            shape:'box',
         },
         layout: {
             hierarchical: {
@@ -71,72 +79,72 @@ function graphFromCSV(data) {
         },
         edges:{
             arrows: {
-                to: {enabled: true, scaleFactor:1, type:'arrow'}
+                to: {enabled: true, scaleFactor:0.7, type:'arrow'}
             },
         },
+        groups: {
+            Aprobadas: {
+                color: '#7BE141'
+            },
+            CBC: {
+                color: '#7BE141'
+            }
+        }
     };
 
     var network = new vis.Network(container, data, options);          
+    network['creditos'] = 0
+
+    return network
+}
+
+function graphFromCSV(data) {
+    var result = csvToNodesAndEdges(data)
+    var nodes = result[0]
+    var edges = result[1]
+    var grupos = result[2]
     
-    clusterElectivas = {
-        joinCondition:function(nodeOptions) {
-            return nodeOptions.group === 'Materias Electivas';
-        },
-        clusterNodeProperties: {id: 'Materias Electivas', shape:'circle', label: "Materias Electivas", group:'Materias Electivas', level:7}
-    };
+    var container = document.getElementById('grafo');
+    network = create_network(container, nodes, edges)
 
-    clusterIndustrial = {
-        joinCondition:function(nodeOptions) {
-            return nodeOptions.group === 'Orientacion: Gestión Industrial de Sistemas';
-        },
-        clusterNodeProperties: {id: 'Materias de Gestión Industrial de Sistemas', shape:'square', label: breakWords('Orientacion: Gestión Industrial de Sistemas'),group:'Orientacion: Gestión Industrial de Sistemas', level:8}
+    for (i = 2; i < grupos.length; i++) {
+        cluster = {
+            joinCondition:function(nodeOptions) {
+                return nodeOptions.group === grupos[i];
+            },
+            clusterNodeProperties: {id: 'cluster-'+grupos[i], hidden: true, label:grupos[i], level:0}
+        };
+        network.cluster(cluster)
+        $("#menu").append("<li><a class='toggle' id='toggle-"+grupos[i]+"'>"+grupos[i]+"</a></li>")
+        
+        $(document).on('click','.toggle',function(){
+            var [_, grupo] = $(this).attr('id').split('-')
+            network.openCluster('cluster-'+grupo);
+        })
+    } 
 
-    };
+    network.on("click", function(params) {
+        var creditos = network.creditos
 
-    clusterDistribuidos = {
-        joinCondition:function(nodeOptions) {
-            return nodeOptions.group === 'Orientacion: Sistemas Distribuidos';
-        },
-        clusterNodeProperties: {id: 'Materias de Sistemas Distribuidos', shape:'hexagon', label: breakWords('Orientacion: Sistemas Distribuidos'),group:'Orientacion: Sistemas Distribuidos', level:8}
-    };
+        var id = params['nodes']['0'];
+        if (!id) {return}
 
-    clusterProduccion = {
-        joinCondition:function(nodeOptions) {
-            return nodeOptions.group === 'Orientacion: Sistemas de Producción';
-        },
-        clusterNodeProperties: {id: 'Materias de Sistemas de Producción', shape:'triangle', label: breakWords('Orientacion: Sistemas de Producción'),group:'Orientacion: Sistemas de Producción', level:8}                
-    };
-
-    network.cluster(clusterElectivas);
-    network.cluster(clusterIndustrial);
-    network.cluster(clusterDistribuidos);
-    network.cluster(clusterProduccion);
-
-    network.on("selectNode", function(params) {
-        if (network.isCluster(params.nodes[0]) == true) {
-            network.openCluster(params.nodes[0]);
+        var clickedNode = nodes.get(id)
+        
+        var aprobada = clickedNode.aprobada
+        if (!aprobada) {
+            clickedNode.aprobada = true
+            clickedNode.group = 'Aprobadas'
+            creditos += clickedNode.value
         }
         else {
-            var allNodes = nodes.get({returnType:"Object"})
-            $('#selected-var').text(params.nodes[0] + ' ' + allNodes[params.nodes[0]]['label'])
-            var neighborsFrom = network.getConnectedNodes(params.nodes,'from')
-            var neighborsTo = network.getConnectedNodes(params.nodes,'to')
-            var neighborsFromStr = ''
-            neighborsFrom.forEach(element => {
-                if(!network.isCluster(element)){neighborsFromStr += allNodes[element]['label'] + ', '}
-            });
-            
-            neighborsFromStr = neighborsFromStr.slice(0,neighborsFromStr.length-2)
-
-            var neighborsToStr = ''
-            neighborsTo.forEach(element => {
-                if(!network.isCluster(element)){neighborsToStr += allNodes[element]['label'] + ', '}
-            });
-
-            neighborsToStr = neighborsToStr.slice(0,neighborsToStr.length-2)
-
-            $('#selected-from-var').text(neighborsFromStr)
-            $('#selected-to-var').text(neighborsToStr)
-        }   
-    });
+            clickedNode.aprobada = false
+            clickedNode.group = clickedNode.categoria
+            creditos -= clickedNode.value
+        }
+        nodes.update(clickedNode);
+        network.creditos = creditos
+        $('#creditos-var').text(creditos)
+    })
 }
+
