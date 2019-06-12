@@ -1,19 +1,55 @@
+h1 {
+    padding-top: 1em;
+}
+
 #grafo {
     border: solid 1px black;
 }
+
 body {
     text-align: center;
-    align-content: center;
     width: 90%;
     height: 90%;
     margin: 0 auto;
 }
+
 .left{
     text-align: left
 }
+
 .right{
     text-align: right
 }
-#help{
-    margin:2px
+
+#menu {
+    display: table;
+    margin: 0 auto;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    background-color: #333;
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 1em 0.5em;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
 }
