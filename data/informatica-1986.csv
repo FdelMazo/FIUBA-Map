@@ -1,101 +1,101 @@
-codigo,materia,creditos,correlativas,grupo,nivel
-CBC,Ciclo Básico Común,0,,CBC,0
-61.03,Análisis Matemático II A,8,CBC,Materias Obligatorias,1
-62.01,Física I A,8,CBC,Materias Obligatorias,1
-75.40,Algoritmos y Programación I,6,CBC,Materias Obligatorias,1
-61.08,Álgebra II A,8,CBC,Materias Obligatorias,2
-62.03,Física II A,8,61.03-62.01,Materias Obligatorias,2
-63.01,Química,6,CBC,Materias Obligatorias,2
-75.41,Algoritmos y Programación II,6,75.40,Materias Obligatorias,2
-62.15,Física III D,4,61.08-62.03-63.01,Materias Obligatorias,3
-66.02,Laboratorio,6,62.03,Materias Obligatorias,3
-66.70,Estructura del Computador,6,61.08-62.03-75.41,Materias Obligatorias,3
-75.07,Algoritmos y Programación III,6,75.41,Materias Obligatorias,3
-75.12,Análisis Numérico I,6,61.03-61.08-75.41,Materias Obligatorias,3
-61.09,Probabilidad y Estadística B,6,61.03-61.08,Materias Obligatorias,4
-61.10,Análisis Matemático III A,6,61.03-61.08,Materias Obligatorias,4
-66.20,Organización de Computadoras,6,66.02-66.70,Materias Obligatorias,4
-75.06,Organización de Datos,6,66.70-75.41,Materias Obligatorias,4
-75.42,Taller de Programación I,4,66.70-75.12-75.41,Materias Obligatorias,4
-71.12,Estructura de las Organizaciones,6,75.06,Materias Obligatorias,5
-71.14,Modelos y Optimización I,6,61.10-62.03-63.01-75.42,Materias Obligatorias,5
-75.08,Sistemas Operativos,6,75.06,Materias Obligatorias,5
-75.09,Análisis de la Información,6,75.07-75.42,Materias Obligatorias,5
-75.10,Técnicas de Diseño,6,75.08-75.09,Materias Obligatorias,6
-75.15,Base de Datos,6,75.06-75.09,Materias Obligatorias,6
-75.43,Introducción a los Sistemas Distribuidos,6,66.20-62.15-75.08,Materias Obligatorias,6
-75.52,Taller de Programación II,4,71.14-75.07-75.42,Materias Obligatorias,6
-71.13,Información en las Organizaciones,6,71.12,Gestion Industrial de Sistemas,8
-75.44,Administración y Control de Proyectos Informáticos I,6,71.12-75.10,Gestion Industrial de Sistemas,8
-75.45,Taller de Desarrollo de Proyectos I,6,75.10,Gestion Industrial de Sistemas,8
-75.46,Administración y Control de Proyectos Informáticos II,6,75.44,Gestion Industrial de Sistemas,8
-75.47,Taller de Desarrollo de Proyectos II,6,75.44-75.45,Gestion Industrial de Sistemas,8
-75.48,Calidad en Desarrollo de Sistemas,4,75.45,Gestion Industrial de Sistemas,8
-66.06,Análisis de Circuitos,10,61.10-62.03,Sistemas Distribuidos,8
-75.59,Técnicas de Programación Concurrente I,6,75. 08,Sistemas Distribuidos,8
-66.74,Señales y Sistemas,6,61.09-66.06,Sistemas Distribuidos,8
-75.74,Sistemas Distribuidos I,6,61.10-75.43-75.59,Sistemas Distribuidos,8
-64.05,Estática y Resistencia de Materiales B,6,61.03-61.08,Sistemas de Producción,8
-75.65,Manufactura Integrada por Computadora (CIM) I,6,75.15-75.52,Sistemas de Producción,8
-75.67,Sistemas Automáticos de Diagnóstico y Detección Fallas I,6,71.14,Sistemas de Producción,8
-72.01,Materiales Industriales I,6,63.01-64.05,Sistemas de Producción,8
-75.66,Manufactura Integrada por Computadora (CIM) II,6,75.65,Sistemas de Producción,8
-75.68,Sistemas de Soporte para Celdas Producción Flexible,4,75.65-75.67,Sistemas de Producción,8
-61.07,Matemática Discreta,6,CBC,Materias Electivas,7
-61.18,Ecuaciones Diferenciales Ordinarias,6,61.03-61.08,Materias Electivas,7
-61.19,Análisis Funcional,6,61.10,Materias Electivas,7
-62.11,Mecánica Racional,4,61.10-62.01,Materias Electivas,7
-66.08,Circuitos Electrónicos I,8,62.15-66.02-66.06,Materias Electivas,7
-66.09,Laboratorio de Microcomputadoras,6,66.02-66.70,Materias Electivas,7
-66.17,Sistemas Digitales,6,66.70,Materias Electivas,7
-66.18,Teoría de Control I,6,66.74,Materias Electivas,7
-66.19,Circuitos de Pulsos,6,66.08-66.70,Materias Electivas,7
-66.24,Teoría de la Información y Codificación,4,66.74-66.75-66.70,Materias Electivas,7
-66.26,Arquitecturas Paralelas,6,66.20,Materias Electivas,7
-66.32,Robótica,6,62.11-66.18,Materias Electivas,7
-66.35,Técnica Digital Avanzada,6,61.07-66.17,Materias Electivas,7
-66.46,Procesamiento del Habla,6,66.74,Materias Electivas,7
-66.47,Procesamiento de Imágenes,6,61.09-66.74,Materias Electivas,7
-66.49,Sistemas Biológicos,6,66.74-63.01,Materias Electivas,7
-66.55,Simulación de Sistemas de Control,4,66.18,Materias Electivas,7
-66.63,Redes Neuronales,6,66.74-66.75,Materias Electivas,7
-66.69,Criptografía y Seguridad Informática,6,75.43,Materias Electivas,7
-66.71,Sistemas Gráficos,6,61.10-75.41,Materias Electivas,7
-66.74,Señales y Sistemas,6,61.09-66.06,Materias Electivas,7
-66.75,Procesos Estocásticos,6,61.03-61.09,Materias Electivas,7
-67.61,Fundamentos Matemáticos de la Visión en Robótica,61,61.08-75.07,Materias Electivas,7
-71.15,Modelos y Optimización II,6,61.09-71.14,Materias Electivas,7
-71.18,Estructura Económica Argentina,4,CBC,Materias Electivas,7
-71.20,Modelos y Optimización III,6,71.15,Materias Electivas,7
-71.41,Análisis y Resolución de Problemas,6,71.15,Materias Electivas,7
-71.42,Circuitos de Información en la Empresa,4,71.46,Materias Electivas,7
-71.44,Recursos Humanos,4,140 créditos,Materias Electivas,7
-71.46,Ingeniería Económica,6,71.13,Materias Electivas,7
-75.14,Lenguajes Formales,6,61.09,Materias Electivas,7
-75.16,Lenguajes de Programación,6,75.14,Materias Electivas,7
-75.26,Simulación,6,61.09,Materias Electivas,7
-75.29,Teoría de Algoritmos I,6,61.07-75.41,Materias Electivas,7
-75.30,Teoría de Algoritmos II,6,75.29,Materias Electivas,7
-75.31,Teoría de Lenguaje,4,75.41,Materias Electivas,7
-75.38,Análisis Numérico II A,6,75.52,Materias Electivas,7
-75.50,Introducción a los Sistemas Inteligentes,6,61.09-71.14,Materias Electivas,7
-75.51,Técnicas de Producción de Software I,4,75.15-75.52,Materias Electivas,7
-75.53,Técnicas de Producción de Software II,4,75.51,Materias Electivas,7
-75.54,Técnicas de Producción de Software III,4,75.48-75.53,Materias Electivas,7
-75.55,Taller de Desarrollo de Proyectos III,4,75.46-75.47-75.48,Materias Electivas,7
-75.56,Organización de la Implantación y el Mantenimiento,6,75.46-75.48,Materias Electivas,7
-75.57,Modelos de Proceso de Desarrollo,4,75.46-75.48,Materias Electivas,7
-75.58,Evaluación de Proyectos y Manejo de Riesgos,4,75.46-75.48,Materias Electivas,7
-75.62,Técnicas de Programación Concurrente II,4,75.59,Materias Electivas,7
-75.63,Sistemas Distribuidos II,4,75.74,Materias Electivas,7
-75.64,Sistemas Multimediales,4,66.74-75.74,Materias Electivas,7
-75.69,Sistemas Automáticos de Diagnóstico y Detección Fallas II,6,75.67,Materias Electivas,7
-75.70,Sistemas de Programación no convencional de Robots,6,75.50,Materias Electivas,7
-75.71,Seminario de Ingeniería en Informática I,3,75.07,Materias Electivas,7
-75.72,Seminario de Ingeniería en Informática II,3,75.06-75.44,Materias Electivas,7
-75.73,Arquitectura de Software,4,75.07-75.09,Materias Electivas,7
-78.01,Idioma Inglés (*),4,CBC,Materias Electivas,7
-78.02,Idioma Alemán (*),4,CBC,Materias Electivas,7
-78.03,Idioma Francés (*),4,CBC,Materias Electivas,7
-78.04,Idioma Italiano (*),4,CBC,Materias Electivas,7
-78.05,Idioma Portugués (*),4,CBC,Materias Electivas,7
+codigo,materia,creditos,correlativas,grupo,nivel,caveat
+CBC,Ciclo Básico Común,0,,CBC,0,
+61.03,Análisis Matemático II A,8,CBC,Materias Obligatorias,1,
+62.01,Física I A,8,CBC,Materias Obligatorias,1,
+75.40,Algoritmos y Programación I,6,CBC,Materias Obligatorias,1,
+61.08,Álgebra II A,8,CBC,Materias Obligatorias,2,
+62.03,Física II A,8,61.03-62.01,Materias Obligatorias,2,
+63.01,Química,6,CBC,Materias Obligatorias,2,
+75.41,Algoritmos y Programación II,6,75.40,Materias Obligatorias,2,
+62.15,Física III D,4,61.08-62.03-63.01,Materias Obligatorias,3,
+66.02,Laboratorio,6,62.03,Materias Obligatorias,3,
+66.70,Estructura del Computador,6,61.08-62.03-75.41,Materias Obligatorias,3,
+75.07,Algoritmos y Programación III,6,75.41,Materias Obligatorias,3,
+75.12,Análisis Numérico I,6,61.03-61.08-75.41,Materias Obligatorias,3,
+61.09,Probabilidad y Estadística B,6,61.03-61.08,Materias Obligatorias,4,
+61.10,Análisis Matemático III A,6,61.03-61.08,Materias Obligatorias,4,
+66.20,Organización de Computadoras,6,66.02-66.70,Materias Obligatorias,4,
+75.06,Organización de Datos,6,66.70-75.41,Materias Obligatorias,4,
+75.42,Taller de Programación I,4,66.70-75.12-75.41,Materias Obligatorias,4,
+71.12,Estructura de las Organizaciones,6,75.06,Materias Obligatorias,5,
+71.14,Modelos y Optimización I,6,61.10-62.03-63.01-75.42,Materias Obligatorias,5,
+75.08,Sistemas Operativos,6,75.06,Materias Obligatorias,5,
+75.09,Análisis de la Información,6,75.07-75.42,Materias Obligatorias,5,
+75.10,Técnicas de Diseño,6,75.08-75.09,Materias Obligatorias,6,
+75.15,Base de Datos,6,75.06-75.09,Materias Obligatorias,6,
+75.43,Introducción a los Sistemas Distribuidos,6,66.20-62.15-75.08,Materias Obligatorias,6,
+75.52,Taller de Programación II,4,71.14-75.07-75.42,Materias Obligatorias,6,
+71.13,Información en las Organizaciones,6,71.12,Orientación: Gestion Industrial de Sistemas,8,
+75.44,Administración y Control de Proyectos Informáticos I,6,71.12-75.10,Orientación: Gestion Industrial de Sistemas,8,
+75.45,Taller de Desarrollo de Proyectos I,6,75.10,Orientación: Gestion Industrial de Sistemas,8,
+75.46,Administración y Control de Proyectos Informáticos II,6,75.44,Orientación: Gestion Industrial de Sistemas,8,
+75.47,Taller de Desarrollo de Proyectos II,6,75.44-75.45,Orientación: Gestion Industrial de Sistemas,8,
+75.48,Calidad en Desarrollo de Sistemas,4,75.45,Orientación: Gestion Industrial de Sistemas,8,
+66.06,Análisis de Circuitos,10,61.10-62.03,Orientación: Sistemas Distribuidos,8,
+75.59,Técnicas de Programación Concurrente I,6,75. 08,Orientación: Sistemas Distribuidos,8,
+66.74,Señales y Sistemas,6,61.09-66.06,Orientación: Sistemas Distribuidos,8,
+75.74,Sistemas Distribuidos I,6,61.10-75.43-75.59,Orientación: Sistemas Distribuidos,8,
+64.05,Estática y Resistencia de Materiales B,6,61.03-61.08,Orientación: Sistemas de Producción,8,
+75.65,Manufactura Integrada por Computadora (CIM) I,6,75.15-75.52,Orientación: Sistemas de Producción,8,
+75.67,Sistemas Automáticos de Diagnóstico y Detección Fallas I,6,71.14,Orientación: Sistemas de Producción,8,
+72.01,Materiales Industriales I,6,63.01-64.05,Orientación: Sistemas de Producción,8,
+75.66,Manufactura Integrada por Computadora (CIM) II,6,75.65,Orientación: Sistemas de Producción,8,
+75.68,Sistemas de Soporte para Celdas Producción Flexible,4,75.65-75.67,Orientación: Sistemas de Producción,8,
+61.07,Matemática Discreta,6,CBC,Materias Electivas,7,
+61.18,Ecuaciones Diferenciales Ordinarias,6,61.03-61.08,Materias Electivas,7,
+61.19,Análisis Funcional,6,61.10,Materias Electivas,7,
+62.11,Mecánica Racional,4,61.10-62.01,Materias Electivas,7,
+66.08,Circuitos Electrónicos I,8,62.15-66.02-66.06,Materias Electivas,7,
+66.09,Laboratorio de Microcomputadoras,6,66.02-66.70,Materias Electivas,7,
+66.17,Sistemas Digitales,6,66.70,Materias Electivas,7,
+66.18,Teoría de Control I,6,66.74,Materias Electivas,7,
+66.19,Circuitos de Pulsos,6,66.08-66.70,Materias Electivas,7,
+66.24,Teoría de la Información y Codificación,4,66.74-66.75-66.70,Materias Electivas,7,
+66.26,Arquitecturas Paralelas,6,66.20,Materias Electivas,7,
+66.32,Robótica,6,62.11-66.18,Materias Electivas,7,
+66.35,Técnica Digital Avanzada,6,61.07-66.17,Materias Electivas,7,
+66.46,Procesamiento del Habla,6,66.74,Materias Electivas,7,
+66.47,Procesamiento de Imágenes,6,61.09-66.74,Materias Electivas,7,
+66.49,Sistemas Biológicos,6,66.74-63.01,Materias Electivas,7,
+66.55,Simulación de Sistemas de Control,4,66.18,Materias Electivas,7,
+66.63,Redes Neuronales,6,66.74-66.75,Materias Electivas,7,
+66.69,Criptografía y Seguridad Informática,6,75.43,Materias Electivas,7,
+66.71,Sistemas Gráficos,6,61.10-75.41,Materias Electivas,7,
+66.74,Señales y Sistemas,6,61.09-66.06,Materias Electivas,7,
+66.75,Procesos Estocásticos,6,61.03-61.09,Materias Electivas,7,
+67.61,Fundamentos Matemáticos de la Visión en Robótica,61,61.08-75.07,Materias Electivas,7,
+71.15,Modelos y Optimización II,6,61.09-71.14,Materias Electivas,7,
+71.18,Estructura Económica Argentina,4,CBC,Materias Electivas,7,
+71.20,Modelos y Optimización III,6,71.15,Materias Electivas,7,
+71.41,Análisis y Resolución de Problemas,6,71.15,Materias Electivas,7,
+71.42,Circuitos de Información en la Empresa,4,71.46,Materias Electivas,7,
+71.44,Recursos Humanos,4,140 créditos,Materias Electivas,7,
+71.46,Ingeniería Económica,6,71.13,Materias Electivas,7,
+75.14,Lenguajes Formales,6,61.09,Materias Electivas,7,
+75.16,Lenguajes de Programación,6,75.14,Materias Electivas,7,
+75.26,Simulación,6,61.09,Materias Electivas,7,
+75.29,Teoría de Algoritmos I,6,61.07-75.41,Materias Electivas,7,
+75.30,Teoría de Algoritmos II,6,75.29,Materias Electivas,7,
+75.31,Teoría de Lenguaje,4,75.41,Materias Electivas,7,
+75.38,Análisis Numérico II A,6,75.52,Materias Electivas,7,
+75.50,Introducción a los Sistemas Inteligentes,6,61.09-71.14,Materias Electivas,7,
+75.51,Técnicas de Producción de Software I,4,75.15-75.52,Materias Electivas,7,
+75.53,Técnicas de Producción de Software II,4,75.51,Materias Electivas,7,
+75.54,Técnicas de Producción de Software III,4,75.48-75.53,Materias Electivas,7,
+75.55,Taller de Desarrollo de Proyectos III,4,75.46-75.47-75.48,Materias Electivas,7,
+75.56,Organización de la Implantación y el Mantenimiento,6,75.46-75.48,Materias Electivas,7,
+75.57,Modelos de Proceso de Desarrollo,4,75.46-75.48,Materias Electivas,7,
+75.58,Evaluación de Proyectos y Manejo de Riesgos,4,75.46-75.48,Materias Electivas,7,
+75.62,Técnicas de Programación Concurrente II,4,75.59,Materias Electivas,7,
+75.63,Sistemas Distribuidos II,4,75.74,Materias Electivas,7,
+75.64,Sistemas Multimediales,4,66.74-75.74,Materias Electivas,7,
+75.69,Sistemas Automáticos de Diagnóstico y Detección Fallas II,6,75.67,Materias Electivas,7,
+75.70,Sistemas de Programación no convencional de Robots,6,75.50,Materias Electivas,7,
+75.71,Seminario de Ingeniería en Informática I,3,75.07,Materias Electivas,7,
+75.72,Seminario de Ingeniería en Informática II,3,75.06-75.44,Materias Electivas,7,
+75.73,Arquitectura de Software,4,75.07-75.09,Materias Electivas,7,
+78.01,Idioma Inglés (*),4,CBC,Materias Electivas,7,
+78.02,Idioma Alemán (*),4,CBC,Materias Electivas,7,
+78.03,Idioma Francés (*),4,CBC,Materias Electivas,7,
+78.04,Idioma Italiano (*),4,CBC,Materias Electivas,7,
+78.05,Idioma Portugués (*),4,CBC,Materias Electivas,7,

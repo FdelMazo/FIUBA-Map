@@ -10,11 +10,12 @@ HEADER = ['codigo',
         'creditos',
         'correlativas',
         'grupo', # CBC - Obligatorias - Optativas - Idiomas - Orientaciones - Tesis - Trabajo Profesional
-        'nivel' # Jerarquía del grafo: Primero el CBC, después las obligatorias del primer cuatrimestre, etc
+        'nivel', # Jerarquía del grafo: Primero el CBC, después las obligatorias del primer cuatrimestre, etc
+        'caveat' # Mensaje aclarando algo en particular de las materia (por ejemplo, los idiomas se puede solo hacer uno)
 ]
 
 MATERIAS_HARDCODEADAS = [
-    ['CBC', 'Ciclo Básico Común', '0', None, 'CBC', 0],
+    ['CBC', 'Ciclo Básico Común', '0', None, 'CBC', 0, None],
     # ['75.00', 'Tesis', '12', None, 'Materias Obligatorias', 10],
     # ['71.40', 'Legislación y Ejercicio Profesional de la Ingeniería en Informática', '4', None, 'Materias Obligatorias', 9],
     # ['75.99', 'Trabajo Profesional', '6', None, 'Materias Obligatorias', 9],
@@ -32,9 +33,9 @@ GRUPOS = [
     ['SEXTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 4],
     ['SEPTIMO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 5],
     ['OCTAVO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 6],
-    ['ORIENTACION EN GESTION INDUSTRIAL DE SISTEMAS', 'OPCION TESIS DE INGENIERIA EN INFORMATICA', 'Gestion Industrial de Sistemas', 8],
-    ['ORIENTACION EN SISTEMAS DISTRIBUIDOS', 'OPCION TESIS DE INGENIERIA EN INFORMATICA', 'Sistemas Distribuidos', 8],
-    ['ORIENTACION EN SISTEMAS DE PRODUCCION', 'OPCION TESIS DE INGENIERIA EN INFORMATICA', 'Sistemas de Producción', 8],
+    ['ORIENTACION EN GESTION INDUSTRIAL DE SISTEMAS', 'OPCION TESIS DE INGENIERIA EN INFORMATICA', 'Orientación: Gestion Industrial de Sistemas', 8],
+    ['ORIENTACION EN SISTEMAS DISTRIBUIDOS', 'OPCION TESIS DE INGENIERIA EN INFORMATICA', 'Orientación: Sistemas Distribuidos', 8],
+    ['ORIENTACION EN SISTEMAS DE PRODUCCION', 'OPCION TESIS DE INGENIERIA EN INFORMATICA', 'Orientación: Sistemas de Producción', 8],
     ['ASIGNATURAS ELECTIVAS', 'ASIGNATURAS DE OTRAS FACULTADES', 'Materias Electivas', 7],
 
 
@@ -75,62 +76,6 @@ def parse_materias(materias):
         materias_parseadas.append((codigo, titulo, creditos, correlativas))
     return materias_parseadas
 
-    # asignaturas = []
-
-
-
-    # asignaturas_clean = []
-
-    # for a in asignaturas:
-    #     asignatura_clean = []
-    #     for x in a:
-    #         if discard and a.index(x) in discard: continue
-    #         if x=='140 créditos aprobados' or x=='140 créditos': x='140'
-    #         asignatura_clean.append(x.replace('\n','').replace(' (*)','').strip())
-    #     asignaturas_clean.append(tuple([*asignatura_clean,grupo,nivel_en_grafo]))
-        
-    # ASIGNATURAS.extend(asignaturas_clean)
-
-    # ASIGNATURAS = [a for a in ASIGNATURAS if not a[3] == 'continúa']
-    # return materiasx
-
-
-# def materias(filename, texto_entero, grupo, nivel_en_grafo, start, end=None, fields=5, discard=[3]):
-#     ASIGNATURAS = []
-#     if end: asignaturas = texto_entero[texto_entero.find(start)+len(start):texto_entero.find(end,texto_entero.find(start))]
-#     else: asignaturas = texto_entero[texto_entero.find(start)+len(start):]
-
-#     parrafos = asignaturas.split('\n')
-#     for i,p in enumerate(parrafos):
-#         if CODIGO.search(p):
-#             parrafos = parrafos[i:]
-#             break
-
-#     asignaturas = []
-
-#     for i,p in enumerate(parrafos):
-#         if CODIGO.search(p):
-#             asignaturas.append(parrafos[i:i+fields])
-#             for j in range(i,i+fields): parrafos[j] = ''
-
-#     asignaturas_clean = []
-
-#     for a in asignaturas:
-#         asignatura_clean = []
-#         for x in a:
-#             if discard and a.index(x) in discard: continue
-#             if x=='140 créditos aprobados' or x=='140 créditos': x='140'
-#             asignatura_clean.append(x.replace('\n','').replace(' (*)','').strip())
-#         asignaturas_clean.append(tuple([*asignatura_clean,grupo,nivel_en_grafo]))
-        
-#     ASIGNATURAS.extend(asignaturas_clean)
-
-#     ASIGNATURAS = [a for a in ASIGNATURAS if not a[3] == 'continúa']
-
-#     with open(filename, 'a') as f:
-#         wr = csv.writer(f)
-#         wr.writerows(ASIGNATURAS)
-
 def main():
     texto_entero = parsePDF(sys.argv[1])
     lineas = [*MATERIAS_HARDCODEADAS]
@@ -142,7 +87,7 @@ def main():
         materias_parseadas = parse_materias(materias)
         for m in materias_parseadas:
             codigo, titulo, creditos, correlativas = m
-            lineas.append((codigo, titulo, creditos, correlativas, titulo_grupo, nivel_en_grafo))
+            lineas.append((codigo, titulo, creditos, correlativas, titulo_grupo, nivel_en_grafo, None))
 
     base = os.path.splitext(sys.argv[1])[0]
     filename = base+'.csv'
@@ -151,20 +96,5 @@ def main():
         wr = csv.writer(f)
         wr.writerow(HEADER)
         for linea in lineas: wr.writerow(linea)
-
-        # wr.writerow(['140', ' 140 créditos aprobados','0','CBC','xx','9'])
-#         wr.writerow(['71.40', 'Legislación y Ejercicio Profesional de la Ingeniería en Informática','4','140','xxx','10'])
-#         wr.writerow(['75.00', 'Tesis','12','71.40','Opción Tesis','11'])
-#         wr.writerow(['75.99', 'Trabajo Profesional','6','71.40','Opción Trabajo Profesional','11'])
-
-
-    
-
-#     materias(filename, texto_entero, 'Materias Obligatorias', 2, 'CUARTO CUATRIMESTRE','QUINTO CUATRIMESTRE')
-#     materias(filename, texto_entero, 'Materias Obligatorias', 3, 'QUINTO CUATRIMESTRE','SEXTO CUATRIMESTRE')
-#     materias(filename, texto_entero, 'Materias Obligatorias', 4, 'SEXTO CUATRIMESTRE','SEPTIMO CUATRIMESTRE')
-#     materias(filename, texto_entero, 'Materias Obligatorias', 5, 'SEPTIMO CUATRIMESTRE','OCTAVO CUATRIMESTRE')
-#     materias(filename, texto_entero, 'Materias Obligatorias', 6, 'OCTAVO CUATRIMESTRE','ORIENTACION EN')
-#     materias(filename, texto_entero, 'Materias Electivas', 7, 'ASIGNATURAS ELECTIVAS',fields=4,discard=[])
 
 main()

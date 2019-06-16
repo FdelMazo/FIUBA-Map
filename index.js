@@ -23,8 +23,9 @@ function getNode(rowCells){
     var creditos = rowCells[2]
     var grupo = rowCells[4]
     var nivel = rowCells[5]
+    var caveat = rowCells[6]
 
-    return {id:codigo, label:label, group:grupo, value: parseInt(creditos), aprobada: false,level:nivel, cid: parseInt(nivel), categoria: grupo}
+    return {id:codigo, title:caveat, label:label, group:grupo, value: parseInt(creditos), aprobada: false,level:nivel, cid: parseInt(nivel), categoria: grupo}
 }
 
 function createClusterPerGroup(group){
