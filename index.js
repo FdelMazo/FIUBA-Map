@@ -37,7 +37,7 @@ function graphFromCSV(data) {
 
     bindings()
 
-    aprobar(nodes.get('CBC'))
+    aprobar('CBC')
         
 }
 
@@ -95,17 +95,15 @@ function bindings() {
 
         var id = params.nodes[0];
         if (!id) {return}
-
-        var clickedNode = nodes.get(id)
         
-        var aprobada = clickedNode.aprobada
+        var aprobada = nodes.get(id).aprobada
         if (!aprobada) {
-            aprobar(clickedNode)
-            creditos += clickedNode.value
+            aprobar(id)
+            creditos += nodes.get(id).value
         }
         else {
-            desaprobar(clickedNode)
-            creditos -= clickedNode.value
+            desaprobar(id)
+            creditos -= nodes.get(id).value
         }
         network.creditos = creditos
         $('#creditos-var').text(creditos)
@@ -114,15 +112,35 @@ function bindings() {
 
 // Funciones auxiliares
 
-function aprobar(nodo){
+function aprobar(id){
+    nodo = nodes.get(id)
     nodo.aprobada = true
     nodo.group = 'Aprobadas'
+
+    neighborsTo = network.getConnectedNodes(id,'to')
+    neighborsTo.forEach(x => {
+        neighbor = nodes.get(x)
+        if (!neighbor) {return}
+        neighbor.group = 'Habilitada'
+        nodes.update(neighbor);
+    })
+
     nodes.update(nodo);
 }
 
-function desaprobar(nodo){
+function desaprobar(id){
+    nodes.get(id)
     nodo.aprobada = false
     nodo.group = nodo.categoria
+    
+    neighborsTo = network.getConnectedNodes(id,'to')
+    neighborsTo.forEach(x => {
+        neighbor = nodes.get(x)
+        if (!neighbor) {return}
+        neighbor.group = neighbor.categoria
+        nodes.update(neighbor);
+    })
+
     nodes.update(nodo);
 }
 
