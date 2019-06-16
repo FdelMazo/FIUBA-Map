@@ -1,5 +1,3 @@
-var FUERON_SELECCIONADOS = []
-
 function main(file){
     $.ajax({
         url: file,
@@ -8,34 +6,39 @@ function main(file){
     })
 }
 
-function breakWords(string){
-    broken = ''
-    string.split(' ').forEach(element => {
-        if (element.length < 9) {broken+=' '+element}
-        else {broken+='\n'+element}
-    });
-    return broken.trim();
-}
+function graphFromCSV(data) {
+    container = document.getElementById('grafo');
+    [nodes, edges, grupos] = csvToNodesAndEdges(data)
+    network = create_network(container, nodes, edges)
 
-function getNode(rowCells){
-    var codigo = rowCells[0]
-    var label = breakWords(rowCells[1])
-    var creditos = rowCells[2]
-    var grupo = rowCells[4]
-    var nivel = rowCells[5]
-    var caveat = rowCells[6]
+    // Crea un cluster para las materias electivas y uno por cada orientacion
+    // El cluster no se muestra (hidden: true)
+    // Al clickear en los botones del menu, se abre el cluster, mostrando los nodos
+    grupos.forEach(grupo => {
+        if (grupo.includes('Electivas') || grupo.includes('Orientación')) {
+            cluster = createClusterFromGroup(grupo)
+            network.cluster(cluster)
+            if (grupo.includes('Electivas')) {
+                $("#menu").append("<li class='right'><a class='toggle' id='toggle-"+grupo+"'>"+grupo+"</a></li>")
+            }
 
-    return {id:codigo, title:caveat, label:label, group:grupo, value: parseInt(creditos), aprobada: false,level:nivel, cid: parseInt(nivel), categoria: grupo}
-}
+            else if (grupo.includes('Orientación')) {
+                $("#orientaciones").append("<a class='toggle' id='toggle-"+grupo+"'>"+grupo+"</a>")
+            }
+        
+            $(document).on('click','.toggle',function(){
+                var [_, grupo] = $(this).attr('id').split('-')
+                network.openCluster('cluster-'+grupo);
+            })
+        
+        }
 
-function createClusterPerGroup(group){
-    var cluster = {
-        joinCondition : function(nodeOptions) {
-            return nodeOptions.group === group;
-        },
-        clusterNodeProperties : {id: group, label: group}   
-    }
-    return cluster
+    })
+
+    bindings()
+
+    aprobar(nodes.get('CBC'))
+        
 }
 
 function csvToNodesAndEdges(data){
@@ -49,7 +52,7 @@ function csvToNodesAndEdges(data){
         var rowCells = allRows[singleRow].split(',');        
         if (!nodes_ids.includes(rowCells[0])) {
             nodes_ids.push(rowCells[0])
-            nodes.push(getNode(rowCells))
+            nodes.push(parseNode(rowCells))
         }
 
         var correlativas = rowCells[3].split('-')
@@ -63,89 +66,84 @@ function csvToNodesAndEdges(data){
 }
 
 function create_network(container, nodes, edges){
-    var data = {
-        nodes: nodes,
-        edges: edges
-    };
-
+    var data = { nodes: nodes, edges: edges };
     var options = {
-        nodes:{
-            shape:'box',
-        },
-        layout: {
-            hierarchical: {
-                enabled: true,
-                direction: 'LR',
-            }
-        },
-        edges:{
-            arrows: {
-                to: {enabled: true, scaleFactor:0.7, type:'arrow'}
-            },
-        },
-        groups: {
-            Aprobadas: {
-                color: '#7BE141'
-            },
-            CBC: {
-                color: '#7BE141'
-            }
-        }
+        nodes:{ shape:'box' },
+        layout: { hierarchical: { enabled: true, direction: 'LR' } },
+        edges:{ arrows: { to: {enabled: true, scaleFactor:0.7, type:'arrow'} } },
+        groups: { Aprobadas: { color: '#7BE141' } }
     };
 
-    var network = new vis.Network(container, data, options);          
+    network = new vis.Network(container, data, options);          
     network['creditos'] = 0
-
     return network
 }
 
-function graphFromCSV(data) {
-    var result = csvToNodesAndEdges(data)
-    var nodes = result[0]
-    var edges = result[1]
-    var grupos = result[2]
-    
-    var container = document.getElementById('grafo');
-    network = create_network(container, nodes, edges)
+function createClusterFromGroup(grupo){
+    cluster = {
+        joinCondition:function(nodeOptions) {
+            return nodeOptions.group === grupo;
+        },
+        clusterNodeProperties: {id: 'cluster-'+grupo, hidden: true, level:-1}
+    };
+    return cluster
+}
 
-    for (i = 2; i < grupos.length; i++) {
-        cluster = {
-            joinCondition:function(nodeOptions) {
-                return nodeOptions.group === grupos[i];
-            },
-            clusterNodeProperties: {id: 'cluster-'+grupos[i], hidden: true, label:grupos[i], level:0}
-        };
-        network.cluster(cluster)
-        $("#menu").append("<li><a class='toggle' id='toggle-"+grupos[i]+"'>"+grupos[i]+"</a></li>")
-        
-        $(document).on('click','.toggle',function(){
-            var [_, grupo] = $(this).attr('id').split('-')
-            network.openCluster('cluster-'+grupo);
-        })
-    } 
-
+function bindings() {
     network.on("click", function(params) {
         var creditos = network.creditos
 
-        var id = params['nodes']['0'];
+        var id = params.nodes[0];
         if (!id) {return}
 
         var clickedNode = nodes.get(id)
         
         var aprobada = clickedNode.aprobada
         if (!aprobada) {
-            clickedNode.aprobada = true
-            clickedNode.group = 'Aprobadas'
+            aprobar(clickedNode)
             creditos += clickedNode.value
         }
         else {
-            clickedNode.aprobada = false
-            clickedNode.group = clickedNode.categoria
+            desaprobar(clickedNode)
             creditos -= clickedNode.value
         }
-        nodes.update(clickedNode);
         network.creditos = creditos
         $('#creditos-var').text(creditos)
     })
 }
 
+// Funciones auxiliares
+
+function aprobar(nodo){
+    nodo.aprobada = true
+    nodo.group = 'Aprobadas'
+    nodes.update(nodo);
+}
+
+function desaprobar(nodo){
+    nodo.aprobada = false
+    nodo.group = nodo.categoria
+    nodes.update(nodo);
+}
+
+function parseNode(rowCells){
+    codigo = rowCells[0]
+    label = breakWords(rowCells[1])
+    creditos = rowCells[2]
+    grupo = rowCells[4]
+    nivel = rowCells[5]
+    caveat = rowCells[6]
+
+    node = {id:codigo, label:label, group:grupo, value: parseInt(creditos), aprobada: false,level:nivel, cid: parseInt(nivel), categoria: grupo}
+    if (caveat){ node.title = caveat }
+    return node
+}
+
+function breakWords(string){
+    broken = ''
+    string.split(' ').forEach(element => {
+        if (element.length < 9) {broken+=' '+element}
+        else {broken+='\n'+element}
+    });
+    return broken.trim();
+}
