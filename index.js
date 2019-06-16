@@ -7,16 +7,16 @@ function main(file){
 }
 
 function graphFromCSV(data) {
-    container = document.getElementById('grafo');
-    [nodes, edges, grupos] = csvToNodesAndEdges(data)
-    network = create_network(container, nodes, edges)
+    var container = document.getElementById('grafo');
+    [NODES, EDGES, GRUPOS] = csvToNodesAndEdges(data)
+    network = create_network(container, NODES, EDGES)
 
     // Crea un cluster para las materias electivas y uno por cada orientacion
     // El cluster no se muestra (hidden: true)
     // Al clickear en los botones del menu, se abre el cluster, mostrando los nodos
-    grupos.forEach(grupo => {
+    GRUPOS.forEach(grupo => {
         if (grupo.includes('Electivas') || grupo.includes('Orientación')) {
-            cluster = createClusterFromGroup(grupo)
+            var cluster = createClusterFromGroup(grupo)
             network.cluster(cluster)
             if (grupo.includes('Electivas')) {
                 $("#menu").append("<li class='right'><a class='toggle' id='toggle-"+grupo+"'>"+grupo+"</a></li>")
@@ -27,7 +27,6 @@ function graphFromCSV(data) {
             }
         
             $(document).on('click','.toggle',function(){
-                var [_, grupo] = $(this).attr('id').split('-')
                 network.openCluster('cluster-'+grupo);
             })
         
@@ -80,7 +79,7 @@ function create_network(container, nodes, edges){
 }
 
 function createClusterFromGroup(grupo){
-    cluster = {
+    var cluster = {
         joinCondition:function(nodeOptions) {
             return nodeOptions.group === grupo;
         },
@@ -96,14 +95,14 @@ function bindings() {
         var id = params.nodes[0];
         if (!id) {return}
         
-        var aprobada = nodes.get(id).aprobada
+        var aprobada = NODES.get(id).aprobada
         if (!aprobada) {
             aprobar(id)
-            creditos += nodes.get(id).value
+            creditos += NODES.get(id).value
         }
         else {
             desaprobar(id)
-            creditos -= nodes.get(id).value
+            creditos -= NODES.get(id).value
         }
         network.creditos = creditos
         $('#creditos-var').text(creditos)
@@ -113,52 +112,67 @@ function bindings() {
 // Funciones auxiliares
 
 function aprobar(id){
-    nodo = nodes.get(id)
+    var nodo = NODES.get(id)
     nodo.aprobada = true
     nodo.group = 'Aprobadas'
+    NODES.update(nodo);
 
-    neighborsTo = network.getConnectedNodes(id,'to')
-    neighborsTo.forEach(x => {
-        neighbor = nodes.get(x)
-        if (!neighbor) {return}
-        neighbor.group = 'Habilitada'
-        nodes.update(neighbor);
-    })
+    neighborsTo = network.getConnectedNodes(id, 'to')
+    for (i = 0; i <neighborsTo.length; i++ ){
+        var neighbor = NODES.get(neighborsTo[i])
+        if (!neighbor) {continue}
+        if (neighbor.aprobada) {continue}
+        habilitar(neighborsTo[i])
+    }
 
-    nodes.update(nodo);
 }
 
+function habilitar(id){
+    var nodo = NODES.get(id)
+    nodo.habilitada = true
+    nodo.group = 'Habilitadas'
+    NODES.update(nodo);
+}
+
+function deshabilitar(id){
+    var nodo = NODES.get(id)
+    nodo.habilitada = false
+    nodo.group = nodo.categoria
+    NODES.update(nodo);
+}
+
+
 function desaprobar(id){
-    nodes.get(id)
+    var nodo = NODES.get(id)
     nodo.aprobada = false
     nodo.group = nodo.categoria
+    if (nodo.habilitada) { nodo.group = 'Habilitadas'} 
+    NODES.update(nodo);
     
-    neighborsTo = network.getConnectedNodes(id,'to')
-    neighborsTo.forEach(x => {
-        neighbor = nodes.get(x)
-        if (!neighbor) {return}
-        neighbor.group = neighbor.categoria
-        nodes.update(neighbor);
-    })
+    for (i = 0; i <neighborsTo.length; i++ ){
+        var neighbor = NODES.get(neighborsTo[i])
+        if (!neighbor) {continue}
+        if (neighbor.aprobada) {continue}
+        deshabilitar(neighborsTo[i])
+    }
 
-    nodes.update(nodo);
 }
 
 function parseNode(rowCells){
-    codigo = rowCells[0]
-    label = breakWords(rowCells[1])
-    creditos = rowCells[2]
-    grupo = rowCells[4]
-    nivel = rowCells[5]
-    caveat = rowCells[6]
+    var codigo = rowCells[0]
+    var label = breakWords(rowCells[1])
+    var creditos = rowCells[2]
+    var grupo = rowCells[4]
+    var nivel = rowCells[5]
+    var caveat = rowCells[6]
 
-    node = {id:codigo, label:label, group:grupo, value: parseInt(creditos), aprobada: false,level:nivel, cid: parseInt(nivel), categoria: grupo}
+    var node = {id:codigo, label:label, group:grupo, value: parseInt(creditos), aprobada: false, level:nivel, habilitada: false, categoria: grupo}
     if (caveat){ node.title = caveat }
     return node
 }
 
 function breakWords(string){
-    broken = ''
+    var broken = ''
     string.split(' ').forEach(element => {
         if (element.length < 9) {broken+=' '+element}
         else {broken+='\n'+element}
