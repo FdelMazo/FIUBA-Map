@@ -16,10 +16,6 @@ HEADER = ['codigo',
 
 MATERIAS_HARDCODEADAS = [
     ['CBC', 'Ciclo Básico Común', '0', None, 'CBC', 0, None],
-    # ['75.00', 'Tesis', '12', None, 'Materias Obligatorias', 10],
-    # ['71.40', 'Legislación y Ejercicio Profesional de la Ingeniería en Informática', '4', None, 'Materias Obligatorias', 9],
-    # ['75.99', 'Trabajo Profesional', '6', None, 'Materias Obligatorias', 9],
-    # ['75.61', 'Taller de Programación III', '6', '66.74-75.74', 'Sistemas Distribuidos', 8]
 ]
 
 MATERIAS_BANLIST = [
@@ -90,7 +86,7 @@ def main():
             lineas.append((codigo, titulo, creditos, correlativas, titulo_grupo, nivel_en_grafo, None))
 
     base = os.path.splitext(sys.argv[1])[0]
-    filename = base+'.csv'
+    filename = base+'.organizar.csv'
        
     with open(filename, 'w') as f:
         wr = csv.writer(f)

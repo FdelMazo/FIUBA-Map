@@ -9,8 +9,13 @@ function main(file){
 function graphFromCSV(data) {
     var container = document.getElementById('grafo');
     [NODES, EDGES, GRUPOS] = csvToNodesAndEdges(data)
-    network = create_network(container, NODES, EDGES)
+    network = createNetwork(container, NODES, EDGES)
 
+    // El cluster Final De Carrera contiene las opciones de tesis y demas
+    // No se agrega de entrada al mapa porque no es tan relevante (si estas terminando la carrera ya sabes que materias cursar...)
+    var clusterFinalDeCarrera = createClusterFromGroup('Final De Carrera')
+    network.cluster(clusterFinalDeCarrera)
+    
     // Crea un cluster para las materias electivas y uno por cada orientacion
     // El cluster no se muestra (hidden: true)
     // Al clickear en los botones del menu, se abre el cluster, mostrando los nodos
@@ -26,11 +31,17 @@ function graphFromCSV(data) {
                 $("#orientaciones").append("<a class='toggle' id='toggle-"+grupo+"'>"+grupo+"</a>")
             }
         
-            $(document).on('click','.toggle',function(){
-                network.openCluster('cluster-'+grupo);
-            })
+            
+                // Se abra el grupo que se abra, también se agrega el final de carrera
+            // })
         
         }
+
+    })
+    $(document).on('click','.toggle',function(){
+        var [_, grupo] = $(this).attr('id').split('-')
+        if (network.isCluster('cluster-'+grupo)) { network.openCluster('cluster-'+grupo) }
+        if (network.isCluster('cluster-Final De Carrera')) { network.openCluster('cluster-Final De Carrera')}
 
     })
 
@@ -41,7 +52,6 @@ function graphFromCSV(data) {
 }
 
 function csvToNodesAndEdges(data){
-    var nodes_ids = []
     var nodes = []
     var edges = []
     var grupos = []
@@ -49,10 +59,7 @@ function csvToNodesAndEdges(data){
     var allRows = data.split(/\r?\n|\r/);
     for (var singleRow = 1; singleRow < allRows.length-1; singleRow++) {
         var rowCells = allRows[singleRow].split(',');        
-        if (!nodes_ids.includes(rowCells[0])) {
-            nodes_ids.push(rowCells[0])
-            nodes.push(parseNode(rowCells))
-        }
+        nodes.push(parseNode(rowCells))
 
         var correlativas = rowCells[3].split('-')
         correlativas.forEach(x => {
@@ -64,7 +71,7 @@ function csvToNodesAndEdges(data){
     return [new vis.DataSet(nodes), new vis.DataSet(edges), grupos]
 }
 
-function create_network(container, nodes, edges){
+function createNetwork(container, nodes, edges){
     var data = { nodes: nodes, edges: edges };
     var options = {
         nodes:{ shape:'box' },
