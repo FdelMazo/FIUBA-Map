@@ -77,7 +77,10 @@ function createNetwork(container, nodes, edges){
         nodes:{ shape:'box' },
         layout: { hierarchical: { enabled: true, direction: 'LR' } },
         edges:{ arrows: { to: {enabled: true, scaleFactor:0.7, type:'arrow'} } },
-        groups: { Aprobadas: { color: '#7BE141' } }
+        groups: { 
+            Aprobadas: { color: '#7BE141' },
+            Habilitadas: { color: '#ffa500' }
+        }
     };
 
     network = new vis.Network(container, data, options);          
