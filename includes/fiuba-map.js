@@ -60,7 +60,11 @@ function csvToNodesAndEdges(data){
                 nodosCred.push(node)
                 continue
             }
-            edges.push({from:correlativas[i],to:rowCells[0]})
+            var edge = {from:correlativas[i],to:rowCells[0]}
+            // Las aristas entre CBC y los nodos CRED sirven para que el layout quede bien
+            // Pero no deben ser mostradas
+            if (correlativas[i] == 'CBC' && node.requiere) {edge.hidden = true}
+            edges.push(edge)
         }
 
         nodes.push(node)
@@ -81,12 +85,19 @@ function createNetwork(container, nodes, edges){
             Habilitadas: { color: '#ffa500' },
             'Final De Carrera': { color: '#FF7F50' },
             'Final De Carrera Clustered': { color: '#FF7F50' },
+            'Materias Electivas': { color: '#FA8072' },
+            'Materias Obligatorias': { color: '#ADD8E6' },
+            // Informática
             'Orientación: Gestión Industrial de Sistemas': { color: '#FFFF00' },
             'Orientación: Sistemas Distribuidos': { color: '#7FFFD4' },
             'Orientación: Sistemas de Producción': { color: '#6495ED' },
-            'Materias Electivas': { color: '#FA8072' },
-            'Materias Obligatorias': { color: '#ADD8E6' }
-        }
+            // Mecánica
+            'Orientación: Diseño Mecánico': { color: '#FFFF00' },
+            'Orientación: Termomecánica': { color: '#7FFFD4' },
+            'Orientación: Metalúrgica': { color: '#6495ED' },
+            'Orientación: Computación Aplicada': { color: '#FFFFE0' },            
+            'Orientación: Industrias': { color: '#CCCCB3' },
+        },
     };
 
     network = new vis.Network(container, data, options);          
@@ -99,15 +110,13 @@ function createClusterFromGroup(grupo){
         joinCondition:function(nodeOptions) {
             return nodeOptions.group === grupo;
         },
-        clusterNodeProperties: {id: 'cluster-'+grupo, hidden: true, level:-1}
+        clusterNodeProperties: {id: 'cluster-'+grupo, hidden: true, level:-1, allowSingleNodeCluster:true}
     };
     return cluster
 }
 
 function bindings() {
     network.on("click", function(params) {
-        var creditos = network.creditos
-
         var id = params.nodes[0];
         if (!id) {return}
         

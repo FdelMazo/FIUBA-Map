@@ -31,7 +31,8 @@ GRUPOS = [
     ['OCTAVO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 6],
     ['NOVENO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 7],
     ['DECIMO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 8],
-    ['ASIGNATURAS ELECTIVAS', 'ASIGNATURAS DE OTRAS FACULTADES', 'Materias Electivas', 10],
+    ['OPCION TESIS DE INGENIERIA MECANICA', 'TOTAL DEL CICLO', 'Materias Obligatorias', 9],
+    ['ASIGNATURAS ELECTIVAS', 'REQUERIMIENTOS DE REGULARIDAD', 'Materias Electivas', 10],
 
 
 ]

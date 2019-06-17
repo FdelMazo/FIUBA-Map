@@ -37,12 +37,12 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 73.11,Máquinas Marinas I,6,67.04,Materias Obligatorias,7,
 73.12,Máquinas Marinas II,6,67.04,Materias Obligatorias,7,
 73.41,Prácticas en Astilleros II,4,73.40,Materias Obligatorias,7,
-73.00,Tesis de Ingeniería Naval (*),18,CBC-CRED140,Final De Carrera,9,Requiere 140 créditos -- Se opta entre Tesis y Trabajo Profesional
+73.00,Tesis de Ingeniería Naval (*),18,CRED140-CBC,Final De Carrera,9,Requiere 140 créditos -- Se opta entre Tesis y Trabajo Profesional
 73.99,Trabajo Profesional de Ingeniería Naval y Mecánica (*),0,CBC,Final De Carrera,9,Esta materia no otorga créditos adicionales y se aprueba teniendo 18 créditos en asignaturas electivas -- Se opta entre Tesis y Trabajo Profesional
 64.14,Método de los Elementos Finitos,4,64.13,Materias Electivas,8,
 64.15,Estabilidad IV B,6,64.13,Materias Electivas,8,
 64.16,Análisis Experimental de Tensiones,2,64.13,Materias Electivas,8,
-67.23,Conversión de la Energía (*),2,CBC-CRED120,Materias Electivas,8,Requiere 120 créditos
+67.23,Conversión de la Energía (*),2,CRED120-CBC,Materias Electivas,8,Requiere 120 créditos
 67.38,Tecnología Mecánica B,6,67.02-68.13,Materias Electivas,8,
 67.61,Fundamentos Matemáticos de la Visión en Robótica,6,61.08-67.02,Materias Electivas,8,
 68.03,Puertos y Vías Navegables,6,,Materias Electivas,8,

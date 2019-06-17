@@ -20,14 +20,14 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 65.48,Laboratorio de Instalaciones Eléctricas,4,62.04-76.46,Materias Obligatorias,5,
 76.49,Operaciones Unitarias de Transferencia de Cantidad de Movimiento y Energía,10,76.47,Materias Obligatorias,6,
 76.52,Operaciones Unitarias de Transferencia de Materia,10,76.48-76.47,Materias Obligatorias,6,
-77.08,Seguridad Ambiental y del Trabajo B (*),4,CBC-CRED100,Materias Obligatorias,6,Requiere 100 créditos
+77.08,Seguridad Ambiental y del Trabajo B (*),4,CRED100-CBC,Materias Obligatorias,6,Requiere 100 créditos
 76.53,Diseño de Reactores,10,76.49-63.16-75.12,Materias Obligatorias,7,
 76.54,Instalaciones de Plantas de Procesos,8,76.49,Materias Obligatorias,7,
 76.55,Microbiología Industrial,6,63.14,Materias Obligatorias,7,
 76.56,Instrumentación y Control de Plantas Químicas,10,76.49-76.52,Materias Obligatorias,8,
 76.57,Diseño de Procesos,6,76.52,Materias Obligatorias,8,
 76.58,Emisiones de Contaminantes Químicos y Biológicos,4,76.52-76.55,Materias Obligatorias,8,
-71.28,Legislación y Ejercicio Profesional de la Ingeniería Química (*),4,CBC-CRED140,Final De Carrera,11,Requiere 140 créditos
+71.28,Legislación y Ejercicio Profesional de la Ingeniería Química (*),4,CRED140-CBC,Final De Carrera,11,Requiere 140 créditos
 62.13,Física III C,6,62.04,Materias Electivas,10,
 62.18,Física de los Fluidos,4,76.47,Materias Electivas,10,
 63.10,Termodinámica Estadística,6,63.16,Materias Electivas,10,
@@ -48,11 +48,11 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 76.28,Gestión Recursos en la Industria de Procesos,4,76.47,Materias Electivas,10,
 76.29,Industria de Procesos,4,76.52,Materias Electivas,10,
 76.30,Industrias Alimenticias,4,76.49,Materias Electivas,10,
-76.51,Introducción a la Planificación Interactiva(*),4,CBC-CRED140,Materias Electivas,10,Requiere 140 créditos
+76.51,Introducción a la Planificación Interactiva(*),4,CRED140-CBC,Materias Electivas,10,Requiere 140 créditos
 76.63,Diseño Avanzado de Reactores,6,76.53,Materias Electivas,10,
 78.xx,Idioma (*),4,CBC,Materias Electivas,10,El estudiante podrá cursar sólo un idioma en carácter de asignatura electiva (inglés alemán francés italiano o portugués)
 76.59,Trabajo Profesional de Ingeniería Química I (*),6,76.52-76.53,Final De Carrera,12,Se opta entre Tesis y Trabajo Profesional
-71.53,Evaluación de Proyectos de Plantas Químicas (*),6,CBC-CRED100,Materias Obligatorias,9,Requiere 100 Créditos
+71.53,Evaluación de Proyectos de Plantas Químicas (*),6,CRED100-CBC,Materias Obligatorias,9,Requiere 100 Créditos
 76.60,Laboratorio de Operaciones y Procesos,4,76.52-76.53-77.08,Materias Obligatorias,9,
 76.61,Bioingeniería,6,76.52-76.53-76.55,Materias Obligatorias,9,
 76.62,Trabajo Profesional de Ingeniería Química II (*),6,76.59-76.56,Final De Carrera,12,Se opta entre Tesis y Trabajo Profesional

@@ -1,16 +1,16 @@
 <html>
     <head>
-        <title>FIUBA Map | Ingeniería de Alimentos</title>
+        <title>FIUBA Map | Ingeniería Mecánica</title>
         <meta charset="utf-8">
         <meta name="description" content="Mapa de materias y sus correlativas de la Facultad de Ingeniería">
         <link rel="author" href="https://github.com/FdelMazo/" />
-        <link rel="canonical" href="https://fdelmazo.github.io/FIUBA-Map/alimentos.html" />
+        <link rel="canonical" href="https://fdelmazo.github.io/FIUBA-Map/mecanica.html" />
 
-        <meta property="og:url" content="https://fdelmazo.github.io/FIUBA-Map/alimentos.html">
+        <meta property="og:url" content="https://fdelmazo.github.io/FIUBA-Map/mecanica.html">
         <meta property="og:image" content="https://fdelmazo.github.io/FIUBA-Map/includes/fiuba.png">
         <meta property="og:description" content="Mapa de materias correlativas de la Facultad de Ingeniería">
-        <meta property="og:title" content="FIUBA-Map | Ingeniería de Alimentos">
-        <meta property="og:site_name" content="FIUBA-Map | Ingeniería de Alimentos">
+        <meta property="og:title" content="FIUBA-Map | Ingeniería Mecánica">
+        <meta property="og:site_name" content="FIUBA-Map | Ingeniería Mecánica">
         <meta property="og:see_also" content="https://fdelmazo.github.io/FIUBA-Map/">
 
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -18,21 +18,21 @@
         <link href="includes/vis.min.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="includes/fiuba-map.js"></script>
         <link href="includes/style.css" rel="stylesheet" type="text/css" />
-        <script>main('data/alimentos-2000.csv')</script>
+        <script>main('data/mecanica-1986.csv')</script>
     </head>
 
     <body>
         <ul id='menu'>
             <li class="dropdown" id='carreras'>
-                <a href="https://github.com/fdelmazo/FIUBA-Map" class="dropbtn">Ingeniería de Alimentos - Plan 2000</a>
+                <a href="javascript:void(0)" class="dropbtn">Ingeniería Mecánica - Plan 1986</a>
                 <div class="dropdown-content">
                   <a href="informatica.html">Ingeniería en Informática</a>
                   <a href="sistemas.html">Licenciatura en Análisis de Sistemas</a>
                   <a href="quimica.html">Ingeniería Química</a>
                   <a href="civil.html">Ingeniería Civil</a>
+                  <a href="alimentos.html">Ingeniería de Alimentos</a>
                   <a href="electricista.html">Ingeniería Electricista</a>
                   <a href="naval.html">Ingeniería Naval y Mecánica</a>
-                  <a href="mecanica.html">Ingeniería Mecánica</a>
                 </div>
             </li>
 
@@ -43,9 +43,14 @@
             </a></li>
 
             <li class='right'><a>Creditos: <var id='creditos-var'> 0 </var></a></li>
-
-            <li class='right'><a class='toggle' id='toggle-Materias Electivas'>Materias Electivas</a></li>
-
+            
+            <li class="right dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Materias Electivas</a>
+                <div class="dropdown-content" id='orientaciones'>
+                    <a class='toggle' id='toggle-Materias Electivas'>Sin área</a>
+                    <!-- Se llena con javascript -->
+                </div>
+            </li>
         </ul>
 
         <div id="grafo"></div>
