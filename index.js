@@ -30,11 +30,6 @@ function graphFromCSV(data) {
             else if (grupo.includes('Orientación')) {
                 $("#orientaciones").append("<a class='toggle' id='toggle-"+grupo+"'>"+grupo+"</a>")
             }
-        
-            
-                // Se abra el grupo que se abra, también se agrega el final de carrera
-            // })
-        
         }
 
     })
