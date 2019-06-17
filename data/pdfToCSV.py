@@ -23,20 +23,18 @@ MATERIAS_BANLIST = [
 ]
 
 GRUPOS = [
-    # ['TERCER CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 1],
-    # ['CUARTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 2],
-    # ['QUINTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 3],
-    # ['SEXTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 4],
-    # ['SÉPTIMO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 5],
-    # ['OCTAVO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 6],
-    # ['NOVENO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 7],
-    # ['DÉCIMO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 8],
-    ['ASIGNATURAS ELECTIVAS', 'ASIGNATURAS DE OTRAS FACULTADES', 'Materias Electivas', 9],
+    ['PRIMER CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 1],
+    ['SEGUNDO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 2],
+    ['TERCER CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 3],
+    ['CUARTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 4],
+    ['QUINTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 5],
+    ['SEXTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 6],
+    ['ASIGNATURAS ELECTIVAS', 'REQUERIMIENTOS DE REGULARIDAD', 'Materias Electivas', 9],
 
 
 ]
 
-MATERIA_OBLIGATORIA = r'(\d\d\.\d\d\n.*\n.*\n.*)'
+MATERIA_OBLIGATORIA = r'(\d\d\.\d\d\n.*\n.*\n.*\n.*\n)'
 MATERIA_ELECTIVA = r'(\d\d\.\d\d\n.*\n.*\n.*)'
 
 def parsePDF(f):
@@ -67,6 +65,7 @@ def parse_materias(materias):
         if any([m in MATERIAS_BANLIST for m in materia]): continue
         try:
             codigo, titulo, creditos, horas, correlativas = materia
+            correlativas = correlativas.replace(', ','-')
         except ValueError:
             codigo, titulo, creditos, correlativas = materia
         materias_parseadas.append((codigo, titulo, creditos, correlativas))

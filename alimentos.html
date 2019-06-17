@@ -1,16 +1,16 @@
 <html>
     <head>
-        <title>FIUBA Map | Licenciatura en Análisis de Sistemas</title>
+        <title>FIUBA Map | Ingeniería de Alimentos</title>
         <meta charset="utf-8">
         <meta name="description" content="Mapa de materias y sus correlativas de la Facultad de Ingeniería">
         <link rel="author" href="https://github.com/FdelMazo/" />
-        <link rel="canonical" href="https://fdelmazo.github.io/FIUBA-Map/sistemas.html" />
+        <link rel="canonical" href="https://fdelmazo.github.io/FIUBA-Map/alimentos.html" />
 
-        <meta property="og:url" content="https://fdelmazo.github.io/FIUBA-Map/sistemas.html">
+        <meta property="og:url" content="https://fdelmazo.github.io/FIUBA-Map/alimentos.html">
         <meta property="og:image" content="https://fdelmazo.github.io/FIUBA-Map/fiuba.png">
         <meta property="og:description" content="Mapa de materias correlativas de la Facultad de Ingeniería">
-        <meta property="og:title" content="FIUBA-Map | Licenciatura en Análisis de Sistemas">
-        <meta property="og:site_name" content="FIUBA-Map | Licenciatura en Análisis de Sistemas">
+        <meta property="og:title" content="FIUBA-Map | Ingeniería de Alimentos">
+        <meta property="og:site_name" content="FIUBA-Map | Ingeniería de Alimentos">
         <meta property="og:see_also" content="https://fdelmazo.github.io/FIUBA-Map/">
 
         <script type="text/javascript" src="jquery-3.3.1.min.js"></script>
@@ -18,7 +18,7 @@
         <link href="vis.min.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="index.js"></script>
         <link href="index.css" rel="stylesheet" type="text/css" />
-        <script>main('data/sistemas-1986v2014.csv')</script>
+        <script>main('data/alimentos-2000.csv')</script>
     </head>
 
     <body>
@@ -31,23 +31,24 @@
             </a>
         </h1>
 
-        <h2>Licenciatura en Análisis de Sistemas - Plan 1986, modificado en 2014</h2>       
+        <h2>Ingeniería de Alimentos - Plan 2000</h2>       
 
         <ul id='menu'>
             <li class="dropdown" id='carreras'>
                 <a href="javascript:void(0)" class="dropbtn">Carreras</a>
                 <div class="dropdown-content">
                   <a href="informatica.html">Ingeniería en Informática</a>
-                  <a class='active' href="sistemas.html">Licenciatura En Análisis de Sistemas</a>
+                  <a href="sistemas.html">Licenciatura En Análisis de Sistemas</a>
                   <a href="quimica.html">Ingeniería Química</a>
                   <a href="civil.html">Ingeniería Civil</a>
-                  <a href="alimentos.html">Ingeniería de Alimentos</a>
+                  <a class='active' href="alimentos.html">Ingeniería de Alimentos</a>
                 </div>
             </li>
 
             <li class='right'><a>Creditos: <var id='creditos-var'> 0 </var></a></li>
 
             <li class='right'><a class='toggle' id='toggle-Materias Electivas'>Materias Electivas</a></li>
+
         </ul>
 
         <div id="grafo"></div>
