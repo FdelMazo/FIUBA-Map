@@ -23,12 +23,9 @@ function graphFromCSV(data) {
         if (grupo.includes('Electivas') || grupo.includes('Orientación')) {
             var cluster = createClusterFromGroup(grupo)
             network.cluster(cluster)
-            if (grupo.includes('Electivas')) {
-                $("#menu").append("<li class='right'><a class='toggle' id='toggle-"+grupo+"'>"+grupo+"</a></li>")
-            }
-
-            else if (grupo.includes('Orientación')) {
-                $("#orientaciones").append("<a class='toggle' id='toggle-"+grupo+"'>"+grupo+"</a>")
+            if (grupo.includes('Orientación')) {
+                var [_,orientacion] = grupo.split(':')
+                $("#orientaciones").append("<a class='toggle' id='toggle-"+grupo+"'>"+orientacion+"</a>")
             }
         }
 

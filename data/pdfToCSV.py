@@ -23,21 +23,20 @@ MATERIAS_BANLIST = [
 ]
 
 GRUPOS = [
-    ['TERCER CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 1],
-    ['CUARTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 2],
-    ['QUINTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 3],
-    ['SEXTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 4],
-    ['SEPTIMO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 5],
-    ['OCTAVO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 6],
-    ['ORIENTACION EN GESTION INDUSTRIAL DE SISTEMAS', 'OPCION TESIS DE INGENIERIA EN INFORMATICA', 'Orientación: Gestion Industrial de Sistemas', 8],
-    ['ORIENTACION EN SISTEMAS DISTRIBUIDOS', 'OPCION TESIS DE INGENIERIA EN INFORMATICA', 'Orientación: Sistemas Distribuidos', 8],
-    ['ORIENTACION EN SISTEMAS DE PRODUCCION', 'OPCION TESIS DE INGENIERIA EN INFORMATICA', 'Orientación: Sistemas de Producción', 8],
-    ['ASIGNATURAS ELECTIVAS', 'ASIGNATURAS DE OTRAS FACULTADES', 'Materias Electivas', 7],
+    # ['TERCER CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 1],
+    # ['CUARTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 2],
+    # ['QUINTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 3],
+    # ['SEXTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 4],
+    # ['SÉPTIMO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 5],
+    # ['OCTAVO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 6],
+    # ['NOVENO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 7],
+    # ['DÉCIMO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 8],
+    ['ASIGNATURAS ELECTIVAS', 'ASIGNATURAS DE OTRAS FACULTADES', 'Materias Electivas', 9],
 
 
 ]
 
-MATERIA_OBLIGATORIA = r'(\d\d\.\d\d\n.*\n.*\n.*\n.*)'
+MATERIA_OBLIGATORIA = r'(\d\d\.\d\d\n.*\n.*\n.*)'
 MATERIA_ELECTIVA = r'(\d\d\.\d\d\n.*\n.*\n.*)'
 
 def parsePDF(f):
@@ -59,6 +58,7 @@ def obtener_materias(texto_entero, desde, hasta, expresion):
     materias = re.split(expresion, texto_materias) # Devuelve una lista del estilo [codigo1, materia1, codigo2, materia2]
     materias = [m.strip() for m in materias if m.strip() and re.search(expresion, m)] # Emprolija la lista
     materias = [tuple(m.split('\n')) for m in materias]
+    print(materias)
     return materias
 
 def parse_materias(materias):
@@ -78,7 +78,7 @@ def main():
 
     for grupo in GRUPOS:
         desde, hasta, titulo_grupo, nivel_en_grafo = grupo
-        expresion = MATERIA_ELECTIVA if 'Electivas' in titulo_grupo else MATERIA_OBLIGATORIA
+        expresion = MATERIA_ELECTIVA if 'ELECTIVAS' in titulo_grupo else MATERIA_OBLIGATORIA
         materias = obtener_materias(texto_entero, desde, hasta, expresion)
         materias_parseadas = parse_materias(materias)
         for m in materias_parseadas:

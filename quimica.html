@@ -1,12 +1,12 @@
 <html>
     <head>
-        <title>FIUBA Map | Ingeniería en Informática</title>
+        <title>FIUBA Map | Ingeniería Química</title>
         <meta charset="utf-8">
         <meta name="description" content="Mapa de materias y sus correlativas de la Facultad de Ingeniería">
         <link rel="author" href="https://github.com/FdelMazo/" />
-        <link rel="canonical" href="https://fdelmazo.github.io/FIUBA-Map/informatica.html" />
+        <link rel="canonical" href="https://fdelmazo.github.io/FIUBA-Map/quimica.html" />
 
-        <meta property="og:url" content="https://fdelmazo.github.io/FIUBA-Map/informatica.html">
+        <meta property="og:url" content="https://fdelmazo.github.io/FIUBA-Map/quimica.html">
         <meta property="og:image" content="https://fdelmazo.github.io/FIUBA-Map/fiuba.png">
         <meta property="og:description" content="Mapa de materias correlativas de la Facultad de Ingeniería">
         <meta property="og:title" content="FIUBA-Map | Ingeniería en Informática">
@@ -18,7 +18,7 @@
         <link href="vis.min.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="index.js"></script>
         <link href="index.css" rel="stylesheet" type="text/css" />
-        <script>main('data/informatica-1986.csv')</script>
+        <script>main('data/quimica-1986v2016.csv')</script>
     </head>
 
     <body>
@@ -31,33 +31,28 @@
             </a>
         </h1>
 
-        <h2>Ingeniería en Informática - Plan 1986</h2>       
+        <h2>Ingeniería Química - Plan 1986, actualización 2016</h2>       
 
         <ul id='menu'>
             <li class="dropdown" id='carreras'>
                 <a href="javascript:void(0)" class="dropbtn">Carreras</a>
                 <div class="dropdown-content">
-                  <a class='active' href="informatica.html">Ingeniería en Informática</a>
+                  <a href="informatica.html">Ingeniería en Informática</a>
                   <a href="sistemas.html">Licenciatura En Análisis de Sistemas</a>
-                  <a href="quimica.html">Ingeniería Química</a>
+                  <a class='active' href="quimica.html">Ingeniería Química</a>
                 </div>
             </li>
 
             <li class='right'><a>Creditos: <var id='creditos-var'> 0 </var></a></li>
-            
+
             <li class='right dropdown'>
                 <a class='toggle dropbtn' id='toggle-Materias Electivas'>Materias Electivas</a>
                 <div class='dropdown-content'>
-                    <a href='#' style='background-color: #f1f1f1'>Nota: Las materias obligatorias de una orientación son electivas para el resto de las orientaciones</a>
+                    <a href='#' style='background-color: #f1f1f1'>Nota: Tener en cuenta que hay dos materias de la Facultad de Ciencias Exactas y Naturales (76.32 y 76.33) </a>
+                    <a href='#' style='background-color: #f1f1f1'>Nota: La materia 78.xx corresponde a un idioma a elección (entre inglés, alemán, francés, italiano y portugués)</a>
                 </div>
             </li>
 
-            <li class="right dropdown">
-                <a href="javascript:void(0)" class="dropbtn">Orientación</a>
-                <div class="dropdown-content" id='orientaciones'>
-                  <!-- Se llena con javascript -->
-                </div>
-            </li>
         </ul>
 
         <div id="grafo"></div>
