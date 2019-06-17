@@ -23,18 +23,20 @@ MATERIAS_BANLIST = [
 ]
 
 GRUPOS = [
-    ['PRIMER CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 1],
-    ['SEGUNDO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 2],
-    ['TERCER CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 3],
-    ['CUARTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 4],
-    ['QUINTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 5],
-    ['SEXTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 6],
-    ['ASIGNATURAS ELECTIVAS', 'REQUERIMIENTOS DE REGULARIDAD', 'Materias Electivas', 9],
+    ['TERCER CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 1],
+    ['CUARTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 2],
+    ['QUINTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 3],
+    ['SEXTO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 4],
+    ['SEPTIMO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 5],
+    ['OCTAVO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 6],
+    ['NOVENO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 7],
+    ['DECIMO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 8],
+    ['ASIGNATURAS ELECTIVAS', 'ASIGNATURAS DE OTRAS FACULTADES', 'Materias Electivas', 10],
 
 
 ]
 
-MATERIA_OBLIGATORIA = r'(\d\d\.\d\d\n.*\n.*\n.*\n.*\n)'
+MATERIA_OBLIGATORIA = r'(\d\d\.\d\d\n.*\n.*\n.*\n.*)'
 MATERIA_ELECTIVA = r'(\d\d\.\d\d\n.*\n.*\n.*)'
 
 def parsePDF(f):
@@ -46,17 +48,18 @@ def parsePDF(f):
         parrafos = texto.split('\n \n')
         parrafos = [p.replace('\n','').strip() for p in parrafos]
         texto_entero+='\n'.join(parrafos)
-        texto_entero = texto_entero.replace('\n-\n','-')
+        texto_entero = texto_entero.replace(' -\n','-')
     return texto_entero
 
 def obtener_materias(texto_entero, desde, hasta, expresion):
     indice_desde = texto_entero.find(desde)+len(desde)
     indice_hasta = texto_entero.find(hasta,indice_desde) if hasta else None
     texto_materias = texto_entero[indice_desde:indice_hasta].strip()
+    print(texto_materias)
     materias = re.split(expresion, texto_materias) # Devuelve una lista del estilo [codigo1, materia1, codigo2, materia2]
     materias = [m.strip() for m in materias if m.strip() and re.search(expresion, m)] # Emprolija la lista
     materias = [tuple(m.split('\n')) for m in materias]
-    print(materias)
+    # print(materias)
     return materias
 
 def parse_materias(materias):
@@ -65,7 +68,6 @@ def parse_materias(materias):
         if any([m in MATERIAS_BANLIST for m in materia]): continue
         try:
             codigo, titulo, creditos, horas, correlativas = materia
-            correlativas = correlativas.replace(', ','-')
         except ValueError:
             codigo, titulo, creditos, correlativas = materia
         materias_parseadas.append((codigo, titulo, creditos, correlativas))
