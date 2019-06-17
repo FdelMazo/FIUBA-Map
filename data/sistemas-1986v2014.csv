@@ -7,7 +7,7 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 95.57,Organización del Computador,8,95.14,Materias Obligatorias,2,
 95.15,Algoritmos y Programación II,6,95.14,Materias Obligatorias,2,
 81.04,Probabilidad y Estadística B,6,81.01-81.02,Materias Obligatorias,3,
-91.39,Estructuras y Procesos Organizacionales (*),6,CBC,Materias Obligatorias,3,Requiere 22 créditos
+91.39,Estructuras y Procesos Organizacionales (*),6,CBC-CRED22,Materias Obligatorias,3,Requiere 22 créditos
 95.58,Organización de Datos,6,95.57-95.15,Materias Obligatorias,3,
 95.02,Algoritmos y Programación III,6,95.15,Materias Obligatorias,3,
 91.41,Economía de las Organizaciones,4,81.04-91.39,Materias Obligatorias,4,
@@ -23,7 +23,7 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 95.59,Diseño Operación y Gestión de Servicios Informáticos,4,91.42-95.21,Materias Obligatorias,6,
 95.60,Redes y Aplicaciones Distribuidas,6,95.05-95.03,Materias Obligatorias,6,
 95.61,Trabajo Profesional de Licenciatura en Análisis de Sistemas,12,95.24-95.59-95.60,Materias Obligatorias,7,
-91.40,Legislación y Ejercicio Profesional en Sistemas e Informática (*),4,CBC,Materias Obligatorias,7,Requiere 100 créditos
+91.40,Legislación y Ejercicio Profesional en Sistemas e Informática (*),4,CBC-CRED100,Materias Obligatorias,7,Requiere 100 créditos
 95.30,Estándares de Calidad y Modelos de Referencia,4,95.24,Materias Obligatorias,7,
 86.36,Criptografía y Seguridad Informática,6,95.60,Materias Electivas,8,
 91.24,Macroeconomía y Estructura Económica  Argentina,6,91.39,Materias Electivas,8,

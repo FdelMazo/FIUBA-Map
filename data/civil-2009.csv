@@ -40,7 +40,7 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 97.03,Higiene y Seguridad en Obras Civiles,3,88.10-89.09-94.03,Materias Obligatorias,10,
 89.12,Gestión Ambiental en Ingeniería Civil,3,88.10-89.09-94.03,Materias Obligatorias,10,
 91.16,Legislación y Ejercicio Profesional de la Ingeniería Civil,6,88.14-91.02,Materias Obligatorias,10,
-84.99,Trabajo profesional de Ingeniería Civil (*),13,88.14,Materias Obligatorias,10,Requiere 200 créditos
+84.99,Trabajo profesional de Ingeniería Civil (*),13,CRED200-88.14,Materias Obligatorias,10,Requiere 200 créditos
 81.06,Análisis Matemático III B,6,81.01-81.02,Materias Electivas,11,
 84.08,Estabilidad IV,8,84.06,Materias Electivas,11,
 84.09,Método de los Elementos Finitos,4,84.06,Materias Electivas,11,
@@ -80,4 +80,4 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 94.19,Materiales no tradicionales en la construcción,4,84.06-94.12,Materias Electivas,11,
 94.20,Instalaciones en Obras Civiles II,4,94.05,Materias Electivas,11,
 95.04,Análisis Numérico I,6,95.10,Materias Electivas,11,
-84.00,Tesis de Ingeniería Civil (*),14,CBC,Materias Electivas,11,Requiere 160 créditos
+84.00,Tesis de Ingeniería Civil (*),14,CBC-CRED160,Materias Electivas,11,Requiere 160 créditos

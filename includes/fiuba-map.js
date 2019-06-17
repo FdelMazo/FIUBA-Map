@@ -8,8 +8,8 @@ function main(file){
 
 function graphFromCSV(data) {
     var container = document.getElementById('grafo');
-    [NODES, EDGES, GRUPOS] = csvToNodesAndEdges(data)
-    network = createNetwork(container, NODES, EDGES)
+    [NODOS, ARISTAS, GRUPOS, NODOS_CRED] = csvToNodesAndEdges(data)
+    network = createNetwork(container, NODOS, ARISTAS)
 
     // El cluster Final De Carrera contiene las opciones de tesis y demas
     // No se agrega de entrada al mapa porque no es tan relevante (si estas terminando la carrera ya sabes que materias cursar...)
@@ -37,7 +37,6 @@ function graphFromCSV(data) {
     })
 
     bindings()
-
     aprobar('CBC')
         
 }
@@ -46,20 +45,29 @@ function csvToNodesAndEdges(data){
     var nodes = []
     var edges = []
     var grupos = []
+    var nodosCred = []
 
     var allRows = data.split(/\r?\n|\r/);
     for (var singleRow = 1; singleRow < allRows.length-1; singleRow++) {
         var rowCells = allRows[singleRow].split(',');        
-        nodes.push(parseNode(rowCells))
-
+        var node = parseNode(rowCells)
         var correlativas = rowCells[3].split('-')
-        correlativas.forEach(x => {
-            edges.push({from:x,to:rowCells[0]})
-        });
+        for(var i=0; i<correlativas.length; i++){
+            if(correlativas[i].includes('CRED')){
+                // Un nodo CRED es aquel que requiere n creditos para aprobar (ej: legislatura necesita 140 creditos)
+                var [_, c] = correlativas[i].split('CRED')
+                node.requiere = c
+                nodosCred.push(node)
+                continue
+            }
+            edges.push({from:correlativas[i],to:rowCells[0]})
+        }
+
+        nodes.push(node)
 
         if (!grupos.includes(rowCells[4])) {grupos.push(rowCells[4])}
     }
-    return [new vis.DataSet(nodes), new vis.DataSet(edges), grupos]
+    return [new vis.DataSet(nodes), new vis.DataSet(edges), grupos, nodosCred]
 }
 
 function createNetwork(container, nodes, edges){
@@ -70,7 +78,9 @@ function createNetwork(container, nodes, edges){
         edges:{ arrows: { to: {enabled: true, scaleFactor:0.7, type:'arrow'} } },
         groups: { 
             Aprobadas: { color: '#7BE141' },
-            Habilitadas: { color: '#ffa500' }
+            Habilitadas: { color: '#ffa500' },
+            'Materias Electivas': { color: '#FA8072' },
+            'Materias Obligatorias': { color: '#ADD8E6' }
         }
     };
 
@@ -96,78 +106,85 @@ function bindings() {
         var id = params.nodes[0];
         if (!id) {return}
         
-        var aprobada = NODES.get(id).aprobada
+        var aprobada = NODOS.get(id).aprobada
         if (!aprobada) {
+            network.creditos += NODOS.get(id).value
             aprobar(id)
-            creditos += NODES.get(id).value
         }
         else {
+            network.creditos -= NODOS.get(id).value
             desaprobar(id)
-            creditos -= NODES.get(id).value
         }
-        network.creditos = creditos
-        $('#creditos-var').text(creditos)
+        $('#creditos-var').text(network.creditos)
     })
 }
 
-// Funciones auxiliares
-
 function aprobar(id){
-    var nodo = NODES.get(id)
+    var nodo = NODOS.get(id)
     nodo.aprobada = true
     nodo.group = 'Aprobadas'
-    NODES.update(nodo);
+    NODOS.update(nodo);
 
     var neighborsTo = network.getConnectedNodes(id, 'to')
     for (var i = 0; i < neighborsTo.length; i++ ){
-        var neighbor = NODES.get(neighborsTo[i])
+        var neighbor = NODOS.get(neighborsTo[i])
         if (!neighbor) {continue}
         if (neighbor.aprobada) {continue}
         intentar_habilitar(neighborsTo[i])
     }
-
+    chequearNodosCRED()
 }
 
 function intentar_habilitar(id){
-    var nodo = NODES.get(id)
+    var nodo = NODOS.get(id)
+    if (network.creditos < nodo.requiere) {return}
 
     var neighborsFrom = network.getConnectedNodes(id, 'from')
     var todoAprobado = true
     for (var i = 0; i < neighborsFrom.length; i++ ){
-        var neighbor = NODES.get(neighborsFrom[i])
+        var neighbor = NODOS.get(neighborsFrom[i])
         if (!neighbor) {continue}
-        if (!neighbor.aprobada) {todoAprobado = false;break}
+        if (!neighbor.aprobada) {todoAprobado = false; break}
     }
 
     if (!todoAprobado) {return}
 
     nodo.habilitada = true
     nodo.group = 'Habilitadas'
-    NODES.update(nodo);
+    NODOS.update(nodo);
+}
+
+function chequearNodosCRED(id){
+    for(var i = 0; i<NODOS_CRED.length;i++){
+        var nodo = NODOS_CRED[i]
+        if (network.creditos < nodo.requiere) {deshabilitar(nodo.id)}
+        else if (network.creditos >= nodo.requiere) {intentar_habilitar(nodo.id)}
+    }
 }
 
 function deshabilitar(id){
-    var nodo = NODES.get(id)
+    var nodo = NODOS.get(id)
     nodo.habilitada = false
     nodo.group = nodo.categoria
-    NODES.update(nodo);
+    NODOS.update(nodo);
 }
 
 
 function desaprobar(id){
-    var nodo = NODES.get(id)
+    var nodo = NODOS.get(id)
     nodo.aprobada = false
     nodo.group = nodo.categoria
     if (nodo.habilitada) { nodo.group = 'Habilitadas'} 
-    NODES.update(nodo);
+    NODOS.update(nodo);
     
     var neighborsTo = network.getConnectedNodes(id, 'to')
     for (var i = 0; i <neighborsTo.length; i++ ){
-        var neighbor = NODES.get(neighborsTo[i])
+        var neighbor = NODOS.get(neighborsTo[i])
         if (!neighbor) {continue}
         if (neighbor.aprobada) {continue}
         deshabilitar(neighborsTo[i])
     }
+    chequearNodosCRED()
 
 }
 

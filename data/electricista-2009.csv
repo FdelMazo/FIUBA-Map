@@ -30,14 +30,14 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 85.13,Centrales Eléctricas,6,87.07,Materias Obligatorias,7,
 85.15,Protecciones Eléctricas y Equipos de Maniobra,6,85.05,Materias Obligatorias,7,
 87.06,Mecánica Aplicada,4,84.05,Materias Obligatorias,8,
-91.13,Organización de la Producció (*),6,CBC,Materias Obligatorias,8,Requiere 100 créditos
+91.13,Organización de la Producció (*),6,CBC-CRED100,Materias Obligatorias,8,Requiere 100 créditos
 85.11,Instalaciones de Baja Tensión y Luminotecnia,4,85.09-97.02,Materias Obligatorias,8,
 85.14,Transmisión y Distribución de la Energía Eléctrica,6,85.12-85.15,Materias Obligatorias,8,
 85.10,Construcciones Electromecánicas,6,85.09-85.07-87.06,Materias Obligatorias,10,
 85.17,Economía de la Energía Eléctrica,4,91.13,Materias Obligatorias,10,
-91.15,Legislación y Ejercicio Profesional de la Ingeniería Electricista (*),4,CBC,Materias Obligatorias,10,Requiere 100 créditos
-85.99,Trabajo Profesional de Ingeniería Electricista (*),12,CBC,Materias Obligatorias,11,Requiere 140 créditos -- Se opta entre Tesis y Trabajo Profesional -- Se puede hacer la tesis como asignatura electiva
-85.00,Tesis de Ingeniería Electricista (*),20,CBC,Materias Obligatorias,11,Requiere 140 créditos -- Se opta entre Tesis y Trabajo Profesional
+91.15,Legislación y Ejercicio Profesional de la Ingeniería Electricista (*),4,CBC-CRED100,Materias Obligatorias,10,Requiere 100 créditos
+85.99,Trabajo Profesional de Ingeniería Electricista (*),12,CBC-CRED140,Materias Obligatorias,11,Requiere 140 créditos -- Se opta entre Tesis y Trabajo Profesional -- Se puede hacer la tesis como asignatura electiva
+85.00,Tesis de Ingeniería Electricista (*),20,CBC-CRED140,Materias Obligatorias,11,Requiere 140 créditos -- Se opta entre Tesis y Trabajo Profesional
 82.04,Mecánica Racional,4,81.05-82.01,Materias Electivas,9,
 86.01,Técnica Digital,6,81.02-95.01,Materias Electivas,9,
 86.08,Control Automático I,6,85.03,Materias Electivas,9,
@@ -45,7 +45,7 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 87.08,Tecnología Mecánica B,4,84.05,Materias Electivas,9,
 91.01,Estructura Económica Argentina,4,91.13,Materias Electivas,9,
 91.36,Gestión de Calidad,4,81.03-85.09,Materias Electivas,9,
-91.17,Recursos Humanos (*),4,CBC,Materias Electivas,9,Requiere 120 créditos
+91.17,Recursos Humanos (*),4,CBC-CRED120,Materias Electivas,9,Requiere 120 créditos
 85.18,Accionamientos,4,85.07-85.16,Materias Electivas,9,
 85.19,Luminotecnia,4,85.11,Materias Electivas,9,
 85.20,Energías Renovables,4,87.07,Materias Electivas,9,
