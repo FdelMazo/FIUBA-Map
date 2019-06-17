@@ -70,7 +70,7 @@ function createNetwork(container, nodes, edges){
     var data = { nodes: nodes, edges: edges };
     var options = {
         nodes:{ shape:'box' },
-        layout: { hierarchical: { enabled: true, direction: 'LR' } },
+        layout: { hierarchical: { enabled: true, direction: 'LR', levelSeparation: 150 } },
         edges:{ arrows: { to: {enabled: true, scaleFactor:0.7, type:'arrow'} } },
         groups: { 
             Aprobadas: { color: '#7BE141' },
@@ -179,7 +179,7 @@ function parseNode(rowCells){
 function breakWords(string){
     var broken = ''
     string.split(' ').forEach(element => {
-        if (element.length < 9) {broken+=' '+element}
+        if (element.length < 5) {broken+=' '+element}
         else {broken+='\n'+element}
     });
     return broken.trim();
