@@ -38,6 +38,7 @@ li a {
 }
 
 li a:hover:not(.active) {
+  cursor: pointer;
   background-color: #111;
 }
 
@@ -62,8 +63,12 @@ li a:hover:not(.active) {
   text-align: left;
 }
 
-.dropdown-content a:hover:not(.active) {background-color: #f1f1f1;}
+.dropdown-content a:hover:not(.active) {
+  cursor: pointer;
+  background-color: #f1f1f1;
+}
 
 .dropdown:hover .dropdown-content {
+  cursor: pointer;
   display: block;
 }
