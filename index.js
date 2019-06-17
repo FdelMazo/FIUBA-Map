@@ -34,7 +34,6 @@ function graphFromCSV(data) {
         var [_, grupo] = $(this).attr('id').split('-')
         if (network.isCluster('cluster-'+grupo)) { network.openCluster('cluster-'+grupo) }
         if (network.isCluster('cluster-Final De Carrera')) { network.openCluster('cluster-Final De Carrera')}
-
     })
 
     bindings()
@@ -119,18 +118,29 @@ function aprobar(id){
     nodo.group = 'Aprobadas'
     NODES.update(nodo);
 
-    neighborsTo = network.getConnectedNodes(id, 'to')
-    for (i = 0; i <neighborsTo.length; i++ ){
+    var neighborsTo = network.getConnectedNodes(id, 'to')
+    for (var i = 0; i < neighborsTo.length; i++ ){
         var neighbor = NODES.get(neighborsTo[i])
         if (!neighbor) {continue}
         if (neighbor.aprobada) {continue}
-        habilitar(neighborsTo[i])
+        intentar_habilitar(neighborsTo[i])
     }
 
 }
 
-function habilitar(id){
+function intentar_habilitar(id){
     var nodo = NODES.get(id)
+
+    var neighborsFrom = network.getConnectedNodes(id, 'from')
+    var todoAprobado = true
+    for (var i = 0; i < neighborsFrom.length; i++ ){
+        var neighbor = NODES.get(neighborsFrom[i])
+        if (!neighbor) {continue}
+        if (!neighbor.aprobada) {todoAprobado = false;break}
+    }
+
+    if (!todoAprobado) {return}
+
     nodo.habilitada = true
     nodo.group = 'Habilitadas'
     NODES.update(nodo);
@@ -151,7 +161,8 @@ function desaprobar(id){
     if (nodo.habilitada) { nodo.group = 'Habilitadas'} 
     NODES.update(nodo);
     
-    for (i = 0; i <neighborsTo.length; i++ ){
+    var neighborsTo = network.getConnectedNodes(id, 'to')
+    for (var i = 0; i <neighborsTo.length; i++ ){
         var neighbor = NODES.get(neighborsTo[i])
         if (!neighbor) {continue}
         if (neighbor.aprobada) {continue}
