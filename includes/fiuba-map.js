@@ -13,7 +13,7 @@ function graphFromCSV(data) {
 
     // El cluster Final De Carrera contiene las opciones de tesis y demas
     // No se agrega de entrada al mapa porque no es tan relevante (si estas terminando la carrera ya sabes que materias cursar...)
-    var clusterFinalDeCarrera = createClusterFromGroup('Final De Carrera')
+    var clusterFinalDeCarrera = createClusterFromGroup('Final De Carrera Clustered')
     network.cluster(clusterFinalDeCarrera)
     
     // Crea un cluster para las materias electivas y uno por cada orientacion
@@ -33,7 +33,7 @@ function graphFromCSV(data) {
     $(document).on('click','.toggle',function(){
         var [_, grupo] = $(this).attr('id').split('-')
         if (network.isCluster('cluster-'+grupo)) { network.openCluster('cluster-'+grupo) }
-        if (network.isCluster('cluster-Final De Carrera')) { network.openCluster('cluster-Final De Carrera')}
+        if (network.isCluster('cluster-Final De Carrera Clustered')) { network.openCluster('cluster-Final De Carrera Clustered')}
     })
 
     bindings()
@@ -79,6 +79,11 @@ function createNetwork(container, nodes, edges){
         groups: { 
             Aprobadas: { color: '#7BE141' },
             Habilitadas: { color: '#ffa500' },
+            'Final De Carrera': { color: '#FF7F50' },
+            'Final De Carrera Clustered': { color: '#FF7F50' },
+            'Orientación: Gestión Industrial de Sistemas': { color: '#FFFF00' },
+            'Orientación: Sistemas Distribuidos': { color: '#7FFFD4' },
+            'Orientación: Sistemas de Producción': { color: '#6495ED' },
             'Materias Electivas': { color: '#FA8072' },
             'Materias Obligatorias': { color: '#ADD8E6' }
         }
