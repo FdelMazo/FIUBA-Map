@@ -30,9 +30,8 @@ GRUPOS = [
     ['SEPTIMO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 5],
     ['OCTAVO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 6],
     ['NOVENO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 7],
-    ['DECIMO CUATRIMESTRE', 'TOTAL', 'Materias Obligatorias', 8],
-    ['OPCION TESIS DE INGENIERIA MECANICA', 'TOTAL DEL CICLO', 'Materias Obligatorias', 9],
-    ['ASIGNATURAS ELECTIVAS', 'REQUERIMIENTOS DE REGULARIDAD', 'Materias Electivas', 10],
+    ['OPCION TRABAJO PROFESIONAL', 'OPCION TESIS', 'Materias Obligatorias', 9],
+    ['ASIGNATURAS ELECTIVAS', 'REQUERIMIENTOS PARA MANTENER', 'Materias Electivas', 8],
 
 
 ]
