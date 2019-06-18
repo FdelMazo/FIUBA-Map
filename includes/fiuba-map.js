@@ -146,7 +146,7 @@ function aprobar(id){
         if (neighbor.aprobada) {continue}
         intentar_habilitar(neighborsTo[i])
     }
-    chequearNodosCRED()
+    if(!nodo.requiere){ chequearNodosCRED() }
 }
 
 function intentar_habilitar(id){
