@@ -3,11 +3,6 @@ function graphFromCSV(data) {
     [NODOS, ARISTAS, GRUPOS, NODOS_CRED] = csvToNodesAndEdges(data)
     network = createNetwork(container, NODOS, ARISTAS)
 
-    // El cluster Final De Carrera contiene las opciones de tesis y demas
-    // No se agrega de entrada al mapa porque no es tan relevante (si estas terminando la carrera ya sabes que materias cursar...)
-    var clusterFinalDeCarrera = createClusterFromGroup('Final De Carrera Clustered')
-    network.cluster(clusterFinalDeCarrera)
-    
     // Crea un cluster para las materias electivas y uno por cada orientacion
     // El cluster no se muestra (hidden: true)
     // Al clickear en los botones del menu, se abre el cluster, mostrando los nodos
@@ -25,7 +20,6 @@ function graphFromCSV(data) {
     $(document).on('click','.toggle',function(){
         var [_, grupo] = $(this).attr('id').split('-')
         if (network.isCluster('cluster-'+grupo)) { network.openCluster('cluster-'+grupo) }
-        if (network.isCluster('cluster-Final De Carrera Clustered')) { network.openCluster('cluster-Final De Carrera Clustered')}
     })
 
     bindings()
@@ -75,8 +69,6 @@ function createNetwork(container, nodes, edges){
         groups: { 
             Aprobadas: { color: '#7BE141' },
             Habilitadas: { color: '#ffa500' },
-            'Final De Carrera': { color: '#FF7F50' },
-            'Final De Carrera Clustered': { color: '#FF7F50' },
             'Materias Electivas': { color: '#FA8072' },
             'Materias Obligatorias': { color: '#ADD8E6' },
             // Informática

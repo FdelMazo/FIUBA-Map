@@ -1,6 +1,5 @@
-function update(carrera){
+function update(element, carrera){
     var filename, titulo, orientaciones, plan
-    var id = '#'+carrera
     switch(carrera){
         case 'informatica':
             orientaciones = true
@@ -58,21 +57,23 @@ function update(carrera){
             break
         case 'agrimensura':
             orientaciones = false
-            filename = 'data/agrimensura-2000.csv'
+            filename = 'data/agrimensura-2006.csv'
             titulo = 'Ingeniería en Argimensura'
-            plan = 'Plan 2000'
+            plan = 'Plan 2006'
             break
     }
 
+    $('#creditos-var').text(0)
     fiubamap(filename)
     $("#carrera-actual").text(titulo + ' | ' + plan)
     $("#carreras .active").removeClass('active')
-    $(id).addClass('active')
+    $(element).addClass('active')
     document.title = 'FIUBA Map | ' + titulo
     displayOrientaciones(orientaciones)
 }
 
 function displayOrientaciones(show){
+    $("#orientaciones a").remove()
     if (show) {$("#orientaciones-hidden").show()}
     else {$("#orientaciones-hidden").hide()}
 }
