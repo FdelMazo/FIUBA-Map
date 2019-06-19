@@ -1,11 +1,3 @@
-function main(file){
-    $.ajax({
-        url: file,
-        dataType: 'text',
-        success: function(data, jqXHR, textStatus) {graphFromCSV(data)}
-    })
-}
-
 function graphFromCSV(data) {
     var container = document.getElementById('grafo');
     [NODOS, ARISTAS, GRUPOS, NODOS_CRED] = csvToNodesAndEdges(data)
