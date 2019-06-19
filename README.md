@@ -16,4 +16,4 @@ El proceso para agregar una carrera es:
 
 * Agregar la carrera en el switch de [carreras.js](carreras.js)
 
-Después, [fiuba-map.js](fiuba-map.js) parsea el CSV y lo convierte en una Network de [vis.js](https://visjs.org/docs/network/), en el archivo 
+Después, [fiuba-map.js](fiuba-map.js) parsea el CSV y lo convierte en una Network de [vis.js](https://visjs.org/docs/network/)
