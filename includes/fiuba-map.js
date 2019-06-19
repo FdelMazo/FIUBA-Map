@@ -15,16 +15,10 @@ function graphFromCSV(data) {
                 $("#orientaciones").append("<a class='toggle' id='toggle-"+grupo+"'>"+orientacion+"</a>")
             }
         }
-
-    })
-    $(document).on('click','.toggle',function(){
-        var [_, grupo] = $(this).attr('id').split('-')
-        if (network.isCluster('cluster-'+grupo)) { network.openCluster('cluster-'+grupo) }
     })
 
     bindings()
     aprobar('CBC')
-        
 }
 
 function csvToNodesAndEdges(data){
@@ -47,6 +41,7 @@ function csvToNodesAndEdges(data){
                 continue
             }
             var edge = {from:correlativas[i],to:rowCells[0]}
+            
             // Las aristas entre CBC y los nodos CRED sirven para que el layout quede bien
             // Pero no deben ser mostradas
             if (correlativas[i] == 'CBC' && node.requiere) {edge.hidden = true}
@@ -100,6 +95,11 @@ function createClusterFromGroup(grupo){
 }
 
 function bindings() {
+    $(document).on('click','.toggle',function(){
+        var [_, grupo] = $(this).attr('id').split('-')
+        if (network.isCluster('cluster-'+grupo)) { network.openCluster('cluster-'+grupo) }
+    })
+
     network.on("click", function(params) {
         var id = params.nodes[0];
         if (!id) {return}
