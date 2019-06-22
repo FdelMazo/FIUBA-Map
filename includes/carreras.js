@@ -1,5 +1,5 @@
 function update(element, carrera){
-    var filename, titulo, orientaciones, plan
+    let filename, titulo, orientaciones, plan
     switch(carrera){
         case 'informatica':
             orientaciones = true

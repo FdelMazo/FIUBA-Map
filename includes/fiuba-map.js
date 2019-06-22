@@ -1,5 +1,5 @@
 function graphFromCSV(data) {
-    var container = document.getElementById('grafo');
+    let container = document.getElementById('grafo');
     [NODOS, ARISTAS, GRUPOS, NODOS_CRED] = csvToNodesAndEdges(data)
     network = createNetwork(container, NODOS, ARISTAS)
 
@@ -8,10 +8,10 @@ function graphFromCSV(data) {
     // Al clickear en los botones del menu, se abre el cluster, mostrando los nodos
     GRUPOS.forEach(grupo => {
         if (grupo.includes('Electivas') || grupo.includes('Orientación')) {
-            var cluster = createClusterFromGroup(grupo)
+            let cluster = createClusterFromGroup(grupo)
             network.cluster(cluster)
             if (grupo.includes('Orientación')) {
-                var [_,orientacion] = grupo.split(':')
+                let [_,orientacion] = grupo.split(':')
                 $("#orientaciones").append("<a class='toggle' id='toggle-"+grupo+"'>"+orientacion+"</a>")
             }
         }
@@ -22,25 +22,25 @@ function graphFromCSV(data) {
 }
 
 function csvToNodesAndEdges(data){
-    var nodes = []
-    var edges = []
-    var grupos = []
-    var nodosCred = []
+    let nodes = []
+    let edges = []
+    let grupos = []
+    let nodosCred = []
 
-    var allRows = data.split(/\r?\n|\r/);
-    for (var singleRow = 1; singleRow < allRows.length-1; singleRow++) {
-        var rowCells = allRows[singleRow].split(',');        
-        var node = parseNode(rowCells)
-        var correlativas = rowCells[3].split('-')
-        for(var i=0; i<correlativas.length; i++){
+    let allRows = data.split(/\r?\n|\r/);
+    for (let singleRow = 1; singleRow < allRows.length-1; singleRow++) {
+        let rowCells = allRows[singleRow].split(',');        
+        let node = parseNode(rowCells)
+        let correlativas = rowCells[3].split('-')
+        for(let i=0; i<correlativas.length; i++){
             if(correlativas[i].includes('CRED')){
                 // Un nodo CRED es aquel que requiere n creditos para aprobar (ej: legislatura necesita 140 creditos)
-                var [_, c] = correlativas[i].split('CRED')
+                let [_, c] = correlativas[i].split('CRED')
                 node.requiere = c
                 nodosCred.push(node)
                 continue
             }
-            var edge = {from:correlativas[i],to:rowCells[0]}
+            let edge = {from:correlativas[i],to:rowCells[0]}
             
             // Las aristas entre CBC y los nodos CRED sirven para que el layout quede bien
             // Pero no deben ser mostradas
@@ -56,8 +56,8 @@ function csvToNodesAndEdges(data){
 }
 
 function createNetwork(container, nodes, edges){
-    var data = { nodes: nodes, edges: edges };
-    var options = {
+    let data = { nodes: nodes, edges: edges };
+    let options = {
         nodes:{ shape:'box' },
         layout: { hierarchical: { enabled: true, direction: 'LR', levelSeparation: 150 } },
         edges:{ arrows: { to: {enabled: true, scaleFactor:0.7, type:'arrow'} } },
@@ -85,7 +85,7 @@ function createNetwork(container, nodes, edges){
 }
 
 function createClusterFromGroup(grupo){
-    var cluster = {
+    let cluster = {
         joinCondition:function(nodeOptions) {
             return nodeOptions.group === grupo;
         },
@@ -96,15 +96,15 @@ function createClusterFromGroup(grupo){
 
 function bindings() {
     $(document).on('click','.toggle',function(){
-        var [_, grupo] = $(this).attr('id').split('-')
+        let [_, grupo] = $(this).attr('id').split('-')
         if (network.isCluster('cluster-'+grupo)) { network.openCluster('cluster-'+grupo) }
     })
 
     network.on("click", function(params) {
-        var id = params.nodes[0];
+        let id = params.nodes[0];
         if (!id) {return}
         
-        var aprobada = NODOS.get(id).aprobada
+        let aprobada = NODOS.get(id).aprobada
         if (!aprobada) {
             network.creditos += NODOS.get(id).value
             aprobar(id)
@@ -118,14 +118,14 @@ function bindings() {
 }
 
 function aprobar(id){
-    var nodo = NODOS.get(id)
+    let nodo = NODOS.get(id)
     nodo.aprobada = true
     nodo.group = 'Aprobadas'
     NODOS.update(nodo);
 
-    var neighborsTo = network.getConnectedNodes(id, 'to')
-    for (var i = 0; i < neighborsTo.length; i++ ){
-        var neighbor = NODOS.get(neighborsTo[i])
+    let neighborsTo = network.getConnectedNodes(id, 'to')
+    for (let i = 0; i < neighborsTo.length; i++ ){
+        let neighbor = NODOS.get(neighborsTo[i])
         if (!neighbor) {continue}
         if (neighbor.aprobada) {continue}
         intentar_habilitar(neighborsTo[i])
@@ -134,13 +134,13 @@ function aprobar(id){
 }
 
 function intentar_habilitar(id){
-    var nodo = NODOS.get(id)
+    let nodo = NODOS.get(id)
     if (network.creditos < nodo.requiere) {return}
 
-    var neighborsFrom = network.getConnectedNodes(id, 'from')
-    var todoAprobado = true
-    for (var i = 0; i < neighborsFrom.length; i++ ){
-        var neighbor = NODOS.get(neighborsFrom[i])
+    let neighborsFrom = network.getConnectedNodes(id, 'from')
+    let todoAprobado = true
+    for (let i = 0; i < neighborsFrom.length; i++ ){
+        let neighbor = NODOS.get(neighborsFrom[i])
         if (!neighbor) {continue}
         if (!neighbor.aprobada) {todoAprobado = false; break}
     }
@@ -153,15 +153,15 @@ function intentar_habilitar(id){
 }
 
 function chequearNodosCRED(id){
-    for(var i = 0; i<NODOS_CRED.length;i++){
-        var nodo = NODOS_CRED[i]
+    for(let i = 0; i<NODOS_CRED.length;i++){
+        let nodo = NODOS_CRED[i]
         if (network.creditos < nodo.requiere) {deshabilitar(nodo.id)}
         else if (network.creditos >= nodo.requiere) {intentar_habilitar(nodo.id)}
     }
 }
 
 function deshabilitar(id){
-    var nodo = NODOS.get(id)
+    let nodo = NODOS.get(id)
     nodo.habilitada = false
     nodo.group = nodo.categoria
     NODOS.update(nodo);
@@ -169,15 +169,15 @@ function deshabilitar(id){
 
 
 function desaprobar(id){
-    var nodo = NODOS.get(id)
+    let nodo = NODOS.get(id)
     nodo.aprobada = false
     nodo.group = nodo.categoria
     if (nodo.habilitada) { nodo.group = 'Habilitadas'} 
     NODOS.update(nodo);
     
-    var neighborsTo = network.getConnectedNodes(id, 'to')
-    for (var i = 0; i <neighborsTo.length; i++ ){
-        var neighbor = NODOS.get(neighborsTo[i])
+    let neighborsTo = network.getConnectedNodes(id, 'to')
+    for (let i = 0; i <neighborsTo.length; i++ ){
+        let neighbor = NODOS.get(neighborsTo[i])
         if (!neighbor) {continue}
         if (neighbor.aprobada) {continue}
         deshabilitar(neighborsTo[i])
@@ -187,20 +187,20 @@ function desaprobar(id){
 }
 
 function parseNode(rowCells){
-    var codigo = rowCells[0]
-    var label = breakWords(rowCells[1])
-    var creditos = rowCells[2]
-    var grupo = rowCells[4]
-    var nivel = rowCells[5]
-    var caveat = rowCells[6]
+    let codigo = rowCells[0]
+    let label = breakWords(rowCells[1])
+    let creditos = rowCells[2]
+    let grupo = rowCells[4]
+    let nivel = rowCells[5]
+    let caveat = rowCells[6]
 
-    var node = {id:codigo, label:label, group:grupo, value: parseInt(creditos), aprobada: false, level:nivel, habilitada: false, categoria: grupo}
+    let node = {id:codigo, label:label, group:grupo, value: parseInt(creditos), aprobada: false, level:nivel, habilitada: false, categoria: grupo}
     if (caveat){ node.title = caveat }
     return node
 }
 
 function breakWords(string){
-    var broken = ''
+    let broken = ''
     string.split(' ').forEach(element => {
         if (element.length < 5) {broken+=' '+element}
         else {broken+='\n'+element}
