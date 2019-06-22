@@ -102,89 +102,88 @@ function bindings() {
     })
 
     network.on("click", function(params) {
-        let id = params.nodes[0];
+        let id = params.nodes[0]     
         if (!id) {return}
-        
         let aprobada = NODOS.get(id).aprobada
         if (!aprobada) {
-            network.creditos += NODOS.get(id).value
             aprobar(id)
         }
         else {
-            network.creditos -= NODOS.get(id).value
             desaprobar(id)
         }
-        $('#creditos-var').text(network.creditos)
+        chequearNodosCRED()
     })
+}
+
+function actualizarGrupo(nodo){
+    let grupo = nodo.categoria
+    if (nodo.aprobada) {grupo = 'Aprobadas' }
+    else if (nodo.habilitada) {grupo = 'Habilitadas'}
+    nodo.group = grupo
+    NODOS.update(nodo)
 }
 
 function aprobar(id){
     let nodo = NODOS.get(id)
     nodo.aprobada = true
-    nodo.group = 'Aprobadas'
-    NODOS.update(nodo);
+    network.creditos += NODOS.get(id).creditos
+    actualizarGrupo(nodo)
 
     let neighborsTo = network.getConnectedNodes(id, 'to')
     for (let i = 0; i < neighborsTo.length; i++ ){
         let neighbor = NODOS.get(neighborsTo[i])
         if (!neighbor) {continue}
-        if (neighbor.aprobada) {continue}
-        intentar_habilitar(neighborsTo[i])
+        habilitar(neighborsTo[i])
     }
-    if(!nodo.requiere){ chequearNodosCRED() }
+
+    $('#creditos-var').text(network.creditos)
 }
 
-function intentar_habilitar(id){
+function habilitar(id){
     let nodo = NODOS.get(id)
-    if (network.creditos < nodo.requiere) {return}
-
     let neighborsFrom = network.getConnectedNodes(id, 'from')
     let todoAprobado = true
     for (let i = 0; i < neighborsFrom.length; i++ ){
-        let neighbor = NODOS.get(neighborsFrom[i])
-        if (!neighbor) {continue}
-        if (!neighbor.aprobada) {todoAprobado = false; break}
+        let correlativa = NODOS.get(neighborsFrom[i])
+        if (!correlativa) {continue}
+        todoAprobado &= correlativa.aprobada
     }
-
-    if (!todoAprobado) {return}
+    if (!todoAprobado || network.creditos < nodo.requiere) {return}
 
     nodo.habilitada = true
-    nodo.group = 'Habilitadas'
-    NODOS.update(nodo);
+    actualizarGrupo(nodo)
+    NODOS.update(nodo)
 }
 
 function chequearNodosCRED(id){
     for(let i = 0; i<NODOS_CRED.length;i++){
         let nodo = NODOS_CRED[i]
         if (network.creditos < nodo.requiere) {deshabilitar(nodo.id)}
-        else if (network.creditos >= nodo.requiere) {intentar_habilitar(nodo.id)}
+        else if (network.creditos >= nodo.requiere) {habilitar(nodo.id)}
     }
 }
 
 function deshabilitar(id){
     let nodo = NODOS.get(id)
     nodo.habilitada = false
-    nodo.group = nodo.categoria
-    NODOS.update(nodo);
+    actualizarGrupo(nodo)
 }
 
 
 function desaprobar(id){
     let nodo = NODOS.get(id)
     nodo.aprobada = false
-    nodo.group = nodo.categoria
-    if (nodo.habilitada) { nodo.group = 'Habilitadas'} 
-    NODOS.update(nodo);
+    network.creditos -= NODOS.get(id).creditos
+    actualizarGrupo(nodo)
     
     let neighborsTo = network.getConnectedNodes(id, 'to')
     for (let i = 0; i <neighborsTo.length; i++ ){
         let neighbor = NODOS.get(neighborsTo[i])
         if (!neighbor) {continue}
-        if (neighbor.aprobada) {continue}
         deshabilitar(neighborsTo[i])
     }
-    chequearNodosCRED()
 
+    $('#creditos-var').text(network.creditos)
 }
 
 function parseNode(rowCells){
@@ -195,7 +194,7 @@ function parseNode(rowCells){
     let nivel = rowCells[5]
     let caveat = rowCells[6]
 
-    let node = {id:codigo, label:label, group:grupo, value: parseInt(creditos), aprobada: false, level:nivel, habilitada: false, categoria: grupo}
+    let node = {id:codigo, label:label, group:grupo, creditos: parseInt(creditos), aprobada: false, level:nivel, habilitada: false, categoria: grupo}
     if (caveat){ node.title = caveat }
     return node
 }
