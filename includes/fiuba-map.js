@@ -8,7 +8,7 @@ function graphFromCSV(data) {
     // Al clickear en los botones del menu, se abre el cluster, mostrando los nodos
     GRUPOS.forEach(grupo => {
         if (grupo.includes('Electivas') || grupo.includes('Orientación')) {
-            let cluster = createClusterFromGroup(grupo)
+            let cluster = createClusterFromCategoria(grupo)
             network.cluster(cluster)
             if (grupo.includes('Orientación')) {
                 let [_,orientacion] = grupo.split(':')
@@ -84,10 +84,10 @@ function createNetwork(container, nodes, edges){
     return network
 }
 
-function createClusterFromGroup(grupo){
+function createClusterFromCategoria(grupo){
     let cluster = {
         joinCondition:function(nodeOptions) {
-            return nodeOptions.group === grupo;
+            return nodeOptions.categoria === grupo;
         },
         clusterNodeProperties: {id: 'cluster-'+grupo, hidden: true, level:-1, allowSingleNodeCluster:true}
     };
@@ -98,6 +98,7 @@ function bindings() {
     $(document).on('click','.toggle',function(){
         let [_, grupo] = $(this).attr('id').split('-')
         if (network.isCluster('cluster-'+grupo)) { network.openCluster('cluster-'+grupo) }
+        else {network.cluster(createClusterFromCategoria(grupo))}
     })
 
     network.on("click", function(params) {
