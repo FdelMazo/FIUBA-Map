@@ -94,27 +94,6 @@ function createClusterFromCategoria(grupo){
     return cluster
 }
 
-function bindings() {
-    $(document).on('click','.toggle',function(){
-        let [_, grupo] = $(this).attr('id').split('-')
-        if (network.isCluster('cluster-'+grupo)) { network.openCluster('cluster-'+grupo) }
-        else {network.cluster(createClusterFromCategoria(grupo))}
-    })
-
-    network.on("click", function(params) {
-        let id = params.nodes[0]     
-        if (!id) {return}
-        let aprobada = NODOS.get(id).aprobada
-        if (!aprobada) {
-            aprobar(id)
-        }
-        else {
-            desaprobar(id)
-        }
-        chequearNodosCRED()
-    })
-}
-
 function actualizarGrupo(nodo){
     let grupo = nodo.categoria
     if (nodo.aprobada) {grupo = 'Aprobadas' }
@@ -207,3 +186,22 @@ function breakWords(string){
     });
     return broken.trim();
 }
+
+$(document).on('click','.toggle',function(){
+    let [_, grupo] = $(this).attr('id').split('-')
+    if (network.isCluster('cluster-'+grupo)) { network.openCluster('cluster-'+grupo) }
+    else {network.cluster(createClusterFromCategoria(grupo))}
+})
+
+network.on("click", function(params) {
+    let id = params.nodes[0]     
+    if (!id) {return}
+    let aprobada = NODOS.get(id).aprobada
+    if (!aprobada) {
+        aprobar(id)
+    }
+    else {
+        desaprobar(id)
+    }
+    chequearNodosCRED()
+})
