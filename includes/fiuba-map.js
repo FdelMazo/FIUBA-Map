@@ -17,7 +17,6 @@ function graphFromCSV(data) {
         }
     })
 
-    bindings()
     aprobar('CBC')
 }
 
