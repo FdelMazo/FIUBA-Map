@@ -16,7 +16,7 @@ function graphFromCSV(data) {
             }
         }
     })
-
+    bindings()
     aprobar('CBC')
 }
 
@@ -186,14 +186,14 @@ function breakWords(string){
     return broken.trim();
 }
 
-$(document).ready(function (){
-    $(document).on('click','.toggle',function(){
+function bindings() {
+    $('.toggle').off('click').on('click',function(){
         let [_, grupo] = $(this).attr('id').split('-')
         if (network.isCluster('cluster-'+grupo)) { network.openCluster('cluster-'+grupo) }
         else {network.cluster(createClusterFromCategoria(grupo))}
     })
     
-    network.on("click", function(params) {
+    network.off('click').on("click", function(params) {
         let id = params.nodes[0]     
         if (!id) {return}
         let aprobada = NODOS.get(id).aprobada
@@ -205,5 +205,4 @@ $(document).ready(function (){
         }
         chequearNodosCRED()
     })
-    
-})
+}
