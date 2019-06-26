@@ -1,8 +1,10 @@
-<html>
+<!DOCTYPE html>
+<html lang='es'>
     <head>
         <title>FIUBA Map</title>
         <meta charset="utf-8">
         <meta name="description" content="Mapa de materias y sus correlativas de la Facultad de Ingeniería">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="author" href="https://github.com/FdelMazo/" />
         <link rel="canonical" href="https://fdelmazo.github.io/FIUBA-Map/" />
 
@@ -13,13 +15,8 @@
         <meta property="og:site_name" content="FIUBA-Map">
         <meta property="og:see_also" content="https://fdelmazo.github.io/FIUBA-Map/">
 
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="includes/vis.min.js"></script>
         <link href="includes/vis.min.css" rel="stylesheet" type="text/css" />
         <link href="includes/style.css" rel="stylesheet" type="text/css" />
-
-        <script type="text/javascript" src="includes/carreras.js"></script>
-        <script type="text/javascript" src="includes/fiuba-map.js"></script>
     </head>
 
     <body>
@@ -60,6 +57,10 @@
 
         <div id="grafo"></div>
                 
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="includes/vis.min.js"></script>
+        <script type="text/javascript" src="includes/carreras.js"></script>
+        <script type="text/javascript" src="includes/fiuba-map.js"></script>
+        <script>$("#default").click()</script>
     </body>
-    <script>$("#default").click()</script>
 </html>
