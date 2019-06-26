@@ -57,11 +57,6 @@ li a:hover:not(.active) {
   background-color: #f1f1f1;
 }
 
-.dropdown:hover:not(.active) .dropdown-content {
-  cursor: pointer;
-  display: block;
-}
-
 .active {
   background-color: #4CAF50;
 }

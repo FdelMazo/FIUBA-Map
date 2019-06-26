@@ -85,3 +85,15 @@ function fiubamap(file){
         success: function(data, jqXHR, textStatus) {graphFromCSV(data)}
     })
 }
+
+$(".dropdown").on("mouseover", function () {
+    $(this).children('.dropdown-content').show()
+});
+
+$(".dropdown").on("mouseout", function () {
+    $(this).children('.dropdown-content').hide()
+});
+
+$(".dropdown-content").on("click", function () {
+    $('.dropdown-content').hide()
+});
