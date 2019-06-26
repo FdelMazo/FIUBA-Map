@@ -1,4 +1,5 @@
 function update(element, carrera){
+    $("#grafo").text('Cargando...')
     let filename, titulo, orientaciones, plan
     switch(carrera){
         case 'informatica':
