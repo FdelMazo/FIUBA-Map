@@ -1,5 +1,6 @@
 function update(element, carrera){
-    $("#grafo").text('Cargando...')
+    $("#grafo").text("")
+    $("#grafo").append("<div class='loader'></div>")
     let filename, titulo, orientaciones, plan
     switch(carrera){
         case 'informatica':
