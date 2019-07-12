@@ -15,6 +15,12 @@ function update(element, carrera){
             titulo = 'Licenciatura en Análisis de Sistemas'
             plan = 'Plan 1986'
             break
+        case 'electronica':
+            orientaciones = true
+            filename = 'data/electronica-2009.csv'
+            titulo = 'Ingeniería Electrónica'
+            plan = 'Plan 2009'
+            break
         case 'quimica':
             orientaciones = false
             filename = 'data/quimica-1986.csv'
