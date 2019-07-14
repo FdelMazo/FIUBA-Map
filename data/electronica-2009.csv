@@ -5,8 +5,8 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 95.11,Algoritmos y Programación I,6,CBC,Materias Obligatorias,1,
 81.02,Álgebra II A,8,CBC,Materias Obligatorias,2,
 82.02,Física II A,8,81.01-82.01,Materias Obligatorias,2,
-86.02,Introducción a la Ingeniería Electrónica (*),6,82.01,Materias Obligatorias,2,Se recomienda cursar simultáneamente 82.02, 86.02 y 86.70, o bien cursar 86.02 y 86.70 después de aprobar la cursada de 82.02 Física II
-86.70,Introducción al Diseño Asistido por Computadora para Electrónica (*),4,82.01,Materias Obligatorias,2,Se recomienda cursar simultáneamente 82.02, 86.02 y 86.70, o bien cursar 86.02 y 86.70 después de aprobar la cursada de 82.02 Física II
+86.02,Introducción a la Ingeniería Electrónica,6,82.01,Materias Obligatorias,2,
+86.70,Introducción al Diseño Asistido por Computadora para Electrónica,4,82.01,Materias Obligatorias,2,
 81.05,Análisis Matemático III A,6,81.01-81.02,Materias Obligatorias,3,
 81.04,Probabilidad y Estadística B,6,81.01-81.02,Materias Obligatorias,3,
 86.01,Técnica Digital,6,86.02,Materias Obligatorias,3,
@@ -23,7 +23,7 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 86.09,Procesos Estocásticos ,6,86.05-81.04,Materias Obligatorias,6,
 86.07,Laboratorio de Microprocesadores ,6,86.01-86.03-86.04-95.11,Materias Obligatorias,6,
 86.12,Comunicación de Datos,6,86.05,Materias Obligatorias,7,
-86.13,Instrumentos y Mediciones Electrónicas (*),6,82.06-86.06-86.07,Materias Obligatorias,7,Se aconseja cursar simultáneamente 86.10 y 86.69
+86.13,Instrumentos y Mediciones Electrónicas,6,82.06-86.06-86.07,Materias Obligatorias,7,
 86.10,Diseño de Circuitos Electrónicos,6,86.06-86.07-86.70,Materias Obligatorias,7,
 86.14,Introducción a Proyectos,4,86.10,Materias Obligatorias,8,
 97.04,Seguridad Ambiental y del Trabajo (*),4,CRED90-CBC,Materias Obligatorias,8,Requiere 90 créditos

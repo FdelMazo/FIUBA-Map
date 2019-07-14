@@ -31,9 +31,9 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 89.11,Ingeniería Sanitaria I,4,89.05-89.09,Materias Obligatorias,7,
 94.04,Hormigón II,8,94.01-94.12,Materias Obligatorias,7,
 94.05,Instalaciones en Obras Civiles I,6,89.11-94.03,Materias Obligatorias,8,
-88.11,Aeropuertos A (*),2,84.07-88.09-94.01,Materias Obligatorias,8,Se recomienda el cursado de la asignatura Aeropuertos B junto con la asignatura Aeropuertos A.
-88.12,Ferrocarriles A (*),2,84.07-88.09-94.01,Materias Obligatorias,8,Se recomienda el cursado de la asignatura Ferrocarriles B junto con la asignatura Ferrocarriles A.
-88.13,Puertos y Vías Navegables A (*),4,84.07-88.09-94.01,Materias Obligatorias,8,Se recomienda el cursado  de  la  asignatura Puertos  y Vías  Navegables  B junto  con la asignatura Puertos y Vías Navegables A.
+88.11,Aeropuertos A,2,84.07-88.09-94.01,Materias Obligatorias,8,
+88.12,Ferrocarriles A,2,84.07-88.09-94.01,Materias Obligatorias,8,
+88.13,Puertos y Vías Navegables A,4,84.07-88.09-94.01,Materias Obligatorias,8,
 88.14,Evaluación de proyectos,4,88.09-89.09-94.03,Materias Obligatorias,9,
 91.02,Gerenciamiento y Organización de Obras Civiles,4,88.10-89.09-94.03,Materias Obligatorias,9,
 94.02,Arquitectura y Planificación Urbana,6,88.09-89.10-94.05,Materias Obligatorias,9,
@@ -51,9 +51,9 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 87.02,Termodinámica I A,8,82.02-81.02,Materias Electivas,10,
 88.01,Construcción de carreteras,6,88.09-84.07-94.01,Materias Electivas,10,
 88.02,Diseño y operación de caminos,6,88.09-84.07-94.01,Materias Electivas,10,
-88.03,Puertos y Vías Navegables B,2,88.09-84.07-94.01,Materias Electivas,10,Se recomienda el cursado  de  la  asignatura Puertos  y Vías  Navegables  B junto  con la asignatura Puertos y Vías Navegables A.
-88.04,Ferrocarriles B,4,88.09-84.07-94.01,Materias Electivas,10,Se recomienda el cursado de la asignatura Ferrocarriles B junto con la asignatura Ferrocarriles A.
-88.05,Aeropuertos B,4,88.09-84.07-94.01,Materias Electivas,10,Se recomienda el cursado de la asignatura Aeropuertos B junto con la asignatura Aeropuertos A.
+88.03,Puertos y Vías Navegables B,2,88.09-84.07-94.01,Materias Electivas,10,
+88.04,Ferrocarriles B,4,88.09-84.07-94.01,Materias Electivas,10,
+88.05,Aeropuertos B,4,88.09-84.07-94.01,Materias Electivas,10,
 88.06,Planeamiento del Transporte,6,88.09,Materias Electivas,10,
 88.07,Tránsito,4,88.10,Materias Electivas,10,
 88.08,Ingeniería Territorial,4,88.09,Materias Electivas,10,
@@ -79,4 +79,3 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 94.19,Materiales no tradicionales en la construcción,4,84.06-94.12,Materias Electivas,10,
 94.20,Instalaciones en Obras Civiles II,4,94.05,Materias Electivas,10,
 95.04,Análisis Numérico I,6,95.10,Materias Electivas,10,
-84.00,Tesis de Ingeniería Civil (*),14,CRED160-CBC,Materias Electivas,10,Requiere 160 créditos
