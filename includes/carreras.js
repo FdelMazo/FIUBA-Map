@@ -69,6 +69,12 @@ function update(element, carrera){
             titulo = 'Ingeniería en Argimensura'
             plan = 'Plan 2006 v2016'
             break
+        case 'industrial':
+            orientaciones = false
+            filename = 'data/industrial-2011.csv'
+            titulo = 'Ingeniería Industrial'
+            plan = 'Plan 2011 v2019'
+            break
     }
 
     $('#creditos-var').text(0)
