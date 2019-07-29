@@ -75,6 +75,15 @@ function createNetwork(container, nodes, edges){
             'Orientación: Metalúrgica': { color: '#6495ED' },
             'Orientación: Computación Aplicada': { color: '#FFFFE0' },            
             'Orientación: Industrias': { color: '#CCCCB3' },
+            // Electrónica
+            'Orientación: Multiples Orientaciones': { color: '#FFFF00' },
+            'Orientación: Procesamiento de Señales': { color: '#7FFFD4' },
+            'Orientación: Automatización y Control': { color: '#6495ED' },
+            'Orientación: Física Electrónica': { color: '#FFFFE0' },            
+            'Orientación: Telecomunicaciones': { color: '#CCCCB3' },
+            'Orientación: Sistemas Digitales y Computación': { color: '#FFE4E1' },
+            'Orientación: Multimedia': { color: '#FFDAB9' },
+            'Orientación: Instrumentación Biomédica': { color: '#66CDAA' },
         },
     };
 
