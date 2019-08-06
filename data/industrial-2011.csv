@@ -14,14 +14,14 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 87.13,Medios de Reperesentación,4,CBC,Materias Obligatorias,3,
 87.12,Mecanismos,4,84.05-87.13,Materias Obligatorias,4,
 87.14,Termodinámica,4,82.02,Materias Obligatorias,4,
-91.33,Microeconomía Aplicada (*),4,CRED88-CBC,Materias Obligatorias,4,Requiere 88 créditos
+91.33,Microeconomía Aplicada (88 créditos),4,CRED88-CBC,Materias Obligatorias,4,
 92.01,Materiales Industriales I,6,83.02-84.05,Materias Obligatorias,4,
 95.13,Métodos Matemáticos y Numéricos,6,81.01-81.02-95.01,Materias Obligatorias,4,
 89.17,Mecánica de los Fluidos,6,81.01-82.01,Materias Obligatorias,5,
 91.03,Estadística Aplicada I,4,81.16,Materias Obligatorias,5,
 91.10,Organización Industrial I,4,81.16,Materias Obligatorias,5,
 91.24,Macroeconomía y Estructura Económica,6,91.33,Materias Obligatorias,5,
-97.01,Higiene y Seguridad Industrial (*),4,CRED118-CBC,Materias Obligatorias,5,Requiere 118 créditos
+97.01,Higiene y Seguridad Industrial (118 créditos),4,CRED118-CBC,Materias Obligatorias,5,
 87.17,Máquinas Térmicas,4,87.14,Materias Obligatorias,6,
 91.12,Organización Industrial II,4,91.10,Materias Obligatorias,6,
 91.30,Estadística Aplicada II,4,91.03,Materias Obligatorias,6,
@@ -38,7 +38,7 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 91.08,Organización Industrial III,6,91.12,Materias Obligatorias,9,
 91.29,Ingenería Económica A,4,91.28,Materias Obligatorias,9,
 92.19,Procesos de Manufactura II,4,92.04,Materias Obligatorias,9,
-91.22,Ingenería Legal para Ingenería Industrial (*),4,CRED138-CBC,Materias Obligatorias,9,Requiere 138 créditos
+91.22,Ingenería Legal para Ingenería Industrial (138 créditos),4,CRED138-CBC,Materias Obligatorias,9,
 62.13,Física III C,6,81.02-82.02-83.01,Materias Electivas,10,
 85.20,Energías Renovables,4,85.38-87.14,Materias Electivas,10,
 87.15,Taller A,4,87.13-92.01,Materias Electivas,10,
@@ -53,9 +53,9 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 91.34,Gestión Financiera,4,91.29,Materias Electivas,10,
 91.35,Análisis de Casos,4,91.12,Materias Electivas,10,
 91.36,Gestión de la Calidad,4,91.12,Materias Electivas,10,
-91.37,Emprendimientos de Ingeniería (*),4,CRED158-CBC,Materias Electivas,10,Requiere 158 créditos
+91.37,Emprendimientos de Ingeniería (158 créditos),4,CRED158-CBC,Materias Electivas,10,
 91.51,Desarrollo y Gestión de Proyectos,4,91.31-91.08,Materias Electivas,10,
-91.52,Gestión de la Innovación (*),4,CRED188-CBC,Materias Electivas,10,Requiere 188 créditos
+91.52,Gestión de la Innovación (188 créditos),4,CRED188-CBC,Materias Electivas,10,
 91.54,Ciencia de Datos para la Toma de DEcisiones,4,81.02-91.30,Materias Electivas,10,
 92.08,Diseño de Productos,4,91.12-92.01,Materias Electivas,10,
 92.09,Industrias Plásticas,4,92.18,Materias Electivas,10,
@@ -66,8 +66,8 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 92.15,Industrias de la Alimentación,4,92.18,Materias Electivas,10,
 92.17,Industrias Petrolíferas,4,92.18,Materias Electivas,10,
 92.20,Industria Automotriz,4,91.12-92.04,Materias Electivas,10,
-92.14,Seminario de Ingeniería Industrial I (*),1,CRED188-CBC,Materias Electivas,10,Requiere 188 créditos
-92.16,Seminario de Ingeniería Industrial II (*),2,CRED188-CBC,Materias Electivas,10,Requiere 188 créditos
-92.21,Seminario de Ingeniería Industrial III (*),3,CRED188-CBC,Materias Electivas,10,Requiere 188 créditos
-92.24,Ingeniería y Desarrollo de Envaes y Embalajes (*),4,CRED188-CBC,Materias Electivas,10,Requiere 188 créditos
-92.26,Seminario de Ingeniería Industrial IV (*),4,CRED188-CBC,Materias Electivas,10,Requiere 188 créditos
+92.14,Seminario de Ingeniería Industrial I (188 créditos),1,CRED188-CBC,Materias Electivas,10,
+92.16,Seminario de Ingeniería Industrial II (188 créditos),2,CRED188-CBC,Materias Electivas,10,
+92.21,Seminario de Ingeniería Industrial III (188 créditos),3,CRED188-CBC,Materias Electivas,10,
+92.24,Ingeniería y Desarrollo de Envaes y Embalajes (188 créditos),4,CRED188-CBC,Materias Electivas,10,
+92.26,Seminario de Ingeniería Industrial IV (188 créditos),4,CRED188-CBC,Materias Electivas,10,

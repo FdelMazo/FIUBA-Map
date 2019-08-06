@@ -69,7 +69,7 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 71.20,Modelos y Optimización III,6,71.15,Materias Electivas,9,
 71.41,Análisis y Resolución de Problemas,6,71.15,Materias Electivas,9,
 71.42,Circuitos de Información en la Empresa,4,71.46,Materias Electivas,9,
-71.44,Recursos Humanos (*),4,CRED140-CBC,Materias Electivas,9,Requiere 140 créditos
+71.44,Recursos Humanos (140 créditos),4,CRED140-CBC,Materias Electivas,9,
 71.46,Ingeniería Económica,6,71.13,Materias Electivas,9,
 75.14,Lenguajes Formales,6,61.09,Materias Electivas,9,
 75.16,Lenguajes de Programación,6,75.14,Materias Electivas,9,
@@ -94,5 +94,5 @@ CBC,Ciclo Básico Común,0,,CBC,0,
 75.71,Seminario de Ingeniería en Informática I,3,75.07,Materias Electivas,9,
 75.72,Seminario de Ingeniería en Informática II,3,75.06-75.44,Materias Electivas,9,
 75.73,Arquitectura de Software,4,75.07-75.09,Materias Electivas,9,
-78.xx,Idioma (*),4,CBC,Materias Electivas,9,El estudiante podrá cursar sólo un idioma en carácter de asignatura electiva (inglés alemán francés italiano o portugués)
-71.40,Legislación y Ejercicio Profesional de la Ingeniería en Informática (*),4,CRED140-CBC,Materias Obligatorias,6,Requiere 140 Créditos
+78.xx,Idioma,4,CBC,Materias Electivas,9,
+71.40,Legislación y Ejercicio Profesional de la Ingeniería en Informática (140 créditos),4,CRED140-CBC,Materias Obligatorias,6,
