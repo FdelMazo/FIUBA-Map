@@ -1,52 +1,52 @@
-codigo,materia,creditos,correlativas,grupo,nivel,caveat
-CBC,Ciclo Básico Común,0,,CBC,0,
-81.01,Análisis Matemático II,8,CBC,Materias Obligatorias,1,
-81.02,Álgebra II,8,CBC,Materias Obligatorias,1,
-95.14,Algoritmos y Programación I,6,CBC,Materias Obligatorias,1,
-81.11,Matemática Discreta,6,CBC,Materias Obligatorias,2,
-95.57,Organización del Computador,8,95.14,Materias Obligatorias,2,
-95.15,Algoritmos y Programación II,6,95.14,Materias Obligatorias,2,
-81.04,Probabilidad y Estadística B,6,81.01-81.02,Materias Obligatorias,3,
-91.39,Estructuras y Procesos Organizacionales (22 crédios),6,CRED22-CBC,Materias Obligatorias,3,
-95.58,Organización de Datos,6,95.57-95.15,Materias Obligatorias,3,
-95.02,Algoritmos y Programación III,6,95.15,Materias Obligatorias,3,
-91.41,Economía de las Organizaciones,4,81.04-91.39,Materias Obligatorias,4,
-95.03,Sistemas Operativos,6,95.58,Materias Obligatorias,4,
-95.20,Métodos y Modelos en la Ingeniería de Software I,6,95.02-95.58,Materias Obligatorias,4,
-95.08,Taller de Programación,4,95.02-95.57,Materias Obligatorias,4,
-91.04,Modelos y Optimización I,6,81.01-81.02-81.11-95.15,Materias Obligatorias,5,
-95.21,Métodos y Modelos en la Ingeniería de Software II,6,95.20,Materias Obligatorias,5,
-95.05,Base de Datos,6,95.20,Materias Obligatorias,5,
-91.42,Administración de las Organizaciones,4,91.41-95.20,Materias Obligatorias,5,
-91.05,Modelos y Optimización II,4,81.04-91.04,Materias Obligatorias,6,
-95.24,Administración y Control de Proyectos Informáticos I,6,91.42-95.21,Materias Obligatorias,6,
-95.59,Diseño Operación y Gestión de Servicios Informáticos,4,91.42-95.21,Materias Obligatorias,6,
-95.60,Redes y Aplicaciones Distribuidas,6,95.05-95.03,Materias Obligatorias,6,
-95.30,Estándares de Calidad y Modelos de Referencia,4,95.24,Materias Obligatorias,6,
-91.40,Legislación y Ejercicio Profesional en Sistemas e Informática (100 créditos),4,CRED100-CBC,Materias Obligatorias,6,
-86.36,Criptografía y Seguridad Informática,6,95.60,Materias Electivas,7,
-91.24,Macroeconomía y Estructura Económica  Argentina,6,91.39,Materias Electivas,7,
-91.06,Modelos y Optimización III,6,91.05,Materias Electivas,7,
-91.37,Emprendimientos en Ingeniería,3,95.24,Materias Electivas,7,
-91.35,Análisis de Casos,3,91.05,Materias Electivas,7,
-95.04,Análisis Numérico I,6,81.01-81.02-95.14,Materias Electivas,7,
-95.06,Teoría de Algoritmos I,6,81.11-95.15,Materias Electivas,7,
-95.07,Teoría de Lenguajes de Programación,4,95.15,Materias Electivas,7,
-95.19,Simulación,6,81.04-95.15,Materias Electivas,7,
-95.25,Inteligencia Artificial,6,95.02,Materias Electivas,7,
-95.35,Evaluación e Implantación de Sistemas,4,95.24,Materias Electivas,7,
-95.37,Evaluación de Proyectos y Manejo de  Riesgos,4,95.24,Materias Electivas,7,
-95.09,Técnicas de Programación Concurrente I,6,95.03,Materias Electivas,7,
-95.48,Lenguajes Formales,6,81.11,Materias Electivas,7,
-95.49,Lenguajes de Programación,6,95.48,Materias Electivas,7,
-95.62,Innovación Tecnológica,4,95.24,Materias Electivas,7,
-95.63,Desarrollo de Aplicaciones Mainframe,4,95.05-95.15,Materias Electivas,7,
-95.64,Auditoria de Sistemas,4,95.24,Materias Electivas,7,
-95.65,Diseño y Desarrollo de Interfaces de Usuario,4,95.20,Materias Electivas,7,
-95.66,Bases de Datos Multidimensionales,4,95.05,Materias Electivas,7,
-95.67,Minería de Datos,4,95.05,Materias Electivas,7,
-95.68,Desarrollo con Nuevas Tecnologías,4,95.02,Materias Electivas,7,
-95.69,Seminario de Sistemas de Información y Gestión,4,91.42-95.21,Materias Electivas,7,
-95.70,Seminario de Metodologías de Desarrollo de Sistemas,4,95.21,Materias Electivas,7,
-95.71,Arquitecturas y Configuraciones,4,95.03,Materias Electivas,7,
-98.xx,Idioma,4,CBC,Materias Electivas,7,
+codigo,materia,creditos,correlativas,grupo,nivel
+CBC,Ciclo Básico Común,0,,CBC,0
+81.01,Análisis Matemático II,8,CBC,Materias Obligatorias,1
+81.02,Álgebra II,8,CBC,Materias Obligatorias,1
+95.14,Algoritmos y Programación I,6,CBC,Materias Obligatorias,1
+81.11,Matemática Discreta,6,CBC,Materias Obligatorias,2
+95.57,Organización del Computador,8,95.14,Materias Obligatorias,2
+95.15,Algoritmos y Programación II,6,95.14,Materias Obligatorias,2
+81.04,Probabilidad y Estadística B,6,81.01-81.02,Materias Obligatorias,3
+91.39,Estructuras y Procesos Organizacionales (22 crédios),6,CRED22-CBC,Materias Obligatorias,3
+95.58,Organización de Datos,6,95.57-95.15,Materias Obligatorias,3
+95.02,Algoritmos y Programación III,6,95.15,Materias Obligatorias,3
+91.41,Economía de las Organizaciones,4,81.04-91.39,Materias Obligatorias,4
+95.03,Sistemas Operativos,6,95.58,Materias Obligatorias,4
+95.20,Métodos y Modelos en la Ingeniería de Software I,6,95.02-95.58,Materias Obligatorias,4
+95.08,Taller de Programación,4,95.02-95.57,Materias Obligatorias,4
+91.04,Modelos y Optimización I,6,81.01-81.02-81.11-95.15,Materias Obligatorias,5
+95.21,Métodos y Modelos en la Ingeniería de Software II,6,95.20,Materias Obligatorias,5
+95.05,Base de Datos,6,95.20,Materias Obligatorias,5
+91.42,Administración de las Organizaciones,4,91.41-95.20,Materias Obligatorias,5
+91.05,Modelos y Optimización II,4,81.04-91.04,Materias Obligatorias,6
+95.24,Administración y Control de Proyectos Informáticos I,6,91.42-95.21,Materias Obligatorias,6
+95.59,Diseño Operación y Gestión de Servicios Informáticos,4,91.42-95.21,Materias Obligatorias,6
+95.60,Redes y Aplicaciones Distribuidas,6,95.05-95.03,Materias Obligatorias,6
+95.30,Estándares de Calidad y Modelos de Referencia,4,95.24,Materias Obligatorias,6
+91.40,Legislación y Ejercicio Profesional en Sistemas e Informática (100 créditos),4,CRED100-CBC,Materias Obligatorias,6
+86.36,Criptografía y Seguridad Informática,6,95.60,Materias Electivas,7
+91.24,Macroeconomía y Estructura Económica  Argentina,6,91.39,Materias Electivas,7
+91.06,Modelos y Optimización III,6,91.05,Materias Electivas,7
+91.37,Emprendimientos en Ingeniería,3,95.24,Materias Electivas,7
+91.35,Análisis de Casos,3,91.05,Materias Electivas,7
+95.04,Análisis Numérico I,6,81.01-81.02-95.14,Materias Electivas,7
+95.06,Teoría de Algoritmos I,6,81.11-95.15,Materias Electivas,7
+95.07,Teoría de Lenguajes de Programación,4,95.15,Materias Electivas,7
+95.19,Simulación,6,81.04-95.15,Materias Electivas,7
+95.25,Inteligencia Artificial,6,95.02,Materias Electivas,7
+95.35,Evaluación e Implantación de Sistemas,4,95.24,Materias Electivas,7
+95.37,Evaluación de Proyectos y Manejo de  Riesgos,4,95.24,Materias Electivas,7
+95.09,Técnicas de Programación Concurrente I,6,95.03,Materias Electivas,7
+95.48,Lenguajes Formales,6,81.11,Materias Electivas,7
+95.49,Lenguajes de Programación,6,95.48,Materias Electivas,7
+95.62,Innovación Tecnológica,4,95.24,Materias Electivas,7
+95.63,Desarrollo de Aplicaciones Mainframe,4,95.05-95.15,Materias Electivas,7
+95.64,Auditoria de Sistemas,4,95.24,Materias Electivas,7
+95.65,Diseño y Desarrollo de Interfaces de Usuario,4,95.20,Materias Electivas,7
+95.66,Bases de Datos Multidimensionales,4,95.05,Materias Electivas,7
+95.67,Minería de Datos,4,95.05,Materias Electivas,7
+95.68,Desarrollo con Nuevas Tecnologías,4,95.02,Materias Electivas,7
+95.69,Seminario de Sistemas de Información y Gestión,4,91.42-95.21,Materias Electivas,7
+95.70,Seminario de Metodologías de Desarrollo de Sistemas,4,95.21,Materias Electivas,7
+95.71,Arquitecturas y Configuraciones,4,95.03,Materias Electivas,7
+98.xx,Idioma,4,CBC,Materias Electivas,7

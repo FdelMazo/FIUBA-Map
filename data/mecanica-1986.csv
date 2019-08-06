@@ -1,71 +1,71 @@
-codigo,materia,creditos,correlativas,grupo,nivel,caveat
-CBC,Ciclo Básico Común,0,,CBC,0,
-61.03,Análisis Matemático II A,8,CBC,Materias Obligatorias,1,
-62.01,Física I A,8,CBC,Materias Obligatorias,1,
-61.08,Álgebra II A,8,CBC,Materias Obligatorias,1,
-61.13,Análisis Matemático III C,4,61.03-61.08,Materias Obligatorias,2,
-62.03,Física II A,8,61.03-62.01,Materias Obligatorias,2,
-63.01,Química,6,CBC,Materias Obligatorias,2,
-67.02,Medios de Representación B,6,CBC,Materias Obligatorias,2,
-75.01,Computación,4,CBC,Materias Obligatorias,2,
-62.06,Mecánica I,6,61.03-61.08-62.01,Materias Obligatorias,3,
-64.11,Estabilidad I B,6,62.01-67.02,Materias Obligatorias,3,
-67.07,Dibujo Mecánico,2,67.02,Materias Obligatorias,3,
-67.13,Conocimiento de Materiales I,6,63.01,Materias Obligatorias,3,
-75.12,Análisis Numérico I,6,61.03-61.08-75-01,Materias Obligatorias,3,
-64.12,Estabilidad II B,8,61.03-61.08-64.11-67.13,Materias Obligatorias,4,
-67.04,Termodinámica I A,8,61.08-62.03,Materias Obligatorias,4,
-67.11,Mecanismos A,4,62.06,Materias Obligatorias,4,
-67.14,Conocimiento de Materiales II,4,63.01-67.13,Materias Obligatorias,4,
-65.04,Electrotecnia General B,6,62.03,Materias Obligatorias,5,
-67.15,Tecnología Mecánica I,6,67.07-67.11,Materias Obligatorias,5,
-67.16,Ensayos Industriales,4,67.14,Materias Obligatorias,5,
-67.17,Taller,4,67.07-67.11-67.14,Materias Obligatorias,5,
-67.18,Mecánica de Fluidos B,6,67.04,Materias Obligatorias,5,
-65.06,Máquinas Eléctricas,6,65.04,Materias Obligatorias,6,
-66.03,Electrónica General,4,65.04,Materias Obligatorias,6,
-67.19,Máquinas Alternativas,6,67.04-67.11,Materias Obligatorias,6,
-67.20,Turbomáquinas,6,67.11-67.18,Materias Obligatorias,6,
-67.21,Mediciones Físicas y Mecánicas,4,62.06-67.18,Materias Obligatorias,6,
-64.13,Estabilidad III B,6,64.12,Materias Obligatorias,7,
-67.22,Sistemas de Control,4,61.13-67.21,Materias Obligatorias,7,
-71.01,Introducción a la Economía y Organización de la Empresa,4,61.03,Materias Obligatorias,7,
-77.05,Proyectos Nacionales e Ingeniería Ambiental,4,67.21,Materias Obligatorias,7,
-67.23,Conversión de Energía (120 créditos),2,CRED120-CBC,Materias Obligatorias,8,
-67.28,Sistemas Hidráulicos y Neumáticos,4,66.03-67.18,Materias Obligatorias,8,
-67.24,Proyecto de Instalaciones Industriales,6,65.06-67.18,Materias Obligatorias,8,
-77.01,Higiene y Seguridad del Trabajo,4,77.05,Materias Obligatorias,8,
-71.25,Legislación y Ejercicio Profesional de la Ingeniería Mecánica (100 créditos),2,CRED100-CBC,Materias Obligatorias,8,
-61.06,Probabilidad y Estadística A,4,61.03,Materias Electivas,10,
-62.07,Mecánica II,4,61.03-62.06,Orientación: Diseño Mecánico,9,
-64.14,Método de los Elementos Finitos,4,64.13,Orientación: Computación Aplicada,9,
-64.15,Estabilidad IV B,6,64.13,Materias Electivas,10,
-64.16,Análisis Experimental de Tensiones,2,64.13,Materias Electivas,10,
-62.18,Física de Fluidos,4,61.13-67.18,Materias Electivas,10,
-67.25,Elementos de Máquinas,8,64.12-67.11,Orientación: Diseño Mecánico,9,
-67.26,Metrología,4,67.21,Orientación: Diseño Mecánico,9,
-67.27,Tecnología Mecánica II,6,67.15-67.17,Orientación: Diseño Mecánico,9,
-67.29,Proyecto de Máquinas,6,62.06-67.25-67.27-67.28,Orientación: Diseño Mecánico,9,
-67.30,Combustión,4,63.01-67.04,Orientación: Termomecánica,9,
-67.31,Transferencia de Calor y Masa,4,67.04,Orientación: Termomecánica,9,
-67.32,Tecnología del Frío,6,67.18-67.31,Orientación: Termomecánica,9,
-67.33,Tecnología del Calor,8,67.30-67.31,Orientación: Termomecánica,9,
-67.34,Proyecto de Instalaciones Térmicas,6,67.32-67.33,Orientación: Termomecánica,9,
-67.40,Diseño de Máquinas Herramientas,6,67.13-67.26-67.27,Orientación: Diseño Mecánico,9,
-67.41,Automotores,6,67.19-67.25,Orientación: Diseño Mecánico,9,
-67.42,Control Numérico de Máquinas Herramientas,6,67.27,Orientación: Diseño Mecánico,9,
-67.43,Robótica Industrial,6,62.06-67.22,Orientación: Industrias,9,
-67.44,Plantas Térmicas,4,67.33,Orientación: Termomecánica,9,
-67.45,Sistemas de Control en Instalaciones Térmicas,4,67.22-67.33,Orientación: Termomecánica,9,
-67.46,Diseño de Instalaciones Térmicas,4,67.34,Orientación: Termomecánica,9,
-67.47,Metalografía,6,67.13-67.16,Orientación: Metalúrgica,9,
-67.48,Tratamientos Térmicos,4,67.13-67.16,Orientación: Metalúrgica,9,
-67.49,Metalurgia Física,6,61.03-62.03-63.01,Orientación: Metalúrgica,9,
-67.50,Materiales Ferrosos y sus Aplicaciones,4,67.13,Orientación: Metalúrgica,9,
-67.56,Técnicas Energéticas,4,61.08-67.04,Materias Electivas,10,
-67.58,Introducción al Método de los Elementos Finitos,6,64.13-67.18-75.12,Materias Electivas,10,
-67.59,Mecánica del Continuo,6,64.13-67.18-67.60,Materias Electivas,10,
-67.60,Introducción al Análisis Tensorial,4,61.03-61.08,Materias Electivas,10,
-67.61,Fundamentos Matemáticos de la Visión en Robótica,6,61.08-67.02,Materias Electivas,10,
-67.62,Elementos Finitos Avanzados,6,67.58-67.59,Materias Electivas,10,
-78.xx,Idioma,4,CBC,Materias Electivas,10,
+codigo,materia,creditos,correlativas,grupo,nivel
+CBC,Ciclo Básico Común,0,,CBC,0
+61.03,Análisis Matemático II A,8,CBC,Materias Obligatorias,1
+62.01,Física I A,8,CBC,Materias Obligatorias,1
+61.08,Álgebra II A,8,CBC,Materias Obligatorias,1
+61.13,Análisis Matemático III C,4,61.03-61.08,Materias Obligatorias,2
+62.03,Física II A,8,61.03-62.01,Materias Obligatorias,2
+63.01,Química,6,CBC,Materias Obligatorias,2
+67.02,Medios de Representación B,6,CBC,Materias Obligatorias,2
+75.01,Computación,4,CBC,Materias Obligatorias,2
+62.06,Mecánica I,6,61.03-61.08-62.01,Materias Obligatorias,3
+64.11,Estabilidad I B,6,62.01-67.02,Materias Obligatorias,3
+67.07,Dibujo Mecánico,2,67.02,Materias Obligatorias,3
+67.13,Conocimiento de Materiales I,6,63.01,Materias Obligatorias,3
+75.12,Análisis Numérico I,6,61.03-61.08-75-01,Materias Obligatorias,3
+64.12,Estabilidad II B,8,61.03-61.08-64.11-67.13,Materias Obligatorias,4
+67.04,Termodinámica I A,8,61.08-62.03,Materias Obligatorias,4
+67.11,Mecanismos A,4,62.06,Materias Obligatorias,4
+67.14,Conocimiento de Materiales II,4,63.01-67.13,Materias Obligatorias,4
+65.04,Electrotecnia General B,6,62.03,Materias Obligatorias,5
+67.15,Tecnología Mecánica I,6,67.07-67.11,Materias Obligatorias,5
+67.16,Ensayos Industriales,4,67.14,Materias Obligatorias,5
+67.17,Taller,4,67.07-67.11-67.14,Materias Obligatorias,5
+67.18,Mecánica de Fluidos B,6,67.04,Materias Obligatorias,5
+65.06,Máquinas Eléctricas,6,65.04,Materias Obligatorias,6
+66.03,Electrónica General,4,65.04,Materias Obligatorias,6
+67.19,Máquinas Alternativas,6,67.04-67.11,Materias Obligatorias,6
+67.20,Turbomáquinas,6,67.11-67.18,Materias Obligatorias,6
+67.21,Mediciones Físicas y Mecánicas,4,62.06-67.18,Materias Obligatorias,6
+64.13,Estabilidad III B,6,64.12,Materias Obligatorias,7
+67.22,Sistemas de Control,4,61.13-67.21,Materias Obligatorias,7
+71.01,Introducción a la Economía y Organización de la Empresa,4,61.03,Materias Obligatorias,7
+77.05,Proyectos Nacionales e Ingeniería Ambiental,4,67.21,Materias Obligatorias,7
+67.23,Conversión de Energía (120 créditos),2,CRED120-CBC,Materias Obligatorias,8
+67.28,Sistemas Hidráulicos y Neumáticos,4,66.03-67.18,Materias Obligatorias,8
+67.24,Proyecto de Instalaciones Industriales,6,65.06-67.18,Materias Obligatorias,8
+77.01,Higiene y Seguridad del Trabajo,4,77.05,Materias Obligatorias,8
+71.25,Legislación y Ejercicio Profesional de la Ingeniería Mecánica (100 créditos),2,CRED100-CBC,Materias Obligatorias,8
+61.06,Probabilidad y Estadística A,4,61.03,Materias Electivas,10
+62.07,Mecánica II,4,61.03-62.06,Orientación: Diseño Mecánico,9
+64.14,Método de los Elementos Finitos,4,64.13,Orientación: Computación Aplicada,9
+64.15,Estabilidad IV B,6,64.13,Materias Electivas,10
+64.16,Análisis Experimental de Tensiones,2,64.13,Materias Electivas,10
+62.18,Física de Fluidos,4,61.13-67.18,Materias Electivas,10
+67.25,Elementos de Máquinas,8,64.12-67.11,Orientación: Diseño Mecánico,9
+67.26,Metrología,4,67.21,Orientación: Diseño Mecánico,9
+67.27,Tecnología Mecánica II,6,67.15-67.17,Orientación: Diseño Mecánico,9
+67.29,Proyecto de Máquinas,6,62.06-67.25-67.27-67.28,Orientación: Diseño Mecánico,9
+67.30,Combustión,4,63.01-67.04,Orientación: Termomecánica,9
+67.31,Transferencia de Calor y Masa,4,67.04,Orientación: Termomecánica,9
+67.32,Tecnología del Frío,6,67.18-67.31,Orientación: Termomecánica,9
+67.33,Tecnología del Calor,8,67.30-67.31,Orientación: Termomecánica,9
+67.34,Proyecto de Instalaciones Térmicas,6,67.32-67.33,Orientación: Termomecánica,9
+67.40,Diseño de Máquinas Herramientas,6,67.13-67.26-67.27,Orientación: Diseño Mecánico,9
+67.41,Automotores,6,67.19-67.25,Orientación: Diseño Mecánico,9
+67.42,Control Numérico de Máquinas Herramientas,6,67.27,Orientación: Diseño Mecánico,9
+67.43,Robótica Industrial,6,62.06-67.22,Orientación: Industrias,9
+67.44,Plantas Térmicas,4,67.33,Orientación: Termomecánica,9
+67.45,Sistemas de Control en Instalaciones Térmicas,4,67.22-67.33,Orientación: Termomecánica,9
+67.46,Diseño de Instalaciones Térmicas,4,67.34,Orientación: Termomecánica,9
+67.47,Metalografía,6,67.13-67.16,Orientación: Metalúrgica,9
+67.48,Tratamientos Térmicos,4,67.13-67.16,Orientación: Metalúrgica,9
+67.49,Metalurgia Física,6,61.03-62.03-63.01,Orientación: Metalúrgica,9
+67.50,Materiales Ferrosos y sus Aplicaciones,4,67.13,Orientación: Metalúrgica,9
+67.56,Técnicas Energéticas,4,61.08-67.04,Materias Electivas,10
+67.58,Introducción al Método de los Elementos Finitos,6,64.13-67.18-75.12,Materias Electivas,10
+67.59,Mecánica del Continuo,6,64.13-67.18-67.60,Materias Electivas,10
+67.60,Introducción al Análisis Tensorial,4,61.03-61.08,Materias Electivas,10
+67.61,Fundamentos Matemáticos de la Visión en Robótica,6,61.08-67.02,Materias Electivas,10
+67.62,Elementos Finitos Avanzados,6,67.58-67.59,Materias Electivas,10
+78.xx,Idioma,4,CBC,Materias Electivas,10

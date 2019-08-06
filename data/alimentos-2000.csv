@@ -1,38 +1,38 @@
-codigo,materia,creditos,correlativas,grupo,nivel,caveat
-CBC,Ciclo Básico Común,0,,CBC,0,
-63.07,Química Física II,6,CBC,Materias Obligatorias,1,
-76.40,Introducción a la Bioquímica,2,CBC,Materias Obligatorias,1,
-76.03,Operaciones I,10,CBC,Materias Obligatorias,1,
-63.05,Química Analítica,8,CBC,Materias Obligatorias,1,
-76.12,Microbiología Industrial,6,76.40,Materias Obligatorias,2,
-76.04,Operaciones Unitarias II,8,76.03,Materias Obligatorias,2,
-76.05,Operaciones Unitarias III,8,76.03,Materias Obligatorias,2,
-FYB2,Nutrición Aplicada a Tecnología de Alimentos,2,76.40,Materias Obligatorias,2,
-CEX2,Toxicología de Alimentos,4,76.40,Materias Obligatorias,3,
-77.41,Gestión Ambiental en la Industria Alimentaria,4,76.05,Materias Obligatorias,3,
-65.43,Ingeniería de las Instalaciones I,4,CBC,Materias Obligatorias,3,
-76.42,Ingeniería de la Instalaciones II B,4,CBC,Materias Obligatorias,3,
-CEX1,Fundamentos de la Preservación de Alimentos I,6,76.12-76.04-76.05,Materias Obligatorias,4,
-76.43,Instrumentación y Control,6,76.04-76.05,Materias Obligatorias,4,
-FYB1,Legislación Alimentaria,2,CEX2-FYB2,Materias Obligatorias,4,
-76.08,Ingeniería de la Reacciones Químicas,8,63.07-76.05,Materias Obligatorias,4,
-71.55,Economía de la Empresa Alimentaria,6,76.05,Materias Obligatorias,5,
-76.41,Biotecnología,4,76.08-76.12,Materias Obligatorias,5,
-CEX3,Fundamentos de la Preservación de Alimentos II,6,CEX1,Materias Obligatorias,5,
-CEX4,Tecnología de Alimentos I,6,CEX1-63.05,Materias Obligatorias,5,
-CEX5,Tecnología de Alimentos II,4,CEX1-63.05,Materias Obligatorias,5,
-71.56,Legislación y Ejercicio Profesional de la Ingeniería de Alimentos,2,71.55,Materias Obligatorias,5,
-CEX6,Microbiología de Alimentos,6,76.12,Materias Electivas,6,
-CEX7,Tecnología de Alimentos III,4,CEX1-63.05,Materias Electivas,6,
-AG1,Sistemas de Producción Agropecuaria y Calidad de alimentos,4,CEX5,Materias Electivas,6,
-CEX8,Análisis avanzado de Alimentos,8,CEX3,Materias Electivas,6,
-71.03,Estadística Técnica,6,CBC,Materias Electivas,6,
-71.31,Organización de la Producción,6,CEX3-71.55,Materias Electivas,6,
-71.33,Comercialización de Productos Industriales,4,CEX3-71.55,Materias Electivas,6,
-71.43,Logística Integral,4,CEX3-71.55,Materias Electivas,6,
-71.44,Recursos Humanos,4,FYB1-71.55,Materias Electivas,6,
-71.57,Métodos Cuantitativos Aplicados en Sistemas Agroalimentarios,4,CBC,Materias Electivas,6,
-72.14,Diseño de Producto,4,CEX3-75.55,Materias Electivas,6,
-76.19,Procesos Fermentativos,4,76.41,Materias Electivas,6,
-FYB3,Gestión Control y Garantía de la Calidad en la Industria Alimentaria,4,71.55,Materias Electivas,6,
-78.xx,Idioma,4,CBC,Materias Electivas,6,
+codigo,materia,creditos,correlativas,grupo,nivel
+CBC,Ciclo Básico Común,0,,CBC,0
+63.07,Química Física II,6,CBC,Materias Obligatorias,1
+76.40,Introducción a la Bioquímica,2,CBC,Materias Obligatorias,1
+76.03,Operaciones I,10,CBC,Materias Obligatorias,1
+63.05,Química Analítica,8,CBC,Materias Obligatorias,1
+76.12,Microbiología Industrial,6,76.40,Materias Obligatorias,2
+76.04,Operaciones Unitarias II,8,76.03,Materias Obligatorias,2
+76.05,Operaciones Unitarias III,8,76.03,Materias Obligatorias,2
+FYB2,Nutrición Aplicada a Tecnología de Alimentos,2,76.40,Materias Obligatorias,2
+CEX2,Toxicología de Alimentos,4,76.40,Materias Obligatorias,3
+77.41,Gestión Ambiental en la Industria Alimentaria,4,76.05,Materias Obligatorias,3
+65.43,Ingeniería de las Instalaciones I,4,CBC,Materias Obligatorias,3
+76.42,Ingeniería de la Instalaciones II B,4,CBC,Materias Obligatorias,3
+CEX1,Fundamentos de la Preservación de Alimentos I,6,76.12-76.04-76.05,Materias Obligatorias,4
+76.43,Instrumentación y Control,6,76.04-76.05,Materias Obligatorias,4
+FYB1,Legislación Alimentaria,2,CEX2-FYB2,Materias Obligatorias,4
+76.08,Ingeniería de la Reacciones Químicas,8,63.07-76.05,Materias Obligatorias,4
+71.55,Economía de la Empresa Alimentaria,6,76.05,Materias Obligatorias,5
+76.41,Biotecnología,4,76.08-76.12,Materias Obligatorias,5
+CEX3,Fundamentos de la Preservación de Alimentos II,6,CEX1,Materias Obligatorias,5
+CEX4,Tecnología de Alimentos I,6,CEX1-63.05,Materias Obligatorias,5
+CEX5,Tecnología de Alimentos II,4,CEX1-63.05,Materias Obligatorias,5
+71.56,Legislación y Ejercicio Profesional de la Ingeniería de Alimentos,2,71.55,Materias Obligatorias,5
+CEX6,Microbiología de Alimentos,6,76.12,Materias Electivas,6
+CEX7,Tecnología de Alimentos III,4,CEX1-63.05,Materias Electivas,6
+AG1,Sistemas de Producción Agropecuaria y Calidad de alimentos,4,CEX5,Materias Electivas,6
+CEX8,Análisis avanzado de Alimentos,8,CEX3,Materias Electivas,6
+71.03,Estadística Técnica,6,CBC,Materias Electivas,6
+71.31,Organización de la Producción,6,CEX3-71.55,Materias Electivas,6
+71.33,Comercialización de Productos Industriales,4,CEX3-71.55,Materias Electivas,6
+71.43,Logística Integral,4,CEX3-71.55,Materias Electivas,6
+71.44,Recursos Humanos,4,FYB1-71.55,Materias Electivas,6
+71.57,Métodos Cuantitativos Aplicados en Sistemas Agroalimentarios,4,CBC,Materias Electivas,6
+72.14,Diseño de Producto,4,CEX3-75.55,Materias Electivas,6
+76.19,Procesos Fermentativos,4,76.41,Materias Electivas,6
+FYB3,Gestión Control y Garantía de la Calidad en la Industria Alimentaria,4,71.55,Materias Electivas,6
+78.xx,Idioma,4,CBC,Materias Electivas,6

@@ -11,7 +11,6 @@ HEADER = ['codigo',
         'correlativas',
         'grupo', # CBC - Obligatorias - Optativas - Idiomas - Orientaciones - Tesis - Trabajo Profesional
         'nivel', # Jerarquía del grafo: Primero el CBC, después las obligatorias del primer cuatrimestre, etc
-        'caveat' # Mensaje aclarando algo en particular de las materia (por ejemplo, los idiomas se puede solo hacer uno)
 ]
 
 MATERIAS_HARDCODEADAS = [
@@ -84,7 +83,7 @@ def main():
         materias_parseadas = parse_materias(materias)
         for m in materias_parseadas:
             codigo, titulo, creditos, correlativas = m
-            lineas.append((codigo, titulo, creditos, correlativas, titulo_grupo, nivel_en_grafo, None))
+            lineas.append((codigo, titulo, creditos, correlativas, titulo_grupo, nivel_en_grafo))
 
     base = os.path.splitext(sys.argv[1])[0]
     filename = base+'.organizar.csv'

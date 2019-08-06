@@ -1,50 +1,50 @@
-codigo,materia,creditos,correlativas,grupo,nivel,caveat
-CBC,Ciclo Básico Común,0,,CBC,0,
-61.03,Análisis Matemático II A,8,CBC,Materias Obligatorias,1,
-62.01,Física I A,8,CBC,Materias Obligatorias,1,
-70.02,Geometría Descriptiva,4,CBC,Materias Obligatorias,1,
-75.01,Computación,4,CBC,Materias Obligatorias,1,
-62.03,Física II A,8,61.03-62.01,Materias Obligatorias,2,
-70.04,Dibujo Topográfico,4,CBC,Materias Obligatorias,2,
-78.01,Idioma Ingles,4,CBC,Materias Obligatorias,2,
-61.22,Álgebra II C,8,CBC,Materias Obligatorias,2,
-61.06,Probabilidad y Estadística A,4,61.03,Materias Obligatorias,3,
-70.08,Topografía I,6,70.02,Materias Obligatorias,3,
-70.12,Geodesia I,4,61.03-70.08,Materias Obligatorias,3,
-70.06,Geografía Física y Geología,4,62.01,Materias Obligatorias,3,
-71.23,Economía,4,61.03,Materias Obligatorias,3,
-70.07,Calculo De Compensación,4,61.06-70.08,Materias Obligatorias,4,
-70.09,Topografía II,6,70.08-70.04,Materias Obligatorias,4,
-70.15,Cartografía,4,70.08,Materias Obligatorias,4,
-70.13,Geodesia II,4,70.12,Materias Obligatorias,4,
-70.33,Elementos de Construcción,4,70.08,Materias Obligatorias,4,
-70.34,Topografía III,8,70.07-70.09-70.12-70.15,Materias Obligatorias,5,
-70.14,Fotogrametría I,4,70.09,Materias Obligatorias,5,
-71.02,Agrimensura Legal I,4,70.08,Materias Obligatorias,5,
-68.06,Transporte A,8,70.09,Materias Obligatorias,5,
-70.35,Topografía IV,8,70.34-70.13,Materias Obligatorias,6,
-70.17,Geodesia III,4,62.03-70.07–70.13,Materias Obligatorias,6,
-70.16,Fotogrametría II,4,70.14-70.07,Materias Obligatorias,6,
-71.24,Agrimensura Legal II,4,71.02,Materias Obligatorias,6,
-70.36,Sistemas Cartográficos y Teledetección,4,61.06-70.14-70.15,Materias Obligatorias,6,
-70.37,Levantamiento y Práctica Profesional I,6,70.35-71.24,Materias Obligatorias,7,
-70.31,Información Rural,4,71.23-71.24-70.36,Materias Obligatorias,7,
-71.30,Agrimensura Legal III,4,71.24,Materias Obligatorias,7,
-70.27,Catastro,4,70.16-71.23-71.24,Materias Obligatorias,7,
-70.32,Sistemas de Información Geográfica,4,70.04-70.15-70.36,Materias Obligatorias,7,
-70.38,Levantamiento y Práctica Profesional II,6,70.33-70.37,Materias Obligatorias,8,
-71.52,Agrimensura Legal IV,6,71.30,Materias Obligatorias,8,
-70.39,Valuaciones,4,71.23-70.27-70.33,Materias Obligatorias,8,
-70.24,Levantamientos Hidrográficos,4,70.09,Materias Electivas,9,
-70.26,Hidráulica Agrícola y Saneamiento,4,70.09,Materias Electivas,9,
-77.02,Introducción a la Ingeniería Ambiental,4,CRED100-CBC,Materias Electivas,9,
-68.11,Ordenamiento Rural y Urbano,4,68.06-70.27,Materias Electivas,9,
-70.40,Geología Aplicada,4,62.03-70.06,Materias Electivas,9,
-70.41,Oceanografía Física,4,61.03-62.03,Materias Electivas,9,
-70.42,Sistemas de Información Geográfica II,4,70.32,Materias Electivas,9,
-70.43,Topografía De Obra,4,70.12-70.09,Materias Electivas,9,
-70.44,Dibujo Topográfico Ii,4,70.04,Materias Electivas,9,
-78.02,Idioma Alemán,4,CBC,Materias Electivas,9,
-78.03,Idioma Francés,4,CBC,Materias Electivas,9,
-78.04,Idioma Italiano,4,CBC,Materias Electivas,9,
-78.05,Idioma Portugués,4,CBC,Materias Electivas,9,
+codigo,materia,creditos,correlativas,grupo,nivel
+CBC,Ciclo Básico Común,0,,CBC,0
+61.03,Análisis Matemático II A,8,CBC,Materias Obligatorias,1
+62.01,Física I A,8,CBC,Materias Obligatorias,1
+70.02,Geometría Descriptiva,4,CBC,Materias Obligatorias,1
+75.01,Computación,4,CBC,Materias Obligatorias,1
+62.03,Física II A,8,61.03-62.01,Materias Obligatorias,2
+70.04,Dibujo Topográfico,4,CBC,Materias Obligatorias,2
+78.01,Idioma Ingles,4,CBC,Materias Obligatorias,2
+61.22,Álgebra II C,8,CBC,Materias Obligatorias,2
+61.06,Probabilidad y Estadística A,4,61.03,Materias Obligatorias,3
+70.08,Topografía I,6,70.02,Materias Obligatorias,3
+70.12,Geodesia I,4,61.03-70.08,Materias Obligatorias,3
+70.06,Geografía Física y Geología,4,62.01,Materias Obligatorias,3
+71.23,Economía,4,61.03,Materias Obligatorias,3
+70.07,Calculo De Compensación,4,61.06-70.08,Materias Obligatorias,4
+70.09,Topografía II,6,70.08-70.04,Materias Obligatorias,4
+70.15,Cartografía,4,70.08,Materias Obligatorias,4
+70.13,Geodesia II,4,70.12,Materias Obligatorias,4
+70.33,Elementos de Construcción,4,70.08,Materias Obligatorias,4
+70.34,Topografía III,8,70.07-70.09-70.12-70.15,Materias Obligatorias,5
+70.14,Fotogrametría I,4,70.09,Materias Obligatorias,5
+71.02,Agrimensura Legal I,4,70.08,Materias Obligatorias,5
+68.06,Transporte A,8,70.09,Materias Obligatorias,5
+70.35,Topografía IV,8,70.34-70.13,Materias Obligatorias,6
+70.17,Geodesia III,4,62.03-70.07–70.13,Materias Obligatorias,6
+70.16,Fotogrametría II,4,70.14-70.07,Materias Obligatorias,6
+71.24,Agrimensura Legal II,4,71.02,Materias Obligatorias,6
+70.36,Sistemas Cartográficos y Teledetección,4,61.06-70.14-70.15,Materias Obligatorias,6
+70.37,Levantamiento y Práctica Profesional I,6,70.35-71.24,Materias Obligatorias,7
+70.31,Información Rural,4,71.23-71.24-70.36,Materias Obligatorias,7
+71.30,Agrimensura Legal III,4,71.24,Materias Obligatorias,7
+70.27,Catastro,4,70.16-71.23-71.24,Materias Obligatorias,7
+70.32,Sistemas de Información Geográfica,4,70.04-70.15-70.36,Materias Obligatorias,7
+70.38,Levantamiento y Práctica Profesional II,6,70.33-70.37,Materias Obligatorias,8
+71.52,Agrimensura Legal IV,6,71.30,Materias Obligatorias,8
+70.39,Valuaciones,4,71.23-70.27-70.33,Materias Obligatorias,8
+70.24,Levantamientos Hidrográficos,4,70.09,Materias Electivas,9
+70.26,Hidráulica Agrícola y Saneamiento,4,70.09,Materias Electivas,9
+77.02,Introducción a la Ingeniería Ambiental,4,CRED100-CBC,Materias Electivas,9
+68.11,Ordenamiento Rural y Urbano,4,68.06-70.27,Materias Electivas,9
+70.40,Geología Aplicada,4,62.03-70.06,Materias Electivas,9
+70.41,Oceanografía Física,4,61.03-62.03,Materias Electivas,9
+70.42,Sistemas de Información Geográfica II,4,70.32,Materias Electivas,9
+70.43,Topografía De Obra,4,70.12-70.09,Materias Electivas,9
+70.44,Dibujo Topográfico Ii,4,70.04,Materias Electivas,9
+78.02,Idioma Alemán,4,CBC,Materias Electivas,9
+78.03,Idioma Francés,4,CBC,Materias Electivas,9
+78.04,Idioma Italiano,4,CBC,Materias Electivas,9
+78.05,Idioma Portugués,4,CBC,Materias Electivas,9

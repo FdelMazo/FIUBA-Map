@@ -1,56 +1,56 @@
-codigo,materia,creditos,correlativas,grupo,nivel,caveat
-CBC,Ciclo Básico Común,0,,CBC,0,
-61.03,Análisis Matemático II A,8,CBC,Materias Obligatorias,1,
-62.01,Física I A,8,CBC,Materias Obligatorias,1,
-63.02,Química I,8,CBC,Materias Obligatorias,1,
-61.08,Álgebra II A,8,CBC,Materias Obligatorias,2,
-62.04,Física II B,6,61.03-62.01,Materias Obligatorias,2,
-75.01,Computación,4,CBC,Materias Obligatorias,2,
-63.13,Química Inorgánica,8,63.02,Materias Obligatorias,2,
-75.12,Análisis Numérico I,6,61.03-61.08-75.01,Materias Obligatorias,3,
-63.14,Química Orgánica,10,63.13,Materias Obligatorias,3,
-76.45,Termodinámica de los Procesos,10,62.01-63.02,Materias Obligatorias,3,
-61.14,Matemática Especial para Ingeniería Química,8,61.03-61.08,Materias Obligatorias,4,
-76.46,Introducción a la Ingeniería Química,6,76.45,Materias Obligatorias,4,
-63.15,Química Analítica Instrumental,8,63.13-63.14-62.04,Materias Obligatorias,4,
-61.06,Probabilidad y Estadística A,4,61.03,Materias Obligatorias,4,
-76.47,Fenómenos de Transporte,10,76.46-61.14,Materias Obligatorias,5,
-63.16,Química Física,6,63.13-76.45-63.15,Materias Obligatorias,5,
-76.48,Evaluación de Propiedades Físicas,6,76.45-61.06,Materias Obligatorias,5,
-65.48,Laboratorio de Instalaciones Eléctricas,4,62.04-76.46,Materias Obligatorias,5,
-76.49,Operaciones Unitarias de Transferencia de Cantidad de Movimiento y Energía,10,76.47,Materias Obligatorias,6,
-76.52,Operaciones Unitarias de Transferencia de Materia,10,76.48-76.47,Materias Obligatorias,6,
-77.08,Seguridad Ambiental y del Trabajo B (100 créditos),4,CRED100-CBC,Materias Obligatorias,6,
-76.53,Diseño de Reactores,10,76.49-63.16-75.12,Materias Obligatorias,7,
-76.54,Instalaciones de Plantas de Procesos,8,76.49,Materias Obligatorias,7,
-76.55,Microbiología Industrial,6,63.14,Materias Obligatorias,7,
-76.56,Instrumentación y Control de Plantas Químicas,10,76.49-76.52,Materias Obligatorias,8,
-76.57,Diseño de Procesos,6,76.52,Materias Obligatorias,8,
-76.58,Emisiones de Contaminantes Químicos y Biológicos,4,76.52-76.55,Materias Obligatorias,8,
-71.28,Legislación y Ejercicio Profesional de la Ingeniería Química (140 créditos),4,CRED140-CBC,Materias Obligatorias,9,
-62.13,Física III C,6,62.04,Materias Electivas,10,
-62.18,Física de los Fluidos,4,76.47,Materias Electivas,10,
-63.10,Termodinámica Estadística,6,63.16,Materias Electivas,10,
-67.13,Conocimiento de Materiales I,6,63.14,Materias Electivas,10,
-67.57,Elementos Finitos Avanzados en la Mecánica de Fluidos,6,67.58,Materias Electivas,10,
-67.58,Intr. al Método de los Elementos Finitos,6,75.12-76.47,Materias Electivas,10,
-67.59,Mecánica del Continuo,6,67.60-76.47,Materias Electivas,10,
-67.60,Introducción al Análisis Tensorial,4,61.03-61.08,Materias Electivas,10,
-75.38,Análisis Numérico II A,6,75.12,Materias Electivas,10,
-76.16,Electroquímica,4,63.16-76.47,Materias Electivas,10,
-76.17,Procesos Electroquímicos,4,76.16,Materias Electivas,10,
-76.18,Fisicoquímica Especial,6,63.16,Materias Electivas,10,
-76.22,Fundamentos de la Ing. de Reservorios,8,76.47,Materias Electivas,10,
-76.23,Recuperación Asistida de Petróleo,4,76.22,Materias Electivas,10,
-76.24,Fundamentos de la Simulación Numérica de Reservorio,6,76.22,Materias Electivas,10,
-76.25,Explotación de Yacimientos,8,62.04-76.46,Materias Electivas,10,
-76.27,Control Estadístico de Procesos,6,61.06,Materias Electivas,10,
-76.28,Gestión Recursos en la Industria de Procesos,4,76.47,Materias Electivas,10,
-76.29,Industria de Procesos,4,76.52,Materias Electivas,10,
-76.30,Industrias Alimenticias,4,76.49,Materias Electivas,10,
-76.51,Introducción a la Planificación Interactiva (140 créditos),4,CRED140-CBC,Materias Electivas,10,
-76.63,Diseño Avanzado de Reactores,6,76.53,Materias Electivas,10,
-78.xx,Idioma,4,CBC,Materias Electivas,10,
-71.53,Evaluación de Proyectos de Plantas Químicas (100 créditos),6,CRED100-CBC,Materias Obligatorias,9,
-76.60,Laboratorio de Operaciones y Procesos,4,76.52-76.53-77.08,Materias Obligatorias,9,
-76.61,Bioingeniería,6,76.52-76.53-76.55,Materias Obligatorias,9,
+codigo,materia,creditos,correlativas,grupo,nivel
+CBC,Ciclo Básico Común,0,,CBC,0
+61.03,Análisis Matemático II A,8,CBC,Materias Obligatorias,1
+62.01,Física I A,8,CBC,Materias Obligatorias,1
+63.02,Química I,8,CBC,Materias Obligatorias,1
+61.08,Álgebra II A,8,CBC,Materias Obligatorias,2
+62.04,Física II B,6,61.03-62.01,Materias Obligatorias,2
+75.01,Computación,4,CBC,Materias Obligatorias,2
+63.13,Química Inorgánica,8,63.02,Materias Obligatorias,2
+75.12,Análisis Numérico I,6,61.03-61.08-75.01,Materias Obligatorias,3
+63.14,Química Orgánica,10,63.13,Materias Obligatorias,3
+76.45,Termodinámica de los Procesos,10,62.01-63.02,Materias Obligatorias,3
+61.14,Matemática Especial para Ingeniería Química,8,61.03-61.08,Materias Obligatorias,4
+76.46,Introducción a la Ingeniería Química,6,76.45,Materias Obligatorias,4
+63.15,Química Analítica Instrumental,8,63.13-63.14-62.04,Materias Obligatorias,4
+61.06,Probabilidad y Estadística A,4,61.03,Materias Obligatorias,4
+76.47,Fenómenos de Transporte,10,76.46-61.14,Materias Obligatorias,5
+63.16,Química Física,6,63.13-76.45-63.15,Materias Obligatorias,5
+76.48,Evaluación de Propiedades Físicas,6,76.45-61.06,Materias Obligatorias,5
+65.48,Laboratorio de Instalaciones Eléctricas,4,62.04-76.46,Materias Obligatorias,5
+76.49,Operaciones Unitarias de Transferencia de Cantidad de Movimiento y Energía,10,76.47,Materias Obligatorias,6
+76.52,Operaciones Unitarias de Transferencia de Materia,10,76.48-76.47,Materias Obligatorias,6
+77.08,Seguridad Ambiental y del Trabajo B (100 créditos),4,CRED100-CBC,Materias Obligatorias,6
+76.53,Diseño de Reactores,10,76.49-63.16-75.12,Materias Obligatorias,7
+76.54,Instalaciones de Plantas de Procesos,8,76.49,Materias Obligatorias,7
+76.55,Microbiología Industrial,6,63.14,Materias Obligatorias,7
+76.56,Instrumentación y Control de Plantas Químicas,10,76.49-76.52,Materias Obligatorias,8
+76.57,Diseño de Procesos,6,76.52,Materias Obligatorias,8
+76.58,Emisiones de Contaminantes Químicos y Biológicos,4,76.52-76.55,Materias Obligatorias,8
+71.28,Legislación y Ejercicio Profesional de la Ingeniería Química (140 créditos),4,CRED140-CBC,Materias Obligatorias,9
+62.13,Física III C,6,62.04,Materias Electivas,10
+62.18,Física de los Fluidos,4,76.47,Materias Electivas,10
+63.10,Termodinámica Estadística,6,63.16,Materias Electivas,10
+67.13,Conocimiento de Materiales I,6,63.14,Materias Electivas,10
+67.57,Elementos Finitos Avanzados en la Mecánica de Fluidos,6,67.58,Materias Electivas,10
+67.58,Intr. al Método de los Elementos Finitos,6,75.12-76.47,Materias Electivas,10
+67.59,Mecánica del Continuo,6,67.60-76.47,Materias Electivas,10
+67.60,Introducción al Análisis Tensorial,4,61.03-61.08,Materias Electivas,10
+75.38,Análisis Numérico II A,6,75.12,Materias Electivas,10
+76.16,Electroquímica,4,63.16-76.47,Materias Electivas,10
+76.17,Procesos Electroquímicos,4,76.16,Materias Electivas,10
+76.18,Fisicoquímica Especial,6,63.16,Materias Electivas,10
+76.22,Fundamentos de la Ing. de Reservorios,8,76.47,Materias Electivas,10
+76.23,Recuperación Asistida de Petróleo,4,76.22,Materias Electivas,10
+76.24,Fundamentos de la Simulación Numérica de Reservorio,6,76.22,Materias Electivas,10
+76.25,Explotación de Yacimientos,8,62.04-76.46,Materias Electivas,10
+76.27,Control Estadístico de Procesos,6,61.06,Materias Electivas,10
+76.28,Gestión Recursos en la Industria de Procesos,4,76.47,Materias Electivas,10
+76.29,Industria de Procesos,4,76.52,Materias Electivas,10
+76.30,Industrias Alimenticias,4,76.49,Materias Electivas,10
+76.51,Introducción a la Planificación Interactiva (140 créditos),4,CRED140-CBC,Materias Electivas,10
+76.63,Diseño Avanzado de Reactores,6,76.53,Materias Electivas,10
+78.xx,Idioma,4,CBC,Materias Electivas,10
+71.53,Evaluación de Proyectos de Plantas Químicas (100 créditos),6,CRED100-CBC,Materias Obligatorias,9
+76.60,Laboratorio de Operaciones y Procesos,4,76.52-76.53-77.08,Materias Obligatorias,9
+76.61,Bioingeniería,6,76.52-76.53-76.55,Materias Obligatorias,9

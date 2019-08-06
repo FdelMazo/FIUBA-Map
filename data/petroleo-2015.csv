@@ -1,53 +1,53 @@
-codigo,materia,creditos,correlativas,grupo,nivel,caveat
-CBC,Ciclo Básico Común,0,,CBC,0,
-81.01,Análisis Matemático II,8,CBC,Materias Obligatorias,1,
-82.01,Física I,8,CBC,Materias Obligatorias,1,
-83.01,Química,6,CBC,Materias Obligatorias,1,
-87.13,Medios de Representación,4,CBC,Materias Obligatorias,1,
-81.02,Álgebra II,8,CBC,Materias Obligatorias,2,
-95.01,Computación,4,CBC,Materias Obligatorias,2,
-62.04,Física II B,6,81.01-82.01,Materias Obligatorias,2,
-70.40,Geología Aplicada,4,CBC,Materias Obligatorias,2,
-79.01,Introducción a la Ingeniería en Petróleo,2,CBC,Materias Obligatorias,2,
-81.04,Probabilidad y Estadística B,6,81.01-81.02,Materias Obligatorias,3,
-79.02,Perforación de Pozos I,6,70.40,Materias Obligatorias,3,
-76.65,Termodinámica Aplicada a los Procesos Petroleros,6,62.04,Materias Obligatorias,3,
-83.04,Química del Petróleo,6,83.01,Materias Obligatorias,3,
-85.39,Electrotecnia P,4,62.04,Materias Obligatorias,3,
-79.05,Geología del Petróleo,4,70.40-79.01,Materias Obligatorias,4,
-89.17,Mecánica de Fluidos,6,76.65,Materias Obligatorias,4,
-84.05,Estática y Resistencia de Materiales,6,81.01-81.02-82.01-87.13,Materias Obligatorias,4,
-79.03,Terminación y Reparación de Pozos I,4,79.02,Materias Obligatorias,4,
-79.06,Geofísica del Petróleo,4,70.40,Materias Obligatorias,4,
-85.40,Máquinas e Instalaciones Eléctricas,6,85.39,Materias Obligatorias,5,
-87.17,Máquinas Térmicas,4,76.65,Materias Obligatorias,5,
-95.13,Métodos Matemáticos y Numéricos,6,82.02-84.05-95.01,Materias Obligatorias,5,
-79.18,Propiedades de la Roca y los Fluidos de Reservorios,6,79.05-79.06,Materias Obligatorias,5,
-79.12,Producción de Petróleo,4,79.02,Materias Obligatorias,6,
-79.04,Interpretación de Registros de Pozos,8,79.18-79.02,Materias Obligatorias,6,
-79.07,Perforación de Pozos II,4,79.02,Materias Obligatorias,6,
-91.19,Introducción a la Economía y la Organización en la Empresa,4,81.04,Materias Obligatorias,6,
-79.19,Ingeniería de Reservorios,6,79.18,Materias Obligatorias,6,
-79.15,Instalaciones de Producción,4,79.12-87.17-85.40,Materias Obligatorias,7,
-79.20,Ensayos de Pozo,4,95.13-79.12,Materias Obligatorias,7,
-79.09,Gas y Condensados,4,89.17-83.04,Materias Obligatorias,7,
-79.21,Recuperación Secundaria y Asistida de Petróleo,6,79.19,Materias Obligatorias,7,
-97.08,Gestión Ambiental para Ingeniería en Petróleo (100 créditos),6,CRED100-CBC,Materias Obligatorias,7,
-79.10,Desarrollo de Yacimientos,6,79.15-79.19,Materias Obligatorias,8,
-79.22,Simulación Numérica de Reservorios,6,79.19-89.17-95.13,Materias Obligatorias,8,
-79.11,Terminación y Reparación de Pozos II,4,79.03,Materias Obligatorias,8,
-79.08,Ingeniería de Reservorios no Convencionales,4,79.19,Materias Obligatorias,8,
-67.58,Introducción al Método de los Elementos Finitos,6,95.13,Materias Electivas,10,
-79.16,Integridad y Mantenimiento de Instalaciones de Producción,4,79.15,Materias Electivas,10,
-79.17,Caracterización Y Modelado De Reservorios,4,79.22,Materias Electivas,10,
-79.26,Energía Y Civilización,4,79.01,Materias Electivas,10,
-81.05,Análisis Matemático III A,6,81.01-81.02,Materias Electivas,10,
-82.07,Física III B,4,81.02-62.04,Materias Electivas,10,
-89.19,Transporte De Fluidos Por Tuberías,6,76.65-89-17,Materias Electivas,10,
-92.01,Materiales Industriales I,6,84.05-83.01,Materias Electivas,10,
-79.13,Evaluación de Proyectos en Ingeniería en Petróleo,6,91.19,Materias Obligatorias,9,
-79.23,Industrialización del Petróleo y del Gas,4,83.04,Materias Obligatorias,9,
-77.01,Higiene y Seguridad en el Trabajo (100 créditos),4,CRED100-CBC,Materias Obligatorias,9,
-91.44,Herramientas de Gestión Profesional,3,91.19,Materias Obligatorias,9,
-91.45,Legislación y Ejercicio Profesional de Ingeniería en Petróleo (100 créditos),4,CRED100-CBC,Materias Obligatorias,9,
-79.24,Tecnología y Sociedad,3,79.11,Materias Obligatorias,9,
+codigo,materia,creditos,correlativas,grupo,nivel
+CBC,Ciclo Básico Común,0,,CBC,0
+81.01,Análisis Matemático II,8,CBC,Materias Obligatorias,1
+82.01,Física I,8,CBC,Materias Obligatorias,1
+83.01,Química,6,CBC,Materias Obligatorias,1
+87.13,Medios de Representación,4,CBC,Materias Obligatorias,1
+81.02,Álgebra II,8,CBC,Materias Obligatorias,2
+95.01,Computación,4,CBC,Materias Obligatorias,2
+62.04,Física II B,6,81.01-82.01,Materias Obligatorias,2
+70.40,Geología Aplicada,4,CBC,Materias Obligatorias,2
+79.01,Introducción a la Ingeniería en Petróleo,2,CBC,Materias Obligatorias,2
+81.04,Probabilidad y Estadística B,6,81.01-81.02,Materias Obligatorias,3
+79.02,Perforación de Pozos I,6,70.40,Materias Obligatorias,3
+76.65,Termodinámica Aplicada a los Procesos Petroleros,6,62.04,Materias Obligatorias,3
+83.04,Química del Petróleo,6,83.01,Materias Obligatorias,3
+85.39,Electrotecnia P,4,62.04,Materias Obligatorias,3
+79.05,Geología del Petróleo,4,70.40-79.01,Materias Obligatorias,4
+89.17,Mecánica de Fluidos,6,76.65,Materias Obligatorias,4
+84.05,Estática y Resistencia de Materiales,6,81.01-81.02-82.01-87.13,Materias Obligatorias,4
+79.03,Terminación y Reparación de Pozos I,4,79.02,Materias Obligatorias,4
+79.06,Geofísica del Petróleo,4,70.40,Materias Obligatorias,4
+85.40,Máquinas e Instalaciones Eléctricas,6,85.39,Materias Obligatorias,5
+87.17,Máquinas Térmicas,4,76.65,Materias Obligatorias,5
+95.13,Métodos Matemáticos y Numéricos,6,82.02-84.05-95.01,Materias Obligatorias,5
+79.18,Propiedades de la Roca y los Fluidos de Reservorios,6,79.05-79.06,Materias Obligatorias,5
+79.12,Producción de Petróleo,4,79.02,Materias Obligatorias,6
+79.04,Interpretación de Registros de Pozos,8,79.18-79.02,Materias Obligatorias,6
+79.07,Perforación de Pozos II,4,79.02,Materias Obligatorias,6
+91.19,Introducción a la Economía y la Organización en la Empresa,4,81.04,Materias Obligatorias,6
+79.19,Ingeniería de Reservorios,6,79.18,Materias Obligatorias,6
+79.15,Instalaciones de Producción,4,79.12-87.17-85.40,Materias Obligatorias,7
+79.20,Ensayos de Pozo,4,95.13-79.12,Materias Obligatorias,7
+79.09,Gas y Condensados,4,89.17-83.04,Materias Obligatorias,7
+79.21,Recuperación Secundaria y Asistida de Petróleo,6,79.19,Materias Obligatorias,7
+97.08,Gestión Ambiental para Ingeniería en Petróleo (100 créditos),6,CRED100-CBC,Materias Obligatorias,7
+79.10,Desarrollo de Yacimientos,6,79.15-79.19,Materias Obligatorias,8
+79.22,Simulación Numérica de Reservorios,6,79.19-89.17-95.13,Materias Obligatorias,8
+79.11,Terminación y Reparación de Pozos II,4,79.03,Materias Obligatorias,8
+79.08,Ingeniería de Reservorios no Convencionales,4,79.19,Materias Obligatorias,8
+67.58,Introducción al Método de los Elementos Finitos,6,95.13,Materias Electivas,10
+79.16,Integridad y Mantenimiento de Instalaciones de Producción,4,79.15,Materias Electivas,10
+79.17,Caracterización Y Modelado De Reservorios,4,79.22,Materias Electivas,10
+79.26,Energía Y Civilización,4,79.01,Materias Electivas,10
+81.05,Análisis Matemático III A,6,81.01-81.02,Materias Electivas,10
+82.07,Física III B,4,81.02-62.04,Materias Electivas,10
+89.19,Transporte De Fluidos Por Tuberías,6,76.65-89-17,Materias Electivas,10
+92.01,Materiales Industriales I,6,84.05-83.01,Materias Electivas,10
+79.13,Evaluación de Proyectos en Ingeniería en Petróleo,6,91.19,Materias Obligatorias,9
+79.23,Industrialización del Petróleo y del Gas,4,83.04,Materias Obligatorias,9
+77.01,Higiene y Seguridad en el Trabajo (100 créditos),4,CRED100-CBC,Materias Obligatorias,9
+91.44,Herramientas de Gestión Profesional,3,91.19,Materias Obligatorias,9
+91.45,Legislación y Ejercicio Profesional de Ingeniería en Petróleo (100 créditos),4,CRED100-CBC,Materias Obligatorias,9
+79.24,Tecnología y Sociedad,3,79.11,Materias Obligatorias,9

@@ -1,61 +1,61 @@
-codigo,materia,creditos,correlativas,grupo,nivel,caveat
-CBC,Ciclo Básico Común,0,,CBC,0,
-61.03,Análisis Matemático II A,8,CBC,Materias Obligatorias,1,
-61.08,Álgebra II A,8,CBC,Materias Obligatorias,1,
-62.01,Física I A,8,CBC,Materias Obligatorias,1,
-62.03,Física II A,8,61.03-62.01,Materias Obligatorias,2,
-63.01,Química,6,CBC,Materias Obligatorias,2,
-67.02,Medios de Representación B,6,CBC,Materias Obligatorias,2,
-75.01,Computación,4,CBC,Materias Obligatorias,2,
-62.06,Mecánica I,6,61.03-61.08-62.01,Materias Obligatorias,3,
-64.11,Estabilidad IB,6,62.01-67.02,Materias Obligatorias,3,
-67.07,Dibujo Mecánico,2,67.02,Materias Obligatorias,3,
-67.13,Conocimiento de Materiales I,6,63.01,Materias Obligatorias,3,
-75.12,Análisis Numérico I,6,61.03-61.08-75.01,Materias Obligatorias,3,
-61.06,Probabilidad y Estadística A,4,61.03,Materias Obligatorias,4,
-64.12,Estabilidad II B,8,61.03-61.08-64.11-67.13,Materias Obligatorias,4,
-67.04,Termodinámica I A,8,61.08-62.03,Materias Obligatorias,4,
-71.23,Economía,4,61.03,Materias Obligatorias,4,
-73.01,Arquitectura Naval I,6,64.11-67.02,Materias Obligatorias,4,
-67.39,Dibujo para Ingenieros,6,67.07,Materias Obligatorias,4,
-65.30,Electrotecnia General D,6,62.03,Materias Obligatorias,5,
-66.04,Electrónica I,8,62.03,Materias Obligatorias,5,
-67.18,Mecánica de Fluidos B,6,67.04,Materias Obligatorias,5,
-73.02,Construcción Naval I,6,73.01,Materias Obligatorias,5,
-66.05,Electrónica II,6,66.04,Materias Obligatorias,6,
-73.03,Arquitectura Naval II,8,73.01,Materias Obligatorias,6,
-73.04,Estructura de Buques,6,64.13-73.02,Materias Obligatorias,6,
-73.05,Introducción a Máquinas Marinas,6,67.04,Materias Obligatorias,6,
-73.40,Prácticas en Astilleros I,4,73.01-73.02,Materias Obligatorias,6,
-61.16,Matemática para Ingenieros,8,61.03-61.08,Materias Obligatorias,7,
-64.13,Estabilidad III B,6,64.12,Materias Obligatorias,7,
-67.12,Mecanismos B,6,64.12,Materias Obligatorias,7,
-73.06,Vibraciones de Estructuras,6,64.13-73.07-73.12,Materias Obligatorias,7,
-73.07,Construcción Naval II,6,73.02,Materias Obligatorias,7,
-73.09,Proyecto de Buques I,6,73.03-73.05-73.07,Materias Obligatorias,7,
-73.10,Proyecto de Buques II,6,73.09,Materias Obligatorias,7,
-73.11,Máquinas Marinas I,6,67.04,Materias Obligatorias,7,
-73.12,Máquinas Marinas II,6,67.04,Materias Obligatorias,7,
-73.41,Prácticas en Astilleros II,4,73.40,Materias Obligatorias,7,
-64.14,Método de los Elementos Finitos,4,64.13,Materias Electivas,8,
-64.15,Estabilidad IV B,6,64.13,Materias Electivas,8,
-64.16,Análisis Experimental de Tensiones,2,64.13,Materias Electivas,8,
-67.23,Conversión de la Energía (120 créditos),2,CRED120-CBC,Materias Electivas,8,
-67.38,Tecnología Mecánica B,6,67.02-68.13,Materias Electivas,8,
-67.61,Fundamentos Matemáticos de la Visión en Robótica,6,61.08-67.02,Materias Electivas,8,
-68.03,Puertos y Vías Navegables,6,,Materias Electivas,8,
-68.08,Planeamiento del Transporte,6,,Materias Electivas,8,
-71.07,Investigación Operativa,8,71.31,Materias Electivas,8,
-71.31,Organización de la Producción,6,73.02,Materias Electivas,8,
-71.34,Gestión Presupuestaria,4,71.50-71.51,Materias Electivas,8,
-71.36,Gestión de Calidad,4,61.06-73.07,Materias Electivas,8,
-71.38,Legislación General,4,73.07,Materias Electivas,8,
-71.50,Ingeniería Económica I,4,71.31,Materias Electivas,8,
-71.51,Ingeniería Económica II,4,71.50,Materias Electivas,8,
-72.06,Automatización Industrial,4,,Materias Electivas,8,
-73.14,Navegación,4,73.02,Materias Electivas,8,
-73.15,Máquinas Marinas III,6,73.05-73.11-73.12,Materias Electivas,8,
-73.16,Construcción Naval III,6,73.07,Materias Electivas,8,
-77.01,Higiene y Seguridad del Trabajo,4,73.02,Materias Electivas,8,
-77.02,Introducción a la Ingeniería Ambiental,4,73.09,Materias Electivas,8,
-78.xx,Idioma,4,CBC,Materias Electivas,8,
+codigo,materia,creditos,correlativas,grupo,nivel
+CBC,Ciclo Básico Común,0,,CBC,0
+61.03,Análisis Matemático II A,8,CBC,Materias Obligatorias,1
+61.08,Álgebra II A,8,CBC,Materias Obligatorias,1
+62.01,Física I A,8,CBC,Materias Obligatorias,1
+62.03,Física II A,8,61.03-62.01,Materias Obligatorias,2
+63.01,Química,6,CBC,Materias Obligatorias,2
+67.02,Medios de Representación B,6,CBC,Materias Obligatorias,2
+75.01,Computación,4,CBC,Materias Obligatorias,2
+62.06,Mecánica I,6,61.03-61.08-62.01,Materias Obligatorias,3
+64.11,Estabilidad IB,6,62.01-67.02,Materias Obligatorias,3
+67.07,Dibujo Mecánico,2,67.02,Materias Obligatorias,3
+67.13,Conocimiento de Materiales I,6,63.01,Materias Obligatorias,3
+75.12,Análisis Numérico I,6,61.03-61.08-75.01,Materias Obligatorias,3
+61.06,Probabilidad y Estadística A,4,61.03,Materias Obligatorias,4
+64.12,Estabilidad II B,8,61.03-61.08-64.11-67.13,Materias Obligatorias,4
+67.04,Termodinámica I A,8,61.08-62.03,Materias Obligatorias,4
+71.23,Economía,4,61.03,Materias Obligatorias,4
+73.01,Arquitectura Naval I,6,64.11-67.02,Materias Obligatorias,4
+67.39,Dibujo para Ingenieros,6,67.07,Materias Obligatorias,4
+65.30,Electrotecnia General D,6,62.03,Materias Obligatorias,5
+66.04,Electrónica I,8,62.03,Materias Obligatorias,5
+67.18,Mecánica de Fluidos B,6,67.04,Materias Obligatorias,5
+73.02,Construcción Naval I,6,73.01,Materias Obligatorias,5
+66.05,Electrónica II,6,66.04,Materias Obligatorias,6
+73.03,Arquitectura Naval II,8,73.01,Materias Obligatorias,6
+73.04,Estructura de Buques,6,64.13-73.02,Materias Obligatorias,6
+73.05,Introducción a Máquinas Marinas,6,67.04,Materias Obligatorias,6
+73.40,Prácticas en Astilleros I,4,73.01-73.02,Materias Obligatorias,6
+61.16,Matemática para Ingenieros,8,61.03-61.08,Materias Obligatorias,7
+64.13,Estabilidad III B,6,64.12,Materias Obligatorias,7
+67.12,Mecanismos B,6,64.12,Materias Obligatorias,7
+73.06,Vibraciones de Estructuras,6,64.13-73.07-73.12,Materias Obligatorias,7
+73.07,Construcción Naval II,6,73.02,Materias Obligatorias,7
+73.09,Proyecto de Buques I,6,73.03-73.05-73.07,Materias Obligatorias,7
+73.10,Proyecto de Buques II,6,73.09,Materias Obligatorias,7
+73.11,Máquinas Marinas I,6,67.04,Materias Obligatorias,7
+73.12,Máquinas Marinas II,6,67.04,Materias Obligatorias,7
+73.41,Prácticas en Astilleros II,4,73.40,Materias Obligatorias,7
+64.14,Método de los Elementos Finitos,4,64.13,Materias Electivas,8
+64.15,Estabilidad IV B,6,64.13,Materias Electivas,8
+64.16,Análisis Experimental de Tensiones,2,64.13,Materias Electivas,8
+67.23,Conversión de la Energía (120 créditos),2,CRED120-CBC,Materias Electivas,8
+67.38,Tecnología Mecánica B,6,67.02-68.13,Materias Electivas,8
+67.61,Fundamentos Matemáticos de la Visión en Robótica,6,61.08-67.02,Materias Electivas,8
+68.03,Puertos y Vías Navegables,6,,Materias Electivas,8
+68.08,Planeamiento del Transporte,6,,Materias Electivas,8
+71.07,Investigación Operativa,8,71.31,Materias Electivas,8
+71.31,Organización de la Producción,6,73.02,Materias Electivas,8
+71.34,Gestión Presupuestaria,4,71.50-71.51,Materias Electivas,8
+71.36,Gestión de Calidad,4,61.06-73.07,Materias Electivas,8
+71.38,Legislación General,4,73.07,Materias Electivas,8
+71.50,Ingeniería Económica I,4,71.31,Materias Electivas,8
+71.51,Ingeniería Económica II,4,71.50,Materias Electivas,8
+72.06,Automatización Industrial,4,,Materias Electivas,8
+73.14,Navegación,4,73.02,Materias Electivas,8
+73.15,Máquinas Marinas III,6,73.05-73.11-73.12,Materias Electivas,8
+73.16,Construcción Naval III,6,73.07,Materias Electivas,8
+77.01,Higiene y Seguridad del Trabajo,4,73.02,Materias Electivas,8
+77.02,Introducción a la Ingeniería Ambiental,4,73.09,Materias Electivas,8
+78.xx,Idioma,4,CBC,Materias Electivas,8

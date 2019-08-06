@@ -1,63 +1,63 @@
-codigo,materia,creditos,correlativas,grupo,nivel,caveat
-CBC,Ciclo Básico Común,0,,CBC,0,
-81.01,Análisis Matemático II,8,CBC,Materias Obligatorias,1,
-82.01,Física I,8,CBC,Materias Obligatorias,1,
-87.01,Medios de Representación C,4,CBC,Materias Obligatorias,1,
-95.01,Computación,4,CBC,Materias Obligatorias,1,
-85.01,Introducción a la Ingeniería Electricista,2,CBC,Materias Obligatorias,1,
-81.03,Probabilidad y Estadística A,4,81.01,Materias Obligatorias,2,
-81.02,Algebra II,8,CBC,Materias Obligatorias,2,
-82.02,Física II,8,81.01-82.01,Materias Obligatorias,2,
-83.01,Química,6,CBC,Materias Obligatorias,2,
-81.05,Análisis Matemático III A,6,81.01-81.02,Materias Obligatorias,3,
-87.09,Termodinámica y Mecánica de Fluidos,6,82.02,Materias Obligatorias,3,
-95.04,Análisis Numérico I,6,81.01-81.02-95.01,Materias Obligatorias,3,
-85.02,Electrotecnia,8,81.02-82.02-85.01,Materias Obligatorias,3,
-82.03,Física III,6,81.02-82.02-83.01,Materias Obligatorias,4,
-84.05,Estática y Resistencia de Materiales,6,81.01-87.01-82.01,Materias Obligatorias,4,
-85.03,Teoría de Circuitos y Sistemas,6,81.05-85.02,Materias Obligatorias,4,
-85.05,Medidas Eléctricas,6,81.03-85.02,Materias Obligatorias,4,
-86.33,Electrónica,6,82.03-85.02,Materias Obligatorias,5,
-85.04,Campos Electromagnéticos,6,81.05-85.02,Materias Obligatorias,5,
-85.06,Máquinas Eléctricas I,8,85.05,Materias Obligatorias,5,
-85.08,Tecnología de Materiales Eléctricos,6,82.03-85.05,Materias Obligatorias,5,
-87.07,Fuentes y Máquinas Energéticas,6,87.09,Materias Obligatorias,6,
-85.07,Máquinas Eléctricas II,6,85.03-85.06,Materias Obligatorias,6,
-85.09,Diagnósticos Eléctricos y Ensayos,4,85.08-85.06,Materias Obligatorias,6,
-85.16,Electrónica de Potencia,6,85.06-86.33,Materias Obligatorias,6,
-97.02,Seguridad Ambiental y del Trabajo B,4,85.02-83.01,Materias Obligatorias,7,
-85.12,Sistemas Eléctricos de Potencia,6,85.04-85.07,Materias Obligatorias,7,
-85.13,Centrales Eléctricas,6,87.07,Materias Obligatorias,7,
-85.15,Protecciones Eléctricas y Equipos de Maniobra,6,85.05,Materias Obligatorias,7,
-87.06,Mecánica Aplicada,4,84.05,Materias Obligatorias,8,
-91.13,Organización de la Producció (100 créditos),6,CRED100-CBC,Materias Obligatorias,8,
-85.11,Instalaciones de Baja Tensión y Luminotecnia,4,85.09-97.02,Materias Obligatorias,8,
-85.14,Transmisión y Distribución de la Energía Eléctrica,6,85.12-85.15,Materias Obligatorias,8,
-85.10,Construcciones Electromecánicas,6,85.09-85.07-87.06,Materias Obligatorias,8,
-85.17,Economía de la Energía Eléctrica,4,91.13,Materias Obligatorias,8,
-91.15,Legislación y Ejercicio Profesional de la Ingeniería Electricista (100 créditos),4,CRED100-CBC,Materias Obligatorias,8,
-82.04,Mecánica Racional,4,81.05-82.01,Materias Electivas,9,
-86.01,Técnica Digital,6,81.02-95.01,Materias Electivas,9,
-86.08,Control Automático I,6,85.03,Materias Electivas,9,
-86.15,Robótica,6,82.04-86.08,Materias Electivas,9,
-87.08,Tecnología Mecánica B,4,84.05,Materias Electivas,9,
-91.01,Estructura Económica Argentina,4,91.13,Materias Electivas,9,
-91.36,Gestión de Calidad,4,81.03-85.09,Materias Electivas,9,
-91.17,Recursos Humanos (120 créditos),4,CRED120-CBC,Materias Electivas,9,
-85.18,Accionamientos,4,85.07-85.16,Materias Electivas,9,
-85.19,Luminotecnia,4,85.11,Materias Electivas,9,
-85.20,Energías Renovables,4,87.07,Materias Electivas,9,
-85.21,Uso Eficiente de la Energía Eléctrica,4,85.06-85.11,Materias Electivas,9,
-85.22,Metrología y Técnicas de Calibración Eléctrica,4,85.05,Materias Electivas,9,
-85.23,Medición de Magnitudes Físicas por Medios Eléctricos,4,85.05,Materias Electivas,9,
-85.24,Mediciones en AT,4,85.09,Materias Electivas,9,
-85.25,Estaciones Transformadoras y de Distribución,4,85.14,Materias Electivas,9,
-85.26,Dinámica de SEP,4,85.12,Materias Electivas,9,
-85.27,Comunicaciones y Telecontrol,4,85.05,Materias Electivas,9,
-85.28,Seminario de Ingeniería Electricista I,2,85.02,Materias Electivas,9,
-85.29,Seminario de Ingeniería Electricista II,4,85.02,Materias Electivas,9,
-85.30,Proyecto de Centrales Hidroeléctricas,4,85.13,Materias Electivas,9,
-85.31,Proyecto de Centrales Termoeléctricas,4,85.13,Materias Electivas,9,
-85.32,Proyecto de Centrales Fotovoltaicas y Eólicas,4,85.13,Materias Electivas,9,
-85.33,Abastecimiento Auxiliar de la Energía Eléctrica,4,85.16,Materias Electivas,9,
-85.34,Regulación de Servicios Públicos,4,85.16,Materias Electivas,9,
+codigo,materia,creditos,correlativas,grupo,nivel
+CBC,Ciclo Básico Común,0,,CBC,0
+81.01,Análisis Matemático II,8,CBC,Materias Obligatorias,1
+82.01,Física I,8,CBC,Materias Obligatorias,1
+87.01,Medios de Representación C,4,CBC,Materias Obligatorias,1
+95.01,Computación,4,CBC,Materias Obligatorias,1
+85.01,Introducción a la Ingeniería Electricista,2,CBC,Materias Obligatorias,1
+81.03,Probabilidad y Estadística A,4,81.01,Materias Obligatorias,2
+81.02,Algebra II,8,CBC,Materias Obligatorias,2
+82.02,Física II,8,81.01-82.01,Materias Obligatorias,2
+83.01,Química,6,CBC,Materias Obligatorias,2
+81.05,Análisis Matemático III A,6,81.01-81.02,Materias Obligatorias,3
+87.09,Termodinámica y Mecánica de Fluidos,6,82.02,Materias Obligatorias,3
+95.04,Análisis Numérico I,6,81.01-81.02-95.01,Materias Obligatorias,3
+85.02,Electrotecnia,8,81.02-82.02-85.01,Materias Obligatorias,3
+82.03,Física III,6,81.02-82.02-83.01,Materias Obligatorias,4
+84.05,Estática y Resistencia de Materiales,6,81.01-87.01-82.01,Materias Obligatorias,4
+85.03,Teoría de Circuitos y Sistemas,6,81.05-85.02,Materias Obligatorias,4
+85.05,Medidas Eléctricas,6,81.03-85.02,Materias Obligatorias,4
+86.33,Electrónica,6,82.03-85.02,Materias Obligatorias,5
+85.04,Campos Electromagnéticos,6,81.05-85.02,Materias Obligatorias,5
+85.06,Máquinas Eléctricas I,8,85.05,Materias Obligatorias,5
+85.08,Tecnología de Materiales Eléctricos,6,82.03-85.05,Materias Obligatorias,5
+87.07,Fuentes y Máquinas Energéticas,6,87.09,Materias Obligatorias,6
+85.07,Máquinas Eléctricas II,6,85.03-85.06,Materias Obligatorias,6
+85.09,Diagnósticos Eléctricos y Ensayos,4,85.08-85.06,Materias Obligatorias,6
+85.16,Electrónica de Potencia,6,85.06-86.33,Materias Obligatorias,6
+97.02,Seguridad Ambiental y del Trabajo B,4,85.02-83.01,Materias Obligatorias,7
+85.12,Sistemas Eléctricos de Potencia,6,85.04-85.07,Materias Obligatorias,7
+85.13,Centrales Eléctricas,6,87.07,Materias Obligatorias,7
+85.15,Protecciones Eléctricas y Equipos de Maniobra,6,85.05,Materias Obligatorias,7
+87.06,Mecánica Aplicada,4,84.05,Materias Obligatorias,8
+91.13,Organización de la Producció (100 créditos),6,CRED100-CBC,Materias Obligatorias,8
+85.11,Instalaciones de Baja Tensión y Luminotecnia,4,85.09-97.02,Materias Obligatorias,8
+85.14,Transmisión y Distribución de la Energía Eléctrica,6,85.12-85.15,Materias Obligatorias,8
+85.10,Construcciones Electromecánicas,6,85.09-85.07-87.06,Materias Obligatorias,8
+85.17,Economía de la Energía Eléctrica,4,91.13,Materias Obligatorias,8
+91.15,Legislación y Ejercicio Profesional de la Ingeniería Electricista (100 créditos),4,CRED100-CBC,Materias Obligatorias,8
+82.04,Mecánica Racional,4,81.05-82.01,Materias Electivas,9
+86.01,Técnica Digital,6,81.02-95.01,Materias Electivas,9
+86.08,Control Automático I,6,85.03,Materias Electivas,9
+86.15,Robótica,6,82.04-86.08,Materias Electivas,9
+87.08,Tecnología Mecánica B,4,84.05,Materias Electivas,9
+91.01,Estructura Económica Argentina,4,91.13,Materias Electivas,9
+91.36,Gestión de Calidad,4,81.03-85.09,Materias Electivas,9
+91.17,Recursos Humanos (120 créditos),4,CRED120-CBC,Materias Electivas,9
+85.18,Accionamientos,4,85.07-85.16,Materias Electivas,9
+85.19,Luminotecnia,4,85.11,Materias Electivas,9
+85.20,Energías Renovables,4,87.07,Materias Electivas,9
+85.21,Uso Eficiente de la Energía Eléctrica,4,85.06-85.11,Materias Electivas,9
+85.22,Metrología y Técnicas de Calibración Eléctrica,4,85.05,Materias Electivas,9
+85.23,Medición de Magnitudes Físicas por Medios Eléctricos,4,85.05,Materias Electivas,9
+85.24,Mediciones en AT,4,85.09,Materias Electivas,9
+85.25,Estaciones Transformadoras y de Distribución,4,85.14,Materias Electivas,9
+85.26,Dinámica de SEP,4,85.12,Materias Electivas,9
+85.27,Comunicaciones y Telecontrol,4,85.05,Materias Electivas,9
+85.28,Seminario de Ingeniería Electricista I,2,85.02,Materias Electivas,9
+85.29,Seminario de Ingeniería Electricista II,4,85.02,Materias Electivas,9
+85.30,Proyecto de Centrales Hidroeléctricas,4,85.13,Materias Electivas,9
+85.31,Proyecto de Centrales Termoeléctricas,4,85.13,Materias Electivas,9
+85.32,Proyecto de Centrales Fotovoltaicas y Eólicas,4,85.13,Materias Electivas,9
+85.33,Abastecimiento Auxiliar de la Energía Eléctrica,4,85.16,Materias Electivas,9
+85.34,Regulación de Servicios Públicos,4,85.16,Materias Electivas,9

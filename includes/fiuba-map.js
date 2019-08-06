@@ -179,10 +179,8 @@ function parseNode(rowCells){
     let creditos = rowCells[2]
     let grupo = rowCells[4]
     let nivel = rowCells[5]
-    let caveat = rowCells[6]
 
     let node = {id:codigo, label:label, group:grupo, creditos: parseInt(creditos), aprobada: false, level:nivel, habilitada: false, categoria: grupo}
-    if (caveat){ node.title = caveat }
     return node
 }
 
