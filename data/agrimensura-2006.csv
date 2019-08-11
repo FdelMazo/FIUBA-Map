@@ -43,8 +43,5 @@ CBC,Ciclo Básico Común,0,,CBC,0
 70.41,Oceanografía Física,4,61.03-62.03,Materias Electivas,9
 70.42,Sistemas de Información Geográfica II,4,70.32,Materias Electivas,9
 70.43,Topografía De Obra,4,70.12-70.09,Materias Electivas,9
-70.44,Dibujo Topográfico Ii,4,70.04,Materias Electivas,9
-78.02,Idioma Alemán,4,CBC,Materias Electivas,9
-78.03,Idioma Francés,4,CBC,Materias Electivas,9
-78.04,Idioma Italiano,4,CBC,Materias Electivas,9
-78.05,Idioma Portugués,4,CBC,Materias Electivas,9
+70.44,Dibujo Topográfico II,4,70.04,Materias Electivas,9
+78.xx,Idioma,4,CBC,Materias Electivas,9
