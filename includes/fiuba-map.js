@@ -133,7 +133,14 @@ function habilitar(id){
     for (let i = 0; i < neighborsFrom.length; i++ ){
         let correlativa = NODOS.get(neighborsFrom[i])
         if (!correlativa) {continue}
-        todoAprobado &= correlativa.aprobada
+        let correlativaTodoAprobado = true
+        let correlativaNeighborsFrom = network.getConnectedNodes(neighborsFrom[i], 'from')
+        for (let i = 0; i < correlativaNeighborsFrom.length; i++ ){
+            let correlativaDeCorrelativa = NODOS.get(correlativaNeighborsFrom[i])
+            if (!correlativaDeCorrelativa) {continue}
+            correlativaTodoAprobado &= correlativaDeCorrelativa.aprobada
+        }
+        todoAprobado &= correlativaTodoAprobado
     }
     if (!todoAprobado || network.creditos < nodo.requiere) {return}
 
