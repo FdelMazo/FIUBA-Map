@@ -24,38 +24,38 @@ CBC,Ciclo Básico Común,0,,CBC,0
 73.02,Construcción Naval I,6,73.01,Materias Obligatorias,5
 66.05,Electrónica II,6,66.04,Materias Obligatorias,6
 73.03,Arquitectura Naval II,8,73.01,Materias Obligatorias,6
-73.04,Estructura de Buques,6,64.13-73.02,Materias Obligatorias,6
+73.04,Estructura de Buques,6,64.13-73.02,Materias Obligatorias,7
 73.05,Introducción a Máquinas Marinas,6,67.04,Materias Obligatorias,6
 73.40,Prácticas en Astilleros I,4,73.01-73.02,Materias Obligatorias,6
-61.16,Matemática para Ingenieros,8,61.03-61.08,Materias Obligatorias,7
-64.13,Estabilidad III B,6,64.12,Materias Obligatorias,7
+61.16,Matemática para Ingenieros,8,61.03-61.08,Materias Obligatorias,8
+64.13,Estabilidad III B,6,64.12,Materias Obligatorias,6
 67.12,Mecanismos B,6,64.12,Materias Obligatorias,7
-73.06,Vibraciones de Estructuras,6,64.13-73.07-73.12,Materias Obligatorias,7
+73.06,Vibraciones de Estructuras,6,64.13-73.07-73.12,Materias Obligatorias,8
 73.07,Construcción Naval II,6,73.02,Materias Obligatorias,7
 73.09,Proyecto de Buques I,6,73.03-73.05-73.07,Materias Obligatorias,7
-73.10,Proyecto de Buques II,6,73.09,Materias Obligatorias,7
-73.11,Máquinas Marinas I,6,67.04,Materias Obligatorias,7
+73.10,Proyecto de Buques II,6,73.09,Materias Obligatorias,8
+73.11,Máquinas Marinas I,6,67.04,Materias Obligatorias,8
 73.12,Máquinas Marinas II,6,67.04,Materias Obligatorias,7
-73.41,Prácticas en Astilleros II,4,73.40,Materias Obligatorias,7
-64.14,Método de los Elementos Finitos,4,64.13,Materias Electivas,8
-64.15,Estabilidad IV B,6,64.13,Materias Electivas,8
-64.16,Análisis Experimental de Tensiones,2,64.13,Materias Electivas,8
-67.23,Conversión de la Energía (120 créditos),2,CRED120-CBC,Materias Electivas,8
-67.38,Tecnología Mecánica B,6,67.02-68.13,Materias Electivas,8
-67.61,Fundamentos Matemáticos de la Visión en Robótica,6,61.08-67.02,Materias Electivas,8
-68.03,Puertos y Vías Navegables,6,,Materias Electivas,8
-68.08,Planeamiento del Transporte,6,,Materias Electivas,8
-71.07,Investigación Operativa,8,71.31,Materias Electivas,9
-71.31,Organización de la Producción,6,73.02,Materias Electivas,8
+73.41,Prácticas en Astilleros II,4,73.40,Materias Obligatorias,8
+64.14,Método de los Elementos Finitos,4,64.13,Materias Electivas,11
+64.15,Estabilidad IV B,6,64.13,Materias Electivas,11
+64.16,Análisis Experimental de Tensiones,2,64.13,Materias Electivas,10
+67.23,Conversión de la Energía (120 créditos),2,CRED120-CBC,Materias Electivas,11
+67.38,Tecnología Mecánica B,6,67.02-68.13,Materias Electivas,10
+67.61,Fundamentos Matemáticos de la Visión en Robótica,6,61.08-67.02,Materias Electivas,9
+68.03,Puertos y Vías Navegables,6,CBC,Materias Electivas,9
+68.08,Planeamiento del Transporte,6,CBC,Materias Electivas,9
+71.07,Investigación Operativa,8,71.31,Materias Electivas,10
+71.31,Organización de la Producción,6,73.02,Materias Electivas,9
 71.34,Gestión Presupuestaria,4,71.50-71.51,Materias Electivas,11
-71.36,Gestión de Calidad,4,61.06-73.07,Materias Electivas,8
-71.38,Legislación General,4,73.07,Materias Electivas,8
-71.50,Ingeniería Económica I,4,71.31,Materias Electivas,9
+71.36,Gestión de Calidad,4,61.06-73.07,Materias Electivas,10
+71.38,Legislación General,4,73.07,Materias Electivas,10
+71.50,Ingeniería Económica I,4,71.31,Materias Electivas,10
 71.51,Ingeniería Económica II,4,71.50,Materias Electivas,10
-72.06,Automatización Industrial,4,,Materias Electivas,8
-73.14,Navegación,4,73.02,Materias Electivas,8
-73.15,Máquinas Marinas III,6,73.05-73.11-73.12,Materias Electivas,8
-73.16,Construcción Naval III,6,73.07,Materias Electivas,8
-77.01,Higiene y Seguridad del Trabajo,4,73.02,Materias Electivas,8
-77.02,Introducción a la Ingeniería Ambiental,4,73.09,Materias Electivas,8
-78.xx,Idioma,4,CBC,Materias Electivas,8
+72.06,Automatización Industrial,4,CBC,Materias Electivas,9
+73.14,Navegación,4,73.02,Materias Electivas,9
+73.15,Máquinas Marinas III,6,73.05-73.11-73.12,Materias Electivas,9
+73.16,Construcción Naval III,6,73.07,Materias Electivas,10
+77.01,Higiene y Seguridad del Trabajo,4,73.02,Materias Electivas,11
+77.02,Introducción a la Ingeniería Ambiental,4,73.09,Materias Electivas,11
+78.xx,Idioma,4,CBC,Materias Electivas,9

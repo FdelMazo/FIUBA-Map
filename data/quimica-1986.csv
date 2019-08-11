@@ -28,27 +28,27 @@ CBC,Ciclo Básico Común,0,,CBC,0
 76.57,Diseño de Procesos,6,76.52,Materias Obligatorias,8
 76.58,Emisiones de Contaminantes Químicos y Biológicos,4,76.52-76.55,Materias Obligatorias,8
 71.28,Legislación y Ejercicio Profesional de la Ingeniería Química (140 créditos),4,CRED140-CBC,Materias Obligatorias,9
-62.13,Física III C,6,62.04,Materias Electivas,10
-62.18,Física de los Fluidos,4,76.47,Materias Electivas,10
-63.10,Termodinámica Estadística,6,63.16,Materias Electivas,10
-67.13,Conocimiento de Materiales I,6,63.14,Materias Electivas,10
-67.57,Elementos Finitos Avanzados en la Mecánica de Fluidos,6,67.58,Materias Electivas,11
-67.58,Intr. al Método de los Elementos Finitos,6,75.12-76.47,Materias Electivas,10
-67.59,Mecánica del Continuo,6,67.60-76.47,Materias Electivas,11
-67.60,Introducción al Análisis Tensorial,4,61.03-61.08,Materias Electivas,10
-75.38,Análisis Numérico II A,6,75.12,Materias Electivas,10
+62.13,Física III C,6,62.04,Materias Electivas,11
+62.18,Física de los Fluidos,4,76.47,Materias Electivas,11
+63.10,Termodinámica Estadística,6,63.16,Materias Electivas,11
+67.13,Conocimiento de Materiales I,6,63.14,Materias Electivas,11
+67.57,Elementos Finitos Avanzados en la Mecánica de Fluidos,6,67.58,Materias Electivas,12
+67.58,Intr. al Método de los Elementos Finitos,6,75.12-76.47,Materias Electivas,11
+67.59,Mecánica del Continuo,6,67.60-76.47,Materias Electivas,12
+67.60,Introducción al Análisis Tensorial,4,61.03-61.08,Materias Electivas,11
+75.38,Análisis Numérico II A,6,75.12,Materias Electivas,11
 76.16,Electroquímica,4,63.16-76.47,Materias Electivas,10
-76.17,Procesos Electroquímicos,4,76.16,Materias Electivas,10
+76.17,Procesos Electroquímicos,4,76.16,Materias Electivas,12
 76.18,Fisicoquímica Especial,6,63.16,Materias Electivas,10
 76.22,Fundamentos de la Ing. de Reservorios,8,76.47,Materias Electivas,10
-76.23,Recuperación Asistida de Petróleo,4,76.22,Materias Electivas,11
-76.24,Fundamentos de la Simulación Numérica de Reservorio,6,76.22,Materias Electivas,11
+76.23,Recuperación Asistida de Petróleo,4,76.22,Materias Electivas,12
+76.24,Fundamentos de la Simulación Numérica de Reservorio,6,76.22,Materias Electivas,12
 76.25,Explotación de Yacimientos,8,62.04-76.46,Materias Electivas,10
 76.27,Control Estadístico de Procesos,6,61.06,Materias Electivas,10
 76.28,Gestión Recursos en la Industria de Procesos,4,76.47,Materias Electivas,10
-76.29,Industria de Procesos,4,76.52,Materias Electivas,10
-76.30,Industrias Alimenticias,4,76.49,Materias Electivas,10
-76.51,Introducción a la Planificación Interactiva (140 créditos),4,CRED140-CBC,Materias Electivas,10
+76.29,Industria de Procesos,4,76.52,Materias Electivas,11
+76.30,Industrias Alimenticias,4,76.49,Materias Electivas,11
+76.51,Introducción a la Planificación Interactiva (140 créditos),4,CRED140-CBC,Materias Electivas,12
 76.63,Diseño Avanzado de Reactores,6,76.53,Materias Electivas,10
 78.xx,Idioma,4,CBC,Materias Electivas,10
 71.53,Evaluación de Proyectos de Plantas Químicas (100 créditos),6,CRED100-CBC,Materias Obligatorias,9
