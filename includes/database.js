@@ -27,7 +27,7 @@ function loadMap(api, clave){
             usuario = fila
         }
     })
-    if (!usuario) {return}
+    if (!usuario) {window.location = "https://fdelmazo.github.io/FIUBA-Map"}
     let carrera = usuario.gsx$carrera.$t
     let materias = usuario.gsx$materias.$t 
     update(null,carrera, materias)
@@ -49,4 +49,10 @@ $('#databaseButton').off('click').on('click',function(){
         window.location = "https://fdelmazo.github.io/FIUBA-Map?clave="+clave;
     }, 1000)
     
+})
+
+$('#databaseReload').off('click').on('click',function(){
+    let clave = $("#clave").val()
+    if (!clave){ return }
+    window.location = "https://fdelmazo.github.io/FIUBA-Map?clave="+clave;    
 })
