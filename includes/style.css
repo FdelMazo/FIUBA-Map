@@ -91,3 +91,9 @@ svg {
 input {
   margin: 10px;
 }
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
