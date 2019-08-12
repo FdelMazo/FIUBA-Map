@@ -21,6 +21,7 @@ function load(clave){
 
 function loadMap(api, clave){
     var data = api.feed.entry
+    usuario = null
     data.forEach(fila => {
         if(fila.gsx$clave.$t == clave) {
             usuario = fila
@@ -30,6 +31,7 @@ function loadMap(api, clave){
     let carrera = usuario.gsx$carrera.$t
     let materias = usuario.gsx$materias.$t 
     update(null,carrera, materias)
+    $("#clave").val(clave)
 }
 
 $('#databaseButton').off('click').on('click',function(){
@@ -43,5 +45,8 @@ $('#databaseButton').off('click').on('click',function(){
     let materias = materiasArr.join('-')
     save(clave,carrera,materias)
 
-    window.location = "https://fdelmazo.github.io/FIUBA-Map?clave="+clave;
+    setTimeout(function() {
+        window.location = "https://fdelmazo.github.io/FIUBA-Map?clave="+clave;
+    }, 1000)
+    
 })
