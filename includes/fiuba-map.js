@@ -4,10 +4,13 @@ function graphFromCSV(data, materiasFromLoad) {
     network = createNetwork(container, NODOS, ARISTAS)
 
     aprobar('CBC')
-    let materiasAprobadas = materiasFromLoad.split('-')
-    materiasAprobadas.forEach(m => {
-        aprobar(m)
-    })
+    if (materiasFromLoad) {
+        let materiasAprobadas = materiasFromLoad.split('-')
+        materiasAprobadas.forEach(m => {
+            aprobar(m)
+        })        
+    }
+
     
     // Crea un cluster para las materias electivas y uno por cada orientacion
     // El cluster no se muestra (hidden: true)
