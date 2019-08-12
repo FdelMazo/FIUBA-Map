@@ -87,3 +87,7 @@ svg {
   position: relative;
   top: 3px;
 }
+
+input {
+  margin: 10px;
+}

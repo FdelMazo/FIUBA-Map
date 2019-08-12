@@ -1,8 +1,14 @@
-function graphFromCSV(data) {
+function graphFromCSV(data, materiasFromLoad) {
     let container = document.getElementById('grafo');
     [NODOS, ARISTAS, GRUPOS, NODOS_CRED] = csvToNodesAndEdges(data)
     network = createNetwork(container, NODOS, ARISTAS)
 
+    aprobar('CBC')
+    let materiasAprobadas = materiasFromLoad.split('-')
+    materiasAprobadas.forEach(m => {
+        aprobar(m)
+    })
+    
     // Crea un cluster para las materias electivas y uno por cada orientacion
     // El cluster no se muestra (hidden: true)
     // Al clickear en los botones del menu, se abre el cluster, mostrando los nodos
@@ -17,7 +23,7 @@ function graphFromCSV(data) {
         }
     })
     bindings()
-    aprobar('CBC')
+    
 }
 
 function csvToNodesAndEdges(data){
@@ -211,5 +217,11 @@ function bindings() {
             desaprobar(id)
         }
         chequearNodosCRED()
+    })
+}
+
+function openAllClusters() {
+    GRUPOS.forEach(grupo =>{
+        network.openCluster('cluster-'+grupo)
     })
 }

@@ -1,7 +1,8 @@
-function update(element, carrera){
+function update(element, carrera, materiasFromLoad){
     $("#grafo").text("")
     $("#grafo").append("<div class='loader'></div>")
     let filename, titulo, orientaciones, plan
+    carreraActual = carrera
     switch(carrera){
         case 'informatica':
             orientaciones = true
@@ -78,7 +79,7 @@ function update(element, carrera){
     }
 
     $('#creditos-var').text(0)
-    fiubamap(filename)
+    fiubamap(filename, materiasFromLoad)
     $("#carrera-actual").text(titulo + ' | ' + plan)
     $("#carreras .active").removeClass('active')
     $(element).addClass('active')
@@ -91,11 +92,11 @@ function displayOrientaciones(show){
     else {$("#orientaciones-hidden").hide()}
 }
 
-function fiubamap(file){
+function fiubamap(file, materiasFromLoad){
     $.ajax({
         url: file,
         dataType: 'text',
-        success: function(data, jqXHR, textStatus) {graphFromCSV(data)}
+        success: function(data, jqXHR, textStatus) {graphFromCSV(data, materiasFromLoad)}
     })
 }
 
