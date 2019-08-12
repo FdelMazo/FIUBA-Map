@@ -139,10 +139,8 @@ function habilitar(id){
             let correlativaDeCorrelativa = NODOS.get(correlativaNeighborsFrom[i])
             if (!correlativaDeCorrelativa) {continue}
             correlativaTodoAprobado &= correlativaDeCorrelativa.aprobada
-            if (!correlativaTodoAprobado) { break }
         }
         todoAprobado &= correlativaTodoAprobado
-        if (!todoAprobado) { break }
     }
     if (!todoAprobado || network.creditos < nodo.requiere) {return}
 
