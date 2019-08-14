@@ -12,7 +12,7 @@ CBC,Ciclo Básico Común,0,,CBC,0
 64.11,Estabilidad I B,6,62.01-67.02,Materias Obligatorias,3
 67.07,Dibujo Mecánico,2,67.02,Materias Obligatorias,3
 67.13,Conocimiento de Materiales I,6,63.01,Materias Obligatorias,3
-75.12,Análisis Numérico I,6,61.03-61.08-75-01,Materias Obligatorias,3
+75.12,Análisis Numérico I,6,61.03-61.08-75.01,Materias Obligatorias,3
 64.12,Estabilidad II B,8,61.03-61.08-64.11-67.13,Materias Obligatorias,4
 67.04,Termodinámica I A,8,61.08-62.03,Materias Obligatorias,4
 67.11,Mecanismos A,4,62.06,Materias Obligatorias,4
