@@ -106,7 +106,7 @@ function createClusterFromCategoria(grupo){
         joinCondition:function(nodeOptions) {
             return nodeOptions.categoria === grupo;
         },
-        clusterNodeProperties: {id: 'cluster-'+grupo, hidden: true, level:-1, allowSingleNodeCluster:true}
+        clusterNodeProperties: {id: 'cluster-'+grupo, hidden: true, level:20, allowSingleNodeCluster:true}
     };
     return cluster
 }
