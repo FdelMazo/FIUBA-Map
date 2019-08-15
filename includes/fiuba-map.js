@@ -207,6 +207,7 @@ function bindings() {
         let [_, grupo] = $(this).attr('id').split('-')
         if (network.isCluster('cluster-'+grupo)) { network.openCluster('cluster-'+grupo) }
         else {network.cluster(createClusterFromCategoria(grupo))}
+        network.fit()
     })
     
     network.off('click').on("click", function(params) {
