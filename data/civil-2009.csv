@@ -11,8 +11,8 @@ CBC,Ciclo Básico Común,0,,CBC,0
 83.01,Química,6,CBC,Materias Obligatorias,3
 84.03,Estabilidad II,8,81.02-84.01-84.02,Materias Obligatorias,3
 89.01,Hidráulica General,6,81.01-82.01,Materias Obligatorias,3
-88.09,Análisis de sistemas de transporte,4,81.03,Materias Obligatorias,3
 84.11,Seguridad estructural,2,81.03-84.02,Materias Obligatorias,3
+88.09,Análisis de sistemas de transporte,4,81.03,Materias Obligatorias,3
 84.04,Comportamiento de Materiales,8,83.01-84.03,Materias Obligatorias,4
 84.06,Estabilidad III,8,84.03,Materias Obligatorias,4
 95.10,Modelación numérica,6,81.01-84.03,Materias Obligatorias,4
@@ -21,8 +21,8 @@ CBC,Ciclo Básico Común,0,,CBC,0
 94.03,Construcciones,6,82.02-84.04-91.09,Materias Obligatorias,5
 84.07,Mecánica de Suelos y Geología,8,84.03-89.01,Materias Obligatorias,5
 89.09,Hidráulica Aplicada,4,89.01,Materias Obligatorias,5
-94.12,Tecnología del Hormigón,4,84.04,Materias Obligatorias,6
 94.10,Estructuras Metálicas I,6,84.04-84.06-94.01,Materias Obligatorias,6
+94.12,Tecnología del Hormigón,4,84.04,Materias Obligatorias,6
 94.09,Geotecnia Aplicada,4,84.07-94.01,Materias Obligatorias,6
 89.05,Hidrología,4,84.07-84.11-89.01-95.10,Materias Obligatorias,6
 90.01,Topografía y Geodesia,4,81.03-82.01-87.11,Materias Obligatorias,6
@@ -32,8 +32,8 @@ CBC,Ciclo Básico Común,0,,CBC,0
 89.11,Ingeniería Sanitaria I,4,89.05-89.09,Materias Obligatorias,7
 88.11,Aeropuertos A,2,84.07-88.09-94.01,Materias Obligatorias,8
 88.12,Ferrocarriles A,2,84.07-88.09-94.01,Materias Obligatorias,8
-88.13,Puertos y Vías Navegables A,4,84.07-88.09-94.01,Materias Obligatorias,8
 94.05,Instalaciones en Obras Civiles I,6,89.11-94.03,Materias Obligatorias,8
+88.13,Puertos y Vías Navegables A,4,84.07-88.09-94.01,Materias Obligatorias,8
 88.14,Evaluación de proyectos,4,88.09-89.09-94.03,Materias Obligatorias,9
 91.16,Legislación y Ejercicio Profesional de la Ingeniería Civil,6,88.14-91.02,Materias Obligatorias,9
 91.02,Gerenciamiento y Organización de Obras Civiles,4,88.10-89.09-94.03,Materias Obligatorias,9

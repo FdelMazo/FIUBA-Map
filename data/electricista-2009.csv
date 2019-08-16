@@ -6,8 +6,8 @@ CBC,Ciclo Básico Común,0,,CBC,0
 85.01,Introducción a la Ingeniería Electricista,2,CBC,Materias Obligatorias,1
 95.01,Computación,4,CBC,Materias Obligatorias,1
 81.03,Probabilidad y Estadística A,4,81.01,Materias Obligatorias,2
-81.02,Algebra II,8,CBC,Materias Obligatorias,2
 82.02,Física II,8,81.01-82.01,Materias Obligatorias,2
+81.02,Algebra II,8,CBC,Materias Obligatorias,2
 83.01,Química,6,CBC,Materias Obligatorias,2
 81.05,Análisis Matemático III A,6,81.01-81.02,Materias Obligatorias,3
 87.09,Termodinámica y Mecánica de Fluidos,6,82.02,Materias Obligatorias,3

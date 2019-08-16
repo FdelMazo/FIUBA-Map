@@ -13,29 +13,29 @@ CBC,Ciclo Básico Común,0,,CBC,0
 61.14,Matemática Especial para Ingeniería Química,8,61.03-61.08,Materias Obligatorias,4
 61.06,Probabilidad y Estadística A,4,61.03,Materias Obligatorias,4
 76.46,Introducción a la Ingeniería Química,6,76.45,Materias Obligatorias,4
+65.43,Ingeniería de las Instalaciones I,4,CRED102-CBC,Materias Obligatorias,7
+76.42,Ingeniería de la Instalaciones II B,4,CRED102-CBC,Materias Obligatorias,7
 63.15,Química Analítica Instrumental,8,63.13-63.14-62.04,Materias Obligatorias,4
-76.40,Introducción a la Bioquímica (102 créditos),2,CRED102-CBC,Materias Obligatorias,5
-76.03,Operaciones I (102 créditos),10,CRED102-CBC,Materias Obligatorias,5
-63.05,Química Analítica (102 créditos),8,CRED102-CBC,Materias Obligatorias,5
-63.07,Química Física II (102 créditos),6,CRED102-CBC,Materias Obligatorias,5
-76.12,Microbiología Industrial,6,76.40,Materias Obligatorias,6
+76.40,Introducción a la Bioquímica,2,CRED102-CBC,Materias Obligatorias,5
+63.05,Química Analítica,8,CRED102-CBC,Materias Obligatorias,5
+76.03,Operaciones I,10,CRED102-CBC,Materias Obligatorias,5
+63.07,Química Física II,6,CRED102-CBC,Materias Obligatorias,5
 FYB2,Nutrición Aplicada a Tecnología de Alimentos,2,76.40,Materias Obligatorias,6
+76.12,Microbiología Industrial,6,76.40,Materias Obligatorias,6
 76.04,Operaciones Unitarias II,8,76.03,Materias Obligatorias,6
 76.05,Operaciones Unitarias III,8,76.03,Materias Obligatorias,6
-65.43,Ingeniería de las Instalaciones I (102 créditos),4,CRED102-CBC,Materias Obligatorias,7
 CEX2,Toxicología de Alimentos,4,76.40,Materias Obligatorias,7
-76.42,Ingeniería de la Instalaciones II B (102 créditos),4,CRED102-CBC,Materias Obligatorias,7
 77.41,Gestión Ambiental en la Industria Alimentaria,4,76.05,Materias Obligatorias,7
 FYB1,Legislación Alimentaria,2,CEX2-FYB2,Materias Obligatorias,8
 CEX1,Fundamentos de la Preservación de Alimentos I,6,76.12-76.04-76.05,Materias Obligatorias,8
-76.43,Instrumentación y Control,6,76.04-76.05,Materias Obligatorias,8
 76.08,Ingeniería de la Reacciones Químicas,8,63.07-76.05,Materias Obligatorias,8
-71.55,Economía de la Empresa Alimentaria,6,76.05,Materias Obligatorias,9
-71.56,Legislación y Ejercicio Profesional de la Ingeniería de Alimentos,2,71.55,Materias Obligatorias,9
+76.43,Instrumentación y Control,6,76.04-76.05,Materias Obligatorias,8
 CEX3,Fundamentos de la Preservación de Alimentos II,6,CEX1,Materias Obligatorias,9
 CEX4,Tecnología de Alimentos I,6,CEX1-63.05,Materias Obligatorias,9
 CEX5,Tecnología de Alimentos II,4,CEX1-63.05,Materias Obligatorias,9
 76.41,Biotecnología,4,76.08-76.12,Materias Obligatorias,9
+71.55,Economía de la Empresa Alimentaria,6,76.05,Materias Obligatorias,9
+71.56,Legislación y Ejercicio Profesional de la Ingeniería de Alimentos,2,71.55,Materias Obligatorias,9
 CEX6,Microbiología de Alimentos,6,76.12,Materias Electivas,10
 CEX7,Tecnología de Alimentos III,4,CEX1-63.05,Materias Electivas,10
 AG1,Sistemas de Producción Agropecuaria y Calidad de alimentos,4,CEX5,Materias Electivas,11
