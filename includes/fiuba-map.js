@@ -229,3 +229,17 @@ function openAllClusters() {
         network.openCluster('cluster-'+grupo)
     })
 }
+
+$('#sendmailbtn').on('click', function() {
+    $('#modal').css('display','block');
+})
+
+$('#closebtn').on('click', function() {
+    $('#modal').css('display','none');
+})
+
+$(document).keydown(function(event) { 
+    if (event.keyCode == 27) { 
+      $('#closebtn').click();
+    }
+  });
