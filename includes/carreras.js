@@ -58,7 +58,7 @@ function update(element, carrera, materiasFromLoad){
             titulo = 'Ingeniería Mecánica '
             plan = 'Plan 1986 v2016'
             break
-        case 'Petroleo':
+        case 'Petróleo':
             orientaciones = false
             filename = 'data/petroleo-2015.csv'
             titulo = 'Ingeniería en Petróleo'
