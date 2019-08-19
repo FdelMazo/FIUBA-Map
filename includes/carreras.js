@@ -4,73 +4,73 @@ function update(element, carrera, materiasFromLoad){
     let filename, titulo, orientaciones, plan
     carreraActual = carrera
     switch(carrera){
-        case 'informatica':
+        case 'Informática':
             orientaciones = true
             filename = 'data/informatica-1986.csv'
             titulo = 'Ingeniería en Informática'
             plan = 'Plan 1986 v2016'
             break
-        case 'sistemas':
+        case 'Sistemas':
             orientaciones = false
             filename = 'data/sistemas-1986.csv'
             titulo = 'Licenciatura en Análisis de Sistemas'
             plan = 'Plan 1986 v2016'
             break
-        case 'electronica':
+        case 'Electrónica':
             orientaciones = true
             filename = 'data/electronica-2009.csv'
             titulo = 'Ingeniería Electrónica'
             plan = 'Plan 2009 v2019'
             break
-        case 'quimica':
+        case 'Química':
             orientaciones = false
             filename = 'data/quimica-1986.csv'
             titulo = 'Ingeniería Química'
             plan = 'Plan 1986 v2016'
             break
-        case 'civil':
+        case 'Civil':
             orientaciones = false
             filename = 'data/civil-2009.csv'
             titulo = 'Ingeniería Civil'
             plan = 'Plan 2009 v2016'
             break
-        case 'alimentos':
+        case 'Alimentos':
             orientaciones = false
             filename = 'data/alimentos-2000.csv'
             titulo = 'Ingeniería de Alimentos'
             plan = 'Plan 2000 v2016'
             break
-        case 'electricista':
+        case 'Electricista':
             orientaciones = false
             filename = 'data/electricista-2009.csv'
             titulo = 'Ingeniería Electricista'
             plan = 'Plan 2009 v2016'
             break
-        case 'naval':
+        case 'Naval':
             orientaciones = false
             filename = 'data/naval-1986.csv'
             titulo = 'Ingeniería Naval y Mecánica'
             plan = 'Plan 1986 v2016'
             break
-        case 'mecanica':
+        case 'Mecánica':
             orientaciones = true
             filename = 'data/mecanica-1986.csv'
             titulo = 'Ingeniería Mecánica '
             plan = 'Plan 1986 v2016'
             break
-        case 'petroleo':
+        case 'Petroleo':
             orientaciones = false
             filename = 'data/petroleo-2015.csv'
             titulo = 'Ingeniería en Petróleo'
             plan = 'Plan 2015 v2016'
             break
-        case 'agrimensura':
+        case 'Agrimensura':
             orientaciones = false
             filename = 'data/agrimensura-2006.csv'
             titulo = 'Ingeniería en Argimensura'
             plan = 'Plan 2006 v2016'
             break
-        case 'industrial':
+        case 'Industrial':
             orientaciones = false
             filename = 'data/industrial-2011.csv'
             titulo = 'Ingeniería Industrial'
@@ -80,7 +80,8 @@ function update(element, carrera, materiasFromLoad){
 
     $('#creditos-var').text(0)
     fiubamap(filename, materiasFromLoad)
-    $("#carrera-actual").text(titulo + ' | ' + plan)
+    $("#carrera-actual-long").text(titulo + ' | ' + plan);
+    $("#carrera-actual-short").text(carrera);
     $("#carreras .active").removeClass('active')
     $(element).addClass('active')
     displayOrientaciones(orientaciones)

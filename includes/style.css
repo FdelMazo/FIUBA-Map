@@ -132,3 +132,10 @@ input {
   text-decoration: none;
   cursor: pointer;
 }
+
+#carrera-actual-short { display: none; }
+
+@media (max-width: 900px) {
+    #carrera-actual-short { display: inline-block; }
+    #carrera-actual-long { display: none; }
+}
