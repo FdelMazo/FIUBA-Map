@@ -37,6 +37,7 @@ function loadMap(api, clave){
 $('#databaseButton').off('click').on('click',function(){
     let clave = $("#clave").val()
     if (!clave){ return }
+    if (clave.toLowerCase() == 'party') {PARTYMODE = true; return}
     let carrera = carreraActual
     let materiasArr = []
     NODOS.forEach(nodo => {
@@ -54,5 +55,6 @@ $('#databaseButton').off('click').on('click',function(){
 $('#databaseReload').off('click').on('click',function(){
     let clave = $("#clave").val()
     if (!clave){ return }
+    if (clave.toLowerCase() == 'party') {PARTYMODE = true; return}
     window.location = "https://fdelmazo.github.io/FIUBA-Map?clave="+clave;    
 })

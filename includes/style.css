@@ -139,3 +139,10 @@ input {
     #carrera-actual-short { display: inline-block; }
     #carrera-actual-long { display: none; }
 }
+
+.party {
+  position: absolute;
+  max-width: 3%;
+  height: auto;
+  width: auto;
+}

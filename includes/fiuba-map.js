@@ -1,3 +1,7 @@
+PARTYMODE = false
+FIBONACCIFIRST = 0
+FIBONACCISECOND = 1
+
 function graphFromCSV(data, materiasFromLoad) {
     let container = document.getElementById('grafo');
     [NODOS, ARISTAS, GRUPOS, NODOS_CRED] = csvToNodesAndEdges(data)
@@ -182,6 +186,21 @@ function desaprobar(id){
     $('#creditos-var').text(network.creditos)
 }
 
+function partyMode(nodo) {
+    nodo.hidden = true
+    NODOS.update(nodo)
+    let counter = fibonacciCounter();
+    for(let i = 0; i < counter; i++){
+        let img = document.createElement("IMG");
+        img.setAttribute("src", "https://cultofthepartyparrot.com/parrots/hd/parrot.gif");
+        img.setAttribute("class", "party")
+        document.body.appendChild(img);
+        var xy = getRandomPosition(img);
+        img.style.top = xy[0] + 'px';
+        img.style.left = xy[1] + 'px';    
+    }
+}
+
 function parseNode(rowCells){
     let codigo = rowCells[0]
     let label = breakWords(rowCells[1])
@@ -213,8 +232,10 @@ function bindings() {
     network.off('click').on("click", function(params) {
         let id = params.nodes[0]     
         if (!id) {return}
-        let aprobada = NODOS.get(id).aprobada
+        let nodo = NODOS.get(id)
+        let aprobada = nodo.aprobada
         if (!aprobada) {
+            if (PARTYMODE) {partyMode(nodo)}
             aprobar(id)
         }
         else {
@@ -242,4 +263,18 @@ $(document).keydown(function(event) {
     if (event.keyCode == 27) { 
       $('#closebtn').click();
     }
-  });
+});
+
+function getRandomPosition(element) {
+	var x = document.body.offsetHeight-element.clientHeight;
+	var y = document.body.offsetWidth-element.clientWidth;
+	var randomX = Math.floor(Math.random()*x);
+	var randomY = Math.floor(Math.random()*y);
+	return [randomX,randomY];
+}
+function fibonacciCounter(){
+    let val = FIBONACCIFIRST + FIBONACCISECOND
+    FIBONACCIFIRST = FIBONACCISECOND
+    FIBONACCISECOND = val
+    return FIBONACCIFIRST + FIBONACCISECOND
+}
