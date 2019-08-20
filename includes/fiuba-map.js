@@ -207,8 +207,9 @@ function parseNode(rowCells){
     let creditos = rowCells[2]
     let grupo = rowCells[4]
     let nivel = rowCells[5]
+    let titulo = "[" + codigo + "]" 
 
-    let node = {id:codigo, label:label, group:grupo, creditos: parseInt(creditos), aprobada: false, level:nivel, habilitada: false, categoria: grupo}
+    let node = {id:codigo, label:label, group:grupo, creditos: parseInt(creditos), aprobada: false, level:nivel, habilitada: false, categoria: grupo, title: titulo}
     return node
 }
 
