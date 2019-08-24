@@ -20,6 +20,7 @@ function load(clave){
 }
 
 function loadMap(api, clave){
+    $("#clave").val(clave)
     var data = api.feed.entry
     usuario = null
     data.forEach(fila => {
@@ -27,11 +28,26 @@ function loadMap(api, clave){
             usuario = fila
         }
     })
-    if (!usuario) {window.location = "https://fdelmazo.github.io/FIUBA-Map"}
+    if (!usuario) {
+        warning(clave)
+        update(null, 'sistemas', null)
+        return 
+    }
     let carrera = usuario.gsx$carrera.$t
     let materias = usuario.gsx$materias.$t 
     update(null,carrera, materias)
-    $("#clave").val(clave)
+}
+
+function warning(clave){
+    let html = `
+        <small><div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <strong>Padrón no registrado!</strong> Seleccioná tu carrera, marca las materias que aprobaste y toca el boton de guardar.
+            <br>
+            Una vez guardado, podés entrar a <a href=https://fdelmazo.github.io/FIUBA-Map/?clave=`+clave+`>https://fdelmazo.github.io/FIUBA-Map/?clave=`+clave+`</a> y ver tu progreso.
+        </div></small>
+    `
+    $('#warning').append($(html));
 }
 
 $('#databaseButton').off('click').on('click',function(){

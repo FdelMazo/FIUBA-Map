@@ -146,3 +146,25 @@ input {
   height: auto;
   width: auto;
 }
+
+
+.alert {
+  padding: 20px;
+  background-color: #e9554a;
+  color: white;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
