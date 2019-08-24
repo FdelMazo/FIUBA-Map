@@ -58,3 +58,10 @@ $('#databaseReload').off('click').on('click',function(){
     if (clave.toLowerCase() == 'party') {PARTYMODE = true; return}
     window.location = "https://fdelmazo.github.io/FIUBA-Map?clave="+clave;    
 })
+
+$('#clave')[0].addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.getElementById("databaseReload").click();
+    }
+  });
