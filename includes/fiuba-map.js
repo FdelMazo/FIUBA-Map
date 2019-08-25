@@ -252,14 +252,6 @@ function openAllClusters() {
     })
 }
 
-$('#sendmailbtn').on('click', function() {
-    $('#mailmodal').css('display','block');
-})
-
-$('#mail').on('click', function() {
-    $('#mailmodal').css('display','none');
-})
-
 $(document).keydown(function(event) { 
     if (event.keyCode == 27) { 
       $('.closebtn').click();
