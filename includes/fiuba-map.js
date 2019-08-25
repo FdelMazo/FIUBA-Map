@@ -253,16 +253,16 @@ function openAllClusters() {
 }
 
 $('#sendmailbtn').on('click', function() {
-    $('#modal').css('display','block');
+    $('#mailmodal').css('display','block');
 })
 
-$('#closebtn').on('click', function() {
-    $('#modal').css('display','none');
+$('#mail').on('click', function() {
+    $('#mailmodal').css('display','none');
 })
 
 $(document).keydown(function(event) { 
     if (event.keyCode == 27) { 
-      $('#closebtn').click();
+      $('.closebtn').click();
     }
 });
 

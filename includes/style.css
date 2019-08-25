@@ -119,15 +119,19 @@ input {
   width: 80%;
 }
 
-.close {
-  color: #aaaaaa;
+.closebtn {
   float: right;
-  font-size: 28px;
   font-weight: bold;
+  margin-left: 15px;
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.close:hover,
-.close:focus {
+.closebtn:hover,
+.closebtn:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
@@ -152,19 +156,4 @@ input {
   padding: 20px;
   background-color: #e9554a;
   color: white;
-}
-
-.closebtn {
-  margin-left: 15px;
-  color: white;
-  font-weight: bold;
-  float: right;
-  font-size: 22px;
-  line-height: 20px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.closebtn:hover {
-  color: black;
 }
