@@ -304,10 +304,15 @@ function bindings() {
         }
         else {
             desaprobar(id)
-            mostrarOpciones(id)
         }
         chequearNodosCRED()
     })
+
+    network.off('hold').on("hold", function (params) {
+        let id = params.nodes[0]
+        if (!id) {return}
+        mostrarOpciones(id)
+    });
 }
 
 function openAllClusters() {
