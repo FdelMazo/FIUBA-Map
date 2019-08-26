@@ -8,6 +8,10 @@ html, body {
   height: 90%;
 }
 
+.left {
+  float:left
+}
+
 .right {
     float:right
 }
@@ -88,7 +92,7 @@ svg {
   top: 3px;
 }
 
-input {
+#clave {
   margin: 10px;
 }
 
@@ -114,6 +118,7 @@ input {
 .modal-content {
   background-color: #fefefe;
   margin: auto;
+  word-wrap: normal;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
@@ -156,4 +161,50 @@ input {
   padding: 20px;
   background-color: #e9554a;
   color: white;
+}
+
+#materiamodal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%;
+  overflow: hidden;
+}
+
+.codigo {
+  float: left;
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+.materia-input {
+  float:right;
+  width: 4em;
+}
+
+#materia-botones {
+  float:right;
+  margin: 0 -10px;
+}
+
+#materia-botones button {
+  border: none;
+  border-radius: 5px;
+  margin: .2em;
+  color: white;
+  padding: .6em .8em;
+  cursor:pointer;
+}
+
+#aprobarbtn {
+  background-color: #4CAF50;
+}
+
+#desaprobarbtn {
+  background-color: #f44336;
+}
+
+#enfinalbtn {
+  background-color: #4ae9c1;
 }

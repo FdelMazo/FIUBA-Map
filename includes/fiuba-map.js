@@ -75,6 +75,7 @@ function createNetwork(container, nodes, edges){
         edges:{ arrows: { to: {enabled: true, scaleFactor:0.7, type:'arrow'} } },
         groups: { 
             Aprobadas: { color: '#7BE141' },
+            'En Final': { color: '#4ae9c1' },
             Habilitadas: { color: '#ffa500' },
             'Materias Electivas': { color: '#FA8072' },
             'Materias Obligatorias': { color: '#ADD8E6' },
@@ -102,6 +103,8 @@ function createNetwork(container, nodes, edges){
 
     network = new vis.Network(container, data, options);          
     network['creditos'] = 0
+    network['sumatoriaNotas'] = 0
+    network['aprobadas'] = 0
     return network
 }
 
@@ -118,9 +121,27 @@ function createClusterFromCategoria(grupo){
 function actualizarGrupo(nodo){
     let grupo = nodo.categoria
     if (nodo.aprobada) {grupo = 'Aprobadas' }
+    else if (nodo.enfinal) {grupo = 'En Final'}
     else if (nodo.habilitada) {grupo = 'Habilitadas'}
     nodo.group = grupo
     NODOS.update(nodo)
+}
+
+function ponerEnFinal(id){
+    desaprobar(id)
+    let nodo = NODOS.get(id)
+    nodo.enfinal = true
+    actualizarGrupo(nodo)
+}
+
+function aprobarConNota(id, nota){
+    let nodo = NODOS.get(id)
+    nodo.nota = nota
+    network.sumatoriaNotas += parseInt(nodo.nota)
+    network.aprobadas++
+    NODOS.update(nodo)
+    $('#promedio-var').text((network.sumatoriaNotas / network.aprobadas).toFixed(2))
+    if(!nodo.aprobada) { aprobar(id) }
 }
 
 function aprobar(id){
@@ -173,6 +194,10 @@ function deshabilitar(id){
 function desaprobar(id){
     let nodo = NODOS.get(id)
     nodo.aprobada = false
+    if (nodo.nota) {network.sumatoriaNotas -= parseInt(nodo.nota) ; network.aprobadas--}
+    $('#promedio-var').text((network.sumatoriaNotas / network.aprobadas).toFixed(2))
+    nodo.nota = 0
+    nodo.enfinal = false
     network.creditos -= NODOS.get(id).creditos
     actualizarGrupo(nodo)
     
@@ -207,9 +232,9 @@ function parseNode(rowCells){
     let creditos = rowCells[2]
     let grupo = rowCells[4]
     let nivel = rowCells[5]
-    let titulo = "[" + codigo + "]" 
 
-    let node = {id:codigo, label:label, group:grupo, creditos: parseInt(creditos), aprobada: false, level:nivel, habilitada: false, categoria: grupo, title: titulo}
+    let node = {id:codigo, label:label, group:grupo, creditos: parseInt(creditos), categoria: grupo,
+        aprobada: false, nota: null, enfinal: false, level:nivel, habilitada: false}
     return node
 }
 
@@ -220,6 +245,44 @@ function breakWords(string){
         else {broken+='\n'+element}
     });
     return broken.trim();
+}
+
+function mostrarOpciones(id){
+    let nodo = NODOS.get(id)
+    let nodonota = nodo.nota ? nodo.nota : '10'
+    let html = `
+    <div class="modal" style='display:block'>
+        <div id='materiamodal-content' class="modal-content">
+            <span onclick='$(this.parentElement.parentElement.parentElement).empty()' id="materiaclosebtn" class="closebtn">&times;</span>
+            <h3>[`+nodo.id+`] `+nodo.label+`</h3>
+            <p>
+                Nota:
+                <input id='nota' class='materia-input' type="number" min="4" max="10" value="`+nodonota+`" />
+            </p>
+            <div id='materia-botones'>
+                <button id='enfinalbtn'>En Final</button>
+                <button id='desaprobarbtn'>Desaprobar</button>
+                <button id='aprobarbtn'>Aprobar</button>
+            </div>
+        </div>
+    </div>
+    `
+    $('#materiamodal').append($(html))
+
+    $('#aprobarbtn').on('click', function() {
+        let nota = $('#nota').val()
+        aprobarConNota(id, nota)
+        $("#materiaclosebtn").click()
+    })
+    
+    $('#enfinalbtn').on('click', function() {
+        ponerEnFinal(id)
+        $("#materiaclosebtn").click()
+    })
+
+    $('#desaprobarbtn').on('click', function() {
+        $("#materiaclosebtn").click()
+    })
 }
 
 function bindings() {
@@ -241,6 +304,7 @@ function bindings() {
         }
         else {
             desaprobar(id)
+            mostrarOpciones(id)
         }
         chequearNodosCRED()
     })
