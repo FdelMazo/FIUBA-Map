@@ -9,7 +9,7 @@ HEADER = ['codigo',
         'materia',
         'creditos',
         'correlativas',
-        'grupo', # CBC - Obligatorias - Optativas - Idiomas - Orientaciones - Tesis - Trabajo Profesional
+        'categoria', # CBC - Obligatorias - Optativas - Idiomas - Orientaciones - Tesis - Trabajo Profesional
         'nivel', # Jerarquía del grafo: Primero el CBC, después las obligatorias del primer cuatrimestre, etc
 ]
 

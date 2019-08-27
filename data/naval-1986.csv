@@ -1,4 +1,4 @@
-codigo,materia,creditos,correlativas,grupo,nivel
+codigo,materia,creditos,correlativas,categoria,nivel
 CBC,Ciclo Básico Común,0,,CBC,0
 61.08,Álgebra II A,8,CBC,Materias Obligatorias,1
 61.03,Análisis Matemático II A,8,CBC,Materias Obligatorias,1
