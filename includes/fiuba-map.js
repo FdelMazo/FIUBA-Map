@@ -256,18 +256,18 @@ function mostrarOpciones(id){
     `;
     $('#materia-modal').append($(html));
 
-    $('#aprobarbtn').on('click', function() {
+    $('#aprobar-button').on('click', function() {
         let nota = $('#nota').val();
         aprobarConNota(id, nota);
         $("#materiaclose-button").click()
     });
     
-    $('#enfinalbtn').on('click', function() {
+    $('#enfinal-button').on('click', function() {
         ponerEnFinal(id);
         $("#materiaclose-button").click()
     });
 
-    $('#desaprobarbtn').on('click', function() {
+    $('#desaprobar-button').on('click', function() {
         $("#materiaclose-button").click()
     })
 }
