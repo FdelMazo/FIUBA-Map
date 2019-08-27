@@ -101,17 +101,22 @@ function crearNetwork(nodes, edges){
 
     let network = new vis.Network($('#grafo')[0], data, options);
     network.creditos = 0;
-    network.sumatoriaNotas = 0;
-    network.aprobadas = 0;
+    $('#creditos-var').text(0);
+    $('#promedio-var').text('-');
+    network.aprobadasConNota = {};
     return network
 }
 
-function sumarAPromedio(nota){
-    NETWORK.sumatoriaNotas += nota;
-    if (nota > 0) { NETWORK.aprobadas++ }
-    else if (nota < 0) { NETWORK.aprobadas-- }
-    else { NETWORK.aprobadas = 0 }
-    $('#promedio-var').text((NETWORK.sumatoriaNotas / NETWORK.aprobadas).toFixed(2))
+function actualizarPromedio(nodo){
+    if (nodo.nota == 0){
+        delete NETWORK.aprobadasConNota[nodo.id];
+    }
+    else {
+        NETWORK.aprobadasConNota[nodo.id] = parseInt(nodo.nota);
+    }
+    let sumatoria = (Object.values(NETWORK.aprobadasConNota).reduce((a, b) => a + b, 0));
+    let aprobadas = Object.values(NETWORK.aprobadasConNota).length;
+    $('#promedio-var').text((sumatoria / aprobadas).toFixed(2))
 }
 
 function actualizarCreditos(numero){
@@ -147,7 +152,7 @@ function ponerEnFinal(id){
 function aprobarConNota(id, nota){
     let nodo = NODOS.get(id);
     nodo.nota = nota;
-    sumarAPromedio(nota);
+    actualizarPromedio(nodo);
     NODOS.update(nodo);
     if(!nodo.aprobada) { aprobar(id) }
 }
@@ -198,10 +203,8 @@ function deshabilitar(id){
 function desaprobar(id){
     let nodo = NODOS.get(id);
     nodo.aprobada = false;
-    if (nodo.nota) {
-        sumarAPromedio(-nota)
-    }
     nodo.nota = 0;
+    actualizarPromedio(nodo)
     nodo.enfinal = false;
     actualizarCreditos(-nodo.creditos);
 
@@ -261,7 +264,7 @@ function mostrarOpciones(id){
         aprobarConNota(id, nota);
         $("#materiaclose-button").click()
     });
-    
+
     $('#enfinal-button').on('click', function() {
         ponerEnFinal(id);
         $("#materiaclose-button").click()
@@ -281,6 +284,8 @@ function bindings() {
     });
     
     NETWORK.off('click').on("click", function(params) {
+        if (!params.event.isFinal) {return}
+        console.log(params.event);
         let id = params.nodes[0];
         if (!id) {return}
         let nodo = NODOS.get(id);
