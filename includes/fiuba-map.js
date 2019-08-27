@@ -12,7 +12,12 @@ function csvAGrafo(data, materiasFromLoad) {
 
     if (materiasFromLoad) {
         materiasFromLoad.forEach(m => {
-            aprobar(m)
+            if (m.includes('*')){
+                let [materia, nota] = m.split('*');
+                if (nota == 'F') ponerEnFinal(materia)
+                else aprobarConNota(materia, nota)
+            }
+            else aprobar(m)
         })
     }
     else {
@@ -114,7 +119,9 @@ function actualizarPromedio(nodo){
         NETWORK.aprobadasConNota[nodo.id] = parseInt(nodo.nota);
     let sumatoria = (Object.values(NETWORK.aprobadasConNota).reduce((a, b) => a + b, 0));
     let aprobadas = Object.values(NETWORK.aprobadasConNota).length;
-    $('#promedio-var').text((sumatoria / aprobadas).toFixed(2))
+    let promedio = (sumatoria / aprobadas).toFixed(2);
+    if (!isNaN(promedio)) $('#promedio-var').text(promedio)
+    else $('#promedio-var').text('-')
 }
 
 function actualizarCreditos(numero){
@@ -149,9 +156,11 @@ function ponerEnFinal(id){
 
 function aprobarConNota(id, nota){
     let nodo = NODOS.get(id);
-    nodo.nota = nota;
-    actualizarPromedio(nodo);
-    NODOS.update(nodo);
+    if (nota) {
+        nodo.nota = nota;
+        actualizarPromedio(nodo);
+        NODOS.update(nodo);
+    }
     if (!nodo.aprobada) aprobar(id);
 }
 
@@ -237,7 +246,7 @@ function breakWords(string){
 
 function mostrarOpciones(id){
     let nodo = NODOS.get(id);
-    let nodonota = nodo.nota ? nodo.nota : '10';
+    let nodonota = nodo.nota ? nodo.nota : '';
     let html = `
     <div class="modal" style='display:block'>
         <div id='materia-modal-content' class="modal-content">
@@ -283,7 +292,6 @@ function bindings() {
     
     NETWORK.off('click').on("click", function(params) {
         if (!params.event.isFinal) return;
-        console.log(params.event);
         let id = params.nodes[0];
         if (!id) return;
         let nodo = NODOS.get(id);

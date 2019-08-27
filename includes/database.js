@@ -68,8 +68,10 @@ $(document).ready(function() {
         let carrera = CARRERA_ACTUAL;
         let materiasArr = [];
         NODOS.forEach(nodo => {
-            if (nodo.aprobada) {
-                materiasArr.push(nodo.id)
+            if (nodo.aprobada || nodo.enfinal) {
+                if (nodo.enfinal) materiasArr.push(nodo.id + '*F')
+                else if (nodo.nota) materiasArr.push(nodo.id + '*' + nodo.nota)
+                else materiasArr.push(nodo.id)
             }
         });
         let materias = materiasArr.join('-');
