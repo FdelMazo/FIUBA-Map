@@ -24,10 +24,6 @@ ul {
     background-color: #333;
 }
   
-li {
-  float: left;
-}
-
 li a {
   display: block;
   color: white;
@@ -76,12 +72,10 @@ li a:hover:not(.active) {
   margin: 1em auto;
 }
 
-/* Safari */
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); }
 }
-
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -90,10 +84,16 @@ li a:hover:not(.active) {
 svg {
   position: relative;
   top: 3px;
+  height: 1em;
 }
 
-#clave {
+input[type=text] {
   margin: 10px;
+}
+
+input[type=number] {
+  float:right;
+  width: 4em;
 }
 
 #footer {
@@ -118,44 +118,35 @@ svg {
 .modal-content {
   background-color: #fefefe;
   margin: auto;
+  overflow: hidden;
   word-wrap: normal;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
 }
 
-.closebtn {
+.close-button {
   float: right;
   font-weight: bold;
   margin-left: 15px;
-  font-weight: bold;
   font-size: 22px;
   line-height: 20px;
   cursor: pointer;
   transition: 0.3s;
 }
 
-.closebtn:hover,
-.closebtn:focus {
+.close-button:hover,
+.close-button:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
 }
 
 #carrera-actual-short { display: none; }
-
 @media (max-width: 900px) {
     #carrera-actual-short { display: inline-block; }
     #carrera-actual-long { display: none; }
 }
-
-.party {
-  position: absolute;
-  max-width: 3%;
-  height: auto;
-  width: auto;
-}
-
 
 .alert {
   padding: 20px;
@@ -163,32 +154,15 @@ svg {
   color: white;
 }
 
-#materiamodal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
+#materia-modal-content {
   width: 40%;
-  overflow: hidden;
 }
-
-.codigo {
-  float: left;
-  margin-right: 15px;
-  font-weight: bold;
-}
-
-.materia-input {
-  float:right;
-  width: 4em;
-}
-
 #materia-botones {
   float:right;
   margin: 0 -10px;
 }
 
-#materia-botones button {
+button {
   border: none;
   border-radius: 5px;
   margin: .2em;
@@ -197,14 +171,14 @@ svg {
   cursor:pointer;
 }
 
-#aprobarbtn {
+#aprobar-button {
   background-color: #4CAF50;
 }
 
-#desaprobarbtn {
+#desaprobar-button {
   background-color: #f44336;
 }
 
-#enfinalbtn {
+#enfinal-button {
   background-color: #4ae9c1;
 }

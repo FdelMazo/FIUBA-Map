@@ -1,127 +1,112 @@
 <!DOCTYPE html>
 <html lang='es'>
-    <head>
-        <title>FIUBA Map</title>
-        <meta charset="utf-8">
-        <meta name="description" content="Mapa de materias y sus correlativas de la Facultad de Ingeniería">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="author" href="https://github.com/FdelMazo/" />
-        <link rel="canonical" href="https://fdelmazo.github.io/FIUBA-Map/" />
+<head>
+    <title>FIUBA Map</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Mapa de materias y sus correlativas de la Facultad de Ingeniería">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="author" href="https://github.com/FdelMazo/" />
+    <link rel="canonical" href="https://fdelmazo.github.io/FIUBA-Map/" />
 
-        <meta property="og:url" content="https://fdelmazo.github.io/FIUBA-Map/">
-        <meta property="og:description" content="Mapa de materias correlativas de la Facultad de Ingeniería">
-        <meta property="og:title" content="FIUBA-Map">
+    <meta property="og:url" content="https://fdelmazo.github.io/FIUBA-Map/">
+    <meta property="og:description" content="Mapa de materias correlativas de la Facultad de Ingeniería">
+    <meta property="og:title" content="FIUBA-Map">
 
-        <link href="includes/vis.min.css" rel="stylesheet" type="text/css" />
-        <link href="includes/style.css" rel="stylesheet" type="text/css" />
-    </head>
+    <link href="includes/vis.min.css" rel="stylesheet" type="text/css" />
+    <link href="includes/style.css" rel="stylesheet" type="text/css" />
+</head>
 
-    <body>
-        <div id="mailmodal" class="modal">
-            <div class="modal-content">
-                <span onclick="this.parentElement.parentElement.style.display='none'" class="closebtn">&times;</span>
-                <p>
-                    Cualquier tipo de feedback, sea una sugerencia, una funcionalidad que te gustaría ver, o algún error que te encontraste, no dudes en hacérmelo saber!
-                    <br>
-                    Mandame un mail a <span style='color:magenta'>fdelmazo at fi.uba.ar</span>
-                </p>
+<body>
+    <ul>
+        <li class="left dropdown">
+            <a>
+                <svg viewBox="0 0 32 32" height="1em">
+                    <path fill="white" d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"></path>
+                </svg>
+                <span id='carrera-actual-long'></span>
+                <span id='carrera-actual-short'></span>
+            </a>
+            <div class="dropdown-content" id='carreras'>
+              <a onclick="update('sistemas')" id='sistemas'>Licenciatura en Análisis de Sistemas</a>
+              <a onclick="update('informatica')" id='informatica'>Ingeniería en Informática</a>
+              <a onclick="update('electronica')" id='electronica'>Ingeniería Electrónica</a>
+              <a onclick="update('quimica')" id='quimica'>Ingeniería Química</a>
+              <a onclick="update('civil')" id='civil'>Ingeniería Civil</a>
+              <a onclick="update('mecanica')" id='mecanica'>Ingeniería Mecánica</a>
+              <a onclick="update('alimentos')" id='alimentos'>Ingeniería de Alimentos</a>
+              <a onclick="update('electricista')" id='electricista'>Ingeniería Electricista</a>
+              <a onclick="update('agrimensura')" id='agrimensura'>Ingeniería en Agrimensura</a>
+              <a onclick="update('naval')" id='naval'>Ingeniería Naval y Mecánica</a>
+              <a onclick="update('petroleo')" id='petroleo'>Ingeniería en Petróleo</a>
+              <a onclick="update('industrial')" id='industrial'>Ingeniería Industrial</a>
             </div>
+        </li>
+
+        <li class="left"><a href="https://github.com/fdelmazo/FIUBA-Map">
+            <svg viewBox="0 0 16 16">
+                <path fill="white" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"></path>
+            </svg>
+        </a></li>
+
+        <li class="left"><a id='sendmailbtn' onclick="document.getElementById('mail-modal').style.display='block'">
+            <svg viewBox="0 0 512 512">
+                <path fill="white" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
+            </svg>
+        </a></li>
+
+        <li class='right'><a>Créditos: <var id='creditos-var'> 0 </var></a></li>
+        <li class='right'><a title="Mantené apretado una materia!">Promedio: <var id='promedio-var'> 0.00 </var></a></li>
+        <li class='right'><a class='toggle' id='toggle-Materias Electivas'>Electivas</a></li>
+
+        <li class="right dropdown" id='orientaciones-hidden'>
+            <a>Orientación</a>
+            <div class="dropdown-content" id='orientaciones'>
+              <!-- Se llena con javascript -->
+            </div>
+        </li>
+    </ul>
+
+    <div id="mail-modal" class="modal">
+        <div class="modal-content">
+            <span onclick="this.parentElement.parentElement.style.display='none'" class="close-button">&times;</span>
+            <p>Cualquier tipo de feedback, sea una sugerencia, una funcionalidad que te gustaría ver, o algún error que te encontraste, no dudes en hacérmelo saber!</p>
+            <p>Mandame un mail a <span style='color:magenta'>fdelmazo at fi.uba.ar</span></p>
         </div>
+    </div>
 
-        <div id="materiamodal"></div>
+    <div id="materia-modal"></div>
 
-        <ul>
-            <li class="dropdown">
-                <span></span>
-                <a href="javascript:void(0)" class="dropbtn">
-                    <svg viewBox="0 0 32 32" height="1em">
-                        <path fill="white" d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"></path>
-                    </svg>
-                    <span id='carrera-actual-long'></span>
-                    <span id='carrera-actual-short'></span>
-                </a>
-                <div class="dropdown-content" id='carreras'>
-                  <a id='default' onclick="update(this,'sistemas',null)">Licenciatura en Análisis de Sistemas</a>
-                  <a onclick="update(this,'informatica',null)">Ingeniería en Informática</a>
-                  <a onclick="update(this,'electronica',null)">Ingeniería Electrónica</a>
-                  <a onclick="update(this,'quimica',null)">Ingeniería Química</a>
-                  <a onclick="update(this,'civil',null)">Ingeniería Civil</a>
-                  <a onclick="update(this,'mecanica',null)">Ingeniería Mecánica</a>
-                  <a onclick="update(this,'alimentos',null)">Ingeniería de Alimentos</a>
-                  <a onclick="update(this,'electricista',null)">Ingeniería Electricista</a>
-                  <a onclick="update(this,'agrimensura',null)">Ingeniería en Agrimensura</a>
-                  <a onclick="update(this,'naval',null)">Ingeniería Naval y Mecánica</a>
-                  <a onclick="update(this,'petroleo',null)">Ingeniería en Petróleo</a>
-                  <a onclick="update(this,'industrial',null)">Ingeniería Industrial</a>
-                </div>
-            </li>
+    <div id='warning'></div>
 
-            <li><a href="https://github.com/fdelmazo/FIUBA-Map">
-                <svg viewBox="0 0 16 16" height="1em">
-                    <path fill="white" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"></path>
-                </svg>    
-            </a></li>
+    <div id="grafo"></div>
 
-            <li><a id='sendmailbtn' onclick="document.getElementById('mailmodal').style.display='block'">
-                <svg viewBox="0 0 512 512" height="1em">
-                    <path fill="white" d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
-                </svg>    
-            </a></li>
-
-            <li class='right'><a>Créditos: <var id='creditos-var'> 0 </var></a></li>
-            <li class='right'><a>Promedio: <var id='promedio-var'> 0 </var></a></li>
-            
-            <li class='right'><a class='toggle' id='toggle-Materias Electivas'>Electivas</a></li>
-
-            <li class="right dropdown" id='orientaciones-hidden'>
-                <a href="javascript:void(0)" class="dropbtn">Orientación</a>
-                <div class="dropdown-content" id='orientaciones'>
-                  <!-- Se llena con javascript -->
-                </div>
-            </li>
-        </ul>
-
-        <div id='warning'></div>
-        
-        <div id="grafo"></div>
+    <ul id='footer'>
+        <li class="left">
+            <input id='clave' type="text" placeholder="Clave/Padrón">
+        </li>
+        <li class="left">
+            <a id='dbload-button' title="Cargar">
+                <svg viewBox="0 0 512 512">
+                    <path fill="white" d="M440.65 12.57l4 82.77A247.16 247.16 0 0 0 255.83 8C134.73 8 33.91 94.92 12.29 209.82A12 12 0 0 0 24.09 224h49.05a12 12 0 0 0 11.67-9.26 175.91 175.91 0 0 1 317-56.94l-101.46-4.86a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12H500a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12h-47.37a12 12 0 0 0-11.98 12.57zM255.83 432a175.61 175.61 0 0 1-146-77.8l101.8 4.87a12 12 0 0 0 12.57-12v-47.4a12 12 0 0 0-12-12H12a12 12 0 0 0-12 12V500a12 12 0 0 0 12 12h47.35a12 12 0 0 0 12-12.6l-4.15-82.57A247.17 247.17 0 0 0 255.83 504c121.11 0 221.93-86.92 243.55-201.82a12 12 0 0 0-11.8-14.18h-49.05a12 12 0 0 0-11.67 9.26A175.86 175.86 0 0 1 255.83 432z"></path>
+                </svg>
+            </a>
+        </li>
+        <li class="left">
+            <a id='dbsave-button' title="Guardar">
+                <svg viewBox="0 0 448 512">
+                    <path fill="white" d="M433.941 129.941l-83.882-83.882A48 48 0 0 0 316.118 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V163.882a48 48 0 0 0-14.059-33.941zM224 416c-35.346 0-64-28.654-64-64 0-35.346 28.654-64 64-64s64 28.654 64 64c0 35.346-28.654 64-64 64zm96-304.52V212c0 6.627-5.373 12-12 12H76c-6.627 0-12-5.373-12-12V108c0-6.627 5.373-12 12-12h228.52c3.183 0 6.235 1.264 8.485 3.515l3.48 3.48A11.996 11.996 0 0 1 320 111.48z"></path>
+                </svg>
+            </a>
+        </li>
+    </ul>
 
 
-        <ul id='footer'>
-            <li>
-                <input type="text" placeholder="Clave/Padrón" id='clave'>
-            </li>
-            <li>
-                <a id='databaseReload' title="Cargar">
-                    <svg viewBox="0 0 512 512" height="1em">
-                        <path fill="white" d="M440.65 12.57l4 82.77A247.16 247.16 0 0 0 255.83 8C134.73 8 33.91 94.92 12.29 209.82A12 12 0 0 0 24.09 224h49.05a12 12 0 0 0 11.67-9.26 175.91 175.91 0 0 1 317-56.94l-101.46-4.86a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12H500a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12h-47.37a12 12 0 0 0-11.98 12.57zM255.83 432a175.61 175.61 0 0 1-146-77.8l101.8 4.87a12 12 0 0 0 12.57-12v-47.4a12 12 0 0 0-12-12H12a12 12 0 0 0-12 12V500a12 12 0 0 0 12 12h47.35a12 12 0 0 0 12-12.6l-4.15-82.57A247.17 247.17 0 0 0 255.83 504c121.11 0 221.93-86.92 243.55-201.82a12 12 0 0 0-11.8-14.18h-49.05a12 12 0 0 0-11.67 9.26A175.86 175.86 0 0 1 255.83 432z"></path>
-                    </svg>    
-                </a>
-            </li>
-            <li>
-                <a id='databaseButton' title="Guardar">
-                    <svg viewBox="0 0 448 512" height="1em">
-                        <path fill="white" d="M433.941 129.941l-83.882-83.882A48 48 0 0 0 316.118 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V163.882a48 48 0 0 0-14.059-33.941zM224 416c-35.346 0-64-28.654-64-64 0-35.346 28.654-64 64-64s64 28.654 64 64c0 35.346-28.654 64-64 64zm96-304.52V212c0 6.627-5.373 12-12 12H76c-6.627 0-12-5.373-12-12V108c0-6.627 5.373-12 12-12h228.52c3.183 0 6.235 1.264 8.485 3.515l3.48 3.48A11.996 11.996 0 0 1 320 111.48z"></path>
-                    </svg>    
-                </a>
-            </li>
-        </ul>
-
-    
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="includes/vis.min.js"></script>
-        <script type="text/javascript" src="includes/database.js"></script>
-        <script type="text/javascript" src="includes/google-form.js"></script>
-        <script type="text/javascript" src="includes/carreras.js"></script>
-        <script type="text/javascript" src="includes/fiuba-map.js"></script>
-        
-        <script>
-            var url = new URL(window.location.href)
-            if (url.searchParams.get('clave')){
-                load(url.searchParams.get('clave'))
-            }
-            else {
-                $("#default").click()
-            }
-        </script>
-    </body>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="includes/vis.min.js"></script>
+    <script type="text/javascript" src="includes/google-form.js"></script>
+    <script type="text/javascript" src="includes/fiuba-map.js"></script>
+    <script type="text/javascript" src="includes/carreras.js"></script>
+    <script type="text/javascript" src="includes/database.js"></script>
+    <script type="text/javascript" src="includes/partyMode.js"></script>
+</body>
 </html>

@@ -1,79 +1,77 @@
-PARTYMODE = false
-FIBONACCIFIRST = 0
-FIBONACCISECOND = 1
+function fiubamap(file, materiasFromLoad){
+    $.ajax({
+        url: file,
+        dataType: 'text',
+        success: function(data) {csvAGrafo(data, materiasFromLoad)}
+    })
+}
 
-function graphFromCSV(data, materiasFromLoad) {
-    let container = document.getElementById('grafo');
-    [NODOS, ARISTAS, GRUPOS, NODOS_CRED] = csvToNodesAndEdges(data)
-    network = createNetwork(container, NODOS, ARISTAS)
+function csvAGrafo(data, materiasFromLoad) {
+    [NODOS, ARISTAS, GRUPOS, NODOS_CRED] = csvANodosyAristas(data);
+    NETWORK = crearNetwork(NODOS, ARISTAS);
 
-    aprobar('CBC')
     if (materiasFromLoad) {
-        let materiasAprobadas = materiasFromLoad.split('-')
-        materiasAprobadas.forEach(m => {
+        materiasFromLoad.forEach(m => {
             aprobar(m)
-        })        
+        })
+    }
+    else {
+        aprobar('CBC')
     }
 
-    
     // Crea un cluster para las materias electivas y uno por cada orientacion
     // El cluster no se muestra (hidden: true)
     // Al clickear en los botones del menu, se abre el cluster, mostrando los nodos
-    GRUPOS.forEach(grupo => {
-        if (grupo.includes('Electivas') || grupo.includes('Orientación')) {
-            let cluster = createClusterFromCategoria(grupo)
-            network.cluster(cluster)
-            if (grupo.includes('Orientación')) {
-                let [_,orientacion] = grupo.split(':')
-                $("#orientaciones").append("<a class='toggle' id='toggle-"+grupo+"'>"+orientacion+"</a>")
+    GRUPOS.forEach(g => {
+        if (g.includes('Electivas') || g.includes('Orientación')) {
+            let cluster = crearClusterDeCategoria(g);
+            NETWORK.cluster(cluster);
+            if (g.includes('Orientación')) {
+                let [_,orientacion] = g.split(':');
+                $("#orientaciones").append("<a class='toggle' id='toggle-"+g+"'>"+orientacion+"</a>")
             }
         }
-    })
+    });
     bindings()
-    
 }
 
-function csvToNodesAndEdges(data){
-    let nodes = []
-    let edges = []
-    let grupos = []
-    let nodosCred = []
+function csvANodosyAristas(data){
+    let nodos = [];
+    let aristas = [];
+    let grupos = [];
+    let nodosCred = [];
 
-    let allRows = data.split(/\r?\n|\r/);
-    for (let singleRow = 1; singleRow < allRows.length-1; singleRow++) {
-        let rowCells = allRows[singleRow].split(',');        
-        let node = parseNode(rowCells)
-        let correlativas = rowCells[3].split('-')
-        for(let i=0; i<correlativas.length; i++){
-            if(correlativas[i].includes('CRED')){
+    let filas = data.split(/\r?\n|\r/);
+    for (let fila = 1; fila < filas.length; fila++) {
+        let rowCells = filas[fila].split(',');
+        let [materia, correlativas] = nodoAMateria(rowCells);
+        correlativas.forEach(c => {
+            if(c.includes('CRED')){
                 // Un nodo CRED es aquel que requiere n creditos para aprobar (ej: legislatura necesita 140 creditos)
-                let [_, c] = correlativas[i].split('CRED')
-                node.requiere = c
-                nodosCred.push(node)
-                continue
+                let [_, n] = c.split('CRED');
+                materia.requiere = n;
+                nodosCred.push(materia)
             }
-            let edge = {from:correlativas[i],to:rowCells[0]}
-            
+            let edge = {from:c,to:materia.id};
             // Las aristas entre CBC y los nodos CRED sirven para que el layout quede bien
             // Pero no deben ser mostradas
-            if (correlativas[i] == 'CBC' && node.requiere) {edge.hidden = true}
-            edges.push(edge)
-        }
-
-        nodes.push(node)
+            if (c == 'CBC' && materia.requiere) {edge.hidden = true}
+            aristas.push(edge)
+        });
+        nodos.push(materia);
 
         if (!grupos.includes(rowCells[4])) {grupos.push(rowCells[4])}
     }
-    return [new vis.DataSet(nodes), new vis.DataSet(edges), grupos, nodosCred]
+    return [new vis.DataSet(nodos), new vis.DataSet(aristas), grupos, nodosCred]
 }
 
-function createNetwork(container, nodes, edges){
+function crearNetwork(nodes, edges){
     let data = { nodes: nodes, edges: edges };
     let options = {
         nodes:{ shape:'box' },
         layout: { hierarchical: { enabled: true, direction: 'LR', levelSeparation: 150 } },
         edges:{ arrows: { to: {enabled: true, scaleFactor:0.7, type:'arrow'} } },
-        groups: { 
+        groups: {
             Aprobadas: { color: '#7BE141' },
             'En Final': { color: '#4ae9c1' },
             Habilitadas: { color: '#ffa500' },
@@ -87,13 +85,13 @@ function createNetwork(container, nodes, edges){
             'Orientación: Diseño Mecánico': { color: '#FFFF00' },
             'Orientación: Termomecánica': { color: '#7FFFD4' },
             'Orientación: Metalúrgica': { color: '#6495ED' },
-            'Orientación: Computación Aplicada': { color: '#FFFFE0' },            
+            'Orientación: Computación Aplicada': { color: '#FFFFE0' },
             'Orientación: Industrias': { color: '#CCCCB3' },
             // Electrónica
             'Orientación: Multiples Orientaciones': { color: '#FFFF00' },
             'Orientación: Procesamiento de Señales': { color: '#7FFFD4' },
             'Orientación: Automatización y Control': { color: '#6495ED' },
-            'Orientación: Física Electrónica': { color: '#FFFFE0' },            
+            'Orientación: Física Electrónica': { color: '#FFFFE0' },
             'Orientación: Telecomunicaciones': { color: '#CCCCB3' },
             'Orientación: Sistemas Digitales y Computación': { color: '#FFE4E1' },
             'Orientación: Multimedia': { color: '#FFDAB9' },
@@ -101,145 +99,134 @@ function createNetwork(container, nodes, edges){
         },
     };
 
-    network = new vis.Network(container, data, options);          
-    network['creditos'] = 0
-    network['sumatoriaNotas'] = 0
-    network['aprobadas'] = 0
+    let network = new vis.Network($('#grafo')[0], data, options);
+    network.creditos = 0;
+    network.sumatoriaNotas = 0;
+    network.aprobadas = 0;
     return network
 }
 
-function createClusterFromCategoria(grupo){
-    let cluster = {
+function sumarAPromedio(nota){
+    NETWORK.sumatoriaNotas += nota;
+    if (nota > 0) { NETWORK.aprobadas++ }
+    else if (nota < 0) { NETWORK.aprobadas-- }
+    else { NETWORK.aprobadas = 0 }
+    $('#promedio-var').text((NETWORK.sumatoriaNotas / NETWORK.aprobadas).toFixed(2))
+}
+
+function actualizarCreditos(numero){
+    NETWORK.creditos += numero;
+    $('#creditos-var').text(NETWORK.creditos)
+}
+
+function crearClusterDeCategoria(grupo){
+    return cluster = {
         joinCondition:function(nodeOptions) {
             return nodeOptions.categoria === grupo;
         },
         clusterNodeProperties: {id: 'cluster-'+grupo, hidden: true, level:20, allowSingleNodeCluster:true}
     };
-    return cluster
 }
 
 function actualizarGrupo(nodo){
-    let grupo = nodo.categoria
+    let grupo = nodo.categoria;
     if (nodo.aprobada) {grupo = 'Aprobadas' }
     else if (nodo.enfinal) {grupo = 'En Final'}
     else if (nodo.habilitada) {grupo = 'Habilitadas'}
-    nodo.group = grupo
+    nodo.group = grupo;
     NODOS.update(nodo)
 }
 
 function ponerEnFinal(id){
-    desaprobar(id)
-    let nodo = NODOS.get(id)
-    nodo.enfinal = true
+    desaprobar(id);
+    let nodo = NODOS.get(id);
+    nodo.enfinal = true;
     actualizarGrupo(nodo)
 }
 
 function aprobarConNota(id, nota){
-    let nodo = NODOS.get(id)
-    nodo.nota = nota
-    network.sumatoriaNotas += parseInt(nodo.nota)
-    network.aprobadas++
-    NODOS.update(nodo)
-    $('#promedio-var').text((network.sumatoriaNotas / network.aprobadas).toFixed(2))
+    let nodo = NODOS.get(id);
+    nodo.nota = nota;
+    sumarAPromedio(nota);
+    NODOS.update(nodo);
     if(!nodo.aprobada) { aprobar(id) }
 }
 
 function aprobar(id){
-    let nodo = NODOS.get(id)
-    nodo.aprobada = true
-    network.creditos += NODOS.get(id).creditos
-    actualizarGrupo(nodo)
+    let nodo = NODOS.get(id);
+    nodo.aprobada = true;
+    actualizarCreditos(nodo.creditos);
+    actualizarGrupo(nodo);
 
-    let neighborsTo = network.getConnectedNodes(id, 'to')
-    for (let i = 0; i < neighborsTo.length; i++ ){
-        let neighbor = NODOS.get(neighborsTo[i])
-        if (!neighbor) {continue}
-        habilitar(neighborsTo[i])
-    }
-
-    $('#creditos-var').text(network.creditos)
+    let materiasQueHabilita = NETWORK.getConnectedNodes(id, 'to');
+    materiasQueHabilita.forEach(m => {
+        let materia = NODOS.get(m);
+        if (!materia) {return}
+        habilitar(m)
+    })
 }
 
 function habilitar(id){
-    let nodo = NODOS.get(id)
-    let neighborsFrom = network.getConnectedNodes(id, 'from')
-    let todoAprobado = true
+    let nodo = NODOS.get(id);
+    let neighborsFrom = NETWORK.getConnectedNodes(id, 'from');
+    let todoAprobado = true;
     for (let i = 0; i < neighborsFrom.length; i++ ){
-        let correlativa = NODOS.get(neighborsFrom[i])
+        let correlativa = NODOS.get(neighborsFrom[i]);
         if (!correlativa) {continue}
         todoAprobado &= correlativa.aprobada
     }
-    if (!todoAprobado || network.creditos < nodo.requiere) {return}
-
-    nodo.habilitada = true
+    if (!todoAprobado || NETWORK.creditos < nodo.requiere) {return}
+    nodo.habilitada = true;
     actualizarGrupo(nodo)
-    NODOS.update(nodo)
+
 }
 
-function chequearNodosCRED(id){
-    for(let i = 0; i<NODOS_CRED.length;i++){
-        let nodo = NODOS_CRED[i]
-        if (network.creditos < nodo.requiere) {deshabilitar(nodo.id)}
-        else if (network.creditos >= nodo.requiere) {habilitar(nodo.id)}
-    }
+function chequearNodosCRED(){
+    NODOS_CRED.forEach(nodo => {
+        if (NETWORK.creditos < nodo.requiere) {deshabilitar(nodo.id)}
+        else if (NETWORK.creditos >= nodo.requiere) {habilitar(nodo.id)}
+    })
 }
 
 function deshabilitar(id){
-    let nodo = NODOS.get(id)
-    nodo.habilitada = false
+    let nodo = NODOS.get(id);
+    nodo.habilitada = false;
     actualizarGrupo(nodo)
 }
 
 
 function desaprobar(id){
-    let nodo = NODOS.get(id)
-    nodo.aprobada = false
-    if (nodo.nota) {network.sumatoriaNotas -= parseInt(nodo.nota) ; network.aprobadas--}
-    $('#promedio-var').text((network.sumatoriaNotas / network.aprobadas).toFixed(2))
-    nodo.nota = 0
-    nodo.enfinal = false
-    network.creditos -= NODOS.get(id).creditos
+    let nodo = NODOS.get(id);
+    nodo.aprobada = false;
+    if (nodo.nota) {
+        sumarAPromedio(-nota)
+    }
+    nodo.nota = 0;
+    nodo.enfinal = false;
+    actualizarCreditos(-nodo.creditos);
+
+    let materiasQueHabilita = NETWORK.getConnectedNodes(id, 'to');
+    materiasQueHabilita.forEach(m => {
+        let materia = NODOS.get(m);
+        if (!materia) {return}
+        deshabilitar(m)
+    });
+
     actualizarGrupo(nodo)
-    
-    let neighborsTo = network.getConnectedNodes(id, 'to')
-    for (let i = 0; i <neighborsTo.length; i++ ){
-        let neighbor = NODOS.get(neighborsTo[i])
-        if (!neighbor) {continue}
-        deshabilitar(neighborsTo[i])
-    }
-
-    $('#creditos-var').text(network.creditos)
 }
 
-function partyMode(nodo) {
-    nodo.hidden = true
-    NODOS.update(nodo)
-    let counter = fibonacciCounter();
-    for(let i = 0; i < counter; i++){
-        let img = document.createElement("IMG");
-        img.setAttribute("src", "https://cultofthepartyparrot.com/parrots/hd/parrot.gif");
-        img.setAttribute("class", "party")
-        document.body.appendChild(img);
-        var xy = getRandomPosition(img);
-        img.style.top = xy[0] + 'px';
-        img.style.left = xy[1] + 'px';    
-    }
-}
-
-function parseNode(rowCells){
-    let codigo = rowCells[0]
-    let label = breakWords(rowCells[1])
-    let creditos = rowCells[2]
-    let grupo = rowCells[4]
-    let nivel = rowCells[5]
-
-    let node = {id:codigo, label:label, group:grupo, creditos: parseInt(creditos), categoria: grupo,
-        aprobada: false, nota: null, enfinal: false, level:nivel, habilitada: false}
-    return node
+function nodoAMateria(rowCells){
+    let [codigo, materia, creditos, correlativas, categoria, nivel] = rowCells;
+    materia = breakWords(materia);
+    creditos = parseInt(creditos);
+    correlativas = correlativas.split('-');
+    let node = {id:codigo, label:materia, group: categoria, level:nivel,
+        categoria: categoria, aprobada: false, nota: null, enfinal: false, creditos: creditos, habilitada: false};
+    return [node, correlativas]
 }
 
 function breakWords(string){
-    let broken = ''
+    let broken = '';
     string.split(' ').forEach(element => {
         if (element.length < 5) {broken+=' '+element}
         else {broken+='\n'+element}
@@ -248,56 +235,56 @@ function breakWords(string){
 }
 
 function mostrarOpciones(id){
-    let nodo = NODOS.get(id)
-    let nodonota = nodo.nota ? nodo.nota : '10'
+    let nodo = NODOS.get(id);
+    let nodonota = nodo.nota ? nodo.nota : '10';
     let html = `
     <div class="modal" style='display:block'>
-        <div id='materiamodal-content' class="modal-content">
-            <span onclick='$(this.parentElement.parentElement.parentElement).empty()' id="materiaclosebtn" class="closebtn">&times;</span>
+        <div id='materia-modal-content' class="modal-content">
+            <span onclick='$(this.parentElement.parentElement.parentElement).empty()' id="materiaclose-button" class="close-button">&times;</span>
             <h3>[`+nodo.id+`] `+nodo.label+`</h3>
             <p>
                 Nota:
                 <input id='nota' class='materia-input' type="number" min="4" max="10" value="`+nodonota+`" />
             </p>
             <div id='materia-botones'>
-                <button id='enfinalbtn'>En Final</button>
-                <button id='desaprobarbtn'>Desaprobar</button>
-                <button id='aprobarbtn'>Aprobar</button>
+                <button id='enfinal-button'>En Final</button>
+                <button id='desaprobar-button'>Desaprobar</button>
+                <button id='aprobar-button'>Aprobar</button>
             </div>
         </div>
     </div>
-    `
-    $('#materiamodal').append($(html))
+    `;
+    $('#materia-modal').append($(html));
 
     $('#aprobarbtn').on('click', function() {
-        let nota = $('#nota').val()
-        aprobarConNota(id, nota)
-        $("#materiaclosebtn").click()
-    })
+        let nota = $('#nota').val();
+        aprobarConNota(id, nota);
+        $("#materiaclose-button").click()
+    });
     
     $('#enfinalbtn').on('click', function() {
-        ponerEnFinal(id)
-        $("#materiaclosebtn").click()
-    })
+        ponerEnFinal(id);
+        $("#materiaclose-button").click()
+    });
 
     $('#desaprobarbtn').on('click', function() {
-        $("#materiaclosebtn").click()
+        $("#materiaclose-button").click()
     })
 }
 
 function bindings() {
     $('.toggle').off('click').on('click',function(){
-        let [_, grupo] = $(this).attr('id').split('-')
-        if (network.isCluster('cluster-'+grupo)) { network.openCluster('cluster-'+grupo) }
-        else {network.cluster(createClusterFromCategoria(grupo))}
-        network.fit()
-    })
+        let [_, grupo] = $(this).attr('id').split('-');
+        if (NETWORK.isCluster('cluster-'+grupo)) { NETWORK.openCluster('cluster-'+grupo) }
+        else {NETWORK.cluster(crearClusterDeCategoria(grupo))}
+        NETWORK.fit()
+    });
     
-    network.off('click').on("click", function(params) {
-        let id = params.nodes[0]     
+    NETWORK.off('click').on("click", function(params) {
+        let id = params.nodes[0];
         if (!id) {return}
-        let nodo = NODOS.get(id)
-        let aprobada = nodo.aprobada
+        let nodo = NODOS.get(id);
+        let aprobada = nodo.aprobada;
         if (!aprobada) {
             if (PARTYMODE) {partyMode(nodo)}
             aprobar(id)
@@ -306,37 +293,17 @@ function bindings() {
             desaprobar(id)
         }
         chequearNodosCRED()
-    })
+    });
 
-    network.off('hold').on("hold", function (params) {
-        let id = params.nodes[0]
+    NETWORK.off('hold').on("hold", function (params) {
+        let id = params.nodes[0];
         if (!id) {return}
         mostrarOpciones(id)
     });
 }
 
-function openAllClusters() {
-    GRUPOS.forEach(grupo =>{
-        network.openCluster('cluster-'+grupo)
-    })
-}
-
-$(document).keydown(function(event) { 
+$(document).keydown(function(event) {
     if (event.keyCode == 27) { 
-      $('.closebtn').click();
+      $('.close-button').click();
     }
 });
-
-function getRandomPosition(element) {
-	var x = document.body.offsetHeight-element.clientHeight;
-	var y = document.body.offsetWidth-element.clientWidth;
-	var randomX = Math.floor(Math.random()*x);
-	var randomY = Math.floor(Math.random()*y);
-	return [randomX,randomY];
-}
-function fibonacciCounter(){
-    let val = FIBONACCIFIRST + FIBONACCISECOND
-    FIBONACCIFIRST = FIBONACCISECOND
-    FIBONACCISECOND = val
-    return FIBONACCIFIRST + FIBONACCISECOND
-}
