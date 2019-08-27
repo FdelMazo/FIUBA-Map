@@ -3,12 +3,10 @@ let SHEETAPI = "https://spreadsheets.google.com/feeds/list/1B7ytzx_-XvmaMApIb1UX
 
 $(document).ready(function() {
     let url = new URL(window.location.href);
-    if (url.searchParams.get('clave')){
+    if (url.searchParams.get('clave'))
         load(url.searchParams.get('clave'))
-    }
-    else {
+    else
         $("#sistemas").click()
-    }
 });
 
 function save(clave, carrera, materias){
@@ -34,9 +32,7 @@ function loadMap(api, clave) {
     let data = api.feed.entry;
     let usuario = null;
     data.forEach(fila => {
-        if (fila.gsx$clave.$t == clave) {
-            usuario = fila
-        }
+        if (fila.gsx$clave.$t == clave) usuario = fila
     });
     if (!usuario) {
         warning(clave);
@@ -63,9 +59,8 @@ function warning(clave){
 $(document).ready(function() {
     $('#dbsave-button').on('click', function () {
         let clave = $("#clave").val();
-        if (!clave) {
+        if (!clave)
             return
-        }
         if (clave.toLowerCase() == 'party') {
             PARTYMODE = true;
             return
@@ -88,9 +83,7 @@ $(document).ready(function() {
 
     $('#dbload-button').on('click', function () {
         let clave = $("#clave").val();
-        if (!clave) {
-            return
-        }
+        if (!clave) return;
         if (clave.toLowerCase() == 'party') {
             PARTYMODE = true;
             return

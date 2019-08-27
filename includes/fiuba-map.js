@@ -46,7 +46,7 @@ function csvANodosyAristas(data){
         let rowCells = filas[fila].split(',');
         let [materia, correlativas] = nodoAMateria(rowCells);
         correlativas.forEach(c => {
-            if(c.includes('CRED')){
+            if (c.includes('CRED')){
                 // Un nodo CRED es aquel que requiere n creditos para aprobar (ej: legislatura necesita 140 creditos)
                 let [_, n] = c.split('CRED');
                 materia.requiere = n;
@@ -55,12 +55,12 @@ function csvANodosyAristas(data){
             let edge = {from:c,to:materia.id};
             // Las aristas entre CBC y los nodos CRED sirven para que el layout quede bien
             // Pero no deben ser mostradas
-            if (c == 'CBC' && materia.requiere) {edge.hidden = true}
+            if (c == 'CBC' && materia.requiere) edge.hidden = true;
             aristas.push(edge)
         });
         nodos.push(materia);
 
-        if (!grupos.includes(rowCells[4])) {grupos.push(rowCells[4])}
+        if (!grupos.includes(rowCells[4])) grupos.push(rowCells[4]);
     }
     return [new vis.DataSet(nodos), new vis.DataSet(aristas), grupos, nodosCred]
 }
@@ -108,12 +108,10 @@ function crearNetwork(nodes, edges){
 }
 
 function actualizarPromedio(nodo){
-    if (nodo.nota == 0){
+    if (nodo.nota == 0)
         delete NETWORK.aprobadasConNota[nodo.id];
-    }
-    else {
+    else
         NETWORK.aprobadasConNota[nodo.id] = parseInt(nodo.nota);
-    }
     let sumatoria = (Object.values(NETWORK.aprobadasConNota).reduce((a, b) => a + b, 0));
     let aprobadas = Object.values(NETWORK.aprobadasConNota).length;
     $('#promedio-var').text((sumatoria / aprobadas).toFixed(2))
@@ -135,9 +133,9 @@ function crearClusterDeCategoria(grupo){
 
 function actualizarGrupo(nodo){
     let grupo = nodo.categoria;
-    if (nodo.aprobada) {grupo = 'Aprobadas' }
-    else if (nodo.enfinal) {grupo = 'En Final'}
-    else if (nodo.habilitada) {grupo = 'Habilitadas'}
+    if (nodo.aprobada) grupo = 'Aprobadas';
+    else if (nodo.enfinal) grupo = 'En Final';
+    else if (nodo.habilitada) grupo = 'Habilitadas';
     nodo.group = grupo;
     NODOS.update(nodo)
 }
@@ -154,7 +152,7 @@ function aprobarConNota(id, nota){
     nodo.nota = nota;
     actualizarPromedio(nodo);
     NODOS.update(nodo);
-    if(!nodo.aprobada) { aprobar(id) }
+    if (!nodo.aprobada) aprobar(id);
 }
 
 function aprobar(id){
@@ -166,7 +164,7 @@ function aprobar(id){
     let materiasQueHabilita = NETWORK.getConnectedNodes(id, 'to');
     materiasQueHabilita.forEach(m => {
         let materia = NODOS.get(m);
-        if (!materia) {return}
+        if (!materia) return;
         habilitar(m)
     })
 }
@@ -177,10 +175,10 @@ function habilitar(id){
     let todoAprobado = true;
     for (let i = 0; i < neighborsFrom.length; i++ ){
         let correlativa = NODOS.get(neighborsFrom[i]);
-        if (!correlativa) {continue}
+        if (!correlativa) continue;
         todoAprobado &= correlativa.aprobada
     }
-    if (!todoAprobado || NETWORK.creditos < nodo.requiere) {return}
+    if (!todoAprobado || NETWORK.creditos < nodo.requiere) return;
     nodo.habilitada = true;
     actualizarGrupo(nodo)
 
@@ -188,8 +186,8 @@ function habilitar(id){
 
 function chequearNodosCRED(){
     NODOS_CRED.forEach(nodo => {
-        if (NETWORK.creditos < nodo.requiere) {deshabilitar(nodo.id)}
-        else if (NETWORK.creditos >= nodo.requiere) {habilitar(nodo.id)}
+        if (NETWORK.creditos < nodo.requiere) deshabilitar(nodo.id);
+        else if (NETWORK.creditos >= nodo.requiere) habilitar(nodo.id);
     })
 }
 
@@ -211,7 +209,7 @@ function desaprobar(id){
     let materiasQueHabilita = NETWORK.getConnectedNodes(id, 'to');
     materiasQueHabilita.forEach(m => {
         let materia = NODOS.get(m);
-        if (!materia) {return}
+        if (!materia) return;
         deshabilitar(m)
     });
 
@@ -231,8 +229,8 @@ function nodoAMateria(rowCells){
 function breakWords(string){
     let broken = '';
     string.split(' ').forEach(element => {
-        if (element.length < 5) {broken+=' '+element}
-        else {broken+='\n'+element}
+        if (element.length < 5) broken+=' '+element;
+        else broken+='\n'+element;
     });
     return broken.trim();
 }
@@ -278,20 +276,20 @@ function mostrarOpciones(id){
 function bindings() {
     $('.toggle').off('click').on('click',function(){
         let [_, grupo] = $(this).attr('id').split('-');
-        if (NETWORK.isCluster('cluster-'+grupo)) { NETWORK.openCluster('cluster-'+grupo) }
-        else {NETWORK.cluster(crearClusterDeCategoria(grupo))}
+        if (NETWORK.isCluster('cluster-'+grupo)) NETWORK.openCluster('cluster-'+grupo);
+        else NETWORK.cluster(crearClusterDeCategoria(grupo));
         NETWORK.fit()
     });
     
     NETWORK.off('click').on("click", function(params) {
-        if (!params.event.isFinal) {return}
+        if (!params.event.isFinal) return;
         console.log(params.event);
         let id = params.nodes[0];
-        if (!id) {return}
+        if (!id) return;
         let nodo = NODOS.get(id);
         let aprobada = nodo.aprobada;
         if (!aprobada) {
-            if (PARTYMODE) {partyMode(nodo)}
+            if (PARTYMODE) partyMode(nodo);
             aprobar(id)
         }
         else {
@@ -302,13 +300,12 @@ function bindings() {
 
     NETWORK.off('hold').on("hold", function (params) {
         let id = params.nodes[0];
-        if (!id) {return}
+        if (!id) return;
         mostrarOpciones(id)
     });
 }
 
 $(document).keydown(function(event) {
-    if (event.keyCode == 27) { 
+    if (event.keyCode == 27)
       $('.close-button').click();
-    }
 });

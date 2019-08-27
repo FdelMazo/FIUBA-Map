@@ -101,8 +101,8 @@ function update(carrera, materiasFromLoad){
 
 function mostrarOrientaciones(show){
     $("#orientaciones a").remove();
-    if (show) {$("#orientaciones-hidden").show()}
-    else {$("#orientaciones-hidden").hide()}
+    if (show) $("#orientaciones-hidden").show();
+    else $("#orientaciones-hidden").hide();
 }
 
 $(document).ready(function(){
