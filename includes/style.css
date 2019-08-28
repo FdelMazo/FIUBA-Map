@@ -16,6 +16,13 @@ html, body {
     float:right
 }
 
+.party {
+  position: absolute;
+  max-width: 3%;
+  height: auto;
+  width: auto;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
