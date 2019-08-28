@@ -158,6 +158,9 @@ function aprobarConNota(id, nota){
     let nodo = NODOS.get(id);
     if (nota) {
         nodo.nota = nota;
+        if (nodo.label.includes('[')) 
+            nodo.label = nodo.label.split('\n[')[0]
+        nodo.label += '\n[' + nodo.nota + ']'
         actualizarPromedio(nodo);
         NODOS.update(nodo);
     }
@@ -211,6 +214,8 @@ function desaprobar(id){
     let nodo = NODOS.get(id);
     nodo.aprobada = false;
     nodo.nota = 0;
+    if (nodo.label.includes('[')) 
+        nodo.label = nodo.label.split('\n[')[0]
     actualizarPromedio(nodo)
     nodo.enfinal = false;
     actualizarCreditos(-nodo.creditos);
@@ -278,6 +283,7 @@ function mostrarOpciones(id){
     });
 
     $('#desaprobar-button').on('click', function() {
+        desaprobar(id)
         $("#materiaclose-button").click()
     })
 }
