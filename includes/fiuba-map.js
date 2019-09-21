@@ -212,13 +212,14 @@ function deshabilitar(id){
 
 function desaprobar(id){
     let nodo = NODOS.get(id);
+    if (nodo.aprobada) 
+        actualizarCreditos(-nodo.creditos);
     nodo.aprobada = false;
     nodo.nota = 0;
     if (nodo.label.includes('[')) 
         nodo.label = nodo.label.split('\n[')[0]
     actualizarPromedio(nodo)
     nodo.enfinal = false;
-    actualizarCreditos(-nodo.creditos);
 
     let materiasQueHabilita = NETWORK.getConnectedNodes(id, 'to');
     materiasQueHabilita.forEach(m => {
