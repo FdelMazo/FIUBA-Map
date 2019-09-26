@@ -1,5 +1,9 @@
 function Carrera(id, titulo, tituloShort, plan, filename, orientaciones) {
     this.id = id;
+    initCarrera(id, titulo, tituloShort, plan, orientaciones)
+}
+
+function initCarrera(id, titulo, tituloShort, plan, orientaciones){
     $("#carrera-actual-long").text(titulo + ' | ' + plan);
     $("#carrera-actual-short").text(tituloShort);
     $("#carreras .active").removeClass('active');

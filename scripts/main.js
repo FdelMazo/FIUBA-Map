@@ -1,5 +1,6 @@
 function main(carrera, materiasFromLoad){
-    clean()
+    $('.dropdown-content').hide();
+    $("#grafo").html("<div class='loader'></div>");
     let filename, titulo, tituloShort, orientaciones, plan;
     switch(carrera){
         case 'informatica':
@@ -64,8 +65,8 @@ function main(carrera, materiasFromLoad){
             break
     }
 
-    CARRERA_ACTUAL = Carrera(carrera, titulo, tituloShort, plan, filename, orientaciones)
-    fiubamap(filename, materiasFromLoad);
+    CARRERA_ACTUAL = new Carrera(carrera, titulo, tituloShort, plan, filename, orientaciones)
+    createFiubaMap(filename, materiasFromLoad);
 }
 
 $(document).ready(function(){
@@ -94,8 +95,3 @@ $(document).ready(function() {
     else
         $("#sistemas").click()
 });
-
-function clean(){
-    $('.dropdown-content').hide();
-    $("#grafo").html("<div class='loader'></div>");
-}

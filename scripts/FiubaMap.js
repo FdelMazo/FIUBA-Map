@@ -1,12 +1,12 @@
-function fiubamap(file, materiasFromLoad){
+function createFiubaMap(file, materiasFromLoad){
     $.ajax({
         url: file,
         dataType: 'text',
-        success: function(data) {csvAGrafo(data, materiasFromLoad)}
+        success: function(data) {FiubaMap(data, materiasFromLoad)}
     })
 }
 
-function csvAGrafo(data, materiasFromLoad) {
+function FiubaMap(data, materiasFromLoad) {
     [NODOS, ARISTAS, GRUPOS, NODOS_CRED] = csvANodosyAristas(data);
     NETWORK = crearNetwork(NODOS, ARISTAS);
 
@@ -14,14 +14,14 @@ function csvAGrafo(data, materiasFromLoad) {
         materiasFromLoad.forEach(m => {
             if (m.includes('*')){
                 let [materia, nota] = m.split('*');
-                if (nota == 'F') ponerEnFinal(materia)
-                else aprobarConNota(materia, nota)
+                if (nota == 'F') new Materia(m).ponerEnFinal()
+                else new Materia(m).aprobarConNota(nota)
             }
-            else aprobar(m)
+            else new Materia(m).aprobar()
         })
     }
     else {
-        aprobar('CBC')
+        new Materia('CBC').aprobar()
     }
 
     // Crea un cluster para las materias electivas y uno por cada orientacion
@@ -49,8 +49,8 @@ function csvANodosyAristas(data){
     let filas = data.split(/\r?\n|\r/);
     for (let fila = 1; fila < filas.length; fila++) {
         let rowCells = filas[fila].split(',');
-        let [materia, correlativas] = nodoAMateria(rowCells);
-        correlativas.forEach(c => {
+        let materia = createMateria(rowCells)
+        materia.correlativas.forEach(c => {
             if (c.includes('CRED')){
                 // Un nodo CRED es aquel que requiere n creditos para aprobar (ej: legislatura necesita 140 creditos)
                 let [_, n] = c.split('CRED');
@@ -64,7 +64,7 @@ function csvANodosyAristas(data){
             aristas.push(edge)
         });
         nodos.push(materia);
-
+        
         if (!grupos.includes(rowCells[4])) grupos.push(rowCells[4]);
     }
     return [new vis.DataSet(nodos), new vis.DataSet(aristas), grupos, nodosCred]
@@ -138,157 +138,6 @@ function crearClusterDeCategoria(grupo){
     };
 }
 
-function actualizarGrupo(nodo){
-    let grupo = nodo.categoria;
-    if (nodo.aprobada) grupo = 'Aprobadas';
-    else if (nodo.enfinal) grupo = 'En Final';
-    else if (nodo.habilitada) grupo = 'Habilitadas';
-    nodo.group = grupo;
-    NODOS.update(nodo)
-}
-
-function ponerEnFinal(id){
-    desaprobar(id);
-    let nodo = NODOS.get(id);
-    nodo.enfinal = true;
-    actualizarGrupo(nodo)
-}
-
-function aprobarConNota(id, nota){
-    let nodo = NODOS.get(id);
-    if (nota) {
-        nodo.nota = nota;
-        if (nodo.label.includes('[')) 
-            nodo.label = nodo.label.split('\n[')[0]
-        nodo.label += '\n[' + nodo.nota + ']'
-        actualizarPromedio(nodo);
-        NODOS.update(nodo);
-    }
-    if (!nodo.aprobada) aprobar(id);
-}
-
-function aprobar(id){
-    let nodo = NODOS.get(id);
-    nodo.aprobada = true;
-    actualizarCreditos(nodo.creditos);
-    actualizarGrupo(nodo);
-
-    let materiasQueHabilita = NETWORK.getConnectedNodes(id, 'to');
-    materiasQueHabilita.forEach(m => {
-        let materia = NODOS.get(m);
-        if (!materia) return;
-        habilitar(m)
-    })
-}
-
-function habilitar(id){
-    let nodo = NODOS.get(id);
-    let neighborsFrom = NETWORK.getConnectedNodes(id, 'from');
-    let todoAprobado = true;
-    for (let i = 0; i < neighborsFrom.length; i++ ){
-        let correlativa = NODOS.get(neighborsFrom[i]);
-        if (!correlativa) continue;
-        todoAprobado &= correlativa.aprobada
-    }
-    if (!todoAprobado || NETWORK.creditos < nodo.requiere) return;
-    nodo.habilitada = true;
-    actualizarGrupo(nodo)
-
-}
-
-function chequearNodosCRED(){
-    NODOS_CRED.forEach(nodo => {
-        if (NETWORK.creditos < nodo.requiere) deshabilitar(nodo.id);
-        else if (NETWORK.creditos >= nodo.requiere) habilitar(nodo.id);
-    })
-}
-
-function deshabilitar(id){
-    let nodo = NODOS.get(id);
-    nodo.habilitada = false;
-    actualizarGrupo(nodo)
-}
-
-
-function desaprobar(id){
-    let nodo = NODOS.get(id);
-    if (nodo.aprobada) 
-        actualizarCreditos(-nodo.creditos);
-    nodo.aprobada = false;
-    nodo.nota = 0;
-    if (nodo.label.includes('[')) 
-        nodo.label = nodo.label.split('\n[')[0]
-    actualizarPromedio(nodo)
-    nodo.enfinal = false;
-
-    let materiasQueHabilita = NETWORK.getConnectedNodes(id, 'to');
-    materiasQueHabilita.forEach(m => {
-        let materia = NODOS.get(m);
-        if (!materia) return;
-        deshabilitar(m)
-    });
-
-    actualizarGrupo(nodo)
-}
-
-function nodoAMateria(rowCells){
-    let [codigo, materia, creditos, correlativas, categoria, nivel] = rowCells;
-    materia = breakWords(materia);
-    creditos = parseInt(creditos);
-    correlativas = correlativas.split('-');
-    let node = {id:codigo, label:materia, group: categoria, level:nivel,
-        categoria: categoria, aprobada: false, nota: null, enfinal: false, creditos: creditos, habilitada: false};
-    return [node, correlativas]
-}
-
-function breakWords(string){
-    let broken = '';
-    string.split(' ').forEach(element => {
-        if (element.length < 5) broken+=' '+element;
-        else broken+='\n'+element;
-    });
-    return broken.trim();
-}
-
-function mostrarOpciones(id){
-    let nodo = NODOS.get(id);
-    let nodonota = nodo.nota ? nodo.nota : '';
-    let html = `
-    <div class="modal" style='display:block'>
-        <div id='materia-modal-content' class="modal-content">
-            <span onclick='$(this.parentElement.parentElement.parentElement).empty()' id="materiaclose-button" class="close-button">&times;</span>
-            <h3>[`+nodo.id+`] `+nodo.label+`</h3>
-            <p>
-                Nota:
-                <input id='nota' class='materia-input' type="number" min="4" max="10" value="`+nodonota+`" />
-            </p>
-            <div id='materia-botones'>
-                <button id='enfinal-button'>En Final</button>
-                <button id='desaprobar-button'>Desaprobar</button>
-                <button id='aprobar-button'>Aprobar</button>
-            </div>
-        </div>
-    </div>
-    `;
-    $('#materia-modal').append($(html));
-
-    $('#aprobar-button').on('click', function() {
-        let nota = $('#nota').val();
-        aprobarConNota(id, nota);
-        $("#materiaclose-button").click()
-    });
-
-    $('#enfinal-button').on('click', function() {
-        ponerEnFinal(id);
-        $("#materiaclose-button").click()
-    });
-
-    $('#desaprobar-button').on('click', function() {
-        desaprobar(id)
-        $("#materiaclose-button").click()
-    })
-}
-
 function resetBindings() {
     $('.toggle').off('click').on('click',function(){
         let [_, grupo] = $(this).attr('id').split('-');
@@ -305,17 +154,24 @@ function resetBindings() {
         let aprobada = nodo.aprobada;
         if (!aprobada) {
             if (PARTYMODE) partyMode(nodo);
-            aprobar(id)
+            new Materia(id).aprobar()
         }
         else {
-            desaprobar(id)
+            new Materia(id).desaprobar()
         }
-        chequearNodosCRED()
+        // chequearNodosCRED()
     });
 
     NETWORK.off('hold').on("hold", function (params) {
         let id = params.nodes[0];
-        if (!id) return;
-        mostrarOpciones(id)
+        new Materia(id).mostrarOpciones()
     });
 }
+
+
+// function chequearNodosCRED(){
+//     NODOS_CRED.forEach(nodo => {
+//         if (NETWORK.creditos < nodo.requiere) deshabilitar(nodo.id);
+//         else if (NETWORK.creditos >= nodo.requiere) habilitar(nodo.id);
+//     })
+// }
