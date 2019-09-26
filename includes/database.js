@@ -1,14 +1,6 @@
 let FORMAPI = 'https://docs.google.com/forms/u/0/d/1xUf-9SWdGf0jv_weLRe4tlXb-GWHkH-kc-v_S8kKGCI';
 let SHEETAPI = "https://spreadsheets.google.com/feeds/list/1B7ytzx_-XvmaMApIb1UX3DXBCSCAAelXs_TuJ0Ww2fE/default/public/values?alt=json";
 
-$(document).ready(function() {
-    let url = new URL(window.location.href);
-    if (url.searchParams.get('clave'))
-        load(url.searchParams.get('clave'))
-    else
-        $("#sistemas").click()
-});
-
 function save(clave, carrera, materias){
     let form = $("<form id='formRecord' type='hidden' action=" + FORMAPI + " onsubmit='return window.submitGoogleForm(this)'></form>");
     form.append("<input name='entry.774465991' value=" + clave + ">");
@@ -17,7 +9,7 @@ function save(clave, carrera, materias){
     form.submit()
 }
 
-function load(clave){
+function loadFromClave(clave){
     $.ajax({
         url: SHEETAPI,
         method: 'GET',
@@ -36,13 +28,13 @@ function loadMap(api, clave) {
     });
     if (!usuario) {
         warning(clave);
-        update('sistemas');
+        $("#sistemas").click()
         return
     }
     let carrera = usuario.gsx$carrera.$t;
     let materias = usuario.gsx$materias.$t;
     let materiasAprobadas = materias.split('-')
-    update(carrera, materiasAprobadas)
+    main(carrera, materiasAprobadas)
 }
 
 function warning(clave){
@@ -65,7 +57,7 @@ $(document).ready(function() {
             PARTYMODE = true;
             return
         }
-        let carrera = CARRERA_ACTUAL;
+        let carrera = CARRERA_ACTUAL.id;
         let materiasArr = [];
         NODOS.forEach(nodo => {
             if (nodo.aprobada || nodo.enfinal) {

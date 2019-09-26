@@ -1,112 +1,71 @@
-$('.carrera').on('click', function(){
-    update($(this).attr('id'))
-})
-
-function update(carrera, materiasFromLoad){
-    $('.dropdown-content').hide();
-    $("#grafo").text("");
-    $("#grafo").append("<div class='loader'></div>");
+function main(carrera, materiasFromLoad){
+    clean()
     let filename, titulo, tituloShort, orientaciones, plan;
     switch(carrera){
         case 'informatica':
             orientaciones = true;
-            filename = 'data/informatica-1986.csv';
-            titulo = 'Ingeniería en Informática';
-            tituloShort = 'Informática';
-            plan = 'Plan 1986 v2016';
+            filename = 'data/informatica-1986.csv'; plan = 'Plan 1986 v2016';
+            titulo = 'Ingeniería en Informática'; tituloShort = 'Informática';
             break;
         case 'sistemas':
             orientaciones = false;
-            filename = 'data/sistemas-1986.csv';
-            titulo = 'Licenciatura en Análisis de Sistemas';
-            tituloShort = 'Sistemas';
-            plan = 'Plan 1986 v2016';
+            filename = 'data/sistemas-1986.csv'; plan = 'Plan 1986 v2016';
+            titulo = 'Licenciatura en Análisis de Sistemas'; tituloShort = 'Sistemas';
             break;
         case 'electronica':
             orientaciones = true;
-            filename = 'data/electronica-2009.csv';
-            titulo = 'Ingeniería Electrónica';
-            tituloShort = 'Electrónica';
-            plan = 'Plan 2009 v2019';
+            filename = 'data/electronica-2009.csv'; plan = 'Plan 2009 v2019';
+            titulo = 'Ingeniería Electrónica'; tituloShort = 'Electrónica';
             break;
         case 'quimica':
             orientaciones = false;
-            filename = 'data/quimica-1986.csv';
-            titulo = 'Ingeniería Química';
-            tituloShort = 'Química';
-            plan = 'Plan 1986 v2016';
+            filename = 'data/quimica-1986.csv'; plan = 'Plan 1986 v2016';
+            titulo = 'Ingeniería Química'; tituloShort = 'Química';
             break;
         case 'civil':
             orientaciones = false;
-            filename = 'data/civil-2009.csv';
-            titulo = 'Ingeniería Civil';
-            tituloShort = 'Civil';
-            plan = 'Plan 2009 v2016';
+            filename = 'data/civil-2009.csv'; plan = 'Plan 2009 v2016';
+            titulo = 'Ingeniería Civil'; tituloShort = 'Civil';
             break;
         case 'alimentos':
             orientaciones = false;
-            filename = 'data/alimentos-2000.csv';
-            titulo = 'Ingeniería de Alimentos';
-            tituloShort = 'Alimentos';
-            plan = 'Plan 2000 v2016';
+            filename = 'data/alimentos-2000.csv'; plan = 'Plan 2000 v2016';
+            titulo = 'Ingeniería de Alimentos'; tituloShort = 'Alimentos';
             break;
         case 'electricista':
             orientaciones = false;
-            filename = 'data/electricista-2009.csv';
-            titulo = 'Ingeniería Electricista';
-            tituloShort = 'Electricista';
-            plan = 'Plan 2009 v2016';
+            filename = 'data/electricista-2009.csv'; plan = 'Plan 2009 v2016';
+            titulo = 'Ingeniería Electricista'; tituloShort = 'Electricista';
             break;
         case 'naval':
             orientaciones = false;
-            filename = 'data/naval-1986.csv';
-            titulo = 'Ingeniería Naval y Mecánica';
-            tituloShort = 'Naval';
-            plan = 'Plan 1986 v2016';
+            filename = 'data/naval-1986.csv'; plan = 'Plan 1986 v2016';
+            titulo = 'Ingeniería Naval y Mecánica'; tituloShort = 'Naval';
             break;
         case 'mecanica':
             orientaciones = true;
-            filename = 'data/mecanica-1986.csv';
-            titulo = 'Ingeniería Mecánica';
-            tituloShort = 'Mecánica';
-            plan = 'Plan 1986 v2016';
+            filename = 'data/mecanica-1986.csv'; plan = 'Plan 1986 v2016';
+            titulo = 'Ingeniería Mecánica'; tituloShort = 'Mecánica';
             break;
         case 'petroleo':
             orientaciones = false;
-            filename = 'data/petroleo-2015.csv';
-            titulo = 'Ingeniería en Petróleo';
-            tituloShort = 'Petróleo';
-            plan = 'Plan 2015 v2016';
+            filename = 'data/petroleo-2015.csv'; plan = 'Plan 2015 v2016';
+            titulo = 'Ingeniería en Petróleo'; tituloShort = 'Petróleo';
             break;
         case 'agrimensura':
             orientaciones = false;
-            filename = 'data/agrimensura-2006.csv';
-            titulo = 'Ingeniería en Argimensura';
-            tituloShort = 'Agrimensura';
-            plan = 'Plan 2006 v2016';
+            filename = 'data/agrimensura-2006.csv'; plan = 'Plan 2006 v2016';
+            titulo = 'Ingeniería en Argimensura'; tituloShort = 'Agrimensura';
             break;
         case 'industrial':
             orientaciones = false;
-            filename = 'data/industrial-2011.csv';
-            titulo = 'Ingeniería Industrial';
-            tituloShort = 'Industrial';
-            plan = 'Plan 2011 v2019';
+            filename = 'data/industrial-2011.csv'; plan = 'Plan 2011 v2019';
+            titulo = 'Ingeniería Industrial'; tituloShort = 'Industrial';
             break
     }
 
-    CARRERA_ACTUAL = carrera;
-    $("#carrera-actual-long").text(titulo + ' | ' + plan);
-    $("#carrera-actual-short").text(tituloShort);
-    $("#carreras .active").removeClass('active');
-    $("#"+CARRERA_ACTUAL).addClass('active');
+    CARRERA_ACTUAL = Carrera(carrera, titulo, tituloShort, plan, filename, orientaciones)
     fiubamap(filename, materiasFromLoad);
-    mostrarOrientaciones(orientaciones)
-}
-
-function mostrarOrientaciones(show){
-    $("#orientaciones a").remove();
-    if (show) $("#orientaciones-hidden").show();
-    else $("#orientaciones-hidden").hide();
 }
 
 $(document).ready(function(){
@@ -117,5 +76,26 @@ $(document).ready(function(){
     $(".dropdown").on("mouseout", function () {
         $(this).children('.dropdown-content').hide()
     });
+
+    $('.carrera').on('click', function(){
+        main($(this).attr('id'))
+    })
+
+    $(document).keydown(function(event) {
+        if (event.keyCode == 27)
+          $('.close-button').click();
+    });    
 })
 
+$(document).ready(function() {
+    let url = new URL(window.location.href);
+    if (url.searchParams.get('clave'))
+        loadFromClave(url.searchParams.get('clave'))
+    else
+        $("#sistemas").click()
+});
+
+function clean(){
+    $('.dropdown-content').hide();
+    $("#grafo").html("<div class='loader'></div>");
+}

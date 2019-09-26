@@ -37,7 +37,7 @@ function csvAGrafo(data, materiasFromLoad) {
             }
         }
     });
-    bindings()
+    resetBindings()
 }
 
 function csvANodosyAristas(data){
@@ -289,7 +289,7 @@ function mostrarOpciones(id){
     })
 }
 
-function bindings() {
+function resetBindings() {
     $('.toggle').off('click').on('click',function(){
         let [_, grupo] = $(this).attr('id').split('-');
         if (NETWORK.isCluster('cluster-'+grupo)) NETWORK.openCluster('cluster-'+grupo);
@@ -319,8 +319,3 @@ function bindings() {
         mostrarOpciones(id)
     });
 }
-
-$(document).keydown(function(event) {
-    if (event.keyCode == 27)
-      $('.close-button').click();
-});
