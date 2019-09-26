@@ -1,8 +1,8 @@
 function Grupo(g) {
     this.id = g;
     this.openOrClose = function() {
-        if (FIUBAMAP.NETWORK.isCluster('cluster-'+id)) FIUBAMAP.NETWORK.openCluster('cluster-'+id);
-        else FIUBAMAP.NETWORK.cluster(crearClusterDeCategoria(id));    
+        if (FIUBAMAP.NETWORK.isCluster('cluster-'+this.id)) FIUBAMAP.NETWORK.openCluster('cluster-'+this.id);
+        else FIUBAMAP.NETWORK.cluster(crearClusterDeCategoria(this.id));    
     }
 }
 

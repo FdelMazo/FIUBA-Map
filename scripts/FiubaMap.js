@@ -18,7 +18,7 @@ function FiubaMap(data, materiasFromLoad, carrera) {
     this.resetBindings = function(){
         const self = this;
         $('.toggle').off('click').on('click',function(){
-            let [, g] = $(self).attr('id').split('-');
+            let [,g] = $(this).attr('id').split('-');
             new Grupo(g).openOrClose();
             self.NETWORK.fit()
         });
