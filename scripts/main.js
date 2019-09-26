@@ -1,3 +1,5 @@
+FIUBAMAP = null
+
 function main(carrera, materiasFromLoad){
     $('.dropdown-content').hide();
     $("#grafo").html("<div class='loader'></div>");
@@ -65,8 +67,15 @@ function main(carrera, materiasFromLoad){
             break
     }
 
-    CARRERA_ACTUAL = new Carrera(carrera, titulo, tituloShort, plan, filename, orientaciones)
-    createFiubaMap(filename, materiasFromLoad);
+    $("#carrera-actual-long").text(titulo + ' | ' + plan);
+    $("#carrera-actual-short").text(tituloShort);
+    $("#carreras .active").removeClass('active');
+    $("#"+carrera).addClass('active');
+    $("#orientaciones a").remove();
+    if (orientaciones) $("#orientaciones-hidden").show();
+    else $("#orientaciones-hidden").hide();
+
+    createFiubaMap(carrera, filename, materiasFromLoad);
 }
 
 $(document).ready(function(){

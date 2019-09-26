@@ -48,6 +48,17 @@ function warning(clave){
     $('#warning').append($(html));
 }
 
+function aprobarMateriasFromLoad(materiasFromLoad) {
+    materiasFromLoad.forEach(m => {
+        if (m.includes('*')){
+            let [materia, nota] = m.split('*');
+            if (nota == 'F') new Materia(m).ponerEnFinal()
+            else new Materia(m).aprobarConNota(nota)
+        }
+        else new Materia(m).aprobar()
+    })
+}
+
 $(document).ready(function() {
     $('#dbsave-button').on('click', function () {
         let clave = $("#clave").val();
@@ -57,9 +68,9 @@ $(document).ready(function() {
             PARTYMODE = true;
             return
         }
-        let carrera = CARRERA_ACTUAL.id;
+        let carrera = FIUBAMAP.carrera;
         let materiasArr = [];
-        NODOS.forEach(nodo => {
+        FIUBAMAP.MATERIAS.forEach(nodo => {
             if (nodo.aprobada || nodo.enfinal) {
                 if (nodo.enfinal) materiasArr.push(nodo.id + '*F')
                 else if (nodo.nota) materiasArr.push(nodo.id + '*' + nodo.nota)

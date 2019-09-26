@@ -1,10 +1,10 @@
 PARTYMODE = false;
-FIBONACCIFIRST = 0;
-FIBONACCISECOND = 1;
+let FIBONACCIFIRST = 0;
+let FIBONACCISECOND = 1;
 
 function partyMode(nodo) {
     nodo.hidden = true;
-    NODOS.update(nodo);
+    FIUBAMAP.MATERIAS.update(nodo);
     let counter = fibonacciCounter();
     for(let i = 0; i < counter; i++){
         let img = document.createElement("IMG");
