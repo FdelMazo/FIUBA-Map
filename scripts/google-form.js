@@ -3,14 +3,14 @@
 
   function submitGoogleForm(form) {
     try {
-      var data = [].slice.call(form).map(function(control) {
-        return 'value' in control && control.name ?
-          control.name + '=' + (control.value === undefined ? '' : control.value) :
-          '';
-      }).join('&');
-      var xhr = new XMLHttpRequest();
+        const data = [].slice.call(form).map(function (control) {
+            return 'value' in control && control.name ?
+                control.name + '=' + (control.value === undefined ? '' : control.value) :
+                '';
+        }).join('&');
+        const xhr = new XMLHttpRequest();
 
-      xhr.open('POST', form.action + '/formResponse', true);
+        xhr.open('POST', form.action + '/formResponse', true);
       xhr.setRequestHeader('Accept',
           'application/xml, text/xml, */*; q=0.01');
       xhr.setRequestHeader('Content-type',

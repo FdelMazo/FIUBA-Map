@@ -1,5 +1,5 @@
 function Grupo(g) {
-    this.id = g
+    this.id = g;
     this.openOrClose = function() {
         if (FIUBAMAP.NETWORK.isCluster('cluster-'+id)) FIUBAMAP.NETWORK.openCluster('cluster-'+id);
         else FIUBAMAP.NETWORK.cluster(crearClusterDeCategoria(id));    
@@ -11,14 +11,14 @@ function crearGrupo(g) {
         let cluster = crearClusterDeCategoria(g);
         FIUBAMAP.NETWORK.cluster(cluster);
         if (g.includes('Orientación')) {
-            let [_,orientacion] = g.split(':');
+            let [, orientacion] = g.split(':');
             $("#orientaciones").append("<a class='toggle' id='toggle-"+g+"'>"+orientacion+"</a>")
         }
     }
 }
 
 function crearClusterDeCategoria(g){
-    return cluster = {
+    return {
         joinCondition:function(nodeOptions) {
             return nodeOptions.categoria === g;
         },

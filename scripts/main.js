@@ -1,4 +1,4 @@
-FIUBAMAP = null
+FIUBAMAP = null;
 
 function main(carrera, materiasFromLoad){
     $('.dropdown-content').hide();
@@ -89,18 +89,18 @@ $(document).ready(function(){
 
     $('.carrera').on('click', function(){
         main($(this).attr('id'))
-    })
+    });
 
     $(document).keydown(function(event) {
         if (event.keyCode == 27)
           $('.close-button').click();
-    });    
-})
+    });
+});
 
 $(document).ready(function() {
     let url = new URL(window.location.href);
     if (url.searchParams.get('clave'))
-        loadFromClave(url.searchParams.get('clave'))
+        loadFromClave(url.searchParams.get('clave'));
     else
         $("#sistemas").click()
 });

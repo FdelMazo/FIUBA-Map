@@ -9,11 +9,11 @@ html, body {
 }
 
 .left {
-  float:left
+  float: left
 }
 
 .right {
-    float:right
+  float: right
 }
 
 .party {
@@ -30,7 +30,7 @@ ul {
     overflow: hidden;
     background-color: #333;
 }
-  
+
 li a {
   display: block;
   color: white;
@@ -80,12 +80,21 @@ li a:hover:not(.active) {
 }
 
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
+
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 svg {
@@ -99,7 +108,7 @@ input[type=text] {
 }
 
 input[type=number] {
-  float:right;
+  float: right;
   width: 4em;
 }
 
@@ -118,8 +127,8 @@ input[type=number] {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
@@ -149,10 +158,18 @@ input[type=number] {
   cursor: pointer;
 }
 
-#carrera-actual-short { display: none; }
+#carrera-actual-short {
+  display: none;
+}
+
 @media (max-width: 900px) {
-    #carrera-actual-short { display: inline-block; }
-    #carrera-actual-long { display: none; }
+  #carrera-actual-short {
+    display: inline-block;
+  }
+
+  #carrera-actual-long {
+    display: none;
+  }
 }
 
 .alert {
@@ -164,8 +181,9 @@ input[type=number] {
 #materia-modal-content {
   width: 40%;
 }
+
 #materia-botones {
-  float:right;
+  float: right;
   margin: 0 -10px;
 }
 
@@ -175,7 +193,7 @@ button {
   margin: .2em;
   color: white;
   padding: .6em .8em;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 #aprobar-button {

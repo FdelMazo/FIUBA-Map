@@ -28,12 +28,12 @@ function loadMap(api, clave) {
     });
     if (!usuario) {
         warning(clave);
-        $("#sistemas").click()
+        $("#sistemas").click();
         return
     }
     let carrera = usuario.gsx$carrera.$t;
     let materias = usuario.gsx$materias.$t;
-    let materiasAprobadas = materias.split('-')
+    let materiasAprobadas = materias.split('-');
     main(carrera, materiasAprobadas)
 }
 
@@ -51,8 +51,8 @@ function warning(clave){
 function aprobarMateriasFromLoad(materiasFromLoad) {
     materiasFromLoad.forEach(m => {
         if (m.includes('*')){
-            let [materia, nota] = m.split('*');
-            if (nota == 'F') new Materia(m).ponerEnFinal()
+            let [, nota] = m.split('*');
+            if (nota == 'F') new Materia(m).ponerEnFinal();
             else new Materia(m).aprobarConNota(nota)
         }
         else new Materia(m).aprobar()
@@ -63,7 +63,7 @@ $(document).ready(function() {
     $('#dbsave-button').on('click', function () {
         let clave = $("#clave").val();
         if (!clave)
-            return
+            return;
         if (clave.toLowerCase() == 'party') {
             PARTYMODE = true;
             return
@@ -72,8 +72,8 @@ $(document).ready(function() {
         let materiasArr = [];
         FIUBAMAP.MATERIAS.forEach(nodo => {
             if (nodo.aprobada || nodo.enfinal) {
-                if (nodo.enfinal) materiasArr.push(nodo.id + '*F')
-                else if (nodo.nota) materiasArr.push(nodo.id + '*' + nodo.nota)
+                if (nodo.enfinal) materiasArr.push(nodo.id + '*F');
+                else if (nodo.nota) materiasArr.push(nodo.id + '*' + nodo.nota);
                 else materiasArr.push(nodo.id)
             }
         });
