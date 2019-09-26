@@ -1,3 +1,7 @@
+$('.carrera').on('click', function(){
+    update($(this).attr('id'))
+})
+
 function update(carrera, materiasFromLoad){
     $('.dropdown-content').hide();
     $("#grafo").text("");

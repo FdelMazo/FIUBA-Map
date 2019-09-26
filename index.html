@@ -12,8 +12,8 @@
     <meta property="og:description" content="Mapa de materias correlativas de la Facultad de Ingeniería">
     <meta property="og:title" content="FIUBA-Map">
 
-    <link href="includes/vis.min.css" rel="stylesheet" type="text/css" />
-    <link href="includes/style.css" rel="stylesheet" type="text/css" />
+    <link href="lib/vis.min.css" rel="stylesheet" type="text/css" />
+    <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -27,18 +27,18 @@
                 <span id='carrera-actual-short'></span>
             </a>
             <div class="dropdown-content" id='carreras'>
-              <a onclick="update('sistemas')" id='sistemas'>Licenciatura en Análisis de Sistemas</a>
-              <a onclick="update('informatica')" id='informatica'>Ingeniería en Informática</a>
-              <a onclick="update('electronica')" id='electronica'>Ingeniería Electrónica</a>
-              <a onclick="update('quimica')" id='quimica'>Ingeniería Química</a>
-              <a onclick="update('civil')" id='civil'>Ingeniería Civil</a>
-              <a onclick="update('mecanica')" id='mecanica'>Ingeniería Mecánica</a>
-              <a onclick="update('alimentos')" id='alimentos'>Ingeniería de Alimentos</a>
-              <a onclick="update('electricista')" id='electricista'>Ingeniería Electricista</a>
-              <a onclick="update('agrimensura')" id='agrimensura'>Ingeniería en Agrimensura</a>
-              <a onclick="update('naval')" id='naval'>Ingeniería Naval y Mecánica</a>
-              <a onclick="update('petroleo')" id='petroleo'>Ingeniería en Petróleo</a>
-              <a onclick="update('industrial')" id='industrial'>Ingeniería Industrial</a>
+              <a class='carrera' id='sistemas'>Licenciatura en Análisis de Sistemas</a>
+              <a class='carrera' id='informatica'>Ingeniería en Informática</a>
+              <a class='carrera' id='electronica'>Ingeniería Electrónica</a>
+              <a class='carrera' id='quimica'>Ingeniería Química</a>
+              <a class='carrera' id='civil'>Ingeniería Civil</a>
+              <a class='carrera' id='mecanica'>Ingeniería Mecánica</a>
+              <a class='carrera' id='alimentos'>Ingeniería de Alimentos</a>
+              <a class='carrera' id='electricista'>Ingeniería Electricista</a>
+              <a class='carrera' id='agrimensura'>Ingeniería en Agrimensura</a>
+              <a class='carrera' id='naval'>Ingeniería Naval y Mecánica</a>
+              <a class='carrera' id='petroleo'>Ingeniería en Petróleo</a>
+              <a class='carrera' id='industrial'>Ingeniería Industrial</a>
             </div>
         </li>
 
@@ -102,11 +102,9 @@
 
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="includes/vis.min.js"></script>
-    <script type="text/javascript" src="includes/google-form.js"></script>
-    <script type="text/javascript" src="includes/fiuba-map.js"></script>
-    <script type="text/javascript" src="includes/carreras.js"></script>
-    <script type="text/javascript" src="includes/database.js"></script>
-    <script type="text/javascript" src="includes/partyMode.js"></script>
+    <script type="text/javascript" src="lib/vis.min.js"></script>
+    <script type="text/javascript" src="lib/google-form.js"></script>
+    <script type="text/javascript" src="includes.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
 </body>
 </html>
