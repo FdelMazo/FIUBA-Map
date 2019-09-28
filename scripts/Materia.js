@@ -1,6 +1,16 @@
-function Materia(codigo){
+function Materia(codigo, titulo, creditos, correlativas, categoria, nivel){
     this.id = codigo;
-    this.nodo = FIUBAMAP.MATERIAS.get(this.id);
+    this.label = breakWords(titulo);
+    this.creditos = parseInt(creditos);
+    this.correlativas = correlativas.split('-');
+    this.group = categoria;
+    this.level = nivel;
+    this.categoria = categoria;
+    this.aprobada = false;
+    this.nota = null;
+    this.enfinal = false;
+    this.habilitada = false;
+    this.nodo = this
 
     this.aprobar = function(){
         if (!this.nodo) return;
@@ -9,7 +19,8 @@ function Materia(codigo){
         FIUBAMAP.actualizarCreditos(this.nodo.creditos);
         let materiasQueYoHabilito = FIUBAMAP.NETWORK.getConnectedNodes(this.id, 'to');
         materiasQueYoHabilito.forEach(m => {
-            new Materia(m).habilitar()
+            let x = FIUBAMAP.MATERIAS.get(m)
+            if (x) x.habilitar()
         })
     };
 
@@ -64,7 +75,8 @@ function Materia(codigo){
     
         let materiasQueHabilita = FIUBAMAP.NETWORK.getConnectedNodes(this.id, 'to');
         materiasQueHabilita.forEach(m => {
-            new Materia(m).deshabilitar()
+            let x = FIUBAMAP.MATERIAS.get(m)
+            if (x) x.deshabilitar()
         });
         this.actualizar()
     };
@@ -120,23 +132,6 @@ function Materia(codigo){
             $("#materiaclose-button").click()
         })
     }
-}
-
-function createMateria(rowCells) {
-    let [codigo, materia, creditos, correlativas, categoria, nivel] = rowCells;
-    let m = {};
-    m.label = breakWords(materia);
-    m.creditos = parseInt(creditos);
-    m.correlativas = correlativas.split('-');
-    m.id = codigo;
-    m.group = categoria;
-    m.level = nivel;
-    m.categoria = categoria;
-    m.aprobada = false;
-    m.nota = null;
-    m.enfinal = false;
-    m.habilitada = false;
-    return m
 }
 
 function breakWords(string){

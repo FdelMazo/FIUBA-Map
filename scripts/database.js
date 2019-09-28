@@ -52,10 +52,10 @@ function aprobarMateriasFromLoad(materiasFromLoad) {
     materiasFromLoad.forEach(m => {
         if (m.includes('*')){
             let [, nota] = m.split('*');
-            if (nota == 'F') new Materia(m).ponerEnFinal();
-            else new Materia(m).aprobarConNota(nota)
+            if (nota == 'F') FIUBAMAP.MATERIAS.get(m).ponerEnFinal();
+            else FIUBAMAP.MATERIAS.get(m).aprobarConNota(nota)
         }
-        else new Materia(m).aprobar()
+        else FIUBAMAP.MATERIAS.get(m).aprobar()
     })
 }
 

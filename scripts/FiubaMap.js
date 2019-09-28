@@ -31,17 +31,17 @@ function FiubaMap(data, materiasFromLoad, carrera) {
             let aprobada = nodo.aprobada;
             if (!aprobada) {
                 if (PARTYMODE) partyMode(nodo);
-                new Materia(id).aprobar()
+                self.MATERIAS.get(id).aprobar()
             }
             else {
-                new Materia(id).desaprobar()
+                self.MATERIAS.get(id).desaprobar()
             }
             self.chequearNodosCRED()
         });
     
         self.NETWORK.off('hold').on("hold", function (params) {
             let id = params.nodes[0];
-            new Materia(id).mostrarOpciones()
+            if (id) self.MATERIAS.get(id).mostrarOpciones()
         });
 
     };
@@ -65,8 +65,8 @@ function FiubaMap(data, materiasFromLoad, carrera) {
 
     this.chequearNodosCRED = function(){
         this.MATERIAS_CRED.forEach(nodo => {
-            if (this.creditos < nodo.requiere) new Materia(nodo.id).deshabilitar();
-            else if (this.creditos >= nodo.requiere) new Materia(nodo.id).habilitar();
+            if (this.creditos < nodo.requiere) this.MATERIAS.get(nodo.id).deshabilitar();
+            else if (this.creditos >= nodo.requiere) this.MATERIAS.get(nodo.id).habilitar();
         })
     };
 
@@ -75,7 +75,7 @@ function FiubaMap(data, materiasFromLoad, carrera) {
     $('#creditos-var').text(0);
     $('#promedio-var').text('-');
     if (materiasFromLoad) aprobarMateriasFromLoad(materiasFromLoad);
-    else { new Materia('CBC').aprobar() }
+    else { this.MATERIAS.get("CBC").aprobar() }
 
     this.GRUPOS.forEach(g => { crearGrupo(g) });
     this.resetBindings()
@@ -90,7 +90,8 @@ function csvANodosyAristas(data){
     let filas = data.split(/\r?\n|\r/);
     for (let fila = 1; fila < filas.length; fila++) {
         let rowCells = filas[fila].split(',');
-        let materia = createMateria(rowCells);
+        let [codigo, titulo, creditos, correlativas, categoria, nivel] = rowCells;
+        let materia = new Materia(codigo, titulo, creditos, correlativas, categoria, nivel);
         materia.correlativas.forEach(c => {
             if (c.includes('CRED')){
                 // Una materia CRED requiere n creditos para aprobar (ej: legislatura necesita 140 creditos)
