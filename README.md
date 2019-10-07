@@ -22,4 +22,4 @@ Después, se parsea el CSV y lo convierte en una Network de [vis.js](https://vis
 
 ---
  
-No hay que olvidar concatenar los `.js` del directorio scripts, sea para desarrollo local o para subir una versión nueva. Esto se hace llamando a `cat scripts/* > scripts.min.js` (cuando se esta desarrollando) o `cat scripts/* | uglifyjs -o scripts.min.js` para un despliegue. Uglify se instala con `sudo npm install uglify-es -g`.
+No hay que olvidar concatenar los `.js` del directorio `js`, sea para desarrollo local o para subir una versión nueva. Esto se hace llamando a `cat js/* > scripts.min.js` (cuando se esta desarrollando) o `cat js/* | uglifyjs -o scripts.min.js` para un despliegue. Uglify se instala con `sudo npm install uglify-es -g`.
