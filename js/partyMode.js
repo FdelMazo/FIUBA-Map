@@ -6,7 +6,7 @@ function partyMode(nodo) {
     nodo.hidden = true;
     FIUBAMAP.MATERIAS.update(nodo);
     let counter = fibonacciCounter();
-    for(let i = 0; i < counter; i++){
+    for (let i = 0; i < counter; i++) {
         let img = document.createElement("IMG");
         img.setAttribute("src", "https://cultofthepartyparrot.com/parrots/hd/parrot.gif");
         img.setAttribute("class", "party");
@@ -18,14 +18,14 @@ function partyMode(nodo) {
 }
 
 function getRandomPosition(element) {
-    let x = document.body.offsetHeight-element.clientHeight;
-    let y = document.body.offsetWidth-element.clientWidth;
-    let randomX = Math.floor(Math.random()*x);
-    let randomY = Math.floor(Math.random()*y);
-    return [randomX,randomY];
+    let x = document.body.offsetHeight - element.clientHeight;
+    let y = document.body.offsetWidth - element.clientWidth;
+    let randomX = Math.floor(Math.random() * x);
+    let randomY = Math.floor(Math.random() * y);
+    return [randomX, randomY];
 }
 
-function fibonacciCounter(){
+function fibonacciCounter() {
     let val = FIBONACCIFIRST + FIBONACCISECOND;
     FIBONACCIFIRST = FIBONACCISECOND;
     FIBONACCISECOND = val;

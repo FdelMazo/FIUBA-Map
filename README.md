@@ -16,7 +16,7 @@ El proceso para agregar una carrera es:
 
 * Agregar en el menu de [index.html](index.html) la carrera
 
-* Agregar la carrera en el switch de [main.js](scripts/main.js)
+* Agregar la carrera en el switch de [main.js](js/main.js)
 
 Después, se parsea el CSV y lo convierte en una Network de [vis.js](https://visjs.org/docs/network/)
 

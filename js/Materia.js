@@ -1,4 +1,4 @@
-function Materia(codigo, titulo, creditos, correlativas, categoria, nivel){
+function Materia(codigo, titulo, creditos, correlativas, categoria, nivel) {
     this.id = codigo;
     this.label = breakWords(titulo);
     this.creditos = parseInt(creditos);
@@ -10,25 +10,25 @@ function Materia(codigo, titulo, creditos, correlativas, categoria, nivel){
     this.nota = null;
     this.enfinal = false;
     this.habilitada = false;
-    this.nodo = this
+    this.nodo = this;
 
-    this.aprobar = function(){
+    this.aprobar = function () {
         if (!this.nodo) return;
         this.nodo.aprobada = true;
         this.actualizar();
         FIUBAMAP.actualizarCreditos(this.nodo.creditos);
         let materiasQueYoHabilito = FIUBAMAP.NETWORK.getConnectedNodes(this.id, 'to');
         materiasQueYoHabilito.forEach(m => {
-            let x = FIUBAMAP.MATERIAS.get(m)
+            let x = FIUBAMAP.MATERIAS.get(m);
             if (x) x.habilitar()
         })
     };
 
-    this.habilitar = function(){
+    this.habilitar = function () {
         if (!this.nodo) return;
         let materiasQueMeHabilitan = FIUBAMAP.NETWORK.getConnectedNodes(this.id, 'from');
         let todoAprobado = true;
-        for (let i = 0; i < materiasQueMeHabilitan.length; i++ ){
+        for (let i = 0; i < materiasQueMeHabilitan.length; i++) {
             let correlativa = FIUBAMAP.MATERIAS.get(materiasQueMeHabilitan[i]);
             if (!correlativa) continue;
             todoAprobado &= correlativa.aprobada
@@ -38,14 +38,14 @@ function Materia(codigo, titulo, creditos, correlativas, categoria, nivel){
         this.actualizar()
     };
 
-    this.ponerEnFinal = function(){
+    this.ponerEnFinal = function () {
         if (!this.nodo) return;
         this.desaprobar();
         this.nodo.enfinal = true;
         this.actualizar()
     };
-    
-    this.aprobarConNota = function(nota){
+
+    this.aprobarConNota = function (nota) {
         if (!this.nodo) return;
         this.nodo.nota = nota;
         if (this.nodo.label.includes('['))
@@ -54,17 +54,17 @@ function Materia(codigo, titulo, creditos, correlativas, categoria, nivel){
         FIUBAMAP.actualizarPromedio(this.nodo);
         if (!this.nodo.aprobada) this.aprobar();
     };
-        
-    this.deshabilitar = function(){
+
+    this.deshabilitar = function () {
         if (!this.nodo) return;
         this.nodo.habilitada = false;
         this.actualizar()
     };
-    
-    
-    this.desaprobar = function(){
+
+
+    this.desaprobar = function () {
         if (!this.nodo) return;
-        if (this.nodo.aprobada) 
+        if (this.nodo.aprobada)
             FIUBAMAP.actualizarCreditos(-this.nodo.creditos);
         this.nodo.aprobada = false;
         this.nodo.nota = 0;
@@ -72,16 +72,16 @@ function Materia(codigo, titulo, creditos, correlativas, categoria, nivel){
             this.nodo.label = this.nodo.label.split('\n[')[0];
         FIUBAMAP.actualizarPromedio(this.nodo);
         this.nodo.enfinal = false;
-    
+
         let materiasQueHabilita = FIUBAMAP.NETWORK.getConnectedNodes(this.id, 'to');
         materiasQueHabilita.forEach(m => {
-            let x = FIUBAMAP.MATERIAS.get(m)
+            let x = FIUBAMAP.MATERIAS.get(m);
             if (x) x.deshabilitar()
         });
         this.actualizar()
     };
 
-    this.actualizar = function() {
+    this.actualizar = function () {
         if (!this.nodo) return;
         let grupoDefault = this.nodo.categoria;
         if (this.nodo.aprobada) grupoDefault = 'Aprobadas';
@@ -91,7 +91,7 @@ function Materia(codigo, titulo, creditos, correlativas, categoria, nivel){
         FIUBAMAP.MATERIAS.update(this.nodo)
     };
 
-    this.mostrarOpciones = function(){
+    this.mostrarOpciones = function () {
         if (!this.nodo) return;
         const self = this;
 
@@ -100,10 +100,10 @@ function Materia(codigo, titulo, creditos, correlativas, categoria, nivel){
         <div class="modal" style='display:block'>
             <div id='materia-modal-content' class="modal-content">
                 <span onclick='$(this.parentElement.parentElement.parentElement).empty()' id="materiaclose-button" class="close-button">&times;</span>
-                <h3>[`+self.id+`] `+self.nodo.label+`</h3>
+                <h3>[` + self.id + `] ` + self.nodo.label + `</h3>
                 <p>
                     Nota:
-                    <input id='nota' class='materia-input' type="number" min="4" max="10" value="`+nodonota+`" />
+                    <input id='nota' class='materia-input' type="number" min="4" max="10" value="` + nodonota + `" />
                 </p>
                 <div id='materia-botones'>
                     <button id='enfinal-button'>En Final</button>
@@ -114,31 +114,31 @@ function Materia(codigo, titulo, creditos, correlativas, categoria, nivel){
         </div>
         `;
         $('#materia-modal').append($(html));
-    
-        $('#aprobar-button').on('click', function() {
+
+        $('#aprobar-button').on('click', function () {
             let nota = $('#nota').val();
             if (nota) self.aprobarConNota(nota);
             else self.aprobar();
             $("#materiaclose-button").click()
         });
-    
-        $('#enfinal-button').on('click', function() {
+
+        $('#enfinal-button').on('click', function () {
             self.ponerEnFinal();
             $("#materiaclose-button").click()
         });
-    
-        $('#desaprobar-button').on('click', function() {
+
+        $('#desaprobar-button').on('click', function () {
             self.desaprobar();
             $("#materiaclose-button").click()
         })
     }
 }
 
-function breakWords(string){
+function breakWords(string) {
     let broken = '';
     string.split(' ').forEach(element => {
-        if (element.length < 5) broken+=' '+element;
-        else broken+='\n'+element;
+        if (element.length < 5) broken += ' ' + element;
+        else broken += '\n' + element;
     });
     return broken.trim();
 }
