@@ -1,5 +1,3 @@
-FIUBAMAP = null;
-
 function main(carrera, materiasFromLoad) {
     $('.dropdown-content').hide();
     $("#grafo").html("<div class='loader'></div>");
@@ -96,10 +94,18 @@ function main(carrera, materiasFromLoad) {
     $("#carreras .active").removeClass('active');
     $("#" + carrera).addClass('active');
     $("#orientaciones a").remove();
+    $('#creditos-var').text(0);
+    $('#promedio-var').text('-');
     if (orientaciones) $("#orientaciones-hidden").show();
     else $("#orientaciones-hidden").hide();
 
-    createFiubaMap(carrera, filename, materiasFromLoad);
+    $.ajax({
+        url: filename,
+        dataType: 'text',
+        success: function (data) {
+            new FiubaMap(data, materiasFromLoad, carrera)
+        }
+    })
 }
 
 $(document).ready(function () {

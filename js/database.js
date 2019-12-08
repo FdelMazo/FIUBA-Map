@@ -48,28 +48,14 @@ function warning(clave) {
     $('#warning').append($(html));
 }
 
-function aprobarMateriasFromLoad(materiasFromLoad) {
-    materiasFromLoad.forEach(m => {
-        if (m.includes('*')) {
-            let [, nota] = m.split('*');
-            if (nota == 'F') FIUBAMAP.MATERIAS.get(m).ponerEnFinal();
-            else FIUBAMAP.MATERIAS.get(m).aprobarConNota(nota)
-        } else FIUBAMAP.MATERIAS.get(m).aprobar()
-    })
-}
-
 $(document).ready(function () {
     $('#dbsave-button').on('click', function () {
         let clave = $("#clave").val();
         if (!clave)
             return;
-        if (clave.toLowerCase() == 'party') {
-            PARTYMODE = true;
-            return
-        }
         let carrera = FIUBAMAP.carrera;
         let materiasArr = [];
-        FIUBAMAP.MATERIAS.forEach(nodo => {
+        FIUBAMAP.materias.forEach(nodo => {
             if (nodo.aprobada || nodo.enfinal) {
                 if (nodo.enfinal) materiasArr.push(nodo.id + '*F');
                 else if (nodo.nota) materiasArr.push(nodo.id + '*' + nodo.nota);
@@ -88,10 +74,6 @@ $(document).ready(function () {
     $('#dbload-button').on('click', function () {
         let clave = $("#clave").val();
         if (!clave) return;
-        if (clave.toLowerCase() == 'party') {
-            PARTYMODE = true;
-            return
-        }
         window.location = "https://fdelmazo.github.io/FIUBA-Map?clave=" + clave;
     });
 

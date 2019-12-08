@@ -1,117 +1,138 @@
-function createFiubaMap(carrera, file, materiasFromLoad) {
-    $.ajax({
-        url: file,
-        dataType: 'text',
-        success: function (data) {
-            new FiubaMap(data, materiasFromLoad, carrera)
-        }
-    })
-}
+FIUBAMAP = null;
 
-function FiubaMap(data, materiasFromLoad, carrera) {
-    FIUBAMAP = this;
-    this.carrera = carrera;
-    let aristas;
-    [this.MATERIAS, aristas, this.GRUPOS, this.MATERIAS_CRED] = csvANodosyAristas(data);
-    this.NETWORK = crearNetwork(this.MATERIAS, aristas);
+class FiubaMap {
+    constructor(data, materiasFromLoad, carrera) {
+        FIUBAMAP = this
+        this.init(data);
+        this.carrera = carrera;
+        this.creditos = 0;
+        this.aprobadas = {};
+        if (materiasFromLoad) this.aprobarMateriasFromLoad(materiasFromLoad);
+        else this.materias.get("CBC").aprobar()
 
-    this.resetBindings = function () {
+        this.resetBindings()
+    }
+
+    resetBindings() {
         const self = this;
         $('.toggle').off('click').on('click', function () {
-            let [, g] = $(this).attr('id').split('-');
-            new Grupo(g).openOrClose();
-            self.NETWORK.fit()
+            let [, id] = $(this).attr('id').split('-');
+            if (self.network.isCluster('cluster-' + id)) self.network.openCluster('cluster-' + id);
+            else self.network.cluster({
+                joinCondition: function (nodeOptions) { return nodeOptions.categoria === id; },
+                clusterNodeProperties: {id: 'cluster-' + id, hidden: true, level: 20, allowSingleNodeCluster: true}
+            });
+            self.network.fit()
         });
 
-        self.NETWORK.off('click').on("click", function (params) {
+        self.network.off('click').on("click", function (params) {
             if (!params.event.isFinal) return;
             let id = params.nodes[0];
             if (!id) return;
-            let nodo = self.MATERIAS.get(id);
-            let aprobada = nodo.aprobada;
+            let m = self.materias.get(id);
+            let aprobada = m.aprobada;
             if (!aprobada) {
-                if (PARTYMODE) partyMode(nodo);
-                self.MATERIAS.get(id).aprobar()
+                m.aprobar()
             } else {
-                self.MATERIAS.get(id).desaprobar()
+                m.desaprobar()
             }
             self.chequearNodosCRED()
         });
 
-        self.NETWORK.off('hold').on("hold", function (params) {
+        self.network.off('hold').on("hold", function (params) {
             let id = params.nodes[0];
-            if (id) self.MATERIAS.get(id).mostrarOpciones()
+            if (id) self.materias.get(id).mostrarOpciones()
         });
 
     };
 
-    this.actualizarPromedio = function (nodo) {
-        if (nodo.nota === 0)
-            delete this.aprobadasConNota[nodo.id];
+    actualizar(m) {
+        this.materias.set(m.id, m)
+        this.nodos.update(m)
+    }
+    
+    actualizarPromedio(m) {
+        if (m.nota === 0)
+            delete this.aprobadas[m.id];
         else
-            this.aprobadasConNota[nodo.id] = parseInt(nodo.nota);
-        let sumatoria = (Object.values(this.aprobadasConNota).reduce((a, b) => a + b, 0));
-        let aprobadas = Object.values(this.aprobadasConNota).length;
+            this.aprobadas[m.id] = parseInt(m.nota);
+        let sumatoria = (Object.values(this.aprobadas).reduce((a, b) => a + b, 0));
+        let aprobadas = Object.values(this.aprobadas).length;
         let promedio = (sumatoria / aprobadas).toFixed(2);
         if (!isNaN(promedio)) $('#promedio-var').text(promedio);
         else $('#promedio-var').text('-')
     };
 
-    this.actualizarCreditos = function (n) {
+    actualizarCreditos(n) {
         this.creditos += n;
         $('#creditos-var').text(this.creditos)
     };
 
-    this.chequearNodosCRED = function () {
-        this.MATERIAS_CRED.forEach(nodo => {
-            if (this.creditos < nodo.requiere) this.MATERIAS.get(nodo.id).deshabilitar();
-            else if (this.creditos >= nodo.requiere) this.MATERIAS.get(nodo.id).habilitar();
+    chequearNodosCRED() {
+        this.materias_cred.forEach(nodo => {
+            if (this.creditos < nodo.requiere) this.materias.get(nodo.id).deshabilitar();
+            else if (this.creditos >= nodo.requiere) this.materias.get(nodo.id).habilitar();
         })
     };
 
-    this.creditos = 0;
-    this.aprobadasConNota = {};
-    $('#creditos-var').text(0);
-    $('#promedio-var').text('-');
-    if (materiasFromLoad) aprobarMateriasFromLoad(materiasFromLoad);
-    else {
-        this.MATERIAS.get("CBC").aprobar()
+    aprobarMateriasFromLoad(materiasFromLoad) {
+        materiasFromLoad.forEach(m => {
+            if (m.includes('*')) {
+                let [id, nota] = m.split('*');
+                if (nota == 'F') this.materias.get(id).ponerEnFinal();
+                else this.materias.get(id).aprobar(nota)
+            } else this.materias.get(m).aprobar()
+        })
     }
-
-    this.GRUPOS.forEach(g => {
-        crearGrupo(g)
-    });
-    this.resetBindings()
-
-}
-
-function csvANodosyAristas(data) {
-    let nodos = [];
-    let aristas = [];
-    let grupos = [];
-    let materiasCred = [];
-    let filas = data.split(/\r?\n|\r/);
-    for (let fila = 1; fila < filas.length; fila++) {
-        let rowCells = filas[fila].split(',');
-        let [codigo, titulo, creditos, correlativas, categoria, nivel] = rowCells;
-        let materia = new Materia(codigo, titulo, creditos, correlativas, categoria, nivel);
-        materia.correlativas.forEach(c => {
-            if (c.includes('CRED')) {
-                // Una materia CRED requiere n creditos para aprobar (ej: legislatura necesita 140 creditos)
-                let [, n] = c.split('CRED');
-                materia.requiere = n;
-                materiasCred.push(materia)
+    
+    init(data) {
+        let nodos = [];
+        let materias = new Map();
+        let aristas = [];
+        let grupos = [];
+        let materiasCred = [];
+        let filas = data.split(/\r?\n|\r/);
+        for (let fila = 1; fila < filas.length; fila++) {
+            let [codigo, titulo, creditos, correlativas, categoria, nivel] = filas[fila].split(',');;
+            let materia = new Materia(codigo, titulo, creditos, categoria, nivel);
+            correlativas.split('-').forEach(c => {
+                if (c.includes('CRED')) {
+                    // Una materia CRED requiere n creditos para aprobar (ej: legislatura necesita 140 creditos)
+                    let [, n] = c.split('CRED');
+                    materia.requiere = n;
+                    materiasCred.push(materia)
+                }
+                let arista = {from: c, to: materia.id};
+                // Las aristas entre CBC y los nodos CRED sirven para que el layout quede bien
+                // Pero no deben ser mostradas
+                if (c == 'CBC' && materia.requiere) arista.hidden = true;
+                aristas.push(arista)
+            });
+            nodos.push(materia);
+            materias.set(codigo, materia);
+            if (!grupos.includes(materia.categoria)) grupos.push(materia.categoria);
+        }
+        this.materias = materias
+        this.materias_cred = materiasCred
+        this.nodos = new vis.DataSet(nodos)
+        this.network = crearNetwork(this.nodos, new vis.DataSet(aristas));
+        
+        grupos.forEach(g => {
+            if (g.includes('Electivas') || g.includes('Orientación')) {
+                let cluster = {
+                    joinCondition: function (nodeOptions) {
+                        return nodeOptions.categoria === g;
+                    },
+                    clusterNodeProperties: {id: 'cluster-' + g, hidden: true, level: 20, allowSingleNodeCluster: true}
+                }
+                this.network.cluster(cluster);
+                if (g.includes('Orientación')) {
+                    let [, orientacion] = g.split(':');
+                    $("#orientaciones").append("<a class='toggle' id='toggle-" + g + "'>" + orientacion + "</a>");
+                }
             }
-            let arista = {from: c, to: materia.id};
-            // Las aristas entre CBC y los nodos CRED sirven para que el layout quede bien
-            // Pero no deben ser mostradas
-            if (c == 'CBC' && materia.requiere) arista.hidden = true;
-            aristas.push(arista)
-        });
-        nodos.push(materia);
-        if (!grupos.includes(materia.categoria)) grupos.push(materia.categoria);
+        })
     }
-    return [new vis.DataSet(nodos), new vis.DataSet(aristas), grupos, materiasCred]
 }
 
 function crearNetwork(nodes, edges) {
