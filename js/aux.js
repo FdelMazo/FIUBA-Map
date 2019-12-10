@@ -74,7 +74,7 @@ function resetBindings(FMap) {
         if (!params.event.isFinal) return;
         let id = params.nodes[0];
         if (!id) return;
-        if (!self.materias.get(id).aprobada) {
+        if (!self.materias.get(id).aprobada || self.materias.get(id).nota == -1) {
             self.aprobar(id, 0, self.cuatri)
         } else {
             self.desaprobar(id)
