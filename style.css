@@ -16,13 +16,6 @@ html, body {
   float: right
 }
 
-.party {
-  position: absolute;
-  max-width: 3%;
-  height: auto;
-  width: auto;
-}
-
 ul {
     list-style-type: none;
     margin: 0;
@@ -49,7 +42,7 @@ li a:hover:not(.active) {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: ghostwhite;
   z-index: 1;
 }
 
@@ -62,11 +55,11 @@ li a:hover:not(.active) {
 
 .dropdown-content a:hover:not(.active) {
   cursor: pointer;
-  background-color: #f1f1f1;
+  background-color: gainsboro;
 }
 
 .active {
-  background-color: #4CAF50;
+  background-color: mediumseagreen;
 }
 
 .loader {
@@ -211,7 +204,7 @@ button {
 
 #cuatri-menu {
   border-radius: 5px 0 0 0;
-    position: fixed;
+  position: fixed;
   bottom: 0;
   right: 0;
   padding: 0 10px;

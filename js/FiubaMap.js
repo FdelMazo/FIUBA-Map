@@ -164,11 +164,18 @@ class FiubaMap {
 
         $('.toggle').off('click').on('click', function () {
             let [, id] = $(this).attr('id').split('-');
-            if (self.network.isCluster('cluster-' + id)) self.network.openCluster('cluster-' + id);
-            else self.network.cluster({
-                joinCondition: function (nodeOptions) { return nodeOptions.categoria === id; },
-                clusterNodeProperties: {id: 'cluster-' + id, hidden: true, level: 20, allowSingleNodeCluster: true}
-            });
+            if (self.network.isCluster('cluster-' + id)) {
+                self.network.openCluster('cluster-' + id);
+                let color = self.network.groups.groups[id].color
+                $(this).css("background-color", color);
+            }
+            else {
+                self.network.cluster({
+                    joinCondition: function (nodeOptions) { return nodeOptions.categoria === id; },
+                    clusterNodeProperties: {id: 'cluster-' + id, hidden: true, level: 20, allowSingleNodeCluster: true}
+                })
+                $(this).css("background-color", "");
+            }
             self.network.fit()
         });
 
