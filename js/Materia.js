@@ -71,4 +71,52 @@ class Materia {
         FIUBAMAP.nodos.update(this)
         FIUBAMAP.actualizar()
     }
+
+    mostrarOpciones() {
+        const self = this;
+        let nota = self.nota ? self.nota : '';
+        let html = `
+        <div class="modal" style='display:block'>
+            <div id='materia-modal-content' class="modal-content">
+                <span onclick='$(this.parentElement.parentElement.parentElement).empty()' id="materiaclose-button" class="close-button">&times;</span>
+                <h3>[` + self.id + `] ` + self.label + `</h3>
+                <p>
+                    Nota:
+                    <input id='nota' class='materia-input' type="number" min="4" max="10" value="` + nota + `" />
+                </p>
+                <div id='materia-botones'>
+                    <button id='enfinal-button'>En Final</button>
+                    <button id='desaprobar-button'>Desaprobar</button>
+                    <button id='aprobar-button'>Aprobar</button>
+                </div>
+            </div>
+        </div>
+        `;
+        $('#materia-modal').append($(html));
+    
+        $('#aprobar-button').on('click', function () {
+            let nota = $('#nota').val();
+            FIUBAMAP.aprobar(self.id, nota, FIUBAMAP.cuatri);
+            $("#materiaclose-button").click()
+        });
+    
+        $('#enfinal-button').on('click', function () {
+            FIUBAMAP.aprobar(self.id, -1, FIUBAMAP.cuatri);
+            $("#materiaclose-button").click()
+        });
+    
+        $('#desaprobar-button').on('click', function () {
+            FIUBAMAP.desaprobar(self.id);
+            $("#materiaclose-button").click()
+        })
+    
+        $('#materia-modal').on("keyup", function (event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                let nota = $('#nota').val();
+                FIUBAMAP.aprobar(self.id, nota, FIUBAMAP.cuatri);
+                $("#materiaclose-button").click()
+            }
+        });
+    }
 }
