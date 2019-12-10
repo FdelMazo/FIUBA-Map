@@ -33,6 +33,9 @@ class FiubaMap {
         let mat = this.materias.get(m)
         if (this.aprobadas.has(this.cuatri)) {
             this.aprobadas.get(this.cuatri).delete(mat.id)
+            // if (!this.aprobadas.get(this.cuatri)) {
+                // this.aprobadas.delete(this.cuatri)
+            // }
         }
         mat.desaprobar()
         this.actualizar()
