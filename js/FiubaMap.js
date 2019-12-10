@@ -31,10 +31,17 @@ class FiubaMap {
         const self = this
         self.cuatri = $("#cuatri").val()
         self.aprobadas.forEach((map,cuatri) => {
-            if (cuatri > this.cuatri)
-                map.forEach((v,k) => {self.desaprobar(k, true)})
-            else
-                map.forEach((v,k) => {self.aprobar(k,v, cuatri)})
+            if (cuatri > self.cuatri) {
+                map.forEach((v,k) => {
+                    if (self.materias.get(k).nota == -1 && v != -1) return
+                    self.desaprobar(k, true)
+                })
+            }
+            else {
+                map.forEach((v,k) => {
+                    self.aprobar(k, v, cuatri)
+                })
+            }
         })
         this.actualizar()
     }
@@ -82,7 +89,7 @@ class FiubaMap {
         if (!aprobadasEnCuatri)
             aprobadasEnCuatri = new Map()
         aprobadasEnCuatri.set(mat.id, mat.nota)
-        this.aprobadas.set(cuatri, aprobadasEnCuatri)
+        this.aprobadas.set(parseFloat(cuatri), aprobadasEnCuatri)
     }
 
     removerMateria(mat) {

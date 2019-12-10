@@ -13,16 +13,14 @@ class Materia {
 
     aprobar(nota){
         this.aprobada = true;
-        if (nota) {
-            this.nota = parseInt(nota)
-            if (this.label.includes('['))
-                this.label = this.label.split('\n[')[0];
-            if (nota == -1) {
-                this.actualizar();
-                return
-            }
-            this.label += '\n[' + this.nota + ']';
-        } 
+        this.nota = parseInt(nota)
+        if (this.label.includes('['))
+            this.label = this.label.split('\n[')[0];
+        if (nota == -1) {
+            this.actualizar();
+            return
+        }
+        if (nota > 0) this.label += '\n[' + this.nota + ']';
         let materiasQueYoHabilito = FIUBAMAP.network.getConnectedNodes(this.id, 'to');
         materiasQueYoHabilito.forEach(m => {
             let x = FIUBAMAP.materias.get(m);
