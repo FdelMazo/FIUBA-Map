@@ -18,7 +18,7 @@ class Materia {
             if (this.label.includes('['))
                 this.label = this.label.split('\n[')[0];
             if (nota == -1) {
-                this.actualizarGrupo();
+                this.actualizar();
                 return
             }
             this.label += '\n[' + this.nota + ']';
@@ -28,7 +28,7 @@ class Materia {
             let x = FIUBAMAP.materias.get(m);
             if (x) x.habilitar()
         })
-        this.actualizarGrupo();
+        this.actualizar();
     }
 
     habilitar() {
@@ -41,7 +41,7 @@ class Materia {
         }
         if (!todoAprobado || FIUBAMAP.creditos < this.requiere) return;
         this.habilitada = true;
-        this.actualizarGrupo()
+        this.actualizar()
     }
 
     desaprobar() {
@@ -54,70 +54,21 @@ class Materia {
             let x = FIUBAMAP.materias.get(m);
             if (x) x.deshabilitar()
         });
-        this.actualizarGrupo()
+        this.actualizar()
     }
 
     deshabilitar() {
         this.habilitada = false;
-        this.actualizarGrupo()
+        this.actualizar()
     }
 
-    actualizarGrupo() {
+    actualizar() {
         let grupoDefault = this.categoria;
         if (this.aprobada && this.nota >=0) grupoDefault = 'Aprobadas';
         else if (this.aprobada) grupoDefault = 'En Final';
         else if (this.habilitada) grupoDefault = 'Habilitadas';
         this.group = grupoDefault;
-        FIUBAMAP.actualizar(this)
-    }
-
-    mostrarOpciones() {
-        const self = this;
-
-        let nota = self.nota ? self.nota : '';
-        let html = `
-        <div class="modal" style='display:block'>
-            <div id='materia-modal-content' class="modal-content">
-                <span onclick='$(this.parentElement.parentElement.parentElement).empty()' id="materiaclose-button" class="close-button">&times;</span>
-                <h3>[` + self.id + `] ` + self.label + `</h3>
-                <p>
-                    Nota:
-                    <input id='nota' class='materia-input' type="number" min="4" max="10" value="` + nota + `" />
-                </p>
-                <div id='materia-botones'>
-                    <button id='enfinal-button'>En Final</button>
-                    <button id='desaprobar-button'>Desaprobar</button>
-                    <button id='aprobar-button'>Aprobar</button>
-                </div>
-            </div>
-        </div>
-        `;
-        $('#materia-modal').append($(html));
-
-        $('#aprobar-button').on('click', function () {
-            let nota = $('#nota').val();
-            FIUBAMAP.aprobar(self.id, nota, FIUBAMAP.cuatri);
-            $("#materiaclose-button").click()
-        });
-
-        $('#enfinal-button').on('click', function () {
-            FIUBAMAP.aprobar(self.id, -1, FIUBAMAP.cuatri);
-            $("#materiaclose-button").click()
-        });
-
-        $('#desaprobar-button').on('click', function () {
-            FIUBAMAP.desaprobar(self.id);
-            $("#materiaclose-button").click()
-        })
+        FIUBAMAP.nodos.update(this)
+        FIUBAMAP.actualizar()
     }
 }
-
-function breakWords(string) {
-    let broken = '';
-    string.split(' ').forEach(element => {
-        if (element.length < 5) broken += ' ' + element;
-        else broken += '\n' + element;
-    });
-    return broken.trim();
-}
-

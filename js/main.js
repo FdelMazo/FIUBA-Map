@@ -120,6 +120,7 @@ $(document).ready(function () {
 
     $('.carrera').on('click', function () {
         main($(this).attr('id'))
+        FIUBAMAP.aprobar("CBC", 0, FIUBAMAP.cuatri)
     });
 
     $(document).keydown(function (event) {
@@ -130,8 +131,15 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     let url = new URL(window.location.href);
-    if (url.searchParams.get('clave'))
-        loadFromClave(url.searchParams.get('clave'));
+    let clave = url.searchParams.get('clave')
+    if (clave)
+        $.ajax({
+            url: SHEETAPI,
+            method: 'GET',
+            success: function (data) {
+                loadMap(data, clave)
+            }
+        })
     else
         $("#sistemas").click()
 });

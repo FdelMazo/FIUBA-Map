@@ -9,16 +9,6 @@ function save(clave, carrera, materias) {
     form.submit()
 }
 
-function loadFromClave(clave) {
-    $.ajax({
-        url: SHEETAPI,
-        method: 'GET',
-        success: function (data) {
-            loadMap(data, clave)
-        }
-    })
-}
-
 function loadMap(api, clave) {
     $("#clave").val(clave);
     let data = api.feed.entry;
@@ -28,14 +18,14 @@ function loadMap(api, clave) {
     });
     if (!usuario) {
         warning(clave);
-        $("#sistemas").click();
+        $("#sistemas").click()
         return
     }
     let carrera = usuario.gsx$carrera.$t;
     let materias = usuario.gsx$materias.$t;
-    let materiasAprobadas = JSON.parse(materias)
+    let materiasAprobadas = materias
     main(carrera)
-    aprobarMateriasFromLoad(materiasAprobadas)
+    cargarMaterias(materiasAprobadas)
 }
 
 function warning(clave) {
@@ -55,12 +45,7 @@ $(document).ready(function () {
         if (!clave)
             return;
         let carrera = FIUBAMAP.carrera;
-        
-        let obj = {}
-        FIUBAMAP.aprobadas.forEach((map,cuatri) => {
-            obj[cuatri] = Object.fromEntries(map)
-        })
-        let materias = JSON.stringify(obj)        
+        let materias = mapToJson(FIUBAMAP.aprobadas)
         save(clave, carrera, materias);
         setTimeout(function () {
             window.location = "https://fdelmazo.github.io/FIUBA-Map?clave=" + clave;
@@ -81,15 +66,29 @@ $(document).ready(function () {
     });
 });
 
-function aprobarMateriasFromLoad(materiasFromLoad) {
-    let m = new Map()
-    Object.keys(materiasFromLoad).forEach(cuatri => {
-        let materias = new Map()
-        Object.keys(materiasFromLoad[cuatri]).forEach(id => {
-            materias.set(id, parseInt(materiasFromLoad[cuatri][id]))
-        })
-        m.set(parseFloat(cuatri), materias)
-    })
-    FIUBAMAP.aprobadas = m
+function cargarMaterias(materias) {
+    let map = objToMap(materias)
+    FIUBAMAP.aprobadas = map
     FIUBAMAP.cambiarCuatri()
+}
+
+function mapToJson(map){
+    let obj = {}
+    map.forEach((map,cuatri) => {
+        obj[cuatri] = Object.fromEntries(map)
+    })
+    return JSON.stringify(obj)        
+}
+
+function objToMap(obj){
+    let json = JSON.parse(obj)
+    let map = new Map()
+    Object.keys(json).forEach(cuatri => {
+        let submap = new Map()
+        Object.keys(json[cuatri]).forEach(id => {
+            submap.set(id, parseInt(json[cuatri][id]))
+        })
+        map.set(parseFloat(cuatri), submap)
+    })
+    return map
 }
