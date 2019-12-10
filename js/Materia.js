@@ -79,7 +79,7 @@ class Materia {
         <div class="modal" style='display:block'>
             <div id='materia-modal-content' class="modal-content">
                 <span onclick='$(this.parentElement.parentElement.parentElement).empty()' id="materiaclose-button" class="close-button">&times;</span>
-                <h3>[` + self.id + `] ` + self.label + `</h3>
+                <h3>[` + self.id + `] ` + self.label.split('\n[')[0] + ` (` + self.creditos + `créditos)</h3>
                 <p>
                     Nota:
                     <input id='nota' class='materia-input' type="number" min="4" max="10" value="` + nota + `" />
@@ -96,6 +96,7 @@ class Materia {
     
         $('#aprobar-button').on('click', function () {
             let nota = $('#nota').val();
+            if (!nota) nota = 0;
             FIUBAMAP.aprobar(self.id, nota, FIUBAMAP.cuatri);
             $("#materiaclose-button").click()
         });
@@ -113,9 +114,7 @@ class Materia {
         $('#materia-modal').on("keyup", function (event) {
             if (event.keyCode === 13) {
                 event.preventDefault();
-                let nota = $('#nota').val();
-                FIUBAMAP.aprobar(self.id, nota, FIUBAMAP.cuatri);
-                $("#materiaclose-button").click()
+                $("#aprobar-button").click()
             }
         });
     }
