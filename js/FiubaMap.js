@@ -40,7 +40,7 @@ class FiubaMap {
     
     cambiarCuatri() {
         const self = this
-        this.aprobadas.forEach((map,cuatri) => {
+        self.aprobadas.forEach((map,cuatri) => {
             if (cuatri > this.cuatri)
                 map.forEach((v,k) => {self.desaprobar(k)})
             else

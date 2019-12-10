@@ -82,6 +82,9 @@ $(document).ready(function () {
 });
 
 function aprobarMateriasFromLoad(materiasFromLoad) {
-    FIUBAMAP.aprobadas = materiasFromLoad
+    FIUBAMAP.aprobadas = new Map(Object.entries(materiasFromLoad))
+    FIUBAMAP.aprobadas.forEach((obj, cuatri)=>{
+        FIUBAMAP.aprobadas.set(cuatri, new Map(Object.entries(obj)))
+    })
     FIUBAMAP.cambiarCuatri()
 }

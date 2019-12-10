@@ -104,7 +104,8 @@ function main(carrera) {
         dataType: 'text',
         success: function (data) {
             new FiubaMap(data, carrera)
-        }
+        },
+        async: false
     })
 }
 
