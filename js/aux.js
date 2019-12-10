@@ -84,7 +84,7 @@ function resetBindings(FMap) {
 
     self.network.off('hold').on("hold", function (params) {
         let id = params.nodes[0];
-        if (id) self.mostrarOpciones(self.materias.get(id))
+        if (id) self.materias.get(id).mostrarOpciones()
     });
 }
 
