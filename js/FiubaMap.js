@@ -29,8 +29,9 @@ class FiubaMap {
     
     cambiarCuatri() {
         const self = this
-        self.cuatri = $("#cuatri").val()
+        self.cuatri = parseFloat($("#cuatri").val())
         self.aprobadas.forEach((map,cuatri) => {
+            cuatri = parseFloat(cuatri)
             if (cuatri > self.cuatri) {
                 map.forEach((v,k) => {
                     if (self.materias.get(k).nota == -1 && v != -1) return
@@ -86,6 +87,8 @@ class FiubaMap {
     
     agregarMateria(mat, cuatri) {
         let aprobadasEnCuatri = this.aprobadas.get(cuatri)
+        console.log(cuatri)
+        console.log(aprobadasEnCuatri)
         if (!aprobadasEnCuatri)
             aprobadasEnCuatri = new Map()
         aprobadasEnCuatri.set(mat.id, mat.nota)
