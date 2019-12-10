@@ -7,27 +7,28 @@ class Materia {
         this.level = nivel;
         this.categoria = categoria;
         this.aprobada = false;
-        this.nota = null;
-        this.enfinal = false;
+        this.nota = 0;
         this.habilitada = false;
     }
 
     aprobar(nota){
-        if (nota) {
-            this.nota = nota
-            if (this.label.includes('[')) this.label = this.label.split('\n[')[0];
-            this.label += '\n[' + this.nota + ']';
-            FIUBAMAP.actualizarPromedio(this);
-        } 
-        if (this.aprobada) return;
         this.aprobada = true;
-        this.actualizar();
-        FIUBAMAP.actualizarCreditos(this.creditos);
+        if (nota) {
+            this.nota = parseInt(nota)
+            if (this.label.includes('['))
+                this.label = this.label.split('\n[')[0];
+            if (nota == -1) {
+                this.actualizarGrupo();
+                return
+            }
+            this.label += '\n[' + this.nota + ']';
+        } 
         let materiasQueYoHabilito = FIUBAMAP.network.getConnectedNodes(this.id, 'to');
         materiasQueYoHabilito.forEach(m => {
             let x = FIUBAMAP.materias.get(m);
             if (x) x.habilitar()
         })
+        this.actualizarGrupo();
     }
 
     habilitar() {
@@ -40,43 +41,31 @@ class Materia {
         }
         if (!todoAprobado || FIUBAMAP.creditos < this.requiere) return;
         this.habilitada = true;
-        this.actualizar()
+        this.actualizarGrupo()
     }
-
-    ponerEnFinal() {
-        this.desaprobar();
-        this.enfinal = true;
-        this.actualizar()
-    }
-
-    deshabilitar() {
-        this.habilitada = false;
-        this.actualizar()
-    }
-
 
     desaprobar() {
-        if (this.aprobada)
-            FIUBAMAP.actualizarCreditos(-this.creditos);
         this.aprobada = false;
         this.nota = 0;
         if (this.label.includes('['))
             this.label = this.label.split('\n[')[0];
-        FIUBAMAP.actualizarPromedio(this);
-        this.enfinal = false;
-
         let materiasQueHabilita = FIUBAMAP.network.getConnectedNodes(this.id, 'to');
         materiasQueHabilita.forEach(m => {
             let x = FIUBAMAP.materias.get(m);
             if (x) x.deshabilitar()
         });
-        this.actualizar()
+        this.actualizarGrupo()
     }
 
-    actualizar() {
+    deshabilitar() {
+        this.habilitada = false;
+        this.actualizarGrupo()
+    }
+
+    actualizarGrupo() {
         let grupoDefault = this.categoria;
-        if (this.aprobada) grupoDefault = 'Aprobadas';
-        else if (this.enfinal) grupoDefault = 'En Final';
+        if (this.aprobada && this.nota >=0) grupoDefault = 'Aprobadas';
+        else if (this.aprobada) grupoDefault = 'En Final';
         else if (this.habilitada) grupoDefault = 'Habilitadas';
         this.group = grupoDefault;
         FIUBAMAP.actualizar(this)
@@ -107,18 +96,17 @@ class Materia {
 
         $('#aprobar-button').on('click', function () {
             let nota = $('#nota').val();
-            if (nota) self.aprobar(nota);
-            else self.aprobar();
+            FIUBAMAP.aprobar(self.id, nota, FIUBAMAP.cuatri);
             $("#materiaclose-button").click()
         });
 
         $('#enfinal-button').on('click', function () {
-            self.ponerEnFinal();
+            FIUBAMAP.aprobar(self.id, -1, FIUBAMAP.cuatri);
             $("#materiaclose-button").click()
         });
 
         $('#desaprobar-button').on('click', function () {
-            self.desaprobar();
+            FIUBAMAP.desaprobar(self.id);
             $("#materiaclose-button").click()
         })
     }

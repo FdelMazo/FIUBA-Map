@@ -1,4 +1,4 @@
-function main(carrera, materiasFromLoad) {
+function main(carrera) {
     $('.dropdown-content').hide();
     $("#grafo").html("<div class='loader'></div>");
     let filename, titulo, tituloShort, orientaciones, plan;
@@ -103,7 +103,7 @@ function main(carrera, materiasFromLoad) {
         url: filename,
         dataType: 'text',
         success: function (data) {
-            new FiubaMap(data, materiasFromLoad, carrera)
+            new FiubaMap(data, carrera)
         }
     })
 }

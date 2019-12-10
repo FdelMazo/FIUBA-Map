@@ -33,8 +33,9 @@ function loadMap(api, clave) {
     }
     let carrera = usuario.gsx$carrera.$t;
     let materias = usuario.gsx$materias.$t;
-    let materiasAprobadas = materias.split('-');
-    main(carrera, materiasAprobadas)
+    let materiasAprobadas = JSON.parse(materias)
+    main(carrera)
+    aprobarMateriasFromLoad(materiasAprobadas)
 }
 
 function warning(clave) {
@@ -54,21 +55,16 @@ $(document).ready(function () {
         if (!clave)
             return;
         let carrera = FIUBAMAP.carrera;
-        let materiasArr = [];
-        FIUBAMAP.materias.forEach(nodo => {
-            if (nodo.aprobada || nodo.enfinal) {
-                if (nodo.enfinal) materiasArr.push(nodo.id + '*F');
-                else if (nodo.nota) materiasArr.push(nodo.id + '*' + nodo.nota);
-                else materiasArr.push(nodo.id)
-            }
-        });
-        let materias = materiasArr.join('-');
+        
+        let obj = {}
+        FIUBAMAP.aprobadas.forEach((map,cuatri) => {
+            obj[cuatri] = Object.fromEntries(map)
+        })
+        let materias = JSON.stringify(obj)        
         save(clave, carrera, materias);
-
         setTimeout(function () {
             window.location = "https://fdelmazo.github.io/FIUBA-Map?clave=" + clave;
         }, 1000)
-
     });
 
     $('#dbload-button').on('click', function () {
@@ -84,3 +80,8 @@ $(document).ready(function () {
         }
     });
 });
+
+function aprobarMateriasFromLoad(materiasFromLoad) {
+    FIUBAMAP.aprobadas = materiasFromLoad
+    FIUBAMAP.cambiarCuatri()
+}

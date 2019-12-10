@@ -29,6 +29,7 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: #333;
+    color: white;
 }
 
 li a {
@@ -108,14 +109,14 @@ input[type=text] {
 }
 
 input[type=number] {
-  float: right;
-  width: 4em;
+  width: 4.5em;
 }
 
 #footer {
   position: fixed;
   bottom: 0;
   left: 0;
+  border-radius: 0 5px 0 0;
 }
 
 .modal {
@@ -206,4 +207,12 @@ button {
 
 #enfinal-button {
   background-color: #4ae9c1;
+}
+
+#cuatri-menu {
+  border-radius: 5px 0 0 0;
+    position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 0 10px;
 }

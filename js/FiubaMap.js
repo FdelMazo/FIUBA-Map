@@ -1,89 +1,99 @@
 FIUBAMAP = null;
 
 class FiubaMap {
-    constructor(data, materiasFromLoad, carrera) {
+    constructor(data, carrera) {
         FIUBAMAP = this
         this.init(data);
         this.carrera = carrera;
         this.creditos = 0;
-        this.aprobadas = {};
-        if (materiasFromLoad) this.aprobarMateriasFromLoad(materiasFromLoad);
-        else this.materias.get("CBC").aprobar()
-
+        this.cuatri = cuatriActual()
+        $("#cuatri").val(this.cuatri)
+        this.aprobadas = new Map();
+        this.aprobar("CBC", 0, this.cuatri)
         this.resetBindings()
     }
 
-    resetBindings() {
-        const self = this;
-        $('.toggle').off('click').on('click', function () {
-            let [, id] = $(this).attr('id').split('-');
-            if (self.network.isCluster('cluster-' + id)) self.network.openCluster('cluster-' + id);
-            else self.network.cluster({
-                joinCondition: function (nodeOptions) { return nodeOptions.categoria === id; },
-                clusterNodeProperties: {id: 'cluster-' + id, hidden: true, level: 20, allowSingleNodeCluster: true}
-            });
-            self.network.fit()
-        });
+    aprobar(m, nota, cuatri) {
+        let mat = this.materias.get(m)
+        mat.aprobar(nota)
+        if (this.aprobadas.has(cuatri)) {
+            let v = this.aprobadas.get(cuatri)
+            v.set(mat.id, mat.nota)
+            this.aprobadas.set(cuatri, v)
+        }
+        else {
+            let mx = new Map()
+            mx.set(mat.id, mat.nota)
+            this.aprobadas.set(cuatri, mx)
+        }
+        this.actualizar()
+    }
 
-        self.network.off('click').on("click", function (params) {
-            if (!params.event.isFinal) return;
-            let id = params.nodes[0];
-            if (!id) return;
-            let m = self.materias.get(id);
-            let aprobada = m.aprobada;
-            if (!aprobada) {
-                m.aprobar()
-            } else {
-                m.desaprobar()
-            }
-            self.chequearNodosCRED()
-        });
-
-        self.network.off('hold').on("hold", function (params) {
-            let id = params.nodes[0];
-            if (id) self.materias.get(id).mostrarOpciones()
-        });
-
-    };
-
-    actualizar(m) {
-        this.materias.set(m.id, m)
-        this.nodos.update(m)
+    desaprobar(m) {
+        let mat = this.materias.get(m)
+        if (this.aprobadas.has(this.cuatri)) {
+            this.aprobadas.get(this.cuatri).delete(mat.id)
+        }
+        mat.desaprobar()
+        this.actualizar()
     }
     
-    actualizarPromedio(m) {
-        if (m.nota === 0)
-            delete this.aprobadas[m.id];
-        else
-            this.aprobadas[m.id] = parseInt(m.nota);
-        let sumatoria = (Object.values(this.aprobadas).reduce((a, b) => a + b, 0));
-        let aprobadas = Object.values(this.aprobadas).length;
-        let promedio = (sumatoria / aprobadas).toFixed(2);
-        if (!isNaN(promedio)) $('#promedio-var').text(promedio);
-        else $('#promedio-var').text('-')
-    };
+    cambiarCuatri() {
+        const self = this
+        this.aprobadas.forEach((map,cuatri) => {
+            if (cuatri > this.cuatri)
+                map.forEach((v,k) => {self.desaprobar(k)})
+            else
+                map.forEach((v,k) => {self.aprobar(k,v, cuatri)})
+        })
+        this.actualizar()
+    }
 
-    actualizarCreditos(n) {
-        this.creditos += n;
-        $('#creditos-var').text(this.creditos)
-    };
+    actualizar(m) {
+        if (m) this.nodos.update(m)
+        this.actualizarPromedio();
+        this.actualizarCreditos();
+    }
+    
+    actualizarPromedio() {
+        const self = this
+        let sumatoria = 0
+        let cantidad = 0
+        this.aprobadas.forEach((map,cuatri) => {
+            if (cuatri > self.cuatri) return
+            map.forEach((v,k) => {
+                if (v <= 0) return;
+                sumatoria += v;
+                cantidad++;
+            })
+        })
+        let promedio = (sumatoria / cantidad).toFixed(2);
+        if (!isNaN(promedio)) $('#promedio-var').text(promedio);
+        else $('#promedio-var').text('-');
+    }
+
+    actualizarCreditos() {
+        const self = this
+        let cred = 0
+        this.aprobadas.forEach((map,cuatri) => {
+            if (cuatri > self.cuatri) return
+            map.forEach((v,k) => {
+                if (v == -1) return;
+                cred += self.materias.get(k).creditos;
+            })
+        })
+
+        $('#creditos-var').text(cred)
+        self.creditos = cred
+    }
+
 
     chequearNodosCRED() {
         this.materias_cred.forEach(nodo => {
-            if (this.creditos < nodo.requiere) this.materias.get(nodo.id).deshabilitar();
-            else if (this.creditos >= nodo.requiere) this.materias.get(nodo.id).habilitar();
+            if (this.creditos < nodo.requiere) nodo.deshabilitar();
+            else if (this.creditos >= nodo.requiere) nodo.habilitar();
         })
     };
-
-    aprobarMateriasFromLoad(materiasFromLoad) {
-        materiasFromLoad.forEach(m => {
-            if (m.includes('*')) {
-                let [id, nota] = m.split('*');
-                if (nota == 'F') this.materias.get(id).ponerEnFinal();
-                else this.materias.get(id).aprobar(nota)
-            } else this.materias.get(m).aprobar()
-        })
-    }
     
     init(data) {
         let nodos = [];
@@ -133,6 +143,51 @@ class FiubaMap {
             }
         })
     }
+
+    resetBindings() {
+        const self = this;
+        $('#cuatri').off('change').on('change', function () {
+            let cuatri = $("#cuatri").val()
+            if (cuatri <= self.cuatri) {
+                cuatri = getPrev(self.cuatri)                
+            }
+            else  {
+                cuatri = getNext(self.cuatri) 
+            }
+            $("#cuatri").val(cuatri)                
+            self.cuatri = cuatri
+            self.cambiarCuatri()
+        })
+
+        $('.toggle').off('click').on('click', function () {
+            let [, id] = $(this).attr('id').split('-');
+            if (self.network.isCluster('cluster-' + id)) self.network.openCluster('cluster-' + id);
+            else self.network.cluster({
+                joinCondition: function (nodeOptions) { return nodeOptions.categoria === id; },
+                clusterNodeProperties: {id: 'cluster-' + id, hidden: true, level: 20, allowSingleNodeCluster: true}
+            });
+            self.network.fit()
+        });
+
+        self.network.off('click').on("click", function (params) {
+            if (!params.event.isFinal) return;
+            let id = params.nodes[0];
+            if (!id) return;
+            let m = self.materias.get(id);
+            let aprobada = m.aprobada;
+            if (!aprobada) {
+                self.aprobar(id, 0, self.cuatri)
+            } else {
+                self.desaprobar(id)
+            }
+            self.chequearNodosCRED()
+        });
+
+        self.network.off('hold').on("hold", function (params) {
+            let id = params.nodes[0];
+            if (id) self.materias.get(id).mostrarOpciones()
+        });
+    };
 }
 
 function crearNetwork(nodes, edges) {
@@ -142,9 +197,9 @@ function crearNetwork(nodes, edges) {
         layout: {hierarchical: {enabled: true, direction: 'LR', levelSeparation: 150}},
         edges: {arrows: {to: {enabled: true, scaleFactor: 0.7, type: 'arrow'}}},
         groups: {
-            Aprobadas: {color: '#7BE141'},
+            'Aprobadas': {color: '#7BE141'},
             'En Final': {color: '#4ae9c1'},
-            Habilitadas: {color: '#ffa500'},
+            'Habilitadas': {color: '#ffa500'},
             'Materias Electivas': {color: '#FA8072'},
             'Materias Obligatorias': {color: '#ADD8E6'},
             // Informática
@@ -170,4 +225,30 @@ function crearNetwork(nodes, edges) {
     };
 
     return new vis.Network($('#grafo')[0], data, options);
+}
+
+function cuatriActual() {
+    date = new Date()
+    anio = date.getYear() + 1900
+    mes = date.getMonth()
+    if (mes <= 6) cuatri = 1
+    else cuatri = 2
+    return parseFloat(anio+'.'+cuatri)
+}
+
+function getPrev(cuatri) {
+    let dec = (cuatri - Math.floor(cuatri)).toFixed(1)*10
+    if (dec == 1)
+        return parseFloat((cuatri - 0.9).toFixed(1))
+    else
+        return parseFloat((cuatri - 0.1).toFixed(1))
+}
+
+function getNext(cuatri) {
+    let dec = (cuatri - Math.floor(cuatri)).toFixed(1)*10
+    if (dec == 1) {
+        return parseFloat((cuatri + 0.1).toFixed(1))
+    }
+    else
+        return parseFloat((cuatri + 0.9).toFixed(1))
 }
