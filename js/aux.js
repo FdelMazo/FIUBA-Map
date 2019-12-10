@@ -8,6 +8,7 @@ function cuatriActual() {
 }
 
 function getPrev(cuatri) {
+    cuatri = parseFloat(cuatri)
     let dec = (cuatri - Math.floor(cuatri)).toFixed(1)*10
     if (dec == 1)
         return parseFloat((cuatri - 0.9).toFixed(1))
@@ -16,6 +17,7 @@ function getPrev(cuatri) {
 }
 
 function getNext(cuatri) {
+    cuatri = parseFloat(cuatri)
     let dec = (cuatri - Math.floor(cuatri)).toFixed(1)*10
     if (dec == 1) {
         return parseFloat((cuatri + 0.1).toFixed(1))
@@ -26,16 +28,28 @@ function getNext(cuatri) {
 
 function resetBindings(FMap) {
     const self = FMap;
+    $(document).on("keyup", function (event) {
+        if (event.keyCode === 33) {
+            $("#cuatri").val(function (i, oldval) {
+                return getPrev(oldval)
+            })
+            self.cambiarCuatri()
+        }
+        if (event.keyCode ==34) {
+            $("#cuatri").val(function (i, oldval) {
+                return getNext(oldval)
+            })
+            self.cambiarCuatri()
+        }
+    })
+    
     $('#cuatri').off('change').on('change', function () {
-        let cuatri = $("#cuatri").val()
-        if (cuatri <= self.cuatri) {
-            cuatri = getPrev(self.cuatri)                
-        }
-        else  {
-            cuatri = getNext(self.cuatri) 
-        }
-        $("#cuatri").val(cuatri)                
-        self.cuatri = cuatri
+        $("#cuatri").val(function(i, oldval) {
+            if (oldval <= self.cuatri)
+                return getPrev(self.cuatri)                
+            else 
+                return getNext(self.cuatri)
+        })
         self.cambiarCuatri()
     })
 
@@ -60,9 +74,7 @@ function resetBindings(FMap) {
         if (!params.event.isFinal) return;
         let id = params.nodes[0];
         if (!id) return;
-        let m = self.materias.get(id);
-        let aprobada = m.aprobada;
-        if (!aprobada) {
+        if (!self.materias.get(id).aprobada) {
             self.aprobar(id, 0, self.cuatri)
         } else {
             self.desaprobar(id)
@@ -87,7 +99,6 @@ function breakWords(string) {
 
 function mostrarOpciones(materia) {
     const self = materia;
-
     let nota = self.nota ? self.nota : '';
     let html = `
     <div class="modal" style='display:block'>

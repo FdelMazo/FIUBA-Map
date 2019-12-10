@@ -29,6 +29,7 @@ class FiubaMap {
     
     cambiarCuatri() {
         const self = this
+        self.cuatri = $("#cuatri").val()
         self.aprobadas.forEach((map,cuatri) => {
             if (cuatri > this.cuatri)
                 map.forEach((v,k) => {self.desaprobar(k, true)})
