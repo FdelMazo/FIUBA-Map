@@ -96,6 +96,7 @@ function main(carrera) {
     $("#orientaciones a").remove();
     $('#creditos-var').text(0);
     $('#promedio-var').text('-');
+    $("[id='toggle-Materias Electivas']").css("background-color", "");
     if (orientaciones) $("#orientaciones-hidden").show();
     else $("#orientaciones-hidden").hide();
 
