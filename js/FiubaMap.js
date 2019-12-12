@@ -91,8 +91,6 @@ class FiubaMap {
     
     agregarMateria(mat, cuatri) {
         let aprobadasEnCuatri = this.aprobadas.get(cuatri)
-        console.log(cuatri)
-        console.log(aprobadasEnCuatri)
         if (!aprobadasEnCuatri)
             aprobadasEnCuatri = new Map()
         aprobadasEnCuatri.set(mat.id, mat.nota)

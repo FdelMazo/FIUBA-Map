@@ -47,9 +47,9 @@ $(document).ready(function () {
         let carrera = FIUBAMAP.carrera;
         let materias = mapToJson(FIUBAMAP.aprobadas)
         save(clave, carrera, materias);
-        setTimeout(function () {
-            window.location = "https://fdelmazo.github.io/FIUBA-Map?clave=" + clave;
-        }, 1000)
+        let url = new URL(window.location.href);
+        url.searchParams.set('clave', clave)    
+        window.history.pushState("", "", url.toString())
     });
 
     $('#dbload-button').on('click', function () {
