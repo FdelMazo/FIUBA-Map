@@ -69,13 +69,17 @@ class FiubaMap {
     actualizarCreditos() {
         const self = this
         let cred = 0
+        let credelec = 0;
         let materias = materiasAprobadas(self.aprobadas, self.cuatri)
         materias.forEach((id) => {
-            cred += this.materias.get(id).creditos
+            let m = this.materias.get(id)
+            if (m.categoria == "Materias Electivas") credelec+=m.creditos
+            else cred+=m.creditos
         })
 
-        $('#creditos-var').text(cred)
-        self.creditos = cred
+        $('#creditos').attr("title", "Obligatorias: "+cred+"\n"+"Electivas: "+credelec)
+        $('#creditos-var').text(cred+credelec)
+        self.creditos = cred+credelec
     }
 
     chequearNodosCRED() {
