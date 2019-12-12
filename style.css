@@ -209,3 +209,7 @@ button {
   right: 0;
   padding: 0 10px;
 }
+
+#help-list {
+  margin: 0 3em;
+}
