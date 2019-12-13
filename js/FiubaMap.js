@@ -45,6 +45,7 @@ class FiubaMap {
             }
         })
         this.actualizar()
+        this.chequearNodosCRED()
     }
 
     actualizar() {
