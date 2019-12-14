@@ -28,7 +28,7 @@ function getNext(cuatri) {
 
 function resetBindings(FMap) {
     const self = FMap;
-    $(document).on("keyup", function (event) {
+    $(document).off('keyup').on("keyup", function (event) {
         if (event.keyCode === 33) {
             $("#cuatri").val(function (i, oldval) {
                 return getPrev(oldval)
