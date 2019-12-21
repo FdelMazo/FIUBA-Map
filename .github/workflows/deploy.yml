@@ -1,4 +1,4 @@
-name: Deploy
+name: Build and Deploy
 
 on: [push]
 
@@ -9,5 +9,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: deploy
-      run: cat js/* > scripts.min.js
+    - name: install uglify
+      run: sudo npm install uglify-es -g
+    - name: build
+      run: cat js/* | uglifyjs -o scripts.min.js
+    - name: Commit
+      run: |
+        git add -f scripts.min.js
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "ci: Automated build push" -a | exit 0
+    - name: Push changes
+      if: github.ref == 'refs/heads/master'
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
