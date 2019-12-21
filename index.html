@@ -47,41 +47,39 @@
     <li class="left"><a href="https://github.com/fdelmazo/FIUBA-Map">
         <svg viewBox="0 0 16 16">
             <path d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"
-                  fill="white"></path>
+                    fill="white"></path>
         </svg>
     </a></li>
 
-    <li class="left"><a onclick="document.getElementById('help-modal').style.display='block'">
+    <li class="left"><a id='sendmailbtn' onclick="document.getElementById('mail-modal').style.display='block'">
         <svg viewBox="0 0 512 512">
-            <path d="M504 256c0 136.997-111.043 248-248 248S8 392.997 8 256C8 119.083 119.043 8 256 8s248 111.083 248 248zM262.655 90c-54.497 0-89.255 22.957-116.549 63.758-3.536 5.286-2.353 12.415 2.715 16.258l34.699 26.31c5.205 3.947 12.621 3.008 16.665-2.122 17.864-22.658 30.113-35.797 57.303-35.797 20.429 0 45.698 13.148 45.698 32.958 0 14.976-12.363 22.667-32.534 33.976C247.128 238.528 216 254.941 216 296v4c0 6.627 5.373 12 12 12h56c6.627 0 12-5.373 12-12v-1.333c0-28.462 83.186-29.647 83.186-106.667 0-58.002-60.165-102-116.531-102zM256 338c-25.365 0-46 20.635-46 46 0 25.364 20.635 46 46 46s46-20.636 46-46c0-25.365-20.635-46-46-46z"
-                  fill="white"></path>
+            <path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"
+                    fill="white"></path>
         </svg>
     </a></li>
 
-    <li class='right'><a id='creditos' title="Obligatorias: 0 &#013 Electivas: 0">Créditos: <var id='creditos-var'> 0 </var></a></li>
     <li class='right'><a title="Mantené apretado una materia!">Promedio: <var id='promedio-var'> - </var></a></li>
+    <li class="right dropdown">
+        <a id='creditos'>Créditos: <var id='creditos-var'> 0 </var></a>
+        <div class="dropdown-content" id='creditos-dropdown'></div>
+    </li>
+    
     <li class='right'><a class='toggle' id='toggle-Materias Electivas'>Electivas</a></li>
-
     <li class="right dropdown" id='orientaciones-hidden'>
         <a>Orientación</a>
         <div class="dropdown-content" id='orientaciones'></div>
     </li>
 </ul>
 
-<div class="modal" id="help-modal">
+<div class="modal" id="materia-modal"></div>
+
+<div class="modal" id="mail-modal">
     <div class="modal-content">
         <span class="close-button" onclick="this.parentElement.parentElement.style.display='none'">&times;</span>
-        <p>Te recibis con: </p>
-        <div id='help-list'></div>
-        <br/><br/>
-        <small>Cualquier tipo de feedback, sea una sugerencia, una funcionalidad que te gustaría ver, o algún error que encontraste, no dudes en hacérmelo saber!</small>
-        <br>
-        <small>Mandame un mail a <span style='color:magenta'>fdelmazo at fi.uba.ar</span></small>
+        <p>Cualquier tipo de feedback, sea una sugerencia, una funcionalidad que te gustaría ver, o algún error que encontraste, no dudes en hacérmelo saber!</p>
+        <p>Mandame un mail a <span style='color:magenta'>fdelmazo at fi.uba.ar</span></p>
     </div>
 </div>
-
-
-<div id="materia-modal"></div>
 
 <div id='warning'></div>
 
@@ -110,7 +108,7 @@
         </a>
     </li>
 
-    <li class="right">
+    <li class="right" title="Usa los botones de avanzar y retroceder de página!">
         <p>Cuatrimestre: <span><input id="cuatri" type="number" step=any></span></p>
     </li>
 </ul>
