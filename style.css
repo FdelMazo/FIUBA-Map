@@ -23,6 +23,7 @@ ul {
     overflow: hidden;
     background-color: #333;
     color: white;
+    width: 100%;
 }
 
 li a {
@@ -108,10 +109,6 @@ input[type=number] {
 #footer {
   position: fixed;
   bottom: 0;
-  left: 0;
-  border-radius: 0 5px 0 0;
-  display: flex;
-  align-items: center;
 }
 
 .modal {
@@ -202,14 +199,6 @@ button {
 
 #enfinal-button {
   background-color: #4ae9c1;
-}
-
-#cuatri-menu {
-  border-radius: 5px 0 0 0;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  padding: 0 10px;
 }
 
 #help-list {
