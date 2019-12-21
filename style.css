@@ -23,7 +23,6 @@ ul {
     overflow: hidden;
     background-color: #333;
     color: white;
-    width: 100%;
 }
 
 li a {
@@ -37,6 +36,7 @@ li a {
 li a:hover:not(.active) {
   cursor: pointer;
   background-color: #111;
+  bottom: 100%;
 }
 
 
@@ -57,6 +57,15 @@ li a:hover:not(.active) {
 .dropdown-content a:hover:not(.active) {
   cursor: pointer;
   background-color: gainsboro;
+}
+
+.dropup {
+  position: relative;
+  display: inline-block;
+}
+
+.dropup-content {
+  bottom: 50px;
 }
 
 .active {
@@ -99,16 +108,33 @@ svg {
 }
 
 input[type=text] {
-  margin: 10px;
+  margin: 8px;
+  font-size: small;
 }
 
 input[type=number] {
-  width: 4.5em;
+  width: 4em;
+  font-size: x-large;
+}
+
+#cuatri-li {
+  list-style-type: none;
+  position: fixed;
+  right: 0;
 }
 
 #footer {
   position: fixed;
   bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow: initial;
+  justify-content: space-between;
+}
+
+#creditos-dropdown {
+  white-space: nowrap;
 }
 
 .modal {
