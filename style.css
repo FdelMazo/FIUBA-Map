@@ -137,6 +137,7 @@ input[type=number] {
 }
 
 #cuatri-btns {
+  z-index: 1;
   display: flex;
   justify-content: space-between;
 }
