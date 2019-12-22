@@ -114,7 +114,7 @@ input[type=text] {
 
 input[type=number] {
   width: 4em;
-  font-size: x-large;
+  font-size: larger;
 }
 
 #cuatri-li {
