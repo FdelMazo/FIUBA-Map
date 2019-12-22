@@ -74,27 +74,19 @@ class Materia {
         const self = this;
         let nota = self.nota ? self.nota : '';
         let html = `
-        <div class="modal" style='display:block'>
-            <div id='materia-modal-content' class="modal-content">
-                <span onclick='$(this.parentElement.parentElement.parentElement).empty()' id="materiaclose-button" class="close-button">&times;</span>
-                <h3>[` + self.id + `] ` + self.label.split('\n[')[0] + ` (` + self.creditos + ` créditos)</h3>
-                <p>
-                    Nota:
-                    <input id='nota' class='materia-input' type="number" min="4" max="10" value="` + nota + `" />
-                </p>
-                <div id='materia-botones'>
-                    <button id='enfinal-button'>En Final</button>
-                    <button id='desaprobar-button'>Desaprobar</button>
-                    <button id='aprobar-button'>Aprobar</button>
-                </div>
-            </div>
+        <div class="snackbar">
+            <span class="close-button" onclick="$(this.parentElement.parentElement).empty();">&times;</span> 
+            <p><strong>[`+self.id+`] `+self.label.split('\n[')[0]+`</strong></p>    
+            <div><input id='nota' class='materia-input' type="number" min="4" max="10" placeholder="Nota" value="` + nota + `" />
+            <button id='aprobar-button'>Aprobar</button>
+            <button id='enfinal-button'>En Final</button>
         </div>
         `;
-        $('#materia-modal').append($(html));
+        $('#materia-snackbar').append($(html));
     
         $('#aprobar-button').on('click', function () {
             let nota = $('#nota').val();
-            if (!nota) nota = 0;
+            if (!nota || nota < 4 || nota >10) nota = 0;
             FIUBAMAP.aprobar(self.id, nota, FIUBAMAP.cuatri);
             $("#materiaclose-button").click()
         });
@@ -104,12 +96,7 @@ class Materia {
             $("#materiaclose-button").click()
         });
     
-        $('#desaprobar-button').on('click', function () {
-            FIUBAMAP.desaprobar(self.id);
-            $("#materiaclose-button").click()
-        })
-    
-        $('#materia-modal').on("keyup", function (event) {
+        $('#materia-snackbar').on("keyup", function (event) {
             if (event.keyCode === 13) {
                 event.preventDefault();
                 $("#aprobar-button").click()

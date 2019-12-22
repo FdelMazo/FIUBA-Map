@@ -73,18 +73,19 @@ function resetBindings(FMap) {
     self.network.off('click').on("click", function (params) {
         if (!params.event.isFinal) return;
         let id = params.nodes[0];
-        if (!id) return;
+        if (!id) {
+            $(".close-button").click();
+            return;
+        }
         if (!self.materias.get(id).aprobada || self.materias.get(id).nota == -1) {
             self.aprobar(id, 0, self.cuatri)
+            $(".close-button").click();
+            self.materias.get(id).mostrarOpciones()
         } else {
             self.desaprobar(id)
+            $(".close-button").click();
         }
         self.chequearNodosCRED()
-    });
-
-    self.network.off('hold').on("hold", function (params) {
-        let id = params.nodes[0];
-        if (id) self.materias.get(id).mostrarOpciones()
     });
 }
 

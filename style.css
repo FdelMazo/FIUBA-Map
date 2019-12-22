@@ -191,6 +191,12 @@ input[type=number] {
   }
 }
 
+.snackbar {
+  padding: 1em;
+  background-color: lightblue;
+  color: white;
+}
+
 .alert {
   padding: 20px;
   background-color: salmon;
@@ -199,11 +205,6 @@ input[type=number] {
 
 #materia-modal-content {
   width: 40%;
-}
-
-#materia-botones {
-  float: right;
-  margin: 0 -10px;
 }
 
 button {
@@ -219,14 +220,25 @@ button {
   background-color: #4CAF50;
 }
 
-#desaprobar-button {
-  background-color: #f44336;
-}
-
 #enfinal-button {
   background-color: #4ae9c1;
 }
 
 #help-list {
   margin: 0 3em;
+}
+
+#materia-snackbar {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+}
+
+#materia-snackbar p {
+  margin: 0;
+}
+
+#nota {
+  font-size: medium;
+  margin: 0 2em;
 }
