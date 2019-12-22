@@ -109,6 +109,7 @@ svg {
 
 input[type=text] {
   margin: 8px;
+  width: 15vw;
   font-size: small;
 }
 
@@ -121,16 +122,14 @@ input[type=number] {
   list-style-type: none;
   position: fixed;
   right: 0;
+  z-index: 1;
 }
 
 #footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  display: flex;
-  align-items: center;
   overflow: initial;
-  justify-content: space-between;
 }
 
 #creditos-dropdown {
@@ -190,6 +189,26 @@ input[type=number] {
     display: none;
   }
 }
+
+@media (max-width: 500px) {
+  #carrera-actual-short {
+    display: none;
+  }
+
+  #carrera-actual-long {
+    display: none;
+  }
+  #mail {
+    display: none;
+  }
+  #gh {
+    display: none;
+  }
+  #cuatri-text {
+    display: none;
+  }
+}
+
 
 .snackbar {
   padding: 1em;
