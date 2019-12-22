@@ -43,6 +43,21 @@ function resetBindings(FMap) {
         }
     })
     
+    $("#next-cuatri").off('click').on("click", function (event) {
+        $("#cuatri").val(function (i, oldval) {
+            return getNext(oldval)
+        })
+        self.cambiarCuatri()
+    })
+
+    $("#prev-cuatri").off('click').on("click", function (event) {
+        $("#cuatri").val(function (i, oldval) {
+            return getPrev(oldval)
+        })
+        self.cambiarCuatri()
+    })
+
+
     $('#cuatri').off('change').on('change', function () {
         $("#cuatri").val(function(i, oldval) {
             if (oldval <= self.cuatri)

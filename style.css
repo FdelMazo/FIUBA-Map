@@ -114,7 +114,7 @@ input[type=text] {
 }
 
 input[type=number] {
-  width: 4em;
+  width: 3em;
   font-size: larger;
 }
 
@@ -136,6 +136,16 @@ input[type=number] {
   white-space: nowrap;
 }
 
+#cuatri-btns {
+  display: flex;
+  justify-content: space-between;
+}
+#cuatri-btns a {
+  padding:0 10px;
+}
+#cuatri-btns a:hover:not(.active) {
+  background-color: initial;
+}
 .modal {
   display: none;
   position: fixed;
@@ -204,9 +214,6 @@ input[type=number] {
   #gh {
     display: none;
   }
-  #cuatri-text {
-    display: none;
-  }
 }
 
 
@@ -260,4 +267,13 @@ button {
 #nota {
   font-size: medium;
   margin: 0 2em;
+}
+
+#cuatri::-webkit-outer-spin-button,
+#cuatri::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#cuatri {
+  -moz-appearance:textfield;
 }
