@@ -168,6 +168,10 @@ input {
     width: 15ch;
     text-align: left
   }
+  #clave-buttons {
+    display: inline-block;
+    white-space: nowrap;
+  }
 
 #creditos {
   display: inline-block

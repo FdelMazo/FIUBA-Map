@@ -1,6 +1,13 @@
 function resetBindings(FMap) {
     const self = FMap;
-    
+    $("#cuatri-next i").on("click", function (event) {
+        setCuatri(getNext(getCuatri()))
+        self.cambiarCuatri()
+    })
+    $("#cuatri-prev").on("click", function (event) {
+        setCuatri(getPrev(getCuatri()))
+        FIUBAMAP.cambiarCuatri()
+    })
     $('.toggle').off('click').on('click', function () {
         let [, id] = $(this).attr('id').split('-');
         if (self.network.isCluster('cluster-' + id)) {

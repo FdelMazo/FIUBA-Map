@@ -34,16 +34,6 @@ function getNext(cuatri) {
 }
 
 $(document).ready(function () {
-    $("#cuatri-next").on("click", function (event) {
-        setCuatri(getNext(getCuatri()))
-        FIUBAMAP.cambiarCuatri()
-    })
-
-    $("#cuatri-prev").on("click", function (event) {
-        setCuatri(getPrev(getCuatri()))
-        FIUBAMAP.cambiarCuatri()
-    })
-
     $(document).on("keyup", function (event) {
         if (event.keyCode === 33) {
             setCuatri(getPrev(getCuatri()))
