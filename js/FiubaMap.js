@@ -1,17 +1,17 @@
 FIUBAMAP = null;
 
 class FiubaMap {
-    constructor(data, carrera, noblig, nelec, nelectpp) {
+    constructor(data, carrera) {
         FIUBAMAP = this
         this.init(data);
         this.carrera = carrera;
         this.creditos = 0;
         this.cuatri = cuatriActual()
-        this.noblig = noblig
-        this.setearCreditos(nelec, nelectpp)
         setCuatri(this.cuatri)
         this.aprobadas = new Map();
         resetBindings(this)
+        this.actualizarCreditos();
+        this.actualizarPromedio();
     }
 
     aprobar(id, nota, cuatri) {
@@ -74,32 +74,14 @@ class FiubaMap {
     actualizarCreditos() {
         const self = this
         let cred = 0
-        let credelec = 0;
         let materias = materiasAprobadas(self.aprobadas, self.cuatri)
         materias.forEach((id) => {
             let m = this.materias.get(id)
-            if (m.categoria == "Materias Electivas") credelec+=m.creditos
-            else cred+=m.creditos
+            cred+=m.creditos
         })
 
-        $('#obligatorias-var').text(cred)
-        $('.electivas-var').text(credelec)
-        $('#creditos-var').text(cred+credelec)
-        self.creditos = cred+credelec
-    }
-
-    setearCreditos(nelec, nelectpp) {
-        let html = `<a>Obligatorias: <var id='obligatorias-var'> 0 </var>/`+this.noblig+`</a>`
-        if (nelectpp) {
-            html+= `
-            <a>Electivas (Tésis): <var class='electivas-var'> 0 </var>/`+nelec+`</a>
-            <a>Electivas (TPP): <var class='electivas-var'> 0 </var>/`+nelectpp+`</a>
-            `
-        }
-        else {
-            html += `<a>Electivas: <var class='electivas-var'> 0 </var>/`+nelec+`</a>`
-        }
-        $('#creditos-dropdown').append($(html));
+        $('#creditos-var').text(cred)
+        self.creditos = cred
     }
 
     chequearNodosCRED() {
