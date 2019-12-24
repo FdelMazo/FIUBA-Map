@@ -136,7 +136,6 @@ function warningSnackbar(clave){
     `;
     $('#header-snackbar').html($(html));
     $('#header-snackbar').addClass('snackbar');
-    $('#header-snackbar').addClass('alert-snackbar');
 }
 
 function defaultHeaderSnackbar() {

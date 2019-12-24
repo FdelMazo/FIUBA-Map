@@ -130,7 +130,7 @@ html, body {
 
 @media (max-width: 400px) {
   #materia {
-    width: 100%;
+    width: 100vw;
     border-right: none;
   }
 }
@@ -160,14 +160,11 @@ button {
 
 .alert {
   background-color: var(--alert);
+  width:100vw;
 }
 
 .center-snackbar {
   margin: 0 auto;
-}
-
-.alert-snackbar {
-  width: 100%;
 }
 
 #promedio {
