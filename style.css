@@ -14,7 +14,7 @@ html, body {
   background-color: var(--white);
 }
 
-#header { top: 0; }
+#header { top: 0; z-index: 2;}
 #grafo { height: 100%; }
 #footer { bottom: 0; }
 
@@ -24,7 +24,7 @@ html, body {
 .menu {
   z-index: 1;
   width: 100%;
-  position: fixed;
+  position: absolute;
 } 
 
 .navbar {
