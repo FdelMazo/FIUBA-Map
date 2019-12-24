@@ -156,7 +156,7 @@ class FiubaMap {
         }
         else {
             let html = `
-            <a>
+            <a class="dropbtn">
                 <span>Materias</span>
                 <i class="fas fa-fw fa-caret-down"></i>
             </a>

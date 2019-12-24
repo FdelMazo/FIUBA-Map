@@ -14,30 +14,50 @@ html, body {
   background-color: var(--white);
 }
 
-#header { top: 0; z-index: 2;}
-#grafo { height: 100%; }
-#footer { bottom: 0; }
+#header { 
+  top: 0; 
+}
+#header-navbar {
+  z-index: 3;
+}
+#header-snackbar {
+  z-index: 2;
+}
+#grafo { 
+  z-index: 1;
+  position: relative; 
+  height: 100%; 
+}
+#footer-snackbar {
+  z-index: 2;
+}
+#footer-navbar {
+  z-index: 2;
+}
+#footer {
+  bottom: 0; 
+}
 
 .center { text-align: center; }
 .right { text-align: right; }
 
 .menu {
-  z-index: 1;
   width: 100%;
   position: absolute;
 } 
 
 .navbar {
+  position: relative;
   display:flex;
   justify-content: space-between;
   background-color: var(--black);
   color: var(--white); 
   }
-  .navbar a:hover:not(.active) {
+  .navbar a:hover:not(.active):not(.dropbtn) {
     background-color: var(--grey);
   }
 
-a {
+  a {
   cursor: pointer;
   display: inline-block;
   padding: 1em;
@@ -64,6 +84,7 @@ a {
   white-space: nowrap;
   display: none;
   position: absolute;
+  z-index: 3;
   background-color: var(--white);
   color: black;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -73,6 +94,8 @@ a {
   }
 
 .snackbar {
+  width: max-content;
+  position: relative;
   overflow:hidden; }
   .snackbar p {
     margin: 0;
@@ -136,7 +159,15 @@ button {
 }
 
 .alert {
-  background-color: var(--alert)
+  background-color: var(--alert);
+}
+
+.center-snackbar {
+  margin: 0 auto;
+}
+
+.alert-snackbar {
+  width: 100%;
 }
 
 #promedio {
