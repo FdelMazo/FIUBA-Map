@@ -19,6 +19,7 @@ html, body {
 #footer { bottom: 0; }
 
 .center { text-align: center; }
+.right { text-align: right; }
 
 .menu {
   z-index: 1;
