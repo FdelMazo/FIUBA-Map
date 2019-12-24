@@ -74,32 +74,33 @@ class Materia {
         const self = this;
         let nota = self.nota ? self.nota : '';
         let html = `
-        <div class="snackbar">
-            <span class="close-button" onclick="$(this.parentElement.parentElement).empty();">&times;</span> 
-            <p><strong>[`+self.id+`] `+self.label.split('\n[')[0]+`</strong></p>    
-            <div><input id='nota' class='materia-input' type="number" min="4" max="10" placeholder="Nota" value="` + nota + `" />
-            <button id='aprobar-button'>Aprobar</button>
-            <button id='enfinal-button'>En Final</button>
+        <div id="materia" class="info center">
+            <p id="materia-close" class="close-button" onclick="defaultHeaderSnackbar(); setCuatri(FIUBAMAP.cuatri)"><i class="fas fa-fw fa-times"></i></p> 
+            <p><strong>[`+self.id+`] </strong>`+self.label.split('(')[0]+`</p>
+            <input type="number" min="4" max="10" placeholder="Nota" value="` + nota + `" />
+            <button id='materia-aprobar' style="background-color: `+FIUBAMAP.network.groups.groups['Aprobadas'].color+`">Aprobar</button>
+            <div><button id='materia-enfinal' style="background-color:`+FIUBAMAP.network.groups.groups['En Final'].color+`">Poner En Final</button></div>
         </div>
         `;
-        $('#materia-snackbar').append($(html));
+        $('#header-snackbar').html($(html));
     
-        $('#aprobar-button').on('click', function () {
-            let nota = $('#nota').val();
-            if (!nota || nota < 4 || nota >10) nota = 0;
+        $('#materia-aprobar').on('click', function () {
+            let nota = $('#materia input').val();
+            if (nota < 4 || nota > 10) return;
+            if (!nota) nota = 0;
             FIUBAMAP.aprobar(self.id, nota, FIUBAMAP.cuatri);
-            $("#materiaclose-button").click()
+            $("#materia-close").click()
         });
     
-        $('#enfinal-button').on('click', function () {
+        $('#materia-enfinal').on('click', function () {
             FIUBAMAP.aprobar(self.id, -1, FIUBAMAP.cuatri);
-            $("#materiaclose-button").click()
+            $("#materia-close").click()
         });
     
-        $('#materia-snackbar').on("keyup", function (event) {
+        $('#materia').on("keyup", function (event) {
             if (event.keyCode === 13) {
                 event.preventDefault();
-                $("#aprobar-button").click()
+                $("#materia-aprobar").click()
             }
         });
     }

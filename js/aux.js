@@ -1,73 +1,6 @@
-function cuatriActual() {
-    date = new Date()
-    anio = date.getYear() + 1900
-    mes = date.getMonth()
-    if (mes <= 6) cuatri = 1
-    else cuatri = 2
-    return parseFloat(anio+'.'+cuatri)
-}
-
-function getPrev(cuatri) {
-    cuatri = parseFloat(cuatri)
-    let dec = (cuatri - Math.floor(cuatri)).toFixed(1)*10
-    if (dec == 1)
-        return parseFloat((cuatri - 0.9).toFixed(1))
-    else
-        return parseFloat((cuatri - 0.1).toFixed(1))
-}
-
-function getNext(cuatri) {
-    cuatri = parseFloat(cuatri)
-    let dec = (cuatri - Math.floor(cuatri)).toFixed(1)*10
-    if (dec == 1) {
-        return parseFloat((cuatri + 0.1).toFixed(1))
-    }
-    else
-        return parseFloat((cuatri + 0.9).toFixed(1))
-}
-
 function resetBindings(FMap) {
     const self = FMap;
-    $(document).off('keyup').on("keyup", function (event) {
-        if (event.keyCode === 33) {
-            $("#cuatri").val(function (i, oldval) {
-                return getPrev(oldval)
-            })
-            self.cambiarCuatri()
-        }
-        if (event.keyCode ==34) {
-            $("#cuatri").val(function (i, oldval) {
-                return getNext(oldval)
-            })
-            self.cambiarCuatri()
-        }
-    })
     
-    $("#next-cuatri").off('click').on("click", function (event) {
-        $("#cuatri").val(function (i, oldval) {
-            return getNext(oldval)
-        })
-        self.cambiarCuatri()
-    })
-
-    $("#prev-cuatri").off('click').on("click", function (event) {
-        $("#cuatri").val(function (i, oldval) {
-            return getPrev(oldval)
-        })
-        self.cambiarCuatri()
-    })
-
-
-    $('#cuatri').off('change').on('change', function () {
-        $("#cuatri").val(function(i, oldval) {
-            if (oldval <= self.cuatri)
-                return getPrev(self.cuatri)                
-            else 
-                return getNext(self.cuatri)
-        })
-        self.cambiarCuatri()
-    })
-
     $('.toggle').off('click').on('click', function () {
         let [, id] = $(this).attr('id').split('-');
         if (self.network.isCluster('cluster-' + id)) {
@@ -153,11 +86,11 @@ function crearNetwork(nodes, edges) {
         layout: {hierarchical: {enabled: true, direction: 'LR', levelSeparation: 150}},
         edges: {arrows: {to: {enabled: true, scaleFactor: 0.7, type: 'arrow'}}},
         groups: {
-            'Aprobadas': {color: '#7BE141'},
-            'En Final': {color: '#4ae9c1'},
-            'Habilitadas': {color: '#ffa500'},
-            'Materias Electivas': {color: '#FA8072'},
-            'Materias Obligatorias': {color: '#ADD8E6'},
+            'Materias Obligatorias': {color: '#74b9ff'},
+            'Materias Electivas': {color: '#a29bfe'},
+            'Habilitadas': {color: '#fd9644'},
+            'Aprobadas': {color: '#55efc4'},
+            'En Final': {color: '#ff7675'},
             // Informática
             'Orientación: Gestión Industrial de Sistemas': {color: '#FFFF00'},
             'Orientación: Sistemas Distribuidos': {color: '#7FFFD4'},
@@ -181,4 +114,27 @@ function crearNetwork(nodes, edges) {
     };
 
     return new vis.Network($('#grafo')[0], data, options);
+}
+
+function warningSnackbar(clave){
+    let html = `
+        <div class="alert">
+            <p class="close-button" onclick="defaultHeaderSnackbar(); setCuatri(FIUBAMAP.cuatri);"><i class="fas fa-fw fa-times"></i></p> 
+            <p><strong>Padrón no registrado!</strong> Seleccioná tu carrera, marca las materias que aprobaste y toca el boton de guardar.
+            <br>
+            Una vez guardado, podés entrar a <a href=https://fdelmazo.github.io/FIUBA-Map/?clave=` + clave + `>https://fdelmazo.github.io/FIUBA-Map/?clave=` + clave + `</a> y ver tu progreso.</p>
+        </div>
+    `;
+    $('#header-snackbar').html($(html));
+}
+
+function defaultHeaderSnackbar() {
+    let html = `
+    <div id="cuatri" class="center">
+        <a id="cuatri-prev"><i class="fas fa-fw fa-arrow-left"></i></a> 
+        <input readonly id="cuatri input" size="7" type="text">
+        <a id="cuatri-next"><i class="fas fa-fw fa-arrow-right"></i></a> 
+    </div>
+    `;
+    $('#header-snackbar').html($(html));
 }

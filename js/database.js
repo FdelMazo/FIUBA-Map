@@ -10,14 +10,14 @@ function save(clave, carrera, materias) {
 }
 
 function loadMap(api, clave) {
-    $("#clave").val(clave);
+    $("#clave input").val(clave);
     let data = api.feed.entry;
     let usuario = null;
     data.forEach(fila => {
         if (fila.gsx$clave.$t == clave) usuario = fila
     });
     if (!usuario) {
-        warning(clave);
+        warningSnackbar(clave);
         $("#sistemas").click()
         return
     }
@@ -28,22 +28,10 @@ function loadMap(api, clave) {
     cargarMaterias(materiasAprobadas)
 }
 
-function warning(clave) {
-    let html = `
-        <small><div class="alert">
-            <span class="close-button" onclick="this.parentElement.style.display='none';">&times;</span> 
-            <p><strong>Padrón no registrado!</strong> Seleccioná tu carrera, marca las materias que aprobaste y toca el boton de guardar.</p>
-            <p>Una vez guardado, podés entrar a <a href=https://fdelmazo.github.io/FIUBA-Map/?clave=` + clave + `>https://fdelmazo.github.io/FIUBA-Map/?clave=` + clave + `</a> y ver tu progreso.</p>
-        </div></small>
-    `;
-    $('#warning').append($(html));
-}
-
 $(document).ready(function () {
-    $('#dbsave-button').on('click', function () {
-        let clave = $("#clave").val();
-        if (!clave)
-            return;
+    $('#clave-save').on('click', function () {
+        let clave = $("#clave input").val();
+        if (!clave) return;
         let carrera = FIUBAMAP.carrera;
         let materias = mapToJson(FIUBAMAP.aprobadas)
         save(clave, carrera, materias);
@@ -52,16 +40,16 @@ $(document).ready(function () {
         window.history.pushState("", "", url.toString())
     });
 
-    $('#dbload-button').on('click', function () {
-        let clave = $("#clave").val();
+    $('#clave-load').on('click', function () {
+        let clave = $("#clave input").val();
         if (!clave) return;
         window.location = "https://fdelmazo.github.io/FIUBA-Map?clave=" + clave;
     });
 
-    $('#clave').on("keyup", function (event) {
+    $('#clave input').on("keyup", function (event) {
         if (event.keyCode === 13) {
             event.preventDefault();
-            $("#dbload-button").click();
+            $("#clave-load").click();
         }
     });
 });

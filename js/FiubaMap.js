@@ -9,7 +9,7 @@ class FiubaMap {
         this.cuatri = cuatriActual()
         this.noblig = noblig
         this.setearCreditos(nelec, nelectpp)
-        $("#cuatri").val(this.cuatri)
+        setCuatri(this.cuatri)
         this.aprobadas = new Map();
         resetBindings(this)
     }
@@ -31,7 +31,6 @@ class FiubaMap {
     
     cambiarCuatri() {
         const self = this
-        self.cuatri = parseFloat($("#cuatri").val())
         self.aprobadas.forEach((map,cuatri) => {
             cuatri = parseFloat(cuatri)
             if (cuatri > self.cuatri) {
@@ -65,8 +64,11 @@ class FiubaMap {
             cantidad++
         })
         let promedio = (sumatoria / cantidad).toFixed(2);
-        if (!isNaN(promedio)) $('#promedio-var').text(promedio);
-        else $('#promedio-var').text('-');
+        if (!isNaN(promedio))  {
+            $('#promedio').text("Promedio: "+promedio);
+            $("#promedio").show();
+        }
+        else $('#promedio').empty();
     }
 
     actualizarCreditos() {
@@ -80,14 +82,14 @@ class FiubaMap {
             else cred+=m.creditos
         })
 
-        $('.obligatorias-var').text(cred)
+        $('#obligatorias-var').text(cred)
         $('.electivas-var').text(credelec)
         $('#creditos-var').text(cred+credelec)
         self.creditos = cred+credelec
     }
 
     setearCreditos(nelec, nelectpp) {
-        let html = `<a>Obligatorias: <var class='obligatorias-var'> 0 </var>/`+this.noblig+`</a>`
+        let html = `<a>Obligatorias: <var id='obligatorias-var'> 0 </var>/`+this.noblig+`</a>`
         if (nelectpp) {
             html+= `
             <a>Electivas (Tésis): <var class='electivas-var'> 0 </var>/`+nelec+`</a>
@@ -157,8 +159,28 @@ class FiubaMap {
         this.nodos = new vis.DataSet(nodos)
         this.network = crearNetwork(this.nodos, new vis.DataSet(aristas));
         
-        grupos.forEach(g => {
-            if (g.includes('Electivas') || g.includes('Orientación')) {
+        let electivas = {
+            joinCondition: function (nodeOptions) {
+                return nodeOptions.categoria === 'Materias Electivas';
+            },
+            clusterNodeProperties: {id: 'cluster-Materias Electivas', hidden: true, level: 20, allowSingleNodeCluster: true}
+        }
+        let htmlelectivas = `<a class='toggle' id='toggle-Materias Electivas'>Electivas</a>`
+        this.network.cluster(electivas);
+
+        grupos = grupos.filter(g => g.includes('Orientación'))
+        if (grupos.length == 0) {
+            $("#materias").append(htmlelectivas)
+        }
+        else {
+            let html = `
+            <a>
+                <span>Materias</span>
+                <i class="fas fa-fw fa-caret-down"></i>
+            </a>
+            <div id='materias-dropdown' class="dropdown-content dropdown-content-right">`+htmlelectivas+`</div>`
+            $("#materias").append(html)
+            grupos.forEach(g => {
                 let cluster = {
                     joinCondition: function (nodeOptions) {
                         return nodeOptions.categoria === g;
@@ -166,11 +188,9 @@ class FiubaMap {
                     clusterNodeProperties: {id: 'cluster-' + g, hidden: true, level: 20, allowSingleNodeCluster: true}
                 }
                 this.network.cluster(cluster);
-                if (g.includes('Orientación')) {
-                    let [, orientacion] = g.split(':');
-                    $("#orientaciones").append("<a class='toggle' id='toggle-" + g + "'>" + orientacion + "</a>");
-                }
-            }
-        })
+                let [, categoria] = g.split(':');
+                $("#materias-dropdown").append("<a class='toggle' id='toggle-" + g + "'>" + categoria + "</a>");
+            })
+        }
     }
 }
