@@ -93,25 +93,26 @@ function crearNetwork(nodes, edges) {
         layout: {hierarchical: {enabled: true, direction: 'LR', levelSeparation: 150}},
         edges: {arrows: {to: {enabled: true, scaleFactor: 0.7, type: 'arrow'}}},
         groups: {
-            'Materias Obligatorias': {color: '#74b9ff'},
-            'Materias Electivas': {color: '#a29bfe'},
-            'Habilitadas': {color: '#fd9644'},
+            'CBC': {color: '#FDA7DF'},
             'Aprobadas': {color: '#55efc4'},
-            'En Final': {color: '#FFC312'},
+            'Habilitadas': {color: '#FDA7DF'},
+            'En Final': {color: '#fdcb6e'},
+            'Materias Obligatorias': {color: '#ff7675'},
+            'Materias Electivas': {color: '#a29bfe'},
             // Informática
             'Orientación: Gestión Industrial de Sistemas': {color: '#fab1a0'},
             'Orientación: Sistemas Distribuidos': {color: '#C4E538'},
-            'Orientación: Sistemas de Producción': {color: '#FDA7DF'},
+            'Orientación: Sistemas de Producción': {color: '#fd79a8'},
             // Mecánica
             'Orientación: Diseño Mecánico': {color: '#fab1a0'},
             'Orientación: Termomecánica': {color: '#C4E538'},
-            'Orientación: Metalúrgica': {color: '#FDA7DF'},
+            'Orientación: Metalúrgica': {color: '#fd79a8'},
             'Orientación: Computación Aplicada': {color: '#BDC581'},
             'Orientación: Industrias': {color: '#EE5A24'},
             // Electrónica
             'Orientación: Multiples Orientaciones': {color: '#fab1a0'},
             'Orientación: Procesamiento de Señales': {color: '#C4E538'},
-            'Orientación: Automatización y Control': {color: '#FDA7DF'},
+            'Orientación: Automatización y Control': {color: '#fd79a8'},
             'Orientación: Física Electrónica': {color: '#BDC581'},
             'Orientación: Telecomunicaciones': {color: '#EE5A24'},
             'Orientación: Sistemas Digitales y Computación': {color: '#FFE4E1'},
@@ -144,4 +145,15 @@ function defaultHeaderSnackbar() {
     </div>
     `;
     $('#header-snackbar').html($(html));
+}
+
+
+function defaultFooterSnackbar() {
+    let html = `
+    <div>
+        <a target="_blank" href="https://github.com/fdelmazo/FIUBA-Map"><i class="fab fa-fw fa-github"></i></a> 
+        <a><i onclick="$('#mail-content').toggle()" class="fas fa-fw fa-envelope"></i><span id="mail-content"> fdelmazo at fi.uba.ar</span></a> 
+    </div>
+    `;
+    $('#footer-snackbar').html($(html));
 }

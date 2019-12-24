@@ -3,8 +3,8 @@
   --white: #dfe6e9;
   --grey: #b2bec3;
   --main: #55efc4;
-  --info: #74b9ff;
-  --alert: #fab1a0;
+  --info: #faeee7;
+  --alert: #ff7675;
 }
 
 html, body {
@@ -44,6 +44,14 @@ a {
   text-decoration: none; 
 }
 
+#materia {
+  padding: 0.5em;
+  width: max-content;
+  background-color: var(--info);
+  left: 0;
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+}
 
 #footer-snackbar a {
   font-size: larger;
@@ -60,7 +68,7 @@ a {
   background-color: var(--white);
   color: black;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1; }
+  }
   .dropdown-content a {
     display: block;
   }
@@ -128,12 +136,12 @@ button {
   background-color: var(--alert)
 }
 
-.info {
-  background-color: var(--info);
-}
-
 #promedio {
   display: none;
+}
+
+#materia div {
+  padding: 0em 2em
 }
 
 #materia-enfinal {

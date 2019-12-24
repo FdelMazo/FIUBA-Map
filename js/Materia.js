@@ -17,6 +17,7 @@ class Materia {
         if (this.label.includes('['))
             this.label = this.label.split('\n[')[0];
         if (nota == -1) {
+            this.label += '\n[Final]';
             this.actualizar();
             return
         }
@@ -74,15 +75,17 @@ class Materia {
         const self = this;
         let nota = self.nota ? self.nota : '';
         let html = `
-        <div id="materia" class="info center">
-            <p id="materia-close" class="close-button" onclick="defaultHeaderSnackbar(); setCuatri(FIUBAMAP.cuatri)"><i class="fas fa-fw fa-times"></i></p> 
-            <p><strong>[`+self.id+`] </strong>`+self.label.split('(')[0]+`</p>
-            <input type="number" min="4" max="10" placeholder="Nota" value="` + nota + `" />
-            <button id='materia-aprobar' style="background-color: `+FIUBAMAP.network.groups.groups['Aprobadas'].color+`">Aprobar</button>
+        <div id="materia" class="center">
+            <p id="materia-close" class="close-button" onclick="defaultFooterSnackbar();"><i class="fas fa-fw fa-times"></i></p> 
+            <small><p><strong>[`+self.id+`] </strong>`+self.label.split('(')[0]+`</p></small>
+            <div>
+                <input type="number" min="4" max="10" placeholder="Nota" value="` + nota + `" />
+                <button id='materia-aprobar' style="background-color: `+FIUBAMAP.network.groups.groups['Aprobadas'].color+`">Aprobar</button>
+            </div>
             <div><button id='materia-enfinal' style="background-color:`+FIUBAMAP.network.groups.groups['En Final'].color+`">Poner En Final</button></div>
         </div>
         `;
-        $('#header-snackbar').html($(html));
+        $('#footer-snackbar').html($(html));
     
         $('#materia-aprobar').on('click', function () {
             let nota = $('#materia input').val();
