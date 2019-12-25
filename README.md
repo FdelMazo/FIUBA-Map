@@ -6,19 +6,21 @@ Mapa de materias y sus correlativas de la Facultad de Ingeniería
 
 La idea de este proyecto es presentar de una manera interactiva y visualmente rica en información el plan de estudios de las carreras de la Facultad de Ingeniería, Universidad de Buenos Aires, para saber que materias se pueden cursar, cuantos créditos se tienen actualmente y demás.
 
-<a href='https://imgur.com/QkXbwFc'><img src='https://i.imgur.com/QkXbwFch.gif'></a>
+<a href='https://imgur.com/QkXbwFc'><img src='fmap.png'></a>
 
-El proceso para agregar una carrera es:
+Features:
 
-* Descargar el PDF con el plan de estudios de la pagina de [FIUBA](http://www.fi.uba.ar/es/grado)
+* Tiene todas las carreras que se dan en la Facultad de Ingeniería, en sus respectivos últimos planes de estudio.
 
-* Pseudo procesar el PDF con [pdfToCSV.py](pdfToCSV.py): este script de Python *intenta* agarrar todo el texto del PDF recibido que contenga información de las materias, y convertirlo en un CSV. Pero como los PDFs que proporciona la facultad no son todos iguales, es muy dificil automatizar este proceso. Es por esto que siempre después de correr el script, hay que verificar manualmente que los valores del CSV correspondan al plan.
+* Todas las carreras incluyen todas las materias electivas y todas las materias de sus respectivas orientaciones.
 
-* Agregar en el menu de [index.html](index.html) la carrera
+* Base de datos! De querer guardar la información cuatrimestre a cuatrimestre, uno puede marcar todas las materias que aprobó y agregar su padrón (o cualquier clave) y la información se va a guardar para la próxima vez que entre.
 
-* Agregar la carrera en el switch de [main.js](js/main.js)
+* Soporta un 'historial' de cuatrimestres, para ver el progreso en la carrera o poder planear cuatrimestres a futuro. El cuatrimestre se puede cambiar con las flechas, o con las teclas de retroceder y avanzar página.
 
-Después, se parsea el CSV y lo convierte en una Network de [vis.js](https://visjs.org/docs/network/)
+* Calcular el Promedio! Cuando se clickea una materia para marcarla como aprobada, también sale un menu donde se puede poner la nota con la que se aprobó, y después con eso se calcula el promedio.
+
+* Poner materias en final! Para no olvidarse los finales colgados
 
 ---
  
