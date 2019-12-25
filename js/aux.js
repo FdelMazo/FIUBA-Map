@@ -93,11 +93,11 @@ function crearNetwork(nodes, edges) {
         layout: {hierarchical: {enabled: true, direction: 'LR', levelSeparation: 150}},
         edges: {arrows: {to: {enabled: true, scaleFactor: 0.7, type: 'arrow'}}},
         groups: {
-            'CBC': {color: '#FDA7DF'},
-            'Aprobadas': {color: '#55efc4'},
-            'Habilitadas': {color: '#FDA7DF'},
-            'En Final': {color: '#fdcb6e'},
-            'Materias Obligatorias': {color: '#ff7675'},
+            'Aprobadas': {color: '#1dd1a1'},
+            'CBC': {color: '#ff9f43'},
+            'Habilitadas': {color: '#ff9f43'},
+            'En Final': {color: '#feca57'},
+            'Materias Obligatorias': {color: '#54a0ff'},
             'Materias Electivas': {color: '#a29bfe'},
             // Informática
             'Orientación: Gestión Industrial de Sistemas': {color: '#fab1a0'},
