@@ -1,10 +1,10 @@
 function resetBindings(FMap) {
     const self = FMap;
-    $("#cuatri-next i").on("click", function (event) {
+    $("#cuatri-next i").off('click').on("click", function (event) {
         setCuatri(getNext(getCuatri()))
         self.cambiarCuatri()
     })
-    $("#cuatri-prev").on("click", function (event) {
+    $("#cuatri-prev").off('click').on("click", function (event) {
         setCuatri(getPrev(getCuatri()))
         FIUBAMAP.cambiarCuatri()
     })
