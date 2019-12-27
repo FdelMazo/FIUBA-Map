@@ -116,7 +116,6 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $("#grafo").html("<div class='loader'></div>");
-    defaultHeaderSnackbar()
     defaultFooterSnackbar()
     let url = new URL(window.location.href);
     let clave = url.searchParams.get('clave')

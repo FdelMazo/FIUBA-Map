@@ -44,4 +44,12 @@ $(document).ready(function () {
             FIUBAMAP.cambiarCuatri()
         }
     })
+    $("#cuatri-next").on("click", function (event) {
+        setCuatri(getNext(getCuatri()))
+        FIUBAMAP.cambiarCuatri()
+    })
+    $("#cuatri-prev").on("click", function (event) {
+        setCuatri(getPrev(getCuatri()))
+        FIUBAMAP.cambiarCuatri()
+    })
 })

@@ -1,13 +1,5 @@
 function resetBindings(FMap) {
     const self = FMap;
-    $("#cuatri-next i").off('click').on("click", function (event) {
-        setCuatri(getNext(getCuatri()))
-        self.cambiarCuatri()
-    })
-    $("#cuatri-prev").off('click').on("click", function (event) {
-        setCuatri(getPrev(getCuatri()))
-        FIUBAMAP.cambiarCuatri()
-    })
     $('.toggle').off('click').on('click', function () {
         let [, id] = $(this).attr('id').split('-');
         if (self.network.isCluster('cluster-' + id)) {
@@ -126,27 +118,15 @@ function crearNetwork(nodes, edges) {
 
 function warningSnackbar(clave){
     let html = `
-        <div class="alert">
-            <p class="close-button" onclick="defaultHeaderSnackbar(); setCuatri(FIUBAMAP.cuatri);"><i class="fas fa-fw fa-times"></i></p> 
+        <div id="alert">
+            <p class="close-button" onclick="$(this.parentElement.parentElement).empty();"><i class="fas fa-fw fa-times"></i></p> 
             <p><strong>Padrón no registrado!</strong> Seleccioná tu carrera, marca las materias que aprobaste y toca el boton de guardar.
             <br>
             Una vez guardado, podés entrar a <a href=https://fdelmazo.github.io/FIUBA-Map/?clave=` + clave + `>https://fdelmazo.github.io/FIUBA-Map/?clave=` + clave + `</a> y ver tu progreso.</p>
         </div>
     `;
-    $('#header-snackbar').html($(html));
+    $('#footer-snackbar-center').html($(html));
 }
-
-function defaultHeaderSnackbar() {
-    let html = `
-    <div id="cuatri" class="center">
-        <a id="cuatri-prev"><i class="fas fa-fw fa-arrow-left"></i></a> 
-        <input readonly id="cuatri input" size="7" type="text">
-        <a id="cuatri-next"><i class="fas fa-fw fa-arrow-right"></i></a> 
-    </div>
-    `;
-    $('#header-snackbar').html($(html));
-}
-
 
 function defaultFooterSnackbar() {
     let html = `

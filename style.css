@@ -116,11 +116,6 @@ html, body {
     color: var(--font-black)
   }
 
-#header-snackbar {
-  justify-content: center;
-  align-items: flex-start;
-}
-
 #mail-content {
   display: none;
   margin-left: 10px;
@@ -177,13 +172,17 @@ button {
   cursor: pointer;
 }
 
-.alert {
-  margin: 0 0;
+#alert {
   background-color: var(--alert);
   color: black;
-  width:100vw;
 }
-
+#alert a {
+  font-size: medium;
+  color: blue;
+}
+#alert a:visited {
+  color: blue;
+}
 
 #promedio {
   display: none;
@@ -209,6 +208,10 @@ input {
 
 #materia input {
   width: 8ch;
+}
+
+#cuatri {
+  margin: 0 auto;
 }
 
 #cuatri input {
