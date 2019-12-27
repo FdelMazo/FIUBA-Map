@@ -125,7 +125,6 @@ function crearNetwork(nodes, edges) {
 }
 
 function warningSnackbar(clave){
-    $('#header-snackbar').removeClass();
     let html = `
         <div class="alert">
             <p class="close-button" onclick="defaultHeaderSnackbar(); setCuatri(FIUBAMAP.cuatri);"><i class="fas fa-fw fa-times"></i></p> 
@@ -135,11 +134,9 @@ function warningSnackbar(clave){
         </div>
     `;
     $('#header-snackbar').html($(html));
-    $('#header-snackbar').addClass('snackbar');
 }
 
 function defaultHeaderSnackbar() {
-    $('#header-snackbar').removeClass();
     let html = `
     <div id="cuatri" class="center">
         <a id="cuatri-prev"><i class="fas fa-fw fa-arrow-left"></i></a> 
@@ -148,8 +145,6 @@ function defaultHeaderSnackbar() {
     </div>
     `;
     $('#header-snackbar').html($(html));
-    $('#header-snackbar').addClass('snackbar');
-    $('#header-snackbar').addClass('center-snackbar');
 }
 
 

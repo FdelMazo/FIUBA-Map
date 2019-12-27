@@ -29,6 +29,7 @@ html, body {
   height: 100%; 
 }
 #footer-snackbar {
+  margin: 0 0;
   z-index: 2;
 }
 #footer-navbar {
@@ -96,7 +97,8 @@ html, body {
 .snackbar {
   width: max-content;
   position: relative;
-  overflow:hidden; }
+  overflow:hidden;
+  margin: 0 auto; }
   .snackbar p {
     margin: 0;
     padding: .5em;
@@ -159,13 +161,11 @@ button {
 }
 
 .alert {
+  margin: 0 0;
   background-color: var(--alert);
   width:100vw;
 }
 
-.center-snackbar {
-  margin: 0 auto;
-}
 
 #promedio {
   display: none;
