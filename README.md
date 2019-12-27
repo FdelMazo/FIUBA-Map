@@ -22,7 +22,7 @@ Features:
 
 * Poner materias en final! Para no olvidarse los finales colgados.
 
-* Dark Mode! Para no destruirte los ojos en esas noches de repensar tu vida y todos los aplazos que tuviste.
+* Dark Mode! Para no destruirte los ojos por las noches.
 
 * Full Screen mode! Para sacar todos los features intrusivos y solo preocuparse por que materia conecta con el resto.
 ---
