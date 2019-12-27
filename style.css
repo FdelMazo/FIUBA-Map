@@ -2,9 +2,18 @@
   --black: #2d3436;
   --white: #dfe6e9;
   --grey: #b2bec3;
-  --main: #1dd1a1;
+  --main: #2cb67d;
   --info: #faeee7;
   --alert: #ff6b6b;
+  --font-black: #010101;
+}
+
+.dark {
+  --black: #7045af;
+  --white: #2d3436;
+  --grey: #72757e;
+  --info: #b2bec3;
+  --font-black: #fffffe;
 }
 
 html, body {
@@ -20,7 +29,7 @@ html, body {
 #header-navbar {
   z-index: 3;
 }
-#header-snackbar {
+#header-snackbar div {
   z-index: 2;
 }
 #grafo { 
@@ -28,8 +37,7 @@ html, body {
   position: relative; 
   height: 100%; 
 }
-#footer-snackbar {
-  margin: 0 0;
+#footer-snackbar div {
   z-index: 2;
 }
 #footer-navbar {
@@ -52,7 +60,7 @@ html, body {
   display:flex;
   justify-content: space-between;
   background-color: var(--black);
-  color: var(--white); 
+  color: white; 
   }
   .navbar a:hover:not(.active):not(.dropbtn) {
     background-color: var(--grey);
@@ -64,22 +72,15 @@ html, body {
   padding: 1em;
   text-decoration: none; 
 }
+
 #materia {
   padding: 0.5em;
-  width: max-content;
   background-color: var(--info);
   left: 0;
+  color: #010101;
   border-top: 2px solid var(--black);
   border-right: 2px solid var(--black);
 }
-
-#footer-snackbar a {
-  font-size: larger;
-  padding: 5px;
-  color: black; }
-  #footer-snackbar a:visited {
-    color: black
-  }
 
 .dropdown-content {
   white-space: nowrap;
@@ -87,22 +88,38 @@ html, body {
   position: absolute;
   z-index: 3;
   background-color: var(--white);
-  color: black;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  color: var(--font-black);
+  box-shadow: 0px 8px 16px 0px var(--font-black);
   }
   .dropdown-content a {
     display: block;
   }
 
 .snackbar {
-  width: max-content;
+  display:flex;
   position: relative;
-  overflow:hidden;
-  margin: 0 auto; }
+  overflow:hidden; 
+  color: var(--font-black); }
   .snackbar p {
     margin: 0;
     padding: .5em;
   }
+
+#footer-snackbar {
+  justify-content: space-between;
+  align-items: flex-end;
+  } #footer-snackbar a {
+  font-size: larger;
+  padding: 5px;
+  color: var(--font-black); }
+  #footer-snackbar a:visited {
+    color: var(--font-black)
+  }
+
+#header-snackbar {
+  justify-content: center;
+  align-items: flex-start;
+}
 
 #mail-content {
   display: none;
@@ -163,6 +180,7 @@ button {
 .alert {
   margin: 0 0;
   background-color: var(--alert);
+  color: black;
   width:100vw;
 }
 

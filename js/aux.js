@@ -155,5 +155,5 @@ function defaultFooterSnackbar() {
         <a><i onclick="$('#mail-content').toggle()" class="fas fa-fw fa-envelope"></i><span id="mail-content"> fdelmazo at fi.uba.ar</span></a> 
     </div>
     `;
-    $('#footer-snackbar').html($(html));
+    $('#footer-snackbar-left').html($(html));
 }

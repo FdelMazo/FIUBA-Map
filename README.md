@@ -20,8 +20,11 @@ Features:
 
 * Calcular el Promedio! Cuando se clickea una materia para marcarla como aprobada, también sale un menu donde se puede poner la nota con la que se aprobó, y después con eso se calcula el promedio.
 
-* Poner materias en final! Para no olvidarse los finales colgados
+* Poner materias en final! Para no olvidarse los finales colgados.
 
+* Dark Mode! Para no destruirte los ojos en esas noches de repensar tu vida y todos los aplazos que tuviste.
+
+* Full Screen mode! Para sacar todos los features intrusivos y solo preocuparse por que materia conecta con el resto.
 ---
  
 No hay que olvidar concatenar los `.js` del directorio `js`, sea para desarrollo local o para subir una versión nueva. Esto se hace llamando a `cat js/* > scripts.min.js` (cuando se esta desarrollando) o `cat js/* | minify -o scripts.min.js` para un despliegue. Minify se instala con `npm install babel-minify -g`.

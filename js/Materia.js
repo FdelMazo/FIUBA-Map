@@ -85,7 +85,7 @@ class Materia {
             <div><button id='materia-enfinal' style="background-color:`+FIUBAMAP.network.groups.groups['En Final'].color+`">Poner En Final</button></div>
         </div>
         `;
-        $('#footer-snackbar').html($(html));
+        $('#footer-snackbar-left').html($(html));
     
         $('#materia-aprobar').on('click', function () {
             let nota = $('#materia input').val();
