@@ -35,11 +35,11 @@ function getNext(cuatri) {
 
 $(document).ready(function () {
     $(document).on("keyup", function (event) {
-        if (event.keyCode === 33) {
+        if (event.keyCode === 37) {
             setCuatri(getPrev(getCuatri()))
             FIUBAMAP.cambiarCuatri()
         }
-        if (event.keyCode ==34) {
+        if (event.keyCode == 39) {
             setCuatri(getNext(getCuatri()))
             FIUBAMAP.cambiarCuatri()
         }

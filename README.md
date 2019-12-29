@@ -16,7 +16,7 @@ Features:
 
 * Base de datos! De querer guardar la información cuatrimestre a cuatrimestre, uno puede marcar todas las materias que aprobó y agregar su padrón (o cualquier clave) y la información se va a guardar para la próxima vez que entre.
 
-* Soporta un 'historial' de cuatrimestres, para ver el progreso en la carrera o poder planear cuatrimestres a futuro. El cuatrimestre se puede cambiar con las flechas, o con las teclas de retroceder y avanzar página.
+* Soporta un 'historial' de cuatrimestres, para ver el progreso en la carrera o poder planear cuatrimestres a futuro.
 
 * Calcular el Promedio! Cuando se clickea una materia para marcarla como aprobada, también sale un menu donde se puede poner la nota con la que se aprobó, y después con eso se calcula el promedio.
 
