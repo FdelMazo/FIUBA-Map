@@ -38,6 +38,7 @@ $(document).ready(function () {
         let url = new URL(window.location.href);
         url.searchParams.set('clave', clave)    
         window.history.pushState("", "", url.toString())
+        notificationSnackbar(clave)
     });
 
     $('#clave-load').on('click', function () {

@@ -116,6 +116,16 @@ function crearNetwork(nodes, edges) {
     return new vis.Network($('#grafo')[0], data, options);
 }
 
+function notificationSnackbar(clave) {
+    let html = `
+        <div id="notification">
+            <p class="close-button" onclick="$(this.parentElement.parentElement).empty();"><i class="fas fa-fw fa-times"></i></p> 
+            <p><strong>Datos guardados!</strong> Ya podés entrar a <a href=https://fdelmazo.github.io/FIUBA-Map/?clave=` + clave + `>https://fdelmazo.github.io/FIUBA-Map/?clave=` + clave + `</a> y ver tu progreso.</p>
+        </div>
+    `;
+    $('#footer-snackbar-center').html($(html));    
+}
+
 function warningSnackbar(clave){
     let html = `
         <div id="alert">
