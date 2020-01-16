@@ -71,6 +71,13 @@ class Materia {
         FIUBAMAP.actualizar()
     }
 
+    setTitle() {
+        this.title = "Otorga: "+this.creditos+ " créditos";
+        if (this.requiere) {
+            this.title += " -- Requiere: "+this.requiere + " créditos";
+        }
+    }
+
     mostrarOpciones() {
         const self = this;
         let nota = self.nota ? self.nota : '';

@@ -18,7 +18,7 @@ CBC,Ciclo Básico Común,0,,CBC,0
 82.03,Física III,6,82.02,Materias Obligatorias,5
 86.05,Señales y Sistemas,6,86.04-81.04,Materias Obligatorias,5
 86.06,Circuitos Electrónicos ,6,86.03-86.04,Materias Obligatorias,5
-91.19,Introducción a la Economía y Organización de la Empresa (48 créditos),4,CRED48-CBC,Materias Obligatorias,5
+91.19,Introducción a la Economía y Organización de la Empresa,4,CRED48-CBC,Materias Obligatorias,5
 86.08,Control Automático I,6,86.05,Materias Obligatorias,6
 86.07,Laboratorio de Microprocesadores ,6,86.01-86.03-86.04-95.11,Materias Obligatorias,6
 86.09,Procesos Estocásticos ,6,86.05-81.04,Materias Obligatorias,6
@@ -26,8 +26,8 @@ CBC,Ciclo Básico Común,0,,CBC,0
 86.10,Diseño de Circuitos Electrónicos,6,86.06-86.07-86.70,Materias Obligatorias,7
 86.13,Instrumentos y Mediciones Electrónicas,6,82.06-86.06-86.07,Materias Obligatorias,7
 86.14,Introducción a Proyectos,4,86.10,Materias Obligatorias,8
-97.04,Seguridad Ambiental y del Trabajo (90 créditos),4,CRED90-CBC,Materias Obligatorias,8
-91.11,Legislación y Ejercicio Profesional de la Ingeniería Electrónica (90 créditos),4,CRED90-CBC,Materias Obligatorias,8
+97.04,Seguridad Ambiental y del Trabajo,4,CRED90-CBC,Materias Obligatorias,8
+91.11,Legislación y Ejercicio Profesional de la Ingeniería Electrónica,4,CRED90-CBC,Materias Obligatorias,8
 86.40,Laboratorio de Redes de Computadoras,6,86.39,Orientación: Multiples Orientaciones,10
 86.35,Video Digital,6,86.09,Orientación: Multiples Orientaciones,10
 81.07,Análisis Funcional,6,81.05,Orientación: Procesamiento de Señales,9

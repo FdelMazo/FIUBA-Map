@@ -21,7 +21,7 @@ CBC,Ciclo Básico Común,0,,CBC,0
 75.09,Análisis de la Información,6,75.07-75.42,Materias Obligatorias,5
 75.08,Sistemas Operativos,6,75.06,Materias Obligatorias,5
 71.12,Estructura de las Organizaciones,6,75.06,Materias Obligatorias,5
-71.40,Legislación y Ejercicio Profesional de la Ingeniería en Informática (140 créditos),4,CRED140-CBC,Materias Obligatorias,6
+71.40,Legislación y Ejercicio Profesional de la Ingeniería en Informática,4,CRED140-CBC,Materias Obligatorias,6
 75.52,Taller de Programación II,4,71.14-75.07-75.42,Materias Obligatorias,6
 75.15,Base de Datos,6,75.06-75.09,Materias Obligatorias,6
 75.43,Introducción a los Sistemas Distribuidos,6,66.20-62.15-75.08,Materias Obligatorias,6
@@ -70,7 +70,7 @@ CBC,Ciclo Básico Común,0,,CBC,0
 71.20,Modelos y Optimización III,6,71.15,Materias Electivas,15
 71.41,Análisis y Resolución de Problemas,6,71.15,Materias Electivas,15
 71.42,Circuitos de Información en la Empresa,4,71.46,Materias Electivas,14
-71.44,Recursos Humanos (140 créditos),4,CRED140-CBC,Materias Electivas,12
+71.44,Recursos Humanos,4,CRED140-CBC,Materias Electivas,12
 71.46,Ingeniería Económica,6,71.13,Materias Electivas,12
 75.14,Lenguajes Formales,6,61.09,Materias Electivas,10
 75.16,Lenguajes de Programación,6,75.14,Materias Electivas,14

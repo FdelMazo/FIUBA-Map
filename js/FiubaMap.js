@@ -132,6 +132,7 @@ class FiubaMap {
                 if (c == 'CBC' && materia.requiere) arista.hidden = true;
                 aristas.push(arista)
             });
+            materia.setTitle();
             nodos.push(materia);
             materias.set(codigo, materia);
             if (!grupos.includes(materia.categoria)) grupos.push(materia.categoria);
