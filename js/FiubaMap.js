@@ -14,7 +14,8 @@ class FiubaMap {
         this.actualizarPromedio();
     }
 
-    aprobar(id, nota, cuatri) {
+    aprobar(id, nota, cuatri, cambioCuatri) {
+        this.desaprobar(id, cambioCuatri)
         let mat = this.materias.get(id)
         mat.aprobar(nota)
         this.agregarMateria(mat, cuatri)
@@ -28,7 +29,7 @@ class FiubaMap {
         mat.desaprobar()
         this.actualizar()
     }
-    
+
     cambiarCuatri() {
         const self = this
         self.aprobadas.forEach((map,cuatri) => {
@@ -41,7 +42,7 @@ class FiubaMap {
             }
             else {
                 map.forEach((v,k) => {
-                    self.aprobar(k, v, cuatri)
+                    self.aprobar(k, v, cuatri, true)
                 })
             }
         })
@@ -53,7 +54,7 @@ class FiubaMap {
         this.actualizarPromedio();
         this.actualizarCreditos();
     }
-    
+
     actualizarPromedio() {
         const self = this
         let sumatoria = 0
@@ -90,7 +91,7 @@ class FiubaMap {
             else if (this.creditos >= nodo.requiere) nodo.habilitar();
         })
     };
-    
+
     agregarMateria(mat, cuatri) {
         let aprobadasEnCuatri = this.aprobadas.get(cuatri)
         if (!aprobadasEnCuatri)
@@ -100,13 +101,11 @@ class FiubaMap {
     }
 
     removerMateria(mat) {
-        let aprobadasEnCuatri = this.aprobadas.get(this.cuatri)
-        if (!aprobadasEnCuatri) return;
-        aprobadasEnCuatri.delete(mat.id)
-        if (!aprobadasEnCuatri.size)
-            this.aprobadas.delete(this.cuatri)
-        else
-            this.aprobadas.set(this.cuatri, aprobadasEnCuatri)
+        this.aprobadas.forEach((map, cuatri) => {
+            map.delete(mat.id)
+            if (!map.size)
+                this.aprobadas.delete(cuatri)
+        })
     }
 
     init(data) {
@@ -141,7 +140,7 @@ class FiubaMap {
         this.materias_cred = materiasCred
         this.nodos = new vis.DataSet(nodos)
         this.network = crearNetwork(this.nodos, new vis.DataSet(aristas));
-        
+
         let electivas = {
             joinCondition: function (nodeOptions) {
                 return nodeOptions.categoria === 'Materias Electivas';
