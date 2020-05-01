@@ -116,6 +116,7 @@ class FiubaMap {
         let materiasCred = [];
         let filas = data.split(/\r?\n|\r/);
         for (let fila = 1; fila < filas.length; fila++) {
+            if (!filas[fila]) continue;
             let [codigo, titulo, creditos, correlativas, categoria, nivel] = filas[fila].split(',');;
             let materia = new Materia(codigo, titulo, creditos, categoria, nivel);
             correlativas.split('-').forEach(c => {
