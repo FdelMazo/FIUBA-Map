@@ -1,23 +1,26 @@
 import React from "react";
-import { Flex, Input, Select, Box } from "@chakra-ui/core";
+import UserForm from "./UserForm";
+import CarreraSelect from "./CarreraSelect";
+import Promedio from "./Promedio";
+import UserContext from "./UserContext";
 
-export const Header = () => (
-  <Flex
-    align="center"
-    justify="space-between"
-    padding="0.4rem"
-    bg="primary"
-    color="secondary"
-  >
-    <Box>
-      <Input size="sm" placeholder="Padrón" />
-    </Box>
+import { Flex } from "@chakra-ui/core";
 
-    <Box>
-      <Select bg="transparent">
-        <option>Licenciatura en Sistemas</option>
-        <option>Ingenieria en Informática</option>
-      </Select>
-    </Box>
-  </Flex>
-);
+const Header = () => {
+  const { logged } = React.useContext(UserContext);
+
+  return (
+    <Flex
+      align="center"
+      justify="space-between"
+      padding="0.4rem"
+      bg="primary"
+      color="secondary"
+    >
+      <UserForm />
+      {logged ? <Promedio /> : <CarreraSelect />}
+    </Flex>
+  );
+};
+
+export default Header;

@@ -18,10 +18,12 @@ const graph = {
   ],
 };
 
-export const Body = () => {
+const Body = () => {
   return (
     <Box flexGrow={1}>
       <Graph graph={graph} />
     </Box>
   );
 };
+
+export default Body;
