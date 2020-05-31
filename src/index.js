@@ -5,8 +5,8 @@ import { customTheme } from "./theme";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
-import UserContext from "./components/UserContext";
-import useLogin from "./components/useLogin";
+import UserContext from "./UserContext";
+import useLogin from "./useLogin";
 
 const App = () => {
   const loginHook = useLogin();

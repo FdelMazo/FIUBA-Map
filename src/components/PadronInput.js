@@ -1,24 +1,65 @@
-import React from "react";
-import { Input } from "@chakra-ui/core";
-import { debounce } from "lodash";
-import UserContext from "./UserContext";
+import React, { useEffect } from "react";
+import {
+  Input,
+  Button,
+  Box,
+  Flex,
+  IconButton,
+  useToast,
+  useDisclosure,
+} from "@chakra-ui/core";
+import UserContext from "../UserContext";
+import UserModal from "./UserModal";
 
 const PadronInput = () => {
-  const { login } = React.useContext(UserContext);
+  const { login, logged, loading, firstTime, user } = React.useContext(
+    UserContext
+  );
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
-  let debouncedOnChange = null;
+  const toast = useToast();
 
-  const onChange = (event) => {
-    event.persist();
-    if (!debouncedOnChange) {
-      debouncedOnChange = debounce(() => {
-        login(event.target.value);
-      }, 300);
-    }
-    debouncedOnChange();
-  };
+  useEffect(() => {
+    if (firstTime)
+      toast({
+        title: "Padrón no registrado",
+        description: <Button onClick={onOpen}>Registrar</Button>,
+      });
+  }, [firstTime, toast, onOpen]);
 
-  return <Input size="sm" placeholder="Padrón" onChange={onChange} />;
+  return (
+    <Box>
+      <form
+        onSubmit={(t) => {
+          t.preventDefault();
+          login(t.target.elements["padron"].value);
+        }}
+      >
+        <Flex align="center" bg="primary" color="secondary">
+          <Input
+            bg="transparent"
+            size="sm"
+            color="secondary"
+            name="padron"
+            placeholder="Padrón"
+            value={user.padron || null}
+            isDisabled={logged}
+          />
+          <IconButton
+            variant="outline"
+            ml={1}
+            variantColor={firstTime ? "red" : "teal"}
+            icon={logged ? "settings" : firstTime ? "close" : "check"}
+            size="sm"
+            isLoading={loading}
+            type={logged ? null : "submit"}
+            onClick={logged ? onOpen : null}
+          />
+        </Flex>
+      </form>
+      <UserModal onClose={onClose} isOpen={isOpen} />
+    </Box>
+  );
 };
 
 export default PadronInput;

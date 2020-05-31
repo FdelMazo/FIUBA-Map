@@ -1,8 +1,8 @@
 import React from "react";
-import UserForm from "./UserForm";
+import PadronInput from "./PadronInput";
 import CarreraSelect from "./CarreraSelect";
 import Promedio from "./Promedio";
-import UserContext from "./UserContext";
+import UserContext from "../UserContext";
 
 import { Flex } from "@chakra-ui/core";
 
@@ -13,11 +13,11 @@ const Header = () => {
     <Flex
       align="center"
       justify="space-between"
-      padding="0.4rem"
       bg="primary"
       color="secondary"
+      padding="0.4rem"
     >
-      <UserForm />
+      <PadronInput />
       {logged ? <Promedio /> : <CarreraSelect />}
     </Flex>
   );

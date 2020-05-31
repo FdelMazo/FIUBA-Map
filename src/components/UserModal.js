@@ -4,27 +4,57 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
-  Button,
   Input,
+  FormControl,
+  FormLabel,
   ModalCloseButton,
+  ModalFooter,
+  Button,
 } from "@chakra-ui/core";
-import PadronInput from "./PadronInput";
-import CarreraSelect from "./CarreraSelect";
+import UserContext from "../UserContext";
 
-const UserModal = (props) => (
-  <Modal isOpen={props.isOpen} onClose={props.onClose}>
-    <ModalOverlay />
-    <ModalContent>
-      <ModalHeader>Modal Title</ModalHeader>
-      <ModalCloseButton />
-      <ModalBody>
-        <PadronInput />
-        <CarreraSelect />
-      </ModalBody>
-    </ModalContent>
-  </Modal>
-);
+const UserModal = (props) => {
+  const { register, logout } = React.useContext(UserContext);
+
+  return (
+    <Modal isOpen={props.isOpen} onClose={props.onClose}>
+      <ModalOverlay />
+      <ModalContent>
+        <ModalHeader>Tus Datos</ModalHeader>
+        <ModalCloseButton />
+        <ModalBody>
+          <form
+            onSubmit={(t) => {
+              t.preventDefault();
+              register(t.target.elements);
+            }}
+          >
+            <FormControl>
+              <FormLabel>Padrón</FormLabel>
+              <Input name="padron" placeholder="Padrón" />
+              <Input name="carrera" placeholder="Carrera" />
+              <Input name="orientacion" placeholder="Orientacion" />
+              <Input name="finDeCarrera" placeholder="Fin de Carrera" />
+            </FormControl>
+            <Button type="submit">Guardar</Button>
+          </form>
+        </ModalBody>
+
+        <ModalFooter>
+          <Button onClick={props.onClose}>Cerrar</Button>
+          <Button
+            onClick={() => {
+              logout();
+              props.onClose();
+            }}
+          >
+            Cerrar sesion
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
+  );
+};
 
 export default UserModal;

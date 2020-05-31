@@ -1,11 +1,19 @@
 import React from "react";
-import { Box } from "@chakra-ui/core";
-import UserContext from "./UserContext";
+import { Grid, Progress } from "@chakra-ui/core";
+import UserContext from "../UserContext";
 
 const Footer = () => {
   const { logged } = React.useContext(UserContext);
-  if (!logged) return <Box />;
-  return <Box>Footer</Box>;
+  return (
+    <React.Fragment>
+      {logged && (
+        <Grid templateColumns="repeat(5, 1fr)" gap={0}>
+          <Progress value={100} />
+          <Progress value={80} color="pink" />
+        </Grid>
+      )}
+    </React.Fragment>
+  );
 };
 
 export default Footer;
