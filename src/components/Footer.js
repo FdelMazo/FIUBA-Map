@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Progress } from "@chakra-ui/core";
+import { Flex, Progress } from "@chakra-ui/core";
 import UserContext from "../UserContext";
 
 const Footer = () => {
@@ -7,10 +7,10 @@ const Footer = () => {
   return (
     <React.Fragment>
       {logged && (
-        <Grid templateColumns="repeat(5, 1fr)" gap={0}>
-          <Progress value={100} />
-          <Progress value={80} color="pink" />
-        </Grid>
+        <Flex bg="primary" padding="0.6rem">
+          <Progress value={100} flexGrow={1} />
+          <Progress value={80} color="pink" flexGrow={1} />
+        </Flex>
       )}
     </React.Fragment>
   );

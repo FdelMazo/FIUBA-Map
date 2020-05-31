@@ -20,7 +20,7 @@ const graph = {
 
 const Body = () => {
   return (
-    <Box flexGrow={1}>
+    <Box flexGrow={5}>
       <Graph graph={graph} />
     </Box>
   );

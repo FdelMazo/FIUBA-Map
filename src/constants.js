@@ -29,5 +29,4 @@ export const SHEETS = {
   },
   registros: "",
 };
-export const SHEET_COLUMNS = "";
 export const KEY = "AIzaSyA9snz4CXDq_K8fJeUXkRtRZAQM90HTFp4";

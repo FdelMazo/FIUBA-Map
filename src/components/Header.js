@@ -15,7 +15,8 @@ const Header = () => {
       justify="space-between"
       bg="primary"
       color="secondary"
-      padding="0.4rem"
+      padding="0.6rem"
+      flexGrow={1}
     >
       <PadronInput />
       {logged ? <Promedio /> : <CarreraSelect />}
