@@ -2,7 +2,7 @@ import React from "react";
 import PadronInput from "./PadronInput";
 import CarreraSelect from "./CarreraSelect";
 import Promedio from "./Promedio";
-import UserContext from "../UserContext";
+import { UserContext } from "../Contexts";
 
 import { Flex } from "@chakra-ui/core";
 

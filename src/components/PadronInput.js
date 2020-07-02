@@ -8,7 +8,7 @@ import {
   useToast,
   useDisclosure,
 } from "@chakra-ui/core";
-import UserContext from "../UserContext";
+import { UserContext } from "../Contexts";
 import UserModal from "./UserModal";
 
 const PadronInput = () => {

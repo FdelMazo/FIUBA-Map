@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex, Progress } from "@chakra-ui/core";
-import UserContext from "../UserContext";
+import { UserContext } from "../Contexts";
 
 const Footer = () => {
   const { logged } = React.useContext(UserContext);

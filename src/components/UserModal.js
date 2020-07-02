@@ -12,11 +12,10 @@ import {
   ModalFooter,
   Button,
 } from "@chakra-ui/core";
-import UserContext from "../UserContext";
+import { UserContext } from "../Contexts";
 
 const UserModal = (props) => {
-  const { register, logout } = React.useContext(UserContext);
-
+  const { register, logout, user } = React.useContext(UserContext);
   return (
     <Modal isOpen={props.isOpen} onClose={props.onClose}>
       <ModalOverlay />
@@ -32,7 +31,12 @@ const UserModal = (props) => {
           >
             <FormControl>
               <FormLabel>Padrón</FormLabel>
-              <Input name="padron" placeholder="Padrón" />
+              <Input
+                name="padron"
+                placeholder="Padrón"
+                value={user.padron}
+                disabled
+              />
               <Input name="carrera" placeholder="Carrera" />
               <Input name="orientacion" placeholder="Orientacion" />
               <Input name="finDeCarrera" placeholder="Fin de Carrera" />
