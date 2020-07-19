@@ -180,7 +180,7 @@ export const informatica = [
     materia:
       "Legislación y Ejercicio Profesional de la Ingeniería en Informática",
     creditos: "4",
-    correlativas: "CRED140-CBC",
+    requiere: "140",
     categoria: "Materias Obligatorias",
     nivel: "6",
   },
@@ -572,7 +572,7 @@ export const informatica = [
     codigo: "71.44",
     materia: "Recursos Humanos",
     creditos: "4",
-    correlativas: "CRED140-CBC",
+    requiere: "140",
     categoria: "Materias Electivas",
     nivel: "12",
   },
