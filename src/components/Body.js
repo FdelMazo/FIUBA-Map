@@ -4,11 +4,11 @@ import { Box } from "@chakra-ui/core";
 import { GraphContext } from "../Contexts";
 
 const Body = () => {
-  const { graph, key, options } = React.useContext(GraphContext);
+  const { graph, key, options, events } = React.useContext(GraphContext);
 
   return (
-    <Box key={key} flexGrow={5}>
-      <Graph graph={graph} options={options} />
+    <Box key={key} minHeight="100%">
+      <Graph graph={graph} options={options} events={events} />
     </Box>
   );
 };
