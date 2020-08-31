@@ -20,27 +20,16 @@ const graphObj = {
 
 const useGraph = () => {
   const [graph, setGraph] = React.useState(graphObj);
-  const [globalNodes, setGlobalNodes] = React.useState({});
   const [carrera, setCarrera] = React.useState(Object.values(CARRERAS)[0]);
-  const [key, setKey] = React.useState(true);
-
-  const events = {
-    select: (e) => console.log(globalNodes),
-  };
-
   const changeCarrera = (id) => {
     setCarrera(CARRERAS[id]);
   };
 
   useEffect(() => {
-    setKey(!key);
-    const nodes = [];
+    const graphNodes = [];
     const edges = [];
-    const globalNodes = {};
     carrera.graph.forEach((n) => {
-      const node = new Node(n);
-      nodes.push(node);
-      globalNodes[n.codigo] = node;
+      graphNodes.push(new Node(n));
       if (n.correlativas)
         n.correlativas.split("-").forEach((c) => {
           edges.push({ from: c, to: n.codigo });
@@ -48,11 +37,10 @@ const useGraph = () => {
       else edges.push({ from: "CBC", to: n.codigo, hidden: true });
     });
 
-    setGraph({ nodes, edges });
-    setGlobalNodes(globalNodes);
+    setGraph({ nodes: graphNodes, edges });
   }, [carrera]);
 
-  return { carrera, changeCarrera, graph, key, options, events };
+  return { carrera, changeCarrera, graph, options };
 };
 
 export default useGraph;

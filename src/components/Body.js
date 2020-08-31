@@ -1,14 +1,26 @@
-import Graph from "react-graph-vis";
 import React from "react";
 import { Box } from "@chakra-ui/core";
 import { GraphContext } from "../Contexts";
+import { Network, Node } from "@lifeomic/react-vis-network";
 
 const Body = () => {
-  const { graph, key, options, events } = React.useContext(GraphContext);
+  const { graph, options } = React.useContext(GraphContext);
+  const network = React.useRef(null);
+
+  const onClick = (e) => {
+    const id = e.nodes[0];
+    const node = network.current.nodes._data[id].nodeRef;
+    node.aprobar();
+    network.current.nodes.update(node);
+  };
 
   return (
-    <Box key={key} minHeight="100%">
-      <Graph graph={graph} options={options} events={events} />
+    <Box minHeight="100%">
+      <Network onClick={onClick} ref={network} options={options}>
+        {graph.nodes.map((n) => (
+          <Node {...n} />
+        ))}
+      </Network>
     </Box>
   );
 };
