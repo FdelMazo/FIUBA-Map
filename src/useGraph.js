@@ -18,6 +18,7 @@ const options = {
 const graphObj = {
   nodes: [],
   edges: [],
+  clusters: [],
 };
 
 const useGraph = () => {
@@ -41,7 +42,26 @@ const useGraph = () => {
       else edges.push({ from: "CBC", to: n.id, hidden: true });
     });
 
-    setGraph({ nodes: graphNodes, edges });
+    const electivas = {
+      joinCondition: function (nodeOptions) {
+        return nodeOptions.categoria === "Materias Electivas";
+      },
+      clusterNodeProperties: {
+        id: "cluster-Materias Electivas",
+        hidden: true,
+        level: 20,
+        allowSingleNodeCluster: true,
+      },
+    };
+    electivas.toggle = (network) => {
+      if (network.isCluster("cluster-Materias Electivas")) {
+        network.openCluster("cluster-Materias Electivas");
+      } else network.cluster(electivas);
+    };
+
+    const clusters = [electivas];
+
+    setGraph({ nodes: graphNodes, edges, clusters });
   }, [carrera]); //eslint-disable-line
 
   return { carrera, changeCarrera, graph, options, key };
