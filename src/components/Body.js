@@ -1,17 +1,19 @@
 import React from "react";
-import { Box } from "@chakra-ui/core";
+import { Box, Tag } from "@chakra-ui/core";
 import { GraphContext } from "../Contexts";
 import { Network, Node, Edge } from "@lifeomic/react-vis-network";
 
 const Body = () => {
   const { graph, options, key } = React.useContext(GraphContext);
   const networkRef = React.useRef(null);
+  const [displayedNode, setDisplayedNode] = React.useState({});
 
   const onClick = (e) => {
     const id = e.nodes[0];
     const node = networkRef.current.nodes.get(id).nodeRef;
+
     node.onClick(
-      {},
+      { setDisplayedNode },
       {
         network: networkRef.current.network,
         nodeArr: networkRef.current.nodes,
@@ -21,6 +23,9 @@ const Body = () => {
 
   return (
     <Box minHeight="100%">
+      <Tag position="absolute" zIndex={2}>
+        {displayedNode.label}
+      </Tag>
       <Network key={key} onClick={onClick} ref={networkRef} options={options}>
         {graph.nodes.map((n) => (
           <Node {...n} />

@@ -22,6 +22,7 @@ class Node {
   }
 
   onClick(args, ctx) {
+    args.setDisplayedNode(this);
     if (this.aprobada) {
       this.desaprobar(args, ctx);
     } else {
