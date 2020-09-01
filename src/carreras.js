@@ -1,4 +1,5 @@
 import * as data from "./data";
+
 const CARRERAS = {
   sistemas: {
     graph: data.sistemas,
