@@ -18,7 +18,7 @@ const options = {
 const graphObj = {
   nodes: [],
   edges: [],
-  clusters: [],
+  groups: [],
 };
 
 const useGraph = () => {
@@ -32,39 +32,32 @@ const useGraph = () => {
   useEffect(() => {
     setKey(!key);
     const graphNodes = [];
-    const edges = [];
+    const graphEdges = [];
     carrera.graph.forEach((n) => {
       graphNodes.push(new Node(n));
       if (n.correlativas)
         n.correlativas.split("-").forEach((c) => {
-          edges.push({ from: c, to: n.id });
+          graphEdges.push({ from: c, to: n.id });
         });
-      else edges.push({ from: "CBC", to: n.id, hidden: true });
+      else graphEdges.push({ from: "CBC", to: n.id, hidden: true });
     });
 
-    const electivas = {
-      joinCondition: function (nodeOptions) {
-        return nodeOptions.categoria === "Materias Electivas";
-      },
-      clusterNodeProperties: {
-        id: "cluster-Materias Electivas",
-        hidden: true,
-        level: 20,
-        allowSingleNodeCluster: true,
-      },
-    };
-    electivas.toggle = (network) => {
-      if (network.isCluster("cluster-Materias Electivas")) {
-        network.openCluster("cluster-Materias Electivas");
-      } else network.cluster(electivas);
-    };
+    const groups = Array.from(new Set(carrera.graph.map((n) => n.categoria)));
 
-    const clusters = [electivas];
-
-    setGraph({ nodes: graphNodes, edges, clusters });
+    setGraph({ nodes: graphNodes, edges: graphEdges, groups });
   }, [carrera]); //eslint-disable-line
 
-  return { carrera, changeCarrera, graph, options, key };
+  const toggleGroup = (id, nodeArr, nodes, toggle) => {
+    if (!nodes) return;
+    nodeArr
+      .filter((n) => n.categoria == id)
+      .forEach((n) => {
+        n.hidden = toggle;
+      });
+    nodes.update(nodeArr);
+  };
+
+  return { carrera, changeCarrera, graph, options, key, toggleGroup };
 };
 
 export default useGraph;
