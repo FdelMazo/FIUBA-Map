@@ -52,12 +52,20 @@ const useGraph = () => {
     nodeArr
       .filter((n) => n.categoria == id)
       .forEach((n) => {
-        n.hidden = toggle;
+        if (toggle != undefined) {
+          n.hidden = toggle;
+        } else {
+          n.hidden = !n.hidden;
+        }
       });
     nodes.update(nodeArr);
   };
 
-  return { carrera, changeCarrera, graph, options, key, toggleGroup };
+  const isGroupHidden = (id, nodesArr) => {
+    return nodesArr.find((n) => n.categoria == id).hidden
+  }
+
+  return { carrera, changeCarrera, graph, options, key, toggleGroup, isGroupHidden };
 };
 
 export default useGraph;

@@ -6,12 +6,14 @@ import {
   TagLabel,
   TagIcon,
   Tag,
+  Button
 } from "@chakra-ui/core";
 import { GraphContext } from "../Contexts";
 import Graph from "react-graph-vis";
+import * as C from "../constants";
 
 const Body = () => {
-  const { graph, options, carrera, key, toggleGroup } = React.useContext(
+  const { graph, options, carrera, key, toggleGroup, isGroupHidden } = React.useContext(
     GraphContext
   );
   const [displayedNode, setDisplayedNode] = React.useState({});
@@ -44,25 +46,15 @@ const Body = () => {
       <Stack position="absolute" right={0} zIndex={2}>
         {graph.groups
           .filter((c) => c != "CBC" && c != "Materias Obligatorias")
-          .map((c) => (
-            <Tag variantColor="cyan">
+          .map((c) => {
+            return (
+            <Button bg={C.GRUPOS[c].color} as="button" borderRadius="md"
+              onClick={() => {
+                toggleGroup(c, graph.nodes, nodes);
+              }}>
               <TagLabel>{c}</TagLabel>
-              <TagIcon
-                onClick={() => {
-                  toggleGroup(c, graph.nodes, nodes, false);
-                }}
-                icon="check"
-                size="12px"
-              />
-              <TagIcon
-                onClick={() => {
-                  toggleGroup(c, graph.nodes, nodes, true);
-                }}
-                icon="close"
-                size="12px"
-              />
-            </Tag>
-          ))}
+            </Button>
+          )})}
       </Stack>
       <Graph
         key={key}
