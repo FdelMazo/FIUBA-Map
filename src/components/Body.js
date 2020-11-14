@@ -20,7 +20,10 @@ const Body = () => {
   const [edges, setEdges] = React.useState(null);
 
   const events = {
-    click: (e) => {
+    deselectNode: () => {
+      setDisplayedNode({})
+    },
+    selectNode: (e) => {
       const id = e.nodes[0];
       const node = nodes.get(id).nodeRef;
       node.onClick(
