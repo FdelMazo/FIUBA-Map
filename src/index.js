@@ -27,10 +27,10 @@ const App = () => {
 };
 
 ReactDOM.render(
-  <React.StrictMode>
+  <>
     <ThemeProvider theme={customTheme}>
       <App />
     </ThemeProvider>
-  </React.StrictMode>,
+  </>,
   document.getElementById("root")
 );
