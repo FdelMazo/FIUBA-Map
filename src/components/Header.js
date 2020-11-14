@@ -1,10 +1,11 @@
 import React from "react";
 import PadronInput from "./PadronInput";
 import CarreraSelect from "./CarreraSelect";
-import Promedio from "./Promedio";
 import { UserContext } from "../Contexts";
 
-import { Flex } from "@chakra-ui/core";
+import { Box, Flex } from "@chakra-ui/core";
+
+const Promedio = () => <Box>Promedio: 7.50</Box>;
 
 const Header = () => {
   const { logged } = React.useContext(UserContext);
