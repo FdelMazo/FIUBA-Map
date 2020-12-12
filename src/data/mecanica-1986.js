@@ -308,7 +308,7 @@ export const mecanica = [
     materia: "Mecánica II",
     creditos: 4,
     correlativas: "61.03-62.06",
-    categoria: "Orientación: Diseño Mecánico",
+    categoria: "Diseño Mecánico",
     nivel: 9,
   },
   {
@@ -316,7 +316,7 @@ export const mecanica = [
     materia: "Plantas Térmicas",
     creditos: 4,
     correlativas: "67.33",
-    categoria: "Orientación: Termomecánica",
+    categoria: "Termomecánica",
     nivel: 10,
   },
   {
@@ -324,7 +324,7 @@ export const mecanica = [
     materia: "Sistemas de Control en Instalaciones Térmicas",
     creditos: 4,
     correlativas: "67.22-67.33",
-    categoria: "Orientación: Termomecánica",
+    categoria: "Termomecánica",
     nivel: 10,
   },
   {
@@ -332,7 +332,7 @@ export const mecanica = [
     materia: "Método de los Elementos Finitos",
     creditos: 4,
     correlativas: "64.13",
-    categoria: "Orientación: Computación Aplicada",
+    categoria: "Computación Aplicada",
     nivel: 9,
   },
   {
@@ -364,7 +364,7 @@ export const mecanica = [
     materia: "Metrología",
     creditos: 4,
     correlativas: "67.21",
-    categoria: "Orientación: Diseño Mecánico",
+    categoria: "Diseño Mecánico",
     nivel: 9,
   },
   {
@@ -372,7 +372,7 @@ export const mecanica = [
     materia: "Elementos de Máquinas",
     creditos: 8,
     correlativas: "64.12-67.11",
-    categoria: "Orientación: Diseño Mecánico",
+    categoria: "Diseño Mecánico",
     nivel: 9,
   },
   {
@@ -380,7 +380,7 @@ export const mecanica = [
     materia: "Tecnología Mecánica II",
     creditos: 6,
     correlativas: "67.15-67.17",
-    categoria: "Orientación: Diseño Mecánico",
+    categoria: "Diseño Mecánico",
     nivel: 9,
   },
   {
@@ -388,7 +388,7 @@ export const mecanica = [
     materia: "Diseño de Instalaciones Térmicas",
     creditos: 4,
     correlativas: "67.34",
-    categoria: "Orientación: Termomecánica",
+    categoria: "Termomecánica",
     nivel: 10,
   },
   {
@@ -396,7 +396,7 @@ export const mecanica = [
     materia: "Proyecto de Máquinas",
     creditos: 6,
     correlativas: "62.06-67.25-67.27-67.28",
-    categoria: "Orientación: Diseño Mecánico",
+    categoria: "Diseño Mecánico",
     nivel: 10,
   },
   {
@@ -404,7 +404,7 @@ export const mecanica = [
     materia: "Combustión",
     creditos: 4,
     correlativas: "63.01-67.04",
-    categoria: "Orientación: Termomecánica",
+    categoria: "Termomecánica",
     nivel: 9,
   },
   {
@@ -412,7 +412,7 @@ export const mecanica = [
     materia: "Tecnología del Calor",
     creditos: 8,
     correlativas: "67.30-67.31",
-    categoria: "Orientación: Termomecánica",
+    categoria: "Termomecánica",
     nivel: 9,
   },
   {
@@ -420,7 +420,7 @@ export const mecanica = [
     materia: "Transferencia de Calor y Masa",
     creditos: 4,
     correlativas: "67.04",
-    categoria: "Orientación: Termomecánica",
+    categoria: "Termomecánica",
     nivel: 9,
   },
   {
@@ -428,7 +428,7 @@ export const mecanica = [
     materia: "Proyecto de Instalaciones Térmicas",
     creditos: 6,
     correlativas: "67.32-67.33",
-    categoria: "Orientación: Termomecánica",
+    categoria: "Termomecánica",
     nivel: 10,
   },
   {
@@ -436,7 +436,7 @@ export const mecanica = [
     materia: "Tecnología del Frío",
     creditos: 6,
     correlativas: "67.18-67.31",
-    categoria: "Orientación: Termomecánica",
+    categoria: "Termomecánica",
     nivel: 10,
   },
   {
@@ -444,7 +444,7 @@ export const mecanica = [
     materia: "Diseño de Máquinas Herramientas",
     creditos: 6,
     correlativas: "67.13-67.26-67.27",
-    categoria: "Orientación: Diseño Mecánico",
+    categoria: "Diseño Mecánico",
     nivel: 10,
   },
   {
@@ -452,7 +452,7 @@ export const mecanica = [
     materia: "Automotores",
     creditos: 6,
     correlativas: "67.19-67.25",
-    categoria: "Orientación: Diseño Mecánico",
+    categoria: "Diseño Mecánico",
     nivel: 10,
   },
   {
@@ -460,7 +460,7 @@ export const mecanica = [
     materia: "Control Numérico de Máquinas Herramientas",
     creditos: 6,
     correlativas: "67.27",
-    categoria: "Orientación: Diseño Mecánico",
+    categoria: "Diseño Mecánico",
     nivel: 10,
   },
   {
@@ -468,7 +468,7 @@ export const mecanica = [
     materia: "Robótica Industrial",
     creditos: 6,
     correlativas: "62.06-67.22",
-    categoria: "Orientación: Industrias",
+    categoria: "Industrias",
     nivel: 9,
   },
   {
@@ -476,7 +476,7 @@ export const mecanica = [
     materia: "Metalografía",
     creditos: 6,
     correlativas: "67.13-67.16",
-    categoria: "Orientación: Metalúrgica",
+    categoria: "Metalúrgica",
     nivel: 9,
   },
   {
@@ -484,7 +484,7 @@ export const mecanica = [
     materia: "Tratamientos Térmicos",
     creditos: 4,
     correlativas: "67.13-67.16",
-    categoria: "Orientación: Metalúrgica",
+    categoria: "Metalúrgica",
     nivel: 9,
   },
   {
@@ -492,7 +492,7 @@ export const mecanica = [
     materia: "Metalurgia Física",
     creditos: 6,
     correlativas: "61.03-62.03-63.01",
-    categoria: "Orientación: Metalúrgica",
+    categoria: "Metalúrgica",
     nivel: 10,
   },
   {
@@ -500,7 +500,7 @@ export const mecanica = [
     materia: "Materiales Ferrosos y sus Aplicaciones",
     creditos: 4,
     correlativas: "67.13",
-    categoria: "Orientación: Metalúrgica",
+    categoria: "Metalúrgica",
     nivel: 10,
   },
   {

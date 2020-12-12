@@ -221,7 +221,7 @@ export const informatica = [
     materia: "Información en las Organizaciones",
     creditos: 6,
     correlativas: "71.12",
-    categoria: "Orientación: Gestión Industrial de Sistemas",
+    categoria: "Gestión Industrial de Sistemas",
     nivel: 7,
   },
   {
@@ -229,7 +229,7 @@ export const informatica = [
     materia: "Administración y Control de Proyectos Informáticos I",
     creditos: 6,
     correlativas: "71.12-75.10",
-    categoria: "Orientación: Gestión Industrial de Sistemas",
+    categoria: "Gestión Industrial de Sistemas",
     nivel: 7,
   },
   {
@@ -237,7 +237,7 @@ export const informatica = [
     materia: "Taller de Desarrollo de Proyectos I",
     creditos: 6,
     correlativas: "75.10",
-    categoria: "Orientación: Gestión Industrial de Sistemas",
+    categoria: "Gestión Industrial de Sistemas",
     nivel: 7,
   },
   {
@@ -245,7 +245,7 @@ export const informatica = [
     materia: "Administración y Control de Proyectos Informáticos II",
     creditos: 6,
     correlativas: "75.44",
-    categoria: "Orientación: Gestión Industrial de Sistemas",
+    categoria: "Gestión Industrial de Sistemas",
     nivel: 8,
   },
   {
@@ -253,7 +253,7 @@ export const informatica = [
     materia: "Taller de Desarrollo de Proyectos II",
     creditos: 6,
     correlativas: "75.44-75.45",
-    categoria: "Orientación: Gestión Industrial de Sistemas",
+    categoria: "Gestión Industrial de Sistemas",
     nivel: 8,
   },
   {
@@ -261,7 +261,7 @@ export const informatica = [
     materia: "Calidad en Desarrollo de Sistemas",
     creditos: 4,
     correlativas: "75.45",
-    categoria: "Orientación: Gestión Industrial de Sistemas",
+    categoria: "Gestión Industrial de Sistemas",
     nivel: 8,
   },
   {
@@ -269,7 +269,7 @@ export const informatica = [
     materia: "Análisis de Circuitos",
     creditos: 10,
     correlativas: "61.10-62.03",
-    categoria: "Orientación: Sistemas Distribuidos",
+    categoria: "Sistemas Distribuidos",
     nivel: 7,
   },
   {
@@ -277,7 +277,7 @@ export const informatica = [
     materia: "Técnicas de Programación Concurrente I",
     creditos: 6,
     correlativas: "75.08",
-    categoria: "Orientación: Sistemas Distribuidos",
+    categoria: "Sistemas Distribuidos",
     nivel: 7,
   },
   {
@@ -285,7 +285,7 @@ export const informatica = [
     materia: "Señales y Sistemas",
     creditos: 6,
     correlativas: "61.09-66.06",
-    categoria: "Orientación: Sistemas Distribuidos",
+    categoria: "Sistemas Distribuidos",
     nivel: 8,
   },
   {
@@ -293,7 +293,7 @@ export const informatica = [
     materia: "Taller de Programación III",
     creditos: 6,
     correlativas: "66.74-75.74",
-    categoria: "Orientación: Sistemas Distribuidos",
+    categoria: "Sistemas Distribuidos",
     nivel: 8,
   },
   {
@@ -301,7 +301,7 @@ export const informatica = [
     materia: "Sistemas Distribuidos I",
     creditos: 6,
     correlativas: "61.10-75.43-75.59",
-    categoria: "Orientación: Sistemas Distribuidos",
+    categoria: "Sistemas Distribuidos",
     nivel: 8,
   },
   {
@@ -309,7 +309,7 @@ export const informatica = [
     materia: "Estática y Resistencia de Materiales B",
     creditos: 6,
     correlativas: "61.03-61.08",
-    categoria: "Orientación: Sistemas de Producción",
+    categoria: "Sistemas de Producción",
     nivel: 7,
   },
   {
@@ -317,7 +317,7 @@ export const informatica = [
     materia: "Manufactura Integrada por Computadora I",
     creditos: 6,
     correlativas: "75.15-75.52",
-    categoria: "Orientación: Sistemas de Producción",
+    categoria: "Sistemas de Producción",
     nivel: 7,
   },
   {
@@ -325,7 +325,7 @@ export const informatica = [
     materia: "Sistemas Automáticos de Diagnóstico y Detección Fallas I",
     creditos: 6,
     correlativas: "71.14",
-    categoria: "Orientación: Sistemas de Producción",
+    categoria: "Sistemas de Producción",
     nivel: 7,
   },
   {
@@ -333,7 +333,7 @@ export const informatica = [
     materia: "Materiales Industriales I",
     creditos: 6,
     correlativas: "63.01-64.05",
-    categoria: "Orientación: Sistemas de Producción",
+    categoria: "Sistemas de Producción",
     nivel: 8,
   },
   {
@@ -341,7 +341,7 @@ export const informatica = [
     materia: "Manufactura Integrada por Computadora II",
     creditos: 6,
     correlativas: "75.65",
-    categoria: "Orientación: Sistemas de Producción",
+    categoria: "Sistemas de Producción",
     nivel: 8,
   },
   {
@@ -349,7 +349,7 @@ export const informatica = [
     materia: "Sistemas de Soporte para Celdas Producción Flexible",
     creditos: 4,
     correlativas: "75.65-75.67",
-    categoria: "Orientación: Sistemas de Producción",
+    categoria: "Sistemas de Producción",
     nivel: 8,
   },
   {

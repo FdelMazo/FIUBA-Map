@@ -236,7 +236,7 @@ export const electronica = [
     materia: "Laboratorio de Redes de Computadoras",
     creditos: 6,
     correlativas: "86.39",
-    categoria: "Orientación: Multiples Orientaciones",
+    categoria: "Multiples Orientaciones",
     nivel: 10,
   },
   {
@@ -244,7 +244,7 @@ export const electronica = [
     materia: "Video Digital",
     creditos: 6,
     correlativas: "86.09",
-    categoria: "Orientación: Multiples Orientaciones",
+    categoria: "Multiples Orientaciones",
     nivel: 10,
   },
   {
@@ -252,7 +252,7 @@ export const electronica = [
     materia: "Análisis Funcional",
     creditos: 6,
     correlativas: "81.05",
-    categoria: "Orientación: Procesamiento de Señales",
+    categoria: "Procesamiento de Señales",
     nivel: 9,
   },
   {
@@ -260,7 +260,7 @@ export const electronica = [
     materia: "Análisis Matricial y Métodos Numéricos",
     creditos: 6,
     correlativas: "81.05-95.04",
-    categoria: "Orientación: Procesamiento de Señales",
+    categoria: "Procesamiento de Señales",
     nivel: 9,
   },
   {
@@ -268,7 +268,7 @@ export const electronica = [
     materia: "Mecánica Racional",
     creditos: 4,
     correlativas: "81.05-82.01",
-    categoria: "Orientación: Automatización y Control",
+    categoria: "Automatización y Control",
     nivel: 9,
   },
   {
@@ -276,7 +276,7 @@ export const electronica = [
     materia: "Física del Estado Sólido",
     creditos: 6,
     correlativas: "82.03",
-    categoria: "Orientación: Física Electrónica",
+    categoria: "Física Electrónica",
     nivel: 9,
   },
   {
@@ -284,7 +284,7 @@ export const electronica = [
     materia: "Robótica",
     creditos: 6,
     correlativas: "82.04-86.08",
-    categoria: "Orientación: Automatización y Control",
+    categoria: "Automatización y Control",
     nivel: 10,
   },
   {
@@ -292,7 +292,7 @@ export const electronica = [
     materia: "Máquinas Eléctricas",
     creditos: 6,
     correlativas: "86.04",
-    categoria: "Orientación: Automatización y Control",
+    categoria: "Automatización y Control",
     nivel: 10,
   },
   {
@@ -300,7 +300,7 @@ export const electronica = [
     materia: "Laboratorio de Instalaciones Eléctricas",
     creditos: 4,
     correlativas: "86.06",
-    categoria: "Orientación: Automatización y Control",
+    categoria: "Automatización y Control",
     nivel: 9,
   },
   {
@@ -308,7 +308,7 @@ export const electronica = [
     materia: "Comunicaciones Digitales II",
     creditos: 6,
     correlativas: "86.12-86.25",
-    categoria: "Orientación: Telecomunicaciones",
+    categoria: "Telecomunicaciones",
     nivel: 10,
   },
   {
@@ -316,7 +316,7 @@ export const electronica = [
     materia: "Teoría de la Información Codificación",
     creditos: 6,
     correlativas: "86.09",
-    categoria: "Orientación: Telecomunicaciones",
+    categoria: "Telecomunicaciones",
     nivel: 10,
   },
   {
@@ -324,7 +324,7 @@ export const electronica = [
     materia: "Control Automático  II",
     creditos: 6,
     correlativas: "86.08",
-    categoria: "Orientación: Automatización y Control",
+    categoria: "Automatización y Control",
     nivel: 10,
   },
   {
@@ -332,7 +332,7 @@ export const electronica = [
     materia: "Control Automático III",
     creditos: 6,
     correlativas: "86.16",
-    categoria: "Orientación: Automatización y Control",
+    categoria: "Automatización y Control",
     nivel: 11,
   },
   {
@@ -340,7 +340,7 @@ export const electronica = [
     materia: "Control Industrial Distribuido",
     creditos: 6,
     correlativas: "86.08",
-    categoria: "Orientación: Automatización y Control",
+    categoria: "Automatización y Control",
     nivel: 10,
   },
   {
@@ -348,7 +348,7 @@ export const electronica = [
     materia: "Control Robusto",
     creditos: 6,
     correlativas: "86.16",
-    categoria: "Orientación: Automatización y Control",
+    categoria: "Automatización y Control",
     nivel: 11,
   },
   {
@@ -356,7 +356,7 @@ export const electronica = [
     materia: "Identificación y Control Adaptativo",
     creditos: 6,
     correlativas: "86.08",
-    categoria: "Orientación: Automatización y Control",
+    categoria: "Automatización y Control",
     nivel: 11,
   },
   {
@@ -364,7 +364,7 @@ export const electronica = [
     materia: "Instrumentación y Control de Procesos",
     creditos: 6,
     correlativas: "86.08",
-    categoria: "Orientación: Automatización y Control",
+    categoria: "Automatización y Control",
     nivel: 10,
   },
   {
@@ -372,7 +372,7 @@ export const electronica = [
     materia: "Laboratorio de Control Automático",
     creditos: 6,
     correlativas: "86.08-86.10",
-    categoria: "Orientación: Automatización y Control",
+    categoria: "Automatización y Control",
     nivel: 9,
   },
   {
@@ -380,7 +380,7 @@ export const electronica = [
     materia: "Accionamientos Variables",
     creditos: 6,
     correlativas: "86.08-86.10",
-    categoria: "Orientación: Automatización y Control",
+    categoria: "Automatización y Control",
     nivel: 9,
   },
   {
@@ -388,7 +388,7 @@ export const electronica = [
     materia: "Electrónica de Potencia",
     creditos: 6,
     correlativas: "86.10",
-    categoria: "Orientación: Automatización y Control",
+    categoria: "Automatización y Control",
     nivel: 9,
   },
   {
@@ -396,7 +396,7 @@ export const electronica = [
     materia: "Comunicaciones Digitales I",
     creditos: 6,
     correlativas: "86.09",
-    categoria: "Orientación: Telecomunicaciones",
+    categoria: "Telecomunicaciones",
     nivel: 9,
   },
   {
@@ -404,7 +404,7 @@ export const electronica = [
     materia: "Infraestructura de Redes Fijas",
     creditos: 6,
     correlativas: "86.12",
-    categoria: "Orientación: Telecomunicaciones",
+    categoria: "Telecomunicaciones",
     nivel: 9,
   },
   {
@@ -412,7 +412,7 @@ export const electronica = [
     materia: "Comunicaciones Digitales III",
     creditos: 6,
     correlativas: "86.26",
-    categoria: "Orientación: Telecomunicaciones",
+    categoria: "Telecomunicaciones",
     nivel: 11,
   },
   {
@@ -420,7 +420,7 @@ export const electronica = [
     materia: "Laboratorio de Comunicaciones",
     creditos: 6,
     correlativas: "86.12",
-    categoria: "Orientación: Telecomunicaciones",
+    categoria: "Telecomunicaciones",
     nivel: 11,
   },
   {
@@ -428,7 +428,7 @@ export const electronica = [
     materia: "Propagación y Sistemas Irradiantes",
     creditos: 6,
     correlativas: "82.06",
-    categoria: "Orientación: Telecomunicaciones",
+    categoria: "Telecomunicaciones",
     nivel: 9,
   },
   {
@@ -436,7 +436,7 @@ export const electronica = [
     materia: "Servicios y Redes de Comunicaciones",
     creditos: 6,
     correlativas: "86.12",
-    categoria: "Orientación: Telecomunicaciones",
+    categoria: "Telecomunicaciones",
     nivel: 9,
   },
   {
@@ -444,7 +444,7 @@ export const electronica = [
     materia: "Sistemas Inalámbricos",
     creditos: 6,
     correlativas: "86.12-86.29",
-    categoria: "Orientación: Telecomunicaciones",
+    categoria: "Telecomunicaciones",
     nivel: 10,
   },
   {
@@ -452,7 +452,7 @@ export const electronica = [
     materia: "Transmisores y Receptores de Comunicaciones",
     creditos: 6,
     correlativas: "86.10",
-    categoria: "Orientación: Telecomunicaciones",
+    categoria: "Telecomunicaciones",
     nivel: 11,
   },
   {
@@ -460,7 +460,7 @@ export const electronica = [
     materia: "Criptografía y Seguridad Informática",
     creditos: 6,
     correlativas: "86.05-86.07",
-    categoria: "Orientación: Sistemas Digitales y Computación",
+    categoria: "Sistemas Digitales y Computación",
     nivel: 9,
   },
   {
@@ -468,7 +468,7 @@ export const electronica = [
     materia: "Organización de Computadoras",
     creditos: 6,
     correlativas: "86.07",
-    categoria: "Orientación: Sistemas Digitales y Computación",
+    categoria: "Sistemas Digitales y Computación",
     nivel: 9,
   },
   {
@@ -476,7 +476,7 @@ export const electronica = [
     materia: "Arquitecturas Paralelas",
     creditos: 6,
     correlativas: "86.37",
-    categoria: "Orientación: Sistemas Digitales y Computación",
+    categoria: "Sistemas Digitales y Computación",
     nivel: 10,
   },
   {
@@ -484,7 +484,7 @@ export const electronica = [
     materia: "Redes de Computadoras",
     creditos: 6,
     correlativas: "86.12",
-    categoria: "Orientación: Multiples Orientaciones",
+    categoria: "Multiples Orientaciones",
     nivel: 9,
   },
   {
@@ -492,7 +492,7 @@ export const electronica = [
     materia: "Sistemas Digitales",
     creditos: 6,
     correlativas: "81.05-86.01-95.11",
-    categoria: "Orientación: Sistemas Digitales y Computación",
+    categoria: "Sistemas Digitales y Computación",
     nivel: 9,
   },
   {
@@ -500,7 +500,7 @@ export const electronica = [
     materia: "Laboratorio de Sistemas Digitales",
     creditos: 6,
     correlativas: "86.41",
-    categoria: "Orientación: Sistemas Digitales y Computación",
+    categoria: "Sistemas Digitales y Computación",
     nivel: 10,
   },
   {
@@ -508,7 +508,7 @@ export const electronica = [
     materia: "Sistemas Gráficos",
     creditos: 6,
     correlativas: "95.12",
-    categoria: "Orientación: Sistemas Digitales y Computación",
+    categoria: "Sistemas Digitales y Computación",
     nivel: 10,
   },
   {
@@ -516,7 +516,7 @@ export const electronica = [
     materia: "Técnica Digital Avanzada",
     creditos: 6,
     correlativas: "86.01-86.03",
-    categoria: "Orientación: Sistemas Digitales y Computación",
+    categoria: "Sistemas Digitales y Computación",
     nivel: 9,
   },
   {
@@ -532,7 +532,7 @@ export const electronica = [
     materia: "Microelectrónica",
     creditos: 6,
     correlativas: "86.06",
-    categoria: "Orientación: Física Electrónica",
+    categoria: "Física Electrónica",
     nivel: 9,
   },
   {
@@ -540,7 +540,7 @@ export const electronica = [
     materia: "Optoelectrónica",
     creditos: 6,
     correlativas: "82.03-82.06",
-    categoria: "Orientación: Física Electrónica",
+    categoria: "Física Electrónica",
     nivel: 9,
   },
   {
@@ -564,7 +564,7 @@ export const electronica = [
     materia: "Tecnología de los Componentes",
     creditos: 6,
     correlativas: "86.10",
-    categoria: "Orientación: Multiples Orientaciones",
+    categoria: "Multiples Orientaciones",
     nivel: 9,
   },
   {
@@ -572,7 +572,7 @@ export const electronica = [
     materia: "Procesamiento de Señales I",
     creditos: 6,
     correlativas: "86.09",
-    categoria: "Orientación: Multiples Orientaciones",
+    categoria: "Multiples Orientaciones",
     nivel: 9,
   },
   {
@@ -580,7 +580,7 @@ export const electronica = [
     materia: "Procesamiento de Señales II",
     creditos: 6,
     correlativas: "86.51",
-    categoria: "Orientación: Multiples Orientaciones",
+    categoria: "Multiples Orientaciones",
     nivel: 10,
   },
   {
@@ -588,7 +588,7 @@ export const electronica = [
     materia: "Procesamiento del Habla",
     creditos: 6,
     correlativas: "86.05",
-    categoria: "Orientación: Multiples Orientaciones",
+    categoria: "Multiples Orientaciones",
     nivel: 9,
   },
   {
@@ -596,7 +596,7 @@ export const electronica = [
     materia: "Redes Neuronales",
     creditos: 6,
     correlativas: "86.09",
-    categoria: "Orientación: Multiples Orientaciones",
+    categoria: "Multiples Orientaciones",
     nivel: 10,
   },
   {
@@ -604,7 +604,7 @@ export const electronica = [
     materia: "Teoría de Detección y Estimación",
     creditos: 6,
     correlativas: "86.09",
-    categoria: "Orientación: Multiples Orientaciones",
+    categoria: "Multiples Orientaciones",
     nivel: 10,
   },
   {
@@ -612,7 +612,7 @@ export const electronica = [
     materia: "Procesamiento de Imágenes",
     creditos: 6,
     correlativas: "86.51-86.55",
-    categoria: "Orientación: Multiples Orientaciones",
+    categoria: "Multiples Orientaciones",
     nivel: 11,
   },
   {
@@ -620,7 +620,7 @@ export const electronica = [
     materia: "Acústica",
     creditos: 6,
     correlativas: "86.04",
-    categoria: "Orientación: Multimedia",
+    categoria: "Multimedia",
     nivel: 9,
   },
   {
@@ -628,7 +628,7 @@ export const electronica = [
     materia: "Electroacústica",
     creditos: 6,
     correlativas: "86.06",
-    categoria: "Orientación: Multimedia",
+    categoria: "Multimedia",
     nivel: 9,
   },
   {
@@ -636,7 +636,7 @@ export const electronica = [
     materia: "Audio Profesional",
     creditos: 6,
     correlativas: "86.10",
-    categoria: "Orientación: Multimedia",
+    categoria: "Multimedia",
     nivel: 9,
   },
   {
@@ -644,7 +644,7 @@ export const electronica = [
     materia: "Sistemas Biológicos",
     creditos: 6,
     correlativas: "86.05",
-    categoria: "Orientación: Instrumentación Biomédica",
+    categoria: "Instrumentación Biomédica",
     nivel: 9,
   },
   {
@@ -652,7 +652,7 @@ export const electronica = [
     materia: "Ingeniería Biomédica",
     creditos: 6,
     correlativas: "86.08-86.60",
-    categoria: "Orientación: Instrumentación Biomédica",
+    categoria: "Instrumentación Biomédica",
     nivel: 10,
   },
   {
@@ -660,7 +660,7 @@ export const electronica = [
     materia: "Equipamiento para Diagnóstico y Tratamiento Biomédico",
     creditos: 6,
     correlativas: "86.60",
-    categoria: "Orientación: Instrumentación Biomédica",
+    categoria: "Instrumentación Biomédica",
     nivel: 10,
   },
   {
@@ -668,7 +668,7 @@ export const electronica = [
     materia: "Proc. y Análisis de Señales e Imágenes En Bioingeniería",
     creditos: 6,
     correlativas: "86.60",
-    categoria: "Orientación: Instrumentación Biomédica",
+    categoria: "Instrumentación Biomédica",
     nivel: 10,
   },
   {
@@ -676,7 +676,7 @@ export const electronica = [
     materia: "Teoría de Lenguajes de Programación",
     creditos: 4,
     correlativas: "95.12",
-    categoria: "Orientación: Sistemas Digitales y Computación",
+    categoria: "Sistemas Digitales y Computación",
     nivel: 11,
   },
   {
@@ -684,7 +684,7 @@ export const electronica = [
     materia: "Taller de Programación",
     creditos: 4,
     correlativas: "95.12",
-    categoria: "Orientación: Sistemas Digitales y Computación",
+    categoria: "Sistemas Digitales y Computación",
     nivel: 11,
   },
   {
@@ -692,7 +692,7 @@ export const electronica = [
     materia: "Compatibilidad Electromagnética",
     creditos: 6,
     correlativas: "82.06",
-    categoria: "Orientación: Multiples Orientaciones",
+    categoria: "Multiples Orientaciones",
     nivel: 9,
   },
   {
@@ -700,7 +700,7 @@ export const electronica = [
     materia: "Sistemas Embebidos",
     creditos: 6,
     correlativas: "86.07",
-    categoria: "Orientación: Sistemas Digitales y Computación",
+    categoria: "Sistemas Digitales y Computación",
     nivel: 9,
   },
   {
@@ -708,7 +708,7 @@ export const electronica = [
     materia: "Laboratorio de Microelectrónica",
     creditos: 6,
     correlativas: "86.46",
-    categoria: "Orientación: Física Electrónica",
+    categoria: "Física Electrónica",
     nivel: 10,
   },
   {
@@ -716,7 +716,7 @@ export const electronica = [
     materia: "Comunicaciones Radioeléctricas y Radioenlaces",
     creditos: 6,
     correlativas: "86.29",
-    categoria: "Orientación: Telecomunicaciones",
+    categoria: "Telecomunicaciones",
     nivel: 10,
   },
   {
@@ -724,7 +724,7 @@ export const electronica = [
     materia: "Control no Lineal",
     creditos: 6,
     correlativas: "86.16",
-    categoria: "Orientación: Automatización y Control",
+    categoria: "Automatización y Control",
     nivel: 11,
   },
   {
@@ -732,7 +732,7 @@ export const electronica = [
     materia: "Algoritmos y Programación III",
     creditos: 6,
     correlativas: "95.12",
-    categoria: "Orientación: Sistemas Digitales y Computación",
+    categoria: "Sistemas Digitales y Computación",
     nivel: 10,
   },
   {
@@ -740,7 +740,7 @@ export const electronica = [
     materia: "Sistemas Operativos",
     creditos: 6,
     correlativas: "86.07-95.02",
-    categoria: "Orientación: Sistemas Digitales y Computación",
+    categoria: "Sistemas Digitales y Computación",
     nivel: 11,
   },
   {
@@ -756,7 +756,7 @@ export const electronica = [
     materia: "Teoría de Algoritmos I",
     creditos: 6,
     correlativas: "95.12",
-    categoria: "Orientación: Sistemas Digitales y Computación",
+    categoria: "Sistemas Digitales y Computación",
     nivel: 10,
   },
   {
@@ -764,7 +764,7 @@ export const electronica = [
     materia: "Técnicas de Programación Concurrente I",
     creditos: 6,
     correlativas: "95.03",
-    categoria: "Orientación: Sistemas Digitales y Computación",
+    categoria: "Sistemas Digitales y Computación",
     nivel: 11,
   },
   {
@@ -772,7 +772,7 @@ export const electronica = [
     materia: "Algoritmos y Programación II",
     creditos: 6,
     correlativas: "95.11",
-    categoria: "Orientación: Sistemas Digitales y Computación",
+    categoria: "Sistemas Digitales y Computación",
     nivel: 9,
   },
 ];
