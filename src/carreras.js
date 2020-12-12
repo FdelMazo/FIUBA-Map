@@ -1,6 +1,12 @@
 import * as data from "./data";
 
 const CARRERAS = {
+  informatica: {
+    graph: data.informatica,
+    nombre: "Ingeniería en Informática",
+    orientaciones: { gestion: { nombre: "Gestion de Producción" } },
+    finDeCarrera: { tpp: { nombre: "Trabajo Práctico Profesional" } },
+  },
   agrimensura: {
     graph: data.agrimensura,
     nombre: "Ingeniería en Agrimensura",
@@ -24,12 +30,6 @@ const CARRERAS = {
   industrial: {
     graph: data.industrial,
     nombre: "Ingeniería Industrial",
-  },
-  informatica: {
-    graph: data.informatica,
-    nombre: "Ingeniería en Informática",
-    orientaciones: { gestion: { nombre: "Gestion de Producción" } },
-    finDeCarrera: { tpp: { nombre: "Trabajo Práctico Profesional" } },
   },
   mecanica: {
     graph: data.mecanica,
