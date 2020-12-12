@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Progress } from "@chakra-ui/core";
+import { Flex, Progress } from "@chakra-ui/react";
 import { UserContext } from "../Contexts";
 
 const Footer = () => {

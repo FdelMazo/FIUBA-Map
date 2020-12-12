@@ -1,5 +1,5 @@
 import React from "react";
-import { Select, Box } from "@chakra-ui/core";
+import { Select, Box } from "@chakra-ui/react";
 import CARRERAS from "../carreras";
 import { GraphContext } from "../Contexts";
 

@@ -6,8 +6,7 @@ import {
   TagLabel,
   TagIcon,
   Tag,
-  Button
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 import { GraphContext } from "../Contexts";
 import Graph from "react-graph-vis";
 import * as C from "../constants";

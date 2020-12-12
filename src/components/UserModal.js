@@ -11,7 +11,7 @@ import {
   ModalCloseButton,
   ModalFooter,
   Button,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 import { UserContext, GraphContext } from "../Contexts";
 import CarreraSelect from "./CarreraSelect";
 import OrientacionSelect from "./OrientacionSelect";

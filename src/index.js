@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { ThemeProvider, Flex } from "@chakra-ui/core";
+import { ThemeProvider, Flex } from "@chakra-ui/react";
 import { customTheme } from "./theme";
 import Header from "./components/Header";
 import Body from "./components/Body";

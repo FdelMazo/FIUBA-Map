@@ -1,5 +1,5 @@
 import React from "react";
-import { Select, Box } from "@chakra-ui/core";
+import { Select, Box } from "@chakra-ui/react";
 import { GraphContext } from "../Contexts";
 
 const OrientacionSelect = () => {

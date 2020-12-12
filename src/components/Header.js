@@ -3,7 +3,7 @@ import PadronInput from "./PadronInput";
 import CarreraSelect from "./CarreraSelect";
 import { UserContext } from "../Contexts";
 
-import { Box, Flex } from "@chakra-ui/core";
+import { Box, Flex } from "@chakra-ui/react";
 
 const Promedio = () => <Box>Promedio: 7.50</Box>;
 

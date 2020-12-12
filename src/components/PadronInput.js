@@ -7,7 +7,7 @@ import {
   IconButton,
   useToast,
   useDisclosure,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 import { UserContext } from "../Contexts";
 import UserModal from "./UserModal";
 
