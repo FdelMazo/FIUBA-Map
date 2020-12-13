@@ -47,25 +47,24 @@ const useGraph = () => {
     setGraph({ nodes: graphNodes, edges: graphEdges, groups });
   }, [carrera]); //eslint-disable-line
 
-  const toggleGroup = (id, nodeArr, nodes, toggle) => {
+  const toggleGroup = (id, nodes) => {
     if (!nodes) return;
-    nodeArr
+    graph.nodes
       .filter((n) => n.categoria == id)
       .forEach((n) => {
-        if (toggle != undefined) {
-          n.hidden = toggle;
-        } else {
-          n.hidden = !n.hidden;
-        }
+        n.hidden = !n.hidden;
       });
-    nodes.update(nodeArr);
+    nodes.update(graph.nodes);
   };
 
-  const isGroupHidden = (id, nodesArr) => {
-    return nodesArr.find((n) => n.categoria == id).hidden
-  }
-
-  return { carrera, changeCarrera, graph, options, key, toggleGroup, isGroupHidden };
+  return {
+    carrera,
+    changeCarrera,
+    graph,
+    options,
+    key,
+    toggleGroup,
+  };
 };
 
 export default useGraph;
