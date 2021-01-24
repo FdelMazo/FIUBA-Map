@@ -1,19 +1,6 @@
 import React, { useEffect } from "react";
 import CARRERAS from "./carreras";
 import Node from "./Node";
-import * as C from "./constants";
-
-const options = {
-  nodes: { shape: "box" },
-  interaction: {
-    hover: true,
-  },
-  layout: {
-    hierarchical: { enabled: true, direction: "LR", levelSeparation: 150 },
-  },
-  edges: { arrows: { to: { enabled: true, scaleFactor: 0.7, type: "arrow" } } },
-  groups: { ...C.GRUPOS },
-};
 
 const graphObj = {
   nodes: [],
@@ -21,16 +8,24 @@ const graphObj = {
   groups: [],
 };
 
+const globalObj = {
+  nodes: null,
+  edges: null,
+  network: null,
+};
+
 const useGraph = () => {
+  const [global, setGlobal] = React.useState(globalObj);
   const [graph, setGraph] = React.useState(graphObj);
   const [key, setKey] = React.useState(true);
   const [carrera, setCarrera] = React.useState(Object.values(CARRERAS)[0]);
+
   const changeCarrera = (id) => {
     setCarrera(CARRERAS[id]);
   };
 
   useEffect(() => {
-    setKey(!key);
+    // setKey(!key);
     const graphNodes = [];
     const graphEdges = [];
     carrera.graph.forEach((n) => {
@@ -47,23 +42,41 @@ const useGraph = () => {
     setGraph({ nodes: graphNodes, edges: graphEdges, groups });
   }, [carrera]); //eslint-disable-line
 
-  const toggleGroup = (id, nodes) => {
-    if (!nodes) return;
+  const toggleGroup = (id) => {
     graph.nodes
-      .filter((n) => n.categoria == id)
+      .filter((n) => n.categoria === id)
       .forEach((n) => {
         n.hidden = !n.hidden;
       });
-    nodes.update(graph.nodes);
+    global.nodes.update(graph.nodes);
+  };
+
+  const getNode = (id) => {
+    return global.nodes.get(id).nodeRef;
+  };
+
+  const aprobarSinNota = (id) => {
+    const node = getNode(id);
+    node.aprobar({
+      network: global.network,
+      nodes: global.nodes,
+      getNode,
+    });
+  };
+
+  const nodeFunctions = {
+    getNode,
+    aprobarSinNota,
   };
 
   return {
     carrera,
     changeCarrera,
     graph,
-    options,
     key,
     toggleGroup,
+    setGlobal,
+    nodeFunctions,
   };
 };
 

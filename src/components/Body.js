@@ -12,41 +12,44 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { SmallAddIcon } from "@chakra-ui/icons";
-import { GraphContext } from "../Contexts";
+import { GraphContext, UserContext } from "../Contexts";
 import Graph from "react-graph-vis";
 import * as C from "../constants";
 
-const Body = () => {
-  const { graph, options, carrera, key, toggleGroup } = React.useContext(
-    GraphContext
-  );
-  const [displayedNode, setDisplayedNode] = React.useState({});
+const Body = (props) => {
+  const {
+    graph,
+    setGlobal,
+    key,
+    nodeFunctions,
+    toggleGroup,
+  } = React.useContext(GraphContext);
+  const { aprobarSinNota } = nodeFunctions;
+
+  const { logged } = React.useContext(UserContext);
+
   const [network, setNetwork] = React.useState(null);
   const [nodes, setNodes] = React.useState(null);
   const [edges, setEdges] = React.useState(null);
+  useEffect(() => {
+    setGlobal({ nodes, edges, network });
+  }, [network, nodes, edges]);
+
+  const { setDisplayedNode } = props;
 
   const events = {
     deselectNode: () => {
-      setDisplayedNode({});
+      setDisplayedNode("");
     },
     selectNode: (e) => {
       const id = e.nodes[0];
-      const node = nodes.get(id).nodeRef;
-      node.onClick(
-        { setDisplayedNode },
-        {
-          network,
-          nodeArr: nodes,
-        }
-      );
+      setDisplayedNode(id);
+      aprobarSinNota(id);
     },
   };
 
   return (
     <Box minHeight="100%">
-      <Tag position="absolute" zIndex={2}>
-        {displayedNode.label}
-      </Tag>
       <Stack position="absolute" right={0} mt={2} mr={2} zIndex={2}>
         {graph.groups
           .filter((c) => c != "CBC" && c != "Materias Obligatorias")
@@ -58,7 +61,7 @@ const Body = () => {
               bg={C.GRUPOS[c].color}
               borderRadius="full"
               onClick={() => {
-                toggleGroup(c, nodes);
+                toggleGroup(c);
               }}
             >
               <TagLeftIcon boxSize="12px" as={SmallAddIcon} />
@@ -78,7 +81,7 @@ const Body = () => {
         getEdges={(r) => {
           setEdges(r);
         }}
-        options={options}
+        options={C.GRAPHOPTIONS}
         events={events}
       />
     </Box>

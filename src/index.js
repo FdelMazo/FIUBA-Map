@@ -2,9 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { ThemeProvider, Flex } from "@chakra-ui/react";
 import { customTheme } from "./theme";
-import Header from "./components/Header";
-import Body from "./components/Body";
-import Footer from "./components/Footer";
+import MainApp from "./components/MainApp";
 import { UserContext, GraphContext } from "./Contexts";
 import useLogin from "./useLogin";
 import useGraph from "./useGraph";
@@ -16,11 +14,7 @@ const App = () => {
   return (
     <UserContext.Provider value={loginHook}>
       <GraphContext.Provider value={graphHook}>
-        <Flex direction="column" h="100vh">
-          <Header />
-          <Body />
-          <Footer />
-        </Flex>
+        <MainApp />
       </GraphContext.Provider>
     </UserContext.Provider>
   );

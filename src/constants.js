@@ -61,3 +61,15 @@ export const GRUPOS = {
   Multimedia: { color: "#FFDAB9" },
   "Instrumentación Biomédica": { color: "#66CDAA" },
 };
+
+export const GRAPHOPTIONS = {
+  nodes: { shape: "box" },
+  interaction: {
+    hover: true,
+  },
+  layout: {
+    hierarchical: { enabled: true, direction: "LR", levelSeparation: 150 },
+  },
+  edges: { arrows: { to: { enabled: true, scaleFactor: 0.7, type: "arrow" } } },
+  groups: { ...GRUPOS },
+};

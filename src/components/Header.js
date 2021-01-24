@@ -1,14 +1,26 @@
 import React from "react";
 import PadronInput from "./PadronInput";
 import CarreraSelect from "./CarreraSelect";
-import { UserContext } from "../Contexts";
+import { GraphContext, UserContext } from "../Contexts";
 
-import { Box, Flex } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  useDisclosure,
+  Button,
+  Collapse,
+  SlideFade,
+} from "@chakra-ui/react";
 
 const Promedio = () => <Box>Promedio: 7.50</Box>;
 
-const Header = () => {
+const Header = (props) => {
+  const { displayedNode } = props;
+  const { nodeFunctions } = React.useContext(GraphContext);
+  const { getNode } = nodeFunctions;
   const { logged } = React.useContext(UserContext);
+
+  const { isOpen, onToggle } = useDisclosure();
 
   return (
     <Flex
@@ -18,8 +30,19 @@ const Header = () => {
       bg="primary"
       padding="0.6rem"
     >
-      <PadronInput />
-      {logged ? <Promedio /> : <CarreraSelect color="white" />}
+      <Box>
+        {displayedNode && (
+          <Collapse in={displayedNode}>
+            <>{getNode(displayedNode).materia}</>
+          </Collapse>
+        )}
+        <SlideFade in={!displayedNode}>
+          <PadronInput />
+        </SlideFade>
+      </Box>
+      <SlideFade in={!displayedNode}>
+        {logged ? <Promedio /> : <CarreraSelect color="white" />}
+      </SlideFade>
     </Flex>
   );
 };

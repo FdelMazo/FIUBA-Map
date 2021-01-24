@@ -12,6 +12,7 @@ class Node {
     this.nodeRef = this;
     this.id = n.id;
     this.value = n.creditos;
+    this.materia = n.materia;
     this.label = breakWords(n.materia);
     this.level = n.nivel;
     this.group = n.categoria;
@@ -19,71 +20,50 @@ class Node {
     this.aprobada = false;
     this.nota = 0;
     this.habilitada = false;
-    this.hidden =
-      this.categoria !== "Materias Obligatorias" && this.categoria !== "CBC";
   }
 
-  onClick(args, ctx) {
-    args.setDisplayedNode(this);
-    if (this.aprobada) {
-      this.desaprobar(args, ctx);
-    } else {
-      this.aprobar(args, ctx);
-    }
-  }
-
-  aprobar(args, ctx) {
-    const { network, nodeArr } = ctx;
+  aprobar(ctx) {
+    const { network, nodes, getNode } = ctx;
 
     this.aprobada = true;
-    this.actualizarGrupo(args, ctx);
-    nodeArr.update(this);
+    this.actualizarGrupo(ctx);
+    nodes.update(this);
 
     network.getConnectedNodes(this.id, "to").forEach((m) => {
-      nodeArr.get(m).nodeRef.habilitar(args, ctx);
+      getNode(m).habilitar(ctx);
     });
   }
 
-  hide(args, ctx) {
-    const { network, nodeArr } = ctx;
-
-    this.hidden = true;
-
-    this.actualizarGrupo(args, ctx);
-    nodeArr.update(this);
-  }
-
-  habilitar(args, ctx) {
-    const { network, nodeArr } = ctx;
+  habilitar(ctx) {
+    const { network, nodes } = ctx;
 
     const from = network.getConnectedNodes(this.id, "from");
 
     let todoAprobado = true;
     for (let i = 0; i < from.length; i++) {
-      const m = nodeArr.get(from[i]);
+      const m = nodes.get(from[i]);
       todoAprobado &= m.aprobada;
     }
     if (todoAprobado) this.habilitada = true;
 
-    this.actualizarGrupo(args, ctx);
-    nodeArr.update(this);
+    this.actualizarGrupo(ctx);
+    nodes.update(this);
   }
 
-  desaprobar(args, ctx) {
-    const { nodeArr } = ctx;
-
+  desaprobar(ctx) {
+    const { nodes } = ctx;
     this.aprobada = false;
 
-    this.actualizarGrupo(args, ctx);
-    nodeArr.update(this);
+    this.actualizarGrupo(ctx);
+    nodes.update(this);
   }
 
   deshabilitar() {
     this.habilitada = false;
   }
 
-  actualizarGrupo(args, ctx) {
-    const { nodeArr } = ctx;
+  actualizarGrupo(ctx) {
+    const { nodes } = ctx;
 
     let grupoDefault = this.categoria;
     if (this.aprobada && this.nota >= 0) grupoDefault = "Aprobadas";
@@ -91,7 +71,7 @@ class Node {
     else if (this.habilitada) grupoDefault = "Habilitadas";
     this.group = grupoDefault;
 
-    nodeArr.update(this);
+    nodes.update(this);
   }
 }
 
