@@ -19,6 +19,8 @@ class Node {
     this.aprobada = false;
     this.nota = 0;
     this.habilitada = false;
+    this.hidden =
+      this.categoria !== "Materias Obligatorias" && this.categoria !== "CBC";
   }
 
   onClick(args, ctx) {
