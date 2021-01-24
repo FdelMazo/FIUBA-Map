@@ -12,14 +12,14 @@ const Header = () => {
 
   return (
     <Flex
+      color="white"
       align="center"
       justify="space-between"
       bg="primary"
-      color="secondary"
       padding="0.6rem"
     >
       <PadronInput />
-      {logged ? <Promedio /> : <CarreraSelect />}
+      {logged ? <Promedio /> : <CarreraSelect color="white" />}
     </Flex>
   );
 };

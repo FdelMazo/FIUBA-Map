@@ -7,7 +7,7 @@ const CarreraSelect = () => {
   const { changeCarrera } = React.useContext(GraphContext);
 
   return (
-    <Box>
+    <Box color="white">
       <Select onChange={(e) => changeCarrera(e.target.value)} bg="transparent">
         {Object.keys(CARRERAS).map((id) => (
           <option value={id}>{CARRERAS[id].nombre}</option>
