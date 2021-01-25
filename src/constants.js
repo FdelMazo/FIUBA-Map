@@ -67,6 +67,9 @@ export const GRAPHOPTIONS = {
   interaction: {
     hover: true,
   },
+  physics: {
+    enabled: false,
+  },
   layout: {
     hierarchical: { enabled: true, direction: "LR", levelSeparation: 150 },
   },
