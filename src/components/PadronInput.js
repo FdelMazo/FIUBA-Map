@@ -8,6 +8,7 @@ import {
   useToast,
   useDisclosure,
 } from "@chakra-ui/react";
+import { CloseIcon, CheckCircleIcon, SettingsIcon } from "@chakra-ui/icons";
 import { UserContext } from "../Contexts";
 import UserModal from "./UserModal";
 
@@ -48,8 +49,16 @@ const PadronInput = () => {
           <IconButton
             variant="outline"
             ml={1}
-            variantColor={firstTime ? "red" : "teal"}
-            icon={logged ? "settings" : firstTime ? "close" : "check"}
+            colorScheme={firstTime ? "red" : "teal"}
+            icon={
+              logged ? (
+                <SettingsIcon />
+              ) : firstTime ? (
+                <CloseIcon />
+              ) : (
+                <CheckCircleIcon />
+              )
+            }
             size="sm"
             isLoading={loading}
             type={logged ? null : "submit"}

@@ -44,13 +44,13 @@ const Body = (props) => {
     selectNode: (e) => {
       const id = e.nodes[0];
       setDisplayedNode(id);
-      aprobarSinNota(id);
+      if (!logged) aprobarSinNota(id);
     },
   };
 
   return (
     <Box minHeight="100%">
-      <Stack position="absolute" right={0} mt={2} mr={2} zIndex={2}>
+      <Stack position="absolute" bottom={0} left={0} mb={2} ml={2} zIndex={2}>
         {graph.groups
           .filter((c) => c != "CBC" && c != "Materias Obligatorias")
           .map((c) => (

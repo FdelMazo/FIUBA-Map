@@ -28,15 +28,22 @@ class Node {
     const { network, nodes, getNode } = ctx;
 
     this.aprobada = true;
-    this.actualizarGrupo(ctx);
+    this.group = this.getGrupo();
     nodes.update(this);
+    const habilitadas = [];
 
     network.getConnectedNodes(this.id, "to").forEach((m) => {
-      getNode(m).habilitar(ctx);
+      const nodem = getNode(m);
+      if (nodem.isHabilitada(ctx)) {
+        nodem.habilitada = true;
+        nodem.group = nodem.getGrupo();
+        habilitadas.push(nodem);
+      }
     });
+    nodes.update(habilitadas);
   }
 
-  habilitar(ctx) {
+  isHabilitada(ctx) {
     const { network, nodes } = ctx;
 
     const from = network.getConnectedNodes(this.id, "from");
@@ -46,17 +53,17 @@ class Node {
       const m = nodes.get(from[i]);
       todoAprobado &= m.aprobada;
     }
-    if (todoAprobado) this.habilitada = true;
+    return todoAprobado;
 
-    this.actualizarGrupo(ctx);
-    nodes.update(this);
+    // this.group = this.getGrupo();
+    // nodes.update(this);
   }
 
   desaprobar(ctx) {
     const { nodes } = ctx;
     this.aprobada = false;
 
-    this.actualizarGrupo(ctx);
+    this.group = this.getGrupo();
     nodes.update(this);
   }
 
@@ -64,16 +71,12 @@ class Node {
     this.habilitada = false;
   }
 
-  actualizarGrupo(ctx) {
-    const { nodes } = ctx;
-
+  getGrupo() {
     let grupoDefault = this.categoria;
     if (this.aprobada && this.nota >= 0) grupoDefault = "Aprobadas";
     else if (this.aprobada) grupoDefault = "En Final";
     else if (this.habilitada) grupoDefault = "Habilitadas";
-    this.group = grupoDefault;
-
-    nodes.update(this);
+    return grupoDefault;
   }
 }
 

@@ -49,7 +49,6 @@ const UserModal = (props) => {
         </ModalBody>
 
         <ModalFooter>
-          <Button onClick={props.onClose}>Cerrar</Button>
           <Button
             onClick={() => {
               logout();
