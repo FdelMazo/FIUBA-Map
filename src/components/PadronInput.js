@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
+import { CheckCircleIcon, CloseIcon, SettingsIcon } from "@chakra-ui/icons";
 import {
-  Input,
-  Button,
   Box,
+  Button,
   Flex,
   IconButton,
-  useToast,
+  Input,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
-import { CloseIcon, CheckCircleIcon, SettingsIcon } from "@chakra-ui/icons";
+import React, { useEffect } from "react";
 import { UserContext } from "../Contexts";
 import UserModal from "./UserModal";
 
@@ -23,8 +23,12 @@ const PadronInput = () => {
   useEffect(() => {
     if (firstTime)
       toast({
-        title: "Padrón no registrado",
-        description: <Button onClick={onOpen}>Registrar</Button>,
+        position: "top",
+        render: () => (
+          <Button colorScheme="teal" onClick={onOpen}>
+            Registrar
+          </Button>
+        ),
       });
   }, [firstTime, toast, onOpen]);
 
@@ -38,9 +42,10 @@ const PadronInput = () => {
       >
         <Flex align="center" bg="primary" color="secondary">
           <Input
+            borderRadius={4}
             bg="transparent"
             size="sm"
-            color="secondary"
+            color="white"
             name="padron"
             placeholder="Padrón"
             value={user.padron || null}
