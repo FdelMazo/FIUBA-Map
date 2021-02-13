@@ -18,13 +18,21 @@ import {
   PopoverTrigger,
   Select,
   SlideFade,
+  Stat,
+  StatLabel,
+  StatNumber,
 } from "@chakra-ui/react";
 import React from "react";
 import CARRERAS from "../carreras";
 import { GraphContext, UserContext } from "../Contexts";
 import PadronInput from "./PadronInput";
 
-const Promedio = () => <Box>Promedio: 7.50</Box>;
+const Promedio = () => (
+  <Stat css={{ "& *": { marginTop: 0, marginBottom: 0 } }} size="sm">
+    <StatLabel>Promedio</StatLabel>
+    <StatNumber>9.50</StatNumber>
+  </Stat>
+);
 
 const Header = (props) => {
   const { displayedNode } = props;
