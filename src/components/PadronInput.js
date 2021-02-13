@@ -24,6 +24,7 @@ const PadronInput = () => {
     if (firstTime)
       toast({
         position: "top",
+        duration: 3000,
         render: () => (
           <Button colorScheme="teal" onClick={onOpen}>
             Registrar

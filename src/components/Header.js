@@ -1,41 +1,35 @@
-import React from "react";
-import PadronInput from "./PadronInput";
-import CarreraSelect from "./CarreraSelect";
-import { GraphContext, UserContext } from "../Contexts";
-
+import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import {
   Box,
-  Flex,
-  useDisclosure,
-  IconButton,
   Button,
   Collapse,
-  SlideFade,
+  Flex,
+  HStack,
+  IconButton,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
-  HStack,
-} from "@chakra-ui/react";
-
-import {
   Popover,
-  PopoverTrigger,
+  PopoverArrow,
   PopoverContent,
   PopoverHeader,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
+  PopoverTrigger,
+  Select,
+  SlideFade,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { MinusIcon, AddIcon, SettingsIcon } from "@chakra-ui/icons";
+import React from "react";
+import CARRERAS from "../carreras";
+import { GraphContext, UserContext } from "../Contexts";
+import PadronInput from "./PadronInput";
 
 const Promedio = () => <Box>Promedio: 7.50</Box>;
 
 const Header = (props) => {
   const { displayedNode } = props;
-  const { nodeFunctions } = React.useContext(GraphContext);
+  const { nodeFunctions, changeCarrera } = React.useContext(GraphContext);
   const { getNode } = nodeFunctions;
   const { logged } = React.useContext(UserContext);
 
@@ -125,7 +119,16 @@ const Header = (props) => {
             <PadronInput />
           </Box>
           <Box>
-            <CarreraSelect />
+            <Box color="secondary">
+              <Select
+                css={{ color: "#ffffff" }}
+                onChange={(e) => changeCarrera(e.target.value)}
+              >
+                {Object.keys(CARRERAS).map((id) => (
+                  <option value={id}>{CARRERAS[id].nombre}</option>
+                ))}
+              </Select>
+            </Box>
           </Box>
         </>
       )}

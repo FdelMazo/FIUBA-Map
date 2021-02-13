@@ -21,6 +21,7 @@ const useLogin = () => {
   }, [logged]);
 
   const login = async (padron) => {
+    setFirstTime(false);
     setLoading(true);
     const index = await fetch(
       `${C.SPREADSHEET}${C.SHEETS.user.name}!${C.SHEETS.user.columns.padron}:${C.SHEETS.user.columns.padron}?majorDimension=COLUMNS&key=${C.KEY}`
