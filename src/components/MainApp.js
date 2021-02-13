@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
 import { Flex } from "@chakra-ui/react";
-import Header from "./Header";
+import React from "react";
 import Body from "./Body";
 import Footer from "./Footer";
+import Header from "./Header";
 
 const MainApp = () => {
   const [displayedNode, setDisplayedNode] = React.useState("");

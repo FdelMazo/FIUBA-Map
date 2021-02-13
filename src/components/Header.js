@@ -18,7 +18,6 @@ import {
   PopoverTrigger,
   Select,
   SlideFade,
-  useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
 import CARRERAS from "../carreras";
@@ -32,8 +31,6 @@ const Header = (props) => {
   const { nodeFunctions, changeCarrera } = React.useContext(GraphContext);
   const { getNode } = nodeFunctions;
   const { logged } = React.useContext(UserContext);
-
-  const { isOpen, onToggle } = useDisclosure();
 
   return (
     <Flex
@@ -119,16 +116,14 @@ const Header = (props) => {
             <PadronInput />
           </Box>
           <Box>
-            <Box color="secondary">
-              <Select
-                css={{ color: "#ffffff" }}
-                onChange={(e) => changeCarrera(e.target.value)}
-              >
-                {Object.keys(CARRERAS).map((id) => (
-                  <option value={id}>{CARRERAS[id].nombre}</option>
-                ))}
-              </Select>
-            </Box>
+            <Select
+              css={{ color: "#ffffff" }}
+              onChange={(e) => changeCarrera(e.target.value)}
+            >
+              {Object.keys(CARRERAS).map((id) => (
+                <option value={id}>{CARRERAS[id].nombre}</option>
+              ))}
+            </Select>
           </Box>
         </>
       )}

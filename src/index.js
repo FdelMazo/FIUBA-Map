@@ -1,11 +1,11 @@
+import { ThemeProvider } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom";
-import { ThemeProvider, Flex } from "@chakra-ui/react";
-import { customTheme } from "./theme";
 import MainApp from "./components/MainApp";
-import { UserContext, GraphContext } from "./Contexts";
-import useLogin from "./useLogin";
+import { GraphContext, UserContext } from "./Contexts";
+import { customTheme } from "./theme";
 import useGraph from "./useGraph";
+import useLogin from "./useLogin";
 
 const App = () => {
   const loginHook = useLogin();

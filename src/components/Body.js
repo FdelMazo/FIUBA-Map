@@ -1,20 +1,9 @@
-import React, { useEffect } from "react";
-import {
-  Box,
-  Stack,
-  IconButton,
-  TagLabel,
-  TagIcon,
-  Tag,
-  TagCloseButton,
-  TagRightIcon,
-  TagLeftIcon,
-  Button,
-} from "@chakra-ui/react";
 import { SmallAddIcon } from "@chakra-ui/icons";
-import { GraphContext, UserContext } from "../Contexts";
+import { Box, Stack, Tag, TagLabel, TagLeftIcon } from "@chakra-ui/react";
+import React, { useEffect } from "react";
 import Graph from "react-graph-vis";
 import * as C from "../constants";
+import { GraphContext, UserContext } from "../Contexts";
 
 const Body = (props) => {
   const {
@@ -33,7 +22,7 @@ const Body = (props) => {
   const [edges, setEdges] = React.useState(null);
   useEffect(() => {
     setGlobal({ nodes, edges, network });
-  }, [network, nodes, edges]);
+  }, [network, nodes, edges, setGlobal]);
 
   const { setDisplayedNode } = props;
 
@@ -52,7 +41,7 @@ const Body = (props) => {
     <Box minHeight="100%">
       <Stack position="absolute" bottom={0} left={0} mb={2} ml={2} zIndex={2}>
         {graph.groups
-          .filter((c) => c != "CBC" && c != "Materias Obligatorias")
+          .filter((c) => c !== "CBC" && c !== "Materias Obligatorias")
           .map((c) => (
             <Tag
               cursor="pointer"

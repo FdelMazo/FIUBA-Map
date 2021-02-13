@@ -25,7 +25,7 @@ const useGraph = () => {
   };
 
   useEffect(() => {
-    // setKey(!key);
+    setKey(!key);
     const graphNodes = [];
     const graphEdges = [];
     carrera.graph.forEach((n) => {
