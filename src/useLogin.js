@@ -27,7 +27,12 @@ const useLogin = () => {
       `${C.SPREADSHEET}${C.SHEETS.user.name}!${C.SHEETS.user.columns.padron}:${C.SHEETS.user.columns.padron}?majorDimension=COLUMNS&key=${C.KEY}`
     )
       .then((res) => res.json())
-      .then((res) => res.values[0].indexOf(padron));
+      .then((res) => (!res.error ? res.values[0].indexOf(padron) : null));
+
+    if (!index) {
+      setLoading(false);
+      return;
+    }
     if (index === -1) {
       setFirstTime(true);
       setLoading(false);
