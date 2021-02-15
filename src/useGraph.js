@@ -19,6 +19,8 @@ const useGraph = () => {
   const [graph, setGraph] = React.useState(graphObj);
   const [key, setKey] = React.useState(true);
   const [carrera, setCarrera] = React.useState(Object.values(CARRERAS)[0]);
+  const [orientacion, setOrientacion] = React.useState(null);
+  const [finDeCarrera, setFinDeCarrera] = React.useState(null);
 
   const changeCarrera = (id) => {
     setCarrera(CARRERAS[id]);
@@ -54,7 +56,7 @@ const useGraph = () => {
   };
 
   const getNode = (id) => {
-    return global.nodes.get(id).nodeRef;
+    return global?.nodes?.get(id)?.nodeRef;
   };
 
   const aprobarSinNota = (id) => {
@@ -129,6 +131,10 @@ const useGraph = () => {
     nodeFunctions,
     getCreditos,
     redraw,
+    orientacion,
+    setOrientacion,
+    finDeCarrera,
+    setFinDeCarrera,
   };
 };
 

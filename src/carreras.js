@@ -18,7 +18,7 @@ export const CARRERAS = {
       orientacion: { tesis: 34, tpp: 34 },
       electivas: { tesis: 34, tpp: 46 },
     },
-    eligeOrientaciones: { tesis: true, tpp: true },
+    eligeOrientaciones: true,
   },
   agrimensura: {
     graph: data.agrimensura,
@@ -116,8 +116,6 @@ export const CARRERAS = {
       ],
       electivas: { tesis: 32, tpp: 32 },
     },
-
-    // Cuatro (4)  créditos  electivos  correspondientes  a  asignaturas  humanísticas  a  cursar  en  otras  Facultades de la UBA
   },
   mecanica: {
     graph: data.mecanica,
