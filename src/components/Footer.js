@@ -63,6 +63,7 @@ const Footer = () => {
             color="white"
             css={{ "& *": { marginTop: 0, marginBottom: 0 } }}
             size="sm"
+            textAlign="right"
           >
             <StatLabel>Promedio</StatLabel>
             <StatNumber>9.50</StatNumber>

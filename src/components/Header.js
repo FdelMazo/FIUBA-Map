@@ -20,14 +20,13 @@ const Header = (props) => {
     >
       {logged ? (
         <>
-          {displayedNode && (
-            <Collapse in={displayedNode}>
+          {displayedNode ? (
+            <SlideFade in={displayedNode}>
               <MateriaMenu displayedNode={displayedNode} />
-            </Collapse>
-          )}
-          <SlideFade in={!displayedNode}>
+            </SlideFade>
+          ) : (
             <PadronInput />
-          </SlideFade>
+          )}
         </>
       ) : (
         <>
