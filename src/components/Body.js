@@ -41,14 +41,19 @@ const Body = (props) => {
     <Box flexGrow="1" height="1em" position="relative">
       <Stack
         w="fit-content"
-        mb={5}
+        mb={3}
         ml={2}
         bottom={0}
         position="absolute"
         zIndex={2}
       >
         {graph.groups
-          .filter((c) => c !== "CBC" && c !== "Materias Obligatorias")
+          .filter(
+            (c) =>
+              c !== "CBC" &&
+              c !== "Materias Obligatorias" &&
+              c !== "Fin de Carrera"
+          )
           .map((c) => (
             <Tag
               cursor="pointer"

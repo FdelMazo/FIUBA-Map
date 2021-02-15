@@ -25,7 +25,7 @@ const Footer = () => {
       {!logged && (
         <Flex alignItems="center" bg="primary" bottom="0" position="relative">
           <Grid
-            px={5}
+            pr={2}
             flexGrow={1}
             ml={5}
             columns={getCreditos().length}

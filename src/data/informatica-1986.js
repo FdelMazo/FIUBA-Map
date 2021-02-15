@@ -217,6 +217,14 @@ export const informatica = [
     nivel: 6,
   },
   {
+    id: "61.07",
+    materia: "Matemática Discreta",
+    creditos: 6,
+    correlativas: "CBC",
+    categoria: "Materias Electivas",
+    nivel: 9,
+  },
+  {
     id: "71.13",
     materia: "Información en las Organizaciones",
     creditos: 6,
@@ -351,14 +359,6 @@ export const informatica = [
     correlativas: "75.65-75.67",
     categoria: "Sistemas de Producción",
     nivel: 8,
-  },
-  {
-    id: "61.07",
-    materia: "Matemática Discreta",
-    creditos: 6,
-    correlativas: "CBC",
-    categoria: "Materias Electivas",
-    nivel: 9,
   },
   {
     id: "61.18",
