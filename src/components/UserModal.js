@@ -51,11 +51,7 @@ const UserModal = (props) => {
                   disabled={logged}
                 />
 
-                <Select
-                  w="85%"
-                  value={carrera || null}
-                  onChange={(e) => changeCarrera(e.target.value)}
-                >
+                <Select w="85%" onChange={(e) => changeCarrera(e.target.value)}>
                   {Object.keys(CARRERAS).map((id) => (
                     <option value={id}>{CARRERAS[id].nombre}</option>
                   ))}
@@ -67,8 +63,8 @@ const UserModal = (props) => {
                     onChange={(event) => {
                       setFinDeCarrera(event.currentTarget.value);
                     }}
+                    on
                     w="85%"
-                    placeholder="Sin final de carrera definido"
                   >
                     {carrera.finDeCarrera &&
                       Object.values(carrera.finDeCarrera).map((v) => (
@@ -92,11 +88,10 @@ const UserModal = (props) => {
                       setOrientacion(event.currentTarget.value)
                     }
                     w="85%"
-                    placeholder="Sin orientación definida"
                   >
                     {carrera.orientaciones &&
-                      Object.keys(carrera?.orientaciones).map((name) => (
-                        <option value={name}>{name}</option>
+                      carrera.orientaciones.map((v) => (
+                        <option value={v.nombre}>{v.nombre}</option>
                       ))}
                   </Select>
                 </Collapse>

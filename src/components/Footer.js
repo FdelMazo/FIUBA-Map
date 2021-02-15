@@ -1,5 +1,6 @@
 import {
   Box,
+  Checkbox,
   Collapse,
   Flex,
   Grid,
@@ -49,8 +50,17 @@ const Footer = () => {
                   <PopoverArrow />
                   <PopoverHeader>{c.nombre}</PopoverHeader>
                   <PopoverBody>
-                    Tenes {c.creditos} de {c.creditosNecesarios} creditos
-                    necesarios para recibirte
+                    {c.checkbox ? (
+                      <Checkbox
+                        isIndeterminate={c.check === false}
+                        isChecked={c.check === true}
+                        colorScheme={c.color}
+                      >
+                        Marcar como completo
+                      </Checkbox>
+                    ) : (
+                      `${c.creditos} de ${c.creditosNecesarios} créditos necesarios.`
+                    )}
                   </PopoverBody>
                 </PopoverContent>
               </Popover>

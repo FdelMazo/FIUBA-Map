@@ -22,6 +22,11 @@ const useGraph = () => {
   const [orientacion, setOrientacion] = React.useState(null);
   const [finDeCarrera, setFinDeCarrera] = React.useState(null);
 
+  useEffect(() => {
+    setOrientacion(carrera.orientaciones?.[0].nombre);
+    setFinDeCarrera(carrera.finDeCarrera?.[0].id);
+  }, [carrera]);
+
   const changeCarrera = (id) => {
     setCarrera(CARRERAS[id]);
   };
@@ -73,46 +78,89 @@ const useGraph = () => {
     aprobarSinNota,
   };
 
-  const eleccionFinDeCarrera = () => {
-    return "tpp";
-  };
-  const eleccionOrientacion = () => {
-    return "Gestion";
-  };
-
   const getCreditos = () => {
-    let creditos = [
-      {
-        nombre: "Materias Obligatorias",
-        color: "blue",
-        creditosNecesarios: carrera.creditos.obligatorias,
-        creditos: 23,
-      },
-      {
-        nombre: `Materias Electivas (eligiendo ${eleccionFinDeCarrera()})`,
+    let creditos = [];
+    creditos.push({
+      nombre: "Materias Obligatorias",
+      color: "blue",
+      creditosNecesarios: carrera.creditos.obligatorias,
+      creditos: 1,
+    });
+
+    if (finDeCarrera || !isNaN(carrera.creditos.electivas))
+      creditos.push({
+        nombre: `Materias Electivas${
+          finDeCarrera ? ` (eligiendo ${finDeCarrera})` : ""
+        }`,
         color: "purple",
-        creditosNecesarios: carrera.creditos.electivas[eleccionFinDeCarrera()],
-        creditos: 10,
-      },
-      {
-        nombre: `Orientación: ${eleccionOrientacion()}`,
+        creditosNecesarios: isNaN(carrera.creditos.electivas)
+          ? carrera.creditos.electivas[finDeCarrera]
+          : carrera.creditos.electivas,
+        creditos: 1,
+      });
+
+    if (
+      carrera.eligeOrientaciones &&
+      orientacion &&
+      carrera.creditos.orientacion[finDeCarrera]
+    )
+      creditos.push({
+        nombre: `Orientación: ${orientacion}`,
         color: "yellow",
-        creditosNecesarios: carrera.creditos.orientacion,
-        creditos: 55,
-      },
-      {
-        nombre: `${eleccionFinDeCarrera()}`,
-        color: "red",
-        creditosNecesarios: 10,
-        creditos: 10,
-      },
-    ];
+        creditosNecesarios: carrera.creditos.orientacion[finDeCarrera],
+        creditos: 1,
+      });
+
+    if (carrera.creditos.checkbox) {
+      carrera.creditos.checkbox.forEach((m) => {
+        creditos.push({
+          nombre: `${m.nombre}`,
+          color: m.color,
+          creditosNecesarios: 8,
+          creditos: 1,
+          checkbox: true,
+          check: false,
+        });
+      });
+    }
+
+    if (carrera.creditos.materias)
+      carrera.creditos.materias.forEach((m) => {
+        const node = getNode(m.id);
+        if (node)
+          creditos.push({
+            nombre: `${node.materia}`,
+            color: m.color,
+            creditosNecesarios: node.creditos,
+            creditos: 1,
+          });
+      });
+
+    if (finDeCarrera && carrera.finDeCarrera) {
+      const nodeId = carrera.finDeCarrera.find((c) => c.id === finDeCarrera)
+        .materia;
+      const node = getNode(nodeId);
+      if (node && node.creditos)
+        creditos.push({
+          nombre: `${node.materia}`,
+          color: "red",
+          creditosNecesarios: node.creditos,
+          creditos: 1,
+        });
+    }
 
     let total = 0;
     creditos.forEach((c) => (total += c.creditosNecesarios));
     creditos.forEach((c) => {
-      c.proportion = Math.round((c.creditosNecesarios / total) * 10);
+      c.proportion = Math.round((c.creditosNecesarios / total) * 10) || 1;
     });
+
+    let fullProportion = 0;
+    creditos.forEach((c) => {
+      fullProportion += c.proportion;
+    });
+    if (fullProportion > 10) creditos[0].proportion -= fullProportion - 10;
+    else if (fullProportion < 10) creditos[0].proportion += 10 - fullProportion;
 
     return creditos;
   };
