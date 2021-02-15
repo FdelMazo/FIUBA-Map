@@ -49,6 +49,7 @@ const useGraph = () => {
         n.hidden = !n.hidden;
       });
     global.nodes.update(graph.nodes);
+    global.network.redraw();
     global.network.fit();
   };
 

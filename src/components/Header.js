@@ -1,4 +1,4 @@
-import { Box, Collapse, Flex, Select, SlideFade } from "@chakra-ui/react";
+import { Box, Flex, Select, SlideFade } from "@chakra-ui/react";
 import React from "react";
 import CARRERAS from "../carreras";
 import { GraphContext, UserContext } from "../Contexts";

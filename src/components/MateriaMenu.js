@@ -1,4 +1,4 @@
-import { AddIcon, CheckIcon, CloseIcon, MinusIcon } from "@chakra-ui/icons";
+import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -11,14 +11,13 @@ import {
   NumberInputStepper,
   Popover,
   PopoverArrow,
+  PopoverBody,
   PopoverContent,
-  PopoverHeader,
   PopoverTrigger,
   Stat,
-  StatLabel,
   StatHelpText,
+  StatLabel,
   Text,
-  PopoverBody,
   Tooltip,
 } from "@chakra-ui/react";
 import React from "react";
