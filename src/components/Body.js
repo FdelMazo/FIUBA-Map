@@ -12,6 +12,7 @@ const Body = (props) => {
     toggleGroup,
     key,
     nodeFunctions,
+    redraw,
   } = React.useContext(GraphContext);
   const { aprobarSinNota } = nodeFunctions;
 
@@ -23,6 +24,10 @@ const Body = (props) => {
   useEffect(() => {
     setGlobal({ nodes, edges, network });
   }, [network, nodes, edges, setGlobal]);
+
+  useEffect(() => {
+    setTimeout(redraw, 300);
+  }, [logged, redraw]);
 
   const { setDisplayedNode } = props;
 

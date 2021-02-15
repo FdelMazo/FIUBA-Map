@@ -114,6 +114,10 @@ const useGraph = () => {
     return creditos;
   };
 
+  const redraw = () => {
+    if (global && global.network) global.network.redraw();
+  };
+
   return {
     carrera,
     changeCarrera,
@@ -123,6 +127,7 @@ const useGraph = () => {
     setGlobal,
     nodeFunctions,
     getCreditos,
+    redraw,
   };
 };
 
