@@ -22,8 +22,8 @@ const Footer = () => {
 
   return (
     <>
-      {logged && (
-        <Flex alignItems="center" bg="primary" bottom="0" position="sticky">
+      {!logged && (
+        <Flex alignItems="center" bg="primary" bottom="0" position="relative">
           <SimpleGrid
             px={5}
             flexGrow={1}
@@ -34,7 +34,7 @@ const Footer = () => {
             {graph.groups
               .filter((c) => c !== "CBC")
               .map((c) => (
-                <Popover placement="top">
+                <Popover placement="top" trigger="hover">
                   <PopoverTrigger>
                     <Box>
                       <Progress
