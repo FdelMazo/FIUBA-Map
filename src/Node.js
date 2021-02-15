@@ -22,6 +22,7 @@ class Node {
     this.habilitada = false;
     this.hidden =
       this.categoria !== "Materias Obligatorias" && this.categoria !== "CBC";
+    Object.assign(this, { ...n });
   }
 
   aprobar(ctx) {

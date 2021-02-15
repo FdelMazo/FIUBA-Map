@@ -70,6 +70,50 @@ const useGraph = () => {
     aprobarSinNota,
   };
 
+  const eleccionFinDeCarrera = () => {
+    return "tpp";
+  };
+  const eleccionOrientacion = () => {
+    return "Gestion";
+  };
+
+  const getCreditos = () => {
+    let creditos = [
+      {
+        nombre: "Materias Obligatorias",
+        color: "blue",
+        creditosNecesarios: carrera.creditos.obligatorias,
+        creditos: 23,
+      },
+      {
+        nombre: `Materias Electivas (eligiendo ${eleccionFinDeCarrera()})`,
+        color: "purple",
+        creditosNecesarios: carrera.creditos.electivas[eleccionFinDeCarrera()],
+        creditos: 10,
+      },
+      {
+        nombre: `Orientación: ${eleccionOrientacion()}`,
+        color: "yellow",
+        creditosNecesarios: carrera.creditos.orientacion,
+        creditos: 55,
+      },
+      {
+        nombre: `${eleccionFinDeCarrera()}`,
+        color: "red",
+        creditosNecesarios: 10,
+        creditos: 10,
+      },
+    ];
+
+    let total = 0;
+    creditos.forEach((c) => (total += c.creditosNecesarios));
+    creditos.forEach((c) => {
+      c.proportion = Math.round((c.creditosNecesarios / total) * 10);
+    });
+
+    return creditos;
+  };
+
   return {
     carrera,
     changeCarrera,
@@ -78,6 +122,7 @@ const useGraph = () => {
     toggleGroup,
     setGlobal,
     nodeFunctions,
+    getCreditos,
   };
 };
 

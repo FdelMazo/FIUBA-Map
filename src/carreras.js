@@ -1,11 +1,23 @@
 import * as data from "./data";
 
-const CARRERAS = {
+export const CARRERAS = {
   informatica: {
     graph: data.informatica,
     nombre: "Ingeniería en Informática",
-    orientaciones: { gestion: { nombre: "Gestion de Producción" } },
-    finDeCarrera: { tpp: { nombre: "Trabajo Práctico Profesional" } },
+    orientaciones: {
+      "Gestión Industrial de Sistemas": { color: "#fab1a0" },
+      "Sistemas Distribuidos": { color: "#C4E538" },
+      "Sistemas de Producción": { color: "#fd79a8" },
+    },
+    finDeCarrera: {
+      tpp: { nombre: "Trabajo Profesional de Ingeniería en Informática" },
+      tesis: { nombre: "Tesis de Ingeniería" },
+    },
+    creditos: {
+      obligatorias: 156,
+      orientacion: 34,
+      electivas: { tesis: 34, tpp: 46 },
+    },
   },
   agrimensura: {
     graph: data.agrimensura,
@@ -26,6 +38,16 @@ const CARRERAS = {
   electronica: {
     graph: data.electronica,
     nombre: "Ingeniería Electrónica",
+    orientaciones: {
+      "Multiples Orientaciones": { color: "#fab1a0" },
+      "Procesamiento de Señales": { color: "#C4E538" },
+      "Automatización y Control": { color: "#fd79a8" },
+      "Física Electrónica": { color: "#BDC581" },
+      Telecomunicaciones: { color: "#EE5A24" },
+      "Sistemas Digitales y Computación": { color: "#FFE4E1" },
+      Multimedia: { color: "#FFDAB9" },
+      "Instrumentación Biomédica": { color: "#66CDAA" },
+    },
   },
   industrial: {
     graph: data.industrial,
@@ -34,6 +56,13 @@ const CARRERAS = {
   mecanica: {
     graph: data.mecanica,
     nombre: "Ingeniería Mecánica",
+    orientaciones: {
+      "Diseño Mecánico": { color: "#fab1a0" },
+      Termomecánica: { color: "#C4E538" },
+      Metalúrgica: { color: "#fd79a8" },
+      "Computación Aplicada": { color: "#BDC581" },
+      Industrias: { color: "#EE5A24" },
+    },
   },
   naval: {
     graph: data.naval,

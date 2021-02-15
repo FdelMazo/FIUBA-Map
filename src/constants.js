@@ -1,3 +1,4 @@
+import CARRERAS from "./carreras";
 export const USER_FORM =
   "https://docs.google.com/forms/u/1/d/e/1FAIpQLSedZWz0SJOLsxEscmHo8FDdTQyIF5xTczGBqr1Z6oLwKwiemw/formResponse";
 
@@ -41,25 +42,11 @@ export const GRUPOS = {
   "En Final": { color: "#feca57" },
   "Materias Obligatorias": { color: "#54a0ff" },
   "Materias Electivas": { color: "#a29bfe" },
-  // Informática
-  "Gestión Industrial de Sistemas": { color: "#fab1a0" },
-  "Sistemas Distribuidos": { color: "#C4E538" },
-  "Sistemas de Producción": { color: "#fd79a8" },
-  // Mecánica
-  "Diseño Mecánico": { color: "#fab1a0" },
-  Termomecánica: { color: "#C4E538" },
-  Metalúrgica: { color: "#fd79a8" },
-  "Computación Aplicada": { color: "#BDC581" },
-  Industrias: { color: "#EE5A24" },
-  // Electrónica
-  "Multiples Orientaciones": { color: "#fab1a0" },
-  "Procesamiento de Señales": { color: "#C4E538" },
-  "Automatización y Control": { color: "#fd79a8" },
-  "Física Electrónica": { color: "#BDC581" },
-  Telecomunicaciones: { color: "#EE5A24" },
-  "Sistemas Digitales y Computación": { color: "#FFE4E1" },
-  Multimedia: { color: "#FFDAB9" },
-  "Instrumentación Biomédica": { color: "#66CDAA" },
+  "Fin de Carrera": { color: "#ff5050" },
+  Orientacion: { color: "#fd79a8" },
+  ...CARRERAS.informatica.orientaciones,
+  ...CARRERAS.mecanica.orientaciones,
+  ...CARRERAS.electronica.orientaciones,
 };
 
 export const GRAPHOPTIONS = {
