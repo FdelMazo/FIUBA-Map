@@ -1,13 +1,18 @@
-import { Box } from "@chakra-ui/react";
+import { SmallAddIcon } from "@chakra-ui/icons";
+import { Box, Stack, Tag, TagLabel, TagLeftIcon } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Graph from "react-graph-vis";
 import * as C from "../constants";
 import { GraphContext, UserContext } from "../Contexts";
 
 const Body = (props) => {
-  const { graph, setGlobal, key, nodeFunctions } = React.useContext(
-    GraphContext
-  );
+  const {
+    graph,
+    setGlobal,
+    toggleGroup,
+    key,
+    nodeFunctions,
+  } = React.useContext(GraphContext);
   const { aprobarSinNota } = nodeFunctions;
 
   const { logged } = React.useContext(UserContext);
@@ -33,7 +38,33 @@ const Body = (props) => {
   };
 
   return (
-    <Box flexGrow="1">
+    <Box flexGrow="1" position="relative">
+      <Stack
+        w="fit-content"
+        mb={5}
+        ml={2}
+        bottom={0}
+        position="absolute"
+        zIndex={2}
+      >
+        {graph.groups
+          .filter((c) => c !== "CBC" && c !== "Materias Obligatorias")
+          .map((c) => (
+            <Tag
+              cursor="pointer"
+              size="md"
+              color="black"
+              bg={C.GRUPOS[c].color}
+              borderRadius="full"
+              onClick={() => {
+                toggleGroup(c);
+              }}
+            >
+              <TagLeftIcon boxSize="12px" as={SmallAddIcon} />
+              <TagLabel>{c}</TagLabel>
+            </Tag>
+          ))}
+      </Stack>
       <Graph
         key={key}
         graph={graph}

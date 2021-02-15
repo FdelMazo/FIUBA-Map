@@ -1,4 +1,3 @@
-import { SmallAddIcon } from "@chakra-ui/icons";
 import {
   Box,
   Flex,
@@ -10,44 +9,20 @@ import {
   PopoverTrigger,
   Progress,
   SimpleGrid,
-  Stack,
   Stat,
   StatLabel,
   StatNumber,
-  Tag,
-  TagLabel,
-  TagLeftIcon,
 } from "@chakra-ui/react";
 import React from "react";
 import * as C from "../constants";
 import { GraphContext, UserContext } from "../Contexts";
 const Footer = () => {
   const { logged } = React.useContext(UserContext);
-  const { graph, toggleGroup } = React.useContext(GraphContext);
+  const { graph } = React.useContext(GraphContext);
 
   return (
     <>
-      <Stack w="fit-content" mb={5} ml={2}>
-        {graph.groups
-          .filter((c) => c !== "CBC" && c !== "Materias Obligatorias")
-          .map((c) => (
-            <Tag
-              cursor="pointer"
-              size="md"
-              color="black"
-              bg={C.GRUPOS[c].color}
-              borderRadius="full"
-              onClick={() => {
-                toggleGroup(c);
-              }}
-            >
-              <TagLeftIcon boxSize="12px" as={SmallAddIcon} />
-              <TagLabel>{c}</TagLabel>
-            </Tag>
-          ))}
-      </Stack>
-
-      {!logged && (
+      {logged && (
         <Flex alignItems="center" bg="primary" bottom="0" position="sticky">
           <SimpleGrid
             px={5}
