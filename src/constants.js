@@ -44,9 +44,18 @@ export const GRUPOS = {
   "Materias Electivas": { color: "#a29bfe" },
   "Fin de Carrera": { color: "#ff5050" },
   Orientacion: { color: "#fd79a8" },
-  ...CARRERAS.informatica.orientaciones,
-  ...CARRERAS.mecanica.orientaciones,
-  ...CARRERAS.electronica.orientaciones,
+  ...CARRERAS.informatica.orientaciones.reduce(function (map, obj) {
+    map[obj.nombre] = obj;
+    return map;
+  }, {}),
+  ...CARRERAS.mecanica.orientaciones.reduce(function (map, obj) {
+    map[obj.nombre] = obj;
+    return map;
+  }, {}),
+  ...CARRERAS.electronica.orientaciones.reduce(function (map, obj) {
+    map[obj.nombre] = obj;
+    return map;
+  }, {}),
 };
 
 export const GRAPHOPTIONS = {
