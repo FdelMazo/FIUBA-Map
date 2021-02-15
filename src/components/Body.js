@@ -38,7 +38,7 @@ const Body = (props) => {
   };
 
   return (
-    <Box flexGrow="1" position="relative">
+    <Box flexGrow="1" height="1em" position="relative">
       <Stack
         w="fit-content"
         mb={5}
