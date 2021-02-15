@@ -440,4 +440,22 @@ export const quimica = [
     categoria: "Materias Obligatorias",
     nivel: 9,
   },
+  {
+    id: "76.64",
+    materia: "Tesis de Ingeniería Química",
+    creditos: 18,
+    correlativas: "76.52-76.53",
+    categoria: "Fin de Carrera",
+    shape: "star",
+    nivel: -1,
+  },
+  {
+    id: "76.59-76.62",
+    materia: "Trabajo Profesional de Ingeniería Química",
+    creditos: 12,
+    correlativas: "76.52-76.53-76.56",
+    categoria: "Fin de Carrera",
+    shape: "star",
+    nivel: -1,
+  },
 ];

@@ -367,4 +367,22 @@ export const agrimensura = [
     categoria: "Materias Electivas",
     nivel: 9,
   },
+  {
+    id: "70.00",
+    materia: "Tesis de Ingeniería en Agrimensura",
+    creditos: 18,
+    requiere: 140,
+    categoria: "Fin de Carrera",
+    shape: "star",
+    nivel: -1,
+  },
+  {
+    id: "70.99",
+    materia: "Trabajo Profesional de la Ingeniería en Agrimensura",
+    creditos: 12,
+    requiere: 140,
+    categoria: "Fin de Carrera",
+    shape: "star",
+    nivel: -1,
+  },
 ];

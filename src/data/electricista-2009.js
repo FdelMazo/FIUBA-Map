@@ -496,4 +496,22 @@ export const electricista = [
     categoria: "Materias Electivas",
     nivel: 10,
   },
+  {
+    id: "85.00",
+    materia: "Tesis de Ingeniería Electricista",
+    creditos: 20,
+    requiere: 140,
+    categoria: "Fin de Carrera",
+    shape: "star",
+    nivel: -1,
+  },
+  {
+    id: "85.99",
+    materia: "Trabajo Profesional de Ingeniería Electricista ",
+    creditos: 14,
+    requiere: 140,
+    categoria: "Fin de Carrera",
+    shape: "star",
+    nivel: -1,
+  },
 ];

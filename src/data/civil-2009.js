@@ -639,4 +639,14 @@ export const civil = [
     categoria: "Materias Electivas",
     nivel: 10,
   },
+  {
+    id: "84.99",
+    materia: "Trabajo profesional de Ingeniería Civil",
+    creditos: 13,
+    requiere: 200,
+    correlativas: "88.14",
+    categoria: "Fin de Carrera",
+    shape: "star",
+    nivel: -1,
+  },
 ];

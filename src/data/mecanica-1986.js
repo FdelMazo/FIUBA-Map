@@ -559,4 +559,22 @@ export const mecanica = [
     categoria: "Materias Electivas",
     nivel: 11,
   },
+  {
+    id: "67.00",
+    materia: "Tesis de Ingeniería Mecánica",
+    creditos: 18,
+    requiere: 140,
+    categoria: "Fin de Carrera",
+    shape: "star",
+    nivel: -1,
+  },
+  {
+    id: "67.98",
+    materia: "Trabajo Profesional de Ingeniería Mecánica",
+    creditos: 14,
+    requiere: 140,
+    categoria: "Fin de Carrera",
+    shape: "star",
+    nivel: -1,
+  },
 ];

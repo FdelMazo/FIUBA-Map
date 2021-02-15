@@ -775,4 +775,20 @@ export const electronica = [
     categoria: "Sistemas Digitales y Computación",
     nivel: 9,
   },
+  {
+    id: "86.00",
+    materia: "Tesis de Ingeniería Electrónica ",
+    creditos: 24,
+    categoria: "Fin de Carrera",
+    shape: "star",
+    nivel: -1,
+  },
+  {
+    id: "86.99",
+    materia: "Trabajo Profesional de Ingeniería Electrónica",
+    creditos: 18,
+    categoria: "Fin de Carrera",
+    shape: "star",
+    nivel: -1,
+  },
 ];

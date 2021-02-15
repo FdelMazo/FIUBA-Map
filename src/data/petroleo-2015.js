@@ -415,4 +415,22 @@ export const petroleo = [
     categoria: "Materias Obligatorias",
     nivel: 9,
   },
+  {
+    id: "79.00",
+    materia: "Tesis de Ingeniería en Petróleo",
+    creditos: 18,
+    correlativas: "79.12",
+    categoria: "Fin de Carrera",
+    shape: "star",
+    nivel: -1,
+  },
+  {
+    id: "79.99",
+    materia: "Trabajo Profesional de Ingeniería en Petróleo",
+    correlativas: "79.12",
+    creditos: 14,
+    categoria: "Fin de Carrera",
+    shape: "star",
+    nivel: -1,
+  },
 ];

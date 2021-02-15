@@ -479,4 +479,21 @@ export const naval = [
     categoria: "Materias Electivas",
     nivel: 9,
   },
+  {
+    id: "73.00",
+    materia: "Tesis de Ingeniería Naval y Mecánica",
+    creditos: 18,
+    requiere: 140,
+    categoria: "Fin de Carrera",
+    shape: "star",
+    nivel: -1,
+  },
+  {
+    id: "73.99",
+    materia: "Trabajo Profesional de Ingeniería Naval y Mecánica",
+    creditos: 0,
+    categoria: "Fin de Carrera",
+    shape: "star",
+    nivel: -1,
+  },
 ];

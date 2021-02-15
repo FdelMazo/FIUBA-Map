@@ -575,4 +575,23 @@ export const industrial = [
     categoria: "Materias Electivas",
     nivel: 13,
   },
+  {
+    id: "92.00",
+    materia: "Tesis de Ingeniería Industrial",
+    creditos: 13,
+    requiere: 198,
+    categoria: "Fin de Carrera",
+    shape: "star",
+    nivel: -1,
+  },
+  {
+    id: "92.99",
+    materia: "Trabajo Profesional de Ingeniería Industrial",
+    creditos: 13,
+    requiere: 198,
+    correlativas: "76.52-76.53-76.56",
+    categoria: "Fin de Carrera",
+    shape: "star",
+    nivel: -1,
+  },
 ];
