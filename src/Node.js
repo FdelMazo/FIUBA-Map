@@ -35,8 +35,8 @@ class Node {
     if (nota > 0) this.label += "\n[" + this.nota + "]";
     if (nota === -1) {
       this.group = this.getGrupo();
-      nodes.update(this);
       this.label += "\n[Final]";
+      nodes.update(this);
       return;
     }
 

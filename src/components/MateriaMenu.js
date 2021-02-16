@@ -26,7 +26,12 @@ import { GraphContext } from "../Contexts";
 const Header = (props) => {
   const { displayedNode } = props;
   const { nodeFunctions } = React.useContext(GraphContext);
-  const { getNode } = nodeFunctions;
+  const { getNode, aprobar, ponerEnFinal, desaprobar } = nodeFunctions;
+  const [nota, setNota] = React.useState(getNode(displayedNode).nota || 7);
+
+  React.useEffect(() => {
+    aprobar(displayedNode, nota);
+  }, [nota, aprobar, displayedNode]);
 
   return (
     <Flex alignItems="center">
@@ -59,7 +64,10 @@ const Header = (props) => {
                 <NumberInput
                   focusBorderColor="green.500"
                   inputMode="numeric"
-                  defaultValue={7}
+                  onChange={(_, nota) => {
+                    setNota(nota);
+                  }}
+                  value={nota}
                   min={4}
                   mx={5}
                   max={10}
@@ -76,10 +84,20 @@ const Header = (props) => {
         </PopoverContent>
       </Popover>
       <Tooltip hasArrow label="Desaprobar">
-        <IconButton mx={3} colorScheme="red" icon={<CloseIcon />} />
+        <IconButton
+          mx={3}
+          onClick={() => desaprobar(displayedNode)}
+          colorScheme="red"
+          icon={<CloseIcon />}
+        />
       </Tooltip>
       <Tooltip hasArrow label="Poner en Final">
-        <Button colorScheme="blackAlpha">F</Button>
+        <Button
+          onClick={() => ponerEnFinal(displayedNode)}
+          colorScheme="blackAlpha"
+        >
+          F
+        </Button>
       </Tooltip>
 
       <Box float="right" right="0" position="absolute" mr={3}>
