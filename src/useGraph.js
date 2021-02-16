@@ -64,9 +64,19 @@ const useGraph = () => {
     return global?.nodes?.get(id)?.nodeRef;
   };
 
-  const aprobarSinNota = (id) => {
+  const aprobar = (id) => {
     const node = getNode(id);
     node.aprobar({
+      network: global.network,
+      nodes: global.nodes,
+      getNode,
+      nota: 7,
+    });
+  };
+
+  const desaprobar = (id) => {
+    const node = getNode(id);
+    node.desaprobar({
       network: global.network,
       nodes: global.nodes,
       getNode,
@@ -75,7 +85,8 @@ const useGraph = () => {
 
   const nodeFunctions = {
     getNode,
-    aprobarSinNota,
+    aprobar,
+    desaprobar,
   };
 
   const getCreditos = () => {
@@ -180,6 +191,7 @@ const useGraph = () => {
     getCreditos,
     redraw,
     orientacion,
+    desaprobar,
     setOrientacion,
     finDeCarrera,
     setFinDeCarrera,
