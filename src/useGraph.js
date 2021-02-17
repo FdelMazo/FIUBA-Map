@@ -101,6 +101,17 @@ const useGraph = () => {
     desaprobar,
   };
 
+  const getPromedio = () => {
+    const materias = graph.nodes.filter((n) => n.aprobada && n.nota > 0);
+
+    const sum = materias.reduce((acc, node) => {
+      acc += node.nota;
+      return acc;
+    }, 0);
+
+    return (sum / materias.length).toFixed(2);
+  };
+
   const getCreditos = () => {
     let creditos = [];
     creditos.push({
@@ -109,7 +120,7 @@ const useGraph = () => {
       creditosNecesarios: carrera.creditos.obligatorias,
       creditos: graph.nodes
         .filter((n) => n.categoria === "Materias Obligatorias")
-        .filter((n) => n.aprobada)
+        .filter((n) => n.aprobada && n.nota > 0)
         .reduce((acc, node) => {
           acc += node.creditos;
           return acc;
@@ -133,7 +144,7 @@ const useGraph = () => {
               n.categoria !== "Fin de Carrera"
           )
           .filter((n) => n.categoria !== orientacion)
-          .filter((n) => n.aprobada)
+          .filter((n) => n.aprobada && n.nota > 0)
           .reduce((acc, node) => {
             acc += node.creditos;
             return acc;
@@ -151,7 +162,7 @@ const useGraph = () => {
         creditosNecesarios: carrera.creditos.orientacion[finDeCarrera],
         creditos: graph.nodes
           .filter((n) => n.categoria === orientacion)
-          .filter((n) => n.aprobada)
+          .filter((n) => n.aprobada && n.nota > 0)
           .reduce((acc, node) => {
             acc += node.creditos;
             return acc;
@@ -228,6 +239,7 @@ const useGraph = () => {
     redraw,
     orientacion,
     desaprobar,
+    getPromedio,
     setOrientacion,
     finDeCarrera,
     setFinDeCarrera,

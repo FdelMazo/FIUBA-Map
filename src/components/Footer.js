@@ -20,7 +20,7 @@ import React from "react";
 import { GraphContext, UserContext } from "../Contexts";
 const Footer = () => {
   const { logged } = React.useContext(UserContext);
-  const { getCreditos } = React.useContext(GraphContext);
+  const { getCreditos, getPromedio } = React.useContext(GraphContext);
 
   return (
     <Collapse in={logged} position="relative">
@@ -76,7 +76,7 @@ const Footer = () => {
             textAlign="right"
           >
             <StatLabel>Promedio</StatLabel>
-            <StatNumber>9.50</StatNumber>
+            <StatNumber>{getPromedio()}</StatNumber>
           </Stat>
         </Box>
       </Flex>
