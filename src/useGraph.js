@@ -21,11 +21,20 @@ const useGraph = () => {
   const [carrera, setCarrera] = React.useState(Object.values(CARRERAS)[0]);
   const [orientacion, setOrientacion] = React.useState(null);
   const [finDeCarrera, setFinDeCarrera] = React.useState(null);
+  const [promedio, setPromedio] = React.useState(0);
+  const [creditos, setCreditos] = React.useState([]);
+  const [ticker, setTicker] = React.useState(false);
 
   useEffect(() => {
     setOrientacion(carrera.orientaciones?.[0].nombre);
     setFinDeCarrera(carrera.finDeCarrera?.[0].id);
   }, [carrera]);
+
+  useEffect(() => {
+    setPromedio(getPromedio());
+    setCreditos(getCreditos());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ticker]);
 
   const changeCarrera = (id) => {
     setCarrera(CARRERAS[id]);
@@ -76,6 +85,7 @@ const useGraph = () => {
   };
 
   const aprobar = (id, nota) => {
+    setTicker(!ticker);
     const node = getNode(id);
     node.aprobar({
       network: global.network,
@@ -86,6 +96,7 @@ const useGraph = () => {
   };
 
   const desaprobar = (id) => {
+    setTicker(!ticker);
     const node = getNode(id);
     node.desaprobar({
       network: global.network,
@@ -109,7 +120,7 @@ const useGraph = () => {
       return acc;
     }, 0);
 
-    return (sum / materias.length).toFixed(2);
+    return sum ? (sum / materias.length).toFixed(2) : 0;
   };
 
   const getCreditos = () => {
@@ -239,7 +250,8 @@ const useGraph = () => {
     redraw,
     orientacion,
     desaprobar,
-    getPromedio,
+    promedio,
+    creditos,
     setOrientacion,
     finDeCarrera,
     setFinDeCarrera,

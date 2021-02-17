@@ -31,7 +31,8 @@ const Header = (props) => {
 
   React.useEffect(() => {
     aprobar(displayedNode, nota);
-  }, [nota, aprobar, displayedNode]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nota, displayedNode]);
 
   return (
     <Flex alignItems="center">
@@ -52,7 +53,11 @@ const Header = (props) => {
         <PopoverTrigger>
           <Box>
             <Tooltip closeOnClick={true} hasArrow label="Aprobar">
-              <IconButton colorScheme="whatsapp" icon={<CheckIcon />} />
+              <IconButton
+                size="sm"
+                colorScheme="whatsapp"
+                icon={<CheckIcon />}
+              />
             </Tooltip>
           </Box>
         </PopoverTrigger>
@@ -87,6 +92,7 @@ const Header = (props) => {
       <Tooltip hasArrow label="Poner en Final">
         <Button
           mx={3}
+          size="sm"
           onClick={() => ponerEnFinal(displayedNode)}
           colorScheme="yellow"
         >

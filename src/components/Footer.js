@@ -20,7 +20,7 @@ import React from "react";
 import { GraphContext, UserContext } from "../Contexts";
 const Footer = () => {
   const { logged } = React.useContext(UserContext);
-  const { getCreditos, getPromedio } = React.useContext(GraphContext);
+  const { promedio, creditos } = React.useContext(GraphContext);
 
   return (
     <Collapse in={logged} position="relative">
@@ -29,11 +29,11 @@ const Footer = () => {
           pr={2}
           flexGrow={1}
           ml={5}
-          columns={getCreditos().length}
+          columns={creditos.length}
           gap={0}
           templateColumns="repeat(10, 1fr)"
         >
-          {getCreditos().map((c) => (
+          {creditos.map((c) => (
             <GridItem colSpan={c.proportion}>
               <Popover placement="top" trigger="hover">
                 <PopoverTrigger>
@@ -76,7 +76,7 @@ const Footer = () => {
             textAlign="right"
           >
             <StatLabel>Promedio</StatLabel>
-            <StatNumber>{getPromedio()}</StatNumber>
+            <StatNumber>{promedio}</StatNumber>
           </Stat>
         </Box>
       </Flex>
