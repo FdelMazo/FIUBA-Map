@@ -64,15 +64,6 @@ const useGraph = () => {
     return global?.nodes?.get(id)?.nodeRef;
   };
 
-  const aprobarSinNota = (id) => {
-    const node = getNode(id);
-    node.aprobar({
-      network: global.network,
-      nodes: global.nodes,
-      getNode,
-    });
-  };
-
   const ponerEnFinal = (id) => {
     desaprobar(id);
     const node = getNode(id);
@@ -86,7 +77,6 @@ const useGraph = () => {
 
   const aprobar = (id, nota) => {
     const node = getNode(id);
-    console.log(nota);
     node.aprobar({
       network: global.network,
       nodes: global.nodes,
@@ -106,14 +96,12 @@ const useGraph = () => {
 
   const nodeFunctions = {
     getNode,
-    aprobarSinNota,
     ponerEnFinal,
     aprobar,
     desaprobar,
   };
 
   const getCreditos = () => {
-    console.log(graph.nodes.map((n) => n.categoria));
     let creditos = [];
     creditos.push({
       nombre: "Materias Obligatorias",

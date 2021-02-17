@@ -22,7 +22,7 @@ const Body = (props) => {
     nodeFunctions,
     redraw,
   } = React.useContext(GraphContext);
-  const { aprobarSinNota, aprobar, desaprobar, getNode } = nodeFunctions;
+  const { aprobar, desaprobar, getNode } = nodeFunctions;
 
   const { logged } = React.useContext(UserContext);
 
@@ -47,9 +47,13 @@ const Body = (props) => {
         setDisplayedNode("");
         return;
       }
-      setDisplayedNode(id);
-      if (!logged) node.aprobada ? desaprobar(id) : aprobarSinNota(id);
-      else if (!node.aprobada) aprobar(id, 7);
+      if (!node.aprobada) {
+        setDisplayedNode(id);
+        aprobar(id, 7);
+      } else {
+        setDisplayedNode("");
+        desaprobar(id);
+      }
     },
   };
 

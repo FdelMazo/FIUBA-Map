@@ -1,4 +1,4 @@
-import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
+import { CheckIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -26,7 +26,7 @@ import { GraphContext } from "../Contexts";
 const Header = (props) => {
   const { displayedNode } = props;
   const { nodeFunctions } = React.useContext(GraphContext);
-  const { getNode, aprobar, ponerEnFinal, desaprobar } = nodeFunctions;
+  const { getNode, aprobar, ponerEnFinal } = nodeFunctions;
   const [nota, setNota] = React.useState(getNode(displayedNode).nota || 7);
 
   React.useEffect(() => {
@@ -83,18 +83,12 @@ const Header = (props) => {
           </PopoverBody>
         </PopoverContent>
       </Popover>
-      <Tooltip hasArrow label="Desaprobar">
-        <IconButton
-          mx={3}
-          onClick={() => desaprobar(displayedNode)}
-          colorScheme="red"
-          icon={<CloseIcon />}
-        />
-      </Tooltip>
+
       <Tooltip hasArrow label="Poner en Final">
         <Button
+          mx={3}
           onClick={() => ponerEnFinal(displayedNode)}
-          colorScheme="blackAlpha"
+          colorScheme="yellow"
         >
           F
         </Button>
