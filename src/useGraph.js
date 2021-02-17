@@ -113,12 +113,19 @@ const useGraph = () => {
   };
 
   const getCreditos = () => {
+    console.log(graph.nodes.map((n) => n.categoria));
     let creditos = [];
     creditos.push({
       nombre: "Materias Obligatorias",
       color: "blue",
       creditosNecesarios: carrera.creditos.obligatorias,
-      creditos: 1,
+      creditos: graph.nodes
+        .filter((n) => n.categoria === "Materias Obligatorias")
+        .filter((n) => n.aprobada)
+        .reduce((acc, node) => {
+          acc += node.creditos;
+          return acc;
+        }, 0),
     });
 
     if (finDeCarrera || !isNaN(carrera.creditos.electivas))
@@ -130,7 +137,19 @@ const useGraph = () => {
         creditosNecesarios: isNaN(carrera.creditos.electivas)
           ? carrera.creditos.electivas[finDeCarrera]
           : carrera.creditos.electivas,
-        creditos: 1,
+        creditos: graph.nodes
+          .filter(
+            (n) =>
+              n.categoria !== "CBC" &&
+              n.categoria !== "Materias Obligatorias" &&
+              n.categoria !== "Fin de Carrera"
+          )
+          .filter((n) => n.categoria !== orientacion)
+          .filter((n) => n.aprobada)
+          .reduce((acc, node) => {
+            acc += node.creditos;
+            return acc;
+          }, 0),
       });
 
     if (
@@ -142,7 +161,13 @@ const useGraph = () => {
         nombre: `Orientación: ${orientacion}`,
         color: "yellow",
         creditosNecesarios: carrera.creditos.orientacion[finDeCarrera],
-        creditos: 1,
+        creditos: graph.nodes
+          .filter((n) => n.categoria === orientacion)
+          .filter((n) => n.aprobada)
+          .reduce((acc, node) => {
+            acc += node.creditos;
+            return acc;
+          }, 0),
       });
 
     if (carrera.creditos.checkbox) {
@@ -166,7 +191,7 @@ const useGraph = () => {
             nombre: `${node.materia}`,
             color: m.color,
             creditosNecesarios: node.creditos,
-            creditos: 1,
+            creditos: node.aprobada ? node.creditos : 0,
           });
       });
 
@@ -179,7 +204,7 @@ const useGraph = () => {
           nombre: `${node.materia}`,
           color: "red",
           creditosNecesarios: node.creditos,
-          creditos: 1,
+          creditos: node.aprobada ? node.creditos : 0,
         });
     }
 
