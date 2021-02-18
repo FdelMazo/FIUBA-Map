@@ -5,7 +5,7 @@ export const industrial = [
     creditos: 0,
     correlativas: "",
     categoria: "CBC",
-    nivel: 0,
+    level: 0,
   },
   {
     id: "81.01",
@@ -13,7 +13,7 @@ export const industrial = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "82.01",
@@ -21,7 +21,7 @@ export const industrial = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "92.03",
@@ -29,7 +29,7 @@ export const industrial = [
     creditos: 2,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "83.01",
@@ -37,7 +37,7 @@ export const industrial = [
     creditos: 6,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "81.02",
@@ -45,7 +45,7 @@ export const industrial = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "82.02",
@@ -53,7 +53,7 @@ export const industrial = [
     creditos: 8,
     correlativas: "81.01-82.01",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "95.01",
@@ -61,7 +61,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "83.02",
@@ -69,7 +69,7 @@ export const industrial = [
     creditos: 6,
     correlativas: "83.01",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "85.38",
@@ -77,7 +77,7 @@ export const industrial = [
     creditos: 6,
     correlativas: "81.02-82.02",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "81.16",
@@ -85,7 +85,7 @@ export const industrial = [
     creditos: 6,
     correlativas: "81.01-95.01",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "87.13",
@@ -93,7 +93,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "84.05",
@@ -101,7 +101,7 @@ export const industrial = [
     creditos: 6,
     correlativas: "81.01-82.01",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "95.13",
@@ -109,7 +109,7 @@ export const industrial = [
     creditos: 6,
     correlativas: "81.01-81.02-95.01",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "87.14",
@@ -117,7 +117,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "82.02",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "87.12",
@@ -125,7 +125,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "84.05-87.13",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "91.33",
@@ -133,7 +133,7 @@ export const industrial = [
     creditos: 4,
     requiere: 50,
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "92.01",
@@ -141,7 +141,7 @@ export const industrial = [
     creditos: 6,
     correlativas: "83.02-84.05",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "91.03",
@@ -149,7 +149,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "81.16",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "91.10",
@@ -157,7 +157,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "81.16-92.03",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "89.17",
@@ -165,7 +165,7 @@ export const industrial = [
     creditos: 6,
     correlativas: "81.01-82.01",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "91.24",
@@ -173,7 +173,7 @@ export const industrial = [
     creditos: 6,
     correlativas: "91.33",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "97.01",
@@ -181,7 +181,7 @@ export const industrial = [
     creditos: 4,
     requiere: 80,
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "91.30",
@@ -189,7 +189,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.03",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "87.17",
@@ -197,7 +197,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "87.14",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "91.12",
@@ -205,7 +205,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.10",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "92.02",
@@ -213,7 +213,7 @@ export const industrial = [
     creditos: 6,
     correlativas: "87.14-89.17-92.01",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "97.05",
@@ -221,7 +221,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "97.01",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "91.07",
@@ -229,7 +229,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.03-91.12",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "92.18",
@@ -237,7 +237,7 @@ export const industrial = [
     creditos: 6,
     correlativas: "87.14-89.17-92.01",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "92.04",
@@ -245,7 +245,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "87.12-92.01",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "92.05",
@@ -253,7 +253,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "87.13-91.10-92.01-97.01",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "92.06",
@@ -261,7 +261,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "85.38-95.13",
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "91.31",
@@ -269,7 +269,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.07-91.30",
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "92.07",
@@ -277,7 +277,7 @@ export const industrial = [
     creditos: 6,
     correlativas: "85.38-87.17-91.12-92.18",
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "91.28",
@@ -285,7 +285,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12-91.24",
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "91.08",
@@ -293,7 +293,7 @@ export const industrial = [
     creditos: 6,
     correlativas: "91.12",
     categoria: "Materias Obligatorias",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "91.29",
@@ -301,7 +301,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.28",
     categoria: "Materias Obligatorias",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "92.19",
@@ -309,7 +309,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "92.04",
     categoria: "Materias Obligatorias",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "91.22",
@@ -317,7 +317,7 @@ export const industrial = [
     creditos: 4,
     requiere: 100,
     categoria: "Materias Obligatorias",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "62.13",
@@ -325,7 +325,7 @@ export const industrial = [
     creditos: 6,
     correlativas: "81.02-82.02-83.01",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "85.20",
@@ -333,7 +333,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "85.38-87.14",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "87.15",
@@ -341,7 +341,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "87.13-92.01",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "91.14",
@@ -349,7 +349,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.08",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "91.17",
@@ -357,7 +357,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "91.20",
@@ -365,7 +365,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12-91.24",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "91.21",
@@ -373,7 +373,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "91.25",
@@ -381,7 +381,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.30",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "91.26",
@@ -389,7 +389,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "91.27",
@@ -397,7 +397,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.31",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "91.32",
@@ -405,7 +405,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.31",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "91.34",
@@ -413,7 +413,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.29",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "91.35",
@@ -421,7 +421,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "91.36",
@@ -429,7 +429,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "91.37",
@@ -437,7 +437,7 @@ export const industrial = [
     creditos: 4,
     requiere: 120,
     categoria: "Materias Electivas",
-    nivel: 13,
+    level: 13,
   },
   {
     id: "91.51",
@@ -445,7 +445,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.31-91.08",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "91.52",
@@ -453,7 +453,7 @@ export const industrial = [
     creditos: 4,
     requiere: 150,
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "91.54",
@@ -461,7 +461,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "81.02-91.30",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "92.08",
@@ -469,7 +469,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12-92.01",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "92.09",
@@ -477,7 +477,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "92.18",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "92.10",
@@ -485,7 +485,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "92.18",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "92.11",
@@ -493,7 +493,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "92.18",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "92.12",
@@ -501,7 +501,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12-92.01",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "92.13",
@@ -509,7 +509,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "92.01",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "92.15",
@@ -517,7 +517,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "92.18",
     categoria: "Materias Electivas",
-    nivel: 13,
+    level: 13,
   },
   {
     id: "92.17",
@@ -525,7 +525,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "92.18",
     categoria: "Materias Electivas",
-    nivel: 13,
+    level: 13,
   },
   {
     id: "92.20",
@@ -533,7 +533,7 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12-92.04",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "92.14",
@@ -541,7 +541,7 @@ export const industrial = [
     creditos: 1,
     requiere: 150,
     categoria: "Materias Electivas",
-    nivel: 13,
+    level: 13,
   },
   {
     id: "92.16",
@@ -549,7 +549,7 @@ export const industrial = [
     creditos: 2,
     requiere: 150,
     categoria: "Materias Electivas",
-    nivel: 13,
+    level: 13,
   },
   {
     id: "92.21",
@@ -557,7 +557,7 @@ export const industrial = [
     creditos: 3,
     requiere: 150,
     categoria: "Materias Electivas",
-    nivel: 13,
+    level: 13,
   },
   {
     id: "92.24",
@@ -565,7 +565,7 @@ export const industrial = [
     creditos: 4,
     requiere: 150,
     categoria: "Materias Electivas",
-    nivel: 13,
+    level: 13,
   },
   {
     id: "92.26",
@@ -573,7 +573,7 @@ export const industrial = [
     creditos: 4,
     requiere: 150,
     categoria: "Materias Electivas",
-    nivel: 13,
+    level: 13,
   },
   {
     id: "92.00",
@@ -582,7 +582,7 @@ export const industrial = [
     requiere: 198,
     categoria: "Fin de Carrera",
     shape: "star",
-    nivel: -1,
+    level: -1,
   },
   {
     id: "92.99",
@@ -592,6 +592,6 @@ export const industrial = [
     correlativas: "76.52-76.53-76.56",
     categoria: "Fin de Carrera",
     shape: "star",
-    nivel: -1,
+    level: -1,
   },
 ];

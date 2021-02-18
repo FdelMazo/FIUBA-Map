@@ -5,7 +5,7 @@ export const informatica = [
     creditos: 0,
     correlativas: "",
     categoria: "CBC",
-    nivel: 0,
+    level: 0,
   },
   {
     id: "62.01",
@@ -13,7 +13,7 @@ export const informatica = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "61.03",
@@ -21,7 +21,7 @@ export const informatica = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "75.40",
@@ -29,7 +29,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "62.03",
@@ -37,7 +37,7 @@ export const informatica = [
     creditos: 8,
     correlativas: "61.03-62.01",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "63.01",
@@ -45,7 +45,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "61.08",
@@ -53,7 +53,7 @@ export const informatica = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "75.41",
@@ -61,7 +61,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.40",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "66.02",
@@ -69,7 +69,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "62.03",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "62.15",
@@ -77,7 +77,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "61.08-62.03-63.01",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "66.70",
@@ -85,7 +85,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.08-62.03-75.41",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "75.12",
@@ -93,7 +93,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.03-61.08-75.41",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "75.07",
@@ -101,7 +101,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.41",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "61.09",
@@ -109,7 +109,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.03-61.08",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "61.10",
@@ -117,7 +117,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.03-61.08",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "66.20",
@@ -125,7 +125,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.02-66.70",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "75.42",
@@ -133,7 +133,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "66.70-75.12-75.41",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "75.06",
@@ -141,7 +141,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.70-75.41",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "71.14",
@@ -149,7 +149,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.10-62.03-63.01-75.42",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "75.09",
@@ -157,7 +157,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.07-75.42",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "75.08",
@@ -165,7 +165,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.06",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "71.12",
@@ -173,7 +173,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.06",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "71.40",
@@ -182,7 +182,7 @@ export const informatica = [
     creditos: 4,
     requiere: 140,
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "75.52",
@@ -190,7 +190,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "71.14-75.07-75.42",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "75.15",
@@ -198,7 +198,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.06-75.09",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "75.43",
@@ -206,7 +206,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.20-62.15-75.08",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "75.10",
@@ -214,7 +214,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.08-75.09",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "61.07",
@@ -222,7 +222,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "71.13",
@@ -230,7 +230,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "71.12",
     categoria: "Gestión Industrial de Sistemas",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "75.44",
@@ -238,7 +238,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "71.12-75.10",
     categoria: "Gestión Industrial de Sistemas",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "75.45",
@@ -246,7 +246,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.10",
     categoria: "Gestión Industrial de Sistemas",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "75.46",
@@ -254,7 +254,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.44",
     categoria: "Gestión Industrial de Sistemas",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "75.47",
@@ -262,7 +262,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.44-75.45",
     categoria: "Gestión Industrial de Sistemas",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "75.48",
@@ -270,7 +270,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.45",
     categoria: "Gestión Industrial de Sistemas",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "66.06",
@@ -278,7 +278,7 @@ export const informatica = [
     creditos: 10,
     correlativas: "61.10-62.03",
     categoria: "Sistemas Distribuidos",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "75.59",
@@ -286,7 +286,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.08",
     categoria: "Sistemas Distribuidos",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "66.74",
@@ -294,7 +294,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.09-66.06",
     categoria: "Sistemas Distribuidos",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "75.61",
@@ -302,7 +302,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.74-75.74",
     categoria: "Sistemas Distribuidos",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "75.74",
@@ -310,7 +310,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.10-75.43-75.59",
     categoria: "Sistemas Distribuidos",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "64.05",
@@ -318,7 +318,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.03-61.08",
     categoria: "Sistemas de Producción",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "75.65",
@@ -326,7 +326,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.15-75.52",
     categoria: "Sistemas de Producción",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "75.67",
@@ -334,7 +334,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "71.14",
     categoria: "Sistemas de Producción",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "72.01",
@@ -342,7 +342,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "63.01-64.05",
     categoria: "Sistemas de Producción",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "75.66",
@@ -350,7 +350,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.65",
     categoria: "Sistemas de Producción",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "75.68",
@@ -358,7 +358,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.65-75.67",
     categoria: "Sistemas de Producción",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "61.18",
@@ -366,7 +366,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.03-61.08",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "61.19",
@@ -374,7 +374,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.10",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "62.11",
@@ -382,7 +382,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "61.10-62.01",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "66.08",
@@ -390,7 +390,7 @@ export const informatica = [
     creditos: 8,
     correlativas: "62.15-66.02-66.06",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "66.09",
@@ -398,7 +398,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.02-66.70",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "66.17",
@@ -406,7 +406,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.70",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "66.18",
@@ -414,7 +414,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.74",
     categoria: "Materias Electivas",
-    nivel: 13,
+    level: 13,
   },
   {
     id: "66.19",
@@ -422,7 +422,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.08-66.70",
     categoria: "Materias Electivas",
-    nivel: 15,
+    level: 15,
   },
   {
     id: "66.24",
@@ -430,7 +430,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "66.74-66.75-66.70",
     categoria: "Materias Electivas",
-    nivel: 15,
+    level: 15,
   },
   {
     id: "66.26",
@@ -438,7 +438,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.20",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "66.32",
@@ -446,7 +446,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "62.11-66.18",
     categoria: "Materias Electivas",
-    nivel: 15,
+    level: 15,
   },
   {
     id: "66.35",
@@ -454,7 +454,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.07-66.17",
     categoria: "Materias Electivas",
-    nivel: 15,
+    level: 15,
   },
   {
     id: "66.46",
@@ -462,7 +462,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.74",
     categoria: "Materias Electivas",
-    nivel: 13,
+    level: 13,
   },
   {
     id: "66.47",
@@ -470,7 +470,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.09-66.74",
     categoria: "Materias Electivas",
-    nivel: 13,
+    level: 13,
   },
   {
     id: "66.49",
@@ -478,7 +478,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.74-63.01",
     categoria: "Materias Electivas",
-    nivel: 13,
+    level: 13,
   },
   {
     id: "66.55",
@@ -486,7 +486,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "66.18",
     categoria: "Materias Electivas",
-    nivel: 15,
+    level: 15,
   },
   {
     id: "66.63",
@@ -494,7 +494,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.74-66.75",
     categoria: "Materias Electivas",
-    nivel: 15,
+    level: 15,
   },
   {
     id: "66.69",
@@ -502,7 +502,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.43",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "66.71",
@@ -510,7 +510,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.10-75.41",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "66.75",
@@ -518,7 +518,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.03-61.09",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "67.61",
@@ -526,7 +526,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.08-75.07",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "71.15",
@@ -534,7 +534,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.09-71.14",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "71.18",
@@ -542,7 +542,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "71.20",
@@ -550,7 +550,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "71.15",
     categoria: "Materias Electivas",
-    nivel: 15,
+    level: 15,
   },
   {
     id: "71.41",
@@ -558,7 +558,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "71.15",
     categoria: "Materias Electivas",
-    nivel: 15,
+    level: 15,
   },
   {
     id: "71.42",
@@ -566,7 +566,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "71.46",
     categoria: "Materias Electivas",
-    nivel: 14,
+    level: 14,
   },
   {
     id: "71.44",
@@ -574,7 +574,7 @@ export const informatica = [
     creditos: 4,
     requiere: 140,
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "71.46",
@@ -582,7 +582,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "71.13",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "75.14",
@@ -590,7 +590,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.09",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "75.16",
@@ -598,7 +598,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.14",
     categoria: "Materias Electivas",
-    nivel: 14,
+    level: 14,
   },
   {
     id: "75.26",
@@ -606,7 +606,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.09",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "75.29",
@@ -614,7 +614,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.07-75.41",
     categoria: "Materias Electivas",
-    nivel: 14,
+    level: 14,
   },
   {
     id: "75.30",
@@ -622,7 +622,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.29",
     categoria: "Materias Electivas",
-    nivel: 14,
+    level: 14,
   },
   {
     id: "75.31",
@@ -630,7 +630,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.41",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "75.38",
@@ -638,7 +638,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.52",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "75.50",
@@ -646,7 +646,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.09-71.14",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "75.51",
@@ -654,7 +654,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.15-75.52",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "75.53",
@@ -662,7 +662,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.51",
     categoria: "Materias Electivas",
-    nivel: 14,
+    level: 14,
   },
   {
     id: "75.54",
@@ -670,7 +670,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.48-75.53",
     categoria: "Materias Electivas",
-    nivel: 14,
+    level: 14,
   },
   {
     id: "75.55",
@@ -678,7 +678,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.46-75.47-75.48",
     categoria: "Materias Electivas",
-    nivel: 14,
+    level: 14,
   },
   {
     id: "75.56",
@@ -686,7 +686,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.46-75.48",
     categoria: "Materias Electivas",
-    nivel: 13,
+    level: 13,
   },
   {
     id: "75.57",
@@ -694,7 +694,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.46-75.48",
     categoria: "Materias Electivas",
-    nivel: 13,
+    level: 13,
   },
   {
     id: "75.58",
@@ -702,7 +702,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.46-75.48",
     categoria: "Materias Electivas",
-    nivel: 13,
+    level: 13,
   },
   {
     id: "75.62",
@@ -710,7 +710,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.59",
     categoria: "Materias Electivas",
-    nivel: 14,
+    level: 14,
   },
   {
     id: "75.63",
@@ -718,7 +718,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.74",
     categoria: "Materias Electivas",
-    nivel: 13,
+    level: 13,
   },
   {
     id: "75.64",
@@ -726,7 +726,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "66.74-75.74",
     categoria: "Materias Electivas",
-    nivel: 13,
+    level: 13,
   },
   {
     id: "75.69",
@@ -734,7 +734,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.67",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "75.70",
@@ -742,7 +742,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.50",
     categoria: "Materias Electivas",
-    nivel: 14,
+    level: 14,
   },
   {
     id: "75.71",
@@ -750,7 +750,7 @@ export const informatica = [
     creditos: 3,
     correlativas: "75.07",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "75.72",
@@ -758,7 +758,7 @@ export const informatica = [
     creditos: 3,
     correlativas: "75.06-75.44",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "75.73",
@@ -766,7 +766,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.07-75.09",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "78.xx",
@@ -774,7 +774,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "75.00",
@@ -783,7 +783,7 @@ export const informatica = [
     requiere: 140,
     categoria: "Fin de Carrera",
     shape: "star",
-    nivel: -1,
+    level: -1,
   },
   {
     id: "75.99",
@@ -792,6 +792,6 @@ export const informatica = [
     requiere: 140,
     categoria: "Fin de Carrera",
     shape: "star",
-    nivel: -1,
+    level: -1,
   },
 ];

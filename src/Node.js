@@ -10,13 +10,9 @@ function breakWords(string) {
 class Node {
   constructor(n) {
     this.nodeRef = this;
-    this.id = n.id;
-    this.value = n.creditos;
-    this.materia = n.materia;
+    Object.assign(this, { ...n });
     this.label = breakWords(n.materia);
-    this.level = n.nivel;
-    this.group = n.categoria;
-    this.categoria = n.categoria;
+    this.group = this.categoria;
     this.aprobada = false;
     this.nota = 0;
     this.habilitada = false;
@@ -24,7 +20,6 @@ class Node {
       this.categoria !== "Materias Obligatorias" &&
       this.categoria !== "CBC" &&
       this.categoria !== "Fin de Carrera";
-    Object.assign(this, { ...n });
   }
 
   aprobar(ctx) {

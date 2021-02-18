@@ -5,7 +5,7 @@ export const agrimensura = [
     creditos: 0,
     correlativas: "",
     categoria: "CBC",
-    nivel: 0,
+    level: 0,
   },
   {
     id: "62.01",
@@ -13,7 +13,7 @@ export const agrimensura = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "61.03",
@@ -21,7 +21,7 @@ export const agrimensura = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "70.02",
@@ -29,7 +29,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "75.01",
@@ -37,7 +37,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "62.03",
@@ -45,7 +45,7 @@ export const agrimensura = [
     creditos: 8,
     correlativas: "61.03-62.01",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "70.04",
@@ -53,7 +53,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "78.01",
@@ -61,7 +61,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "61.22",
@@ -69,7 +69,7 @@ export const agrimensura = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "70.06",
@@ -77,7 +77,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "62.01",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "71.23",
@@ -85,7 +85,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "61.03",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "61.06",
@@ -93,7 +93,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "61.03",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "70.08",
@@ -101,7 +101,7 @@ export const agrimensura = [
     creditos: 6,
     correlativas: "70.02",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "70.12",
@@ -109,7 +109,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "61.03-70.08",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "70.33",
@@ -117,7 +117,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.08",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "70.15",
@@ -125,7 +125,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.08",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "70.07",
@@ -133,7 +133,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "61.06-70.08",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "70.09",
@@ -141,7 +141,7 @@ export const agrimensura = [
     creditos: 6,
     correlativas: "70.08-70.04",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "70.13",
@@ -149,7 +149,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.12",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "68.06",
@@ -157,7 +157,7 @@ export const agrimensura = [
     creditos: 8,
     correlativas: "70.09",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "70.14",
@@ -165,7 +165,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.09",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "71.02",
@@ -173,7 +173,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.08",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "70.34",
@@ -181,7 +181,7 @@ export const agrimensura = [
     creditos: 8,
     correlativas: "70.07-70.09-70.12-70.15",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "70.17",
@@ -189,7 +189,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "62.03-70.07–70.13",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "70.16",
@@ -197,7 +197,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.14-70.07",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "70.36",
@@ -205,7 +205,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "61.06-70.14-70.15",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "71.24",
@@ -213,7 +213,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "71.02",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "70.35",
@@ -221,7 +221,7 @@ export const agrimensura = [
     creditos: 8,
     correlativas: "70.34-70.13",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "70.32",
@@ -229,7 +229,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.04-70.15-70.36",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "70.31",
@@ -237,7 +237,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "71.23-71.24-70.36",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "70.27",
@@ -245,7 +245,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.16-71.23-71.24",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "71.30",
@@ -253,7 +253,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "71.24",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "70.37",
@@ -261,7 +261,7 @@ export const agrimensura = [
     creditos: 6,
     correlativas: "70.35-71.24",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "70.39",
@@ -269,7 +269,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "71.23-70.27-70.33",
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "70.38",
@@ -277,7 +277,7 @@ export const agrimensura = [
     creditos: 6,
     correlativas: "70.33-70.37",
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "71.52",
@@ -285,7 +285,7 @@ export const agrimensura = [
     creditos: 6,
     correlativas: "71.30",
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "70.24",
@@ -293,7 +293,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.09",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "70.26",
@@ -301,7 +301,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.09",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "77.02",
@@ -309,7 +309,7 @@ export const agrimensura = [
     creditos: 4,
     requiere: 100,
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "68.11",
@@ -317,7 +317,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "68.06-70.27",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "70.40",
@@ -325,7 +325,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "62.03-70.06",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "70.41",
@@ -333,7 +333,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "61.03-62.03",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "70.42",
@@ -341,7 +341,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.32",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "70.43",
@@ -349,7 +349,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.12-70.09",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "70.44",
@@ -357,7 +357,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.04",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "78.xx",
@@ -365,7 +365,7 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "70.00",
@@ -374,7 +374,7 @@ export const agrimensura = [
     requiere: 140,
     categoria: "Fin de Carrera",
     shape: "star",
-    nivel: -1,
+    level: -1,
   },
   {
     id: "70.99",
@@ -383,6 +383,6 @@ export const agrimensura = [
     requiere: 140,
     categoria: "Fin de Carrera",
     shape: "star",
-    nivel: -1,
+    level: -1,
   },
 ];

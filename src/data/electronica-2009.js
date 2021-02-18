@@ -5,7 +5,7 @@ export const electronica = [
     creditos: 0,
     correlativas: "",
     categoria: "CBC",
-    nivel: 0,
+    level: 0,
   },
   {
     id: "82.01",
@@ -13,7 +13,7 @@ export const electronica = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "81.01",
@@ -21,7 +21,7 @@ export const electronica = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "95.11",
@@ -29,7 +29,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "86.70",
@@ -37,7 +37,7 @@ export const electronica = [
     creditos: 4,
     correlativas: "82.01",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "82.02",
@@ -45,7 +45,7 @@ export const electronica = [
     creditos: 8,
     correlativas: "81.01-82.01",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "86.02",
@@ -53,7 +53,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "82.01",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "81.02",
@@ -61,7 +61,7 @@ export const electronica = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "81.05",
@@ -69,7 +69,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "81.01-81.02",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "81.04",
@@ -77,7 +77,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "81.01-81.02",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "86.01",
@@ -85,7 +85,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.02",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "83.01",
@@ -93,7 +93,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "95.04",
@@ -101,7 +101,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "81.01-81.02-95.11",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "86.04",
@@ -109,7 +109,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.02-81.05-82.02",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "82.06",
@@ -117,7 +117,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "82.02-81.05",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "86.03",
@@ -125,7 +125,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "82.02-86.02",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "82.03",
@@ -133,7 +133,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "82.02",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "86.05",
@@ -141,7 +141,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.04-81.04",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "86.06",
@@ -149,7 +149,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.03-86.04",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "91.19",
@@ -157,7 +157,7 @@ export const electronica = [
     creditos: 4,
     requiere: 48,
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "86.08",
@@ -165,7 +165,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.05",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "86.07",
@@ -173,7 +173,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.01-86.03-86.04-95.11",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "86.09",
@@ -181,7 +181,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.05-81.04",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "86.12",
@@ -189,7 +189,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.05",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "86.10",
@@ -197,7 +197,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.06-86.07-86.70",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "86.13",
@@ -205,7 +205,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "82.06-86.06-86.07",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "86.14",
@@ -213,7 +213,7 @@ export const electronica = [
     creditos: 4,
     correlativas: "86.10",
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "97.04",
@@ -221,7 +221,7 @@ export const electronica = [
     creditos: 4,
     requiere: 90,
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "91.11",
@@ -229,7 +229,7 @@ export const electronica = [
     creditos: 4,
     requiere: 90,
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "86.40",
@@ -237,7 +237,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.39",
     categoria: "Multiples Orientaciones",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "86.35",
@@ -245,7 +245,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.09",
     categoria: "Multiples Orientaciones",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "81.07",
@@ -253,7 +253,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "81.05",
     categoria: "Procesamiento de Señales",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "81.08",
@@ -261,7 +261,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "81.05-95.04",
     categoria: "Procesamiento de Señales",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "82.04",
@@ -269,7 +269,7 @@ export const electronica = [
     creditos: 4,
     correlativas: "81.05-82.01",
     categoria: "Automatización y Control",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "82.05",
@@ -277,7 +277,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "82.03",
     categoria: "Física Electrónica",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.15",
@@ -285,7 +285,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "82.04-86.08",
     categoria: "Automatización y Control",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "85.36",
@@ -293,7 +293,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.04",
     categoria: "Automatización y Control",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "85.37",
@@ -301,7 +301,7 @@ export const electronica = [
     creditos: 4,
     correlativas: "86.06",
     categoria: "Automatización y Control",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.26",
@@ -309,7 +309,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.12-86.25",
     categoria: "Telecomunicaciones",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "86.11",
@@ -317,7 +317,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.09",
     categoria: "Telecomunicaciones",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "86.16",
@@ -325,7 +325,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.08",
     categoria: "Automatización y Control",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "86.17",
@@ -333,7 +333,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.16",
     categoria: "Automatización y Control",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "86.18",
@@ -341,7 +341,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.08",
     categoria: "Automatización y Control",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "86.19",
@@ -349,7 +349,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.16",
     categoria: "Automatización y Control",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "86.20",
@@ -357,7 +357,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.08",
     categoria: "Automatización y Control",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "86.21",
@@ -365,7 +365,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.08",
     categoria: "Automatización y Control",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "86.22",
@@ -373,7 +373,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.08-86.10",
     categoria: "Automatización y Control",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.23",
@@ -381,7 +381,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.08-86.10",
     categoria: "Automatización y Control",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.24",
@@ -389,7 +389,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.10",
     categoria: "Automatización y Control",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.25",
@@ -397,7 +397,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.09",
     categoria: "Telecomunicaciones",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.27",
@@ -405,7 +405,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.12",
     categoria: "Telecomunicaciones",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.30",
@@ -413,7 +413,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.26",
     categoria: "Telecomunicaciones",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "86.28",
@@ -421,7 +421,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.12",
     categoria: "Telecomunicaciones",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "86.29",
@@ -429,7 +429,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "82.06",
     categoria: "Telecomunicaciones",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.31",
@@ -437,7 +437,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.12",
     categoria: "Telecomunicaciones",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.32",
@@ -445,7 +445,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.12-86.29",
     categoria: "Telecomunicaciones",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "86.34",
@@ -453,7 +453,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.10",
     categoria: "Telecomunicaciones",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "86.36",
@@ -461,7 +461,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.05-86.07",
     categoria: "Sistemas Digitales y Computación",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.37",
@@ -469,7 +469,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.07",
     categoria: "Sistemas Digitales y Computación",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.38",
@@ -477,7 +477,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.37",
     categoria: "Sistemas Digitales y Computación",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "86.39",
@@ -485,7 +485,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.12",
     categoria: "Multiples Orientaciones",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.41",
@@ -493,7 +493,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "81.05-86.01-95.11",
     categoria: "Sistemas Digitales y Computación",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.42",
@@ -501,7 +501,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.41",
     categoria: "Sistemas Digitales y Computación",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "86.43",
@@ -509,7 +509,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "95.12",
     categoria: "Sistemas Digitales y Computación",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "86.44",
@@ -517,7 +517,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.01-86.03",
     categoria: "Sistemas Digitales y Computación",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.45",
@@ -525,7 +525,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.10",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "86.46",
@@ -533,7 +533,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.06",
     categoria: "Física Electrónica",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.47",
@@ -541,7 +541,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "82.03-82.06",
     categoria: "Física Electrónica",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.48",
@@ -549,7 +549,7 @@ export const electronica = [
     creditos: 4,
     correlativas: "86.10",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "86.49",
@@ -557,7 +557,7 @@ export const electronica = [
     creditos: 4,
     correlativas: "86.10",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "86.50",
@@ -565,7 +565,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.10",
     categoria: "Multiples Orientaciones",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.51",
@@ -573,7 +573,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.09",
     categoria: "Multiples Orientaciones",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.52",
@@ -581,7 +581,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.51",
     categoria: "Multiples Orientaciones",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "86.53",
@@ -589,7 +589,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.05",
     categoria: "Multiples Orientaciones",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.54",
@@ -597,7 +597,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.09",
     categoria: "Multiples Orientaciones",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "86.55",
@@ -605,7 +605,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.09",
     categoria: "Multiples Orientaciones",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "86.56",
@@ -613,7 +613,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.51-86.55",
     categoria: "Multiples Orientaciones",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "86.57",
@@ -621,7 +621,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.04",
     categoria: "Multimedia",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.58",
@@ -629,7 +629,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.06",
     categoria: "Multimedia",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.59",
@@ -637,7 +637,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.10",
     categoria: "Multimedia",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.60",
@@ -645,7 +645,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.05",
     categoria: "Instrumentación Biomédica",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.61",
@@ -653,7 +653,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.08-86.60",
     categoria: "Instrumentación Biomédica",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "86.62",
@@ -661,7 +661,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.60",
     categoria: "Instrumentación Biomédica",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "86.63",
@@ -669,7 +669,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.60",
     categoria: "Instrumentación Biomédica",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "95.07",
@@ -677,7 +677,7 @@ export const electronica = [
     creditos: 4,
     correlativas: "95.12",
     categoria: "Sistemas Digitales y Computación",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "95.08",
@@ -685,7 +685,7 @@ export const electronica = [
     creditos: 4,
     correlativas: "95.12",
     categoria: "Sistemas Digitales y Computación",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "86.64",
@@ -693,7 +693,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "82.06",
     categoria: "Multiples Orientaciones",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.65",
@@ -701,7 +701,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.07",
     categoria: "Sistemas Digitales y Computación",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.66",
@@ -709,7 +709,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.46",
     categoria: "Física Electrónica",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "86.67",
@@ -717,7 +717,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.29",
     categoria: "Telecomunicaciones",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "86.68",
@@ -725,7 +725,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.16",
     categoria: "Automatización y Control",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "95.02",
@@ -733,7 +733,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "95.12",
     categoria: "Sistemas Digitales y Computación",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "95.03",
@@ -741,7 +741,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.07-95.02",
     categoria: "Sistemas Digitales y Computación",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "95.05",
@@ -749,7 +749,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.07-95.02",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "95.06",
@@ -757,7 +757,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "95.12",
     categoria: "Sistemas Digitales y Computación",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "95.09",
@@ -765,7 +765,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "95.03",
     categoria: "Sistemas Digitales y Computación",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "95.12",
@@ -773,7 +773,7 @@ export const electronica = [
     creditos: 6,
     correlativas: "95.11",
     categoria: "Sistemas Digitales y Computación",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "86.00",
@@ -781,7 +781,7 @@ export const electronica = [
     creditos: 18,
     categoria: "Fin de Carrera",
     shape: "star",
-    nivel: -1,
+    level: -1,
   },
   {
     id: "86.99",
@@ -789,6 +789,6 @@ export const electronica = [
     creditos: 18,
     categoria: "Fin de Carrera",
     shape: "star",
-    nivel: -1,
+    level: -1,
   },
 ];

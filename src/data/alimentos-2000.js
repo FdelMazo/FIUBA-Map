@@ -5,7 +5,7 @@ export const alimentos = [
     creditos: 0,
     correlativas: "",
     categoria: "CBC",
-    nivel: 0,
+    level: 0,
   },
   {
     id: "61.03",
@@ -13,7 +13,7 @@ export const alimentos = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "62.01",
@@ -21,7 +21,7 @@ export const alimentos = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "63.02",
@@ -29,7 +29,7 @@ export const alimentos = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "61.08",
@@ -37,7 +37,7 @@ export const alimentos = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "75.01",
@@ -45,7 +45,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "62.04",
@@ -53,7 +53,7 @@ export const alimentos = [
     creditos: 6,
     correlativas: "61.03-62.01",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "63.13",
@@ -61,7 +61,7 @@ export const alimentos = [
     creditos: 8,
     correlativas: "63.02",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "75.12",
@@ -69,7 +69,7 @@ export const alimentos = [
     creditos: 6,
     correlativas: "61.03-61.08-75.01",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "76.45",
@@ -77,7 +77,7 @@ export const alimentos = [
     creditos: 10,
     correlativas: "62.01-63.02",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "63.14",
@@ -85,7 +85,7 @@ export const alimentos = [
     creditos: 10,
     correlativas: "63.13",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "61.14",
@@ -93,7 +93,7 @@ export const alimentos = [
     creditos: 8,
     correlativas: "61.03-61.08",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "61.06",
@@ -101,7 +101,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "61.03",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "76.46",
@@ -109,7 +109,7 @@ export const alimentos = [
     creditos: 6,
     correlativas: "76.45",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "65.43",
@@ -117,7 +117,7 @@ export const alimentos = [
     creditos: 4,
     requiere: 120,
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "76.42",
@@ -125,7 +125,7 @@ export const alimentos = [
     creditos: 4,
     requiere: 120,
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "63.15",
@@ -133,7 +133,7 @@ export const alimentos = [
     creditos: 8,
     correlativas: "63.13-63.14-62.04",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "76.40",
@@ -141,7 +141,7 @@ export const alimentos = [
     creditos: 2,
     requiere: 120,
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "63.05",
@@ -149,7 +149,7 @@ export const alimentos = [
     creditos: 8,
     requiere: 120,
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "76.03",
@@ -157,7 +157,7 @@ export const alimentos = [
     creditos: 10,
     requiere: 120,
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "63.07",
@@ -165,7 +165,7 @@ export const alimentos = [
     creditos: 6,
     requiere: 120,
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "FYB2",
@@ -173,7 +173,7 @@ export const alimentos = [
     creditos: 2,
     correlativas: "76.40",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "76.12",
@@ -181,7 +181,7 @@ export const alimentos = [
     creditos: 6,
     correlativas: "76.40",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "76.04",
@@ -189,7 +189,7 @@ export const alimentos = [
     creditos: 8,
     correlativas: "76.03",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "76.05",
@@ -197,7 +197,7 @@ export const alimentos = [
     creditos: 8,
     correlativas: "76.03",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "CEX2",
@@ -205,7 +205,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "76.40",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "77.41",
@@ -213,15 +213,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "76.05",
     categoria: "Materias Obligatorias",
-    nivel: 7,
-  },
-  {
-    id: "FYB1",
-    materia: "Legislación Alimentaria",
-    creditos: 2,
-    correlativas: "CEX2-FYB2",
-    categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 7,
   },
   {
     id: "CEX1",
@@ -229,7 +221,15 @@ export const alimentos = [
     creditos: 6,
     correlativas: "76.12-76.04-76.05",
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
+  },
+  {
+    id: "FYB1",
+    materia: "Legislación Alimentaria",
+    creditos: 2,
+    correlativas: "CEX2-FYB2",
+    categoria: "Materias Obligatorias",
+    level: 8,
   },
   {
     id: "76.08",
@@ -237,7 +237,7 @@ export const alimentos = [
     creditos: 8,
     correlativas: "63.07-76.05",
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "76.43",
@@ -245,7 +245,7 @@ export const alimentos = [
     creditos: 6,
     correlativas: "76.04-76.05",
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "CEX3",
@@ -253,7 +253,7 @@ export const alimentos = [
     creditos: 6,
     correlativas: "CEX1",
     categoria: "Materias Obligatorias",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "CEX4",
@@ -261,7 +261,7 @@ export const alimentos = [
     creditos: 6,
     correlativas: "CEX1-63.05",
     categoria: "Materias Obligatorias",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "CEX5",
@@ -269,7 +269,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX1-63.05",
     categoria: "Materias Obligatorias",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "76.41",
@@ -277,7 +277,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "76.08-76.12",
     categoria: "Materias Obligatorias",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "71.55",
@@ -285,7 +285,7 @@ export const alimentos = [
     creditos: 6,
     correlativas: "76.05",
     categoria: "Materias Obligatorias",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "71.56",
@@ -294,7 +294,7 @@ export const alimentos = [
     creditos: 2,
     correlativas: "71.55",
     categoria: "Materias Obligatorias",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "CEX6",
@@ -302,7 +302,7 @@ export const alimentos = [
     creditos: 6,
     correlativas: "76.12",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "CEX7",
@@ -310,7 +310,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX1-63.05",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "AG1",
@@ -318,7 +318,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX5",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "CEX8",
@@ -326,7 +326,7 @@ export const alimentos = [
     creditos: 8,
     correlativas: "CEX3",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "71.03",
@@ -334,7 +334,7 @@ export const alimentos = [
     creditos: 6,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "71.31",
@@ -342,7 +342,7 @@ export const alimentos = [
     creditos: 6,
     correlativas: "CEX3-71.55",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "71.33",
@@ -350,7 +350,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX3-71.55",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "71.43",
@@ -358,7 +358,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX3-71.55",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "71.44",
@@ -366,7 +366,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "FYB1-71.55",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "71.57",
@@ -374,7 +374,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "72.14",
@@ -382,7 +382,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX3-75.55",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "76.19",
@@ -390,7 +390,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "76.41",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "FYB3",
@@ -399,7 +399,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "71.55",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "78.xx",
@@ -407,7 +407,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "76.90",
@@ -417,7 +417,7 @@ export const alimentos = [
     correlativas: "CEX1",
     categoria: "Fin de Carrera",
     shape: "star",
-    nivel: -1,
+    level: 8,
   },
   {
     id: "76.44",
@@ -427,6 +427,6 @@ export const alimentos = [
     correlativas: "CEX1",
     categoria: "Fin de Carrera",
     shape: "star",
-    nivel: -1,
+    level: 8,
   },
 ];

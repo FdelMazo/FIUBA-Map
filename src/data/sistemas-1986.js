@@ -5,7 +5,7 @@ export const sistemas = [
     creditos: 0,
     correlativas: "",
     categoria: "CBC",
-    nivel: 0,
+    level: 0,
   },
   {
     id: "81.01",
@@ -13,7 +13,7 @@ export const sistemas = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "81.02",
@@ -21,7 +21,7 @@ export const sistemas = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "95.14",
@@ -29,7 +29,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "81.11",
@@ -37,7 +37,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "95.57",
@@ -45,7 +45,7 @@ export const sistemas = [
     creditos: 8,
     correlativas: "95.14",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "95.15",
@@ -53,7 +53,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "95.14",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "91.39",
@@ -61,7 +61,7 @@ export const sistemas = [
     creditos: 6,
     requiere: 22,
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "81.04",
@@ -69,7 +69,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "81.01-81.02",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "95.58",
@@ -77,7 +77,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "95.57-95.15",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "95.02",
@@ -85,7 +85,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "95.15",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "91.41",
@@ -93,7 +93,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "81.04-91.39",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "95.03",
@@ -101,7 +101,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "95.58",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "95.20",
@@ -109,7 +109,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "95.02-95.58",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "95.08",
@@ -117,7 +117,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.02-95.57",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "91.04",
@@ -125,7 +125,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "81.01-81.02-81.11-95.15",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "91.42",
@@ -133,7 +133,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "91.41-95.20",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "95.21",
@@ -141,7 +141,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "95.20",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "95.05",
@@ -149,7 +149,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "95.20",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "91.05",
@@ -157,7 +157,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "81.04-91.04",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "95.24",
@@ -165,7 +165,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "91.42-95.21",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "91.40",
@@ -173,7 +173,7 @@ export const sistemas = [
     creditos: 4,
     requiere: 100,
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "95.59",
@@ -181,7 +181,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "91.42-95.21",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "95.60",
@@ -189,7 +189,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "95.05-95.03",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "95.30",
@@ -197,7 +197,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.24",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "91.35",
@@ -205,7 +205,7 @@ export const sistemas = [
     creditos: 3,
     correlativas: "91.05",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "86.36",
@@ -213,7 +213,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "95.60",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "91.24",
@@ -221,7 +221,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "91.39",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "91.06",
@@ -229,7 +229,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "91.05",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "91.37",
@@ -237,7 +237,7 @@ export const sistemas = [
     creditos: 3,
     correlativas: "95.24",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "95.04",
@@ -245,7 +245,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "81.01-81.02-95.14",
     categoria: "Materias Electivas",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "95.06",
@@ -253,7 +253,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "81.11-95.15",
     categoria: "Materias Electivas",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "95.07",
@@ -261,7 +261,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.15",
     categoria: "Materias Electivas",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "95.19",
@@ -269,7 +269,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "81.04-95.15",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "95.25",
@@ -277,7 +277,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "95.02",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "95.35",
@@ -285,7 +285,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.24",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "95.37",
@@ -293,7 +293,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.24",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "95.09",
@@ -301,7 +301,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "95.03",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "95.48",
@@ -309,7 +309,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "81.11",
     categoria: "Materias Electivas",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "95.62",
@@ -317,7 +317,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.24",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "95.63",
@@ -325,7 +325,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.05-95.15",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "95.64",
@@ -333,7 +333,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.24",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "95.65",
@@ -341,7 +341,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.20",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "95.66",
@@ -349,7 +349,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.05",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "95.67",
@@ -357,7 +357,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.05",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "95.68",
@@ -365,7 +365,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.02",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "95.49",
@@ -373,7 +373,7 @@ export const sistemas = [
     creditos: 6,
     correlativas: "95.48",
     categoria: "Materias Electivas",
-    nivel: 12,
+    level: 12,
   },
   {
     id: "95.69",
@@ -381,7 +381,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "91.42-95.21",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "95.70",
@@ -389,7 +389,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.21",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "95.71",
@@ -397,7 +397,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.03",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "98.xx",
@@ -405,6 +405,6 @@ export const sistemas = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    nivel: 8,
+    level: 8,
   },
 ];

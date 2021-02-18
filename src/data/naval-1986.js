@@ -5,7 +5,7 @@ export const naval = [
     creditos: 0,
     correlativas: "",
     categoria: "CBC",
-    nivel: 0,
+    level: 0,
   },
   {
     id: "61.08",
@@ -13,7 +13,7 @@ export const naval = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "61.03",
@@ -21,7 +21,7 @@ export const naval = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "62.01",
@@ -29,7 +29,7 @@ export const naval = [
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 1,
+    level: 1,
   },
   {
     id: "75.01",
@@ -37,7 +37,7 @@ export const naval = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "63.01",
@@ -45,7 +45,7 @@ export const naval = [
     creditos: 6,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "62.03",
@@ -53,7 +53,7 @@ export const naval = [
     creditos: 8,
     correlativas: "61.03-62.01",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "67.02",
@@ -61,7 +61,7 @@ export const naval = [
     creditos: 6,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",
-    nivel: 2,
+    level: 2,
   },
   {
     id: "75.12",
@@ -69,7 +69,7 @@ export const naval = [
     creditos: 6,
     correlativas: "61.03-61.08-75.01",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "62.06",
@@ -77,7 +77,7 @@ export const naval = [
     creditos: 6,
     correlativas: "61.03-61.08-62.01",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "67.13",
@@ -85,7 +85,7 @@ export const naval = [
     creditos: 6,
     correlativas: "63.01",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "64.11",
@@ -93,7 +93,7 @@ export const naval = [
     creditos: 6,
     correlativas: "62.01-67.02",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "67.07",
@@ -101,7 +101,7 @@ export const naval = [
     creditos: 2,
     correlativas: "67.02",
     categoria: "Materias Obligatorias",
-    nivel: 3,
+    level: 3,
   },
   {
     id: "71.23",
@@ -109,7 +109,7 @@ export const naval = [
     creditos: 4,
     correlativas: "61.03",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "61.06",
@@ -117,7 +117,7 @@ export const naval = [
     creditos: 4,
     correlativas: "61.03",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "64.12",
@@ -125,7 +125,7 @@ export const naval = [
     creditos: 8,
     correlativas: "61.03-61.08-64.11-67.13",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "73.01",
@@ -133,7 +133,7 @@ export const naval = [
     creditos: 6,
     correlativas: "64.11-67.02",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "67.04",
@@ -141,7 +141,7 @@ export const naval = [
     creditos: 8,
     correlativas: "61.08-62.03",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "67.39",
@@ -149,7 +149,7 @@ export const naval = [
     creditos: 6,
     correlativas: "67.07",
     categoria: "Materias Obligatorias",
-    nivel: 4,
+    level: 4,
   },
   {
     id: "65.30",
@@ -157,7 +157,7 @@ export const naval = [
     creditos: 6,
     correlativas: "62.03",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "73.02",
@@ -165,7 +165,7 @@ export const naval = [
     creditos: 6,
     correlativas: "73.01",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "67.18",
@@ -173,7 +173,7 @@ export const naval = [
     creditos: 6,
     correlativas: "67.04",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "66.04",
@@ -181,7 +181,7 @@ export const naval = [
     creditos: 8,
     correlativas: "62.03",
     categoria: "Materias Obligatorias",
-    nivel: 5,
+    level: 5,
   },
   {
     id: "73.40",
@@ -189,7 +189,7 @@ export const naval = [
     creditos: 4,
     correlativas: "73.01-73.02",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "64.13",
@@ -197,7 +197,7 @@ export const naval = [
     creditos: 6,
     correlativas: "64.12",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "73.03",
@@ -205,7 +205,7 @@ export const naval = [
     creditos: 8,
     correlativas: "73.01",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "73.05",
@@ -213,7 +213,7 @@ export const naval = [
     creditos: 6,
     correlativas: "67.04",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "66.05",
@@ -221,7 +221,7 @@ export const naval = [
     creditos: 6,
     correlativas: "66.04",
     categoria: "Materias Obligatorias",
-    nivel: 6,
+    level: 6,
   },
   {
     id: "61.16",
@@ -229,7 +229,7 @@ export const naval = [
     creditos: 8,
     correlativas: "61.03-61.08",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "73.04",
@@ -237,7 +237,7 @@ export const naval = [
     creditos: 6,
     correlativas: "64.13-73.02",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "73.07",
@@ -245,7 +245,7 @@ export const naval = [
     creditos: 6,
     correlativas: "73.02",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "67.12",
@@ -253,7 +253,7 @@ export const naval = [
     creditos: 6,
     correlativas: "64.12",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "73.11",
@@ -261,7 +261,7 @@ export const naval = [
     creditos: 6,
     correlativas: "67.04",
     categoria: "Materias Obligatorias",
-    nivel: 7,
+    level: 7,
   },
   {
     id: "73.41",
@@ -269,7 +269,7 @@ export const naval = [
     creditos: 4,
     correlativas: "73.40",
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "73.09",
@@ -277,7 +277,7 @@ export const naval = [
     creditos: 6,
     correlativas: "73.03-73.05-73.07",
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "73.10",
@@ -285,7 +285,7 @@ export const naval = [
     creditos: 6,
     correlativas: "73.09",
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "73.06",
@@ -293,7 +293,7 @@ export const naval = [
     creditos: 6,
     correlativas: "64.13-73.07-73.12",
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "73.12",
@@ -301,7 +301,7 @@ export const naval = [
     creditos: 6,
     correlativas: "67.04",
     categoria: "Materias Obligatorias",
-    nivel: 8,
+    level: 8,
   },
   {
     id: "64.14",
@@ -309,7 +309,7 @@ export const naval = [
     creditos: 4,
     correlativas: "64.13",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "64.15",
@@ -317,7 +317,7 @@ export const naval = [
     creditos: 6,
     correlativas: "64.13",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "64.16",
@@ -325,7 +325,7 @@ export const naval = [
     creditos: 2,
     correlativas: "64.13",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "67.23",
@@ -333,7 +333,7 @@ export const naval = [
     creditos: 2,
     requiere: 120,
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "67.38",
@@ -341,7 +341,7 @@ export const naval = [
     creditos: 6,
     correlativas: "67.02-68.13",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "67.61",
@@ -349,7 +349,7 @@ export const naval = [
     creditos: 6,
     correlativas: "61.08-67.02",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "68.03",
@@ -357,7 +357,7 @@ export const naval = [
     creditos: 6,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "68.08",
@@ -365,7 +365,7 @@ export const naval = [
     creditos: 6,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "71.07",
@@ -373,7 +373,7 @@ export const naval = [
     creditos: 8,
     correlativas: "71.31",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "71.36",
@@ -381,7 +381,7 @@ export const naval = [
     creditos: 4,
     correlativas: "61.06-73.07",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "71.38",
@@ -389,7 +389,7 @@ export const naval = [
     creditos: 4,
     correlativas: "73.07",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "71.34",
@@ -397,7 +397,7 @@ export const naval = [
     creditos: 4,
     correlativas: "71.50-71.51",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "71.51",
@@ -405,7 +405,7 @@ export const naval = [
     creditos: 4,
     correlativas: "71.50",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "72.06",
@@ -413,7 +413,7 @@ export const naval = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "73.14",
@@ -421,7 +421,7 @@ export const naval = [
     creditos: 4,
     correlativas: "73.02",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "73.15",
@@ -429,7 +429,7 @@ export const naval = [
     creditos: 6,
     correlativas: "73.05-73.11-73.12",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "73.16",
@@ -437,7 +437,7 @@ export const naval = [
     creditos: 6,
     correlativas: "73.07",
     categoria: "Materias Electivas",
-    nivel: 10,
+    level: 10,
   },
   {
     id: "77.01",
@@ -445,7 +445,7 @@ export const naval = [
     creditos: 4,
     correlativas: "73.02",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "77.02",
@@ -453,7 +453,7 @@ export const naval = [
     creditos: 4,
     correlativas: "73.09",
     categoria: "Materias Electivas",
-    nivel: 11,
+    level: 11,
   },
   {
     id: "78.xx",
@@ -461,7 +461,7 @@ export const naval = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "71.31",
@@ -469,7 +469,7 @@ export const naval = [
     creditos: 6,
     correlativas: "73.02",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "71.50",
@@ -477,7 +477,7 @@ export const naval = [
     creditos: 4,
     correlativas: "71.31",
     categoria: "Materias Electivas",
-    nivel: 9,
+    level: 9,
   },
   {
     id: "73.00",
@@ -486,7 +486,7 @@ export const naval = [
     requiere: 140,
     categoria: "Fin de Carrera",
     shape: "star",
-    nivel: -1,
+    level: -1,
   },
   {
     id: "73.99",
@@ -494,6 +494,6 @@ export const naval = [
     creditos: 0,
     categoria: "Fin de Carrera",
     shape: "star",
-    nivel: -1,
+    level: -1,
   },
 ];
