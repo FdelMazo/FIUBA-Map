@@ -66,8 +66,8 @@ const useGraph = () => {
         n.hidden = !n.hidden;
       });
     global.nodes.update(graph.nodes);
+    global.network.stabilize();
     global.network.redraw();
-    global.network.fit();
   };
 
   const getNode = (id) => {
