@@ -61,12 +61,25 @@ const useGraph = () => {
     setGraph({ nodes: graphNodes, edges: graphEdges, groups });
   }, [carrera]); //eslint-disable-line
 
+  const keepFinDeCarreraOnLastLevel = () => {
+    const l = Math.max(
+      ...graph.nodes
+        .filter((n) => !n.hidden && n.categoria !== "Fin de Carrera")
+        .map((n) => n.level)
+    );
+    const f = carrera.finDeCarrera.find((f) => f.id === finDeCarrera);
+    const n = getNode(f.materia);
+    n.level = l + 1;
+    global.nodes.update(n);
+  };
+
   const toggleGroup = (id) => {
     graph.nodes
       .filter((n) => n.categoria === id)
       .forEach((n) => {
         n.hidden = !n.hidden;
       });
+
     global.nodes.update(graph.nodes);
     global.network.setOptions({
       physics: {
@@ -77,6 +90,7 @@ const useGraph = () => {
       },
     });
     global.network.stabilize();
+    keepFinDeCarreraOnLastLevel();
   };
 
   const getNode = (id) => {
