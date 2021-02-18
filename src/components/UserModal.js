@@ -1,10 +1,14 @@
+import { CloseIcon, SmallCloseIcon } from "@chakra-ui/icons";
 import {
   Button,
+  CloseButton,
   Collapse,
   FormControl,
+  IconButton,
   Input,
   Modal,
   ModalBody,
+  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -30,7 +34,11 @@ const UserModal = (props) => {
   const { getNode } = nodeFunctions;
 
   return (
-    <Modal isOpen={props.isOpen} onClose={props.onClose}>
+    <Modal
+      isOpen={props.isOpen}
+      onClose={props.onClose}
+      closeOnOverlayClick={false}
+    >
       <ModalOverlay />
       <ModalContent>
         <form
@@ -63,7 +71,7 @@ const UserModal = (props) => {
                     onChange={(event) => {
                       setFinDeCarrera(event.currentTarget.value);
                     }}
-                    on
+                    placeholder="Final de carrera no definido"
                     w="85%"
                   >
                     {carrera.finDeCarrera &&
@@ -84,6 +92,7 @@ const UserModal = (props) => {
                 >
                   <Select
                     value={orientacion || null}
+                    placeholder="Orientación no definida"
                     onChange={(event) =>
                       setOrientacion(event.currentTarget.value)
                     }
@@ -100,6 +109,10 @@ const UserModal = (props) => {
           </ModalBody>
 
           <ModalFooter>
+            <Button colorScheme="blue" mr={5} onClick={props.onClose}>
+              Cerrar
+            </Button>
+
             {logged && (
               <Button
                 colorScheme="red"

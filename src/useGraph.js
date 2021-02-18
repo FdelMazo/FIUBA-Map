@@ -26,17 +26,22 @@ const useGraph = () => {
   const [ticker, setTicker] = React.useState(false);
 
   useEffect(() => {
-    setOrientacion(carrera.orientaciones?.[0].nombre);
-    setFinDeCarrera(carrera.finDeCarrera?.[0].id);
-  }, [carrera]);
-
-  useEffect(() => {
     setTimeout(() => {
       setPromedio(getPromedio());
       setCreditos(getCreditos());
     }, 500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ticker]);
+
+  useEffect(() => {
+    if (!finDeCarrera) return;
+    carrera.finDeCarrera.forEach((f) => {
+      const n = getNode(f.materia);
+      n.hidden = !(f.id === finDeCarrera);
+      global.nodes.update(n);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [finDeCarrera]);
 
   const changeCarrera = (id) => {
     setCarrera(CARRERAS[id]);
@@ -62,6 +67,7 @@ const useGraph = () => {
   }, [carrera]); //eslint-disable-line
 
   const keepFinDeCarreraOnLastLevel = () => {
+    if (!finDeCarrera) return;
     const l = Math.max(
       ...graph.nodes
         .filter((n) => !n.hidden && n.categoria !== "Fin de Carrera")
@@ -178,29 +184,28 @@ const useGraph = () => {
         }, 0),
     });
 
-    if (finDeCarrera || !isNaN(carrera.creditos.electivas))
-      creditos.push({
-        nombre: `Materias Electivas${
-          finDeCarrera ? ` (eligiendo ${finDeCarrera})` : ""
-        }`,
-        color: "purple",
-        creditosNecesarios: isNaN(carrera.creditos.electivas)
-          ? carrera.creditos.electivas[finDeCarrera]
-          : carrera.creditos.electivas,
-        creditos: graph.nodes
-          .filter(
-            (n) =>
-              n.categoria !== "CBC" &&
-              n.categoria !== "Materias Obligatorias" &&
-              n.categoria !== "Fin de Carrera"
-          )
-          .filter((n) => n.categoria !== orientacion)
-          .filter((n) => n.aprobada && n.nota > 0)
-          .reduce((acc, node) => {
-            acc += node.creditos;
-            return acc;
-          }, 0),
-      });
+    creditos.push({
+      nombre: `Materias Electivas${
+        finDeCarrera ? ` (eligiendo ${finDeCarrera})` : ""
+      }`,
+      color: "purple",
+      creditosNecesarios: isNaN(carrera.creditos.electivas)
+        ? carrera.creditos.electivas[finDeCarrera]
+        : carrera.creditos.electivas,
+      creditos: graph.nodes
+        .filter(
+          (n) =>
+            n.categoria !== "CBC" &&
+            n.categoria !== "Materias Obligatorias" &&
+            n.categoria !== "Fin de Carrera"
+        )
+        .filter((n) => n.categoria !== orientacion)
+        .filter((n) => n.aprobada && n.nota > 0)
+        .reduce((acc, node) => {
+          acc += node.creditos;
+          return acc;
+        }, 0),
+    });
 
     if (
       carrera.eligeOrientaciones &&

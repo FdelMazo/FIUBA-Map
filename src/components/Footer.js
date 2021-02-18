@@ -58,8 +58,11 @@ const Footer = () => {
                       >
                         Marcar como completo
                       </Checkbox>
-                    ) : (
+                    ) : c.creditosNecesarios ? (
                       `${c.creditos} de ${c.creditosNecesarios} créditos necesarios.`
+                    ) : (
+                      `Tenés ${c.creditos} créditos.
+                      Elegí entre tesis y tpp para saber cuantos necesitás.`
                     )}
                   </PopoverBody>
                 </PopoverContent>
