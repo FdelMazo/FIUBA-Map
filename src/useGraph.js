@@ -50,7 +50,8 @@ const useGraph = () => {
         n.correlativas.split("-").forEach((c) => {
           graphEdges.push({ from: c, to: n.id });
         });
-      else graphEdges.push({ from: "CBC", to: n.id, hidden: true });
+      if (n.requiere)
+        graphEdges.push({ from: "CBC", to: n.id, color: "transparent" });
     });
 
     const groups = Array.from(new Set(carrera.graph.map((n) => n.categoria)));
