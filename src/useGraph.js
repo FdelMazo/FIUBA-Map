@@ -31,8 +31,10 @@ const useGraph = () => {
   }, [carrera]);
 
   useEffect(() => {
-    setPromedio(getPromedio());
-    setCreditos(getCreditos());
+    setTimeout(() => {
+      setPromedio(getPromedio());
+      setCreditos(getCreditos());
+    }, 500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ticker]);
 
@@ -66,8 +68,15 @@ const useGraph = () => {
         n.hidden = !n.hidden;
       });
     global.nodes.update(graph.nodes);
+    global.network.setOptions({
+      physics: {
+        stabilization: {
+          iterations: 1000,
+          fit: true,
+        },
+      },
+    });
     global.network.stabilize();
-    global.network.redraw();
   };
 
   const getNode = (id) => {
@@ -76,34 +85,50 @@ const useGraph = () => {
 
   const ponerEnFinal = (id) => {
     desaprobar(id);
-    const node = getNode(id);
-    node.aprobar({
-      network: global.network,
-      nodes: global.nodes,
-      getNode,
-      nota: -1,
-    });
+    aprobar(id, -1);
   };
 
   const aprobar = (id, nota) => {
     setTicker(!ticker);
     const node = getNode(id);
+
+    global.network.setOptions({
+      physics: {
+        stabilization: {
+          iterations: 1000,
+          fit: false,
+        },
+      },
+    });
     node.aprobar({
       network: global.network,
       nodes: global.nodes,
       getNode,
       nota,
     });
+
+    global.network.stabilize();
   };
 
   const desaprobar = (id) => {
     setTicker(!ticker);
     const node = getNode(id);
+
+    global.network.setOptions({
+      physics: {
+        stabilization: {
+          iterations: 1000,
+          fit: false,
+        },
+      },
+    });
     node.desaprobar({
       network: global.network,
       nodes: global.nodes,
       getNode,
     });
+
+    global.network.stabilize();
   };
 
   const nodeFunctions = {
