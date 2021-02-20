@@ -10,7 +10,7 @@
     "framer-motion": "^2.9.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-graph-vis": "^1.0.5",
+    "react-graph-vis": "^1.0.7",
     "react-scripts": "^3.4.3"
   },
   "homepage": "https://fdelmazo.github.io/FIUBA-Map",
