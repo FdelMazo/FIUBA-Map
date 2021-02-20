@@ -1,14 +1,10 @@
-import { CloseIcon, SmallCloseIcon } from "@chakra-ui/icons";
 import {
   Button,
-  CloseButton,
   Collapse,
   FormControl,
-  IconButton,
   Input,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
   ModalFooter,
   ModalHeader,
@@ -55,11 +51,15 @@ const UserModal = (props) => {
                   w="90%"
                   name="padron"
                   placeholder="Padrón"
-                  value={user.padron || null}
+                  value={user.padron || props.padronInput}
                   disabled={logged}
                 />
 
-                <Select w="85%" onChange={(e) => changeCarrera(e.target.value)}>
+                <Select
+                  w="85%"
+                  name="carrera"
+                  onChange={(e) => changeCarrera(e.target.value)}
+                >
                   {Object.keys(CARRERAS).map((id) => (
                     <option value={id}>{CARRERAS[id].nombre}</option>
                   ))}
@@ -67,6 +67,7 @@ const UserModal = (props) => {
 
                 <Collapse in={carrera.finDeCarrera}>
                   <Select
+                    name="finDeCarrera"
                     value={finDeCarrera || null}
                     onChange={(event) => {
                       setFinDeCarrera(event.currentTarget.value);
@@ -91,6 +92,7 @@ const UserModal = (props) => {
                   }
                 >
                   <Select
+                    name="orientacion"
                     value={orientacion || null}
                     placeholder="Orientación no definida"
                     onChange={(event) =>

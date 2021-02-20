@@ -1,78 +1,71 @@
-import { CheckCircleIcon, CloseIcon, SettingsIcon } from "@chakra-ui/icons";
-import {
-  Box,
-  Button,
-  Flex,
-  IconButton,
-  Input,
-  useDisclosure,
-  useToast,
-} from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import { CheckCircleIcon, SettingsIcon } from "@chakra-ui/icons";
+import { Box, Button, Flex, Input, useDisclosure } from "@chakra-ui/react";
+import React from "react";
 import { UserContext } from "../Contexts";
 import UserModal from "./UserModal";
 
 const PadronInput = () => {
-  const { login, logged, loading, firstTime, user } = React.useContext(
-    UserContext
-  );
+  const { login, logged, user } = React.useContext(UserContext);
+
+  const [loading, setLoading] = React.useState(false);
+  const [notRegistered, setNotRegistered] = React.useState(false);
+  const [lastInput, setLastInput] = React.useState("");
+  const [padronInput, setPadronInput] = React.useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const toast = useToast();
-
-  useEffect(() => {
-    if (firstTime)
-      toast({
-        position: "top",
-        duration: 3000,
-        render: () => (
-          <Button colorScheme="teal" onClick={onOpen}>
-            Registrar
-          </Button>
-        ),
-      });
-  }, [firstTime, toast, onOpen]);
+  const showRegisterButton = notRegistered && padronInput === lastInput;
 
   return (
     <Box>
       <form
-        onSubmit={(t) => {
+        onSubmit={async (t) => {
           t.preventDefault();
-          login(t.target.elements["padron"].value);
+          const padron = t.target.elements["padron"].value;
+          if (logged || showRegisterButton) {
+            onOpen();
+            setLastInput(padron);
+            return;
+          }
+
+          setLoading(true);
+          const couldLogin = await login(padron);
+          if (!couldLogin) setNotRegistered(true);
+          setLoading(false);
+          setLastInput(padron);
         }}
       >
-        <Flex align="center" bg="primary" color="secondary">
+        <Flex align="center">
           <Input
             borderRadius={4}
-            bg="transparent"
             size="sm"
             color="white"
             name="padron"
             placeholder="Padrón"
-            value={user.padron || null}
+            value={user.padron || padronInput}
+            onChange={(e) => setPadronInput(e.target.value)}
             isDisabled={logged}
           />
-          <IconButton
-            variant="outline"
-            ml={1}
-            colorScheme={firstTime ? "red" : "teal"}
-            icon={
-              logged ? (
-                <SettingsIcon />
-              ) : firstTime ? (
-                <CloseIcon />
-              ) : (
-                <CheckCircleIcon />
-              )
-            }
+
+          <Button
+            colorScheme={showRegisterButton ? "red" : "teal"}
+            variant={showRegisterButton ? "solid" : "outline"}
             size="sm"
+            px={showRegisterButton && 5}
+            mx={2}
             isLoading={loading}
-            type={logged ? null : "submit"}
-            onClick={logged ? onOpen : null}
-          />
+            type="submit"
+          >
+            {logged ? (
+              <SettingsIcon />
+            ) : showRegisterButton ? (
+              "Registrarse"
+            ) : (
+              <CheckCircleIcon />
+            )}
+          </Button>
         </Flex>
       </form>
-      <UserModal onClose={onClose} isOpen={isOpen} />
+      <UserModal padronInput={padronInput} onClose={onClose} isOpen={isOpen} />
     </Box>
   );
 };

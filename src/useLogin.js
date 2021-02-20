@@ -10,8 +10,6 @@ const userObj = {
 
 const useLogin = () => {
   const [user, setUser] = React.useState(userObj);
-  let [loading, setLoading] = React.useState(false);
-  let [firstTime, setFirstTime] = React.useState(false);
 
   const logged = user.padron !== "";
 
@@ -21,28 +19,22 @@ const useLogin = () => {
   }, [logged]);
 
   const login = async (padron) => {
-    setFirstTime(false);
-    setLoading(true);
     const index = await fetch(
       `${C.SPREADSHEET}${C.SHEETS.user.name}!${C.SHEETS.user.columns.padron}:${C.SHEETS.user.columns.padron}?majorDimension=COLUMNS&key=${C.KEY}`
     )
       .then((res) => res.json())
       .then((res) => (!res.error ? res.values[0].indexOf(padron) : null));
 
-    if (!index) {
-      setLoading(false);
-      return;
+    if (!index || index === -1) {
+      return false;
     }
-    if (index === -1) {
-      setFirstTime(true);
-      setLoading(false);
-      return;
-    }
+
     const dbUser = await fetch(
       `${C.SPREADSHEET}${C.SHEETS.user.name}!${index + 1}:${index + 1}?key=${
         C.KEY
       }`
     ).then((res) => res.json().then((res) => res.values[0]));
+
     setUser({
       padron,
       carrera: dbUser[`${C.SHEETS.user.index.carrera}`],
@@ -50,8 +42,7 @@ const useLogin = () => {
       finDeCarrera: dbUser[`${C.SHEETS.user.index.finDeCarrera}`],
     });
     window.localStorage.setItem("padron", padron);
-    setFirstTime(false);
-    setLoading(false);
+    return true;
   };
 
   const register = (data) => {
@@ -77,7 +68,7 @@ const useLogin = () => {
     window.localStorage.removeItem("padron");
   };
 
-  return { user, logged, login, loading, firstTime, register, logout };
+  return { user, logged, login, register, logout };
 };
 
 export default useLogin;
