@@ -7,7 +7,7 @@ import PadronInput from "./PadronInput";
 
 const Header = (props) => {
   const { displayedNode } = props;
-  const { changeCarrera } = React.useContext(GraphContext);
+  const { changeCarrera, carrera } = React.useContext(GraphContext);
   const { logged } = React.useContext(UserContext);
 
   return (
@@ -37,9 +37,10 @@ const Header = (props) => {
             <Select
               css={{ color: "#ffffff" }}
               onChange={(e) => changeCarrera(e.target.value)}
+              value={carrera.id}
             >
-              {Object.keys(CARRERAS).map((id) => (
-                <option value={id}>{CARRERAS[id].nombre}</option>
+              {CARRERAS.map((c) => (
+                <option value={c.id}>{c.nombre}</option>
               ))}
             </Select>
           </Box>

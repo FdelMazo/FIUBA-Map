@@ -18,7 +18,7 @@ const useGraph = () => {
   const [global, setGlobal] = React.useState(globalObj);
   const [graph, setGraph] = React.useState(graphObj);
   const [key, setKey] = React.useState(true);
-  const [carrera, setCarrera] = React.useState(Object.values(CARRERAS)[0]);
+  const [carrera, setCarrera] = React.useState(CARRERAS[0]);
   const [orientacion, setOrientacion] = React.useState(null);
   const [finDeCarrera, setFinDeCarrera] = React.useState(null);
   const [promedio, setPromedio] = React.useState(0);
@@ -44,7 +44,7 @@ const useGraph = () => {
   }, [finDeCarrera]);
 
   const changeCarrera = (id) => {
-    setCarrera(CARRERAS[id]);
+    setCarrera(CARRERAS.find((c) => c.id === id));
   };
 
   useEffect(() => {

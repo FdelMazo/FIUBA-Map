@@ -58,10 +58,11 @@ const UserModal = (props) => {
                 <Select
                   w="85%"
                   name="carrera"
+                  value={carrera.id}
                   onChange={(e) => changeCarrera(e.target.value)}
                 >
-                  {Object.keys(CARRERAS).map((id) => (
-                    <option value={id}>{CARRERAS[id].nombre}</option>
+                  {CARRERAS.map((c) => (
+                    <option value={c.id}>{c.nombre}</option>
                   ))}
                 </Select>
 

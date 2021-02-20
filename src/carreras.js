@@ -1,7 +1,8 @@
 import * as data from "./data";
 
-export const CARRERAS = {
-  informatica: {
+export const CARRERAS = [
+  {
+    id: "informatica",
     graph: data.informatica,
     nombre: "Ingeniería en Informática",
     orientaciones: [
@@ -20,7 +21,8 @@ export const CARRERAS = {
     },
     eligeOrientaciones: true,
   },
-  agrimensura: {
+  {
+    id: "agrimensura",
     graph: data.agrimensura,
     nombre: "Ingeniería en Agrimensura",
     finDeCarrera: [
@@ -35,7 +37,8 @@ export const CARRERAS = {
       electivas: { tesis: 12, tpp: 18 },
     },
   },
-  alimentos: {
+  {
+    id: "alimentos",
     graph: data.alimentos,
     nombre: "Ingeniería de Alimentos",
     creditos: {
@@ -47,7 +50,8 @@ export const CARRERAS = {
       electivas: 10,
     },
   },
-  civil: {
+  {
+    id: "civil",
     graph: data.civil,
     nombre: "Ingeniería Civil",
     creditos: {
@@ -60,7 +64,8 @@ export const CARRERAS = {
       ],
     },
   },
-  electricista: {
+  {
+    id: "electricista",
     graph: data.electricista,
     nombre: "Ingeniería Electricista",
     finDeCarrera: [
@@ -76,7 +81,8 @@ export const CARRERAS = {
       electivas: { tesis: 16, tpp: 22 },
     },
   },
-  electronica: {
+  {
+    id: "electronica",
     graph: data.electronica,
     nombre: "Ingeniería Electrónica",
     orientaciones: [
@@ -102,7 +108,8 @@ export const CARRERAS = {
       ],
     },
   },
-  industrial: {
+  {
+    id: "industrial",
     graph: data.industrial,
     nombre: "Ingeniería Industrial",
     finDeCarrera: [
@@ -123,7 +130,8 @@ export const CARRERAS = {
       electivas: { tesis: 32, tpp: 32 },
     },
   },
-  mecanica: {
+  {
+    id: "mecanica",
     graph: data.mecanica,
     nombre: "Ingeniería Mecánica",
     orientaciones: [
@@ -144,7 +152,8 @@ export const CARRERAS = {
       electivas: { tesis: 24, tpp: 52 },
     },
   },
-  naval: {
+  {
+    id: "naval",
     graph: data.naval,
     nombre: "Ingeniería Naval y Mecánica",
     finDeCarrera: [
@@ -156,7 +165,8 @@ export const CARRERAS = {
       electivas: { tesis: 20, tpp: 38 },
     },
   },
-  petroleo: {
+  {
+    id: "petroleo",
     graph: data.petroleo,
     nombre: "Ingeniería en Petróleo",
     finDeCarrera: [
@@ -172,7 +182,8 @@ export const CARRERAS = {
       ],
     },
   },
-  quimica: {
+  {
+    id: "quimica",
     graph: data.quimica,
     nombre: "Ingeniería Química",
     finDeCarrera: [
@@ -184,7 +195,8 @@ export const CARRERAS = {
       electivas: { tesis: 18, tpp: 24 },
     },
   },
-  sistemas: {
+  {
+    id: "sistemas",
     graph: data.sistemas,
     nombre: "Licenciatura en Análisis de Sistemas",
     creditos: {
@@ -193,6 +205,6 @@ export const CARRERAS = {
       checkbox: [{ nombre: "Idioma Inglés", color: "orange" }],
     },
   },
-};
+];
 
 export default CARRERAS;

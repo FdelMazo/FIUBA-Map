@@ -90,6 +90,7 @@ const Body = (props) => {
             </Tag>
           ))}
       </Stack>
+
       <Graph
         key={key}
         graph={graph}
