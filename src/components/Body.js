@@ -6,12 +6,13 @@ import {
   Tag,
   TagLabel,
   TagLeftIcon,
-  Tooltip,
+  Tooltip
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Graph from "react-graph-vis";
 import * as C from "../constants";
 import { GraphContext, UserContext } from "../Contexts";
+import useWindowSize from "./useWindowSize";
 
 const Body = (props) => {
   const {
@@ -25,7 +26,7 @@ const Body = (props) => {
   const { aprobar, desaprobar, getNode } = nodeFunctions;
 
   const { logged } = React.useContext(UserContext);
-
+  const { width } = useWindowSize();
   const [network, setNetwork] = React.useState(null);
   const [nodes, setNodes] = React.useState(null);
   const [edges, setEdges] = React.useState(null);
@@ -36,6 +37,10 @@ const Body = (props) => {
   useEffect(() => {
     setTimeout(redraw, 300);
   }, [logged, redraw]);
+
+  useEffect(() => {
+    setTimeout(redraw, 100);
+  }, [width, redraw]);
 
   const { setDisplayedNode } = props;
 
