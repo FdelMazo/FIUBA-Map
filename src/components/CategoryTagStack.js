@@ -30,7 +30,7 @@ const CategoryTagStack = (props) => {
           .map((c) => (
             <Tag
               cursor="pointer"
-              bg={C.GRUPOS[c.categoria].color}
+              bg={C.GRUPOS[c.categoria]?.color}
               borderRadius="full"
               onClick={() => {
                 setKey(!key);
