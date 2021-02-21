@@ -2,6 +2,16 @@ import * as data from "./data";
 
 export const CARRERAS = [
   {
+    id: "sistemas",
+    graph: data.sistemas,
+    nombre: "Licenciatura en Análisis de Sistemas",
+    creditos: {
+      obligatorias: 148,
+      electivas: 28,
+      checkbox: [{ nombre: "Idioma Inglés", color: "orange" }],
+    },
+  },
+  {
     id: "informatica",
     graph: data.informatica,
     nombre: "Ingeniería en Informática",
@@ -193,16 +203,6 @@ export const CARRERAS = [
     creditos: {
       obligatorias: 216,
       electivas: { tesis: 18, tpp: 24 },
-    },
-  },
-  {
-    id: "sistemas",
-    graph: data.sistemas,
-    nombre: "Licenciatura en Análisis de Sistemas",
-    creditos: {
-      obligatorias: 148,
-      electivas: 28,
-      checkbox: [{ nombre: "Idioma Inglés", color: "orange" }],
     },
   },
 ];
