@@ -67,7 +67,13 @@ export const GRAPHOPTIONS = {
     },
   },
   layout: {
-    hierarchical: { enabled: true, direction: "LR" },
+    hierarchical: {
+      enabled: true,
+      levelSeparation: 130,
+      nodeSpacing: 90,
+      shakeTowards: "leaves",
+      direction: "LR",
+    },
   },
   edges: { arrows: { to: { enabled: true, scaleFactor: 0.7, type: "arrow" } } },
   groups: { ...GRUPOS },

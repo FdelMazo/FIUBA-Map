@@ -37,6 +37,7 @@ const useGraph = () => {
       n.hidden = !(f.id === finDeCarrera);
       nodes.update(n);
     });
+    keepFinDeCarreraOnLastLevel();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [finDeCarrera]);
 
