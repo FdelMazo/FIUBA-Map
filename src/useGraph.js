@@ -93,7 +93,6 @@ const useGraph = () => {
     network.setOptions({
       physics: {
         stabilization: {
-          iterations: 1000,
           fit: true,
         },
       },
@@ -112,13 +111,11 @@ const useGraph = () => {
   };
 
   const aprobar = (id, nota) => {
-    setTicker(!ticker);
     const node = getNode(id);
 
     network.setOptions({
       physics: {
         stabilization: {
-          iterations: 1000,
           fit: false,
         },
       },
@@ -131,16 +128,15 @@ const useGraph = () => {
     });
 
     network.stabilize();
+    setTicker(!ticker);
   };
 
   const desaprobar = (id) => {
-    setTicker(!ticker);
     const node = getNode(id);
 
     network.setOptions({
       physics: {
         stabilization: {
-          iterations: 1000,
           fit: false,
         },
       },
@@ -152,6 +148,7 @@ const useGraph = () => {
     });
 
     network.stabilize();
+    setTicker(!ticker);
   };
 
   const getPromedio = () => {

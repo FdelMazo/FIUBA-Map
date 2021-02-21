@@ -1,4 +1,4 @@
-import { Box, Flex, Select, SlideFade } from "@chakra-ui/react";
+import { Flex, ScaleFade, Select } from "@chakra-ui/react";
 import React from "react";
 import CARRERAS from "../carreras";
 import { GraphContext, UserContext } from "../Contexts";
@@ -18,34 +18,23 @@ const Header = (props) => {
       bg="primary"
       padding="0.6rem"
     >
-      {logged ? (
-        <>
-          {displayedNode ? (
-            <SlideFade in={displayedNode}>
-              <MateriaMenu displayedNode={displayedNode} />
-            </SlideFade>
-          ) : (
-            <PadronInput />
-          )}
-        </>
-      ) : (
-        <>
-          <Box>
-            <PadronInput />
-          </Box>
-          <Box>
-            <Select
-              css={{ color: "#ffffff" }}
-              onChange={(e) => changeCarrera(e.target.value)}
-              value={carrera.id}
-            >
-              {CARRERAS.map((c) => (
-                <option value={c.id}>{c.nombre}</option>
-              ))}
-            </Select>
-          </Box>
-        </>
-      )}
+      <ScaleFade in={logged && displayedNode} unmountOnExit>
+        <MateriaMenu displayedNode={displayedNode} />
+      </ScaleFade>
+      <ScaleFade in={!(logged && displayedNode)} unmountOnExit>
+        <PadronInput />
+      </ScaleFade>
+      <ScaleFade in={!logged} unmountOnExit>
+        <Select
+          css={{ color: "white" }}
+          onChange={(e) => changeCarrera(e.target.value)}
+          value={carrera.id}
+        >
+          {CARRERAS.map((c) => (
+            <option value={c.id}>{c.nombre}</option>
+          ))}
+        </Select>
+      </ScaleFade>
     </Flex>
   );
 };

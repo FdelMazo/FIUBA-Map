@@ -28,13 +28,11 @@ const Footer = () => {
 
   return (
     <Collapse in={logged} position="relative">
-      <Flex alignItems="center" bg="primary" bottom="0">
+      <Flex alignItems="center" bg="primary">
         <Grid
-          pr={2}
           flexGrow={1}
-          ml={5}
+          mx={5}
           columns={creditos.length}
-          gap={0}
           templateColumns="repeat(10, 1fr)"
         >
           {creditos.map((c) => (

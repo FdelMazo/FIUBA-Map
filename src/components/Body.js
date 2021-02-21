@@ -18,7 +18,6 @@ const Body = (props) => {
     setEdges,
     desaprobar,
     getNode,
-    setNotaInLabels,
   } = React.useContext(GraphContext);
 
   const { logged } = React.useContext(UserContext);
@@ -27,11 +26,6 @@ const Body = (props) => {
   useEffect(() => {
     setTimeout(redraw, 100);
   }, [width, redraw]);
-
-  useEffect(() => {
-    setNotaInLabels(logged);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [logged]);
 
   const { setDisplayedNode } = props;
 
@@ -44,11 +38,11 @@ const Body = (props) => {
         return;
       }
       if (!node.aprobada) {
-        setDisplayedNode(id);
         aprobar(id, 7);
+        setDisplayedNode(id);
       } else {
-        setDisplayedNode("");
         desaprobar(id);
+        setDisplayedNode("");
       }
     },
   };
