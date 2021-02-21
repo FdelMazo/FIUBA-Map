@@ -8,14 +8,10 @@ const graphObj = {
   groups: [],
 };
 
-const globalObj = {
-  nodes: null,
-  edges: null,
-  network: null,
-};
-
 const useGraph = () => {
-  const [global, setGlobal] = React.useState(globalObj);
+  const [network, setNetwork] = React.useState(null);
+  const [nodes, setNodes] = React.useState(null);
+  const [edges, setEdges] = React.useState(null);
   const [graph, setGraph] = React.useState(graphObj);
   const [key, setKey] = React.useState(true);
   const [carrera, setCarrera] = React.useState(CARRERAS[0]);
@@ -26,7 +22,7 @@ const useGraph = () => {
   const [ticker, setTicker] = React.useState(false);
 
   useEffect(() => {
-    if (!global.nodes) return;
+    if (!nodes) return;
     setTimeout(() => {
       setPromedio(getPromedio());
       setCreditos(getCreditos());
@@ -39,7 +35,7 @@ const useGraph = () => {
     carrera.finDeCarrera.forEach((f) => {
       const n = getNode(f.materia);
       n.hidden = !(f.id === finDeCarrera);
-      global.nodes.update(n);
+      nodes.update(n);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [finDeCarrera]);
@@ -71,7 +67,7 @@ const useGraph = () => {
     if (!finDeCarrera) return;
 
     const lastLevel = Math.max(
-      ...global.nodes
+      ...nodes
         .get({
           filter: (n) => !n.hidden && n.categoria !== "Fin de Carrera",
           fields: ["level"],
@@ -81,9 +77,9 @@ const useGraph = () => {
     );
 
     const f = carrera.finDeCarrera.find((f) => f.id === finDeCarrera);
-    const n = global.nodes.get(f.materia);
+    const n = nodes.get(f.materia);
     n.level = lastLevel + 1;
-    global.nodes.update(n);
+    nodes.update(n);
   };
 
   const toggleGroup = (id) => {
@@ -93,8 +89,8 @@ const useGraph = () => {
         n.hidden = !n.hidden;
       });
 
-    global.nodes.update(graph.nodes);
-    global.network.setOptions({
+    nodes.update(graph.nodes);
+    network.setOptions({
       physics: {
         stabilization: {
           iterations: 1000,
@@ -102,12 +98,12 @@ const useGraph = () => {
         },
       },
     });
-    global.network.stabilize();
+    network.stabilize();
     keepFinDeCarreraOnLastLevel();
   };
 
   const getNode = (id) => {
-    return global?.nodes?.get(id)?.nodeRef;
+    return nodes?.get(id)?.nodeRef;
   };
 
   const ponerEnFinal = (id) => {
@@ -119,7 +115,7 @@ const useGraph = () => {
     setTicker(!ticker);
     const node = getNode(id);
 
-    global.network.setOptions({
+    network.setOptions({
       physics: {
         stabilization: {
           iterations: 1000,
@@ -128,20 +124,20 @@ const useGraph = () => {
       },
     });
     node.aprobar({
-      network: global.network,
-      nodes: global.nodes,
+      network: network,
+      nodes: nodes,
       getNode,
       nota,
     });
 
-    global.network.stabilize();
+    network.stabilize();
   };
 
   const desaprobar = (id) => {
     setTicker(!ticker);
     const node = getNode(id);
 
-    global.network.setOptions({
+    network.setOptions({
       physics: {
         stabilization: {
           iterations: 1000,
@@ -150,16 +146,16 @@ const useGraph = () => {
       },
     });
     node.desaprobar({
-      network: global.network,
-      nodes: global.nodes,
+      network: network,
+      nodes: nodes,
       getNode,
     });
 
-    global.network.stabilize();
+    network.stabilize();
   };
 
   const getPromedio = () => {
-    const materias = global.nodes.get({
+    const materias = nodes.get({
       filter: (n) => n.aprobada && n.nota > 0,
       fields: ["nota"],
     });
@@ -183,7 +179,7 @@ const useGraph = () => {
       nombre: "Materias Obligatorias",
       color: "blue",
       creditosNecesarios: carrera.creditos.obligatorias,
-      creditos: global.nodes
+      creditos: nodes
         .get({
           filter: (n) =>
             n.categoria === "Materias Obligatorias" && n.aprobada && n.nota > 0,
@@ -201,7 +197,7 @@ const useGraph = () => {
         ? carrera.creditos.electivas[finDeCarrera]
         : carrera.creditos.electivas,
 
-      creditos: global.nodes
+      creditos: nodes
         .get({
           filter: (n) =>
             n.categoria !== "CBC" &&
@@ -224,7 +220,7 @@ const useGraph = () => {
         nombre: `Orientación: ${orientacion}`,
         color: "yellow",
         creditosNecesarios: carrera.creditos.orientacion[finDeCarrera],
-        creditos: global.nodes
+        creditos: nodes
           .get({
             filter: (n) =>
               n.categoria === orientacion && n.aprobada && n.nota > 0,
@@ -293,7 +289,7 @@ const useGraph = () => {
   };
 
   const redraw = () => {
-    if (global && global.network) global.network.redraw();
+    if (network) network.redraw();
   };
 
   return {
@@ -302,7 +298,6 @@ const useGraph = () => {
     graph,
     key,
     toggleGroup,
-    setGlobal,
     getNode,
     ponerEnFinal,
     aprobar,
@@ -315,6 +310,12 @@ const useGraph = () => {
     setOrientacion,
     finDeCarrera,
     setFinDeCarrera,
+    network,
+    setNetwork,
+    nodes,
+    setNodes,
+    edges,
+    setEdges,
   };
 };
 

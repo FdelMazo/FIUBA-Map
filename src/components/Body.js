@@ -17,23 +17,19 @@ import useWindowSize from "./useWindowSize";
 const Body = (props) => {
   const {
     graph,
-    setGlobal,
     toggleGroup,
     key,
     redraw,
     aprobar,
+    setNetwork,
+    setNodes,
+    setEdges,
     desaprobar,
     getNode,
   } = React.useContext(GraphContext);
 
   const { logged } = React.useContext(UserContext);
   const { width } = useWindowSize();
-  const [network, setNetwork] = React.useState(null);
-  const [nodes, setNodes] = React.useState(null);
-  const [edges, setEdges] = React.useState(null);
-  useEffect(() => {
-    setGlobal({ nodes, edges, network });
-  }, [network, nodes, edges, setGlobal]);
 
   useEffect(() => {
     setTimeout(redraw, 300);
