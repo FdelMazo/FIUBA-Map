@@ -28,7 +28,7 @@ const useGraph = () => {
       setCreditos(getCreditos());
     }, 500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ticker]);
+  }, [ticker, nodes]);
 
   useEffect(() => {
     if (!finDeCarrera) return;
