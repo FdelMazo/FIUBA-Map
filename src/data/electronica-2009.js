@@ -232,14 +232,6 @@ export const electronica = [
     level: 8,
   },
   {
-    id: "86.40",
-    materia: "Laboratorio de Redes de Computadoras",
-    creditos: 6,
-    correlativas: "86.39",
-    categoria: "Multiples Orientaciones",
-    level: 10,
-  },
-  {
     id: "86.35",
     materia: "Video Digital",
     creditos: 6,
@@ -520,14 +512,6 @@ export const electronica = [
     level: 9,
   },
   {
-    id: "86.45",
-    materia: "Industrias y Productos de Electrónica",
-    creditos: 6,
-    correlativas: "86.10",
-    categoria: "Materias Electivas",
-    level: 12,
-  },
-  {
     id: "86.46",
     materia: "Microelectrónica",
     creditos: 6,
@@ -790,5 +774,21 @@ export const electronica = [
     categoria: "Fin de Carrera",
     shape: "star",
     level: -1,
+  },
+  {
+    id: "86.40",
+    materia: "Laboratorio de Redes de Computadoras",
+    creditos: 6,
+    correlativas: "86.39",
+    categoria: "Multiples Orientaciones",
+    level: 10,
+  },
+  {
+    id: "86.45",
+    materia: "Industrias y Productos de Electrónica",
+    creditos: 6,
+    correlativas: "86.10",
+    categoria: "Materias Electivas",
+    level: 12,
   },
 ];

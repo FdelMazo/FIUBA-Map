@@ -59,7 +59,7 @@ export const GRAPHOPTIONS = {
   },
   physics: {
     hierarchicalRepulsion: {
-      nodeDistance: 80,
+      nodeDistance: 90,
     },
     stabilization: {
       iterations: 100,
@@ -69,7 +69,7 @@ export const GRAPHOPTIONS = {
   layout: {
     hierarchical: {
       enabled: true,
-      levelSeparation: 130,
+      levelSeparation: 145,
       shakeTowards: "leaves",
       direction: "LR",
     },
