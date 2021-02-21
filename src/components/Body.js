@@ -1,23 +1,15 @@
-import { EmailIcon, Icon, SmallAddIcon } from "@chakra-ui/icons";
-import {
-  Box,
-  Link,
-  Stack,
-  Tag,
-  TagLabel,
-  TagLeftIcon,
-  Tooltip,
-} from "@chakra-ui/react";
+import { EmailIcon, Icon } from "@chakra-ui/icons";
+import { Box, Link, Tooltip } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Graph from "react-graph-vis";
 import * as C from "../constants";
 import { GraphContext, UserContext } from "../Contexts";
+import CategoryTagStack from "./CategoryTagStack";
 import useWindowSize from "./useWindowSize";
 
 const Body = (props) => {
   const {
     graph,
-    toggleGroup,
     key,
     redraw,
     aprobar,
@@ -26,18 +18,20 @@ const Body = (props) => {
     setEdges,
     desaprobar,
     getNode,
+    setNotaInLabels,
   } = React.useContext(GraphContext);
 
   const { logged } = React.useContext(UserContext);
   const { width } = useWindowSize();
 
   useEffect(() => {
-    setTimeout(redraw, 300);
-  }, [logged, redraw]);
-
-  useEffect(() => {
     setTimeout(redraw, 100);
   }, [width, redraw]);
+
+  useEffect(() => {
+    setNotaInLabels(logged);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [logged]);
 
   const { setDisplayedNode } = props;
 
@@ -61,38 +55,6 @@ const Body = (props) => {
 
   return (
     <Box flexGrow="1" height="1em" position="relative">
-      <Stack
-        w="fit-content"
-        mb={3}
-        ml={2}
-        bottom={0}
-        position="absolute"
-        zIndex={2}
-      >
-        {graph.groups
-          .filter(
-            (c) =>
-              c !== "CBC" &&
-              c !== "Materias Obligatorias" &&
-              c !== "Fin de Carrera"
-          )
-          .map((c) => (
-            <Tag
-              cursor="pointer"
-              size="md"
-              color="black"
-              bg={C.GRUPOS[c].color}
-              borderRadius="full"
-              onClick={() => {
-                toggleGroup(c);
-              }}
-            >
-              <TagLeftIcon boxSize="12px" as={SmallAddIcon} />
-              <TagLabel>{c}</TagLabel>
-            </Tag>
-          ))}
-      </Stack>
-
       <Graph
         key={key}
         graph={graph}
@@ -108,6 +70,8 @@ const Body = (props) => {
         options={C.GRAPHOPTIONS}
         events={events}
       />
+      <CategoryTagStack />
+
       <Box mb={3} mr={2} bottom={0} right={0} position="absolute" zIndex={2}>
         <Tooltip
           label="FdelMazo at fi.uba.ar"

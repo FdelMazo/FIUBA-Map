@@ -20,7 +20,11 @@ import React from "react";
 import { GraphContext, UserContext } from "../Contexts";
 const Footer = () => {
   const { logged } = React.useContext(UserContext);
-  const { promedio, creditos } = React.useContext(GraphContext);
+  const { promedio, creditos, redraw } = React.useContext(GraphContext);
+
+  React.useEffect(() => {
+    setTimeout(redraw, 300);
+  }, [logged, redraw]);
 
   return (
     <Collapse in={logged} position="relative">
