@@ -70,7 +70,6 @@ export const GRAPHOPTIONS = {
     hierarchical: {
       enabled: true,
       levelSeparation: 130,
-      nodeSpacing: 90,
       shakeTowards: "leaves",
       direction: "LR",
     },

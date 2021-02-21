@@ -26,10 +26,10 @@ import { GraphContext } from "../Contexts";
 const Header = (props) => {
   const { displayedNode } = props;
   const { getNode, aprobar, ponerEnFinal } = React.useContext(GraphContext);
-  const [nota, setNota] = React.useState(getNode(displayedNode).nota || 7);
+  const [nota, setNota] = React.useState(getNode(displayedNode)?.nota || 7);
 
   React.useEffect(() => {
-    aprobar(displayedNode, nota);
+    if (displayedNode) aprobar(displayedNode, nota);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [nota, displayedNode]);
 
@@ -41,10 +41,10 @@ const Header = (props) => {
         css={{ "& *": { marginTop: 0, marginBottom: 0 } }}
         size="sm"
       >
-        <StatLabel>[{getNode(displayedNode).id}]</StatLabel>
+        <StatLabel>[{getNode(displayedNode)?.id}]</StatLabel>
         <StatHelpText>
           <Text maxWidth="20ch" isTruncated>
-            {getNode(displayedNode).materia}
+            {getNode(displayedNode)?.materia}
           </Text>
         </StatHelpText>
       </Stat>
@@ -108,10 +108,10 @@ const Header = (props) => {
           size="sm"
         >
           <StatLabel>Créditos</StatLabel>
-          <StatHelpText>Otorga {getNode(displayedNode).creditos}</StatHelpText>
-          {getNode(displayedNode).requiere && (
+          <StatHelpText>Otorga {getNode(displayedNode)?.creditos}</StatHelpText>
+          {getNode(displayedNode)?.requiere && (
             <StatHelpText>
-              Requiere {getNode(displayedNode).requiere}
+              Requiere {getNode(displayedNode)?.requiere}
             </StatHelpText>
           )}
         </Stat>

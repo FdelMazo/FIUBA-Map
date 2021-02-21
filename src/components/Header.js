@@ -12,6 +12,7 @@ const Header = (props) => {
 
   return (
     <Flex
+      height="3em"
       color="white"
       align="center"
       justify="space-between"
