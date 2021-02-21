@@ -1,4 +1,4 @@
-import { Flex, ScaleFade, Select } from "@chakra-ui/react";
+import { Flex, Select } from "@chakra-ui/react";
 import React from "react";
 import CARRERAS from "../carreras";
 import { GraphContext, UserContext } from "../Contexts";
@@ -19,14 +19,11 @@ const Header = (props) => {
       bg="primary"
       padding="0.6rem"
     >
-      <ScaleFade in={logged && displayedNode} unmountOnExit>
-        <MateriaMenu displayedNode={displayedNode} />
-      </ScaleFade>
-      <ScaleFade in={!(logged && displayedNode)} unmountOnExit>
-        <PadronInput />
-      </ScaleFade>
-      <ScaleFade in={!logged} unmountOnExit>
+      {logged && displayedNode && <MateriaMenu displayedNode={displayedNode} />}
+      {!(logged && displayedNode) && <PadronInput />}
+      {!logged && (
         <Select
+          w="fit-content"
           css={{ color: "white" }}
           onChange={(e) => changeCarrera(e.target.value)}
           value={carrera.id}
@@ -35,7 +32,7 @@ const Header = (props) => {
             <option value={c.id}>{c.nombre}</option>
           ))}
         </Select>
-      </ScaleFade>
+      )}
     </Flex>
   );
 };
