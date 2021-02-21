@@ -91,14 +91,8 @@ const useGraph = () => {
       });
 
     nodes.update(graph.nodes);
-    network.setOptions({
-      physics: {
-        stabilization: {
-          fit: true,
-        },
-      },
-    });
-    network.stabilize();
+
+    network.fit();
     keepFinDeCarreraOnLastLevel();
   };
 
@@ -114,41 +108,24 @@ const useGraph = () => {
   const aprobar = (id, nota) => {
     const node = getNode(id);
 
-    network.setOptions({
-      physics: {
-        stabilization: {
-          fit: false,
-        },
-      },
-    });
     node.aprobar({
       network: network,
       nodes: nodes,
       getNode,
       nota,
     });
-
-    network.stabilize();
     setTicker(!ticker);
   };
 
   const desaprobar = (id) => {
     const node = getNode(id);
 
-    network.setOptions({
-      physics: {
-        stabilization: {
-          fit: false,
-        },
-      },
-    });
     node.desaprobar({
       network: network,
       nodes: nodes,
       getNode,
     });
 
-    network.stabilize();
     setTicker(!ticker);
   };
 

@@ -58,6 +58,7 @@ export const GRAPHOPTIONS = {
     hover: true,
   },
   physics: {
+    enabled: false,
     hierarchicalRepulsion: {
       nodeDistance: 90,
     },
@@ -70,6 +71,7 @@ export const GRAPHOPTIONS = {
     hierarchical: {
       enabled: true,
       levelSeparation: 145,
+      treeSpacing: 0,
       shakeTowards: "leaves",
       direction: "LR",
     },
