@@ -3,7 +3,7 @@ import { Box, Link, Tooltip } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Graph from "react-graph-vis";
 import * as C from "../constants";
-import { GraphContext, UserContext } from "../Contexts";
+import { GraphContext } from "../Contexts";
 import CategoryTagStack from "./CategoryTagStack";
 import useWindowSize from "./useWindowSize";
 
@@ -20,7 +20,6 @@ const Body = (props) => {
     getNode,
   } = React.useContext(GraphContext);
 
-  const { logged } = React.useContext(UserContext);
   const { width } = useWindowSize();
 
   useEffect(() => {

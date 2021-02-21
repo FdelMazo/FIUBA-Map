@@ -576,6 +576,14 @@ export const industrial = [
     level: 13,
   },
   {
+    id: "HUM",
+    materia: "Asignatura Humanística Electiva",
+    creditos: 4,
+    correlativas: "92.03",
+    categoria: "Materias Obligatorias",
+    level: 7,
+  },
+  {
     id: "92.00",
     materia: "Tesis de Ingeniería Industrial",
     creditos: 13,

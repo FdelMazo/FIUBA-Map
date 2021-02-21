@@ -129,11 +129,6 @@ export const CARRERAS = [
     creditos: {
       obligatorias: 196,
       checkbox: [
-        {
-          nombre:
-            "Asignaturas  humanísticas  a  cursar  en  otras  Facultades de la UBA (4 créditos)",
-          color: "blackAlpha",
-        },
         { nombre: "Idioma Inglés", color: "orange" },
         { nombre: "Práctica Profesional de al menos 200 horas", color: "teal" },
       ],
