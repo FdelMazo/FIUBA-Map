@@ -26,6 +26,7 @@ const useGraph = () => {
   const [ticker, setTicker] = React.useState(false);
 
   useEffect(() => {
+    if (!global.nodes) return;
     setTimeout(() => {
       setPromedio(getPromedio());
       setCreditos(getCreditos());
@@ -68,14 +69,20 @@ const useGraph = () => {
 
   const keepFinDeCarreraOnLastLevel = () => {
     if (!finDeCarrera) return;
-    const l = Math.max(
-      ...graph.nodes
-        .filter((n) => !n.hidden && n.categoria !== "Fin de Carrera")
+
+    const lastLevel = Math.max(
+      ...global.nodes
+        .get({
+          filter: (n) => !n.hidden && n.categoria !== "Fin de Carrera",
+          fields: ["level"],
+          type: { level: "number" },
+        })
         .map((n) => n.level)
     );
+
     const f = carrera.finDeCarrera.find((f) => f.id === finDeCarrera);
-    const n = getNode(f.materia);
-    n.level = l + 1;
+    const n = global.nodes.get(f.materia);
+    n.level = lastLevel + 1;
     global.nodes.update(n);
   };
 
@@ -151,15 +158,11 @@ const useGraph = () => {
     global.network.stabilize();
   };
 
-  const nodeFunctions = {
-    getNode,
-    ponerEnFinal,
-    aprobar,
-    desaprobar,
-  };
-
   const getPromedio = () => {
-    const materias = graph.nodes.filter((n) => n.aprobada && n.nota > 0);
+    const materias = global.nodes.get({
+      filter: (n) => n.aprobada && n.nota > 0,
+      fields: ["nota"],
+    });
 
     const sum = materias.reduce((acc, node) => {
       acc += node.nota;
@@ -171,17 +174,22 @@ const useGraph = () => {
 
   const getCreditos = () => {
     let creditos = [];
+    const accumulator = (acc, node) => {
+      acc += node.creditos;
+      return acc;
+    };
+
     creditos.push({
       nombre: "Materias Obligatorias",
       color: "blue",
       creditosNecesarios: carrera.creditos.obligatorias,
-      creditos: graph.nodes
-        .filter((n) => n.categoria === "Materias Obligatorias")
-        .filter((n) => n.aprobada && n.nota > 0)
-        .reduce((acc, node) => {
-          acc += node.creditos;
-          return acc;
-        }, 0),
+      creditos: global.nodes
+        .get({
+          filter: (n) =>
+            n.categoria === "Materias Obligatorias" && n.aprobada && n.nota > 0,
+          fields: ["creditos"],
+        })
+        .reduce(accumulator, 0),
     });
 
     creditos.push({
@@ -192,19 +200,19 @@ const useGraph = () => {
       creditosNecesarios: isNaN(carrera.creditos.electivas)
         ? carrera.creditos.electivas[finDeCarrera]
         : carrera.creditos.electivas,
-      creditos: graph.nodes
-        .filter(
-          (n) =>
+
+      creditos: global.nodes
+        .get({
+          filter: (n) =>
             n.categoria !== "CBC" &&
             n.categoria !== "Materias Obligatorias" &&
-            n.categoria !== "Fin de Carrera"
-        )
-        .filter((n) => n.categoria !== orientacion)
-        .filter((n) => n.aprobada && n.nota > 0)
-        .reduce((acc, node) => {
-          acc += node.creditos;
-          return acc;
-        }, 0),
+            n.categoria !== "Fin de Carrera" &&
+            n.categoria !== orientacion &&
+            n.aprobada &&
+            n.nota > 0,
+          fields: ["creditos"],
+        })
+        .reduce(accumulator, 0),
     });
 
     if (
@@ -216,13 +224,13 @@ const useGraph = () => {
         nombre: `Orientación: ${orientacion}`,
         color: "yellow",
         creditosNecesarios: carrera.creditos.orientacion[finDeCarrera],
-        creditos: graph.nodes
-          .filter((n) => n.categoria === orientacion)
-          .filter((n) => n.aprobada && n.nota > 0)
-          .reduce((acc, node) => {
-            acc += node.creditos;
-            return acc;
-          }, 0),
+        creditos: global.nodes
+          .get({
+            filter: (n) =>
+              n.categoria === orientacion && n.aprobada && n.nota > 0,
+            fields: ["creditos"],
+          })
+          .reduce(accumulator, 0),
       });
 
     if (carrera.creditos.checkbox) {
@@ -263,16 +271,21 @@ const useGraph = () => {
         });
     }
 
-    let total = 0;
-    creditos.forEach((c) => (total += c.creditosNecesarios));
+    const totalNecesarios = creditos.reduce((acc, grupo) => {
+      acc += grupo.creditosNecesarios;
+      return acc;
+    }, 0);
+
     creditos.forEach((c) => {
-      c.proportion = Math.round((c.creditosNecesarios / total) * 10) || 1;
+      c.proportion =
+        Math.round((c.creditosNecesarios / totalNecesarios) * 10) || 1;
     });
 
-    let fullProportion = 0;
-    creditos.forEach((c) => {
-      fullProportion += c.proportion;
-    });
+    const fullProportion = creditos.reduce((acc, grupo) => {
+      acc += grupo.proportion;
+      return acc;
+    }, 0);
+
     if (fullProportion > 10) creditos[0].proportion -= fullProportion - 10;
     else if (fullProportion < 10) creditos[0].proportion += 10 - fullProportion;
 
@@ -290,11 +303,13 @@ const useGraph = () => {
     key,
     toggleGroup,
     setGlobal,
-    nodeFunctions,
+    getNode,
+    ponerEnFinal,
+    aprobar,
+    desaprobar,
     getCreditos,
     redraw,
     orientacion,
-    desaprobar,
     promedio,
     creditos,
     setOrientacion,

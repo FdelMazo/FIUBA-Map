@@ -6,7 +6,7 @@ import {
   Tag,
   TagLabel,
   TagLeftIcon,
-  Tooltip
+  Tooltip,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Graph from "react-graph-vis";
@@ -20,10 +20,11 @@ const Body = (props) => {
     setGlobal,
     toggleGroup,
     key,
-    nodeFunctions,
     redraw,
+    aprobar,
+    desaprobar,
+    getNode,
   } = React.useContext(GraphContext);
-  const { aprobar, desaprobar, getNode } = nodeFunctions;
 
   const { logged } = React.useContext(UserContext);
   const { width } = useWindowSize();

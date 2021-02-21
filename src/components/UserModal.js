@@ -25,9 +25,8 @@ const UserModal = (props) => {
     setOrientacion,
     finDeCarrera,
     setFinDeCarrera,
-    nodeFunctions,
+    getNode,
   } = React.useContext(GraphContext);
-  const { getNode } = nodeFunctions;
 
   return (
     <Modal

@@ -25,8 +25,7 @@ import { GraphContext } from "../Contexts";
 
 const Header = (props) => {
   const { displayedNode } = props;
-  const { nodeFunctions } = React.useContext(GraphContext);
-  const { getNode, aprobar, ponerEnFinal } = nodeFunctions;
+  const { getNode, aprobar, ponerEnFinal } = React.useContext(GraphContext);
   const [nota, setNota] = React.useState(getNode(displayedNode).nota || 7);
 
   React.useEffect(() => {
