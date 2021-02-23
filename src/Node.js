@@ -55,7 +55,7 @@ class Node {
     if (showLabel) {
       if (this.nota > 0) this.label += "\n[" + this.nota + "]";
       else if (this.nota === -1) {
-        this.label = "\n[Final]";
+        this.label += "\n[Final]";
       }
     }
 
@@ -72,7 +72,7 @@ class Node {
     if (nota > 0 && showLabels) this.label += "\n[" + this.nota + "]";
     if (nota === -1) {
       this.group = this.getGrupo();
-      if (showLabels) this.label = "\n[Final]";
+      if (showLabels) this.label += "\n[Final]";
       nodes.update(this);
       return;
     }
