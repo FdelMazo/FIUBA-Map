@@ -17,7 +17,10 @@ const useGraph = (loginHook) => {
   const [promedio, setPromedio] = React.useState(0);
   const [creditos, setCreditos] = React.useState([]);
   const [showLabels, setShowLabels] = React.useState(false);
-  const { user, setUser, logged } = loginHook;
+  const [shouldLoadGraph, setShouldLoadGraph] = React.useState(false);
+  const [autosave, setAutosave] = React.useState(false);
+  const [loadingGraph, setLoadingGraph] = React.useState(false);
+  const { user, setUser, logged, getGraph, postGraph } = loginHook;
 
   React.useEffect(() => {
     setShowLabels(logged);
@@ -35,6 +38,7 @@ const useGraph = (loginHook) => {
       const carrera = CARRERAS.find((c) => c.id === id);
 
       const userdata = user.allLogins.find((l) => l.carreraid === id);
+      setShouldLoadGraph(!!userdata);
       const orientacion = carrera.orientaciones?.find(
         (c) => c.nombre === userdata?.orientacionid
       );
@@ -73,7 +77,16 @@ const useGraph = (loginHook) => {
 
   React.useEffect(() => {
     if (!nodes?.carrera || nodes.carrera !== user.carrera?.id) return;
-    aprobar("CBC", 0);
+    if (shouldLoadGraph) {
+      setShouldLoadGraph(false);
+      setLoadingGraph(true);
+      getGraph(user.padron, user.carrera.id).then((metadata) => {
+        metadata.materias.forEach((m) => aprobar(m.id, m.nota));
+        if (metadata.checkboxes)
+          metadata.checkboxes.forEach((c) => toggleCheckbox(c));
+        setLoadingGraph(false);
+      });
+    } else aprobar("CBC", 0);
     if (user.orientacion) changeOrientacion(user.orientacion.nombre);
     if (user.finDeCarrera) {
       changeFinDeCarrera(user.finDeCarrera.id);
@@ -85,6 +98,10 @@ const useGraph = (loginHook) => {
     }
     keepFinDeCarreraOnLastLevel();
   }, [nodes, user.finDeCarrera, user.orientacion]);
+
+  // React.useEffect(() => {
+  //   if (user.padron) saveGraph();
+  // }, [user.padron]);
 
   const keepFinDeCarreraOnLastLevel = () => {
     const lastLevel = Math.max(
@@ -132,6 +149,7 @@ const useGraph = (loginHook) => {
   };
 
   const actualizarMetadata = () => {
+    if (autosave) saveGraph();
     keepFinDeCarreraOnLastLevel();
     setPromedio(getPromedio());
     setCreditos(getCreditos());
@@ -323,6 +341,10 @@ const useGraph = (loginHook) => {
     ).check = !value;
   };
 
+  const saveGraph = () => {
+    postGraph(nodes, user.carrera.creditos.checkbox);
+  };
+
   return {
     graph,
     toggleGroup,
@@ -337,13 +359,16 @@ const useGraph = (loginHook) => {
     setNetwork,
     nodes,
     setNodes,
+    saveGraph,
     edges,
+    setAutosave,
     setEdges,
     changeCarrera,
     changeOrientacion,
     changeFinDeCarrera,
     toggleCheckbox,
     actualizarMetadata,
+    loadingGraph,
   };
 };
 

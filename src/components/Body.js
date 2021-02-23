@@ -1,10 +1,18 @@
 import { EmailIcon, Icon } from "@chakra-ui/icons";
-import { Box, Link, Text, Tooltip, useToast } from "@chakra-ui/react";
+import {
+  Box,
+  Link,
+  SlideFade,
+  Text,
+  Tooltip,
+  useToast,
+} from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Graph from "react-graph-vis";
 import * as C from "../constants";
 import { GraphContext, UserContext } from "../Contexts";
 import CategoryTagStack from "./CategoryTagStack";
+import LoadingGraph from "./LoadingGraph";
 import useWindowSize from "./useWindowSize";
 
 const Body = (props) => {
@@ -17,6 +25,7 @@ const Body = (props) => {
     setEdges,
     desaprobar,
     getNode,
+    loadingGraph,
   } = React.useContext(GraphContext);
   const { user, logged } = React.useContext(UserContext);
   const { width } = useWindowSize();
@@ -71,6 +80,9 @@ const Body = (props) => {
 
   return (
     <Box flexGrow="1" height="1em" position="relative">
+      <SlideFade in={loadingGraph} unmountOnExit>
+        <LoadingGraph />
+      </SlideFade>
       <Graph
         key={user.carrera?.id}
         graph={graph}
@@ -99,7 +111,6 @@ const Body = (props) => {
         >
           <EmailIcon mr={2} boxSize={5} />
         </Tooltip>
-
         <Tooltip
           label="FdelMazo/FIUBA-Map"
           fontFamily="general"
