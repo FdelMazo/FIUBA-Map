@@ -1,0 +1,22 @@
+# Basic github action to deploy the site. Runs npm ci (similar to npm install but for ci environments) and then runs npm run build.
+name: npm CI
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm ci
+      - run: npm run build --if-present
+      - name: Add & Commit
+        uses: EndBug/add-and-commit@v4.4.0
+        with:
+          message: "Builds site w/gh actions [auto]"
+
+        env:
+          # This is necessary in order to push a commit to the repo
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
