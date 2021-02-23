@@ -12,7 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
   Switch,
-  useDisclosure,
+  useDisclosure
 } from "@chakra-ui/react";
 import React from "react";
 import { UserContext } from "../Contexts";
@@ -24,7 +24,11 @@ const PadronInput = () => {
   const [notRegistered, setNotRegistered] = React.useState(false);
   const [lastInput, setLastInput] = React.useState("");
   const [padronInput, setPadronInput] = React.useState("");
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose: onClosex } = useDisclosure();
+  const onClose = ()=> {
+    setNotRegistered(false)
+    onClosex()
+  }
 
   const showRegisterButton = notRegistered && padronInput === lastInput;
 
@@ -110,7 +114,11 @@ const PadronInput = () => {
           )}
         </Flex>
       </form>
-      <UserModal padronInput={padronInput} onClose={onClose} isOpen={isOpen} />
+      <UserModal
+        padronInput={padronInput}
+        onClose={onClose}
+        isOpen={isOpen}
+      />
     </Box>
   );
 };

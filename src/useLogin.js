@@ -78,20 +78,46 @@ const useLogin = () => {
 
   const register = (data) => {
     const formData = new FormData();
-    formData.append(`${C.USER_FORM_ENTRIES.padron}`, data["padron"].value);
-    formData.append(`${C.USER_FORM_ENTRIES.carrera}`, data["carrera"].value);
-    formData.append(
-      `${C.USER_FORM_ENTRIES.orientacion}`,
-      data["orientacion"]?.value || ""
-    );
+    const padron = data["padron"].value;
+    const carreraid = data["carrera"].value;
+    const orientacionid = data["orientacion"]?.value;
+    const findecarreraid = data["finDeCarrera"]?.value;
+    formData.append(`${C.USER_FORM_ENTRIES.padron}`, padron);
+    formData.append(`${C.USER_FORM_ENTRIES.carrera}`, carreraid);
+    formData.append(`${C.USER_FORM_ENTRIES.orientacion}`, orientacionid || "");
     formData.append(
       `${C.USER_FORM_ENTRIES.finDeCarrera}`,
-      data["finDeCarrera"]?.value || ""
+      findecarreraid || ""
     );
     fetch(`${C.USER_FORM}`, {
       body: formData,
       method: "POST",
     });
+
+    const carrera = CARRERAS.find((c) => c.id === carreraid);
+
+    const addToAllLogins = () => {
+      const newAllLogins = user.allLogins.filter(
+        (l) => l.carreraid !== carreraid
+      );
+      newAllLogins.push({
+        carreraid,
+        orientacionid,
+        findecarreraid,
+      });
+      return newAllLogins;
+    };
+
+    setUser({
+      padron,
+      carrera,
+      orientacion: carrera.orientaciones?.find(
+        (c) => c.nombre === orientacionid
+      ),
+      finDeCarrera: carrera.finDeCarrera?.find((c) => c.id === findecarreraid),
+      allLogins: [...addToAllLogins()],
+    });
+    window.localStorage.setItem("padron", padron);
   };
 
   const logout = () => {
