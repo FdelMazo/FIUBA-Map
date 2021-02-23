@@ -23,6 +23,11 @@ const useLogin = () => {
 
   const login = async (padron) => {
     setLoading(true);
+    if (!padron) {
+      setLoading(false);
+      return false;
+    }
+
     const padrones = await fetch(
       `${C.SPREADSHEET}${C.SHEETS.user}!B:B?majorDimension=COLUMNS&key=${C.KEY}`
     )
