@@ -16,8 +16,19 @@ const useGraph = (loginHook) => {
   const [graph, setGraph] = React.useState(graphObj);
   const [promedio, setPromedio] = React.useState(0);
   const [creditos, setCreditos] = React.useState([]);
+  const [showLabels, setShowLabels] = React.useState(false);
+  const { user, setUser, logged } = loginHook;
 
-  const { user, setUser } = loginHook;
+  React.useEffect(() => {
+    setShowLabels(logged);
+    if (!nodes) return;
+    const conNota = nodes.get({
+      filter: (n) => n.nota !== 0,
+    });
+    conNota.forEach((n) => {
+      getNode(n.id).showLabel({ nodes, showLabel: logged });
+    });
+  }, [logged]);
 
   const changeCarrera = async (id) => {
     setUser(({ ...rest }) => {
@@ -134,6 +145,7 @@ const useGraph = (loginHook) => {
       nodes: nodes,
       getNode,
       nota,
+      showLabels,
     });
 
     actualizarMetadata();
