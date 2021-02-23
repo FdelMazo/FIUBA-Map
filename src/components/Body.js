@@ -29,6 +29,7 @@ const Body = (props) => {
   const events = {
     click: (e) => {
       const id = e.nodes[0];
+      if (id === "CBC") return;
       const node = getNode(id);
       if (!node) {
         if (logged) setDisplayedNode("");
@@ -53,7 +54,7 @@ const Body = (props) => {
           setNetwork(r);
         }}
         getNodes={(r) => {
-          r.carrera = user.carrera;
+          r.carrera = user.carrera?.id;
           setNodes(r);
         }}
         getEdges={(r) => {

@@ -61,7 +61,7 @@ const useGraph = (loginHook) => {
   }, [user.carrera]);
 
   React.useEffect(() => {
-    if (nodes?.carrera !== user.carrera) return;
+    if (!nodes?.carrera || nodes.carrera !== user.carrera?.id) return;
     aprobar("CBC", 0);
     if (user.orientacion) changeOrientacion(user.orientacion.nombre);
     if (user.finDeCarrera) {
@@ -101,13 +101,12 @@ const useGraph = (loginHook) => {
   };
 
   const toggleGroup = (id) => {
-    graph.nodes
-      .filter((n) => n.categoria === id)
-      .forEach((n) => {
-        n.hidden = !n.hidden;
-      });
+    const group = nodes.get({ filter: (n) => n.categoria === id });
+    group.forEach((n) => {
+      n.hidden = !n.hidden;
+    });
 
-    nodes.update(graph.nodes);
+    nodes.update(group);
     keepFinDeCarreraOnLastLevel();
     network.fit();
   };
