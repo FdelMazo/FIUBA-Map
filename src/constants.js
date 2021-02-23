@@ -15,20 +15,6 @@ export const SPREADSHEET =
 export const SHEETS = {
   user: {
     name: "usuarios",
-    columns: {
-      timestamp: "A",
-      padron: "B",
-      carrera: "C",
-      orientacion: "D",
-      finDeCarrera: "E",
-    },
-    index: {
-      timestamp: 0,
-      padron: 1,
-      carrera: 2,
-      orientacion: 3,
-      finDeCarrera: 4,
-    },
   },
   registros: "",
 };
@@ -43,6 +29,7 @@ export const GRUPOS = {
   "Materias Obligatorias": { color: "#54a0ff" },
   "Materias Electivas": { color: "#a29bfe" },
   "Fin de Carrera": { color: "#ff5050" },
+  "Fin de Carrera (Obligatorio)": { color: "#ff5050" },
   Orientacion: { color: "#fd79a8" },
   ...CARRERAS.filter((c) => c.orientaciones)
     .flatMap((c) => c.orientaciones)

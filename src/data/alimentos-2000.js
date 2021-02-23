@@ -416,8 +416,9 @@ export const alimentos = [
     creditos: 12,
     requiere: 140,
     correlativas: "CEX1",
-    categoria: "Fin de Carrera",
+    categoria: "Fin de Carrera (Obligatorio)",
     shape: "star",
+    size: 40,
     level: 8,
   },
   {
@@ -426,8 +427,9 @@ export const alimentos = [
     creditos: 4,
     requiere: 140,
     correlativas: "CEX1",
-    categoria: "Fin de Carrera",
+    categoria: "Fin de Carrera (Obligatorio)",
     shape: "star",
+    size: 40,
     level: 8,
   },
 ];

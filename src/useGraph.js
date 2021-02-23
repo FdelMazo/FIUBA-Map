@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React from "react";
 import CARRERAS from "./carreras";
 import Node from "./Node";
 
@@ -8,79 +9,95 @@ const graphObj = {
   groups: [],
 };
 
-const useGraph = () => {
+const useGraph = (loginHook) => {
   const [network, setNetwork] = React.useState(null);
   const [nodes, setNodes] = React.useState(null);
   const [edges, setEdges] = React.useState(null);
   const [graph, setGraph] = React.useState(graphObj);
-  const [key, setKey] = React.useState(true);
-  const [carrera, setCarrera] = React.useState(CARRERAS[0]);
-  const [orientacion, setOrientacion] = React.useState(null);
-  const [finDeCarrera, setFinDeCarrera] = React.useState(null);
   const [promedio, setPromedio] = React.useState(0);
   const [creditos, setCreditos] = React.useState([]);
-  const [ticker, setTicker] = React.useState(false);
 
-  useEffect(() => {
-    if (!nodes) return;
-    setTimeout(() => {
-      setPromedio(getPromedio());
-      setCreditos(getCreditos());
-    }, 500);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ticker, nodes]);
+  const { user, setUser } = loginHook;
 
-  useEffect(() => {
-    if (!finDeCarrera) return;
-    carrera.finDeCarrera.forEach((f) => {
-      const n = getNode(f.materia);
-      n.hidden = !(f.id === finDeCarrera);
-      nodes.update(n);
+  const changeCarrera = async (id) => {
+    setUser(({ ...rest }) => {
+      const carrera = CARRERAS.find((c) => c.id === id);
+
+      const userdata = user.allLogins.find((l) => l.carreraid === id);
+      const orientacion = carrera.orientaciones?.find(
+        (c) => c.nombre === userdata?.orientacionid
+      );
+      const finDeCarrera = carrera.finDeCarrera?.find(
+        (c) => c.id === userdata?.findecarreraid
+      );
+
+      const graphNodes = [];
+      const graphEdges = [];
+      carrera.graph.forEach((n) => {
+        graphNodes.push(new Node(n));
+        if (n.correlativas)
+          n.correlativas.split("-").forEach((c) => {
+            graphEdges.push({ from: c, to: n.id });
+          });
+        if (n.requiere)
+          graphEdges.push({ from: "CBC", to: n.id, color: "transparent" });
+      });
+      const groups = Array.from(new Set(carrera.graph.map((n) => n.categoria)));
+      setGraph({ nodes: graphNodes, edges: graphEdges, groups });
+      return { ...rest, carrera, orientacion, finDeCarrera };
     });
-    keepFinDeCarreraOnLastLevel();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [finDeCarrera]);
-
-  const changeCarrera = (id) => {
-    setCarrera(CARRERAS.find((c) => c.id === id));
+  };
+  const changeOrientacion = (id) => {
+    const orientacion = user.carrera.orientaciones.find((c) => c.nombre === id);
+    setUser({ ...user, orientacion });
+  };
+  const changeFinDeCarrera = (id) => {
+    const finDeCarrera = user.carrera.finDeCarrera.find((c) => c.id === id);
+    setUser({ ...user, finDeCarrera });
   };
 
-  useEffect(() => {
-    setKey(!key);
-    const graphNodes = [];
-    const graphEdges = [];
-    carrera.graph.forEach((n) => {
-      graphNodes.push(new Node(n));
-      if (n.correlativas)
-        n.correlativas.split("-").forEach((c) => {
-          graphEdges.push({ from: c, to: n.id });
-        });
-      if (n.requiere)
-        graphEdges.push({ from: "CBC", to: n.id, color: "transparent" });
-    });
+  React.useEffect(() => {
+    if (user.carrera) changeCarrera(user.carrera.id);
+  }, [user.carrera]);
 
-    const groups = Array.from(new Set(carrera.graph.map((n) => n.categoria)));
-
-    setGraph({ nodes: graphNodes, edges: graphEdges, groups });
-  }, [carrera]); //eslint-disable-line
+  React.useEffect(() => {
+    if (nodes?.carrera !== user.carrera) return;
+    aprobar("CBC", 0);
+    if (user.orientacion) changeOrientacion(user.orientacion.nombre);
+    if (user.finDeCarrera) {
+      changeFinDeCarrera(user.finDeCarrera.id);
+      user.carrera.finDeCarrera.forEach((f) => {
+        const n = getNode(f.materia);
+        n.hidden = !(f.id === user.finDeCarrera.id);
+        nodes.update(n);
+      });
+    }
+    keepFinDeCarreraOnLastLevel();
+  }, [nodes, user.finDeCarrera, user.orientacion]);
 
   const keepFinDeCarreraOnLastLevel = () => {
-    if (!finDeCarrera) return;
-
     const lastLevel = Math.max(
       ...nodes
         .get({
-          filter: (n) => !n.hidden && n.categoria !== "Fin de Carrera",
+          filter: (n) =>
+            !n.hidden &&
+            n.categoria !== "Fin de Carrera" &&
+            n.categoria !== "Fin de Carrera (Obligatorio)",
           fields: ["level"],
           type: { level: "number" },
         })
         .map((n) => n.level)
     );
 
-    const f = carrera.finDeCarrera.find((f) => f.id === finDeCarrera);
-    const n = nodes.get(f.materia);
-    n.level = lastLevel + 1;
-    nodes.update(n);
+    const nodesFinDeCarrera = nodes.get({
+      filter: (n) =>
+        n.categoria === "Fin de Carrera" ||
+        n.categoria === "Fin de Carrera (Obligatorio)",
+    });
+    nodesFinDeCarrera.forEach((n) => {
+      n.level = lastLevel + 1;
+      nodes.update(n);
+    });
   };
 
   const toggleGroup = (id) => {
@@ -91,9 +108,8 @@ const useGraph = () => {
       });
 
     nodes.update(graph.nodes);
-
-    network.fit();
     keepFinDeCarreraOnLastLevel();
+    network.fit();
   };
 
   const getNode = (id) => {
@@ -105,6 +121,12 @@ const useGraph = () => {
     aprobar(id, -1);
   };
 
+  const actualizarMetadata = () => {
+    keepFinDeCarreraOnLastLevel();
+    setPromedio(getPromedio());
+    setCreditos(getCreditos());
+  };
+
   const aprobar = (id, nota) => {
     const node = getNode(id);
 
@@ -114,7 +136,8 @@ const useGraph = () => {
       getNode,
       nota,
     });
-    setTicker(!ticker);
+
+    actualizarMetadata();
   };
 
   const desaprobar = (id) => {
@@ -126,7 +149,7 @@ const useGraph = () => {
       getNode,
     });
 
-    setTicker(!ticker);
+    actualizarMetadata();
   };
 
   const getPromedio = () => {
@@ -152,8 +175,9 @@ const useGraph = () => {
 
     creditos.push({
       nombre: "Materias Obligatorias",
+      bg: "LightSkyBlue",
       color: "blue",
-      creditosNecesarios: carrera.creditos.obligatorias,
+      creditosNecesarios: user.carrera.creditos.obligatorias,
       creditos: nodes
         .get({
           filter: (n) =>
@@ -165,12 +189,13 @@ const useGraph = () => {
 
     creditos.push({
       nombre: `Materias Electivas${
-        finDeCarrera ? ` (eligiendo ${finDeCarrera})` : ""
+        user.finDeCarrera ? ` (eligiendo ${user.finDeCarrera.id})` : ""
       }`,
       color: "purple",
-      creditosNecesarios: isNaN(carrera.creditos.electivas)
-        ? carrera.creditos.electivas[finDeCarrera]
-        : carrera.creditos.electivas,
+      bg: "Thistle",
+      creditosNecesarios: isNaN(user.carrera.creditos.electivas)
+        ? user.carrera.creditos.electivas[user.finDeCarrera?.id]
+        : user.carrera.creditos.electivas,
 
       creditos: nodes
         .get({
@@ -178,7 +203,8 @@ const useGraph = () => {
             n.categoria !== "CBC" &&
             n.categoria !== "Materias Obligatorias" &&
             n.categoria !== "Fin de Carrera" &&
-            n.categoria !== orientacion &&
+            n.categoria !== "Fin de Carrera (Obligatorio)" &&
+            n.categoria !== user.orientacion?.nombre &&
             n.aprobada &&
             n.nota > 0,
           fields: ["creditos"],
@@ -187,58 +213,64 @@ const useGraph = () => {
     });
 
     if (
-      carrera.eligeOrientaciones &&
-      orientacion &&
-      carrera.creditos.orientacion[finDeCarrera]
+      user.carrera.eligeOrientaciones &&
+      user.orientacion &&
+      user.carrera.creditos.orientacion[user.finDeCarrera?.id]
     )
       creditos.push({
-        nombre: `Orientación: ${orientacion}`,
+        nombre: `Orientación: ${user.orientacion.nombre}`,
         color: "yellow",
-        creditosNecesarios: carrera.creditos.orientacion[finDeCarrera],
+        bg: "LemonChiffon",
+        creditosNecesarios:
+          user.carrera.creditos.orientacion[user.finDeCarrera.id],
         creditos: nodes
           .get({
             filter: (n) =>
-              n.categoria === orientacion && n.aprobada && n.nota > 0,
+              n.categoria === user.orientacion.nombre &&
+              n.aprobada &&
+              n.nota > 0,
             fields: ["creditos"],
           })
           .reduce(accumulator, 0),
       });
 
-    if (carrera.creditos.checkbox) {
-      carrera.creditos.checkbox.forEach((m) => {
+    if (user.carrera.creditos.checkbox) {
+      user.carrera.creditos.checkbox.forEach((m) => {
         creditos.push({
           nombre: `${m.nombre}`,
           color: m.color,
+          bg: m.bg,
           creditosNecesarios: 8,
-          creditos: 1,
+          creditos: m.check ? 8 : 0,
           checkbox: true,
-          check: false,
+          check: m.check,
         });
       });
     }
 
-    if (carrera.creditos.materias)
-      carrera.creditos.materias.forEach((m) => {
+    if (user.carrera.creditos.materias)
+      user.carrera.creditos.materias.forEach((m) => {
         const node = getNode(m.id);
         if (node)
           creditos.push({
             nombre: `${node.materia}`,
             color: m.color,
+            bg: m.bg,
             creditosNecesarios: node.creditos,
             creditos: node.aprobada ? node.creditos : 0,
           });
       });
 
-    if (finDeCarrera && carrera.finDeCarrera) {
-      const nodeId = carrera.finDeCarrera.find((c) => c.id === finDeCarrera)
-        .materia;
-      const node = getNode(nodeId);
+    if (user.finDeCarrera) {
+      const node = getNode(user.finDeCarrera.materia);
       if (node && node.creditos)
         creditos.push({
           nombre: `${node.materia}`,
           color: "red",
+          bg: "LightCoral",
           creditosNecesarios: node.creditos,
           creditos: node.aprobada ? node.creditos : 0,
+          getCreditos,
         });
     }
 
@@ -267,30 +299,41 @@ const useGraph = () => {
     if (network) network.redraw();
   };
 
+  React.useEffect(() => {
+    changeCarrera(CARRERAS[0].id);
+  }, []);
+
+  const toggleCheckbox = (c) => {
+    const value = !!user.carrera.creditos.checkbox.find(
+      (ch) => ch.nombre === c.nombre
+    ).check;
+    console.log(value);
+    user.carrera.creditos.checkbox.find(
+      (ch) => ch.nombre === c.nombre
+    ).check = !value;
+  };
+
   return {
-    carrera,
-    changeCarrera,
     graph,
-    key,
     toggleGroup,
     getNode,
     ponerEnFinal,
     aprobar,
     desaprobar,
-    getCreditos,
     redraw,
-    orientacion,
     promedio,
     creditos,
-    setOrientacion,
-    finDeCarrera,
-    setFinDeCarrera,
     network,
     setNetwork,
     nodes,
     setNodes,
     edges,
     setEdges,
+    changeCarrera,
+    changeOrientacion,
+    changeFinDeCarrera,
+    toggleCheckbox,
+    actualizarMetadata,
   };
 };
 

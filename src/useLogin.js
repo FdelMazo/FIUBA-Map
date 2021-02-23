@@ -1,16 +1,18 @@
 import React from "react";
+import CARRERAS from "./carreras";
 import * as C from "./constants";
 
 const userObj = {
   padron: "",
-  carrera: "",
-  orientacion: "",
-  finDeCarrera: "",
+  carrera: null,
+  orientacion: null,
+  finDeCarrera: null,
+  allLogins: [],
 };
 
 const useLogin = () => {
   const [user, setUser] = React.useState(userObj);
-
+  const [loading, setLoading] = React.useState(false);
   const logged = user.padron !== "";
 
   React.useEffect(() => {
@@ -19,29 +21,53 @@ const useLogin = () => {
   }, [logged]);
 
   const login = async (padron) => {
-    const index = await fetch(
-      `${C.SPREADSHEET}${C.SHEETS.user.name}!${C.SHEETS.user.columns.padron}:${C.SHEETS.user.columns.padron}?majorDimension=COLUMNS&key=${C.KEY}`
+    setLoading(true);
+    const padrones = await fetch(
+      `${C.SPREADSHEET}${C.SHEETS.user.name}!B:E?majorDimension=COLUMNS&key=${C.KEY}`
     )
       .then((res) => res.json())
-      .then((res) => (!res.error ? res.values[0].indexOf(padron) : null));
+      .then((res) => (!res.error ? res.values[0] : null));
 
-    if (!index || index === -1) {
+    const indexes = [];
+    let j = -1;
+    while ((j = padrones.indexOf(padron, j + 1)) !== -1) {
+      indexes.push(j);
+    }
+
+    if (!indexes.length) {
+      setLoading(false);
       return false;
     }
 
-    const dbUser = await fetch(
-      `${C.SPREADSHEET}${C.SHEETS.user.name}!${index + 1}:${index + 1}?key=${
-        C.KEY
-      }`
-    ).then((res) => res.json().then((res) => res.values[0]));
+    const allLogins = [];
+    let data = null;
+    for (let i = 0; i < indexes.length; i++) {
+      data = await fetch(
+        `${C.SPREADSHEET}${C.SHEETS.user.name}!${indexes[i] + 1}:${
+          indexes[i] + 1
+        }?key=${C.KEY}`
+      ).then((res) => res.json().then((res) => res.values[0]));
+      allLogins.push({
+        carreraid: data[2],
+        orientacionid: data?.[3],
+        findecarreraid: data?.[4],
+      });
+    }
+
+    const { carreraid, orientacionid, findecarreraid } = allLogins[0];
+    const carrera = CARRERAS.find((c) => c.id === carreraid);
 
     setUser({
       padron,
-      carrera: dbUser[`${C.SHEETS.user.index.carrera}`],
-      orientacion: dbUser[`${C.SHEETS.user.index.orientacion}`],
-      finDeCarrera: dbUser[`${C.SHEETS.user.index.finDeCarrera}`],
+      carrera,
+      orientacion: carrera.orientaciones?.find(
+        (c) => c.nombre === orientacionid
+      ),
+      finDeCarrera: carrera.finDeCarrera?.find((c) => c.id === findecarreraid),
+      allLogins,
     });
     window.localStorage.setItem("padron", padron);
+    setLoading(false);
     return true;
   };
 
@@ -51,11 +77,11 @@ const useLogin = () => {
     formData.append(`${C.USER_FORM_ENTRIES.carrera}`, data["carrera"].value);
     formData.append(
       `${C.USER_FORM_ENTRIES.orientacion}`,
-      data["orientacion"]?.value
+      data["orientacion"]?.value || ""
     );
     formData.append(
       `${C.USER_FORM_ENTRIES.finDeCarrera}`,
-      data["finDeCarrera"]?.value
+      data["finDeCarrera"]?.value || ""
     );
     fetch(`${C.USER_FORM}`, {
       body: formData,
@@ -64,11 +90,19 @@ const useLogin = () => {
   };
 
   const logout = () => {
-    setUser(userObj);
+    setUser({ ...user, padron: "" });
     window.localStorage.removeItem("padron");
   };
 
-  return { user, logged, login, register, logout };
+  return {
+    user,
+    logged,
+    login,
+    loading,
+    register,
+    logout,
+    setUser,
+  };
 };
 
 export default useLogin;

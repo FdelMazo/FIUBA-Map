@@ -17,6 +17,7 @@ const CategoryTagStack = (props) => {
             (c) =>
               c.categoria !== "CBC" &&
               c.categoria !== "Materias Obligatorias" &&
+              c.categoria !== "Fin de Carrera (Obligatorio)" &&
               c.categoria !== "Fin de Carrera"
           )
           .reduce(

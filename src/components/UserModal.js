@@ -19,12 +19,9 @@ import { GraphContext, UserContext } from "../Contexts";
 const UserModal = (props) => {
   const { register, logout, user, logged } = React.useContext(UserContext);
   const {
-    carrera,
     changeCarrera,
-    orientacion,
-    setOrientacion,
-    finDeCarrera,
-    setFinDeCarrera,
+    changeOrientacion,
+    changeFinDeCarrera,
     getNode,
   } = React.useContext(GraphContext);
 
@@ -33,6 +30,7 @@ const UserModal = (props) => {
       isOpen={props.isOpen}
       onClose={props.onClose}
       closeOnOverlayClick={false}
+      closeOnEsc={false}
     >
       <ModalOverlay />
       <ModalContent>
@@ -40,6 +38,7 @@ const UserModal = (props) => {
           onSubmit={(t) => {
             t.preventDefault();
             register(t.target.elements);
+            props.onClose();
           }}
         >
           <ModalHeader>{logged ? "Configuración" : "Registrate"}</ModalHeader>
@@ -53,55 +52,54 @@ const UserModal = (props) => {
                   value={user.padron || props.padronInput}
                   disabled={logged}
                 />
-
+                1
                 <Select
                   w="85%"
                   name="carrera"
-                  value={carrera.id}
+                  value={user.carrera?.id}
                   onChange={(e) => changeCarrera(e.target.value)}
                 >
                   {CARRERAS.map((c) => (
                     <option value={c.id}>{c.nombre}</option>
                   ))}
                 </Select>
-
-                <Collapse in={carrera.finDeCarrera}>
+                <Collapse in={user.carrera?.finDeCarrera} unmountOnExit>
                   <Select
+                    key={user.carrera?.id}
                     name="finDeCarrera"
-                    value={finDeCarrera || null}
+                    value={user.finDeCarrera?.id || null}
                     onChange={(event) => {
-                      setFinDeCarrera(event.currentTarget.value);
+                      changeFinDeCarrera(event.currentTarget.value);
                     }}
                     placeholder="Final de carrera no definido"
                     w="85%"
                   >
-                    {carrera.finDeCarrera &&
-                      Object.values(carrera.finDeCarrera).map((v) => (
+                    {user.carrera?.finDeCarrera &&
+                      Object.values(user.carrera.finDeCarrera).map((v) => (
                         <option value={v.id}>
-                          {getNode(v.materia) && getNode(v.materia).materia}
+                          {getNode(v.materia)?.materia}
                         </option>
                       ))}
                   </Select>
                 </Collapse>
-
                 <Collapse
                   in={
-                    carrera.orientaciones &&
-                    (carrera.eligeOrientaciones === true ||
-                      carrera.eligeOrientaciones?.[finDeCarrera])
+                    user.carrera?.eligeOrientaciones === true ||
+                    user.carrera?.eligeOrientaciones?.[user.finDeCarrera?.id]
                   }
+                  unmountOnExit
                 >
                   <Select
                     name="orientacion"
-                    value={orientacion || null}
+                    value={user.orientacion?.nombre || null}
                     placeholder="Orientación no definida"
                     onChange={(event) =>
-                      setOrientacion(event.currentTarget.value)
+                      changeOrientacion(event.currentTarget.value)
                     }
                     w="85%"
                   >
-                    {carrera.orientaciones &&
-                      carrera.orientaciones.map((v) => (
+                    {user.carrera?.orientaciones &&
+                      user.carrera?.orientaciones.map((v) => (
                         <option value={v.nombre}>{v.nombre}</option>
                       ))}
                   </Select>
@@ -111,10 +109,6 @@ const UserModal = (props) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={5} onClick={props.onClose}>
-              Cerrar
-            </Button>
-
             {logged && (
               <Button
                 colorScheme="red"

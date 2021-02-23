@@ -3,14 +3,13 @@ import { Box, Link, Tooltip } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Graph from "react-graph-vis";
 import * as C from "../constants";
-import { GraphContext } from "../Contexts";
+import { GraphContext, UserContext } from "../Contexts";
 import CategoryTagStack from "./CategoryTagStack";
 import useWindowSize from "./useWindowSize";
 
 const Body = (props) => {
   const {
     graph,
-    key,
     redraw,
     aprobar,
     setNetwork,
@@ -19,29 +18,28 @@ const Body = (props) => {
     desaprobar,
     getNode,
   } = React.useContext(GraphContext);
-
+  const { user, logged } = React.useContext(UserContext);
   const { width } = useWindowSize();
+  const { setDisplayedNode } = props;
 
   useEffect(() => {
     setTimeout(redraw, 100);
   }, [width, redraw]);
-
-  const { setDisplayedNode } = props;
 
   const events = {
     click: (e) => {
       const id = e.nodes[0];
       const node = getNode(id);
       if (!node) {
-        setDisplayedNode("");
+        if (logged) setDisplayedNode("");
         return;
       }
       if (!node.aprobada) {
         aprobar(id, 7);
-        setDisplayedNode(id);
+        if (logged) setDisplayedNode(id);
       } else {
         desaprobar(id);
-        setDisplayedNode("");
+        if (logged) setDisplayedNode("");
       }
     },
   };
@@ -49,12 +47,13 @@ const Body = (props) => {
   return (
     <Box flexGrow="1" height="1em" position="relative">
       <Graph
-        key={key}
+        key={user.carrera?.id}
         graph={graph}
         getNetwork={(r) => {
           setNetwork(r);
         }}
         getNodes={(r) => {
+          r.carrera = user.carrera;
           setNodes(r);
         }}
         getEdges={(r) => {

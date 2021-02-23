@@ -8,7 +8,7 @@ export const CARRERAS = [
     creditos: {
       obligatorias: 148,
       electivas: 28,
-      checkbox: [{ nombre: "Idioma Inglés", color: "orange" }],
+      checkbox: [{ nombre: "Idioma Inglés", bg: "Moccasin", color: "orange" }],
     },
   },
   {
@@ -42,7 +42,11 @@ export const CARRERAS = [
     creditos: {
       obligatorias: 178,
       checkbox: [
-        { nombre: "Estadía Supervisada de al menos 200 horas", color: "teal" },
+        {
+          nombre: "Estadía Supervisada de al menos 200 horas",
+          bg: "PaleTurquoise",
+          color: "teal",
+        },
       ],
       electivas: { tesis: 12, tpp: 18 },
     },
@@ -53,8 +57,8 @@ export const CARRERAS = [
     nombre: "Ingeniería de Alimentos",
     creditos: {
       materias: [
-        { id: "76.90", color: "red" },
-        { id: "76.44", color: "pink" },
+        { id: "76.44", bg: "LightPink", color: "pink" },
+        { id: "76.90", bg: "LightCoral", color: "red" },
       ],
       obligatorias: 118,
       electivas: 10,
@@ -67,10 +71,14 @@ export const CARRERAS = [
     creditos: {
       obligatorias: 210,
       electivas: 34,
-      materias: [{ id: "84.99", color: "red" }],
+      materias: [{ id: "84.99", bg: "LightCoral", color: "red" }],
       checkbox: [
-        { nombre: "Estadía Supervisada de al menos 200 horas", color: "teal" },
-        { nombre: "Idioma Inglés", color: "orange" },
+        {
+          nombre: "Estadía Supervisada de al menos 200 horas",
+          bg: "PaleTurquoise",
+          color: "teal",
+        },
+        { nombre: "Idioma Inglés", bg: "Moccasin", color: "orange" },
       ],
     },
   },
@@ -85,8 +93,12 @@ export const CARRERAS = [
     creditos: {
       obligatorias: 206,
       checkbox: [
-        { nombre: "Estadía Supervisada de al menos 200 horas", color: "teal" },
-        { nombre: "Idioma Inglés", color: "orange" },
+        {
+          nombre: "Estadía Supervisada de al menos 200 horas",
+          bg: "PaleTurquoise",
+          color: "teal",
+        },
+        { nombre: "Idioma Inglés", bg: "Moccasin", color: "orange" },
       ],
       electivas: { tesis: 16, tpp: 22 },
     },
@@ -113,8 +125,8 @@ export const CARRERAS = [
       obligatorias: 166,
       electivas: 56,
       checkbox: [
-        { nombre: "Práctica  Profesional", color: "teal" },
-        { nombre: "Idioma Inglés", color: "orange" },
+        { nombre: "Práctica  Profesional", bg: "PaleTurquoise", color: "teal" },
+        { nombre: "Idioma Inglés", bg: "Moccasin", color: "orange" },
       ],
     },
   },
@@ -129,8 +141,12 @@ export const CARRERAS = [
     creditos: {
       obligatorias: 196,
       checkbox: [
-        { nombre: "Idioma Inglés", color: "orange" },
-        { nombre: "Práctica Profesional de al menos 200 horas", color: "teal" },
+        { nombre: "Idioma Inglés", bg: "Moccasin", color: "orange" },
+        {
+          nombre: "Práctica Profesional de al menos 200 horas",
+          bg: "PaleTurquoise",
+          color: "teal",
+        },
       ],
       electivas: { tesis: 32, tpp: 32 },
     },
@@ -182,8 +198,8 @@ export const CARRERAS = [
       obligatorias: 216,
       electivas: { tesis: 12, tpp: 16 },
       checkbox: [
-        { nombre: "Práctica  Supervisada", color: "teal" },
-        { nombre: "Idioma Inglés", color: "orange" },
+        { nombre: "Práctica  Supervisada", bg: "PaleTurquoise", color: "teal" },
+        { nombre: "Idioma Inglés", bg: "Moccasin", color: "orange" },
       ],
     },
   },

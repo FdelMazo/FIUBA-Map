@@ -9,7 +9,7 @@ import useLogin from "./useLogin";
 
 const App = () => {
   const loginHook = useLogin();
-  const graphHook = useGraph();
+  const graphHook = useGraph(loginHook);
 
   return (
     <UserContext.Provider value={loginHook}>

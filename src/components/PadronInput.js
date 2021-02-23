@@ -5,9 +5,8 @@ import { UserContext } from "../Contexts";
 import UserModal from "./UserModal";
 
 const PadronInput = () => {
-  const { login, logged, user } = React.useContext(UserContext);
+  const { login, logged, user, loading } = React.useContext(UserContext);
 
-  const [loading, setLoading] = React.useState(false);
   const [notRegistered, setNotRegistered] = React.useState(false);
   const [lastInput, setLastInput] = React.useState("");
   const [padronInput, setPadronInput] = React.useState("");
@@ -27,10 +26,8 @@ const PadronInput = () => {
             return;
           }
 
-          setLoading(true);
           const couldLogin = await login(padron);
           if (!couldLogin) setNotRegistered(true);
-          setLoading(false);
           setLastInput(padron);
         }}
       >

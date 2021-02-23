@@ -17,7 +17,34 @@ class Node {
     this.nota = 0;
     this.habilitada = false;
     this.hidden =
-      this.categoria !== "Materias Obligatorias" && this.categoria !== "CBC";
+      this.categoria !== "Materias Obligatorias" &&
+      this.categoria !== "CBC" &&
+      this.categoria !== "Fin de Carrera (Obligatorio)";
+  }
+
+  chequearNodosCred(ctx) {
+    const { nodes, getNode } = ctx;
+    const nodosCred = nodes.get({
+      filter: (n) => n.requiere && !n.correlativas,
+      fields: ["id"],
+    });
+
+    const totalCreditos = nodes
+      .get({ filter: (n) => n.aprobada, fields: ["creditos"] })
+      .reduce((acc, n) => {
+        acc += n.creditos;
+        return acc;
+      }, 0);
+
+    const res = [];
+    nodosCred.forEach((n) => {
+      const node = getNode(n.id);
+      node.habilitada = totalCreditos >= node.requiere;
+      node.group = node.getGrupo();
+      res.push(node);
+    });
+
+    return res;
   }
 
   aprobar(ctx) {
@@ -47,7 +74,8 @@ class Node {
         habilitadas.push(nodem);
       }
     });
-    nodes.update(habilitadas);
+
+    nodes.update(habilitadas.concat(this.chequearNodosCred(ctx)));
   }
 
   isHabilitada(ctx) {
@@ -60,6 +88,14 @@ class Node {
       const m = nodes.get(from[i]);
       todoAprobado &= m.aprobada;
     }
+    const totalCreditos = nodes
+      .get({ filter: (n) => n.aprobada, fields: ["creditos"] })
+      .reduce((acc, n) => {
+        acc += n.creditos;
+        return acc;
+      }, 0);
+
+    if (this.requiere) todoAprobado &= totalCreditos >= this.requiere;
     return todoAprobado;
   }
 
@@ -82,7 +118,8 @@ class Node {
         deshabilitadas.push(nodem);
       }
     });
-    nodes.update(deshabilitadas);
+
+    nodes.update(deshabilitadas.concat(this.chequearNodosCred(ctx)));
   }
 
   getGrupo() {

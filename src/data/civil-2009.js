@@ -645,8 +645,9 @@ export const civil = [
     creditos: 13,
     requiere: 200,
     correlativas: "88.14",
-    categoria: "Fin de Carrera",
+    categoria: "Fin de Carrera (Obligatorio)",
     shape: "star",
     level: -1,
+    size: 40,
   },
 ];

@@ -28,11 +28,6 @@ const Header = (props) => {
   const { getNode, aprobar, ponerEnFinal } = React.useContext(GraphContext);
   const [nota, setNota] = React.useState(getNode(displayedNode)?.nota || 7);
 
-  React.useEffect(() => {
-    if (displayedNode) aprobar(displayedNode, nota);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [nota, displayedNode]);
-
   return (
     <Flex alignItems="center">
       <Stat
@@ -70,6 +65,7 @@ const Header = (props) => {
                   inputMode="numeric"
                   onChange={(_, nota) => {
                     setNota(nota);
+                    aprobar(displayedNode, nota);
                   }}
                   value={nota}
                   min={4}

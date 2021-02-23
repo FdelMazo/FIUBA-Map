@@ -19,15 +19,21 @@ import {
 import React from "react";
 import { GraphContext, UserContext } from "../Contexts";
 const Footer = () => {
-  const { logged } = React.useContext(UserContext);
-  const { promedio, creditos, redraw } = React.useContext(GraphContext);
+  const { logged, user } = React.useContext(UserContext);
+  const {
+    promedio,
+    actualizarMetadata,
+    creditos,
+    redraw,
+    toggleCheckbox,
+  } = React.useContext(GraphContext);
 
   React.useEffect(() => {
     setTimeout(redraw, 300);
   }, [logged, redraw]);
 
   return (
-    <Collapse in={logged} position="relative">
+    <Collapse in={logged} key={user.carrera?.id} position="relative">
       <Flex alignItems="center" bg="primary">
         <Grid
           flexGrow={1}
@@ -42,6 +48,9 @@ const Footer = () => {
                   <Box>
                     <Progress
                       hasStripe
+                      css={{
+                        backgroundColor: c.bg,
+                      }}
                       max={c.creditosNecesarios}
                       value={c.creditos}
                       colorScheme={c.color}
@@ -54,9 +63,14 @@ const Footer = () => {
                   <PopoverBody>
                     {c.checkbox ? (
                       <Checkbox
-                        isIndeterminate={c.check === false}
-                        isChecked={c.check === true}
+                        isIndeterminate={!!!c.check}
+                        isChecked={!!c.check}
                         colorScheme={c.color}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          toggleCheckbox(c);
+                          actualizarMetadata();
+                        }}
                       >
                         Marcar como completo
                       </Checkbox>
