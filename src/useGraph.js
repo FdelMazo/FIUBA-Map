@@ -307,7 +307,6 @@ const useGraph = (loginHook) => {
     const value = !!user.carrera.creditos.checkbox.find(
       (ch) => ch.nombre === c.nombre
     ).check;
-    console.log(value);
     user.carrera.creditos.checkbox.find(
       (ch) => ch.nombre === c.nombre
     ).check = !value;

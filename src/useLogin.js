@@ -28,6 +28,11 @@ const useLogin = () => {
       .then((res) => res.json())
       .then((res) => (!res.error ? res.values[0] : null));
 
+    if (!padrones) {
+      setLoading(false);
+      return false;
+    }
+
     const indexes = [];
     let j = -1;
     while ((j = padrones.indexOf(padron, j + 1)) !== -1) {
