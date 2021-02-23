@@ -1,5 +1,5 @@
 import { EmailIcon, Icon } from "@chakra-ui/icons";
-import { Box, Link, Tooltip } from "@chakra-ui/react";
+import { Box, Link, Text, Tooltip, useToast } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Graph from "react-graph-vis";
 import * as C from "../constants";
@@ -21,6 +21,30 @@ const Body = (props) => {
   const { user, logged } = React.useContext(UserContext);
   const { width } = useWindowSize();
   const { setDisplayedNode } = props;
+  const toast = useToast();
+
+  useEffect(() => {
+    toast({
+      title: "FIUBA Map v2 - Beta",
+      description: (
+        <>
+          <Text>
+            Hola, estoy testeando una nueva versión del FMap. Pero todavía le
+            falta pulir bastaaaaaante. Si encontras algo feo, incorrecto, lento,
+            erroneo... me mandás un mail?
+          </Text>
+          <Text>
+            Si ves algo que te gustó, o tenes alguna sugerencia, también!
+          </Text>
+          <strong>fdelmazo at fi.uba.ar</strong>
+        </>
+      ),
+      status: "info",
+      duration: 7000,
+      isClosable: true,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setTimeout(redraw, 100);
