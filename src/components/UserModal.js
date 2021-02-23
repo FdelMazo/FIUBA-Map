@@ -122,6 +122,11 @@ const UserModal = (props) => {
                 Cerrar sesion
               </Button>
             )}
+            {!logged && (
+              <Button colorScheme="blue" mr={5} onClick={onClose}>
+                Cerrar
+              </Button>
+            )}
 
             <Button type="submit" colorScheme="teal">
               Guardar
