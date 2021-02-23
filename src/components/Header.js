@@ -27,7 +27,8 @@ const Header = (props) => {
       <ScaleFade in={!displayedNode} unmountOnExit>
         <Select
           w="fit-content"
-          css={{ color: "white" }}
+          borderColor="white"
+          css={{ "&": { color: "white" }, "& *": { color: "initial" } }}
           onChange={(e) => changeCarrera(e.target.value)}
           value={user.carrera?.id}
           isDisabled={logged}
