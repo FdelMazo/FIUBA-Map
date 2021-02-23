@@ -1,10 +1,18 @@
 import { EmailIcon, Icon } from "@chakra-ui/icons";
-import { Box, Link, Tooltip } from "@chakra-ui/react";
+import {
+  Box,
+  Link,
+  SlideFade,
+  Text,
+  Tooltip,
+  useToast,
+} from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Graph from "react-graph-vis";
 import * as C from "../constants";
 import { GraphContext, UserContext } from "../Contexts";
 import CategoryTagStack from "./CategoryTagStack";
+import LoadingGraph from "./LoadingGraph";
 import useWindowSize from "./useWindowSize";
 
 const Body = (props) => {
@@ -17,10 +25,35 @@ const Body = (props) => {
     setEdges,
     desaprobar,
     getNode,
+    loadingGraph,
   } = React.useContext(GraphContext);
   const { user, logged } = React.useContext(UserContext);
   const { width } = useWindowSize();
   const { setDisplayedNode } = props;
+  const toast = useToast();
+
+  useEffect(() => {
+    toast({
+      title: "FIUBA Map v2 - Beta",
+      description: (
+        <>
+          <Text>
+            Hola, estoy testeando una nueva versión del FMap. Pero todavía le
+            falta pulir bastaaaaaante. Si encontras algo feo, incorrecto, lento,
+            erroneo... me mandás un mail?
+          </Text>
+          <Text>
+            Si ves algo que te gustó, o tenes alguna sugerencia, también!
+          </Text>
+          <strong>fdelmazo at fi.uba.ar</strong>
+        </>
+      ),
+      status: "info",
+      duration: 7000,
+      isClosable: true,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     setTimeout(redraw, 100);
@@ -29,6 +62,7 @@ const Body = (props) => {
   const events = {
     click: (e) => {
       const id = e.nodes[0];
+      if (id === "CBC") return;
       const node = getNode(id);
       if (!node) {
         if (logged) setDisplayedNode("");
@@ -46,6 +80,9 @@ const Body = (props) => {
 
   return (
     <Box flexGrow="1" height="1em" position="relative">
+      <SlideFade in={loadingGraph} unmountOnExit>
+        <LoadingGraph />
+      </SlideFade>
       <Graph
         key={user.carrera?.id}
         graph={graph}
@@ -53,7 +90,7 @@ const Body = (props) => {
           setNetwork(r);
         }}
         getNodes={(r) => {
-          r.carrera = user.carrera;
+          r.carrera = user.carrera?.id;
           setNodes(r);
         }}
         getEdges={(r) => {
@@ -74,7 +111,6 @@ const Body = (props) => {
         >
           <EmailIcon mr={2} boxSize={5} />
         </Tooltip>
-
         <Tooltip
           label="FdelMazo/FIUBA-Map"
           fontFamily="general"

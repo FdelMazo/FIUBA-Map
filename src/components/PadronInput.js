@@ -15,16 +15,24 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import React from "react";
-import { UserContext } from "../Contexts";
+import { GraphContext, UserContext } from "../Contexts";
 import UserModal from "./UserModal";
 
 const PadronInput = () => {
-  const { login, logged, user, loading } = React.useContext(UserContext);
+  const { login, logged, user, loading, saving } = React.useContext(
+    UserContext
+  );
+
+  const { autosave, setAutosave, saveGraph } = React.useContext(GraphContext);
 
   const [notRegistered, setNotRegistered] = React.useState(false);
   const [lastInput, setLastInput] = React.useState("");
   const [padronInput, setPadronInput] = React.useState("");
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose: onClosex } = useDisclosure();
+  const onClose = () => {
+    setNotRegistered(false);
+    onClosex();
+  };
 
   const showRegisterButton = notRegistered && padronInput === lastInput;
 
@@ -81,9 +89,9 @@ const PadronInput = () => {
                   colorScheme={"teal"}
                   variant={"outline"}
                   size="sm"
-                  isLoading={loading} //saving
+                  isLoading={saving}
                   onClick={() => {
-                    alert("Im saving!");
+                    saveGraph();
                   }}
                 >
                   <Icon boxSize={5} viewBox="0 0 448 512" color="black">
@@ -97,8 +105,9 @@ const PadronInput = () => {
               <PopoverContent size="sm" w="fit-content" borderColor="black">
                 <PopoverArrow />
                 <PopoverBody
+                  isChecked={autosave}
                   onClick={() => {
-                    alert("Im autosaving!");
+                    setAutosave(!autosave);
                   }}
                   color="black"
                 >

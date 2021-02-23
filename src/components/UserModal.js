@@ -18,6 +18,7 @@ import { GraphContext, UserContext } from "../Contexts";
 
 const UserModal = (props) => {
   const { register, logout, user, logged } = React.useContext(UserContext);
+  const { padronInput, isOpen, onClose } = props;
   const {
     changeCarrera,
     changeOrientacion,
@@ -27,8 +28,8 @@ const UserModal = (props) => {
 
   return (
     <Modal
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      isOpen={isOpen}
+      onClose={onClose}
       closeOnOverlayClick={false}
       closeOnEsc={false}
     >
@@ -38,7 +39,7 @@ const UserModal = (props) => {
           onSubmit={(t) => {
             t.preventDefault();
             register(t.target.elements);
-            props.onClose();
+            onClose();
           }}
         >
           <ModalHeader>{logged ? "Configuración" : "Registrate"}</ModalHeader>
@@ -49,7 +50,7 @@ const UserModal = (props) => {
                   w="90%"
                   name="padron"
                   placeholder="Padrón"
-                  value={user.padron || props.padronInput}
+                  value={user.padron || padronInput}
                   disabled={logged}
                 />
                 1
@@ -115,10 +116,15 @@ const UserModal = (props) => {
                 mr={5}
                 onClick={() => {
                   logout();
-                  props.onClose();
+                  onClose();
                 }}
               >
                 Cerrar sesion
+              </Button>
+            )}
+            {!logged && (
+              <Button colorScheme="blue" mr={5} onClick={onClose}>
+                Cerrar
               </Button>
             )}
 

@@ -47,17 +47,32 @@ class Node {
     return res;
   }
 
+  showLabel(ctx) {
+    const { nodes, showLabel } = ctx;
+    if (!showLabel && this.label.includes("["))
+      this.label = this.label.split("\n[")[0];
+
+    if (showLabel) {
+      if (this.nota > 0) this.label += "\n[" + this.nota + "]";
+      else if (this.nota === -1) {
+        this.label = "\n[Final]";
+      }
+    }
+
+    nodes.update(this);
+  }
+
   aprobar(ctx) {
-    const { network, nodes, getNode, nota } = ctx;
+    const { network, nodes, getNode, nota, showLabels } = ctx;
 
     this.aprobada = true;
     if (nota) this.nota = nota;
 
     if (this.label.includes("[")) this.label = this.label.split("\n[")[0];
-    if (nota > 0) this.label += "\n[" + this.nota + "]";
+    if (nota > 0 && showLabels) this.label += "\n[" + this.nota + "]";
     if (nota === -1) {
       this.group = this.getGrupo();
-      this.label += "\n[Final]";
+      if (showLabels) this.label = "\n[Final]";
       nodes.update(this);
       return;
     }
