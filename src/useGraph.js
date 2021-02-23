@@ -81,7 +81,13 @@ const useGraph = (loginHook) => {
       setShouldLoadGraph(false);
       setLoadingGraph(true);
       getGraph(user.padron, user.carrera.id).then((metadata) => {
-        metadata.materias.forEach((m) => aprobar(m.id, m.nota));
+        metadata.materias.forEach((m) => {
+          if (m.nota > 0) aprobar(m.id, m.nota);
+          else if (m.nota === -1) {
+            alert(m.id);
+            ponerEnFinal(m.id);
+          }
+        });
         if (metadata.checkboxes)
           metadata.checkboxes.forEach((c) => toggleCheckbox(c));
         setLoadingGraph(false);
