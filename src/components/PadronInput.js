@@ -69,6 +69,7 @@ const PadronInput = () => {
             colorScheme={showRegisterButton ? "red" : "teal"}
             variant={showRegisterButton ? "solid" : "outline"}
             size="sm"
+            title={!logged && !showRegisterButton && "Ingresar"}
             px={showRegisterButton && 5}
             mx={2}
             isLoading={loading}
