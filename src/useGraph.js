@@ -143,9 +143,11 @@ const useGraph = (loginHook) => {
   };
 
   const toggleGroup = (id) => {
-    const group = graph.nodes.filter((n) => n.categoria === id);
-    group.forEach((n) => {
-      n.hidden = !n.hidden;
+    const categoria = graph.nodes.filter((n) => n.categoria === id);
+    const group = categoria.map((n) => {
+      const node = getNode(n.id);
+      node.hidden = !node.hidden;
+      return node;
     });
 
     nodes.update(group);
