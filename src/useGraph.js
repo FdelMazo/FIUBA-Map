@@ -32,7 +32,6 @@ const useGraph = (loginHook) => {
           metadata.materias.forEach((m) => {
             if (m.nota > 0) aprobar(m.id, m.nota);
             else if (m.nota === -1) {
-              alert(m.id);
               ponerEnFinal(m.id);
             }
           });
