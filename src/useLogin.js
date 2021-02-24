@@ -191,6 +191,26 @@ const useLogin = () => {
     window.localStorage.removeItem("padron");
   };
 
+  const submitBug = (bug) => {
+    const formData = new FormData();
+    const padron = user.padron;
+    const carreraid = user.carrera?.id;
+    const orientacionid = user.orientacion?.nombre;
+    const findecarreraid = user.finDeCarrera?.id;
+    formData.append(`${C.BUGS_FORM_ENTRIES.padron}`, padron);
+    formData.append(`${C.BUGS_FORM_ENTRIES.carrera}`, carreraid);
+    formData.append(`${C.BUGS_FORM_ENTRIES.orientacion}`, orientacionid || "");
+    formData.append(
+      `${C.BUGS_FORM_ENTRIES.finDeCarrera}`,
+      findecarreraid || ""
+    );
+    formData.append(`${C.BUGS_FORM_ENTRIES.bug}`, bug || "");
+    fetch(`${C.BUGS_FORM}`, {
+      body: formData,
+      method: "POST",
+    });
+  };
+
   return {
     user,
     logged,
@@ -200,6 +220,7 @@ const useLogin = () => {
     logout,
     saving,
     postGraph,
+    submitBug,
     setUser,
     getGraph,
   };

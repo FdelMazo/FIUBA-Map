@@ -1,7 +1,11 @@
+import { ChatIcon, ChevronDownIcon, ChevronLeftIcon } from "@chakra-ui/icons";
 import {
+  Box,
   Button,
   Collapse,
+  Flex,
   FormControl,
+  IconButton,
   Input,
   Modal,
   ModalBody,
@@ -10,6 +14,10 @@ import {
   ModalHeader,
   ModalOverlay,
   Select,
+  Tag,
+  TagLabel,
+  TagRightIcon,
+  Textarea,
   VStack,
 } from "@chakra-ui/react";
 import React from "react";
@@ -17,7 +25,9 @@ import CARRERAS from "../carreras";
 import { GraphContext, UserContext } from "../Contexts";
 
 const UserModal = (props) => {
-  const { register, logout, user, logged } = React.useContext(UserContext);
+  const { register, submitBug, logout, user, logged } = React.useContext(
+    UserContext
+  );
   const { padronInput, isOpen, onClose } = props;
   const {
     changeCarrera,
@@ -25,6 +35,8 @@ const UserModal = (props) => {
     changeFinDeCarrera,
     getNode,
   } = React.useContext(GraphContext);
+
+  const [showSubmitBug, setShowSubmitBug] = React.useState(false);
 
   return (
     <Modal
@@ -108,7 +120,6 @@ const UserModal = (props) => {
               </VStack>
             </FormControl>
           </ModalBody>
-
           <ModalFooter>
             {logged && (
               <Button
@@ -132,7 +143,49 @@ const UserModal = (props) => {
               Guardar
             </Button>
           </ModalFooter>
+          <Tag
+            variant="subtle"
+            colorScheme="blackAlpha"
+            float="right"
+            mr={5}
+            onClick={() => setShowSubmitBug(!showSubmitBug)}
+          >
+            <TagLabel>Sugerencias</TagLabel>
+            <TagRightIcon
+              as={showSubmitBug ? ChevronDownIcon : ChevronLeftIcon}
+            />
+          </Tag>
         </form>
+
+        <Box p={5}>
+          <Collapse in={showSubmitBug} animateOpacity>
+            <form
+              onSubmit={(t) => {
+                t.preventDefault();
+                submitBug(t.target.elements["bug"].value);
+                setShowSubmitBug(false);
+              }}
+            >
+              <Flex alignItems="flex-end">
+                <IconButton
+                  mr={3}
+                  colorScheme="blackAlpha"
+                  size="sm"
+                  type="submit"
+                  icon={<ChatIcon />}
+                />
+                <Textarea
+                  resize="none"
+                  borderColor="black"
+                  focusBorderColor="black"
+                  size="sm"
+                  placeholder="Encontre un error en...&#10;Una buena idea sería..."
+                  name="bug"
+                />
+              </Flex>
+            </form>
+          </Collapse>
+        </Box>
       </ModalContent>
     </Modal>
   );

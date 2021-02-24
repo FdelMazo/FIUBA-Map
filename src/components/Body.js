@@ -1,11 +1,14 @@
-import { EmailIcon, Icon } from "@chakra-ui/icons";
+import { ChatIcon, EmailIcon, Icon } from "@chakra-ui/icons";
 import {
   Box,
+  Flex,
+  IconButton,
   Link,
   SlideFade,
   Text,
+  Textarea,
   Tooltip,
-  useToast,
+  useToast
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Graph from "react-graph-vis";
@@ -27,7 +30,7 @@ const Body = (props) => {
     getNode,
     loadingGraph,
   } = React.useContext(GraphContext);
-  const { user, logged } = React.useContext(UserContext);
+  const { user, logged, submitBug } = React.useContext(UserContext);
   const { width } = useWindowSize();
   const { setDisplayedNode } = props;
   const toast = useToast();
@@ -36,20 +39,45 @@ const Body = (props) => {
     toast({
       title: "FIUBA Map v2 - Beta",
       description: (
-        <>
+        <Box p={5}>
           <Text>
             Hola, estoy testeando una nueva versión del FMap. Pero todavía le
-            falta pulir bastaaaaaante. Si encontras algo feo, incorrecto, lento,
-            erroneo... me mandás un mail?
+            falta pulir bastaaaaaante.
+          </Text>
+          <Text>
+            Si encontras algo feo, incorrecto, lento, erroneo... me decís?{" "}
           </Text>
           <Text>
             Si ves algo que te gustó, o tenes alguna sugerencia, también!
           </Text>
-          <strong>fdelmazo at fi.uba.ar</strong>
-        </>
+          <form
+            onSubmit={(t) => {
+              t.preventDefault();
+              submitBug(t.target.elements["bug"].value);
+            }}
+          >
+            <Flex alignItems="flex-end">
+              <Textarea
+                resize="none"
+                borderColor="black"
+                focusBorderColor="black"
+                size="sm"
+                placeholder="Encontre un error en..."
+                name="bug"
+              />
+              <IconButton
+                ml={3}
+                colorScheme="blackAlpha"
+                size="sm"
+                type="submit"
+                icon={<ChatIcon />}
+              />
+            </Flex>
+          </form>
+        </Box>
       ),
       status: "info",
-      duration: 7000,
+      duration: null,
       isClosable: true,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
