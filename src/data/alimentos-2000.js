@@ -419,7 +419,7 @@ export const alimentos = [
     categoria: "Fin de Carrera (Obligatorio)",
     shape: "star",
     size: 40,
-    level: 8,
+    level: -1,
   },
   {
     id: "76.44",
@@ -430,6 +430,6 @@ export const alimentos = [
     categoria: "Fin de Carrera (Obligatorio)",
     shape: "star",
     size: 40,
-    level: 8,
+    level: -1,
   },
 ];

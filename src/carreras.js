@@ -9,6 +9,7 @@ export const CARRERAS = [
       obligatorias: 148,
       electivas: 28,
       checkbox: [{ nombre: "Idioma Inglés", bg: "Moccasin", color: "orange" }],
+      materias: [{ id: "95.61", bg: "LightCoral", color: "red" }],
     },
   },
   {

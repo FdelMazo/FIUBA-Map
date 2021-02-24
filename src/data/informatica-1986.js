@@ -786,7 +786,7 @@ export const informatica = [
     requiere: 140,
     categoria: "Fin de Carrera",
     shape: "star",
-    level: 7,
+    level: -1,
     size: 40,
   },
   {
@@ -796,7 +796,7 @@ export const informatica = [
     requiere: 140,
     categoria: "Fin de Carrera",
     shape: "star",
-    level: 7,
+    level: -1,
     size: 40,
   },
 ];
