@@ -6,7 +6,7 @@ export const CARRERAS = [
     graph: data.sistemas,
     nombre: "Licenciatura en Análisis de Sistemas",
     creditos: {
-      obligatorias: 148,
+      obligatorias: 136,
       electivas: 28,
       checkbox: [{ nombre: "Idioma Inglés", bg: "Moccasin", color: "orange" }],
       materias: [{ id: "95.61", bg: "LightCoral", color: "red" }],
@@ -141,6 +141,7 @@ export const CARRERAS = [
     ],
     creditos: {
       obligatorias: 196,
+      materias: [{ id: "HUM", bg: "LightCoral", color: "red" }],
       checkbox: [
         { nombre: "Idioma Inglés", bg: "Moccasin", color: "orange" },
         {

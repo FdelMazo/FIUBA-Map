@@ -114,7 +114,7 @@ export const petroleo = [
   {
     id: "79.02",
     materia: "Perforación de Pozos I",
-    creditos: 6,
+    creditos: 4,
     correlativas: "70.40",
     categoria: "Materias Obligatorias",
     level: 3,

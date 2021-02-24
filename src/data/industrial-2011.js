@@ -580,7 +580,7 @@ export const industrial = [
     materia: "Asignatura Humanística Electiva",
     creditos: 4,
     correlativas: "92.03",
-    categoria: "Materias Obligatorias",
+    categoria: "Fin de Carrera (Obligatorio)",
     level: 7,
   },
   {

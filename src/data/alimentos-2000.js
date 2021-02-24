@@ -107,7 +107,7 @@ export const alimentos = [
   {
     id: "65.43",
     materia: "Ingeniería de las Instalaciones I",
-    creditos: 4,
+    creditos: 6,
     requiere: 120,
     categoria: "Materias Obligatorias",
     level: 7,
