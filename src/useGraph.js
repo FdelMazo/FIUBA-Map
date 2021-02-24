@@ -144,7 +144,7 @@ const useGraph = (loginHook) => {
   };
 
   const toggleGroup = (id) => {
-    const group = nodes.get({ filter: (n) => n.categoria === id });
+    const group = graph.nodes.filter((n) => n.categoria === id);
     group.forEach((n) => {
       n.hidden = !n.hidden;
     });
@@ -208,6 +208,11 @@ const useGraph = (loginHook) => {
     }, 0);
 
     return sum ? (sum / materias.length).toFixed(2) : 0;
+  };
+
+  const isGroupHidden = (id) => {
+    return nodes.get({ filter: (c) => c.group === id, fields: ["hidden"] })[0]
+      .hidden;
   };
 
   const getCreditos = () => {
@@ -384,6 +389,7 @@ const useGraph = (loginHook) => {
     toggleCheckbox,
     actualizarMetadata,
     loadingGraph,
+    isGroupHidden,
   };
 };
 

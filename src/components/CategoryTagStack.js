@@ -5,41 +5,33 @@ import * as C from "../constants";
 import { GraphContext } from "../Contexts";
 
 const CategoryTagStack = (props) => {
-  const { toggleGroup, nodes } = React.useContext(GraphContext);
+  const { toggleGroup, isGroupHidden, nodes } = React.useContext(GraphContext);
 
   const [key, setKey] = React.useState(false);
   return (
     <Stack mb={3} ml={2} bottom={0} position="absolute" key={key} zIndex={2}>
       {nodes &&
         nodes
-          .get({ fields: ["categoria", "hidden"] })
+          .distinct("categoria")
           .filter(
             (c) =>
-              c.categoria !== "CBC" &&
-              c.categoria !== "Materias Obligatorias" &&
-              c.categoria !== "Fin de Carrera (Obligatorio)" &&
-              c.categoria !== "Fin de Carrera"
+              c !== "CBC" &&
+              c !== "Materias Obligatorias" &&
+              c !== "Fin de Carrera (Obligatorio)" &&
+              c !== "Fin de Carrera"
           )
-          .reduce(
-            (acc, cur) => [
-              ...acc.filter((obj) => obj.categoria !== cur.categoria),
-              cur,
-            ],
-            []
-          )
-          .reverse()
           .map((c) => (
             <Tag
               cursor="pointer"
-              bg={C.GRUPOS[c.categoria]?.color}
+              bg={C.GRUPOS[c]?.color}
               borderRadius="full"
               onClick={() => {
                 setKey(!key);
-                toggleGroup(c.categoria);
+                toggleGroup(c);
               }}
             >
-              <TagLeftIcon as={c.hidden ? AddIcon : MinusIcon} />
-              <TagLabel>{c.categoria}</TagLabel>
+              <TagLeftIcon as={isGroupHidden(c) ? AddIcon : MinusIcon} />
+              <TagLabel>{c}</TagLabel>
             </Tag>
           ))}
     </Stack>
