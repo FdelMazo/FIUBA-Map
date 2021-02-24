@@ -210,8 +210,10 @@ const useGraph = (loginHook) => {
   };
 
   const isGroupHidden = (id) => {
-    return nodes.get({ filter: (c) => c.group === id, fields: ["hidden"] })[0]
-      .hidden;
+    return nodes.get({
+      filter: (c) => c.categoria === id,
+      fields: ["hidden"],
+    })[0].hidden;
   };
 
   const getCreditos = () => {
