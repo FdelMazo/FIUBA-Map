@@ -23,6 +23,28 @@ const useGraph = (loginHook) => {
   const { user, setUser, logged, getGraph, postGraph } = loginHook;
 
   React.useEffect(() => {
+    if (!nodes?.carrera || nodes.carrera !== user.carrera?.id) return;
+    if (shouldLoadGraph) {
+      setShouldLoadGraph(false);
+      setLoadingGraph(true);
+      getGraph(user.padron, user.carrera.id)
+        .then((metadata) => {
+          metadata.materias.forEach((m) => {
+            if (m.nota > 0) aprobar(m.id, m.nota);
+            else if (m.nota === -1) {
+              alert(m.id);
+              ponerEnFinal(m.id);
+            }
+          });
+          if (metadata.checkboxes)
+            metadata.checkboxes.forEach((c) => toggleCheckbox(c));
+          setLoadingGraph(false);
+        })
+        .catch(() => setLoadingGraph(false));
+    }
+  }, [shouldLoadGraph]);
+
+  React.useEffect(() => {
     setShowLabels(logged);
     if (!nodes) return;
     const conNota = nodes.get({
@@ -31,6 +53,8 @@ const useGraph = (loginHook) => {
     conNota.forEach((n) => {
       getNode(n.id).showLabel({ nodes, showLabel: logged });
     });
+
+    if (logged) setShouldLoadGraph(true);
   }, [logged]);
 
   const changeCarrera = async (id) => {
@@ -77,22 +101,7 @@ const useGraph = (loginHook) => {
 
   React.useEffect(() => {
     if (!nodes?.carrera || nodes.carrera !== user.carrera?.id) return;
-    if (shouldLoadGraph) {
-      setShouldLoadGraph(false);
-      setLoadingGraph(true);
-      getGraph(user.padron, user.carrera.id).then((metadata) => {
-        metadata.materias.forEach((m) => {
-          if (m.nota > 0) aprobar(m.id, m.nota);
-          else if (m.nota === -1) {
-            alert(m.id);
-            ponerEnFinal(m.id);
-          }
-        });
-        if (metadata.checkboxes)
-          metadata.checkboxes.forEach((c) => toggleCheckbox(c));
-        setLoadingGraph(false);
-      });
-    } else aprobar("CBC", 0);
+    aprobar("CBC", 0);
     if (user.orientacion) changeOrientacion(user.orientacion.nombre);
     if (user.finDeCarrera) {
       changeFinDeCarrera(user.finDeCarrera.id);
