@@ -1,4 +1,6 @@
 import CARRERAS from "./carreras";
+import { COLORS } from "./theme";
+
 export const USER_FORM =
   "https://docs.google.com/forms/u/1/d/e/1FAIpQLSedZWz0SJOLsxEscmHo8FDdTQyIF5xTczGBqr1Z6oLwKwiemw/formResponse";
 
@@ -40,15 +42,14 @@ export const SHEETS = {
 export const KEY = "AIzaSyA9snz4CXDq_K8fJeUXkRtRZAQM90HTFp4";
 
 export const GRUPOS = {
-  Aprobadas: { color: "#1dd1a1" },
-  CBC: { color: "#ff9f43" },
-  Habilitadas: { color: "#ff9f43" },
-  "En Final": { color: "#feca57" },
-  "Materias Obligatorias": { color: "#54a0ff" },
-  "Materias Electivas": { color: "#a29bfe" },
-  "Fin de Carrera": { color: "#ff5050" },
-  "Fin de Carrera (Obligatorio)": { color: "#ff5050" },
-  Orientacion: { color: "#fd79a8" },
+  Aprobadas: { color: COLORS.green[500] },
+  CBC: { color: COLORS.orange[500] },
+  Habilitadas: { color: COLORS.orange[500] },
+  "En Final": { color: COLORS.yellow[500] },
+  "Materias Obligatorias": { color: COLORS.blue[500] },
+  "Materias Electivas": { color: COLORS.purple[500] },
+  "Fin de Carrera": { color: COLORS.red[500] },
+  "Fin de Carrera (Obligatorio)": { color: COLORS.red[500] },
   ...CARRERAS.filter((c) => c.orientaciones)
     .flatMap((c) => c.orientaciones)
     .reduce(function (map, obj) {

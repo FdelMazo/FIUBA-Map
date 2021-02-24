@@ -1,4 +1,5 @@
 import * as data from "./data";
+import { COLORS } from "./theme";
 
 export const CARRERAS = [
   {
@@ -8,8 +9,14 @@ export const CARRERAS = [
     creditos: {
       obligatorias: 136,
       electivas: 28,
-      checkbox: [{ nombre: "Idioma Inglés", bg: "Moccasin", color: "orange" }],
-      materias: [{ id: "95.61", bg: "LightCoral", color: "red" }],
+      checkbox: [
+        {
+          nombre: "Idioma Inglés",
+          bg: COLORS.ingles[50],
+          color: "ingles",
+        },
+      ],
+      materias: [{ id: "95.61", bg: COLORS.red[50], color: "red" }],
     },
   },
   {
@@ -17,9 +24,12 @@ export const CARRERAS = [
     graph: data.informatica,
     nombre: "Ingeniería en Informática",
     orientaciones: [
-      { nombre: "Gestión Industrial de Sistemas", color: "#fab1a0" },
-      { nombre: "Sistemas Distribuidos", color: "#C4E538" },
-      { nombre: "Sistemas de Producción", color: "#fd79a8" },
+      {
+        nombre: "Gestión Industrial de Sistemas",
+        color: COLORS.orientacion1[500],
+      },
+      { nombre: "Sistemas Distribuidos", color: COLORS.orientacion2[500] },
+      { nombre: "Sistemas de Producción", color: COLORS.orientacion3[500] },
     ],
     finDeCarrera: [
       { id: "tesis", materia: "75.00" },
@@ -45,8 +55,8 @@ export const CARRERAS = [
       checkbox: [
         {
           nombre: "Estadía Supervisada de al menos 200 horas",
-          bg: "PaleTurquoise",
-          color: "teal",
+          bg: COLORS.practicaprofesional[50],
+          color: "practicaprofesional",
         },
       ],
       electivas: { tesis: 12, tpp: 18 },
@@ -58,8 +68,12 @@ export const CARRERAS = [
     nombre: "Ingeniería de Alimentos",
     creditos: {
       materias: [
-        { id: "76.44", bg: "LightPink", color: "pink" },
-        { id: "76.90", bg: "LightCoral", color: "red" },
+        {
+          id: "76.44",
+          bg: COLORS.practicaprofesional[50],
+          color: "practicaprofesional",
+        },
+        { id: "76.90", bg: COLORS.red[50], color: "red" },
       ],
       obligatorias: 118,
       electivas: 10,
@@ -72,14 +86,14 @@ export const CARRERAS = [
     creditos: {
       obligatorias: 210,
       electivas: 34,
-      materias: [{ id: "84.99", bg: "LightCoral", color: "red" }],
+      materias: [{ id: "84.99", bg: COLORS.red[50], color: "red" }],
       checkbox: [
         {
           nombre: "Estadía Supervisada de al menos 200 horas",
-          bg: "PaleTurquoise",
-          color: "teal",
+          bg: COLORS.practicaprofesional[50],
+          color: "practicaprofesional",
         },
-        { nombre: "Idioma Inglés", bg: "Moccasin", color: "orange" },
+        { nombre: "Idioma Inglés", bg: COLORS.ingles[50], color: "ingles" },
       ],
     },
   },
@@ -96,10 +110,10 @@ export const CARRERAS = [
       checkbox: [
         {
           nombre: "Estadía Supervisada de al menos 200 horas",
-          bg: "PaleTurquoise",
-          color: "teal",
+          bg: COLORS.practicaprofesional[50],
+          color: "practicaprofesional",
         },
-        { nombre: "Idioma Inglés", bg: "Moccasin", color: "orange" },
+        { nombre: "Idioma Inglés", bg: COLORS.ingles[50], color: "ingles" },
       ],
       electivas: { tesis: 16, tpp: 22 },
     },
@@ -109,14 +123,17 @@ export const CARRERAS = [
     graph: data.electronica,
     nombre: "Ingeniería Electrónica",
     orientaciones: [
-      { nombre: "Multiples Orientaciones", color: "#fab1a0" },
-      { nombre: "Procesamiento de Señales", color: "#C4E538" },
-      { nombre: "Automatización y Control", color: "#fd79a8" },
-      { nombre: "Física Electrónica", color: "#BDC581" },
-      { nombre: "Telecomunicaciones", color: "#EE5A24" },
-      { nombre: "Sistemas Digitales y Computación", color: "#FFE4E1" },
-      { nombre: "Multimedia", color: "#FFDAB9" },
-      { nombre: "Instrumentación Biomédica", color: "#66CDAA" },
+      { nombre: "Multiples Orientaciones", color: COLORS.orientacion0[500] },
+      { nombre: "Procesamiento de Señales", color: COLORS.orientacion1[500] },
+      { nombre: "Automatización y Control", color: COLORS.orientacion2[500] },
+      { nombre: "Física Electrónica", color: COLORS.orientacion3[500] },
+      { nombre: "Telecomunicaciones", color: COLORS.orientacion4[500] },
+      {
+        nombre: "Sistemas Digitales y Computación",
+        color: COLORS.orientacion5[500],
+      },
+      { nombre: "Multimedia", color: COLORS.orientacion6[500] },
+      { nombre: "Instrumentación Biomédica", color: COLORS.orientacion7[500] },
     ],
     finDeCarrera: [
       { id: "tesis", materia: "86.00" },
@@ -126,8 +143,12 @@ export const CARRERAS = [
       obligatorias: 166,
       electivas: 56,
       checkbox: [
-        { nombre: "Práctica  Profesional", bg: "PaleTurquoise", color: "teal" },
-        { nombre: "Idioma Inglés", bg: "Moccasin", color: "orange" },
+        {
+          nombre: "Práctica  Profesional",
+          bg: COLORS.practicaprofesional[50],
+          color: "practicaprofesional",
+        },
+        { nombre: "Idioma Inglés", bg: COLORS.ingles[50], color: "ingles" },
       ],
     },
   },
@@ -143,12 +164,12 @@ export const CARRERAS = [
       obligatorias: 196,
       materias: [{ id: "HUM", bg: "LightCoral", color: "red" }],
       checkbox: [
-        { nombre: "Idioma Inglés", bg: "Moccasin", color: "orange" },
         {
           nombre: "Práctica Profesional de al menos 200 horas",
-          bg: "PaleTurquoise",
-          color: "teal",
+          bg: COLORS.practicaprofesional[50],
+          color: "practicaprofesional",
         },
+        { nombre: "Idioma Inglés", bg: COLORS.ingles[50], color: "ingles" },
       ],
       electivas: { tesis: 32, tpp: 32 },
     },
@@ -158,11 +179,11 @@ export const CARRERAS = [
     graph: data.mecanica,
     nombre: "Ingeniería Mecánica",
     orientaciones: [
-      { nombre: "Diseño Mecánico", color: "#fab1a0" },
-      { nombre: "Termomecánica", color: "#C4E538" },
-      { nombre: "Metalúrgica", color: "#fd79a8" },
-      { nombre: "Computación Aplicada", color: "#BDC581" },
-      { nombre: "Industrias", color: "#EE5A24" },
+      { nombre: "Diseño Mecánico", color: COLORS.orientacion1[500] },
+      { nombre: "Termomecánica", color: COLORS.orientacion2[500] },
+      { nombre: "Metalúrgica", color: COLORS.orientacion3[500] },
+      { nombre: "Computación Aplicada", color: COLORS.orientacion4[500] },
+      { nombre: "Industrias", color: COLORS.orientacion5[500] },
     ],
     eligeOrientaciones: { tesis: true },
     finDeCarrera: [
@@ -200,8 +221,12 @@ export const CARRERAS = [
       obligatorias: 216,
       electivas: { tesis: 12, tpp: 16 },
       checkbox: [
-        { nombre: "Práctica  Supervisada", bg: "PaleTurquoise", color: "teal" },
-        { nombre: "Idioma Inglés", bg: "Moccasin", color: "orange" },
+        {
+          nombre: "Práctica  Supervisada",
+          bg: COLORS.practicaprofesional[50],
+          color: "practicaprofesional",
+        },
+        { nombre: "Idioma Inglés", bg: COLORS.ingles[50], color: "ingles" },
       ],
     },
   },

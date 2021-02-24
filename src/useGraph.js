@@ -2,6 +2,7 @@
 import React from "react";
 import CARRERAS from "./carreras";
 import Node from "./Node";
+import { COLORS } from "./theme";
 
 const graphObj = {
   nodes: [],
@@ -227,7 +228,7 @@ const useGraph = (loginHook) => {
 
     creditos.push({
       nombre: "Materias Obligatorias",
-      bg: "LightSkyBlue",
+      bg: COLORS.blue[50],
       color: "blue",
       creditosNecesarios: user.carrera.creditos.obligatorias,
       creditos: nodes
@@ -244,7 +245,7 @@ const useGraph = (loginHook) => {
         user.finDeCarrera ? ` (eligiendo ${user.finDeCarrera.id})` : ""
       }`,
       color: "purple",
-      bg: "Thistle",
+      bg: COLORS.purple[50],
       creditosNecesarios: isNaN(user.carrera.creditos.electivas)
         ? user.carrera.creditos.electivas[user.finDeCarrera?.id]
         : user.carrera.creditos.electivas,
@@ -271,8 +272,8 @@ const useGraph = (loginHook) => {
     )
       creditos.push({
         nombre: `Orientación: ${user.orientacion.nombre}`,
-        color: "yellow",
-        bg: "LemonChiffon",
+        color: "orientacion0",
+        bg: COLORS.orientacion0[50],
         creditosNecesarios:
           user.carrera.creditos.orientacion[user.finDeCarrera.id],
         creditos: nodes
@@ -319,7 +320,7 @@ const useGraph = (loginHook) => {
         creditos.push({
           nombre: `${node.materia}`,
           color: "red",
-          bg: "LightCoral",
+          bg: COLORS.red[50],
           creditosNecesarios: node.creditos,
           creditos: node.aprobada ? node.creditos : 0,
           getCreditos,

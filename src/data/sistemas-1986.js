@@ -414,7 +414,7 @@ export const sistemas = [
     correlativas: "95.24-95.59-95.60",
     categoria: "Fin de Carrera (Obligatorio)",
     shape: "star",
-    level: -1,
+    level: 13,
     size: 40,
   },
 ];

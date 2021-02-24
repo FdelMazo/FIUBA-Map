@@ -8,7 +8,7 @@ import {
   Text,
   Textarea,
   Tooltip,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Graph from "react-graph-vis";
@@ -107,7 +107,7 @@ const Body = (props) => {
   };
 
   return (
-    <Box flexGrow="1" height="1em" position="relative">
+    <Box bg="graph" flexGrow="1" height="1em" position="relative">
       <SlideFade in={loadingGraph} unmountOnExit>
         <LoadingGraph />
       </SlideFade>
@@ -148,7 +148,7 @@ const Body = (props) => {
         >
           <Link
             isExternal
-            color="primary.500"
+            color="black"
             href="https://github.com/fdelmazo/FIUBA-Map"
           >
             <Icon boxSize={5} viewBox="0 0 16 16" color="black">

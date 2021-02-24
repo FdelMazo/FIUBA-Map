@@ -47,11 +47,7 @@ const Header = (props) => {
         <PopoverTrigger>
           <Box>
             <Tooltip closeOnClick={true} hasArrow label="Aprobar">
-              <IconButton
-                size="sm"
-                colorScheme="whatsapp"
-                icon={<CheckIcon />}
-              />
+              <IconButton size="sm" colorScheme="green" icon={<CheckIcon />} />
             </Tooltip>
           </Box>
         </PopoverTrigger>
