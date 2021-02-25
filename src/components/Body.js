@@ -34,9 +34,10 @@ const Body = (props) => {
   const { width } = useWindowSize();
   const { setDisplayedNode } = props;
   const toast = useToast();
+  const toastIdRef = React.useRef();
 
   useEffect(() => {
-    toast({
+    toastIdRef.current = toast({
       title: <Text color="black">FIUBA Map v2 - Beta</Text>,
       description: (
         <Box color="black" px={5} pb={5}>
@@ -54,6 +55,7 @@ const Body = (props) => {
             onSubmit={(t) => {
               t.preventDefault();
               submitBug(t.target.elements["bug"].value);
+              toast.close(toastIdRef.current);
             }}
           >
             <Flex alignItems="flex-end">
