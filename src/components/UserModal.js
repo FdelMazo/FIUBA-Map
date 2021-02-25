@@ -18,7 +18,7 @@ import {
   TagLabel,
   TagRightIcon,
   Textarea,
-  VStack,
+  VStack
 } from "@chakra-ui/react";
 import React from "react";
 import CARRERAS from "../carreras";

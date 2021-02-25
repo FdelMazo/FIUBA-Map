@@ -37,9 +37,9 @@ const Body = (props) => {
 
   useEffect(() => {
     toast({
-      title: "FIUBA Map v2 - Beta",
+      title: <Text color="black">FIUBA Map v2 - Beta</Text>,
       description: (
-        <Box p={5}>
+        <Box color="black" px={5} pb={5}>
           <Text>
             Hola, estoy testeando una nueva versión del FMap. Pero todavía le
             falta pulir bastaaaaaante.
@@ -59,7 +59,6 @@ const Body = (props) => {
             <Flex alignItems="flex-end">
               <Textarea
                 resize="none"
-                borderColor="black"
                 focusBorderColor="black"
                 size="sm"
                 placeholder="Encontre un error en..."
@@ -77,6 +76,7 @@ const Body = (props) => {
         </Box>
       ),
       status: "info",
+      position: "bottom-left",
       duration: null,
       isClosable: true,
     });

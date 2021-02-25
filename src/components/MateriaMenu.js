@@ -18,7 +18,7 @@ import {
   StatHelpText,
   StatLabel,
   Text,
-  Tooltip,
+  Tooltip
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext } from "../Contexts";
@@ -57,7 +57,7 @@ const Header = (props) => {
             <Flex>
               <Box justifySelf="flex-end">
                 <NumberInput
-                  focusBorderColor="green.500"
+                  focusBorderColor="green.600"
                   inputMode="numeric"
                   onChange={(_, nota) => {
                     setNota(nota);

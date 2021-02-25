@@ -8,40 +8,47 @@ export const COLORS = {
   // https://flatuicolors.com/palette/de + https://themera.vercel.app/
   accent: {
     50: "#C4F3EE",
-    500: "#78E2D7",
-    600: "#2DD2C1",
+    500: "#2DD2C1",
+    600: "#24A89A",
   },
   purple: {
     50: "#DCC0F7",
-    500: "#C597F1",
+    400: "#C597F1",
+    500: "#AF6FEC",
   },
   green: {
+    400: "#22DD7E",
     500: "#22DD7E",
     600: "#1BB165",
   },
   blue: {
     50: "#BCE1FA",
-    500: "#66B9F4",
+    400: "#66B9F4",
+    500: "#3CA6F1",
   },
   orange: {
     50: "#FED7B8",
-    500: "#FDA45E",
+    400: "#FDA45E",
+    500: "#FC8A30",
   },
   red: {
     50: "#FEB9BD",
-    500: "#FC5F68",
+    400: "#FC5F68",
+    500: "#FB323D",
   },
   yellow: {
     50: "#FFF0B8",
-    500: "#FEDC5D",
+    400: "#FEDC5D",
+    500: "#FED22F",
   },
   // https://color.adobe.com/create/color-wheel starting from #FF9999
   orientacion0: {
-    50: "#F3C4D1",
-    500: "#FF9999",
+    50: "#D4D4B5",
+    400: "#C3C397",
+    500: "#A2A15D",
   },
   orientacion1: {
-    500: "#99FFB6",
+    500: "#FF9999",
   },
   orientacion2: {
     500: "#80FFEC",
@@ -50,7 +57,7 @@ export const COLORS = {
     500: "#FF96FF",
   },
   orientacion4: {
-    500: "#B3B27B",
+    500: "#5CFF8A",
   },
   orientacion5: {
     500: "#FFDEB0",

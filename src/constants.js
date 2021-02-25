@@ -42,14 +42,14 @@ export const SHEETS = {
 export const KEY = "AIzaSyA9snz4CXDq_K8fJeUXkRtRZAQM90HTFp4";
 
 export const GRUPOS = {
-  Aprobadas: { color: COLORS.green[500] },
-  CBC: { color: COLORS.orange[500] },
-  Habilitadas: { color: COLORS.orange[500] },
-  "En Final": { color: COLORS.yellow[500] },
-  "Materias Obligatorias": { color: COLORS.blue[500] },
-  "Materias Electivas": { color: COLORS.purple[500] },
-  "Fin de Carrera": { color: COLORS.red[500] },
-  "Fin de Carrera (Obligatorio)": { color: COLORS.red[500] },
+  Aprobadas: { color: COLORS.green[400] },
+  CBC: { color: COLORS.orange[400] },
+  Habilitadas: { color: COLORS.orange[400] },
+  "En Final": { color: COLORS.yellow[400] },
+  "Materias Obligatorias": { color: COLORS.blue[400] },
+  "Materias Electivas": { color: COLORS.purple[400] },
+  "Fin de Carrera": { color: COLORS.red[400] },
+  "Fin de Carrera (Obligatorio)": { color: COLORS.red[400] },
   ...CARRERAS.filter((c) => c.orientaciones)
     .flatMap((c) => c.orientaciones)
     .reduce(function (map, obj) {
