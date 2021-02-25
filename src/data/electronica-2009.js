@@ -1,5 +1,13 @@
 export const electronica = [
   {
+    id: "86.48",
+    materia: "Seminario de Electrónica",
+    creditos: 4,
+    correlativas: "86.10",
+    categoria: "Materias Electivas",
+    level: 12,
+  },
+  {
     id: "CBC",
     materia: "Ciclo Básico Común",
     creditos: 0,
@@ -526,14 +534,6 @@ export const electronica = [
     correlativas: "82.03-82.06",
     categoria: "Física Electrónica",
     level: 9,
-  },
-  {
-    id: "86.48",
-    materia: "Seminario de Electrónica",
-    creditos: 4,
-    correlativas: "86.10",
-    categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "86.49",

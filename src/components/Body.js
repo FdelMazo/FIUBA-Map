@@ -131,7 +131,7 @@ const Body = (props) => {
 
       <Box mb={3} mr={2} bottom={0} right={0} position="absolute" zIndex={2}>
         <Tooltip
-          label="FdelMazo at fi.uba.ar"
+          label="fdelmazo at fi.uba.ar"
           fontFamily="general"
           zIndex={5501}
           backgroundColor="tooltipBackground"

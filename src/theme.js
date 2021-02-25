@@ -1,76 +1,65 @@
 import { extendTheme } from "@chakra-ui/react";
 
 export const COLORS = {
-  black: "#2C3A47",
-  white: "#fff",
-  graph: "#CAD3C8",
+  // https://nipponcolors.com/
+  black: "#373C38",
+  white: "#eceeed",
+  graph: "#f9f9f9",
+  // https://flatuicolors.com/palette/de + https://themera.vercel.app/
   accent: {
-    50: "#CAD3C8",
-    500: "#82589F",
-    600: "#502BA1",
+    50: "#C4F3EE",
+    500: "#78E2D7",
+    600: "#2DD2C1",
   },
   purple: {
-    50: "#D6A2E8",
-    500: "#82589F",
+    50: "#DCC0F7",
+    500: "#C597F1",
   },
   green: {
-    500: "#55E6C1",
-    600: "#FD7272",
+    500: "#22DD7E",
+    600: "#1BB165",
   },
   blue: {
-    50: "#25CCF7",
-    500: "#1B9CFC",
+    50: "#BCE1FA",
+    500: "#66B9F4",
   },
   orange: {
-    500: "#FEA47F",
+    50: "#FED7B8",
+    500: "#FDA45E",
   },
   red: {
-    50: "#FC427B",
-    500: "#FD7272",
+    50: "#FEB9BD",
+    500: "#FC5F68",
   },
   yellow: {
-    500: "#B794F4",
+    50: "#FFF0B8",
+    500: "#FEDC5D",
   },
-  ingles: {
-    50: "#F8EFBA",
-    500: "#BDC581",
-    600: "#FD7272",
-  },
-  practicaprofesional: {
-    50: "#9AECDB",
-    500: "#58B19F",
-  },
+  // https://color.adobe.com/create/color-wheel starting from #FF9999
   orientacion0: {
-    50: "#82589F",
-    500: "#82589F",
+    50: "#F3C4D1",
+    500: "#FF9999",
   },
   orientacion1: {
-    50: "#B794F4",
-    500: "#B794F4",
+    500: "#99FFB6",
   },
   orientacion2: {
-    50: "#B794F4",
-    500: "#B794F4",
+    500: "#80FFEC",
   },
   orientacion3: {
-    50: "#B794F4",
-    500: "#B794F4",
+    500: "#FF96FF",
   },
   orientacion4: {
-    50: "#B794F4",
-    500: "#B794F4",
+    500: "#B3B27B",
   },
   orientacion5: {
-    50: "#B794F4",
-    500: "#B794F4",
+    500: "#FFDEB0",
   },
   orientacion6: {
-    50: "#B794F4",
-    500: "#B794F4",
+    500: "#DCFFC9",
   },
   orientacion7: {
-    50: "#B794F4",
-    500: "#B794F4",
+    500: "#C9FFF7",
   },
 };
 

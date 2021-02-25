@@ -14,7 +14,7 @@ import {
   Progress,
   Stat,
   StatLabel,
-  StatNumber
+  StatNumber,
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../Contexts";
