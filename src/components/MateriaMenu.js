@@ -1,19 +1,12 @@
-import { CheckIcon } from "@chakra-ui/icons";
 import {
-  Box,
   Button,
   Flex,
-  IconButton,
+  HStack,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverContent,
-  PopoverTrigger,
   Stat,
   StatHelpText,
   StatLabel,
@@ -26,10 +19,14 @@ import { GraphContext } from "../Contexts";
 const Header = (props) => {
   const { displayedNode } = props;
   const { getNode, aprobar, ponerEnFinal } = React.useContext(GraphContext);
-  const [nota, setNota] = React.useState(getNode(displayedNode)?.nota || 7);
+
+  const format = (nota) => {
+    if (nota === -1) return "/";
+    return nota;
+  };
 
   return (
-    <Flex alignItems="center">
+    <Flex alignItems="center" justifyContent="space-around">
       <Stat
         mx={3}
         color="white"
@@ -38,58 +35,75 @@ const Header = (props) => {
       >
         <StatLabel>[{getNode(displayedNode)?.id}]</StatLabel>
         <StatHelpText>
-          <Text maxWidth="20ch" isTruncated>
+          <Text width="30ch" isTruncated>
             {getNode(displayedNode)?.materia}
           </Text>
         </StatHelpText>
       </Stat>
-      <Popover autoFocus placement="bottom-start">
-        <PopoverTrigger>
-          <Box>
-            <Tooltip closeOnClick={true} hasArrow label="Aprobar">
-              <IconButton size="sm" colorScheme="green" icon={<CheckIcon />} />
-            </Tooltip>
-          </Box>
-        </PopoverTrigger>
-        <PopoverContent w="fit-content" borderColor="black">
-          <PopoverArrow />
-          <PopoverBody>
-            <Flex>
-              <Box justifySelf="flex-end">
-                <NumberInput
-                  focusBorderColor="green.600"
-                  inputMode="numeric"
-                  onChange={(_, nota) => {
-                    setNota(nota);
-                    aprobar(displayedNode, nota);
-                  }}
-                  value={nota}
-                  min={4}
-                  mx={5}
-                  max={10}
-                >
-                  <NumberInputField w="4ch" />
-                  <NumberInputStepper w="2ch">
-                    <NumberIncrementStepper color="black" />
-                    <NumberDecrementStepper color="black" />
-                  </NumberInputStepper>
-                </NumberInput>
-              </Box>
-            </Flex>
-          </PopoverBody>
-        </PopoverContent>
-      </Popover>
-
-      <Tooltip hasArrow label="Poner en Final">
-        <Button
-          mx={3}
-          size="sm"
-          onClick={() => ponerEnFinal(displayedNode)}
-          colorScheme="yellow"
+      <HStack borderRadius={6} border="2px solid white" p="0">
+        <NumberInput
+          css={{ margin: 0 }}
+          color="green.600"
+          borderColor="transparent"
+          errorBorderColor="transparent"
+          border="transparent"
+          inputMode="numeric"
+          onChange={(_, nota) => {
+            aprobar(displayedNode, nota);
+          }}
+          value={format(getNode(displayedNode)?.nota)}
+          min={4}
+          mx={5}
+          max={10}
         >
-          F
-        </Button>
-      </Tooltip>
+          <NumberInputField
+            _hover={{
+              borderColor: "transparent",
+            }}
+            _focus={{
+              borderColor: "transparent",
+            }}
+            w="4ch"
+            color="white"
+            fontWeight="bold"
+          />
+          <NumberInputStepper w="2ch">
+            <NumberIncrementStepper
+              fontSize="small"
+              w="2em"
+              color="green.600"
+            />
+            <NumberDecrementStepper
+              borderRightColor="white"
+              fontSize="small"
+              w="2em"
+              color="red.600"
+            />
+          </NumberInputStepper>
+        </NumberInput>
+        <Tooltip closeOnClick={true} hasArrow label="Poner en Final">
+          <Button
+            _hover={{
+              backgroundColor: "transparent",
+            }}
+            p={0}
+            cursor="pointer"
+            variant="link"
+            bg="transparent"
+            borderTopColor="transparent"
+            borderBottomColor="transparent"
+            borderRightColor="transparent"
+            borderLeftColor="white"
+            borderRadius={0}
+            height="100%"
+            fontSize="larger"
+            color="yellow.500"
+            onClick={() => ponerEnFinal(displayedNode)}
+          >
+            <strong>F</strong>
+          </Button>
+        </Tooltip>
+      </HStack>
     </Flex>
   );
 };
