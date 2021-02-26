@@ -64,7 +64,7 @@ export const GRAPHOPTIONS = {
     hover: true,
   },
   physics: {
-    enabled: false,
+    // enabled: false,
     hierarchicalRepulsion: {
       nodeDistance: 90,
     },

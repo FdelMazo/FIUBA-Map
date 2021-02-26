@@ -182,7 +182,8 @@ const useGraph = (loginHook) => {
       nota,
       showLabels,
     });
-
+    network.setOptions({ physics: { stabilization: { fit: false } } });
+    network.stabilize();
     actualizarMetadata();
   };
 
@@ -195,6 +196,8 @@ const useGraph = (loginHook) => {
       getNode,
     });
 
+    network.setOptions({ physics: { stabilization: { fit: false } } });
+    network.stabilize();
     actualizarMetadata();
   };
 
