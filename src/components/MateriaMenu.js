@@ -18,7 +18,7 @@ import {
   StatHelpText,
   StatLabel,
   Text,
-  Tooltip
+  Tooltip,
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext } from "../Contexts";
@@ -90,24 +90,6 @@ const Header = (props) => {
           F
         </Button>
       </Tooltip>
-
-      <Box float="right" right="0" position="absolute" mr={3}>
-        <Stat
-          textAlign="right"
-          justifySelf="flex-end"
-          color="white"
-          css={{ "& *": { marginTop: 0, marginBottom: 0 } }}
-          size="sm"
-        >
-          <StatLabel>Créditos</StatLabel>
-          <StatHelpText>Otorga {getNode(displayedNode)?.creditos}</StatHelpText>
-          {getNode(displayedNode)?.requiere && (
-            <StatHelpText>
-              Requiere {getNode(displayedNode)?.requiere}
-            </StatHelpText>
-          )}
-        </Stat>
-      </Box>
     </Flex>
   );
 };

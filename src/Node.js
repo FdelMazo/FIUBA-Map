@@ -16,6 +16,9 @@ class Node {
     this.aprobada = false;
     this.nota = 0;
     this.habilitada = false;
+    this.title = `Otorga ${this.creditos} créditos${
+      this.requiere ? "\nRequiere " + this.requiere + " créditos" : ""
+    }`;
     this.hidden =
       this.categoria !== "Materias Obligatorias" &&
       this.categoria !== "CBC" &&
