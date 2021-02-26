@@ -69,7 +69,7 @@ export const GRAPHOPTIONS = {
       nodeDistance: 90,
     },
     stabilization: {
-      iterations: 100,
+      iterations: 30,
       fit: true,
     },
   },
