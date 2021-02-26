@@ -82,6 +82,11 @@ export const GRAPHOPTIONS = {
       direction: "LR",
     },
   },
-  edges: { arrows: { to: { enabled: true, scaleFactor: 0.7, type: "arrow" } } },
+  edges: {
+    arrows: {
+      to: { enabled: true, scaleFactor: 0.7, type: "arrow" },
+    },
+    color: { inherit: "from" },
+  },
   groups: { ...GRUPOS },
 };
