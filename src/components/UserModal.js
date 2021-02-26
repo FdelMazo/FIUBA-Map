@@ -1,4 +1,9 @@
-import { ChatIcon, ChevronDownIcon, ChevronLeftIcon } from "@chakra-ui/icons";
+import {
+  ChatIcon,
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronLeftIcon,
+} from "@chakra-ui/icons";
 import {
   Box,
   Button,
@@ -18,7 +23,7 @@ import {
   TagLabel,
   TagRightIcon,
   Textarea,
-  VStack
+  VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import CARRERAS from "../carreras";
@@ -36,7 +41,8 @@ const UserModal = (props) => {
     getNode,
   } = React.useContext(GraphContext);
 
-  const [showSubmitBug, setShowSubmitBug] = React.useState(false);
+  const [showSubmitBug, setShowSubmitBug] = React.useState(true);
+  const [showGracias, setShowGracias] = React.useState(false);
 
   return (
     <Modal
@@ -150,9 +156,15 @@ const UserModal = (props) => {
             mr={5}
             onClick={() => setShowSubmitBug(!showSubmitBug)}
           >
-            <TagLabel>Sugerencias</TagLabel>
+            <TagLabel>{showGracias ? "Gracias!" : "Sugerencias"}</TagLabel>
             <TagRightIcon
-              as={showSubmitBug ? ChevronDownIcon : ChevronLeftIcon}
+              as={
+                showGracias
+                  ? CheckIcon
+                  : showSubmitBug
+                  ? ChevronDownIcon
+                  : ChevronLeftIcon
+              }
             />
           </Tag>
         </form>
@@ -163,6 +175,7 @@ const UserModal = (props) => {
               onSubmit={(t) => {
                 t.preventDefault();
                 submitBug(t.target.elements["bug"].value);
+                setShowGracias(true);
                 setShowSubmitBug(false);
               }}
             >
