@@ -138,7 +138,7 @@ const useLogin = () => {
       });
     }
 
-    const map = allLogins.find((l) => l.carreraid === carrera).map;
+    const map = allLogins.find((l) => l.carreraid === carrera)?.map || "{}";
     return JSON.parse(map);
   };
 

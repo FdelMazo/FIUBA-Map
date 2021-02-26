@@ -30,17 +30,21 @@ const useGraph = (loginHook) => {
       setLoadingGraph(true);
       getGraph(user.padron, user.carrera.id)
         .then((metadata) => {
-          metadata.materias.forEach((m) => {
-            if (m.nota > 0) aprobar(m.id, m.nota);
-            else if (m.nota === -1) {
-              ponerEnFinal(m.id);
-            }
-          });
+          if (metadata.materias)
+            metadata.materias.forEach((m) => {
+              if (m.nota > 0) aprobar(m.id, m.nota);
+              else if (m.nota === -1) {
+                ponerEnFinal(m.id);
+              }
+            });
           if (metadata.checkboxes)
             metadata.checkboxes.forEach((c) => toggleCheckbox(c));
+          if (user.orientacion) toggleGroup(user.orientacion.nombre);
           setLoadingGraph(false);
         })
-        .catch(() => setLoadingGraph(false));
+        .catch((e) => {
+          setLoadingGraph(false);
+        });
     }
   }, [shouldLoadGraph]);
 
