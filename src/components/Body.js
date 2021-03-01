@@ -1,14 +1,17 @@
-import { ChatIcon, EmailIcon, Icon } from "@chakra-ui/icons";
+import { ChatIcon, CheckIcon, EmailIcon, Icon } from "@chakra-ui/icons";
 import {
   Box,
   Flex,
   IconButton,
   Link,
   SlideFade,
+  Tag,
+  TagLabel,
+  TagRightIcon,
   Text,
   Textarea,
   Tooltip,
-  useToast,
+  useToast
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Graph from "react-graph-vis";
@@ -34,10 +37,12 @@ const Body = (props) => {
   const { width } = useWindowSize();
   const { setDisplayedNode } = props;
   const toast = useToast();
-  const toastIdRef = React.useRef();
+  const initialToast = React.useRef();
+  const bugToast = React.useRef();
+  const [showGracias, setShowGracias] = React.useState(false);
 
   useEffect(() => {
-    toastIdRef.current = toast({
+    initialToast.current = toast({
       title: <Text color="black">FIUBA Map v2 - Beta</Text>,
       description: (
         <Box color="black" px={5} pb={5}>
@@ -55,7 +60,7 @@ const Body = (props) => {
             onSubmit={(t) => {
               t.preventDefault();
               submitBug(t.target.elements["bug"].value);
-              toast.close(toastIdRef.current);
+              toast.close(initialToast.current);
             }}
           >
             <Flex alignItems="flex-end">
@@ -131,7 +136,15 @@ const Body = (props) => {
       />
       <CategoryTagStack />
 
-      <Box mb={3} mr={2} bottom={0} right={0} position="absolute" zIndex={2}>
+      <Box
+        mb={3}
+        textAlign="right"
+        mr={2}
+        bottom={0}
+        right={0}
+        position="absolute"
+        zIndex={2}
+      >
         <Tooltip
           label="fdelmazo at fi.uba.ar"
           fontFamily="general"
@@ -161,6 +174,61 @@ const Body = (props) => {
             </Icon>
           </Link>
         </Tooltip>
+        <Box>
+          <Tag
+            mt={2}
+            variant="subtle"
+            colorScheme="blackAlpha"
+            onClick={() =>
+              (bugToast.current = toast({
+                description: (
+                  <Box color="black" px={5} pb={5}>
+                    <Text>
+                      Si encontras algo feo, incorrecto, lento, erroneo... me
+                      decís?
+                    </Text>
+                    <Text>
+                      Si ves algo que te gustó, o tenes alguna sugerencia,
+                      también!
+                    </Text>
+                    <form
+                      onSubmit={(t) => {
+                        t.preventDefault();
+                        submitBug(t.target.elements["bug"].value);
+                        setShowGracias(true);
+                        toast.close(bugToast.current);
+                      }}
+                    >
+                      <Flex alignItems="flex-end">
+                        <Textarea
+                          resize="none"
+                          focusBorderColor="black"
+                          size="sm"
+                          placeholder="Encontre un error en..."
+                          name="bug"
+                        />
+                        <IconButton
+                          ml={3}
+                          colorScheme="blackAlpha"
+                          size="sm"
+                          type="submit"
+                          icon={<ChatIcon />}
+                        />
+                      </Flex>
+                    </form>
+                  </Box>
+                ),
+                status: "info",
+                position: "bottom",
+                duration: null,
+                isClosable: true,
+              }))
+            }
+          >
+            <TagLabel>{showGracias ? "Gracias!" : "Sugerencias"}</TagLabel>
+            <TagRightIcon as={showGracias ? CheckIcon : ChatIcon} />
+          </Tag>
+        </Box>
       </Box>
     </Box>
   );

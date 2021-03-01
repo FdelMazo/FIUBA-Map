@@ -192,6 +192,7 @@ const useLogin = () => {
   };
 
   const submitBug = (bug) => {
+    if (!bug) return;
     const formData = new FormData();
     const padron = user.padron;
     const carreraid = user.carrera?.id;
