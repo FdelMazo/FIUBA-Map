@@ -2,7 +2,6 @@ import { Flex, ScaleFade, Select } from "@chakra-ui/react";
 import React from "react";
 import CARRERAS from "../carreras";
 import { GraphContext, UserContext } from "../Contexts";
-import { COLORS } from "../theme";
 import MateriaMenu from "./MateriaMenu";
 import PadronInput from "./PadronInput";
 
@@ -14,10 +13,9 @@ const Header = (props) => {
   return (
     <Flex
       height="3em"
-      color="white"
       align="center"
       justify="space-between"
-      bg="black"
+      bg="headerbg"
       padding="0.6rem"
     >
       {displayedNode && <MateriaMenu displayedNode={displayedNode} />}
@@ -28,9 +26,9 @@ const Header = (props) => {
       <ScaleFade in={!displayedNode} unmountOnExit>
         <Select
           w="fit-content"
-          borderColor="white"
+          color="white"
           css={{
-            "&": { color: COLORS.white },
+            "&": { color: "white" },
             "& *": { color: "initial" },
           }}
           onChange={(e) => changeCarrera(e.target.value)}

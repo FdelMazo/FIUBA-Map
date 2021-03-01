@@ -145,7 +145,7 @@ const UserModal = (props) => {
               </Button>
             )}
 
-            <Button type="submit" colorScheme="accent">
+            <Button type="submit" colorScheme="teal">
               Guardar
             </Button>
           </ModalFooter>

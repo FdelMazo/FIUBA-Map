@@ -11,7 +11,7 @@ import {
   StatHelpText,
   StatLabel,
   Text,
-  Tooltip,
+  Tooltip
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext } from "../Contexts";
@@ -43,7 +43,7 @@ const Header = (props) => {
       <HStack borderRadius={6} border="2px solid white" p="0">
         <NumberInput
           css={{ margin: 0 }}
-          color="green.600"
+          color="green"
           borderColor="transparent"
           errorBorderColor="transparent"
           border="transparent"
@@ -71,13 +71,13 @@ const Header = (props) => {
             <NumberIncrementStepper
               fontSize="small"
               w="2em"
-              color="green.600"
+              color="green.500"
             />
             <NumberDecrementStepper
               borderRightColor="white"
               fontSize="small"
               w="2em"
-              color="red.600"
+              color="red.500"
             />
           </NumberInputStepper>
         </NumberInput>
@@ -97,7 +97,7 @@ const Header = (props) => {
             borderRadius={0}
             height="100%"
             fontSize="larger"
-            color="yellow.500"
+            color="yellow.300"
             onClick={() => ponerEnFinal(displayedNode)}
           >
             <strong>F</strong>

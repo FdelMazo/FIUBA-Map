@@ -232,8 +232,8 @@ const useGraph = (loginHook) => {
 
     creditos.push({
       nombre: "Materias Obligatorias",
-      bg: COLORS.blue[50],
-      color: "blue",
+      bg: COLORS.obligatorias[50],
+      color: "obligatorias",
       creditosNecesarios: user.carrera.creditos.obligatorias,
       creditos: nodes
         .get({
@@ -248,8 +248,8 @@ const useGraph = (loginHook) => {
       nombre: `Materias Electivas${
         user.finDeCarrera ? ` (eligiendo ${user.finDeCarrera.id})` : ""
       }`,
-      color: "purple",
-      bg: COLORS.purple[50],
+      color: "electivas",
+      bg: COLORS.electivas[50],
       creditosNecesarios: isNaN(user.carrera.creditos.electivas)
         ? user.carrera.creditos.electivas[user.finDeCarrera?.id]
         : user.carrera.creditos.electivas,
@@ -323,8 +323,8 @@ const useGraph = (loginHook) => {
       if (node && node.creditos)
         creditos.push({
           nombre: `${node.materia}`,
-          color: "red",
-          bg: COLORS.red[50],
+          color: "findecarrera",
+          bg: COLORS.findecarrera[50],
           creditosNecesarios: node.creditos,
           creditos: node.aprobada ? node.creditos : 0,
           getCreditos,

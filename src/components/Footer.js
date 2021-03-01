@@ -34,7 +34,7 @@ const Footer = () => {
 
   return (
     <Collapse in={logged} key={user.carrera?.id} position="relative">
-      <Flex alignItems="center" bg="black">
+      <Flex alignItems="center" bg="headerbg">
         <Grid
           flexGrow={1}
           mx={5}

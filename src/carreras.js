@@ -12,11 +12,11 @@ export const CARRERAS = [
       checkbox: [
         {
           nombre: "Idioma Inglés",
-          bg: COLORS.yellow[50],
-          color: "yellow",
+          bg: COLORS.enfinal[50],
+          color: "enfinal",
         },
       ],
-      materias: [{ id: "95.61", bg: COLORS.red[50], color: "red" }],
+      materias: [{ id: "95.61", bg: COLORS.findecarrera[50], color: "findecarrera" }],
     },
   },
   {
@@ -55,8 +55,8 @@ export const CARRERAS = [
       checkbox: [
         {
           nombre: "Estadía Supervisada de al menos 200 horas",
-          bg: COLORS.orange[50],
-          color: "orange",
+          bg: COLORS.habilitadas[50],
+          color: "habilitadas",
         },
       ],
       electivas: { tesis: 12, tpp: 18 },
@@ -70,10 +70,10 @@ export const CARRERAS = [
       materias: [
         {
           id: "76.44",
-          bg: COLORS.orange[50],
-          color: "orange",
+          bg: COLORS.habilitadas[50],
+          color: "habilitadas",
         },
-        { id: "76.90", bg: COLORS.red[50], color: "red" },
+        { id: "76.90", bg: COLORS.findecarrera[50], color: "findecarrera" },
       ],
       obligatorias: 118,
       electivas: 10,
@@ -86,14 +86,14 @@ export const CARRERAS = [
     creditos: {
       obligatorias: 210,
       electivas: 34,
-      materias: [{ id: "84.99", bg: COLORS.red[50], color: "red" }],
+      materias: [{ id: "84.99", bg: COLORS.findecarrera[50], color: "findecarrera" }],
       checkbox: [
         {
           nombre: "Estadía Supervisada de al menos 200 horas",
-          bg: COLORS.orange[50],
-          color: "orange",
+          bg: COLORS.habilitadas[50],
+          color: "habilitadas",
         },
-        { nombre: "Idioma Inglés", bg: COLORS.yellow[50], color: "yellow" },
+        { nombre: "Idioma Inglés", bg: COLORS.enfinal[50], color: "enfinal" },
       ],
     },
   },
@@ -110,10 +110,10 @@ export const CARRERAS = [
       checkbox: [
         {
           nombre: "Estadía Supervisada de al menos 200 horas",
-          bg: COLORS.orange[50],
-          color: "orange",
+          bg: COLORS.habilitadas[50],
+          color: "habilitadas",
         },
-        { nombre: "Idioma Inglés", bg: COLORS.yellow[50], color: "yellow" },
+        { nombre: "Idioma Inglés", bg: COLORS.enfinal[50], color: "enfinal" },
       ],
       electivas: { tesis: 16, tpp: 22 },
     },
@@ -145,10 +145,10 @@ export const CARRERAS = [
       checkbox: [
         {
           nombre: "Práctica  Profesional",
-          bg: COLORS.orange[50],
-          color: "orange",
+          bg: COLORS.habilitadas[50],
+          color: "habilitadas",
         },
-        { nombre: "Idioma Inglés", bg: COLORS.yellow[50], color: "yellow" },
+        { nombre: "Idioma Inglés", bg: COLORS.enfinal[50], color: "enfinal" },
       ],
     },
   },
@@ -162,14 +162,14 @@ export const CARRERAS = [
     ],
     creditos: {
       obligatorias: 196,
-      materias: [{ id: "HUM", bg: "LightCoral", color: "red" }],
+      materias: [{ id: "HUM", bg: "LightCoral", color: "findecarrera" }],
       checkbox: [
         {
           nombre: "Práctica Profesional de al menos 200 horas",
-          bg: COLORS.orange[50],
-          color: "orange",
+          bg: COLORS.habilitadas[50],
+          color: "habilitadas",
         },
-        { nombre: "Idioma Inglés", bg: COLORS.yellow[50], color: "yellow" },
+        { nombre: "Idioma Inglés", bg: COLORS.enfinal[50], color: "enfinal" },
       ],
       electivas: { tesis: 32, tpp: 32 },
     },
@@ -223,10 +223,10 @@ export const CARRERAS = [
       checkbox: [
         {
           nombre: "Práctica  Supervisada",
-          bg: COLORS.orange[50],
-          color: "orange",
+          bg: COLORS.habilitadas[50],
+          color: "habilitadas",
         },
-        { nombre: "Idioma Inglés", bg: COLORS.yellow[50], color: "yellow" },
+        { nombre: "Idioma Inglés", bg: COLORS.enfinal[50], color: "enfinal" },
       ],
     },
   },

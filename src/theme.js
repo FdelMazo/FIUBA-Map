@@ -2,41 +2,35 @@ import { extendTheme } from "@chakra-ui/react";
 
 export const COLORS = {
   // https://nipponcolors.com/
-  black: "#373C38",
-  white: "#eceeed",
-  graph: "#f9f9f9",
+  headerbg: "#373C38",
+  graphbg: "#f9f9f9",
   // https://flatuicolors.com/palette/de + https://themera.vercel.app/
-  accent: {
-    50: "#C4F3EE",
-    500: "#2DD2C1",
-    600: "#24A89A",
-  },
-  purple: {
+  electivas: {
     50: "#DCC0F7",
     400: "#C597F1",
     500: "#AF6FEC",
   },
-  green: {
+  aprobadas: {
     400: "#22DD7E",
     500: "#22DD7E",
     600: "#1BB165",
   },
-  blue: {
-    50: "#BCE1FA",
-    400: "#66B9F4",
-    500: "#3CA6F1",
-  },
-  orange: {
+  habilitadas: {
     50: "#FED7B8",
     400: "#FDA45E",
     500: "#FC8A30",
   },
-  red: {
+  obligatorias: {
+    50: "#BCE1FA",
+    400: "#66B9F4",
+    500: "#3CA6F1",
+  },
+  findecarrera: {
     50: "#FEB9BD",
     400: "#FC5F68",
     500: "#FB323D",
   },
-  yellow: {
+  enfinal: {
     50: "#FFF0B8",
     400: "#FEDC5D",
     500: "#FED22F",

@@ -39,7 +39,7 @@ const LoadingGraph = (props) => {
           left: "50%",
           animation: "sk-rotateplane 1.2s infinite ease-in-out",
         }}
-        bg="black"
+        bg="headerbg"
         h="3em"
         w="3em"
       />

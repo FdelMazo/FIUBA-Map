@@ -109,7 +109,7 @@ const Body = (props) => {
   };
 
   return (
-    <Box bg="graph" flexGrow="1" height="1em" position="relative">
+    <Box bg="graphbg" flexGrow="1" height="1em" position="relative">
       <SlideFade in={loadingGraph} unmountOnExit>
         <LoadingGraph />
       </SlideFade>
