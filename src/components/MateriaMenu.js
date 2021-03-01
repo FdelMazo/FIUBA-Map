@@ -11,7 +11,7 @@ import {
   StatHelpText,
   StatLabel,
   Text,
-  Tooltip
+  Tooltip,
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext } from "../Contexts";
@@ -26,13 +26,8 @@ const Header = (props) => {
   };
 
   return (
-    <Flex alignItems="center" justifyContent="space-around">
-      <Stat
-        mx={3}
-        color="white"
-        css={{ "& *": { marginTop: 0, marginBottom: 0 } }}
-        size="sm"
-      >
+    <Flex height="4em" alignItems="center" justifyContent="space-around">
+      <Stat mx={3} color="white">
         <StatLabel>[{getNode(displayedNode)?.id}]</StatLabel>
         <StatHelpText>
           <Text width="30ch" isTruncated>
@@ -40,20 +35,17 @@ const Header = (props) => {
           </Text>
         </StatHelpText>
       </Stat>
-      <HStack borderRadius={6} border="2px solid white" p="0">
+      <HStack borderRadius={6} border="2px solid white">
         <NumberInput
           css={{ margin: 0 }}
-          color="green"
-          borderColor="transparent"
           errorBorderColor="transparent"
-          border="transparent"
+          borderColor="transparent"
           inputMode="numeric"
           onChange={(_, nota) => {
             aprobar(displayedNode, nota);
           }}
           value={format(getNode(displayedNode)?.nota)}
           min={4}
-          mx={5}
           max={10}
         >
           <NumberInputField
@@ -63,39 +55,33 @@ const Header = (props) => {
             _focus={{
               borderColor: "transparent",
             }}
-            w="4ch"
+            w="7ch"
             color="white"
             fontWeight="bold"
           />
-          <NumberInputStepper w="2ch">
+          <NumberInputStepper>
             <NumberIncrementStepper
+              border="none"
               fontSize="small"
-              w="2em"
               color="green.500"
             />
             <NumberDecrementStepper
-              borderRightColor="white"
+              border="none"
               fontSize="small"
-              w="2em"
               color="red.500"
             />
           </NumberInputStepper>
         </NumberInput>
         <Tooltip closeOnClick={true} hasArrow label="Poner en Final">
           <Button
+            colorScheme="teal"
             _hover={{
               backgroundColor: "transparent",
             }}
-            p={0}
+            borderRadius="0"
             cursor="pointer"
             variant="link"
-            bg="transparent"
-            borderTopColor="transparent"
-            borderBottomColor="transparent"
-            borderRightColor="transparent"
-            borderLeftColor="white"
-            borderRadius={0}
-            height="100%"
+            borderLeft="2px solid white"
             fontSize="larger"
             color="yellow.300"
             onClick={() => ponerEnFinal(displayedNode)}

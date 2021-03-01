@@ -12,11 +12,11 @@ const Header = (props) => {
 
   return (
     <Flex
-      height="3em"
+      height="4em"
       align="center"
       justify="space-between"
       bg="headerbg"
-      padding="0.6rem"
+      padding="0.8em"
     >
       {displayedNode && <MateriaMenu displayedNode={displayedNode} />}
       <ScaleFade in={!displayedNode} unmountOnExit>
@@ -25,10 +25,8 @@ const Header = (props) => {
 
       <ScaleFade in={!displayedNode} unmountOnExit>
         <Select
-          w="fit-content"
           color="white"
           css={{
-            "&": { color: "white" },
             "& *": { color: "initial" },
           }}
           onChange={(e) => changeCarrera(e.target.value)}

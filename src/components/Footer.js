@@ -33,7 +33,7 @@ const Footer = () => {
   }, [logged, redraw]);
 
   return (
-    <Collapse in={logged} key={user.carrera?.id} position="relative">
+    <Collapse in={!logged} key={user.carrera?.id} position="relative">
       <Flex alignItems="center" bg="headerbg">
         <Grid
           flexGrow={1}
@@ -59,7 +59,9 @@ const Footer = () => {
                 </PopoverTrigger>
                 <PopoverContent>
                   <PopoverArrow />
-                  <PopoverHeader>{c.nombre}</PopoverHeader>
+                  <PopoverHeader border="none">
+                    <strong>{c.nombre}</strong>
+                  </PopoverHeader>
                   <PopoverBody>
                     {c.checkbox ? (
                       <Checkbox
@@ -87,13 +89,7 @@ const Footer = () => {
           ))}
         </Grid>
         <Box>
-          <Stat
-            p="0.4rem"
-            color="white"
-            css={{ "& *": { marginTop: 0, marginBottom: 0 } }}
-            size="sm"
-            textAlign="right"
-          >
+          <Stat p="0.4em" color="white" size="sm" textAlign="right">
             <StatLabel>Promedio</StatLabel>
             <StatNumber>{promedio}</StatNumber>
           </Stat>

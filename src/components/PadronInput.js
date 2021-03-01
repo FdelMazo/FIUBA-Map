@@ -70,7 +70,7 @@ const PadronInput = () => {
             variant={showRegisterButton ? "solid" : "outline"}
             size="sm"
             title={!logged && !showRegisterButton && "Ingresar"}
-            px={showRegisterButton && 5}
+            px={showRegisterButton && 7}
             mx={2}
             isLoading={loading}
             type="submit"
@@ -83,7 +83,7 @@ const PadronInput = () => {
               <CheckCircleIcon />
             )}
           </Button>
-          {!logged && (
+          {logged && (
             <Popover placement="right-end" trigger="hover">
               <PopoverTrigger>
                 <IconButton
@@ -103,14 +103,13 @@ const PadronInput = () => {
                   </Icon>
                 </IconButton>
               </PopoverTrigger>
-              <PopoverContent size="sm" w="fit-content" borderColor="white">
+              <PopoverContent size="sm" w="fit-content">
                 <PopoverArrow />
                 <PopoverBody
                   isChecked={autosave}
                   onClick={() => {
                     setAutosave(!autosave);
                   }}
-                  color="black"
                 >
                   auto-save
                   <Switch colorScheme="teal" ml={2} />
