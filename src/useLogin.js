@@ -14,11 +14,14 @@ const useLogin = () => {
   const [user, setUser] = React.useState(userObj);
   const [loading, setLoading] = React.useState(false);
   const [saving, setSaving] = React.useState(false);
+  const [padronInput, setPadronInput] = React.useState("");
   const logged = user.padron !== "";
 
   React.useEffect(() => {
-    if (!logged && window.localStorage.getItem("padron"))
+    if (!logged && window.localStorage.getItem("padron")) {
+      setPadronInput(window.localStorage.getItem("padron"));
       login(window.localStorage.getItem("padron"));
+    }
   }, [logged]);
 
   const login = async (padron) => {
@@ -142,12 +145,12 @@ const useLogin = () => {
     return JSON.parse(map);
   };
 
-  const register = (data) => {
+  const register = (padronInput) => {
     const formData = new FormData();
-    const padron = data["padron"].value;
-    const carreraid = data["carrera"].value;
-    const orientacionid = data["orientacion"]?.value;
-    const findecarreraid = data["finDeCarrera"]?.value;
+    const padron = padronInput || user.padron;
+    const carreraid = user.carrera.id;
+    const orientacionid = user.orientacion?.nombre;
+    const findecarreraid = user.finDeCarrera?.id;
     formData.append(`${C.USER_FORM_ENTRIES.padron}`, padron);
     formData.append(`${C.USER_FORM_ENTRIES.carrera}`, carreraid);
     formData.append(`${C.USER_FORM_ENTRIES.orientacion}`, orientacionid || "");
@@ -224,6 +227,8 @@ const useLogin = () => {
     submitBug,
     setUser,
     getGraph,
+    padronInput,
+    setPadronInput,
   };
 };
 

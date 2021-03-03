@@ -8,7 +8,7 @@ import PadronInput from "./PadronInput";
 const Header = (props) => {
   const { displayedNode } = props;
   const { changeCarrera } = React.useContext(GraphContext);
-  const { logged, user } = React.useContext(UserContext);
+  const { logged, user, register } = React.useContext(UserContext);
 
   return (
     <Flex
@@ -29,9 +29,11 @@ const Header = (props) => {
           css={{
             "& *": { color: "initial" },
           }}
-          onChange={(e) => changeCarrera(e.target.value)}
+          onChange={(e) => {
+            changeCarrera(e.target.value);
+            if (logged) register();
+          }}
           value={user.carrera?.id}
-          isDisabled={logged}
         >
           {CARRERAS.map((c) => (
             <option value={c.id}>{c.nombre}</option>
