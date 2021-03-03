@@ -11,7 +11,7 @@ import {
   PopoverBody,
   PopoverContent,
   PopoverTrigger,
-  Switch,
+  Switch
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../Contexts";

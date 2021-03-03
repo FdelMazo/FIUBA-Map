@@ -7,22 +7,25 @@ import {
   MenuItem,
   MenuItemOption,
   MenuList,
-  MenuOptionGroup
+  MenuOptionGroup,
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../Contexts";
 
 const UserMenu = (props) => {
-  const { register, logout, user } = React.useContext(UserContext);
-  const { changeOrientacion, changeFinDeCarrera, getNode } = React.useContext(
-    GraphContext
-  );
+  const { logout, user } = React.useContext(UserContext);
+  const {
+    setFirstTime,
+    changeOrientacion,
+    changeFinDeCarrera,
+    getNode,
+  } = React.useContext(GraphContext);
 
   const OrientacionesMenuGroup = () => (
     <MenuOptionGroup
       onChange={(value) => {
+        setFirstTime(false);
         changeOrientacion(value);
-        register();
       }}
       value={user.orientacion?.nombre || "none"}
       title="Orientación"
@@ -58,8 +61,8 @@ const UserMenu = (props) => {
         {user.carrera.finDeCarrera && (
           <MenuOptionGroup
             onChange={(value) => {
+              setFirstTime(false);
               changeFinDeCarrera(value);
-              register();
             }}
             value={user.finDeCarrera?.id || "none"}
             title="Fin de Carrera"

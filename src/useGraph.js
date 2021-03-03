@@ -21,7 +21,19 @@ const useGraph = (loginHook) => {
   const [shouldLoadGraph, setShouldLoadGraph] = React.useState(false);
   const [autosave, setAutosave] = React.useState(false);
   const [loadingGraph, setLoadingGraph] = React.useState(false);
-  const { user, setUser, logged, getGraph, postGraph } = loginHook;
+  const [firstTime, setFirstTime] = React.useState(true);
+  const { user, setUser, register, logged, getGraph, postGraph } = loginHook;
+
+  React.useEffect(() => {
+    if (!logged) changeCarrera(CARRERAS[0].id);
+    else {
+      changeCarrera(user.carrera.id);
+    }
+  }, [logged]);
+
+  React.useEffect(() => {
+    if (logged && !firstTime) register();
+  }, [user.carrera, user.orientacion, user.finDeCarrera]);
 
   React.useEffect(() => {
     if (!nodes?.carrera || nodes.carrera !== user.carrera?.id) return;
@@ -46,7 +58,7 @@ const useGraph = (loginHook) => {
           setLoadingGraph(false);
         });
     }
-  }, [shouldLoadGraph, graph]);
+  }, [shouldLoadGraph, nodes]);
 
   React.useEffect(() => {
     setShowLabels(logged);
@@ -57,22 +69,26 @@ const useGraph = (loginHook) => {
     conNota.forEach((n) => {
       getNode(n.id).showLabel({ nodes, showLabel: logged });
     });
-
-    if (logged) setShouldLoadGraph(true);
   }, [logged]);
 
+  const saveGraph = () => {
+    postGraph(nodes, user.carrera.creditos.checkbox);
+  };
   const changeCarrera = async (id) => {
     setUser(({ ...rest }) => {
       const carrera = CARRERAS.find((c) => c.id === id);
 
-      const userdata = user.allLogins.find((l) => l.carreraid === id);
+      const userdata = logged
+        ? user.allLogins.find((l) => l.carreraid === id)
+        : false;
       setShouldLoadGraph(!!userdata);
-      const orientacion = carrera.orientaciones?.find(
-        (c) => c.nombre === userdata?.orientacionid
-      );
-      const finDeCarrera = carrera.finDeCarrera?.find(
-        (c) => c.id === userdata?.findecarreraid
-      );
+      const orientacion =
+        carrera.orientaciones?.find(
+          (c) => c.nombre === userdata?.orientacionid
+        ) || null;
+      const finDeCarrera =
+        carrera.finDeCarrera?.find((c) => c.id === userdata?.findecarreraid) ||
+        null;
 
       const graphNodes = [];
       const graphEdges = [];
@@ -99,10 +115,6 @@ const useGraph = (loginHook) => {
       user.carrera.finDeCarrera.find((c) => c.id === id) || null;
     setUser({ ...user, finDeCarrera });
   };
-
-  React.useEffect(() => {
-    if (user.carrera) changeCarrera(user.carrera.id);
-  }, [user.carrera]);
 
   React.useEffect(() => {
     if (!nodes?.carrera || nodes.carrera !== user.carrera?.id) return;
@@ -355,10 +367,6 @@ const useGraph = (loginHook) => {
     if (network) network.redraw();
   };
 
-  React.useEffect(() => {
-    changeCarrera(CARRERAS[0].id);
-  }, []);
-
   const toggleCheckbox = (c) => {
     const value = !!user.carrera.creditos.checkbox.find(
       (ch) => ch.nombre === c.nombre
@@ -366,10 +374,6 @@ const useGraph = (loginHook) => {
     user.carrera.creditos.checkbox.find(
       (ch) => ch.nombre === c.nombre
     ).check = !value;
-  };
-
-  const saveGraph = () => {
-    postGraph(nodes, user.carrera.creditos.checkbox);
   };
 
   return {
@@ -396,6 +400,7 @@ const useGraph = (loginHook) => {
     toggleCheckbox,
     actualizarMetadata,
     loadingGraph,
+    setFirstTime,
     isGroupHidden,
   };
 };

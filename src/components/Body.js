@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ChatIcon, CheckIcon, EmailIcon, Icon } from "@chakra-ui/icons";
 import {
   Box,
@@ -11,7 +12,7 @@ import {
   Text,
   Textarea,
   Tooltip,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Graph from "react-graph-vis";
@@ -24,9 +25,9 @@ import useWindowSize from "./useWindowSize";
 const Body = (props) => {
   const {
     graph,
-    redraw,
     aprobar,
     setNetwork,
+    redraw,
     setNodes,
     setEdges,
     desaprobar,
@@ -87,7 +88,6 @@ const Body = (props) => {
       duration: null,
       isClosable: true,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

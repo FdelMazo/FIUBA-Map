@@ -18,11 +18,11 @@ const useLogin = () => {
   const logged = user.padron !== "";
 
   React.useEffect(() => {
-    if (!logged && window.localStorage.getItem("padron")) {
+    if (window.localStorage.getItem("padron")) {
       setPadronInput(window.localStorage.getItem("padron"));
       login(window.localStorage.getItem("padron"));
     }
-  }, [logged]);
+  }, []);
 
   const login = async (padron) => {
     setLoading(true);
@@ -145,9 +145,9 @@ const useLogin = () => {
     return JSON.parse(map);
   };
 
-  const register = (padronInput) => {
+  const register = async (p) => {
     const formData = new FormData();
-    const padron = padronInput || user.padron;
+    const padron = p || user.padron;
     const carreraid = user.carrera.id;
     const orientacionid = user.orientacion?.nombre;
     const findecarreraid = user.finDeCarrera?.id;
@@ -177,16 +177,25 @@ const useLogin = () => {
       return newAllLogins;
     };
 
-    setUser({
-      padron,
-      carrera,
-      orientacion: carrera.orientaciones?.find(
-        (c) => c.nombre === orientacionid
-      ),
-      finDeCarrera: carrera.finDeCarrera?.find((c) => c.id === findecarreraid),
-      allLogins: [...addToAllLogins()],
-    });
-    window.localStorage.setItem("padron", padron);
+    if (!logged) {
+      setUser({
+        padron,
+        carrera,
+        orientacion: carrera.orientaciones?.find(
+          (c) => c.nombre === orientacionid
+        ),
+        finDeCarrera: carrera.finDeCarrera?.find(
+          (c) => c.id === findecarreraid
+        ),
+        allLogins: [...addToAllLogins()],
+      });
+      window.localStorage.setItem("padron", padron);
+    } else {
+      setUser({
+        ...user,
+        allLogins: [...addToAllLogins()],
+      });
+    }
   };
 
   const logout = () => {

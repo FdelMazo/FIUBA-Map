@@ -7,8 +7,8 @@ import PadronInput from "./PadronInput";
 
 const Header = (props) => {
   const { displayedNode } = props;
-  const { changeCarrera } = React.useContext(GraphContext);
-  const { logged, user, register } = React.useContext(UserContext);
+  const { changeCarrera, setFirstTime } = React.useContext(GraphContext);
+  const { user } = React.useContext(UserContext);
 
   return (
     <Flex
@@ -26,12 +26,13 @@ const Header = (props) => {
       <ScaleFade in={!displayedNode} unmountOnExit>
         <Select
           color="white"
+          key={user.carrera?.id}
           css={{
             "& *": { color: "initial" },
           }}
           onChange={(e) => {
+            setFirstTime(false);
             changeCarrera(e.target.value);
-            if (logged) register();
           }}
           value={user.carrera?.id}
         >
