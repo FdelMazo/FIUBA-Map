@@ -35,6 +35,28 @@ const Footer = () => {
   return (
     <Collapse in={logged} key={user.carrera?.id} position="relative">
       <Flex alignItems="center" bg="headerbg">
+        <Box>
+          <Stat p="0.4em" color="white" size="sm">
+            <StatLabel>Créditos</StatLabel>
+            <StatNumber>
+              {creditos.length !== 0
+                ? (
+                    (creditos.reduce((acc, node) => {
+                      acc += node.creditos;
+                      return acc;
+                    }, 0) /
+                      creditos.reduce((acc, node) => {
+                        if (node.creditosNecesarios)
+                          acc += node.creditosNecesarios;
+                        return acc;
+                      }, 0)) *
+                    100
+                  ).toFixed(2)
+                : 0}
+              %
+            </StatNumber>
+          </Stat>
+        </Box>
         <Grid
           flexGrow={1}
           mx={5}
