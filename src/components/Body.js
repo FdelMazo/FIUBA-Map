@@ -57,6 +57,7 @@ const Body = (props) => {
           <Text>
             Si ves algo que te gustó, o tenes alguna sugerencia, también!
           </Text>
+          <Text>Si querés que te responda, escribí tu mail/telegram/algo.</Text>
           <form
             onSubmit={(t) => {
               t.preventDefault();
@@ -185,6 +186,9 @@ const Body = (props) => {
                     <Text>
                       Si ves algo que te gustó, o tenes alguna sugerencia,
                       también!
+                    </Text>
+                    <Text>
+                      Si querés que te responda, escribí tu mail/telegram/algo.
                     </Text>
                     <form
                       onSubmit={(t) => {
