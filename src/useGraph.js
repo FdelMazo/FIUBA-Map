@@ -95,7 +95,8 @@ const useGraph = (loginHook) => {
     setUser({ ...user, orientacion });
   };
   const changeFinDeCarrera = (id) => {
-    const finDeCarrera = user.carrera.finDeCarrera.find((c) => c.id === id);
+    const finDeCarrera =
+      user.carrera.finDeCarrera.find((c) => c.id === id) || null;
     setUser({ ...user, finDeCarrera });
   };
 
@@ -107,11 +108,11 @@ const useGraph = (loginHook) => {
     if (!nodes?.carrera || nodes.carrera !== user.carrera?.id) return;
     aprobar("CBC", 0);
     if (user.orientacion) changeOrientacion(user.orientacion.nombre);
-    if (user.finDeCarrera) {
-      changeFinDeCarrera(user.finDeCarrera.id);
+    if (user.carrera.finDeCarrera) {
+      changeFinDeCarrera(user.finDeCarrera?.id);
       user.carrera.finDeCarrera.forEach((f) => {
         const n = getNode(f.materia);
-        n.hidden = !(f.id === user.finDeCarrera.id);
+        n.hidden = !(f.id === user.finDeCarrera?.id);
         nodes.update(n);
       });
     }
