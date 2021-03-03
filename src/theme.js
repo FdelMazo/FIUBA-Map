@@ -2,8 +2,8 @@ import { extendTheme } from "@chakra-ui/react";
 
 export const COLORS = {
   // https://nipponcolors.com/
-  headerbg: "#373C38",
-  graphbg: "#f9f9f9",
+  headerbg: "#222d38",
+  graphbg: "#f7f9fa",
   // https://flatuicolors.com/palette/de + https://themera.vercel.app/
   electivas: {
     50: "#DCC0F7",
