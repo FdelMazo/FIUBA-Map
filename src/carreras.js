@@ -39,7 +39,7 @@ export const CARRERAS = [
     ],
     creditos: {
       obligatorias: 156,
-      orientacion: { tesis: 34, tpp: 34 },
+      orientacion: 34,
       electivas: { tesis: 34, tpp: 46 },
     },
     eligeOrientaciones: true,

@@ -46,7 +46,7 @@ const useGraph = (loginHook) => {
           setLoadingGraph(false);
         });
     }
-  }, [shouldLoadGraph]);
+  }, [shouldLoadGraph, graph]);
 
   React.useEffect(() => {
     setShowLabels(logged);
@@ -118,10 +118,6 @@ const useGraph = (loginHook) => {
     }
     keepFinDeCarreraOnLastLevel();
   }, [nodes, user.finDeCarrera, user.orientacion]);
-
-  // React.useEffect(() => {
-  //   if (user.padron) saveGraph();
-  // }, [user.padron]);
 
   const keepFinDeCarreraOnLastLevel = () => {
     const lastLevel = Math.max(
@@ -273,14 +269,16 @@ const useGraph = (loginHook) => {
     if (
       user.carrera.eligeOrientaciones &&
       user.orientacion &&
-      user.carrera.creditos.orientacion[user.finDeCarrera?.id]
+      (!isNaN(user.carrera.creditos.orientacion) ||
+        user.carrera.creditos.orientacion[user.finDeCarrera?.id])
     )
       creditos.push({
         nombre: `Orientación: ${user.orientacion.nombre}`,
         color: "orientacion0",
         bg: COLORS.orientacion0[50],
-        creditosNecesarios:
-          user.carrera.creditos.orientacion[user.finDeCarrera.id],
+        creditosNecesarios: isNaN(user.carrera.creditos.orientacion)
+          ? user.carrera.creditos.orientacion[user.finDeCarrera?.id]
+          : user.carrera.creditos.orientacion,
         creditos: nodes
           .get({
             filter: (n) =>
