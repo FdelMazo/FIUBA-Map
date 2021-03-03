@@ -42,6 +42,7 @@ export const COLORS = {
     500: "#A2A15D",
   },
   orientacion1: {
+    50: "#FFE5E5",
     500: "#FF9999",
   },
   orientacion2: {

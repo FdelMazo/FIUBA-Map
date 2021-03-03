@@ -16,7 +16,9 @@ export const CARRERAS = [
           color: "enfinal",
         },
       ],
-      materias: [{ id: "95.61", bg: COLORS.findecarrera[50], color: "findecarrera" }],
+      materias: [
+        { id: "95.61", bg: COLORS.findecarrera[50], color: "findecarrera" },
+      ],
     },
   },
   {
@@ -86,7 +88,9 @@ export const CARRERAS = [
     creditos: {
       obligatorias: 210,
       electivas: 34,
-      materias: [{ id: "84.99", bg: COLORS.findecarrera[50], color: "findecarrera" }],
+      materias: [
+        { id: "84.99", bg: COLORS.findecarrera[50], color: "findecarrera" },
+      ],
       checkbox: [
         {
           nombre: "Estadía Supervisada de al menos 200 horas",
@@ -162,7 +166,9 @@ export const CARRERAS = [
     ],
     creditos: {
       obligatorias: 196,
-      materias: [{ id: "HUM", bg: "LightCoral", color: "findecarrera" }],
+      materias: [
+        { id: "HUM", bg: COLORS.orientacion1[50], color: "orientacion1" },
+      ],
       checkbox: [
         {
           nombre: "Práctica Profesional de al menos 200 horas",
