@@ -75,7 +75,6 @@ export const informatica = [
     id: "CBC",
     materia: "Ciclo Básico Común",
     creditos: 0,
-    correlativas: "",
     categoria: "CBC",
     level: 0,
   },
