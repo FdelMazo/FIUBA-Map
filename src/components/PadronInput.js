@@ -11,7 +11,7 @@ import {
   PopoverBody,
   PopoverContent,
   PopoverTrigger,
-  Switch
+  Switch,
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../Contexts";
@@ -105,13 +105,15 @@ const PadronInput = () => {
               />
 
               <Button
-                colorScheme={showRegisterButton ? "red" : "teal"}
+                colorScheme={showRegisterButton ? "red" : "whiteAlpha"}
+                color="white"
                 variant={showRegisterButton ? "solid" : "outline"}
                 size="sm"
                 title={!showRegisterButton && "Ingresar"}
                 px={showRegisterButton && 7}
                 mx={2}
                 isLoading={loading}
+                isDisabled={padronInput === ""}
                 type="submit"
               >
                 {showRegisterButton ? "Registrarse" : <CheckCircleIcon />}
