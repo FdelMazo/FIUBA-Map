@@ -108,7 +108,7 @@ const Body = (props) => {
         return;
       }
       if (!node.aprobada) {
-        aprobar(id, 7);
+        aprobar(id, 4);
         if (logged) setDisplayedNode(id);
       } else {
         desaprobar(id);

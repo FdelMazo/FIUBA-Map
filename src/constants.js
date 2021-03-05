@@ -48,6 +48,8 @@ export const GRUPOS = {
   "En Final": { color: COLORS.enfinal[400] },
   "Materias Obligatorias": { color: COLORS.obligatorias[400] },
   "Materias Electivas": { color: COLORS.electivas[400] },
+  Cursando: { color: COLORS.cursando[500] },
+  "A Cursar": { color: COLORS.futuro[500] },
   "Fin de Carrera": { color: COLORS.findecarrera[400] },
   "Fin de Carrera (Obligatorio)": { color: COLORS.findecarrera[400] },
   ...CARRERAS.filter((c) => c.orientaciones)

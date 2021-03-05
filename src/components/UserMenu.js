@@ -53,6 +53,7 @@ const UserMenu = (props) => {
         leftIcon={<SettingsIcon />}
         size="sm"
         colorScheme="teal"
+        alignSelf="flex-end"
       >
         {user.padron}
       </MenuButton>

@@ -19,10 +19,24 @@ class Node {
     this.title = `Otorga ${this.creditos} créditos${
       this.requiere ? "\nRequiere " + this.requiere + " créditos" : ""
     }`;
+    this.cuatri = -1;
     this.hidden =
       this.categoria !== "Materias Obligatorias" &&
       this.categoria !== "CBC" &&
       this.categoria !== "Fin de Carrera (Obligatorio)";
+  }
+
+  cursando(ctx) {
+    const { network, nodes, getNode, cuatri, showLabels } = ctx;
+
+    this.cuatri = cuatri;
+    if (this.label.includes("[")) this.label = this.label.split("\n[")[0];
+    if (showLabels && cuatri === 0) this.label += "\n[Cursando]";
+    if (showLabels && cuatri === 1) this.label += "\n[En 1 cuatri]";
+    if (showLabels && cuatri > 1) this.label += "\n[En " + cuatri + " cuatris]";
+
+    this.group = this.getGrupo();
+    nodes.update(this);
   }
 
   chequearNodosCred(ctx) {
@@ -57,6 +71,8 @@ class Node {
 
     if (showLabel) {
       if (this.nota > 0) this.label += "\n[" + this.nota + "]";
+      else if (this.nota === 0 && this.id !== "CBC")
+        this.label += "\n[Equivalencia]";
       else if (this.nota === -1) {
         this.label += "\n[Final]";
       }
@@ -68,11 +84,13 @@ class Node {
   aprobar(ctx) {
     const { network, nodes, getNode, nota, showLabels } = ctx;
 
-    this.aprobada = true;
-    if (nota) this.nota = nota;
+    this.cuatri = -1;
+    this.nota = nota;
 
     if (this.label.includes("[")) this.label = this.label.split("\n[")[0];
     if (nota > 0 && showLabels) this.label += "\n[" + this.nota + "]";
+    if (showLabels && nota === 0 && this.id !== "CBC")
+      this.label += "\n[Equivalencia]";
     if (nota === -1) {
       this.group = this.getGrupo();
       if (showLabels) this.label += "\n[Final]";
@@ -80,6 +98,7 @@ class Node {
       return;
     }
 
+    this.aprobada = true;
     this.group = this.getGrupo();
     nodes.update(this);
     const habilitadas = [];
@@ -121,7 +140,8 @@ class Node {
     const { network, nodes, getNode } = ctx;
 
     this.aprobada = false;
-    this.nota = 0;
+    this.cuatri = -1;
+    this.nota = -2;
     if (this.label.includes("[")) this.label = this.label.split("\n[")[0];
     this.group = this.getGrupo();
     nodes.update(this);
@@ -143,7 +163,9 @@ class Node {
   getGrupo() {
     let grupoDefault = this.categoria;
     if (this.aprobada && this.nota >= 0) grupoDefault = "Aprobadas";
-    else if (this.aprobada) grupoDefault = "En Final";
+    else if (this.nota === -1) grupoDefault = "En Final";
+    else if (this.cuatri === 0) grupoDefault = "Cursando";
+    else if (this.cuatri > 0) grupoDefault = "A Cursar";
     else if (this.habilitada) grupoDefault = "Habilitadas";
     return grupoDefault;
   }

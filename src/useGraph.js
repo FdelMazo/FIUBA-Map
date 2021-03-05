@@ -44,9 +44,11 @@ const useGraph = (loginHook) => {
         .then((metadata) => {
           if (metadata.materias)
             metadata.materias.forEach((m) => {
-              if (m.nota > 0) aprobar(m.id, m.nota);
+              if (m.nota >= 0) aprobar(m.id, m.nota);
               else if (m.nota === -1) {
                 ponerEnFinal(m.id);
+              } else if (m.cuatri >= 0) {
+                cursando(m.id, m.cuatri);
               }
             });
           if (metadata.checkboxes)
@@ -211,6 +213,20 @@ const useGraph = (loginHook) => {
     actualizarMetadata();
   };
 
+  const cursando = (id, cuatri) => {
+    desaprobar(id);
+    const node = getNode(id);
+    node.cursando({
+      network: network,
+      nodes: nodes,
+      cuatri,
+      showLabels,
+      getNode,
+    });
+
+    actualizarMetadata();
+  };
+
   const getPromedio = () => {
     const materias = nodes.get({
       filter: (n) => n.aprobada && n.nota > 0,
@@ -247,7 +263,9 @@ const useGraph = (loginHook) => {
       creditos: nodes
         .get({
           filter: (n) =>
-            n.categoria === "Materias Obligatorias" && n.aprobada && n.nota > 0,
+            n.categoria === "Materias Obligatorias" &&
+            n.aprobada &&
+            n.nota >= 0,
           fields: ["creditos"],
         })
         .reduce(accumulator, 0),
@@ -272,7 +290,7 @@ const useGraph = (loginHook) => {
             n.categoria !== "Fin de Carrera (Obligatorio)" &&
             n.categoria !== user.orientacion?.nombre &&
             n.aprobada &&
-            n.nota > 0,
+            n.nota >= 0,
           fields: ["creditos"],
         })
         .reduce(accumulator, 0),
@@ -296,7 +314,7 @@ const useGraph = (loginHook) => {
             filter: (n) =>
               n.categoria === user.orientacion.nombre &&
               n.aprobada &&
-              n.nota > 0,
+              n.nota >= 0,
             fields: ["creditos"],
           })
           .reduce(accumulator, 0),
@@ -402,6 +420,7 @@ const useGraph = (loginHook) => {
     loadingGraph,
     setFirstTime,
     isGroupHidden,
+    cursando,
   };
 };
 

@@ -36,6 +36,12 @@ export const COLORS = {
     500: "#CBA001",
   },
   // https://color.adobe.com/create/color-wheel starting from #FF9999
+  cursando: {
+    500: "#F4AF94",
+  },
+  futuro: {
+    500: "#91989F",
+  },
   orientacion0: {
     50: "#D4D4B5",
     400: "#C3C397",
