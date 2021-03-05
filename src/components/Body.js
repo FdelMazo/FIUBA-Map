@@ -1,7 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ChatIcon, CheckIcon, EmailIcon, Icon } from "@chakra-ui/icons";
 import {
+  Alert,
+  AlertDescription,
   Box,
+  CloseButton,
   Flex,
   IconButton,
   Link,
@@ -181,54 +184,67 @@ const Body = (props) => {
             variant="subtle"
             cursor="pointer"
             colorScheme="blackAlpha"
-            onClick={() =>
-              (bugToast.current = toast({
-                description: (
-                  <Box color="black" px={5}>
-                    <Text>
-                      Si encontras algo feo, incorrecto, lento, erroneo... me
-                      decís?
-                    </Text>
-                    <Text>
-                      Si ves algo que te gustó, o tenes alguna sugerencia,
-                      también!
-                    </Text>
-                    <Text>
-                      Si querés que te responda, escribí tu mail/telegram/algo.
-                    </Text>
-                    <form
-                      onSubmit={(t) => {
-                        t.preventDefault();
-                        submitBug(t.target.elements["bug"].value);
-                        setShowGracias(true);
-                        toast.close(bugToast.current);
-                      }}
-                    >
-                      <Flex alignItems="flex-end">
-                        <Textarea
-                          resize="none"
-                          focusBorderColor="black"
-                          size="sm"
-                          placeholder="Encontre un error en..."
-                          name="bug"
-                        />
-                        <IconButton
-                          ml={3}
-                          colorScheme="blackAlpha"
-                          size="sm"
-                          type="submit"
-                          icon={<ChatIcon />}
-                        />
-                      </Flex>
-                    </form>
-                  </Box>
+            onClick={() => {
+              toast.close(bugToast.current);
+              return (bugToast.current = toast({
+                render: (props) => (
+                  <Alert borderRadius={6} mb="4em" bg="blue.500">
+                    <Box flex="1" px={10}>
+                      <AlertDescription display="block">
+                        <Text>
+                          Si encontras algo feo, incorrecto, lento, erroneo...
+                          me decís?
+                        </Text>
+                        <Text>
+                          Si ves algo que te gustó, o tenes alguna sugerencia,
+                          también!
+                        </Text>
+                        <Text>
+                          Si querés que te responda, escribí tu
+                          mail/telegram/algo.
+                        </Text>
+                        <form
+                          onSubmit={(t) => {
+                            t.preventDefault();
+                            submitBug(t.target.elements["bug"].value);
+                            setShowGracias(true);
+                            toast.close(bugToast.current);
+                          }}
+                        >
+                          <Flex mt={3} alignItems="flex-end">
+                            <Textarea
+                              resize="none"
+                              focusBorderColor="black"
+                              size="sm"
+                              placeholder="Encontre un error en..."
+                              name="bug"
+                            />
+                            <IconButton
+                              ml={3}
+                              colorScheme="blackAlpha"
+                              size="sm"
+                              type="submit"
+                              icon={<ChatIcon />}
+                            />
+                          </Flex>
+                        </form>
+                      </AlertDescription>
+                    </Box>
+                    <CloseButton
+                      color="white"
+                      onClick={() => toast.close(props.id)}
+                      position="absolute"
+                      right="8px"
+                      top="8px"
+                    />
+                  </Alert>
                 ),
                 status: "info",
                 position: "bottom",
                 duration: null,
                 isClosable: true,
-              }))
-            }
+              }));
+            }}
           >
             <TagLabel>{showGracias ? "Gracias!" : "Sugerencias"}</TagLabel>
             <TagRightIcon as={showGracias ? CheckIcon : ChatIcon} />
