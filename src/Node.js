@@ -27,7 +27,7 @@ class Node {
   }
 
   cursando(ctx) {
-    const { network, nodes, getNode, cuatri, showLabels } = ctx;
+    const { nodes, cuatri, showLabels } = ctx;
 
     this.cuatri = cuatri;
     if (this.label.includes("[")) this.label = this.label.split("\n[")[0];
@@ -83,7 +83,7 @@ class Node {
 
   aprobar(ctx) {
     const { network, nodes, getNode, nota, showLabels } = ctx;
-
+    if (nota < -1) return;
     this.cuatri = -1;
     this.nota = nota;
 
