@@ -54,6 +54,7 @@ const useGraph = (loginHook) => {
           if (metadata.checkboxes)
             metadata.checkboxes.forEach((c) => toggleCheckbox(c));
           if (user.orientacion) toggleGroup(user.orientacion.nombre);
+          if (electivasStatus() === "hidden") toggleElectivas();
           setLoadingGraph(false);
         })
         .catch((e) => {
@@ -156,6 +157,70 @@ const useGraph = (loginHook) => {
       n.level = lastLevel + 1;
       nodes.update(n);
     });
+  };
+
+  const electivasStatus = () => {
+    const status = [
+      ...new Set(
+        nodes
+          .get({
+            filter: (c) => c.categoria === "Materias Electivas",
+            fields: ["hidden"],
+          })
+          .map((n) => n.hidden)
+      ),
+    ];
+    if (status.length === 1) {
+      return status[0] ? "hidden" : "shown";
+    }
+    return "partial";
+  };
+
+  const toggleElectivas = () => {
+    const status = electivasStatus();
+    let group = null;
+    switch (status) {
+      case "hidden":
+        group = nodes
+          .get({
+            filter: (n) =>
+              n.categoria === "Materias Electivas" &&
+              n.group !== "Materias Electivas",
+            fields: ["id"],
+          })
+          .map((n) => {
+            const node = getNode(n.id);
+            node.hidden = false;
+            return node;
+          });
+        if (group.length) break;
+      // eslint-disable-next-line no-fallthrough
+      case "partial":
+        group = graph.nodes
+          .filter((n) => n.categoria === "Materias Electivas")
+          .map((n) => {
+            const node = getNode(n.id);
+            node.hidden = false;
+            return node;
+          });
+        break;
+
+      case "shown":
+        group = graph.nodes
+          .filter((n) => n.categoria === "Materias Electivas")
+          .map((n) => {
+            const node = getNode(n.id);
+            node.hidden = true;
+            return node;
+          });
+        break;
+      default:
+        break;
+    }
+
+    nodes.update(group);
+    keepFinDeCarreraOnLastLevel();
+    network.fit();
   };
 
   const toggleGroup = (id) => {
@@ -421,6 +486,8 @@ const useGraph = (loginHook) => {
     setFirstTime,
     isGroupHidden,
     cursando,
+    electivasStatus,
+    toggleElectivas,
   };
 };
 
