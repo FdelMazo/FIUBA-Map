@@ -15,6 +15,7 @@ import {
   Stat,
   StatLabel,
   StatNumber,
+  Tooltip,
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../Contexts";
@@ -36,26 +37,33 @@ const Footer = () => {
     <Collapse in={logged} key={user.carrera?.id} position="relative">
       <Flex alignItems="center" bg="headerbg">
         <Box>
-          <Stat p="0.4em" color="white" size="sm">
-            <StatLabel>Créditos</StatLabel>
-            <StatNumber>
-              {creditos.length !== 0
-                ? (
-                    (creditos.reduce((acc, node) => {
-                      acc += node.creditos;
-                      return acc;
-                    }, 0) /
-                      creditos.reduce((acc, node) => {
-                        if (node.creditosNecesarios)
-                          acc += node.creditosNecesarios;
+          <Tooltip
+            label={
+              creditos.reduce((acc, node) => {
+                acc += node.creditos;
+                return acc;
+              }, 0) +
+              " de " +
+              user.carrera?.creditos.total
+            }
+          >
+            <Stat p="0.4em" color="white" size="sm">
+              <StatLabel>Créditos</StatLabel>
+              <StatNumber>
+                {creditos.length !== 0
+                  ? (
+                      (creditos.reduce((acc, node) => {
+                        acc += node.creditos;
                         return acc;
-                      }, 0)) *
-                    100
-                  ).toFixed(2)
-                : 0}
-              %
-            </StatNumber>
-          </Stat>
+                      }, 0) /
+                        user.carrera?.creditos.total) *
+                      100
+                    ).toFixed(2)
+                  : 0}
+                %
+              </StatNumber>
+            </Stat>
+          </Tooltip>
         </Box>
         <Grid
           flexGrow={1}

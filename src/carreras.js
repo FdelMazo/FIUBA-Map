@@ -7,6 +7,7 @@ export const CARRERAS = [
     graph: data.sistemas,
     nombre: "Licenciatura en Análisis de Sistemas",
     creditos: {
+      total: 176,
       obligatorias: 136,
       electivas: 28,
       checkbox: [
@@ -38,6 +39,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "75.99" },
     ],
     creditos: {
+      total: 248,
       obligatorias: 156,
       orientacion: 34,
       electivas: { tesis: 34, tpp: 46 },
@@ -53,6 +55,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "70.99" },
     ],
     creditos: {
+      total: 208,
       obligatorias: 178,
       checkbox: [
         {
@@ -69,6 +72,7 @@ export const CARRERAS = [
     graph: data.alimentos,
     nombre: "Ingeniería de Alimentos",
     creditos: {
+      total: 144,
       materias: [
         {
           id: "76.44",
@@ -86,6 +90,7 @@ export const CARRERAS = [
     graph: data.civil,
     nombre: "Ingeniería Civil",
     creditos: {
+      total: 257,
       obligatorias: 210,
       electivas: 34,
       materias: [
@@ -114,6 +119,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "85.99" },
     ],
     creditos: {
+      total: 280,
       obligatorias: 206,
       checkbox: [
         {
@@ -152,6 +158,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "86.99" },
     ],
     creditos: {
+      total: 240,
       obligatorias: 166,
       electivas: 56,
       checkbox: [
@@ -177,6 +184,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "92.99" },
     ],
     creditos: {
+      total: 283,
       obligatorias: 196,
       materias: [
         { id: "HUM", bg: COLORS.orientacion1[50], color: "orientacion1" },
@@ -213,6 +221,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "67.98" },
     ],
     creditos: {
+      total: 260,
       obligatorias: 190,
       orientacion: { tesis: 28 },
       electivas: { tesis: 24, tpp: 52 },
@@ -227,6 +236,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "73.99" },
     ],
     creditos: {
+      total: 264,
       obligatorias: 226,
       electivas: { tesis: 20, tpp: 38 },
     },
@@ -240,6 +250,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "79.99" },
     ],
     creditos: {
+      total: 246,
       obligatorias: 216,
       electivas: { tesis: 12, tpp: 16 },
       checkbox: [
@@ -265,6 +276,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "76.59-76.62" },
     ],
     creditos: {
+      total: 252,
       obligatorias: 216,
       electivas: { tesis: 18, tpp: 24 },
     },
