@@ -23,7 +23,7 @@ export const electricista = [
     level: 1,
   },
   {
-    id: "87.01",
+    id: "87.13",
     materia: "Medios de Representación C",
     creditos: 4,
     correlativas: "CBC",
