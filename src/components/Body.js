@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ChatIcon, CheckIcon, Icon } from "@chakra-ui/icons";
+import { ChatIcon, CheckIcon, ExternalLinkIcon, Icon } from "@chakra-ui/icons";
 import {
   Alert,
   AlertDescription,
+  AlertTitle,
   Box,
   CloseButton,
   Flex,
@@ -213,9 +214,10 @@ const Body = (props) => {
               toast.close(bugToast.current);
               return (bugToast.current = toast({
                 render: (props) => (
-                  <Alert borderRadius={6} mb="4em" bg="blue.500">
-                    <Box flex="1" px={10}>
-                      <AlertDescription display="block">
+                  <Alert borderRadius={6} p={5} mb="4em" bg="blue.500">
+                    <Box flex="1">
+                      <AlertTitle>Hola!</AlertTitle>{" "}
+                      <AlertDescription px={5} display="block">
                         <Text>
                           Si encontras algo feo, incorrecto, lento, erroneo...
                           me decís?
@@ -253,6 +255,16 @@ const Body = (props) => {
                             />
                           </Flex>
                         </form>
+                        <Text fontSize="sm">
+                          ¿Usas Github? me ayudas mucho más levantando un issue{" "}
+                          <Link
+                            isExternal
+                            href="https://github.com/FdelMazo/FIUBA-Map/issues/new"
+                          >
+                            directamente{" "}
+                            <ExternalLinkIcon color="white" mx="2px" />
+                          </Link>
+                        </Text>
                       </AlertDescription>
                     </Box>
                     <CloseButton
