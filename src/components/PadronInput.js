@@ -30,7 +30,6 @@ const PadronInput = () => {
   } = React.useContext(UserContext);
 
   const { autosave, setAutosave, saveGraph } = React.useContext(GraphContext);
-
   const [notRegistered, setNotRegistered] = React.useState(false);
   const [lastInput, setLastInput] = React.useState("");
 
@@ -79,13 +78,13 @@ const PadronInput = () => {
                 <PopoverContent size="sm" w="fit-content">
                   <PopoverArrow />
                   <PopoverBody
-                    isChecked={autosave}
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.preventDefault();
                       setAutosave(!autosave);
                     }}
                   >
                     auto-save
-                    <Switch colorScheme="teal" ml={2} />
+                    <Switch isChecked={autosave} colorScheme="teal" ml={2} />
                   </PopoverBody>
                 </PopoverContent>
               </Popover>

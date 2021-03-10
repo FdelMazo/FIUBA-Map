@@ -475,6 +475,7 @@ const useGraph = (loginHook) => {
     setNodes,
     saveGraph,
     edges,
+    autosave,
     setAutosave,
     setEdges,
     changeCarrera,
