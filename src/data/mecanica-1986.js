@@ -564,8 +564,9 @@ export const mecanica = [
     creditos: 18,
     requiere: 140,
     categoria: "Fin de Carrera",
-    shape: "star",
+    shape: "diamond",
     level: -1,
+    size: 50,
   },
   {
     id: "67.98",
@@ -573,7 +574,8 @@ export const mecanica = [
     creditos: 14,
     requiere: 140,
     categoria: "Fin de Carrera",
-    shape: "star",
+    shape: "diamond",
     level: -1,
+    size: 50,
   },
 ];

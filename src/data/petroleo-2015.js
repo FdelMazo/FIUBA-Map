@@ -420,8 +420,9 @@ export const petroleo = [
     creditos: 18,
     correlativas: "79.12",
     categoria: "Fin de Carrera",
-    shape: "star",
+    shape: "diamond",
     level: -1,
+    size: 50,
   },
   {
     id: "79.99",
@@ -429,7 +430,8 @@ export const petroleo = [
     correlativas: "79.12",
     creditos: 14,
     categoria: "Fin de Carrera",
-    shape: "star",
+    shape: "diamond",
     level: -1,
+    size: 50,
   },
 ];

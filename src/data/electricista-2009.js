@@ -501,8 +501,9 @@ export const electricista = [
     creditos: 20,
     requiere: 140,
     categoria: "Fin de Carrera",
-    shape: "star",
+    shape: "diamond",
     level: -1,
+    size: 50,
   },
   {
     id: "85.99",
@@ -510,7 +511,8 @@ export const electricista = [
     creditos: 14,
     requiere: 140,
     categoria: "Fin de Carrera",
-    shape: "star",
+    shape: "diamond",
     level: -1,
+    size: 50,
   },
 ];
