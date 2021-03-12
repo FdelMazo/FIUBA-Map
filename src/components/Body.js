@@ -120,6 +120,10 @@ const Body = (props) => {
     },
   };
 
+  const getColor = () => {
+    return colorMode === 'dark' ? 'rgba(255, 255, 255, 0.76)' : 'black'
+  }
+
   return (
     <Box
       css={{ "& *:focus": { outline: "none" } }}
@@ -165,7 +169,7 @@ const Body = (props) => {
         >
           <Link
             isExternal
-            color={colorMode === 'dark' ? 'rgba(255, 255, 255, 0.76)' : 'black'}
+            color={getColor()}
             onClick={toggleColorMode}
           >
             <Icon boxSize={5} ml={2} viewBox="0 0 24 24">
@@ -183,7 +187,7 @@ const Body = (props) => {
         >
           <Link
             isExternal
-            color={colorMode === 'dark' ? 'rgba(255, 255, 255, 0.76)' : 'black'}
+            color={getColor()}
             href="https://fdelmazo.github.io/FIUBA-Plan/"
           >
             <Icon boxSize={5} ml={2} viewBox="0 0 448 512">
@@ -197,7 +201,7 @@ const Body = (props) => {
         <Tooltip label="FdelMazo/FIUBA-Map" zIndex={5501} placement="top">
           <Link
             isExternal
-            color={colorMode === 'dark' ? 'rgba(255, 255, 255, 0.76)' : 'black'}
+            color={getColor()}
             href="https://github.com/fdelmazo/FIUBA-Map"
           >
             <Icon boxSize={5} ml={2} viewBox="0 0 16 16">
@@ -213,7 +217,7 @@ const Body = (props) => {
           zIndex={5501}
           placement="top"
         >
-          <Link isExternal color={colorMode === 'dark' ? 'rgba(255, 255, 255, 0.76)' : 'black'} href="https://cafecito.app/fdelmazo">
+          <Link isExternal color={getColor()} href="https://cafecito.app/fdelmazo">
             <Icon boxSize={5} ml={2} viewBox="0 0 512 512">
               <path
                 fill="currentColor"
@@ -280,7 +284,7 @@ const Body = (props) => {
                             href="https://github.com/FdelMazo/FIUBA-Map/issues/new"
                           >
                             directamente{" "}
-                            <ExternalLinkIcon color={colorMode === 'dark' ? 'rgba(255, 255, 255, 0.76)' : 'black'} mx="2px" />
+                            <ExternalLinkIcon color={getColor()} mx="2px" />
                           </Link>
                         </Text>
                       </AlertDescription>
@@ -301,7 +305,7 @@ const Body = (props) => {
               }));
             }}
           >
-            <TagLabel color={colorMode === 'dark' ? 'rgba(255, 255, 255, 0.76)' : 'black'}>{showGracias ? "Gracias!" : "Sugerencias"}</TagLabel>
+            <TagLabel color={getColor()}>{showGracias ? "Gracias!" : "Sugerencias"}</TagLabel>
             <TagRightIcon as={showGracias ? CheckIcon : ChatIcon} />
           </Tag>
         </Box>
