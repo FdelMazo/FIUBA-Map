@@ -77,7 +77,7 @@ const PadronInput = () => {
                       </Icon>
                     </IconButton>
                   </PopoverTrigger>
-                  <PopoverContent size="sm" w="fit-content">
+                  <PopoverContent color="black" size="sm" w="fit-content">
                     <PopoverArrow />
                     <PopoverBody
                       onClick={(e) => {

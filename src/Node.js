@@ -27,8 +27,9 @@ class Node {
   }
 
   cursando(ctx) {
-    const { nodes, cuatri, showLabels } = ctx;
+    const { cuatri, showLabels } = ctx;
 
+    this.aprobada = false;
     this.cuatri = cuatri;
     if (this.label.includes("[")) this.label = this.label.split("\n[")[0];
     if (showLabels && cuatri === 0) this.label += "\n[Cursando]";
@@ -36,7 +37,7 @@ class Node {
     if (showLabels && cuatri > 1) this.label += "\n[En " + cuatri + " cuatris]";
 
     this.group = this.getGrupo();
-    nodes.update(this);
+    return this;
   }
 
   chequearNodosCred(ctx) {
@@ -65,7 +66,7 @@ class Node {
   }
 
   showLabel(ctx) {
-    const { nodes, showLabel } = ctx;
+    const { showLabel } = ctx;
     if (!showLabel && this.label.includes("["))
       this.label = this.label.split("\n[")[0];
 
@@ -78,14 +79,15 @@ class Node {
       }
     }
 
-    nodes.update(this);
+    return this;
   }
 
   aprobar(ctx) {
-    const { network, nodes, getNode, nota, showLabels } = ctx;
+    const { network, getNode, nota, showLabels } = ctx;
     if (nota < -1) return;
     this.cuatri = -1;
     this.nota = nota;
+    this.aprobada = false;
 
     if (this.label.includes("[")) this.label = this.label.split("\n[")[0];
     if (nota > 0 && showLabels) this.label += "\n[" + this.nota + "]";
@@ -94,36 +96,38 @@ class Node {
     if (nota === -1) {
       this.group = this.getGrupo();
       if (showLabels) this.label += "\n[Final]";
-      nodes.update(this);
-      return;
+      return this;
     }
 
     this.aprobada = true;
-    this.group = this.getGrupo();
-    nodes.update(this);
     const habilitadas = [];
 
     network.getConnectedNodes(this.id, "to").forEach((m) => {
       const nodem = getNode(m);
-      if (nodem.isHabilitada(ctx)) {
+      if (nodem.isHabilitada(ctx, this)) {
         nodem.habilitada = true;
         nodem.group = nodem.getGrupo();
         habilitadas.push(nodem);
       }
     });
 
-    nodes.update(habilitadas.concat(this.chequearNodosCred(ctx)));
+    this.group = this.getGrupo();
+    return habilitadas.concat(this).concat(this.chequearNodosCred(ctx));
   }
 
-  isHabilitada(ctx) {
-    const { network, nodes } = ctx;
+  isHabilitada(ctx, parent) {
+    const { network, nodes, getNode } = ctx;
 
     const from = network.getConnectedNodes(this.id, "from");
 
     let todoAprobado = true;
     for (let i = 0; i < from.length; i++) {
-      const m = nodes.get(from[i]);
-      todoAprobado &= m.aprobada;
+      const m = getNode(from[i]);
+      if (m.id === parent.id) {
+        todoAprobado &= parent.aprobada;
+      } else {
+        todoAprobado &= m.aprobada;
+      }
     }
     const totalCreditos = nodes
       .get({ filter: (n) => n.aprobada, fields: ["creditos"] })
@@ -137,27 +141,25 @@ class Node {
   }
 
   desaprobar(ctx) {
-    const { network, nodes, getNode } = ctx;
+    const { network, getNode } = ctx;
 
     this.aprobada = false;
     this.cuatri = -1;
     this.nota = -2;
     if (this.label.includes("[")) this.label = this.label.split("\n[")[0];
     this.group = this.getGrupo();
-    nodes.update(this);
-
     const deshabilitadas = [];
 
     network.getConnectedNodes(this.id, "to").forEach((m) => {
       const nodem = getNode(m);
-      if (!nodem.isHabilitada(ctx)) {
+      if (!nodem.isHabilitada(ctx, this)) {
         nodem.habilitada = false;
         nodem.group = nodem.getGrupo();
         deshabilitadas.push(nodem);
       }
     });
 
-    nodes.update(deshabilitadas.concat(this.chequearNodosCred(ctx)));
+    return deshabilitadas.concat(this).concat(this.chequearNodosCred(ctx));
   }
 
   getGrupo() {

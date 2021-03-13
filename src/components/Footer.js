@@ -34,6 +34,7 @@ const Footer = () => {
     setTimeout(redraw, 300);
   }, [logged, redraw]);
 
+  return <></>;
   return (
     <Collapse in={logged} key={user.carrera?.id} position="relative">
       <Flex

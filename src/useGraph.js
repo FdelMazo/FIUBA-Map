@@ -45,19 +45,37 @@ const useGraph = (loginHook) => {
       setLoadingGraph(true);
       getGraph(user.padron, user.carrera.id)
         .then((metadata) => {
-          if (metadata.materias)
+          const toUpdate = [];
+          if (metadata.materias) {
             metadata.materias.forEach((m) => {
-              if (m.nota >= 0) aprobar(m.id, m.nota);
-              else if (m.nota === -1) {
-                ponerEnFinal(m.id);
+              if (m.nota >= -1) {
+                toUpdate.push(
+                  getNode(m.id).aprobar({
+                    network,
+                    nodes,
+                    getNode,
+                    nota: m.nota,
+                    showLabels,
+                  })
+                );
               } else if (m.cuatri >= 0) {
-                cursando(m.id, m.cuatri);
+                toUpdate.push(
+                  getNode(m.id).cursando({
+                    network: network,
+                    cuatri: m.cuatri,
+                    showLabels,
+                    getNode,
+                  })
+                );
               }
             });
+          }
           if (metadata.checkboxes)
             metadata.checkboxes.forEach((c) => toggleCheckbox(c));
           if (user.orientacion) toggleGroup(user.orientacion.nombre);
           if (electivasStatus() === "hidden") toggleElectivas();
+          nodes.update(toUpdate.flat());
+          actualizarMetadata();
           setLoadingGraph(false);
         })
         .catch((e) => {
@@ -72,9 +90,11 @@ const useGraph = (loginHook) => {
     const conNota = nodes.get({
       filter: (n) => n.nota !== 0,
     });
+    const toUpdate = [];
     conNota.forEach((n) => {
-      getNode(n.id).showLabel({ nodes, showLabel: logged });
+      toUpdate.push(getNode(n.id).showLabel({ showLabel: logged }));
     });
+    nodes.update(toUpdate);
   }, [logged]);
 
   const saveGraph = () => {
@@ -127,12 +147,14 @@ const useGraph = (loginHook) => {
     aprobar("CBC", 0);
     if (user.orientacion) changeOrientacion(user.orientacion.nombre);
     if (user.carrera.finDeCarrera) {
+      const toUpdate = [];
       changeFinDeCarrera(user.finDeCarrera?.id);
       user.carrera.finDeCarrera.forEach((f) => {
         const n = getNode(f.materia);
         n.hidden = !(f.id === user.finDeCarrera?.id);
-        nodes.update(n);
+        toUpdate.push(n);
       });
+      nodes.update(toUpdate);
     }
     keepFinDeCarreraOnLastLevel();
   }, [nodes, user.finDeCarrera, user.orientacion]);
@@ -156,10 +178,12 @@ const useGraph = (loginHook) => {
         n.categoria === "Fin de Carrera" ||
         n.categoria === "Fin de Carrera (Obligatorio)",
     });
+    const toUpdate = [];
     nodesFinDeCarrera.forEach((n) => {
       n.level = lastLevel + 1;
-      nodes.update(n);
+      toUpdate.push(n);
     });
+    nodes.update(toUpdate);
     changeFinalDeCarreraLabel();
   };
 
@@ -241,12 +265,10 @@ const useGraph = (loginHook) => {
   };
 
   const getNode = (id) => {
-    console.log(id);
     return nodes?.get(id)?.nodeRef;
   };
 
   const ponerEnFinal = (id) => {
-    desaprobar(id);
     aprobar(id, -1);
   };
 
@@ -260,13 +282,15 @@ const useGraph = (loginHook) => {
   const aprobar = (id, nota) => {
     const node = getNode(id);
 
-    node.aprobar({
-      network: network,
-      nodes: nodes,
-      getNode,
-      nota,
-      showLabels,
-    });
+    nodes.update(
+      node.aprobar({
+        network,
+        nodes,
+        getNode,
+        nota,
+        showLabels,
+      })
+    );
 
     actualizarMetadata();
   };
@@ -274,25 +298,26 @@ const useGraph = (loginHook) => {
   const desaprobar = (id) => {
     const node = getNode(id);
 
-    node.desaprobar({
-      network: network,
-      nodes: nodes,
-      getNode,
-    });
-
+    nodes.update(
+      node.desaprobar({
+        network,
+        nodes,
+        getNode,
+      })
+    );
     actualizarMetadata();
   };
 
   const cursando = (id, cuatri) => {
-    desaprobar(id);
     const node = getNode(id);
-    node.cursando({
-      network: network,
-      nodes: nodes,
-      cuatri,
-      showLabels,
-      getNode,
-    });
+    nodes.update(
+      node.cursando({
+        network,
+        cuatri,
+        showLabels,
+        getNode,
+      })
+    );
 
     actualizarMetadata();
   };
@@ -465,17 +490,19 @@ const useGraph = (loginHook) => {
   };
 
   const changeFinalDeCarreraLabel = () => {
-    if (network)
-      network.setOptions({
-        groups: {
-          "Fin de Carrera": {
-            font: { color: colorMode === "dark" ? "white" : "black" },
-          },
-          "Fin de Carrera (Obligatorio)": {
-            font: { color: colorMode === "dark" ? "white" : "black" },
-          },
-        },
+    if (network) {
+      const nodesFinDeCarrera = nodes.get({
+        filter: (n) =>
+          n.categoria === "Fin de Carrera" ||
+          n.categoria === "Fin de Carrera (Obligatorio)",
       });
+      const toUpdate = [];
+      nodesFinDeCarrera.forEach((n) => {
+        n.font = { color: colorMode === "dark" ? "white" : "black" };
+        toUpdate.push(n);
+      });
+      nodes.update(toUpdate);
+    }
   };
 
   return {
