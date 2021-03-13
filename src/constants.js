@@ -85,6 +85,7 @@ export const GRAPHOPTIONS = {
     },
   },
   edges: {
+    arrowStrikethrough: false,
     arrows: {
       to: { enabled: true, scaleFactor: 0.7, type: "arrow" },
     },
