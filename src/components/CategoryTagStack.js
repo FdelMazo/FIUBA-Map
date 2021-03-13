@@ -25,11 +25,11 @@ const CategoryTagStack = (props) => {
             toggleElectivas();
           }}
         >
-          <TagLeftIcon
+          <TagLeftIcon 
             as={() => {
               switch (electivasStatus()) {
                 case "hidden":
-                  return <AddIcon mr="0.5rem" />;
+                  return <AddIcon color='black' mr="0.5rem" />;
                 case "partial":
                   return (
                     <HStack spacing={0} mr="0.5rem">
@@ -39,13 +39,13 @@ const CategoryTagStack = (props) => {
                   );
 
                 case "shown":
-                  return <MinusIcon mr="0.5rem" />;
+                  return <MinusIcon color='black' mr="0.5rem" />;
                 default:
                   return;
               }
             }}
           />
-          <TagLabel>Materias Electivas</TagLabel>
+          <TagLabel color='black'>Materias Electivas</TagLabel>
         </Tag>
       )}
       {nodes &&
@@ -68,8 +68,8 @@ const CategoryTagStack = (props) => {
                 toggleGroup(c);
               }}
             >
-              <TagLeftIcon as={isGroupHidden(c) ? AddIcon : MinusIcon} />
-              <TagLabel>{c}</TagLabel>
+              <TagLeftIcon color='black' as={isGroupHidden(c) ? AddIcon : MinusIcon} />
+              <TagLabel color='black'>{c}</TagLabel>
             </Tag>
           ))}
     </Stack>

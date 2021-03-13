@@ -3,7 +3,6 @@ import { extendTheme } from "@chakra-ui/react";
 export const COLORS = {
   // https://nipponcolors.com/
   headerbg: "#222d38",
-  graphbg: "#f7f9fa",
   // https://flatuicolors.com/palette/de + https://themera.vercel.app/
   electivas: {
     50: "#DCC0F7",
@@ -71,8 +70,14 @@ export const COLORS = {
   },
 };
 
+const config = {
+  initialColorMode: "dark",
+  useSystemColorMode: false,
+}
+
 export const customTheme = extendTheme({
-  colors: {
+  colors:{
     ...COLORS,
   },
+  config,
 });

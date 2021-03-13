@@ -50,8 +50,8 @@ export const GRUPOS = {
   "Materias Electivas": { color: COLORS.electivas[400] },
   Cursando: { color: COLORS.cursando[500] },
   "A Cursar": { color: COLORS.futuro[500] },
-  "Fin de Carrera": { color: COLORS.findecarrera[400] },
-  "Fin de Carrera (Obligatorio)": { color: COLORS.findecarrera[400] },
+  "Fin de Carrera": { color: COLORS.findecarrera[400], font: {color: 'grey'}},
+  "Fin de Carrera (Obligatorio)": { color: COLORS.findecarrera[400], font: {color: 'grey'} },
   ...CARRERAS.filter((c) => c.orientaciones)
     .flatMap((c) => c.orientaciones)
     .reduce(function (map, obj) {
@@ -61,7 +61,7 @@ export const GRUPOS = {
 };
 
 export const GRAPHOPTIONS = {
-  nodes: { shape: "box" },
+  nodes: { shape: "box"},
   interaction: {
     hover: true,
   },
