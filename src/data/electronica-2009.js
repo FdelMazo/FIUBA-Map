@@ -765,7 +765,7 @@ export const electronica = [
     categoria: "Fin de Carrera",
     shape: "diamond",
     level: -1,
-    size: 50,
+    size: 45,
   },
   {
     id: "86.99",
@@ -774,7 +774,7 @@ export const electronica = [
     categoria: "Fin de Carrera",
     shape: "diamond",
     level: -1,
-    size: 50,
+    size: 45,
   },
   {
     id: "86.40",

@@ -414,6 +414,6 @@ export const sistemas = [
     categoria: "Fin de Carrera (Obligatorio)",
     shape: "diamond",
     level: 13,
-    size: 50,
+    size: 45,
   },
 ];

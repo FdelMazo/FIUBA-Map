@@ -422,7 +422,7 @@ export const petroleo = [
     categoria: "Fin de Carrera",
     shape: "diamond",
     level: -1,
-    size: 50,
+    size: 45,
   },
   {
     id: "79.99",
@@ -432,6 +432,6 @@ export const petroleo = [
     categoria: "Fin de Carrera",
     shape: "diamond",
     level: -1,
-    size: 50,
+    size: 45,
   },
 ];

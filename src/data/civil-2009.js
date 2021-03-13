@@ -647,6 +647,6 @@ export const civil = [
     categoria: "Fin de Carrera (Obligatorio)",
     shape: "diamond",
     level: -1,
-    size: 50,
+    size: 45,
   },
 ];

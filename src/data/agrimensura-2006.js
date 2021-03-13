@@ -374,7 +374,7 @@ export const agrimensura = [
     categoria: "Fin de Carrera",
     shape: "diamond",
     level: -1,
-    size: 50,
+    size: 45,
   },
   {
     id: "70.99",
@@ -384,6 +384,6 @@ export const agrimensura = [
     categoria: "Fin de Carrera",
     shape: "diamond",
     level: -1,
-    size: 50,
+    size: 45,
   },
 ];

@@ -503,7 +503,7 @@ export const electricista = [
     categoria: "Fin de Carrera",
     shape: "diamond",
     level: -1,
-    size: 50,
+    size: 45,
   },
   {
     id: "85.99",
@@ -513,6 +513,6 @@ export const electricista = [
     categoria: "Fin de Carrera",
     shape: "diamond",
     level: -1,
-    size: 50,
+    size: 45,
   },
 ];
