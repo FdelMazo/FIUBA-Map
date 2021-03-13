@@ -81,6 +81,11 @@ const config = {
 };
 
 export const customTheme = extendTheme({
+  fonts: {
+    body: "system-ui, sans-serif",
+    heading: "Georgia, serif",
+    mono: "Menlo, monospace",
+  },
   colors: {
     ...COLORS,
   },
