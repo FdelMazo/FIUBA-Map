@@ -28,9 +28,10 @@ const useGraph = (loginHook) => {
 
   React.useEffect(() => {
     if (!logged) changeCarrera(CARRERAS[0].id);
-    else {
-      changeCarrera(user.carrera.id);
-    }
+  }, []);
+
+  React.useEffect(() => {
+    if (logged) changeCarrera(user.carrera.id);
   }, [logged]);
 
   React.useEffect(() => {
@@ -240,6 +241,7 @@ const useGraph = (loginHook) => {
   };
 
   const getNode = (id) => {
+    console.log(id);
     return nodes?.get(id)?.nodeRef;
   };
 
