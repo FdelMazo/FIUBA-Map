@@ -2,7 +2,7 @@ import {
   Center,
   Modal,
   ModalOverlay,
-  useColorModeValue
+  useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
 
@@ -44,7 +44,7 @@ const LoadingGraph = (props) => {
           left: "50%",
           animation: "sk-rotateplane 1.2s infinite ease-in-out",
         }}
-        bg={useColorModeValue("headerbg", "headerbgdark")}
+        bg={useColorModeValue("headerbg", "white")}
         h="3em"
         w="3em"
       />
