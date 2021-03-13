@@ -1,4 +1,4 @@
-import { CSSReset, ThemeProvider } from "@chakra-ui/react";
+import { CSSReset, ChakraProvider } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom";
 import MainApp from "./components/MainApp";
@@ -22,10 +22,10 @@ const App = () => {
 
 ReactDOM.render(
   <>
-    <ThemeProvider theme={customTheme}>
+    <ChakraProvider theme={customTheme}>
       <CSSReset />
       <App />
-    </ThemeProvider>
+    </ChakraProvider>
   </>,
   document.getElementById("root")
 );
