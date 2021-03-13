@@ -21,12 +21,10 @@ const App = () => {
 };
 
 ReactDOM.render(
-  <>
-    <ChakraProvider theme={customTheme}>
-      <CSSReset />
-      <ColorModeScript initialColorMode={customTheme.config.initialColorMode} />
-      <App />
-    </ChakraProvider>
-  </>,
+  <ChakraProvider theme={customTheme}>
+    <CSSReset />
+    <ColorModeScript initialColorMode={customTheme.config.initialColorMode} />
+    <App />
+  </ChakraProvider>,
   document.getElementById("root")
 );
