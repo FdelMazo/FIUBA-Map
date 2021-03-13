@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { useColorMode } from "@chakra-ui/color-mode";
 import React from "react";
 import CARRERAS from "./carreras";
 import Node from "./Node";
@@ -23,6 +24,7 @@ const useGraph = (loginHook) => {
   const [loadingGraph, setLoadingGraph] = React.useState(false);
   const [firstTime, setFirstTime] = React.useState(true);
   const { user, setUser, register, logged, getGraph, postGraph } = loginHook;
+  const { colorMode } = useColorMode();
 
   React.useEffect(() => {
     if (!logged) changeCarrera(CARRERAS[0].id);
@@ -157,6 +159,7 @@ const useGraph = (loginHook) => {
       n.level = lastLevel + 1;
       nodes.update(n);
     });
+    changeFinalDeCarreraLabel();
   };
 
   const electivasStatus = () => {
@@ -459,6 +462,20 @@ const useGraph = (loginHook) => {
     ).check = !value;
   };
 
+  const changeFinalDeCarreraLabel = () => {
+    if (network)
+      network.setOptions({
+        groups: {
+          "Fin de Carrera": {
+            font: { color: colorMode === "dark" ? "white" : "black" },
+          },
+          "Fin de Carrera (Obligatorio)": {
+            font: { color: colorMode === "dark" ? "white" : "black" },
+          },
+        },
+      });
+  };
+
   return {
     graph,
     toggleGroup,
@@ -474,6 +491,7 @@ const useGraph = (loginHook) => {
     nodes,
     setNodes,
     saveGraph,
+    changeFinalDeCarreraLabel,
     edges,
     autosave,
     setAutosave,

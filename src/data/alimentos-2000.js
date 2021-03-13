@@ -416,8 +416,8 @@ export const alimentos = [
     requiere: 140,
     correlativas: "CEX1",
     categoria: "Fin de Carrera (Obligatorio)",
-    shape: "diamond",
-    size: 45,
+
+
     level: -1,
   },
   {
@@ -427,8 +427,8 @@ export const alimentos = [
     requiere: 140,
     correlativas: "CEX1",
     categoria: "Fin de Carrera (Obligatorio)",
-    shape: "diamond",
-    size: 45,
+
+
     level: -1,
   },
 ];

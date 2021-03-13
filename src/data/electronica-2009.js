@@ -763,18 +763,18 @@ export const electronica = [
     materia: "Tesis de Ingeniería Electrónica",
     creditos: 18,
     categoria: "Fin de Carrera",
-    shape: "diamond",
+
     level: -1,
-    size: 45,
+
   },
   {
     id: "86.99",
     materia: "Trabajo Profesional de Ingeniería Electrónica",
     creditos: 18,
     categoria: "Fin de Carrera",
-    shape: "diamond",
+
     level: -1,
-    size: 45,
+
   },
   {
     id: "86.40",

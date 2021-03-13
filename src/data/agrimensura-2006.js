@@ -372,9 +372,9 @@ export const agrimensura = [
     creditos: 18,
     requiere: 140,
     categoria: "Fin de Carrera",
-    shape: "diamond",
+
     level: -1,
-    size: 45,
+
   },
   {
     id: "70.99",
@@ -382,8 +382,8 @@ export const agrimensura = [
     creditos: 12,
     requiere: 140,
     categoria: "Fin de Carrera",
-    shape: "diamond",
+
     level: -1,
-    size: 45,
+
   },
 ];

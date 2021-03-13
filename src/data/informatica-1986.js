@@ -784,9 +784,9 @@ export const informatica = [
     creditos: 24,
     requiere: 140,
     categoria: "Fin de Carrera",
-    shape: "diamond",
+
     level: -1,
-    size: 45,
+
   },
   {
     id: "75.99",
@@ -794,8 +794,8 @@ export const informatica = [
     creditos: 12,
     requiere: 140,
     categoria: "Fin de Carrera",
-    shape: "diamond",
+
     level: -1,
-    size: 45,
+
   },
 ];

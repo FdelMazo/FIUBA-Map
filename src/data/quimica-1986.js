@@ -445,9 +445,9 @@ export const quimica = [
     creditos: 18,
     correlativas: "76.52-76.53",
     categoria: "Fin de Carrera",
-    shape: "diamond",
+
     level: -1,
-    size: 45,
+
   },
   {
     id: "76.59-76.62",
@@ -455,8 +455,8 @@ export const quimica = [
     creditos: 12,
     correlativas: "76.52-76.53-76.56",
     categoria: "Fin de Carrera",
-    shape: "diamond",
+
     level: -1,
-    size: 45,
+
   },
 ];

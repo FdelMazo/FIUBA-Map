@@ -645,8 +645,8 @@ export const civil = [
     requiere: 200,
     correlativas: "88.14",
     categoria: "Fin de Carrera (Obligatorio)",
-    shape: "diamond",
+
     level: -1,
-    size: 45,
+
   },
 ];

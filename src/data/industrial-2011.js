@@ -588,9 +588,9 @@ export const industrial = [
     creditos: 13,
     requiere: 160,
     categoria: "Fin de Carrera",
-    shape: "diamond",
+
     level: -1,
-    size: 45,
+
   },
   {
     id: "92.99",
@@ -599,8 +599,8 @@ export const industrial = [
     requiere: 160,
     correlativas: "76.52-76.53-76.56",
     categoria: "Fin de Carrera",
-    shape: "diamond",
+
     level: -1,
-    size: 45,
+
   },
 ];

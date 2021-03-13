@@ -412,8 +412,6 @@ export const sistemas = [
     creditos: 12,
     correlativas: "95.24-95.59-95.60",
     categoria: "Fin de Carrera (Obligatorio)",
-    shape: "diamond",
     level: 13,
-    size: 45,
   },
 ];

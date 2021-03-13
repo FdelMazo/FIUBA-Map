@@ -484,17 +484,17 @@ export const naval = [
     creditos: 18,
     requiere: 140,
     categoria: "Fin de Carrera",
-    shape: "diamond",
+
     level: -1,
-    size: 45,
+
   },
   {
     id: "73.99",
     materia: "Trabajo Profesional de Ingeniería Naval y Mecánica",
     creditos: 0,
     categoria: "Fin de Carrera",
-    shape: "diamond",
+
     level: -1,
-    size: 45,
+
   },
 ];
