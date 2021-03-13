@@ -1,4 +1,9 @@
-import { Center, Modal, ModalOverlay } from "@chakra-ui/react";
+import {
+  Center,
+  Modal,
+  ModalOverlay,
+  useColorModeValue
+} from "@chakra-ui/react";
 import React from "react";
 
 const injectStyle = (style) => {
@@ -39,7 +44,7 @@ const LoadingGraph = (props) => {
           left: "50%",
           animation: "sk-rotateplane 1.2s infinite ease-in-out",
         }}
-        bg="headerbg"
+        bg={useColorModeValue("headerbg", "headerbgdark")}
         h="3em"
         w="3em"
       />

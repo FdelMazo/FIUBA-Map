@@ -95,6 +95,7 @@ const PadronInput = () => {
                 borderRadius={4}
                 size="sm"
                 w="20ch"
+                borderColor="white"
                 color="white"
                 name="padron"
                 placeholder="Padrón"

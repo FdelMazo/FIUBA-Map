@@ -1,4 +1,4 @@
-import { Flex, ScaleFade, Select } from "@chakra-ui/react";
+import { Flex, ScaleFade, Select, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 import CARRERAS from "../carreras";
 import { GraphContext, UserContext } from "../Contexts";
@@ -15,7 +15,7 @@ const Header = (props) => {
       height="4em"
       align="center"
       justify="space-between"
-      bg="headerbg"
+      bg={useColorModeValue("headerbg", "headerbgdark")}
       padding="0.8em"
     >
       {displayedNode && <MateriaMenu displayedNode={displayedNode} />}
@@ -25,6 +25,7 @@ const Header = (props) => {
 
       <ScaleFade in={!displayedNode} unmountOnExit>
         <Select
+          borderColor="white"
           color="white"
           key={user.carrera?.id}
           css={{

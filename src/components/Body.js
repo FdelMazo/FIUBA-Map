@@ -1,5 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ChatIcon, CheckIcon, ExternalLinkIcon, Icon } from "@chakra-ui/icons";
+import {
+  ChatIcon,
+  CheckIcon,
+  ExternalLinkIcon,
+  Icon,
+  MoonIcon,
+  SunIcon,
+} from "@chakra-ui/icons";
 import {
   Alert,
   AlertDescription,
@@ -8,6 +15,7 @@ import {
   CloseButton,
   Flex,
   IconButton,
+  LightMode,
   Link,
   SlideFade,
   Tag,
@@ -16,8 +24,9 @@ import {
   Text,
   Textarea,
   Tooltip,
-  useToast,
   useColorMode,
+  useColorModeValue,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
 import Graph from "react-graph-vis";
@@ -46,7 +55,7 @@ const Body = (props) => {
   const initialToast = React.useRef();
   const bugToast = React.useRef();
   const [showGracias, setShowGracias] = React.useState(false);
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { toggleColorMode } = useColorMode();
 
   useEffect(() => {
     initialToast.current = toast({
@@ -120,14 +129,10 @@ const Body = (props) => {
     },
   };
 
-  const getColor = () => {
-    return colorMode === 'dark' ? 'rgba(255, 255, 255, 0.76)' : 'black'
-  }
-
   return (
     <Box
       css={{ "& *:focus": { outline: "none" } }}
-      bg="graphbg"
+      bg={useColorModeValue("graphbg", "graphbgdark")}
       flexGrow="1"
       height="1em"
       position="relative"
@@ -163,31 +168,21 @@ const Body = (props) => {
         zIndex={2}
       >
         <Tooltip
-          label="Toggle mode"
+          label={`Toggle ${useColorModeValue("dark", "light")}`}
           zIndex={5501}
           placement="top"
         >
           <Link
-            isExternal
-            color={getColor()}
+            color={useColorModeValue("text", "textdark")}
             onClick={toggleColorMode}
           >
-            <Icon boxSize={5} ml={2} viewBox="0 0 24 24">
-              <path
-                fill="currentColor"
-                d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"
-              />
-            </Icon>
+            {useColorModeValue(<MoonIcon />, <SunIcon />)}
           </Link>
         </Tooltip>
-        <Tooltip
-          label="FIUBA-Plan"
-          zIndex={5501}
-          placement="top"
-        >
+        <Tooltip label="FIUBA-Plan" zIndex={5501} placement="top">
           <Link
             isExternal
-            color={getColor()}
+            color={useColorModeValue("text", "textdark")}
             href="https://fdelmazo.github.io/FIUBA-Plan/"
           >
             <Icon boxSize={5} ml={2} viewBox="0 0 448 512">
@@ -201,7 +196,7 @@ const Body = (props) => {
         <Tooltip label="FdelMazo/FIUBA-Map" zIndex={5501} placement="top">
           <Link
             isExternal
-            color={getColor()}
+            color={useColorModeValue("text", "textdark")}
             href="https://github.com/fdelmazo/FIUBA-Map"
           >
             <Icon boxSize={5} ml={2} viewBox="0 0 16 16">
@@ -212,12 +207,12 @@ const Body = (props) => {
             </Icon>
           </Link>
         </Tooltip>
-        <Tooltip
-          label="Invitame un Cafecíto"
-          zIndex={5501}
-          placement="top"
-        >
-          <Link isExternal color={getColor()} href="https://cafecito.app/fdelmazo">
+        <Tooltip label="Invitame un Cafecíto" zIndex={5501} placement="top">
+          <Link
+            isExternal
+            color={useColorModeValue("text", "textdark")}
+            href="https://cafecito.app/fdelmazo"
+          >
             <Icon boxSize={5} ml={2} viewBox="0 0 512 512">
               <path
                 fill="currentColor"
@@ -226,89 +221,100 @@ const Body = (props) => {
             </Icon>
           </Link>
         </Tooltip>
-        <Box>
-          <Tag
-            mt={2}
-            variant="subtle"
-            cursor="pointer"
-            colorScheme="blackAlpha"
-            onClick={() => {
-              toast.close(bugToast.current);
-              return (bugToast.current = toast({
-                render: (props) => (
-                  <Alert borderRadius={6} p={5} mb="4em" bg="blue.500">
-                    <Box flex="1">
-                      <AlertTitle>Hola!</AlertTitle>{" "}
-                      <AlertDescription px={5} display="block">
-                        <Text>
-                          Si encontras algo feo, incorrecto, lento, erroneo...
-                          me decís?
-                        </Text>
-                        <Text>
-                          Si ves algo que te gustó, o tenes alguna sugerencia,
-                          también!
-                        </Text>
-                        <Text>
-                          Si querés que te responda, escribí tu
-                          mail/telegram/algo.
-                        </Text>
-                        <form
-                          onSubmit={(t) => {
-                            t.preventDefault();
-                            submitBug(t.target.elements["bug"].value);
-                            setShowGracias(true);
-                            toast.close(bugToast.current);
-                          }}
-                        >
-                          <Flex mt={3} alignItems="flex-end">
-                            <Textarea
-                              resize="none"
-                              focusBorderColor="black"
-                              size="sm"
-                              placeholder="Encontre un error en..."
-                              name="bug"
-                            />
-                            <IconButton
-                              ml={3}
-                              colorScheme="blackAlpha"
-                              size="sm"
-                              type="submit"
-                              icon={<ChatIcon />}
-                            />
-                          </Flex>
-                        </form>
-                        <Text fontSize="sm">
-                          ¿Usas Github? me ayudas mucho más levantando un issue{" "}
-                          <Link
-                            isExternal
-                            href="https://github.com/FdelMazo/FIUBA-Map/issues/new"
+        <LightMode>
+          <Box>
+            <Tag
+              mt={2}
+              variant="subtle"
+              cursor="pointer"
+              bg="#e9eaeb"
+              // colorScheme="blackAlpha"
+              onClick={() => {
+                toast.close(bugToast.current);
+                return (bugToast.current = toast({
+                  render: (props) => (
+                    <Alert
+                      borderRadius={6}
+                      p={5}
+                      mb="4em"
+                      bg="blue.500"
+                      color="black"
+                    >
+                      <Box flex="1">
+                        <AlertTitle>Hola!</AlertTitle>{" "}
+                        <AlertDescription px={5} display="block">
+                          <Text>
+                            Si encontras algo feo, incorrecto, lento, erroneo...
+                            me decís?
+                          </Text>
+                          <Text>
+                            Si ves algo que te gustó, o tenes alguna sugerencia,
+                            también!
+                          </Text>
+                          <Text>
+                            Si querés que te responda, escribí tu
+                            mail/telegram/algo.
+                          </Text>
+                          <form
+                            onSubmit={(t) => {
+                              t.preventDefault();
+                              submitBug(t.target.elements["bug"].value);
+                              setShowGracias(true);
+                              toast.close(bugToast.current);
+                            }}
                           >
-                            directamente{" "}
-                            <ExternalLinkIcon color={getColor()} mx="2px" />
-                          </Link>
-                        </Text>
-                      </AlertDescription>
-                    </Box>
-                    <CloseButton
-                      color="white"
-                      onClick={() => toast.close(props.id)}
-                      position="absolute"
-                      right="8px"
-                      top="8px"
-                    />
-                  </Alert>
-                ),
-                status: "info",
-                position: "bottom",
-                duration: null,
-                isClosable: true,
-              }));
-            }}
-          >
-            <TagLabel color={getColor()}>{showGracias ? "Gracias!" : "Sugerencias"}</TagLabel>
-            <TagRightIcon as={showGracias ? CheckIcon : ChatIcon} />
-          </Tag>
-        </Box>
+                            <Flex mt={3} alignItems="flex-end">
+                              <Textarea
+                                resize="none"
+                                borderColor="black"
+                                color="black"
+                                focusBorderColor="black"
+                                size="sm"
+                                name="bug"
+                              />
+                              <IconButton
+                                ml={3}
+                                colorScheme="blackAlpha"
+                                size="sm"
+                                type="submit"
+                                icon={<ChatIcon />}
+                              />
+                            </Flex>
+                          </form>
+                          <Text fontSize="sm">
+                            ¿Usas Github? me ayudas mucho más levantando un
+                            issue{" "}
+                            <Link
+                              isExternal
+                              href="https://github.com/FdelMazo/FIUBA-Map/issues/new"
+                            >
+                              directamente{" "}
+                              <ExternalLinkIcon color="white" mx="2px" />
+                            </Link>
+                          </Text>
+                        </AlertDescription>
+                      </Box>
+                      <CloseButton
+                        color="white"
+                        onClick={() => toast.close(props.id)}
+                        position="absolute"
+                        right="8px"
+                        top="8px"
+                      />
+                    </Alert>
+                  ),
+                  status: "info",
+                  position: "bottom",
+                  duration: null,
+                  isClosable: true,
+                }));
+              }}
+            >
+              <TagLabel>{showGracias ? "Gracias!" : "Sugerencias"}</TagLabel>
+              <TagRightIcon as={showGracias ? CheckIcon : ChatIcon} />
+            </Tag>
+          </Box>
+        </LightMode>
       </Box>
     </Box>
   );

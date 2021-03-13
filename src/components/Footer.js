@@ -16,6 +16,7 @@ import {
   StatLabel,
   StatNumber,
   Tooltip,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../Contexts";
@@ -35,7 +36,10 @@ const Footer = () => {
 
   return (
     <Collapse in={logged} key={user.carrera?.id} position="relative">
-      <Flex alignItems="center" bg="headerbg">
+      <Flex
+        alignItems="center"
+        bg={useColorModeValue("headerbg", "headerbgdark")}
+      >
         <Box>
           <Tooltip
             label={

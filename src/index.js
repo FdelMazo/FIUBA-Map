@@ -1,4 +1,4 @@
-import { CSSReset, ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, ColorModeScript, CSSReset } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom";
 import MainApp from "./components/MainApp";
@@ -24,6 +24,7 @@ ReactDOM.render(
   <>
     <ChakraProvider theme={customTheme}>
       <CSSReset />
+      <ColorModeScript initialColorMode={customTheme.config.initialColorMode} />
       <App />
     </ChakraProvider>
   </>,
