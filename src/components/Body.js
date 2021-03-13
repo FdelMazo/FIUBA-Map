@@ -52,59 +52,9 @@ const Body = (props) => {
   const { width } = useWindowSize();
   const { setDisplayedNode } = props;
   const toast = useToast();
-  const initialToast = React.useRef();
   const bugToast = React.useRef();
   const [showGracias, setShowGracias] = React.useState(false);
   const { toggleColorMode } = useColorMode();
-
-  useEffect(() => {
-    initialToast.current = toast({
-      title: <Text color="black">FIUBA Map v2 - Beta</Text>,
-      description: (
-        <Box color="black" px={5}>
-          <Text>
-            Hola, estoy testeando una nueva versión del FMap. Pero todavía le
-            falta pulir bastaaaaaante.
-          </Text>
-          <Text>
-            Si encontras algo feo, incorrecto, lento, erroneo... me decís?{" "}
-          </Text>
-          <Text>
-            Si ves algo que te gustó, o tenes alguna sugerencia, también!
-          </Text>
-          <Text>Si querés que te responda, escribí tu mail/telegram/algo.</Text>
-          <form
-            onSubmit={(t) => {
-              t.preventDefault();
-              submitBug(t.target.elements["bug"].value);
-              toast.close(initialToast.current);
-            }}
-          >
-            <Flex alignItems="flex-end">
-              <Textarea
-                mt={2}
-                resize="none"
-                focusBorderColor="black"
-                placeholder="Encontre un error en..."
-                name="bug"
-              />
-              <IconButton
-                ml={3}
-                colorScheme="blackAlpha"
-                size="sm"
-                type="submit"
-                icon={<ChatIcon />}
-              />
-            </Flex>
-          </form>
-        </Box>
-      ),
-      status: "info",
-      position: "bottom",
-      duration: null,
-      isClosable: true,
-    });
-  }, []);
 
   useEffect(() => {
     setTimeout(redraw, 100);
