@@ -95,6 +95,11 @@ const PadronInput = () => {
           ) : (
             <LightMode>
               <Input
+                css={{
+                  "&::placeholder": {
+                    color: "LightGray",
+                  },
+                }}
                 borderRadius={4}
                 size="sm"
                 w="20ch"
