@@ -12,6 +12,7 @@ const Header = (props) => {
 
   return (
     <Flex
+      zIndex={5501}
       height="4em"
       align="center"
       justify="space-between"

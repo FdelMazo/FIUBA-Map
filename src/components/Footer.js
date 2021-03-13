@@ -5,6 +5,7 @@ import {
   Flex,
   Grid,
   GridItem,
+  LightMode,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -34,7 +35,6 @@ const Footer = () => {
     setTimeout(redraw, 300);
   }, [logged, redraw]);
 
-  return <></>;
   return (
     <Collapse in={logged} key={user.carrera?.id} position="relative">
       <Flex
@@ -49,7 +49,8 @@ const Footer = () => {
                 return acc;
               }, 0) +
               " de " +
-              user.carrera?.creditos.total
+              user.carrera?.creditos.total +
+              " créditos"
             }
           >
             <Stat p="0.4em" color="white" size="sm">
@@ -79,19 +80,21 @@ const Footer = () => {
           {creditos.map((c) => (
             <GridItem colSpan={c.proportion}>
               <Popover placement="top" trigger="hover">
-                <PopoverTrigger>
-                  <Box>
-                    <Progress
-                      hasStripe
-                      css={{
-                        backgroundColor: c.bg,
-                      }}
-                      max={c.creditosNecesarios}
-                      value={c.creditos}
-                      colorScheme={c.color}
-                    />
-                  </Box>
-                </PopoverTrigger>
+                <LightMode>
+                  <PopoverTrigger>
+                    <Box>
+                      <Progress
+                        hasStripe
+                        css={{
+                          backgroundColor: c.bg,
+                        }}
+                        max={c.creditosNecesarios}
+                        value={c.creditos}
+                        colorScheme={c.color}
+                      />
+                    </Box>
+                  </PopoverTrigger>
+                </LightMode>
                 <PopoverContent>
                   <PopoverArrow />
                   <PopoverHeader border="none">
@@ -99,18 +102,20 @@ const Footer = () => {
                   </PopoverHeader>
                   <PopoverBody>
                     {c.checkbox ? (
-                      <Checkbox
-                        isIndeterminate={!!!c.check}
-                        isChecked={!!c.check}
-                        colorScheme={c.color}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          toggleCheckbox(c);
-                          actualizarMetadata();
-                        }}
-                      >
-                        Marcar como completo
-                      </Checkbox>
+                      <LightMode>
+                        <Checkbox
+                          isIndeterminate={!!!c.check}
+                          isChecked={!!c.check}
+                          colorScheme={c.color}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            toggleCheckbox(c);
+                            actualizarMetadata();
+                          }}
+                        >
+                          Marcar como completo
+                        </Checkbox>
+                      </LightMode>
                     ) : c.creditosNecesarios ? (
                       `${c.creditos} de ${c.creditosNecesarios} créditos necesarios.`
                     ) : (
