@@ -40,7 +40,7 @@ class Node {
     return this;
   }
 
-  chequearNodosCred(ctx) {
+  chequearNodosCred(ctx, parent) {
     const { nodes, getNode } = ctx;
     const nodosCred = nodes.get({
       filter: (n) => n.requiere && !n.correlativas,
@@ -48,7 +48,13 @@ class Node {
     });
 
     const totalCreditos = nodes
-      .get({ filter: (n) => n.aprobada, fields: ["creditos"] })
+      .get({
+        filter: (n) => {
+          if (n.id === parent.id) return parent.aprobada;
+          else return n.aprobada;
+        },
+        fields: ["creditos"],
+      })
       .reduce((acc, n) => {
         acc += n.creditos;
         return acc;
@@ -61,7 +67,6 @@ class Node {
       node.group = node.getGrupo();
       res.push(node);
     });
-
     return res;
   }
 
@@ -112,7 +117,7 @@ class Node {
     });
 
     this.group = this.getGrupo();
-    return habilitadas.concat(this).concat(this.chequearNodosCred(ctx));
+    return habilitadas.concat(this).concat(this.chequearNodosCred(ctx, this));
   }
 
   isHabilitada(ctx, parent) {
@@ -159,7 +164,9 @@ class Node {
       }
     });
 
-    return deshabilitadas.concat(this).concat(this.chequearNodosCred(ctx));
+    return deshabilitadas
+      .concat(this)
+      .concat(this.chequearNodosCred(ctx, this));
   }
 
   getGrupo() {
