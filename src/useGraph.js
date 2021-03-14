@@ -80,6 +80,7 @@ const useGraph = (loginHook) => {
         })
         .catch((e) => {
           setLoadingGraph(false);
+          aprobar("CBC", 0);
         });
     }
   }, [shouldLoadGraph, nodes]);
