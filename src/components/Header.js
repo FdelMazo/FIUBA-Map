@@ -35,7 +35,7 @@ const Header = (props) => {
       </ScaleFade>
 
       <ScaleFade in={!displayedNode} unmountOnExit>
-        <Menu placement="bottom-end" closeOnSelect={false}>
+        <Menu placement="bottom-end">
           <MenuButton
             _hover={{ borderColor: "gray.400" }}
             _expanded={{ borderColor: "blue.400" }}
