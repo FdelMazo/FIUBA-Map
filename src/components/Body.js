@@ -28,13 +28,13 @@ import {
   useColorModeValue,
   useToast,
 } from "@chakra-ui/react";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Graph from "react-graph-vis";
+import useResizeObserver from "use-resize-observer";
 import * as C from "../constants";
 import { GraphContext, UserContext } from "../Contexts";
 import CategoryTagStack from "./CategoryTagStack";
 import LoadingGraph from "./LoadingGraph";
-import useWindowSize from "./useWindowSize";
 
 const Body = (props) => {
   const {
@@ -50,20 +50,20 @@ const Body = (props) => {
     changeFinalDeCarreraLabel,
   } = React.useContext(GraphContext);
   const { user, logged, submitBug } = React.useContext(UserContext);
-  const { width } = useWindowSize();
   const { setDisplayedNode } = props;
   const toast = useToast();
   const bugToast = React.useRef();
   const [showGracias, setShowGracias] = React.useState(false);
   const { toggleColorMode, colorMode } = useColorMode();
 
+  const ref = useRef(null);
+  const { width, height } = useResizeObserver({ ref });
+
   useEffect(() => {
     changeFinalDeCarreraLabel();
   }, [colorMode]);
 
-  useEffect(() => {
-    setTimeout(redraw, 100);
-  }, [width, redraw]);
+  useEffect(redraw, [width, height]);
 
   const events = {
     click: (e) => {
@@ -86,6 +86,7 @@ const Body = (props) => {
 
   return (
     <Box
+      ref={ref}
       css={{ "& *:focus": { outline: "none" } }}
       bg={useColorModeValue("graphbg", "graphbgdark")}
       flexGrow="1"
@@ -112,7 +113,6 @@ const Body = (props) => {
         events={events}
       />
       <CategoryTagStack />
-
       <Box
         mb={3}
         textAlign="right"

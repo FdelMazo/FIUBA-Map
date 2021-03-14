@@ -27,13 +27,8 @@ const Footer = () => {
     promedio,
     actualizarMetadata,
     creditos,
-    redraw,
     toggleCheckbox,
   } = React.useContext(GraphContext);
-
-  React.useEffect(() => {
-    setTimeout(redraw, 300);
-  }, [logged, redraw]);
 
   return (
     <Collapse in={logged} key={user.carrera?.id} position="relative">

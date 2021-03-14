@@ -35,5 +35,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "use-resize-observer": "^7.0.0"
+  }
 }
