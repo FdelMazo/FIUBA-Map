@@ -184,7 +184,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "92.99" },
     ],
     creditos: {
-      total: 283,
+      total: 245,
       obligatorias: 196,
       materias: [
         { id: "HUM", bg: COLORS.orientacion1[50], color: "orientacion1" },
@@ -201,7 +201,7 @@ export const CARRERAS = [
           color: "enfinal",
         },
       ],
-      electivas: { tesis: 32, tpp: 32 },
+      electivas: 32,
     },
   },
   {
