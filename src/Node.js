@@ -14,7 +14,7 @@ class Node {
     this.label = breakWords(n.materia);
     this.group = this.categoria;
     this.aprobada = false;
-    this.nota = 0;
+    this.nota = -2;
     this.habilitada = false;
     this.title = `Otorga ${this.creditos} créditos${
       this.requiere ? "\nRequiere " + this.requiere + " créditos" : ""
@@ -29,6 +29,7 @@ class Node {
   cursando(ctx) {
     const { cuatri, showLabels } = ctx;
 
+    this.nota = -2;
     this.aprobada = false;
     this.cuatri = cuatri;
     if (this.label.includes("[")) this.label = this.label.split("\n[")[0];
