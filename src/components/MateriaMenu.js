@@ -121,24 +121,7 @@ const Header = (props) => {
 
       <Collapse in={moreOptionsOpen} direction="left">
         <HStack spacing={4}>
-          <Tooltip closeOnClick hasArrow label="Aprobar por Equivalencia">
-            <Button
-              p={2}
-              _hover={{
-                backgroundColor: "transparent",
-              }}
-              cursor="pointer"
-              variant="link"
-              border="2px solid white"
-              fontSize="larger"
-              color="aprobadas.400"
-              onClick={() => aprobar(displayedNode, 0)}
-            >
-              <strong>E</strong>
-            </Button>
-          </Tooltip>
-
-          <HStack borderRadius={6} ml={4} border="2px solid white">
+          <HStack borderRadius={6} ml={1} border="2px solid white">
             <Tooltip closeOnClick hasArrow label="Cursando Actualmente">
               <Button
                 _hover={{
@@ -197,6 +180,22 @@ const Header = (props) => {
               </NumberInput>
             </Tooltip>
           </HStack>
+          <Tooltip closeOnClick hasArrow label="Aprobar por Equivalencia">
+            <Button
+              p={2}
+              _hover={{
+                backgroundColor: "transparent",
+              }}
+              cursor="pointer"
+              variant="link"
+              border="2px solid white"
+              fontSize="larger"
+              color="aprobadas.400"
+              onClick={() => aprobar(displayedNode, 0)}
+            >
+              <strong>E</strong>
+            </Button>
+          </Tooltip>
         </HStack>
       </Collapse>
     </Flex>

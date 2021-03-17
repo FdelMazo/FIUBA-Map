@@ -5,7 +5,7 @@ import {
   ExternalLinkIcon,
   Icon,
   MoonIcon,
-  SunIcon
+  SunIcon,
 } from "@chakra-ui/icons";
 import {
   Alert,
@@ -26,7 +26,7 @@ import {
   Tooltip,
   useColorMode,
   useColorModeValue,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 import React, { useEffect, useRef } from "react";
 import Graph from "react-graph-vis";
@@ -183,7 +183,6 @@ const Body = (props) => {
               variant="subtle"
               cursor="pointer"
               bg="#e9eaeb"
-              // colorScheme="blackAlpha"
               onClick={() => {
                 toast.close(bugToast.current);
                 return (bugToast.current = toast({
