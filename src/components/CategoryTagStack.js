@@ -2,7 +2,7 @@ import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import {
   HStack,
   LightMode,
-  Stack,
+  SimpleGrid,
   Tag,
   TagLabel,
   TagLeftIcon,
@@ -19,11 +19,32 @@ const CategoryTagStack = (props) => {
     electivasStatus,
     nodes,
   } = React.useContext(GraphContext);
-
   const [key, setKey] = React.useState(false);
+  const categorias = nodes
+    ? nodes
+        .distinct("categoria")
+        .filter(
+          (c) =>
+            c !== "CBC" &&
+            c !== "Materias Obligatorias" &&
+            c !== "Fin de Carrera (Obligatorio)" &&
+            c !== "Fin de Carrera" &&
+            c !== "Materias Electivas"
+        )
+    : [];
+
   return (
     <LightMode>
-      <Stack mb={3} ml={2} bottom={0} position="absolute" key={key} zIndex={2}>
+      <SimpleGrid
+        columns={categorias.length + 1 > 4 ? 2 : 1}
+        mb={3}
+        ml={2}
+        spacing={2}
+        bottom={0}
+        position="absolute"
+        key={key}
+        zIndex={2}
+      >
         {nodes && (
           <Tag
             cursor="pointer"
@@ -57,30 +78,20 @@ const CategoryTagStack = (props) => {
           </Tag>
         )}
         {nodes &&
-          nodes
-            .distinct("categoria")
-            .filter(
-              (c) =>
-                c !== "CBC" &&
-                c !== "Materias Obligatorias" &&
-                c !== "Fin de Carrera (Obligatorio)" &&
-                c !== "Fin de Carrera" &&
-                c !== "Materias Electivas"
-            )
-            .map((c) => (
-              <Tag
-                cursor="pointer"
-                bg={C.GRUPOS[c]?.color}
-                onClick={() => {
-                  setKey(!key);
-                  toggleGroup(c);
-                }}
-              >
-                <TagLeftIcon as={isGroupHidden(c) ? AddIcon : MinusIcon} />
-                <TagLabel>{c}</TagLabel>
-              </Tag>
-            ))}
-      </Stack>
+          categorias.map((c) => (
+            <Tag
+              cursor="pointer"
+              bg={C.GRUPOS[c]?.color}
+              onClick={() => {
+                setKey(!key);
+                toggleGroup(c);
+              }}
+            >
+              <TagLeftIcon as={isGroupHidden(c) ? AddIcon : MinusIcon} />
+              <TagLabel>{c}</TagLabel>
+            </Tag>
+          ))}
+      </SimpleGrid>
     </LightMode>
   );
 };
