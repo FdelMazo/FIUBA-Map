@@ -119,7 +119,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "85.99" },
     ],
     creditos: {
-      total: 280,
+      total: 242,
       obligatorias: 206,
       checkbox: [
         {
