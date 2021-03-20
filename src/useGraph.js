@@ -51,7 +51,6 @@ const useGraph = (loginHook) => {
 
   React.useEffect(() => {
     if (logged) changeCarrera(user.carrera.id);
-    actualizar();
   }, [logged]);
 
   React.useEffect(() => {
@@ -253,12 +252,9 @@ const useGraph = (loginHook) => {
   };
 
   const toggleCheckbox = (c) => {
-    const value = !!user.carrera.creditos.checkbox.find(
-      (ch) => ch.nombre === c.nombre
-    ).check;
-    user.carrera.creditos.checkbox.find(
-      (ch) => ch.nombre === c.nombre
-    ).check = !value;
+    const value = !!user.carrera.creditos.checkbox.find((ch) => ch.nombre === c)
+      .check;
+    user.carrera.creditos.checkbox.find((ch) => ch.nombre === c).check = !value;
     actualizar();
   };
 

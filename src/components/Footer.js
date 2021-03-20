@@ -17,7 +17,7 @@ import {
   StatLabel,
   StatNumber,
   Tooltip,
-  useColorModeValue,
+  useColorModeValue
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../Contexts";
@@ -99,7 +99,7 @@ const Footer = () => {
                           colorScheme={c.color}
                           onClick={(e) => {
                             e.preventDefault();
-                            toggleCheckbox(c);
+                            toggleCheckbox(c.nombre);
                           }}
                         >
                           Marcar como completo
