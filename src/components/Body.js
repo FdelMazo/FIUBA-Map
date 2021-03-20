@@ -5,7 +5,7 @@ import {
   ExternalLinkIcon,
   Icon,
   MoonIcon,
-  SunIcon,
+  SunIcon
 } from "@chakra-ui/icons";
 import {
   Alert,
@@ -26,7 +26,7 @@ import {
   Tooltip,
   useColorMode,
   useColorModeValue,
-  useToast,
+  useToast
 } from "@chakra-ui/react";
 import React, { useEffect, useRef } from "react";
 import Graph from "react-graph-vis";
@@ -47,21 +47,16 @@ const Body = (props) => {
     desaprobar,
     getNode,
     loadingGraph,
-    changeFinalDeCarreraLabel,
   } = React.useContext(GraphContext);
   const { user, logged, submitBug } = React.useContext(UserContext);
   const { setDisplayedNode } = props;
   const toast = useToast();
   const bugToast = React.useRef();
   const [showGracias, setShowGracias] = React.useState(false);
-  const { toggleColorMode, colorMode } = useColorMode();
+  const { toggleColorMode } = useColorMode();
 
   const ref = useRef(null);
   const { width, height } = useResizeObserver({ ref });
-
-  useEffect(() => {
-    changeFinalDeCarreraLabel();
-  }, [colorMode]);
 
   useEffect(redraw, [width, height]);
 

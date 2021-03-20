@@ -15,7 +15,6 @@ class Node {
     this.group = this.categoria;
     this.aprobada = false;
     this.nota = -2;
-    this.habilitada = false;
     this.title = `Otorga ${this.creditos} créditos${
       this.requiere ? "\nRequiere " + this.requiere + " créditos" : ""
     }`;
@@ -26,34 +25,35 @@ class Node {
       this.categoria !== "Fin de Carrera (Obligatorio)";
   }
 
-  cursando(ctx) {
-    const { cuatri, showLabels } = ctx;
-
-    this.nota = -2;
-    this.aprobada = false;
-    this.cuatri = cuatri;
-    if (this.label.includes("[")) this.label = this.label.split("\n[")[0];
-    if (showLabels && cuatri === 0) this.label += "\n[Cursando]";
-    if (showLabels && cuatri === 1) this.label += "\n[En 1 cuatri]";
-    if (showLabels && cuatri > 1) this.label += "\n[En " + cuatri + " cuatris]";
-
-    this.group = this.getGrupo();
+  aprobar(nota) {
+    if (nota < -1) return;
+    this.aprobada = true;
+    this.cuatri = -1;
+    this.nota = nota;
     return this;
   }
 
-  chequearNodosCred(ctx, parent) {
-    const { nodes, getNode } = ctx;
-    const nodosCred = nodes.get({
-      filter: (n) => n.requiere && !n.correlativas,
-      fields: ["id"],
-    });
+  desaprobar() {
+    this.aprobada = false;
+    this.cuatri = -1;
+    this.nota = -2;
+    return this;
+  }
 
+  cursando(cuatri) {
+    this.aprobada = false;
+    this.cuatri = cuatri;
+    this.nota = -2;
+    return this;
+  }
+
+  isHabilitada(ctx) {
+    const { network, nodes, getNode } = ctx;
+
+    const from = network.getConnectedNodes(this.id, "from");
     const totalCreditos = nodes
       .get({
-        filter: (n) => {
-          if (n.id === parent.id) return parent.aprobada;
-          else return n.aprobada;
-        },
+        filter: (n) => n.aprobada,
         fields: ["creditos"],
       })
       .reduce((acc, n) => {
@@ -61,123 +61,64 @@ class Node {
         return acc;
       }, 0);
 
-    const res = [];
-    nodosCred.forEach((n) => {
-      const node = getNode(n.id);
-      node.habilitada = totalCreditos >= node.requiere;
-      node.group = node.getGrupo();
-      res.push(node);
-    });
-    return res;
-  }
-
-  showLabel(ctx) {
-    const { showLabel } = ctx;
-    if (!showLabel && this.label.includes("["))
-      this.label = this.label.split("\n[")[0];
-
-    if (showLabel) {
-      if (this.nota > 0) this.label += "\n[" + this.nota + "]";
-      else if (this.nota === 0 && this.id !== "CBC")
-        this.label += "\n[Equivalencia]";
-      else if (this.nota === -1) {
-        this.label += "\n[Final]";
-      }
-    }
-
-    return this;
-  }
-
-  aprobar(ctx) {
-    const { network, getNode, nota, showLabels } = ctx;
-    if (nota < -1) return;
-    this.cuatri = -1;
-    this.nota = nota;
-    this.aprobada = false;
-
-    if (this.label.includes("[")) this.label = this.label.split("\n[")[0];
-    if (nota > 0 && showLabels) this.label += "\n[" + this.nota + "]";
-    if (showLabels && nota === 0 && this.id !== "CBC")
-      this.label += "\n[Equivalencia]";
-    if (nota === -1) {
-      this.group = this.getGrupo();
-      if (showLabels) this.label += "\n[Final]";
-      return this;
-    }
-
-    this.aprobada = true;
-    const habilitadas = [];
-
-    network.getConnectedNodes(this.id, "to").forEach((m) => {
-      const nodem = getNode(m);
-      if (nodem.isHabilitada(ctx, this)) {
-        nodem.habilitada = true;
-        nodem.group = nodem.getGrupo();
-        habilitadas.push(nodem);
-      }
-    });
-
-    this.group = this.getGrupo();
-    return habilitadas.concat(this).concat(this.chequearNodosCred(ctx, this));
-  }
-
-  isHabilitada(ctx, parent) {
-    const { network, nodes, getNode } = ctx;
-
-    const from = network.getConnectedNodes(this.id, "from");
-
     let todoAprobado = true;
     for (let i = 0; i < from.length; i++) {
       const m = getNode(from[i]);
-      if (m.id === parent.id) {
-        todoAprobado &= parent.aprobada;
-      } else {
-        todoAprobado &= m.aprobada;
-      }
+      todoAprobado &= m.aprobada;
     }
-    const totalCreditos = nodes
-      .get({ filter: (n) => n.aprobada, fields: ["creditos"] })
-      .reduce((acc, n) => {
-        acc += n.creditos;
-        return acc;
-      }, 0);
-
     if (this.requiere) todoAprobado &= totalCreditos >= this.requiere;
     return todoAprobado;
   }
 
-  desaprobar(ctx) {
-    const { network, getNode } = ctx;
-
-    this.aprobada = false;
-    this.cuatri = -1;
-    this.nota = -2;
-    if (this.label.includes("[")) this.label = this.label.split("\n[")[0];
-    this.group = this.getGrupo();
-    const deshabilitadas = [];
-
-    network.getConnectedNodes(this.id, "to").forEach((m) => {
-      const nodem = getNode(m);
-      if (!nodem.isHabilitada(ctx, this)) {
-        nodem.habilitada = false;
-        nodem.group = nodem.getGrupo();
-        deshabilitadas.push(nodem);
-      }
-    });
-
-    return deshabilitadas
-      .concat(this)
-      .concat(this.chequearNodosCred(ctx, this));
-  }
-
-  getGrupo() {
+  actualizar(ctx) {
+    const { user, showLabels, nodes, colorMode } = ctx;
     let grupoDefault = this.categoria;
     if (this.aprobada && this.nota >= 0) grupoDefault = "Aprobadas";
     else if (this.nota === -1) grupoDefault = "En Final";
     else if (this.cuatri === 0) grupoDefault = "Cursando";
     else if (this.cuatri > 0) grupoDefault = "A Cursar";
-    else if (this.habilitada) grupoDefault = "Habilitadas";
-    return grupoDefault;
+    else if (this.isHabilitada(ctx)) grupoDefault = "Habilitadas";
+    this.group = grupoDefault;
+
+    let labelDefault = breakWords(this.materia);
+    if (showLabels && this.id !== "CBC") {
+      if (this.aprobada && this.nota > 0)
+        labelDefault += "\n[" + this.nota + "]";
+      else if (this.aprobada && this.nota === 0)
+        labelDefault += "\n[Equivalencia]";
+      else if (this.nota === -1) labelDefault += "\n[Final]";
+      else if (this.cuatri === 0) labelDefault += "\n[Cursando]";
+      else if (this.cuatri === 1) labelDefault += "\n[En 1 cuatri]";
+      else if (this.cuatri > 1)
+        labelDefault += "\n[En " + this.cuatri + " cuatris]";
+    }
+    this.label = labelDefault;
+
+    if (this.categoria === "Fin de Carrera") {
+      this.hidden = !(this.id === user.finDeCarrera?.materia);
+    }
+
+    if (
+      this.categoria === "Fin de Carrera" ||
+      this.categoria === "Fin de Carrera (Obligatorio)"
+    ) {
+      const lastLevel = Math.max(
+        ...nodes
+          .get({
+            filter: (n) =>
+              !n.hidden &&
+              n.categoria !== "Fin de Carrera" &&
+              n.categoria !== "Fin de Carrera (Obligatorio)",
+            fields: ["level"],
+            type: { level: "number" },
+          })
+          .map((n) => n.level)
+      );
+      this.level = lastLevel + 1;
+      this.font = { color: colorMode === "dark" ? "white" : "black" };
+    }
+
+    return this;
   }
 }
 

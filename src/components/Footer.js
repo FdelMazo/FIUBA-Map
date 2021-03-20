@@ -17,18 +17,13 @@ import {
   StatLabel,
   StatNumber,
   Tooltip,
-  useColorModeValue,
+  useColorModeValue
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../Contexts";
 const Footer = () => {
   const { logged, user } = React.useContext(UserContext);
-  const {
-    promedio,
-    actualizarMetadata,
-    creditos,
-    toggleCheckbox,
-  } = React.useContext(GraphContext);
+  const { promedio, creditos, toggleCheckbox } = React.useContext(GraphContext);
 
   return (
     <Collapse in={logged} key={user.carrera?.id} position="relative">
@@ -105,7 +100,6 @@ const Footer = () => {
                           onClick={(e) => {
                             e.preventDefault();
                             toggleCheckbox(c);
-                            actualizarMetadata();
                           }}
                         >
                           Marcar como completo

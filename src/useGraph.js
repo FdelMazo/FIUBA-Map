@@ -18,7 +18,6 @@ const useGraph = (loginHook) => {
   const [graph, setGraph] = React.useState(graphObj);
   const [promedio, setPromedio] = React.useState(0);
   const [creditos, setCreditos] = React.useState([]);
-  const [showLabels, setShowLabels] = React.useState(false);
   const [shouldLoadGraph, setShouldLoadGraph] = React.useState(false);
   const [autosave, setAutosave] = React.useState(false);
   const [loadingGraph, setLoadingGraph] = React.useState(false);
@@ -26,13 +25,38 @@ const useGraph = (loginHook) => {
   const { user, setUser, register, logged, getGraph, postGraph } = loginHook;
   const { colorMode } = useColorMode();
 
+  const actualizar = () => {
+    if (!nodes) return;
+    if (autosave) saveGraph();
+
+    setPromedio(getPromedio());
+    setCreditos(getCreditos());
+    nodes.update(
+      nodes.map((n) =>
+        getNode(n.id).actualizar({
+          user,
+          network,
+          getNode,
+          showLabels: logged,
+          nodes,
+          colorMode,
+        })
+      )
+    );
+  };
+
   React.useEffect(() => {
     if (!logged) changeCarrera(CARRERAS[0].id);
   }, []);
 
   React.useEffect(() => {
     if (logged) changeCarrera(user.carrera.id);
+    actualizar();
   }, [logged]);
+
+  React.useEffect(() => {
+    actualizar();
+  }, [colorMode]);
 
   React.useEffect(() => {
     if (logged && !firstTime) register();
@@ -49,24 +73,9 @@ const useGraph = (loginHook) => {
           if (metadata.materias) {
             metadata.materias.forEach((m) => {
               if (m.nota >= -1) {
-                toUpdate.push(
-                  getNode(m.id).aprobar({
-                    network,
-                    nodes,
-                    getNode,
-                    nota: m.nota,
-                    showLabels,
-                  })
-                );
+                toUpdate.push(getNode(m.id).aprobar(m.nota));
               } else if (m.cuatri >= 0) {
-                toUpdate.push(
-                  getNode(m.id).cursando({
-                    network: network,
-                    cuatri: m.cuatri,
-                    showLabels,
-                    getNode,
-                  })
-                );
+                toUpdate.push(getNode(m.id).cursando(m.cuatri));
               }
             });
           }
@@ -75,7 +84,7 @@ const useGraph = (loginHook) => {
           if (user.orientacion) toggleGroup(user.orientacion.nombre);
           if (electivasStatus() === "hidden") toggleElectivas();
           nodes.update(toUpdate.flat());
-          actualizarMetadata();
+          actualizar();
           setLoadingGraph(false);
         })
         .catch((e) => {
@@ -86,21 +95,22 @@ const useGraph = (loginHook) => {
   }, [shouldLoadGraph, nodes]);
 
   React.useEffect(() => {
-    setShowLabels(logged);
-    if (!nodes) return;
-    const conNota = nodes.get({
-      filter: (n) => n.nota !== 0,
-    });
-    const toUpdate = [];
-    conNota.forEach((n) => {
-      toUpdate.push(getNode(n.id).showLabel({ showLabel: logged }));
-    });
-    nodes.update(toUpdate);
-  }, [logged]);
+    if (!nodes?.carrera || nodes.carrera !== user.carrera?.id) return;
+    if (user.orientacion) changeOrientacion(user.orientacion.nombre);
+    aprobar("CBC", 0);
+  }, [nodes, user.finDeCarrera, user.orientacion]);
 
+  const getNode = (id) => {
+    return nodes?.get(id)?.nodeRef;
+  };
+
+  const redraw = () => {
+    if (network) network.redraw();
+  };
   const saveGraph = () => {
     postGraph(nodes, user.carrera.creditos.checkbox);
   };
+
   const changeCarrera = async (id) => {
     setUser(({ ...rest }) => {
       const carrera = CARRERAS.find((c) => c.id === id);
@@ -141,51 +151,6 @@ const useGraph = (loginHook) => {
     const finDeCarrera =
       user.carrera.finDeCarrera.find((c) => c.id === id) || null;
     setUser({ ...user, finDeCarrera });
-  };
-
-  React.useEffect(() => {
-    if (!nodes?.carrera || nodes.carrera !== user.carrera?.id) return;
-    aprobar("CBC", 0);
-    if (user.orientacion) changeOrientacion(user.orientacion.nombre);
-    if (user.carrera.finDeCarrera) {
-      const toUpdate = [];
-      changeFinDeCarrera(user.finDeCarrera?.id);
-      user.carrera.finDeCarrera.forEach((f) => {
-        const n = getNode(f.materia);
-        n.hidden = !(f.id === user.finDeCarrera?.id);
-        toUpdate.push(n);
-      });
-      nodes.update(toUpdate);
-    }
-    keepFinDeCarreraOnLastLevel();
-  }, [nodes, user.finDeCarrera, user.orientacion]);
-
-  const keepFinDeCarreraOnLastLevel = () => {
-    const lastLevel = Math.max(
-      ...nodes
-        .get({
-          filter: (n) =>
-            !n.hidden &&
-            n.categoria !== "Fin de Carrera" &&
-            n.categoria !== "Fin de Carrera (Obligatorio)",
-          fields: ["level"],
-          type: { level: "number" },
-        })
-        .map((n) => n.level)
-    );
-
-    const nodesFinDeCarrera = nodes.get({
-      filter: (n) =>
-        n.categoria === "Fin de Carrera" ||
-        n.categoria === "Fin de Carrera (Obligatorio)",
-    });
-    const toUpdate = [];
-    nodesFinDeCarrera.forEach((n) => {
-      n.level = lastLevel + 1;
-      toUpdate.push(n);
-    });
-    nodes.update(toUpdate);
-    changeFinalDeCarreraLabel();
   };
 
   const electivasStatus = () => {
@@ -248,7 +213,7 @@ const useGraph = (loginHook) => {
     }
 
     nodes.update(group);
-    keepFinDeCarreraOnLastLevel();
+    actualizar();
     network.fit();
   };
 
@@ -261,80 +226,23 @@ const useGraph = (loginHook) => {
     });
 
     nodes.update(group);
-    keepFinDeCarreraOnLastLevel();
+    actualizar();
     network.fit();
   };
 
-  const getNode = (id) => {
-    return nodes?.get(id)?.nodeRef;
-  };
-
-  const ponerEnFinal = (id) => {
-    aprobar(id, -1);
-  };
-
-  const actualizarMetadata = () => {
-    if (autosave) saveGraph();
-    keepFinDeCarreraOnLastLevel();
-    setPromedio(getPromedio());
-    setCreditos(getCreditos());
-  };
-
   const aprobar = (id, nota) => {
-    const node = getNode(id);
-
-    nodes.update(
-      node.aprobar({
-        network,
-        nodes,
-        getNode,
-        nota,
-        showLabels,
-      })
-    );
-
-    actualizarMetadata();
+    nodes.update(getNode(id).aprobar(nota));
+    actualizar();
   };
 
   const desaprobar = (id) => {
-    const node = getNode(id);
-
-    nodes.update(
-      node.desaprobar({
-        network,
-        nodes,
-        getNode,
-      })
-    );
-    actualizarMetadata();
+    nodes.update(getNode(id).desaprobar());
+    actualizar();
   };
 
   const cursando = (id, cuatri) => {
-    const node = getNode(id);
-    nodes.update(
-      node.cursando({
-        network,
-        cuatri,
-        showLabels,
-        getNode,
-      })
-    );
-
-    actualizarMetadata();
-  };
-
-  const getPromedio = () => {
-    const materias = nodes.get({
-      filter: (n) => n.aprobada && n.nota > 0,
-      fields: ["nota"],
-    });
-
-    const sum = materias.reduce((acc, node) => {
-      acc += node.nota;
-      return acc;
-    }, 0);
-
-    return sum ? (sum / materias.length).toFixed(2) : 0;
+    nodes.update(getNode(id).cursando(cuatri));
+    actualizar();
   };
 
   const isGroupHidden = (id) => {
@@ -342,6 +250,28 @@ const useGraph = (loginHook) => {
       filter: (c) => c.categoria === id,
       fields: ["hidden"],
     })[0].hidden;
+  };
+
+  const toggleCheckbox = (c) => {
+    const value = !!user.carrera.creditos.checkbox.find(
+      (ch) => ch.nombre === c.nombre
+    ).check;
+    user.carrera.creditos.checkbox.find(
+      (ch) => ch.nombre === c.nombre
+    ).check = !value;
+    actualizar();
+  };
+
+  const getPromedio = () => {
+    const materias = nodes.get({
+      filter: (n) => n.aprobada && n.nota > 0,
+      fields: ["nota"],
+    });
+    const sum = materias.reduce((acc, node) => {
+      acc += node.nota;
+      return acc;
+    }, 0);
+    return sum ? (sum / materias.length).toFixed(2) : 0;
   };
 
   const getCreditos = () => {
@@ -477,40 +407,10 @@ const useGraph = (loginHook) => {
     return creditos;
   };
 
-  const redraw = () => {
-    if (network) network.redraw();
-  };
-
-  const toggleCheckbox = (c) => {
-    const value = !!user.carrera.creditos.checkbox.find(
-      (ch) => ch.nombre === c.nombre
-    ).check;
-    user.carrera.creditos.checkbox.find(
-      (ch) => ch.nombre === c.nombre
-    ).check = !value;
-  };
-
-  const changeFinalDeCarreraLabel = () => {
-    if (network) {
-      const nodesFinDeCarrera = nodes.get({
-        filter: (n) =>
-          n.categoria === "Fin de Carrera" ||
-          n.categoria === "Fin de Carrera (Obligatorio)",
-      });
-      const toUpdate = [];
-      nodesFinDeCarrera.forEach((n) => {
-        n.font = { color: colorMode === "dark" ? "white" : "black" };
-        toUpdate.push(n);
-      });
-      nodes.update(toUpdate);
-    }
-  };
-
   return {
     graph,
     toggleGroup,
     getNode,
-    ponerEnFinal,
     aprobar,
     desaprobar,
     redraw,
@@ -521,7 +421,6 @@ const useGraph = (loginHook) => {
     nodes,
     setNodes,
     saveGraph,
-    changeFinalDeCarreraLabel,
     edges,
     autosave,
     setAutosave,
@@ -530,10 +429,10 @@ const useGraph = (loginHook) => {
     changeOrientacion,
     changeFinDeCarrera,
     toggleCheckbox,
-    actualizarMetadata,
     loadingGraph,
     setFirstTime,
     isGroupHidden,
+    actualizar,
     cursando,
     electivasStatus,
     toggleElectivas,

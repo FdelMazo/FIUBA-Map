@@ -14,16 +14,14 @@ import {
   StatHelpText,
   StatLabel,
   Text,
-  Tooltip,
+  Tooltip
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext } from "../Contexts";
 
 const Header = (props) => {
   const { displayedNode } = props;
-  const { getNode, aprobar, ponerEnFinal, cursando } = React.useContext(
-    GraphContext
-  );
+  const { getNode, aprobar, cursando } = React.useContext(GraphContext);
   const [moreOptionsOpen, setMoreOptionsOpen] = React.useState(false);
 
   const format = (nota) => {
@@ -98,7 +96,7 @@ const Header = (props) => {
             borderLeft="2px solid white"
             fontSize="larger"
             color="yellow.300"
-            onClick={() => ponerEnFinal(displayedNode)}
+            onClick={() => aprobar(displayedNode, -1)}
           >
             <strong>F</strong>
           </Button>
