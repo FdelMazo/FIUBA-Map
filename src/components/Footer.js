@@ -17,7 +17,7 @@ import {
   StatLabel,
   StatNumber,
   Tooltip,
-  useColorModeValue
+  useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../Contexts";
@@ -34,8 +34,8 @@ const Footer = () => {
         <Box>
           <Tooltip
             label={
-              creditos.reduce((acc, node) => {
-                acc += node.creditos;
+              creditos.reduce((acc, c) => {
+                acc += c.checkbox ? 0 : c.creditos;
                 return acc;
               }, 0) +
               " de " +
@@ -48,8 +48,8 @@ const Footer = () => {
               <StatNumber>
                 {creditos.length !== 0
                   ? (
-                      (creditos.reduce((acc, node) => {
-                        acc += node.creditos;
+                      (creditos.reduce((acc, c) => {
+                        acc += c.checkbox ? 0 : c.creditos;
                         return acc;
                       }, 0) /
                         user.carrera?.creditos.total) *
