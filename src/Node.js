@@ -27,7 +27,7 @@ class Node {
 
   aprobar(nota) {
     if (nota < -1) return;
-    this.aprobada = true;
+    this.aprobada = nota > -1 ? true : false;
     this.cuatri = -1;
     this.nota = nota;
     return this;
