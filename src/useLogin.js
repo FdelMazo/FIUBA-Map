@@ -32,7 +32,7 @@ const useLogin = () => {
     }
 
     const padrones = await fetch(
-      `${C.SPREADSHEET}${C.SHEETS.user}!B:B?majorDimension=COLUMNS&key=${C.KEY}`
+      `${C.SPREADSHEET}/${C.SHEETS.user}!B:B?majorDimension=COLUMNS&key=${C.KEY}`
     )
       .then((res) => res.json())
       .then((res) => (!res.error ? res.values[0] : null));
@@ -53,20 +53,16 @@ const useLogin = () => {
       return false;
     }
 
-    const allLogins = [];
-    let data = null;
-    for (let i = 0; i < indexes.length; i++) {
-      data = await fetch(
-        `${C.SPREADSHEET}${C.SHEETS.user}!${indexes[i] + 1}:${
-          indexes[i] + 1
-        }?key=${C.KEY}`
-      ).then((res) => res.json().then((res) => res.values[0]));
-      allLogins.push({
-        carreraid: data[2],
-        orientacionid: data?.[3],
-        findecarreraid: data?.[4],
-      });
-    }
+    let ranges = indexes.map(index => (`&ranges=${C.SHEETS.user}!${index + 1}:${index + 1}`));
+    let data = await fetch(
+      `${C.SPREADSHEET}:batchGet?key=${C.KEY}${ranges.join('')}`
+    ).then((res) => res.json().then((res) => res.valueRanges));
+
+    const allLogins = data.map(d => ({
+      carreraid: d.values[0][2],
+      orientacionid: d.values[0][3],
+      findecarreraid: d.values[0][4],
+    }))
 
     const { carreraid, orientacionid, findecarreraid } = allLogins[0];
     const carrera = CARRERAS.find((c) => c.id === carreraid);
@@ -114,7 +110,7 @@ const useLogin = () => {
 
   const getGraph = async (padron, carrera) => {
     const data = await fetch(
-      `${C.SPREADSHEET}${C.SHEETS.registros}!B:D?majorDimension=COLUMNS&key=${C.KEY}`
+      `${C.SPREADSHEET}/${C.SHEETS.registros}!B:D?majorDimension=COLUMNS&key=${C.KEY}`
     )
       .then((res) => res.json())
       .then((res) => (!res.error ? res.values : null));
