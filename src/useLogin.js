@@ -113,31 +113,28 @@ const useLogin = () => {
   };
 
   const getGraph = async (padron, carrera) => {
-    const padrones = await fetch(
+    const data = await fetch(
       `${C.SPREADSHEET}${C.SHEETS.registros}!B:D?majorDimension=COLUMNS&key=${C.KEY}`
     )
       .then((res) => res.json())
-      .then((res) => (!res.error ? res.values[0] : null));
-    if (!padrones) return;
+      .then((res) => (!res.error ? res.values : null));
+    if (!data) return;
 
-    const indexes = [];
+    const padrones = data[0];
+    const carreras = data[1];
+    const maps = data[2];
+
+    const indexes = []
     let j = -1;
     while ((j = padrones.indexOf(padron, j + 1)) !== -1) {
       indexes.push(j);
     }
-    if (!indexes.length) return;
 
     const allLogins = [];
-    let data = null;
     for (let i = 0; i < indexes.length; i++) {
-      data = await fetch(
-        `${C.SPREADSHEET}${C.SHEETS.registros}!${indexes[i] + 1}:${
-          indexes[i] + 1
-        }?key=${C.KEY}`
-      ).then((res) => res.json().then((res) => res.values[0]));
       allLogins.push({
-        carreraid: data[2],
-        map: data[3],
+        carreraid: carreras[indexes[i]],
+        map: maps[indexes[i]]
       });
     }
 
