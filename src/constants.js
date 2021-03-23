@@ -32,7 +32,7 @@ export const BUGS_FORM_ENTRIES = {
 };
 
 export const SPREADSHEET =
-  "https://sheets.googleapis.com/v4/spreadsheets/1b6h2RApBs2xbN6-eGVvxH68EALKDklvS91fb7d_IVz4/values/";
+  "https://sheets.googleapis.com/v4/spreadsheets/1b6h2RApBs2xbN6-eGVvxH68EALKDklvS91fb7d_IVz4/values";
 
 export const SHEETS = {
   user: "usuarios",
