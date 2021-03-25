@@ -43,7 +43,6 @@ const CategoryTagStack = (props) => {
         bottom={0}
         position="absolute"
         key={key}
-        zIndex={2}
       >
         {nodes && (
           <Tag

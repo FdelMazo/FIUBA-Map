@@ -5,7 +5,7 @@ import {
   ExternalLinkIcon,
   Icon,
   MoonIcon,
-  SunIcon
+  SunIcon,
 } from "@chakra-ui/icons";
 import {
   Alert,
@@ -26,7 +26,7 @@ import {
   Tooltip,
   useColorMode,
   useColorModeValue,
-  useToast
+  useToast,
 } from "@chakra-ui/react";
 import React, { useEffect, useRef } from "react";
 import Graph from "react-graph-vis";
@@ -115,11 +115,9 @@ const Body = (props) => {
         bottom={0}
         right={0}
         position="absolute"
-        zIndex={2}
       >
         <Tooltip
           label={`Toggle ${useColorModeValue("dark", "light")}`}
-          zIndex={5501}
           placement="top"
         >
           <Link
@@ -129,11 +127,11 @@ const Body = (props) => {
             {useColorModeValue(<MoonIcon />, <SunIcon />)}
           </Link>
         </Tooltip>
-        <Tooltip label="FIUBA-Plan" zIndex={5501} placement="top">
+        <Tooltip label="FIUBA-Plan" placement="top">
           <Link
             isExternal
             color={useColorModeValue("text", "textdark")}
-            href="https://fdelmazo.github.io/FIUBA-Plan/"
+            href="https://fede.dm/FIUBA-Plan/"
           >
             <Icon boxSize={5} ml={2} viewBox="0 0 448 512">
               <path
@@ -143,7 +141,7 @@ const Body = (props) => {
             </Icon>
           </Link>
         </Tooltip>
-        <Tooltip label="FdelMazo/FIUBA-Map" zIndex={5501} placement="top">
+        <Tooltip label="FdelMazo/FIUBA-Map" placement="top">
           <Link
             isExternal
             color={useColorModeValue("text", "textdark")}
@@ -157,7 +155,7 @@ const Body = (props) => {
             </Icon>
           </Link>
         </Tooltip>
-        <Tooltip label="Invitame un Cafecíto" zIndex={5501} placement="top">
+        <Tooltip label="Invitame un Cafecíto" placement="top">
           <Link
             isExternal
             color={useColorModeValue("text", "textdark")}

@@ -26,6 +26,7 @@ const Header = (props) => {
   return (
     <Flex
       height="4em"
+      zIndex={5501}
       align="center"
       justify="space-between"
       bg={useColorModeValue("headerbg", "headerbgdark")}
