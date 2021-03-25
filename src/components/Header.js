@@ -10,7 +10,7 @@ import {
   MenuOptionGroup,
   ScaleFade,
   Tooltip,
-  useColorModeValue
+  useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
 import CARRERAS from "../carreras";
@@ -28,7 +28,7 @@ const Header = (props) => {
   return (
     <Flex
       height="4em"
-      zIndex={5501}
+      zIndex={11}
       align="center"
       justify="space-between"
       bg={useColorModeValue("headerbg", "headerbgdark")}
