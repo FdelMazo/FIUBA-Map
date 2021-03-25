@@ -279,6 +279,7 @@ const useGraph = (loginHook) => {
 
     creditos.push({
       nombre: "Materias Obligatorias",
+      nombrecorto: "Obligatorias",
       bg: COLORS.obligatorias[50],
       color: "obligatorias",
       creditosNecesarios: user.carrera.creditos.obligatorias,
@@ -297,6 +298,7 @@ const useGraph = (loginHook) => {
       nombre: `Materias Electivas${
         user.finDeCarrera ? ` (eligiendo ${user.finDeCarrera.id})` : ""
       }`,
+      nombrecorto: "Electivas",
       color: "electivas",
       bg: COLORS.electivas[50],
       creditosNecesarios: isNaN(user.carrera.creditos.electivas)
@@ -326,6 +328,7 @@ const useGraph = (loginHook) => {
     )
       creditos.push({
         nombre: `Orientación: ${user.orientacion.nombre}`,
+        nombrecorto: "Orientación",
         color: "orientacion0",
         bg: COLORS.orientacion0[50],
         creditosNecesarios: isNaN(user.carrera.creditos.orientacion)
@@ -345,7 +348,8 @@ const useGraph = (loginHook) => {
     if (user.carrera.creditos.checkbox) {
       user.carrera.creditos.checkbox.forEach((m) => {
         creditos.push({
-          nombre: `${m.nombre}`,
+          nombre: m.nombre,
+          nombrecorto: m.nombrecorto,
           color: m.color,
           bg: m.bg,
           creditosNecesarios: 8,
@@ -361,7 +365,8 @@ const useGraph = (loginHook) => {
         const node = getNode(m.id);
         if (node)
           creditos.push({
-            nombre: `${node.materia}`,
+            nombre: node.materia,
+            nombrecorto: m.nombrecorto,
             color: m.color,
             bg: m.bg,
             creditosNecesarios: node.creditos,
@@ -373,7 +378,8 @@ const useGraph = (loginHook) => {
       const node = getNode(user.finDeCarrera.materia);
       if (node && node.creditos)
         creditos.push({
-          nombre: `${node.materia}`,
+          nombre: node.materia,
+          nombrecorto: user.finDeCarrera.id,
           color: "findecarrera",
           bg: COLORS.findecarrera[50],
           creditosNecesarios: node.creditos,

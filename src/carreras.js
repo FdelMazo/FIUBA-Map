@@ -15,12 +15,18 @@ export const CARRERAS = [
       checkbox: [
         {
           nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
           bg: COLORS.enfinal[50],
           color: "enfinal",
         },
       ],
       materias: [
-        { id: "95.61", bg: COLORS.findecarrera[50], color: "findecarrera" },
+        {
+          id: "95.61",
+          nombrecorto: "TPP",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
+        },
       ],
     },
   },
@@ -66,6 +72,7 @@ export const CARRERAS = [
       checkbox: [
         {
           nombre: "Estadía Supervisada de al menos 200 horas",
+          nombrecorto: "Estadía",
           bg: COLORS.habilitadas[50],
           color: "habilitadas",
         },
@@ -84,10 +91,16 @@ export const CARRERAS = [
       materias: [
         {
           id: "76.44",
+          nombrecorto: "pp",
           bg: COLORS.habilitadas[50],
           color: "habilitadas",
         },
-        { id: "76.90", bg: COLORS.findecarrera[50], color: "findecarrera" },
+        {
+          id: "76.90",
+          nombrecorto: "tesis",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
+        },
       ],
       obligatorias: 118,
       electivas: 10,
@@ -104,16 +117,23 @@ export const CARRERAS = [
       obligatorias: 210,
       electivas: 34,
       materias: [
-        { id: "84.99", bg: COLORS.findecarrera[50], color: "findecarrera" },
+        {
+          id: "84.99",
+          nombrecorto: "TPP",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
+        },
       ],
       checkbox: [
         {
           nombre: "Estadía Supervisada de al menos 200 horas",
+          nombrecorto: "Estadía",
           bg: COLORS.habilitadas[50],
           color: "habilitadas",
         },
         {
           nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
           bg: COLORS.enfinal[50],
           color: "enfinal",
         },
@@ -136,11 +156,13 @@ export const CARRERAS = [
       checkbox: [
         {
           nombre: "Estadía Supervisada de al menos 200 horas",
+          nombrecorto: "Estadía",
           bg: COLORS.habilitadas[50],
           color: "habilitadas",
         },
         {
           nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
           bg: COLORS.enfinal[50],
           color: "enfinal",
         },
@@ -178,11 +200,13 @@ export const CARRERAS = [
       checkbox: [
         {
           nombre: "Práctica  Profesional",
+          nombrecorto: "PP",
           bg: COLORS.habilitadas[50],
           color: "habilitadas",
         },
         {
           nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
           bg: COLORS.enfinal[50],
           color: "enfinal",
         },
@@ -203,16 +227,23 @@ export const CARRERAS = [
       total: 245,
       obligatorias: 196,
       materias: [
-        { id: "HUM", bg: COLORS.orientacion1[50], color: "orientacion1" },
+        {
+          id: "HUM",
+          nombrecorto: "Humanística",
+          bg: COLORS.orientacion1[50],
+          color: "orientacion1",
+        },
       ],
       checkbox: [
         {
           nombre: "Práctica Profesional de al menos 200 horas",
+          nombrecorto: "PP",
           bg: COLORS.habilitadas[50],
           color: "habilitadas",
         },
         {
           nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
           bg: COLORS.enfinal[50],
           color: "enfinal",
         },
@@ -277,12 +308,14 @@ export const CARRERAS = [
       electivas: { tesis: 12, tpp: 16 },
       checkbox: [
         {
-          nombre: "Práctica  Supervisada",
+          nombre: "Práctica Supervisada",
+          nombrecorto: "PS",
           bg: COLORS.habilitadas[50],
           color: "habilitadas",
         },
         {
           nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
           bg: COLORS.enfinal[50],
           color: "enfinal",
         },
