@@ -8,6 +8,7 @@ export const CARRERAS = [
       "http://www.fi.uba.ar/sites/default/files/Licenciatura%20en%20Analisis%20de%20Sistemas%201986%20V2014.pdf",
     graph: data.sistemas,
     nombre: "Licenciatura en Análisis de Sistemas",
+    nombrecorto: "Sistemas",
     creditos: {
       total: 176,
       obligatorias: 136,
@@ -36,6 +37,7 @@ export const CARRERAS = [
       "http://www.fi.uba.ar/sites/default/files/Ingenieria%20en%20Informatica%201986.pdf",
     graph: data.informatica,
     nombre: "Ingeniería en Informática",
+    nombrecorto: "Informática",
     orientaciones: [
       {
         nombre: "Gestión Industrial de Sistemas",
@@ -62,6 +64,7 @@ export const CARRERAS = [
       "http://www.fi.uba.ar/sites/default/files/Ingenieria%20en%20Agrimensura%202006.pdf",
     graph: data.agrimensura,
     nombre: "Ingeniería en Agrimensura",
+    nombrecorto: "Agrimensura",
     finDeCarrera: [
       { id: "tesis", materia: "70.00" },
       { id: "tpp", materia: "70.99" },
@@ -86,6 +89,7 @@ export const CARRERAS = [
       "http://www.fi.uba.ar/sites/default/files/Ingenieria%20de%20Alimentos%202001-.pdf",
     graph: data.alimentos,
     nombre: "Ingeniería de Alimentos",
+    nombrecorto: "Alimentos",
     creditos: {
       total: 144,
       materias: [
@@ -112,6 +116,7 @@ export const CARRERAS = [
       "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Civil%202009.pdf",
     graph: data.civil,
     nombre: "Ingeniería Civil",
+    nombrecorto: "Civil",
     creditos: {
       total: 257,
       obligatorias: 210,
@@ -146,6 +151,7 @@ export const CARRERAS = [
       "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Electricista%202009%20actualizacion%202018_.pdf",
     graph: data.electricista,
     nombre: "Ingeniería Electricista",
+    nombrecorto: "Electricista",
     finDeCarrera: [
       { id: "tesis", materia: "85.00" },
       { id: "tpp", materia: "85.99" },
@@ -176,6 +182,7 @@ export const CARRERAS = [
       "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Electr%C3%B3nica%202009%20Modificacion%202018%20actualizacion%202019-.pdf",
     graph: data.electronica,
     nombre: "Ingeniería Electrónica",
+    nombrecorto: "Electrónica",
     orientaciones: [
       { nombre: "Multiples Orientaciones", color: COLORS.orientacion0[500] },
       { nombre: "Procesamiento de Señales", color: COLORS.orientacion1[500] },
@@ -219,6 +226,7 @@ export const CARRERAS = [
       "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Industrial%202011%20Modificacion%202018%20actualizacion%202019-.pdf",
     graph: data.industrial,
     nombre: "Ingeniería Industrial",
+    nombrecorto: "Industrial",
     finDeCarrera: [
       { id: "tesis", materia: "92.00" },
       { id: "tpp", materia: "92.99" },
@@ -257,6 +265,7 @@ export const CARRERAS = [
       "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Mecanica%201986%20-%20actualizaci%C3%B3n%202017-07.pdf",
     graph: data.mecanica,
     nombre: "Ingeniería Mecánica",
+    nombrecorto: "Mecánica",
     orientaciones: [
       { nombre: "Diseño Mecánico", color: COLORS.orientacion1[500] },
       { nombre: "Termomecánica", color: COLORS.orientacion2[500] },
@@ -282,6 +291,7 @@ export const CARRERAS = [
       "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Naval%20y%20Mecanica%201986-%20plan%20de%20estudios.pdf",
     graph: data.naval,
     nombre: "Ingeniería Naval y Mecánica",
+    nombrecorto: "Naval",
     finDeCarrera: [
       { id: "tesis", materia: "73.00" },
       { id: "tpp", materia: "73.99" },
@@ -298,6 +308,7 @@ export const CARRERAS = [
       "http://www.fi.uba.ar/sites/default/files/Ingenieria%20en%20Petroleo%202015_.pdf",
     graph: data.petroleo,
     nombre: "Ingeniería en Petróleo",
+    nombrecorto: "Petróleo",
     finDeCarrera: [
       { id: "tesis", materia: "79.00" },
       { id: "tpp", materia: "79.99" },
@@ -328,6 +339,7 @@ export const CARRERAS = [
       "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Quimica%201986%20M.pdf",
     graph: data.quimica,
     nombre: "Ingeniería Química",
+    nombrecorto: "Química",
     finDeCarrera: [
       { id: "tesis", materia: "76.64" },
       { id: "tpp", materia: "76.59-76.62" },

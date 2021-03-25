@@ -10,19 +10,21 @@ import {
   MenuOptionGroup,
   ScaleFade,
   Tooltip,
-  useColorModeValue,
+  useColorModeValue
 } from "@chakra-ui/react";
 import React from "react";
 import CARRERAS from "../carreras";
 import { GraphContext, UserContext } from "../Contexts";
 import MateriaMenu from "./MateriaMenu";
 import PadronInput from "./PadronInput";
+import useWindowSize from "./useWindowSize";
 
 const Header = (props) => {
   const { displayedNode } = props;
   const { changeCarrera, setFirstTime } = React.useContext(GraphContext);
   const { user } = React.useContext(UserContext);
-
+  const size = useWindowSize();
+  const mobile = size.width < 750;
   return (
     <Flex
       height="4em"
@@ -50,7 +52,7 @@ const Header = (props) => {
             borderRadius="md"
             borderWidth="1px"
           >
-            {user.carrera?.nombre}
+            {mobile ? user.carrera?.nombrecorto : user.carrera?.nombre}
             <ChevronDownIcon ml={2} />
           </MenuButton>
 
