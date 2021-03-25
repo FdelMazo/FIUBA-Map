@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "8a3539618ea496acc8e4d1c5c81fb7a6",
+    "revision": "8f5c0850f5559de2aa7772fbb24f655b",
     "url": "/FIUBA-Map/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/FIUBA-Map/static/js/2.81cdceb9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "00d8d26803b175367f77",
-    "url": "/FIUBA-Map/static/js/main.e86c7060.chunk.js"
+    "revision": "a59fa2fe67ae059725ac",
+    "url": "/FIUBA-Map/static/js/main.3185a1b4.chunk.js"
   },
   {
     "revision": "15f20f19a13ea8d2a6c8",
