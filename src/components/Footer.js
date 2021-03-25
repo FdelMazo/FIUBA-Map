@@ -31,7 +31,7 @@ const Footer = () => {
   const mobile = size.width < 750;
 
   return (
-    <Collapse in={!logged} key={user.carrera?.id} position="relative">
+    <Collapse in={logged} key={user.carrera?.id} position="relative">
       <Flex
         alignItems="center"
         bg={useColorModeValue("headerbg", "headerbgdark")}
