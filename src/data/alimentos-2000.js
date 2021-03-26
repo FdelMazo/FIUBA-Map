@@ -96,10 +96,10 @@ export const alimentos = [
   },
   {
     id: "61.06",
-    materia: "Probabilidad y Estadística A",
+    materia: "Probabilidad y Estadística",
     creditos: 4,
     correlativas: "61.03",
-    categoria: "Materias Obligatorias",
+    categoria: "Materias Electivas",
     level: 4,
   },
 
@@ -107,7 +107,7 @@ export const alimentos = [
     id: "65.43",
     materia: "Ingeniería de las Instalaciones I",
     creditos: 6,
-    requiere: 120,
+    requiere: 90,
     categoria: "Materias Obligatorias",
     level: 7,
   },
@@ -115,17 +115,9 @@ export const alimentos = [
     id: "76.42",
     materia: "Ingeniería de la Instalaciones II B",
     creditos: 4,
-    requiere: 120,
+    requiere: 90,
     categoria: "Materias Obligatorias",
     level: 7,
-  },
-  {
-    id: "63.15",
-    materia: "Química Analítica Instrumental",
-    creditos: 8,
-    correlativas: "63.13-63.14-62.04",
-    categoria: "Materias Obligatorias",
-    level: 4,
   },
   {
     id: "76.46",
@@ -139,7 +131,7 @@ export const alimentos = [
     id: "76.40",
     materia: "Introducción a la Bioquímica",
     creditos: 2,
-    requiere: 120,
+    requiere: 90,
     categoria: "Materias Obligatorias",
     level: 5,
   },
@@ -147,7 +139,7 @@ export const alimentos = [
     id: "63.05",
     materia: "Química Analítica",
     creditos: 8,
-    requiere: 120,
+    requiere: 90,
     categoria: "Materias Obligatorias",
     level: 5,
   },
@@ -155,7 +147,7 @@ export const alimentos = [
     id: "76.03",
     materia: "Operaciones I",
     creditos: 10,
-    requiere: 120,
+    requiere: 90,
     categoria: "Materias Obligatorias",
     level: 5,
   },
@@ -163,7 +155,7 @@ export const alimentos = [
     id: "63.07",
     materia: "Química Física II",
     creditos: 6,
-    requiere: 120,
+    requiere: 90,
     categoria: "Materias Obligatorias",
     level: 5,
   },
@@ -290,7 +282,7 @@ export const alimentos = [
   {
     id: "71.56",
     materia:
-      "Legislación y Ejercicio Profesional de la Ingeniería de Alimentos",
+      "Legislación y EjercicioElectivas Profesional de la Ingeniería de Alimentos",
     creditos: 2,
     correlativas: "71.55",
     categoria: "Materias Obligatorias",
@@ -413,22 +405,16 @@ export const alimentos = [
     id: "76.90",
     materia: "Tesis de Grado de Ingeniería de Alimentos",
     creditos: 12,
-    requiere: 140,
     correlativas: "CEX1",
     categoria: "Fin de Carrera (Obligatorio)",
-
-
     level: -1,
   },
   {
     id: "76.44",
     materia: "Práctica Profesional",
     creditos: 4,
-    requiere: 140,
     correlativas: "CEX1",
     categoria: "Fin de Carrera (Obligatorio)",
-
-
     level: -1,
   },
 ];

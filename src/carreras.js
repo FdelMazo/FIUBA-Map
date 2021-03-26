@@ -91,7 +91,7 @@ export const CARRERAS = [
     nombre: "Ingeniería de Alimentos",
     nombrecorto: "Alimentos",
     creditos: {
-      total: 144,
+      total: 234,
       materias: [
         {
           id: "76.44",
@@ -106,7 +106,7 @@ export const CARRERAS = [
           color: "findecarrera",
         },
       ],
-      obligatorias: 118,
+      obligatorias: 208,
       electivas: 10,
     },
   },
