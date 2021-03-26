@@ -74,7 +74,11 @@ const Footer = () => {
                             />
                           </Icon>
                         ) : (
-                          <Badge colorScheme={c.color} variant="solid">
+                          <Badge
+                            alignSelf={c.creditos !== 0 && "baseline"}
+                            colorScheme={c.color}
+                            variant="solid"
+                          >
                             {c.creditos !== 0 &&
                               (Math.round(
                                 (c.creditos / c.creditosNecesarios) * 100
