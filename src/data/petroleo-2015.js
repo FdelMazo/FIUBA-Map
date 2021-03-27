@@ -340,7 +340,7 @@ export const petroleo = [
     creditos: 4,
     correlativas: "79.01",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 12,
   },
   {
     id: "81.05",
@@ -348,7 +348,7 @@ export const petroleo = [
     creditos: 6,
     correlativas: "81.01-81.02",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 12,
   },
   {
     id: "82.07",
@@ -356,7 +356,7 @@ export const petroleo = [
     creditos: 4,
     correlativas: "81.02-62.04",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 12,
   },
   {
     id: "89.19",
@@ -364,7 +364,7 @@ export const petroleo = [
     creditos: 6,
     correlativas: "76.65-89-17",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 12,
   },
   {
     id: "92.01",
@@ -372,7 +372,7 @@ export const petroleo = [
     creditos: 6,
     correlativas: "84.05-83.01",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 11,
   },
   {
     id: "79.23",
@@ -396,7 +396,7 @@ export const petroleo = [
     creditos: 3,
     correlativas: "91.19",
     categoria: "Materias Obligatorias",
-    level: 9,
+    level: 10,
   },
   {
     id: "91.45",
@@ -404,7 +404,7 @@ export const petroleo = [
     creditos: 4,
     requiere: 100,
     categoria: "Materias Obligatorias",
-    level: 9,
+    level: 10,
   },
   {
     id: "79.24",
@@ -412,7 +412,7 @@ export const petroleo = [
     creditos: 3,
     correlativas: "79.11",
     categoria: "Materias Obligatorias",
-    level: 9,
+    level: 10,
   },
   {
     id: "79.00",
@@ -420,9 +420,7 @@ export const petroleo = [
     creditos: 18,
     correlativas: "79.12",
     categoria: "Fin de Carrera",
-
     level: -1,
-
   },
   {
     id: "79.99",
@@ -430,8 +428,6 @@ export const petroleo = [
     correlativas: "79.12",
     creditos: 14,
     categoria: "Fin de Carrera",
-
     level: -1,
-
   },
 ];

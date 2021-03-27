@@ -88,7 +88,7 @@ export const GRAPHOPTIONS = {
       enabled: true,
       levelSeparation: 145,
       treeSpacing: 0,
-      shakeTowards: "leaves",
+      edgeMinimization: false,
       direction: "LR",
     },
   },

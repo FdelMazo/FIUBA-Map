@@ -430,7 +430,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.03-61.08",
     categoria: "Materias Electivas",
-    level: 9,
+    level: 16,
   },
   {
     id: "61.19",
@@ -454,7 +454,7 @@ export const informatica = [
     creditos: 8,
     correlativas: "62.15-66.02-66.06",
     categoria: "Materias Electivas",
-    level: 12,
+    level: 15,
   },
   {
     id: "66.09",
@@ -486,7 +486,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.08-66.70",
     categoria: "Materias Electivas",
-    level: 15,
+    level: 16,
   },
   {
     id: "66.24",
@@ -494,7 +494,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "66.74-66.75-66.70",
     categoria: "Materias Electivas",
-    level: 15,
+    level: 16,
   },
   {
     id: "66.26",
@@ -502,7 +502,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.20",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 16,
   },
   {
     id: "66.32",
@@ -510,7 +510,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "62.11-66.18",
     categoria: "Materias Electivas",
-    level: 15,
+    level: 16,
   },
   {
     id: "66.35",
@@ -518,7 +518,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.07-66.17",
     categoria: "Materias Electivas",
-    level: 15,
+    level: 17,
   },
 
   {
@@ -535,21 +535,13 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.74-63.01",
     categoria: "Materias Electivas",
-    level: 13,
+    level: 16,
   },
   {
     id: "66.55",
     materia: "Simulación de Sistemas de Control",
     creditos: 4,
     correlativas: "66.18",
-    categoria: "Materias Electivas",
-    level: 15,
-  },
-  {
-    id: "66.63",
-    materia: "Redes Neuronales",
-    creditos: 6,
-    correlativas: "66.74-66.75",
     categoria: "Materias Electivas",
     level: 15,
   },
@@ -575,7 +567,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.03-61.09",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 15,
   },
   {
     id: "67.61",
@@ -671,7 +663,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.29",
     categoria: "Materias Electivas",
-    level: 14,
+    level: 16,
   },
   {
     id: "75.31",
@@ -687,7 +679,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.52",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 17,
   },
   {
     id: "75.50",
@@ -719,15 +711,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.48-75.53",
     categoria: "Materias Electivas",
-    level: 14,
-  },
-  {
-    id: "75.55",
-    materia: "Taller de Desarrollo de Proyectos III",
-    creditos: 4,
-    correlativas: "75.46-75.47-75.48",
-    categoria: "Materias Electivas",
-    level: 14,
+    level: 17,
   },
   {
     id: "75.62",
@@ -744,7 +728,7 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.50",
     categoria: "Materias Electivas",
-    level: 12,
+    level: 17,
   },
   {
     id: "75.71",
@@ -752,7 +736,7 @@ export const informatica = [
     creditos: 3,
     correlativas: "75.07",
     categoria: "Materias Electivas",
-    level: 9,
+    level: 17,
   },
   {
     id: "75.72",
@@ -779,14 +763,20 @@ export const informatica = [
     level: 9,
   },
   {
+    id: "66.63",
+    materia: "Redes Neuronales",
+    creditos: 6,
+    correlativas: "66.74-66.75",
+    categoria: "Materias Electivas",
+    level: 17,
+  },
+  {
     id: "75.00",
     materia: "Tesis de Ingeniería Informática",
     creditos: 24,
     requiere: 140,
     categoria: "Fin de Carrera",
-
     level: -1,
-
   },
   {
     id: "75.99",
@@ -794,8 +784,6 @@ export const informatica = [
     creditos: 12,
     requiere: 140,
     categoria: "Fin de Carrera",
-
     level: -1,
-
   },
 ];

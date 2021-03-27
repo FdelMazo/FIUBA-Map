@@ -180,7 +180,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "91.42-95.21",
     categoria: "Materias Obligatorias",
-    level: 7,
+    level: 6,
   },
   {
     id: "95.60",
@@ -292,7 +292,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.24",
     categoria: "Materias Electivas",
-    level: 12,
+    level: 13,
   },
   {
     id: "95.09",
@@ -316,7 +316,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.24",
     categoria: "Materias Electivas",
-    level: 12,
+    level: 13,
   },
   {
     id: "95.63",
@@ -332,7 +332,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.24",
     categoria: "Materias Electivas",
-    level: 12,
+    level: 13,
   },
   {
     id: "95.65",
@@ -388,7 +388,7 @@ export const sistemas = [
     creditos: 4,
     correlativas: "95.21",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 13,
   },
   {
     id: "95.71",

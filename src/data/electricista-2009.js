@@ -245,7 +245,7 @@ export const electricista = [
     creditos: 4,
     requiere: 100,
     categoria: "Materias Obligatorias",
-    level: 8,
+    level: 9,
   },
   {
     id: "85.11",
@@ -277,7 +277,7 @@ export const electricista = [
     creditos: 6,
     correlativas: "85.09-87.06",
     categoria: "Materias Obligatorias",
-    level: 8,
+    level: 9,
   },
   {
     id: "91.13",
@@ -293,7 +293,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "91.13",
     categoria: "Materias Obligatorias",
-    level: 8,
+    level: 9,
   },
   {
     id: "82.04",
@@ -301,7 +301,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "81.05-82.01",
     categoria: "Materias Electivas",
-    level: 9,
+    level: 10,
   },
   {
     id: "86.01",
@@ -309,7 +309,7 @@ export const electricista = [
     creditos: 6,
     correlativas: "81.02-95.01",
     categoria: "Materias Electivas",
-    level: 9,
+    level: 10,
   },
   {
     id: "86.08",
@@ -317,7 +317,7 @@ export const electricista = [
     creditos: 6,
     correlativas: "85.03",
     categoria: "Materias Electivas",
-    level: 9,
+    level: 10,
   },
   {
     id: "86.15",
@@ -325,7 +325,7 @@ export const electricista = [
     creditos: 6,
     correlativas: "82.04-86.08",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 14,
   },
   {
     id: "87.08",
@@ -333,7 +333,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "84.05",
     categoria: "Materias Electivas",
-    level: 9,
+    level: 10,
   },
   {
     id: "91.24",
@@ -349,7 +349,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "81.03-85.09",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 13,
   },
   {
     id: "91.17",
@@ -357,7 +357,7 @@ export const electricista = [
     creditos: 4,
     requiere: 120,
     categoria: "Materias Electivas",
-    level: 9,
+    level: 12,
   },
   {
     id: "85.18",
@@ -365,7 +365,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "85.07-85.16",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 13,
   },
   {
     id: "85.19",
@@ -373,7 +373,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "85.11",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 15,
   },
   {
     id: "85.20",
@@ -381,7 +381,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "87.07",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 13,
   },
   {
     id: "85.21",
@@ -389,7 +389,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "85.06-85.11",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 15,
   },
   {
     id: "85.22",
@@ -397,7 +397,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "85.05",
     categoria: "Materias Electivas",
-    level: 9,
+    level: 12,
   },
   {
     id: "85.23",
@@ -405,7 +405,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "85.05",
     categoria: "Materias Electivas",
-    level: 9,
+    level: 12,
   },
   {
     id: "85.24",
@@ -413,7 +413,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "85.09",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 11,
   },
   {
     id: "85.25",
@@ -421,7 +421,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "85.14",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 15,
   },
   {
     id: "85.26",
@@ -429,7 +429,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "85.12",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 11,
   },
   {
     id: "85.27",
@@ -437,7 +437,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "85.05",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 13,
   },
   {
     id: "85.28",
@@ -445,7 +445,7 @@ export const electricista = [
     creditos: 2,
     correlativas: "85.02",
     categoria: "Materias Electivas",
-    level: 9,
+    level: 11,
   },
   {
     id: "85.29",
@@ -453,7 +453,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "85.02",
     categoria: "Materias Electivas",
-    level: 9,
+    level: 11,
   },
   {
     id: "85.30",
@@ -461,7 +461,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "85.13",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 14,
   },
   {
     id: "85.31",
@@ -469,7 +469,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "85.13",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 14,
   },
   {
     id: "85.32",
@@ -477,7 +477,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "85.13",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 14,
   },
   {
     id: "85.33",
@@ -485,7 +485,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "85.16",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 12,
   },
   {
     id: "85.34",
@@ -493,7 +493,7 @@ export const electricista = [
     creditos: 4,
     correlativas: "85.17",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 12,
   },
   {
     id: "85.00",

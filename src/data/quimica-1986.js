@@ -237,7 +237,7 @@ export const quimica = [
     creditos: 6,
     correlativas: "62.04",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 11,
   },
   {
     id: "62.18",
@@ -245,7 +245,7 @@ export const quimica = [
     creditos: 4,
     correlativas: "76.47",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 12,
   },
   {
     id: "63.10",
@@ -253,7 +253,7 @@ export const quimica = [
     creditos: 6,
     correlativas: "63.16",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 12,
   },
   {
     id: "67.13",
@@ -269,7 +269,7 @@ export const quimica = [
     creditos: 6,
     correlativas: "67.58",
     categoria: "Materias Electivas",
-    level: 12,
+    level: 14,
   },
   {
     id: "67.58",
@@ -277,7 +277,7 @@ export const quimica = [
     creditos: 6,
     correlativas: "75.12-76.47",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 12,
   },
   {
     id: "67.59",
@@ -285,7 +285,7 @@ export const quimica = [
     creditos: 6,
     correlativas: "67.60-76.47",
     categoria: "Materias Electivas",
-    level: 12,
+    level: 14,
   },
   {
     id: "67.60",
@@ -309,7 +309,7 @@ export const quimica = [
     creditos: 4,
     correlativas: "63.16-76.47",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 12,
   },
   {
     id: "76.17",
@@ -317,7 +317,7 @@ export const quimica = [
     creditos: 4,
     correlativas: "76.16",
     categoria: "Materias Electivas",
-    level: 12,
+    level: 14,
   },
   {
     id: "76.18",
@@ -325,7 +325,7 @@ export const quimica = [
     creditos: 6,
     correlativas: "63.16",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 11,
   },
   {
     id: "76.22",
@@ -333,7 +333,7 @@ export const quimica = [
     creditos: 8,
     correlativas: "76.47",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 13,
   },
   {
     id: "76.23",
@@ -341,7 +341,7 @@ export const quimica = [
     creditos: 4,
     correlativas: "76.22",
     categoria: "Materias Electivas",
-    level: 12,
+    level: 14,
   },
   {
     id: "76.24",
@@ -349,7 +349,7 @@ export const quimica = [
     creditos: 6,
     correlativas: "76.22",
     categoria: "Materias Electivas",
-    level: 12,
+    level: 15,
   },
   {
     id: "76.25",
@@ -357,7 +357,7 @@ export const quimica = [
     creditos: 8,
     correlativas: "62.04-76.46",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 11,
   },
   {
     id: "76.27",
@@ -365,7 +365,7 @@ export const quimica = [
     creditos: 6,
     correlativas: "61.06",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 11,
   },
   {
     id: "76.28",
@@ -373,7 +373,7 @@ export const quimica = [
     creditos: 4,
     correlativas: "76.47",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 13,
   },
   {
     id: "76.29",
@@ -381,7 +381,7 @@ export const quimica = [
     creditos: 4,
     correlativas: "76.52",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 13,
   },
   {
     id: "76.30",
@@ -389,7 +389,7 @@ export const quimica = [
     creditos: 4,
     correlativas: "76.49",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 13,
   },
   {
     id: "76.51",
@@ -397,7 +397,7 @@ export const quimica = [
     creditos: 4,
     requiere: 140,
     categoria: "Materias Electivas",
-    level: 12,
+    level: 15,
   },
   {
     id: "76.63",
@@ -405,7 +405,7 @@ export const quimica = [
     creditos: 6,
     correlativas: "76.53",
     categoria: "Materias Electivas",
-    level: 12,
+    level: 15,
   },
   {
     id: "78.xx",
@@ -445,9 +445,7 @@ export const quimica = [
     creditos: 18,
     correlativas: "76.52-76.53",
     categoria: "Fin de Carrera",
-
     level: -1,
-
   },
   {
     id: "76.59-76.62",
@@ -455,8 +453,6 @@ export const quimica = [
     creditos: 12,
     correlativas: "76.52-76.53-76.56",
     categoria: "Fin de Carrera",
-
     level: -1,
-
   },
 ];

@@ -207,14 +207,7 @@ export const alimentos = [
     categoria: "Materias Obligatorias",
     level: 7,
   },
-  {
-    id: "CEX1",
-    materia: "Fundamentos de la Preservación de Alimentos I",
-    creditos: 6,
-    correlativas: "76.12-76.04-76.05",
-    categoria: "Materias Obligatorias",
-    level: 8,
-  },
+
   {
     id: "FYB1",
     materia: "Legislación Alimentaria",
@@ -228,6 +221,14 @@ export const alimentos = [
     materia: "Ingeniería de la Reacciones Químicas",
     creditos: 8,
     correlativas: "63.07-76.05",
+    categoria: "Materias Obligatorias",
+    level: 8,
+  },
+  {
+    id: "CEX1",
+    materia: "Fundamentos de la Preservación de Alimentos I",
+    creditos: 6,
+    correlativas: "76.12-76.04-76.05",
     categoria: "Materias Obligatorias",
     level: 8,
   },
@@ -261,7 +262,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX1-63.05",
     categoria: "Materias Obligatorias",
-    level: 9,
+    level: 10,
   },
   {
     id: "76.41",
@@ -286,7 +287,7 @@ export const alimentos = [
     creditos: 2,
     correlativas: "71.55",
     categoria: "Materias Obligatorias",
-    level: 9,
+    level: 10,
   },
   {
     id: "CEX6",
@@ -294,7 +295,7 @@ export const alimentos = [
     creditos: 6,
     correlativas: "76.12",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 11,
   },
   {
     id: "CEX7",
@@ -302,7 +303,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX1-63.05",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 12,
   },
   {
     id: "AG1",
@@ -310,7 +311,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX5",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 13,
   },
   {
     id: "CEX8",
@@ -318,7 +319,7 @@ export const alimentos = [
     creditos: 8,
     correlativas: "CEX3",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 13,
   },
   {
     id: "71.03",
@@ -326,7 +327,7 @@ export const alimentos = [
     creditos: 6,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 11,
   },
   {
     id: "71.31",
@@ -334,7 +335,7 @@ export const alimentos = [
     creditos: 6,
     correlativas: "CEX3-71.55",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 14,
   },
   {
     id: "71.33",
@@ -342,7 +343,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX3-71.55",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 14,
   },
   {
     id: "71.43",
@@ -350,7 +351,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX3-71.55",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 12,
   },
   {
     id: "71.44",
@@ -358,7 +359,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "FYB1-71.55",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 14,
   },
   {
     id: "71.57",
@@ -366,7 +367,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 11,
   },
   {
     id: "72.14",
@@ -374,7 +375,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX3-75.55",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 13,
   },
   {
     id: "76.19",
@@ -382,7 +383,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "76.41",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 12,
   },
   {
     id: "FYB3",
@@ -391,7 +392,7 @@ export const alimentos = [
     creditos: 4,
     correlativas: "71.55",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 13,
   },
   {
     id: "78.xx",
@@ -399,20 +400,20 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    level: 10,
-  },
-  {
-    id: "76.90",
-    materia: "Tesis de Grado de Ingeniería de Alimentos",
-    creditos: 12,
-    correlativas: "CEX1",
-    categoria: "Fin de Carrera (Obligatorio)",
-    level: -1,
+    level: 11,
   },
   {
     id: "76.44",
     materia: "Práctica Profesional",
     creditos: 4,
+    correlativas: "CEX1",
+    categoria: "Fin de Carrera (Obligatorio)",
+    level: -1,
+  },
+  {
+    id: "76.90",
+    materia: "Tesis de Grado de Ingeniería de Alimentos",
+    creditos: 12,
     correlativas: "CEX1",
     categoria: "Fin de Carrera (Obligatorio)",
     level: -1,
