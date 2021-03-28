@@ -421,7 +421,7 @@ const useGraph = (loginHook) => {
     setOptativas(() => {
       optativas.push({ id, nombre, creditos });
       setCreditos(getCreditos());
-      return optativas;
+      return optativas.filter(Boolean);
     });
   };
 
@@ -431,7 +431,7 @@ const useGraph = (loginHook) => {
       optativas[i] = { id, nombre, creditos };
       console.log(optativas);
       setCreditos(getCreditos());
-      return optativas;
+      return optativas.filter(Boolean);
     });
   };
   const removeOptativa = (id) => {
@@ -439,7 +439,7 @@ const useGraph = (loginHook) => {
       const i = optativas.findIndex((o) => o.id === id);
       delete optativas[i];
       setCreditos(getCreditos());
-      return optativas;
+      return optativas.filter(Boolean);
     });
   };
   return {
