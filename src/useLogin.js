@@ -53,16 +53,18 @@ const useLogin = () => {
       return false;
     }
 
-    let ranges = indexes.map(index => (`&ranges=${C.SHEETS.user}!${index + 1}:${index + 1}`));
+    let ranges = indexes.map(
+      (index) => `&ranges=${C.SHEETS.user}!${index + 1}:${index + 1}`
+    );
     let data = await fetch(
-      `${C.SPREADSHEET}:batchGet?key=${C.KEY}${ranges.join('')}`
+      `${C.SPREADSHEET}:batchGet?key=${C.KEY}${ranges.join("")}`
     ).then((res) => res.json().then((res) => res.valueRanges));
 
-    const allLogins = data.map(d => ({
+    const allLogins = data.map((d) => ({
       carreraid: d.values[0][2],
       orientacionid: d.values[0][3],
       findecarreraid: d.values[0][4],
-    }))
+    }));
 
     const { carreraid, orientacionid, findecarreraid } = allLogins[0];
     const carrera = CARRERAS.find((c) => c.id === carreraid);
@@ -81,7 +83,7 @@ const useLogin = () => {
     return true;
   };
 
-  const postGraph = (nodes, checkboxes) => {
+  const postGraph = (nodes, checkboxes, optativas) => {
     setSaving(true);
     const formData = new FormData();
     const padron = user.padron;
@@ -96,6 +98,7 @@ const useLogin = () => {
       map.checkboxes = checkboxes
         .filter((c) => c.check === true)
         .map((c) => c.nombre);
+    if (optativas) map.optativas = optativas;
 
     formData.append(`${C.GRAPH_FORM_ENTRIES.padron}`, padron);
     formData.append(`${C.GRAPH_FORM_ENTRIES.carrera}`, carreraid);
@@ -120,7 +123,7 @@ const useLogin = () => {
     const carreras = data[1];
     const maps = data[2];
 
-    const indexes = []
+    const indexes = [];
     let j = -1;
     while ((j = padrones.indexOf(padron, j + 1)) !== -1) {
       indexes.push(j);
@@ -130,7 +133,7 @@ const useLogin = () => {
     for (let i = 0; i < indexes.length; i++) {
       allLogins.push({
         carreraid: carreras[indexes[i]],
-        map: maps[indexes[i]]
+        map: maps[indexes[i]],
       });
     }
 

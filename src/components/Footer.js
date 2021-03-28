@@ -1,13 +1,29 @@
 import {
+  CheckIcon,
+  EditIcon,
+  PlusSquareIcon,
+  SmallCloseIcon,
+} from "@chakra-ui/icons";
+import {
   Badge,
   Box,
   Checkbox,
   Collapse,
+  Divider,
+  Editable,
+  EditableInput,
+  EditablePreview,
   Flex,
   Grid,
   GridItem,
   Icon,
+  IconButton,
   LightMode,
+  NumberDecrementStepper,
+  NumberIncrementStepper,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -18,7 +34,9 @@ import {
   Stat,
   StatLabel,
   StatNumber,
+  Tooltip,
   useColorModeValue,
+  useEditableControls,
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../Contexts";
@@ -26,9 +44,76 @@ import useWindowSize from "./useWindowSize";
 
 const Footer = () => {
   const { logged, user } = React.useContext(UserContext);
-  const { promedio, creditos, toggleCheckbox } = React.useContext(GraphContext);
+  const {
+    promedio,
+    creditos,
+    toggleCheckbox,
+    optativas,
+    addOptativa,
+    editOptativa,
+    removeOptativa,
+  } = React.useContext(GraphContext);
   const size = useWindowSize();
   const mobile = size.width < 750;
+
+  function EditableControls(props) {
+    const {
+      isEditing,
+      getSubmitButtonProps,
+      getEditButtonProps,
+    } = useEditableControls();
+
+    const { defaultValue, optativa } = props;
+    return (
+      <>
+        <NumberInput
+          mr={1}
+          borderRadius={5}
+          size="sm"
+          maxW={isEditing ? 16 : 10}
+          defaultValue={defaultValue}
+          min={1}
+          onChange={(_, creditos) => {
+            editOptativa(optativa.id, optativa.nombre, creditos);
+          }}
+        >
+          <NumberInputField isReadOnly={!isEditing} />
+          {isEditing && (
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          )}
+        </NumberInput>
+
+        {isEditing ? (
+          <>
+            <IconButton
+              size="sm"
+              icon={<CheckIcon />}
+              {...getSubmitButtonProps()}
+            />
+          </>
+        ) : (
+          <IconButton size="sm" icon={<EditIcon />} {...getEditButtonProps()} />
+        )}
+
+        {isEditing && (
+          <SmallCloseIcon
+            cursor="pointer"
+            color="gray.600"
+            my="auto"
+            ml="0"
+            mr="-15px"
+            _hover={{ color: "black" }}
+            onClick={() => {
+              removeOptativa(optativa.id);
+            }}
+          />
+        )}
+      </>
+    );
+  }
 
   return (
     <Collapse in={logged} key={user.carrera?.id} position="relative">
@@ -131,10 +216,53 @@ const Footer = () => {
                         </Checkbox>
                       </LightMode>
                     ) : c.creditosNecesarios ? (
-                      `${c.creditos} de ${c.creditosNecesarios} créditos necesarios.`
+                      `${c.creditos} de ${c.creditosNecesarios} créditos necesarios`
                     ) : (
                       `Tenés ${c.creditos} créditos.
-                      Elegí entre tesis y tpp para saber cuantos necesitás.`
+                      Elegí entre tesis y tpp para saber cuantos necesitás`
+                    )}
+                    {c.nombre.includes("Materias Electivas") &&
+                      optativas.length > 0 && (
+                        <>
+                          <Divider mt={3} />
+                          {optativas.map((o) => (
+                            <Editable
+                              key={o.id}
+                              m={2}
+                              textAlign="left"
+                              defaultValue={o.nombre}
+                              isPreviewFocusable={false}
+                              submitOnBlur={false}
+                              onSubmit={(nombre) =>
+                                editOptativa(o.id, nombre, o.creditos)
+                              }
+                            >
+                              <Flex>
+                                <EditablePreview width="70%" pl={2} mr={2} />
+                                <EditableInput width="70%" pl={2} mr={2} />
+                                <EditableControls
+                                  optativa={o}
+                                  defaultValue={o.creditos}
+                                />
+                              </Flex>
+                            </Editable>
+                          ))}
+                        </>
+                      )}
+                    {c.nombre.includes("Materias Electivas") && (
+                      <Tooltip
+                        placement="bottom"
+                        label="Agregar créditos por fuera del plan"
+                      >
+                        <IconButton
+                          onClick={() => {
+                            addOptativa("Materia Optativa", 4);
+                          }}
+                          size="sm"
+                          float="right"
+                          icon={<PlusSquareIcon boxSize={4} />}
+                        />
+                      </Tooltip>
                     )}
                   </PopoverBody>
                 </PopoverContent>

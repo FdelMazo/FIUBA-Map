@@ -24,6 +24,7 @@ const useGraph = (loginHook) => {
   const [firstTime, setFirstTime] = React.useState(true);
   const { user, setUser, register, logged, getGraph, postGraph } = loginHook;
   const { colorMode } = useColorMode();
+  const [optativas, setOptativas] = React.useState([]);
 
   const actualizar = () => {
     if (!nodes) return;
@@ -80,6 +81,7 @@ const useGraph = (loginHook) => {
           }
           if (metadata.checkboxes)
             metadata.checkboxes.forEach((c) => toggleCheckbox(c));
+          if (metadata.optativas) setOptativas(metadata.optativas);
           if (user.orientacion) toggleGroup(user.orientacion.nombre);
           if (electivasStatus() === "hidden") toggleElectivas();
           nodes.update(toUpdate.flat());
@@ -107,7 +109,7 @@ const useGraph = (loginHook) => {
     if (network) network.redraw();
   };
   const saveGraph = () => {
-    postGraph(nodes, user.carrera.creditos.checkbox);
+    postGraph(nodes, user.carrera.creditos.checkbox, optativas);
   };
 
   const changeCarrera = async (id) => {
@@ -305,19 +307,20 @@ const useGraph = (loginHook) => {
         ? user.carrera.creditos.electivas[user.finDeCarrera?.id]
         : user.carrera.creditos.electivas,
 
-      creditos: nodes
-        .get({
-          filter: (n) =>
-            n.categoria !== "CBC" &&
-            n.categoria !== "Materias Obligatorias" &&
-            n.categoria !== "Fin de Carrera" &&
-            n.categoria !== "Fin de Carrera (Obligatorio)" &&
-            n.categoria !== user.orientacion?.nombre &&
-            n.aprobada &&
-            n.nota >= 0,
-          fields: ["creditos"],
-        })
-        .reduce(accumulator, 0),
+      creditos:
+        nodes
+          .get({
+            filter: (n) =>
+              n.categoria !== "CBC" &&
+              n.categoria !== "Materias Obligatorias" &&
+              n.categoria !== "Fin de Carrera" &&
+              n.categoria !== "Fin de Carrera (Obligatorio)" &&
+              n.categoria !== user.orientacion?.nombre &&
+              n.aprobada &&
+              n.nota >= 0,
+            fields: ["creditos"],
+          })
+          .reduce(accumulator, 0) + optativas.reduce(accumulator, 0),
     });
 
     if (
@@ -409,6 +412,36 @@ const useGraph = (loginHook) => {
     return creditos;
   };
 
+  const addOptativa = (nombre, creditos) => {
+    const ids = optativas.map((o) => o.id);
+    let id = ids.length + 1;
+    for (let i = 0; i < ids.length; i++) {
+      if (ids[i] !== i + 1) id = i;
+    }
+    setOptativas(() => {
+      optativas.push({ id, nombre, creditos });
+      setCreditos(getCreditos());
+      return optativas;
+    });
+  };
+
+  const editOptativa = (id, nombre, creditos) => {
+    setOptativas(() => {
+      const i = optativas.findIndex((o) => o.id === id);
+      optativas[i] = { id, nombre, creditos };
+      console.log(optativas);
+      setCreditos(getCreditos());
+      return optativas;
+    });
+  };
+  const removeOptativa = (id) => {
+    setOptativas(() => {
+      const i = optativas.findIndex((o) => o.id === id);
+      delete optativas[i];
+      setCreditos(getCreditos());
+      return optativas;
+    });
+  };
   return {
     graph,
     toggleGroup,
@@ -438,6 +471,10 @@ const useGraph = (loginHook) => {
     cursando,
     electivasStatus,
     toggleElectivas,
+    optativas,
+    addOptativa,
+    editOptativa,
+    removeOptativa,
   };
 };
 

@@ -14,7 +14,7 @@ import {
   StatHelpText,
   StatLabel,
   Text,
-  Tooltip
+  Tooltip,
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext } from "../Contexts";
@@ -58,6 +58,7 @@ const Header = (props) => {
             value={format(getNode(displayedNode)?.nota)}
             min={4}
             max={10}
+            maxW={16}
           >
             <NumberInputField
               _hover={{
@@ -66,7 +67,6 @@ const Header = (props) => {
               _focus={{
                 borderColor: "transparent",
               }}
-              w="7ch"
               color="white"
               fontWeight="bold"
             />
