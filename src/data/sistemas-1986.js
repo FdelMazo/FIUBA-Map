@@ -287,12 +287,28 @@ export const sistemasviejo = [
     level: 10,
   },
   {
+    id: "75.26",
+    materia: "Simulación",
+    creditos: 6,
+    correlativas: "61.09",
+    categoria: "Materias Electivas",
+    level: 10,
+  },
+  {
+    id: "75.27",
+    materia: "Algoritmos y Programación IV",
+    creditos: 6,
+    correlativas: "75.07",
+    categoria: "Materias Electivas",
+    level: 10,
+  },
+  {
     id: "75.29",
     materia: "Teoría de Algoritmos I",
     creditos: 6,
     correlativas: "61.07-75.41",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 11,
   },
   {
     id: "75.32",
@@ -300,7 +316,7 @@ export const sistemasviejo = [
     creditos: 3,
     correlativas: "71.13-75.10-75.15",
     categoria: "Materias Electivas",
-    level: 10,
+    level: 11,
   },
   {
     id: "75.33",
@@ -332,7 +348,7 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "75.12",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 12,
   },
   {
     id: "75.39",
@@ -340,7 +356,7 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "75.08-75.09",
     categoria: "Materias Electivas",
-    level: 11,
+    level: 12,
   },
   {
     id: "75.50",
@@ -356,7 +372,7 @@ export const sistemasviejo = [
     creditos: 3,
     correlativas: "75.07",
     categoria: "Materias Electivas",
-    level: 12,
+    level: 11,
   },
   {
     id: "75.72",
