@@ -9,4 +9,5 @@ export { mecanica } from "./mecanica-1986";
 export { naval } from "./naval-1986";
 export { petroleo } from "./petroleo-2015";
 export { quimica } from "./quimica-1986";
+export { sistemasviejo } from "./sistemas-1986";
 export { sistemas } from "./sistemas-2014";

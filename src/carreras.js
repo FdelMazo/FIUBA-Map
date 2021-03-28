@@ -350,6 +350,19 @@ export const CARRERAS = [
       electivas: { tesis: 18, tpp: 24 },
     },
   },
+  {
+    id: "sistemasviejo",
+    link:
+      "http://www.fi.uba.ar/sites/default/files/Licenciatura%20en%20Analisis%20de%20Sistemas%201986.pdf",
+    graph: data.sistemasviejo,
+    nombre: "Licenciatura en Análisis de Sistemas (Plan Viejo)",
+    nombrecorto: "Sistemas (1986)",
+    creditos: {
+      total: 170,
+      obligatorias: 130,
+      electivas: 40,
+    },
+  },
 ];
 
 export default CARRERAS;
