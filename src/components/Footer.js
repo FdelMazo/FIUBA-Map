@@ -116,7 +116,7 @@ const Footer = () => {
   }
 
   return (
-    <Collapse in={logged} key={user.carrera?.id} position="relative">
+    <Collapse in={!logged} key={user.carrera?.id} position="relative">
       <Flex
         alignItems="center"
         bg={useColorModeValue("headerbg", "headerbgdark")}
@@ -160,11 +160,16 @@ const Footer = () => {
                           </Icon>
                         ) : (
                           <Badge
-                            alignSelf={c.creditos !== 0 && "baseline"}
+                            alignSelf={
+                              c.creditosNecesarios &&
+                              c.creditos !== 0 &&
+                              "baseline"
+                            }
                             colorScheme={c.color}
                             variant="solid"
                           >
-                            {c.creditos !== 0 &&
+                            {c.creditosNecesarios &&
+                              c.creditos !== 0 &&
                               (Math.round(
                                 (c.creditos / c.creditosNecesarios) * 100
                               ) || 0) + "%"}
