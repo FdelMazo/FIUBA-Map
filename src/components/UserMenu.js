@@ -46,7 +46,13 @@ const UserMenu = (props) => {
   );
 
   return (
-    <Menu closeOnSelect={false}>
+    <Menu
+      defaultIsOpen={
+        (user.carrera.eligeOrientaciones && !user.orientacion) ||
+        (user.carrera.finDeCarrera && !user.finDeCarrera)
+      }
+      closeOnSelect={false}
+    >
       <LightMode>
         <MenuButton
           w="20ch"
