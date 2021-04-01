@@ -116,7 +116,7 @@ const Footer = () => {
   }
 
   return (
-    <Collapse in={!logged} key={user.carrera?.id} position="relative">
+    <Collapse in={logged} key={user.carrera?.id} position="relative">
       <Flex
         alignItems="center"
         bg={useColorModeValue("headerbg", "headerbgdark")}
