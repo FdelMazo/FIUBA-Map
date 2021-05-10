@@ -24,6 +24,8 @@ import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  PinInput,
+  PinInputField,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -34,6 +36,7 @@ import {
   Stat,
   StatLabel,
   StatNumber,
+  Text,
   Tooltip,
   useColorModeValue,
   useEditableControls,
@@ -51,6 +54,9 @@ const Footer = () => {
     toggleCheckbox,
     optativas,
     addOptativa,
+    aplazos,
+    setAplazos,
+    promedioConAplazos,
     editOptativa,
     removeOptativa,
   } = React.useContext(GraphContext);
@@ -280,12 +286,40 @@ const Footer = () => {
             </GridItem>
           ))}
         </Grid>
-        <Box>
-          <Stat p="0.4em" color="white" size="sm" textAlign="right">
-            <StatLabel>Promedio</StatLabel>
-            <StatNumber>{promedio}</StatNumber>
-          </Stat>
-        </Box>
+
+        <Popover placement="top" trigger="hover">
+          <LightMode>
+            <PopoverTrigger>
+              <Box>
+                <Stat p="0.4em" color="white" size="sm" textAlign="right">
+                  <StatLabel>Promedio</StatLabel>
+                  <StatNumber>{promedio}</StatNumber>
+                </Stat>
+              </Box>
+            </PopoverTrigger>
+          </LightMode>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverBody>
+              <Text>
+                <strong>
+                  Promedio con
+                  <PinInput
+                    type="number"
+                    onChange={(v) => setAplazos(parseFloat(v))}
+                    value={aplazos.toString()}
+                    size="sm"
+                    variant="flushed"
+                  >
+                    <PinInputField borderColor="red.500" />
+                  </PinInput>
+                  aplazos:
+                </strong>{" "}
+                {promedioConAplazos(aplazos)}
+              </Text>
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
       </Flex>
     </Collapse>
   );

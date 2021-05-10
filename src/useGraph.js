@@ -18,6 +18,7 @@ const useGraph = (loginHook) => {
   const [graph, setGraph] = React.useState(graphObj);
   const [promedio, setPromedio] = React.useState(0);
   const [creditos, setCreditos] = React.useState([]);
+  const [aplazos, setAplazos] = React.useState(0);
   const [stats, setStats] = React.useState({
     materiasAprobadas: 0,
     creditosTotales: 0,
@@ -455,6 +456,22 @@ const useGraph = (loginHook) => {
       return optativas.filter(Boolean);
     });
   };
+
+  const promedioConAplazos = (n) => {
+    if (!nodes) return 0;
+    const materias = nodes.get({
+      filter: (n) => n.aprobada && n.nota > 0,
+      fields: ["nota"],
+    });
+    materias.push(...Array(n).fill({ nota: 2 }));
+
+    const sum = materias.reduce((acc, node) => {
+      acc += node.nota;
+      return acc;
+    }, 0);
+    return sum ? (sum / materias.length).toFixed(2) : 0;
+  };
+
   return {
     graph,
     toggleGroup,
@@ -463,6 +480,7 @@ const useGraph = (loginHook) => {
     desaprobar,
     redraw,
     promedio,
+    promedioConAplazos,
     creditos,
     stats,
     network,
@@ -489,6 +507,8 @@ const useGraph = (loginHook) => {
     addOptativa,
     editOptativa,
     removeOptativa,
+    aplazos,
+    setAplazos,
   };
 };
 
