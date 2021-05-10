@@ -47,6 +47,7 @@ const Footer = () => {
   const {
     promedio,
     creditos,
+    stats,
     toggleCheckbox,
     optativas,
     addOptativa,
@@ -122,17 +123,21 @@ const Footer = () => {
         bg={useColorModeValue("headerbg", "headerbgdark")}
       >
         <Box>
-          <Stat p="0.4em" color="white" size="sm">
-            <StatLabel>Créditos</StatLabel>
-            <StatNumber>
-              {creditos.reduce((acc, c) => {
-                acc += c.checkbox ? 0 : c.creditos;
-                return acc;
-              }, 0) +
-                " de " +
-                user.carrera?.creditos.total}
-            </StatNumber>
-          </Stat>
+          <Tooltip
+            placement="top"
+            label={
+              stats.materiasAprobadas === 1
+                ? stats.materiasAprobadas + " materia aprobada"
+                : stats.materiasAprobadas + " materias aprobadas"
+            }
+          >
+            <Stat p="0.4em" color="white" size="sm">
+              <StatLabel>Créditos</StatLabel>
+              <StatNumber>
+                {stats.creditosTotales + " de " + user.carrera?.creditos.total}
+              </StatNumber>
+            </Stat>
+          </Tooltip>
         </Box>
         <Grid
           flexGrow={1}

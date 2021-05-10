@@ -18,6 +18,10 @@ const useGraph = (loginHook) => {
   const [graph, setGraph] = React.useState(graphObj);
   const [promedio, setPromedio] = React.useState(0);
   const [creditos, setCreditos] = React.useState([]);
+  const [stats, setStats] = React.useState({
+    materiasAprobadas: 0,
+    creditosTotales: 0,
+  });
   const [shouldLoadGraph, setShouldLoadGraph] = React.useState(false);
   const [autosave, setAutosave] = React.useState(false);
   const [loadingGraph, setLoadingGraph] = React.useState(false);
@@ -387,7 +391,6 @@ const useGraph = (loginHook) => {
           bg: COLORS.findecarrera[50],
           creditosNecesarios: node.creditos,
           creditos: node.aprobada ? node.creditos : 0,
-          getCreditos,
         });
     }
 
@@ -409,6 +412,17 @@ const useGraph = (loginHook) => {
     if (fullProportion > 10) creditos[0].proportion -= fullProportion - 10;
     else if (fullProportion < 10) creditos[0].proportion += 10 - fullProportion;
 
+    const aprobadas = nodes.get({
+      filter: (n) => n.categoria !== "CBC" && n.aprobada && n.nota >= 0,
+      fields: ["creditos"],
+    });
+    aprobadas.push(...optativas.filter(Boolean));
+
+    setStats({
+      materiasAprobadas: aprobadas.length,
+      creditosTotales: aprobadas.reduce(accumulator, 0),
+    });
+
     return creditos;
   };
 
@@ -429,7 +443,6 @@ const useGraph = (loginHook) => {
     setOptativas(() => {
       const i = optativas.findIndex((o) => o.id === id);
       optativas[i] = { id, nombre, creditos };
-      console.log(optativas);
       setCreditos(getCreditos());
       return optativas.filter(Boolean);
     });
@@ -451,6 +464,7 @@ const useGraph = (loginHook) => {
     redraw,
     promedio,
     creditos,
+    stats,
     network,
     setNetwork,
     nodes,
