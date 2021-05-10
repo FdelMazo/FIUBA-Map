@@ -282,7 +282,7 @@ export const CARRERAS = [
       total: 260,
       obligatorias: 190,
       orientacion: { tesis: 28 },
-      electivas: { tesis: 24, tpp: 52 },
+      electivas: { tesis: 24, tpp: 56 },
     },
   },
   {
