@@ -52,9 +52,21 @@ export const CARRERAS = [
     ],
     creditos: {
       total: 248,
-      obligatorias: 156,
-      orientacion: 34,
-      electivas: { tesis: 34, tpp: 46 },
+      obligatorias: 124,
+      orientacion: {
+        "Gestión Industrial de Sistemas": {
+          orientacion: 24,
+          electivas: { tesis: 76, tpp: 88 },
+        },
+        "Sistemas de Producción": {
+          orientacion: 22,
+          electivas: { tesis: 78, tpp: 90 },
+        },
+        "Sistemas Distribuidos": {
+          orientacion: 18,
+          electivas: { tesis: 82, tpp: 94 },
+        },
+      },
     },
     eligeOrientaciones: true,
   },
