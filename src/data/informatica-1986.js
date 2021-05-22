@@ -261,7 +261,7 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.07-75.42",
     categoria: "Materias Obligatorias",
-    level: 6,
+    level: 5,
   },
   {
     id: "75.15",

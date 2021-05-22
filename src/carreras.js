@@ -4,8 +4,7 @@ import { COLORS } from "./theme";
 export const CARRERAS = [
   {
     id: "sistemas",
-    link:
-      "http://www.fi.uba.ar/sites/default/files/Licenciatura%20en%20Analisis%20de%20Sistemas%201986%20V2014.pdf",
+    link: "http://www.fi.uba.ar/sites/default/files/Licenciatura%20en%20Analisis%20de%20Sistemas%201986%20V2014.pdf",
     graph: data.sistemas,
     nombre: "Licenciatura en Análisis de Sistemas",
     nombrecorto: "Sistemas",
@@ -33,8 +32,7 @@ export const CARRERAS = [
   },
   {
     id: "informatica",
-    link:
-      "http://www.fi.uba.ar/sites/default/files/Ingenieria%20en%20Informatica%201986.pdf",
+    link: "http://www.fi.uba.ar/sites/default/files/Ingenieria%20en%20Informatica%201986.pdf",
     graph: data.informatica,
     nombre: "Ingeniería en Informática",
     nombrecorto: "Informática",
@@ -52,19 +50,19 @@ export const CARRERAS = [
     ],
     creditos: {
       total: 248,
-      obligatorias: 124,
+      obligatorias: 122,
       orientacion: {
         "Gestión Industrial de Sistemas": {
           orientacion: 24,
-          electivas: { tesis: 76, tpp: 88 },
+          electivas: { tesis: 78, tpp: 90 },
         },
         "Sistemas de Producción": {
           orientacion: 22,
-          electivas: { tesis: 78, tpp: 90 },
+          electivas: { tesis: 80, tpp: 92 },
         },
         "Sistemas Distribuidos": {
           orientacion: 18,
-          electivas: { tesis: 82, tpp: 94 },
+          electivas: { tesis: 84, tpp: 96 },
         },
       },
     },
@@ -72,8 +70,7 @@ export const CARRERAS = [
   },
   {
     id: "agrimensura",
-    link:
-      "http://www.fi.uba.ar/sites/default/files/Ingenieria%20en%20Agrimensura%202006.pdf",
+    link: "http://www.fi.uba.ar/sites/default/files/Ingenieria%20en%20Agrimensura%202006.pdf",
     graph: data.agrimensura,
     nombre: "Ingeniería en Agrimensura",
     nombrecorto: "Agrimensura",
@@ -97,8 +94,7 @@ export const CARRERAS = [
   },
   {
     id: "alimentos",
-    link:
-      "http://www.fi.uba.ar/sites/default/files/Ingenieria%20de%20Alimentos%202001-.pdf",
+    link: "http://www.fi.uba.ar/sites/default/files/Ingenieria%20de%20Alimentos%202001-.pdf",
     graph: data.alimentos,
     nombre: "Ingeniería de Alimentos",
     nombrecorto: "Alimentos",
@@ -124,8 +120,7 @@ export const CARRERAS = [
   },
   {
     id: "civil",
-    link:
-      "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Civil%202009.pdf",
+    link: "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Civil%202009.pdf",
     graph: data.civil,
     nombre: "Ingeniería Civil",
     nombrecorto: "Civil",
@@ -159,8 +154,7 @@ export const CARRERAS = [
   },
   {
     id: "electricista",
-    link:
-      "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Electricista%202009%20actualizacion%202018_.pdf",
+    link: "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Electricista%202009%20actualizacion%202018_.pdf",
     graph: data.electricista,
     nombre: "Ingeniería Electricista",
     nombrecorto: "Electricista",
@@ -190,8 +184,7 @@ export const CARRERAS = [
   },
   {
     id: "electronica",
-    link:
-      "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Electr%C3%B3nica%202009%20Modificacion%202018%20actualizacion%202019-.pdf",
+    link: "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Electr%C3%B3nica%202009%20Modificacion%202018%20actualizacion%202019-.pdf",
     graph: data.electronica,
     nombre: "Ingeniería Electrónica",
     nombrecorto: "Electrónica",
@@ -234,8 +227,7 @@ export const CARRERAS = [
   },
   {
     id: "industrial",
-    link:
-      "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Industrial%202011%20Modificacion%202018%20actualizacion%202019-.pdf",
+    link: "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Industrial%202011%20Modificacion%202018%20actualizacion%202019-.pdf",
     graph: data.industrial,
     nombre: "Ingeniería Industrial",
     nombrecorto: "Industrial",
@@ -273,8 +265,7 @@ export const CARRERAS = [
   },
   {
     id: "mecanica",
-    link:
-      "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Mecanica%201986%20-%20actualizaci%C3%B3n%202017-07.pdf",
+    link: "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Mecanica%201986%20-%20actualizaci%C3%B3n%202017-07.pdf",
     graph: data.mecanica,
     nombre: "Ingeniería Mecánica",
     nombrecorto: "Mecánica",
@@ -299,8 +290,7 @@ export const CARRERAS = [
   },
   {
     id: "naval",
-    link:
-      "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Naval%20y%20Mecanica%201986-%20plan%20de%20estudios.pdf",
+    link: "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Naval%20y%20Mecanica%201986-%20plan%20de%20estudios.pdf",
     graph: data.naval,
     nombre: "Ingeniería Naval y Mecánica",
     nombrecorto: "Naval",
@@ -316,8 +306,7 @@ export const CARRERAS = [
   },
   {
     id: "petroleo",
-    link:
-      "http://www.fi.uba.ar/sites/default/files/Ingenieria%20en%20Petroleo%202015_.pdf",
+    link: "http://www.fi.uba.ar/sites/default/files/Ingenieria%20en%20Petroleo%202015_.pdf",
     graph: data.petroleo,
     nombre: "Ingeniería en Petróleo",
     nombrecorto: "Petróleo",
@@ -347,8 +336,7 @@ export const CARRERAS = [
   },
   {
     id: "quimica",
-    link:
-      "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Quimica%201986%20M.pdf",
+    link: "http://www.fi.uba.ar/sites/default/files/Ingenieria%20Quimica%201986%20M.pdf",
     graph: data.quimica,
     nombre: "Ingeniería Química",
     nombrecorto: "Química",
@@ -364,8 +352,7 @@ export const CARRERAS = [
   },
   {
     id: "sistemasviejo",
-    link:
-      "http://www.fi.uba.ar/sites/default/files/Licenciatura%20en%20Analisis%20de%20Sistemas%201986.pdf",
+    link: "http://www.fi.uba.ar/sites/default/files/Licenciatura%20en%20Analisis%20de%20Sistemas%201986.pdf",
     graph: data.sistemasviejo,
     nombre: "Licenciatura en Análisis de Sistemas (Plan Viejo)",
     nombrecorto: "Sistemas (1986)",
