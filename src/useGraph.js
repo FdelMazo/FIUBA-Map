@@ -286,7 +286,7 @@ const useGraph = (loginHook) => {
 
     const getCorrectCreditos = () => {
       if (user.carrera.eligeOrientaciones === true)
-        return user.carrera.creditos.orientacion[user.orientacion.nombre];
+        return user.carrera.creditos.orientacion[user.orientacion?.nombre];
       return user.carrera.creditos;
     };
 
