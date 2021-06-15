@@ -235,7 +235,20 @@ const Footer = () => {
                       `${c.creditos} de ${c.creditosNecesarios} créditos necesarios`
                     ) : (
                       `Tenés ${c.creditos} créditos.
-                      Elegí entre tesis y tpp para saber cuantos necesitás`
+                      Elegí ${
+                        user.carrera.eligeOrientaciones === true &&
+                        !user.orientacion
+                          ? "orientación"
+                          : ""
+                      }${
+                        user.carrera.eligeOrientaciones === true &&
+                        !user.orientacion &&
+                        !user.finDeCarrera
+                          ? " y "
+                          : ""
+                      }${
+                        !user.finDeCarrera ? "entre tesis y tpp" : ""
+                      } para saber cuantos necesitás`
                     )}
                     {c.nombre.includes("Materias Electivas") &&
                       optativas.length > 0 && (

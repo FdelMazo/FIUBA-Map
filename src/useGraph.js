@@ -284,6 +284,12 @@ const useGraph = (loginHook) => {
       return acc;
     };
 
+    const getCorrectCreditos = () => {
+      if (user.carrera.eligeOrientaciones === true)
+        return user.carrera.creditos.orientacion[user.orientacion.nombre];
+      return user.carrera.creditos;
+    };
+
     creditos.push({
       nombre: "Materias Obligatorias",
       nombrecorto: "Obligatorias",
@@ -308,9 +314,9 @@ const useGraph = (loginHook) => {
       nombrecorto: "Electivas",
       color: "electivas",
       bg: COLORS.electivas[50],
-      creditosNecesarios: isNaN(user.carrera.creditos.electivas)
-        ? user.carrera.creditos.electivas[user.finDeCarrera?.id]
-        : user.carrera.creditos.electivas,
+      creditosNecesarios: isNaN(getCorrectCreditos()?.electivas)
+        ? getCorrectCreditos()?.electivas[user.finDeCarrera?.id]
+        : getCorrectCreditos()?.electivas,
 
       creditos:
         nodes
@@ -331,7 +337,7 @@ const useGraph = (loginHook) => {
     if (
       user.carrera.eligeOrientaciones &&
       user.orientacion &&
-      (!isNaN(user.carrera.creditos.orientacion) ||
+      (user.carrera.creditos.orientacion[user.orientacion?.nombre] ||
         user.carrera.creditos.orientacion[user.finDeCarrera?.id])
     )
       creditos.push({
@@ -339,9 +345,9 @@ const useGraph = (loginHook) => {
         nombrecorto: "Orientación",
         color: "orientacion0",
         bg: COLORS.orientacion0[50],
-        creditosNecesarios: isNaN(user.carrera.creditos.orientacion)
-          ? user.carrera.creditos.orientacion[user.finDeCarrera?.id]
-          : user.carrera.creditos.orientacion,
+        creditosNecesarios: isNaN(getCorrectCreditos()?.orientacion)
+          ? getCorrectCreditos().orientacion[user.finDeCarrera?.id]
+          : getCorrectCreditos()?.orientacion,
         creditos: nodes
           .get({
             filter: (n) =>
