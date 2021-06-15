@@ -35,8 +35,8 @@ const Header = (props) => {
       padding="0.8em"
     >
       {displayedNode && <MateriaMenu displayedNode={displayedNode} />}
-      <ScaleFade in={!displayedNode} unmountOnExit>
-        <PadronInput />
+      <ScaleFade in={!displayedNode}>
+        <PadronInput displayedNode={displayedNode} />
       </ScaleFade>
 
       <ScaleFade in={!displayedNode} unmountOnExit>

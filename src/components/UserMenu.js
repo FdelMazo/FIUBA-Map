@@ -50,52 +50,56 @@ const UserMenu = (props) => {
       }
       closeOnSelect={false}
     >
-      <LightMode>
-        <MenuButton
-          w="20ch"
-          textAlign="left"
-          as={Button}
-          leftIcon={<SettingsIcon />}
-          size="sm"
-          colorScheme="teal"
-          alignSelf="flex-end"
-        >
-          {user.padron}
-        </MenuButton>
-      </LightMode>
-      <MenuList>
-        {user.carrera.finDeCarrera && (
-          <MenuOptionGroup
-            onChange={(value) => {
-              setFirstTime(false);
-              changeFinDeCarrera(value);
-            }}
-            value={user.finDeCarrera?.id || "none"}
-            title="Fin de Carrera"
-            type="radio"
-          >
-            <MenuItemOption type="checkbox" value={"none"}>
-              No me decidí
-            </MenuItemOption>
-
-            {user.carrera?.finDeCarrera &&
-              Object.values(user.carrera.finDeCarrera).map((v) => (
-                <MenuItemOption type="checkbox" value={v.id}>
-                  {getNode(v.materia)?.materia}
+      {!props.displayedNode && (
+        <>
+          <LightMode>
+            <MenuButton
+              w="20ch"
+              textAlign="left"
+              as={Button}
+              leftIcon={<SettingsIcon />}
+              size="sm"
+              colorScheme="teal"
+              alignSelf="flex-end"
+            >
+              {user.padron}
+            </MenuButton>
+          </LightMode>
+          <MenuList>
+            {user.carrera.finDeCarrera && (
+              <MenuOptionGroup
+                onChange={(value) => {
+                  setFirstTime(false);
+                  changeFinDeCarrera(value);
+                }}
+                value={user.finDeCarrera?.id || "none"}
+                title="Fin de Carrera"
+                type="radio"
+              >
+                <MenuItemOption type="checkbox" value={"none"}>
+                  No me decidí
                 </MenuItemOption>
-              ))}
-          </MenuOptionGroup>
-        )}
 
-        {(user.carrera?.eligeOrientaciones === true ||
-          user.carrera?.eligeOrientaciones?.[user.finDeCarrera?.id]) && (
-          <OrientacionesMenuGroup />
-        )}
+                {user.carrera?.finDeCarrera &&
+                  Object.values(user.carrera.finDeCarrera).map((v) => (
+                    <MenuItemOption type="checkbox" value={v.id}>
+                      {getNode(v.materia)?.materia}
+                    </MenuItemOption>
+                  ))}
+              </MenuOptionGroup>
+            )}
 
-        <MenuItem onClick={logout}>
-          <strong>Cerrar Sesión</strong>
-        </MenuItem>
-      </MenuList>
+            {(user.carrera?.eligeOrientaciones === true ||
+              user.carrera?.eligeOrientaciones?.[user.finDeCarrera?.id]) && (
+              <OrientacionesMenuGroup />
+            )}
+
+            <MenuItem onClick={logout}>
+              <strong>Cerrar Sesión</strong>
+            </MenuItem>
+          </MenuList>
+        </>
+      )}
     </Menu>
   );
 };
