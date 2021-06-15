@@ -42,10 +42,19 @@ export const COLORS = {
   },
   // https://color.adobe.com/create/color-wheel starting from #FF9999
   cursando: {
-    500: "#F4AF94",
+    500: "#eceef0",
   },
   futuro: {
-    500: "#91989F",
+    100: "#d9dbdd",
+    200: "#cfd1d3",
+    300: "#c6c7c9",
+    400: "#bcbebf",
+    500: "#b3b4b5",
+    600: "#a9aaac",
+    700: "#9fa1a2",
+    800: "#969798",
+    900: "#8c8d8e",
+    1000: "#838485",
   },
   orientacion0: {
     50: "#D4D4B5",

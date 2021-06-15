@@ -170,7 +170,7 @@ const Header = (props) => {
                   />
                   <NumberDecrementStepper
                     border="none"
-                    color="futuro.500"
+                    color="futuro.1000"
                     fontSize="large"
                     children={<strong>-</strong>}
                   />

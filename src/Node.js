@@ -76,7 +76,7 @@ class Node {
     if (this.aprobada && this.nota >= 0) grupoDefault = "Aprobadas";
     else if (this.nota === -1) grupoDefault = "En Final";
     else if (this.cuatri === 0) grupoDefault = "Cursando";
-    else if (this.cuatri > 0) grupoDefault = "A Cursar";
+    else if (this.cuatri > 0) grupoDefault = `A Cursar (${this.cuatri})`;
     else if (this.isHabilitada(ctx)) grupoDefault = "Habilitadas";
     this.group = grupoDefault;
 
