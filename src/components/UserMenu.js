@@ -1,7 +1,6 @@
 import { SettingsIcon } from "@chakra-ui/icons";
 import {
   Button,
-  Collapse,
   LightMode,
   Menu,
   MenuButton,
@@ -15,12 +14,8 @@ import { GraphContext, UserContext } from "../Contexts";
 
 const UserMenu = (props) => {
   const { logout, user } = React.useContext(UserContext);
-  const {
-    setFirstTime,
-    changeOrientacion,
-    changeFinDeCarrera,
-    getNode,
-  } = React.useContext(GraphContext);
+  const { setFirstTime, changeOrientacion, changeFinDeCarrera, getNode } =
+    React.useContext(GraphContext);
 
   const OrientacionesMenuGroup = () => (
     <MenuOptionGroup
@@ -48,7 +43,9 @@ const UserMenu = (props) => {
   return (
     <Menu
       defaultIsOpen={
-        (user.carrera.eligeOrientaciones && !user.orientacion) ||
+        ((user.carrera.eligeOrientaciones === true ||
+          user.carrera?.eligeOrientaciones?.[user.finDeCarrera?.id]) &&
+          !user.orientacion) ||
         (user.carrera.finDeCarrera && !user.finDeCarrera)
       }
       closeOnSelect={false}
@@ -90,15 +87,11 @@ const UserMenu = (props) => {
           </MenuOptionGroup>
         )}
 
-        {user.carrera?.eligeOrientaciones === true && (
+        {(user.carrera?.eligeOrientaciones === true ||
+          user.carrera?.eligeOrientaciones?.[user.finDeCarrera?.id]) && (
           <OrientacionesMenuGroup />
         )}
-        <Collapse
-          in={user.carrera?.eligeOrientaciones?.[user.finDeCarrera?.id]}
-          unmountOnExit
-        >
-          <OrientacionesMenuGroup />
-        </Collapse>
+
         <MenuItem onClick={logout}>
           <strong>Cerrar Sesión</strong>
         </MenuItem>
