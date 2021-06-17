@@ -86,7 +86,7 @@ class Node {
         labelDefault += "\n[" + this.nota + "]";
       else if (this.aprobada && this.nota === 0)
         labelDefault += "\n[Equivalencia]";
-      else if (this.nota === -1) labelDefault += "\n[Final]";
+      else if (this.nota === -1) labelDefault += "\n[En Final]";
       else if (this.cuatri === 0) labelDefault += "\n[Cursando]";
       else if (this.cuatri === 1) labelDefault += "\n[En 1 cuatri]";
       else if (this.cuatri > 1)
