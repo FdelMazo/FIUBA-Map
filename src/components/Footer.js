@@ -319,7 +319,7 @@ const Footer = () => {
                   Promedio con
                   <PinInput
                     type="number"
-                    onChange={(v) => setAplazos(parseFloat(v))}
+                    onChange={(v) => setAplazos(parseFloat(v || 0))}
                     value={aplazos.toString()}
                     size="sm"
                     variant="flushed"
