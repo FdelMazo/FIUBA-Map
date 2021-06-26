@@ -43,7 +43,15 @@ export const KEY = "AIzaSyA9snz4CXDq_K8fJeUXkRtRZAQM90HTFp4";
 
 export const GRUPOS = {
   Aprobadas: { color: COLORS.aprobadas[400] },
-  CBC: { color: COLORS.habilitadas[400] },
+  CBC: {
+    shape: "hexagon",
+    size: 30,
+  },
+  "*CBC": {
+    color: COLORS.aprobadas[100],
+    shape: "square",
+    size: 15,
+  },
   Habilitadas: { color: COLORS.habilitadas[400] },
   "En Final": { color: COLORS.enfinal[400] },
   "Materias Obligatorias": { color: COLORS.obligatorias[400] },

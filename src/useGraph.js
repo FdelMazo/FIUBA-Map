@@ -267,7 +267,7 @@ const useGraph = (loginHook) => {
 
   const getPromedio = () => {
     const materias = nodes.get({
-      filter: (n) => n.aprobada && n.nota > 0,
+      filter: (n) => n.aprobada && n.nota > 0 && n.categoria !== "*CBC",
       fields: ["nota"],
     });
     const sum = materias.reduce((acc, node) => {
@@ -323,6 +323,7 @@ const useGraph = (loginHook) => {
           .get({
             filter: (n) =>
               n.categoria !== "CBC" &&
+              n.categoria !== "*CBC" &&
               n.categoria !== "Materias Obligatorias" &&
               n.categoria !== "Fin de Carrera" &&
               n.categoria !== "Fin de Carrera (Obligatorio)" &&
@@ -420,7 +421,11 @@ const useGraph = (loginHook) => {
     else if (fullProportion < 10) creditos[0].proportion += 10 - fullProportion;
 
     const aprobadas = nodes.get({
-      filter: (n) => n.categoria !== "CBC" && n.aprobada && n.nota >= 0,
+      filter: (n) =>
+        n.categoria !== "CBC" &&
+        n.categoria !== "*CBC" &&
+        n.aprobada &&
+        n.nota >= 0,
       fields: ["creditos"],
     });
     aprobadas.push(...optativas.filter(Boolean));
@@ -466,7 +471,7 @@ const useGraph = (loginHook) => {
   const promedioConAplazos = (n) => {
     if (!nodes) return 0;
     const materias = nodes.get({
-      filter: (n) => n.aprobada && n.nota > 0,
+      filter: (n) => n.aprobada && n.nota > 0 && n.categoria !== "*CBC",
       fields: ["nota"],
     });
     materias.push(...Array(n).fill({ nota: 2 }));
@@ -478,6 +483,24 @@ const useGraph = (loginHook) => {
     return sum ? (sum / materias.length).toFixed(2) : 0;
   };
 
+  const promedioConCBC = () => {
+    if (!nodes) return 0;
+    const materias = nodes.get({
+      filter: (n) => n.aprobada && n.nota > 0,
+      fields: ["nota"],
+    });
+
+    const sum = materias.reduce((acc, node) => {
+      acc += node.nota;
+      return acc;
+    }, 0);
+    return sum ? (sum / materias.length).toFixed(2) : 0;
+  };
+
+  const openCBC = () => {
+    toggleGroup("*CBC");
+  };
+
   return {
     graph,
     toggleGroup,
@@ -487,6 +510,7 @@ const useGraph = (loginHook) => {
     redraw,
     promedio,
     promedioConAplazos,
+    promedioConCBC,
     creditos,
     stats,
     network,
@@ -515,6 +539,7 @@ const useGraph = (loginHook) => {
     removeOptativa,
     aplazos,
     setAplazos,
+    openCBC,
   };
 };
 

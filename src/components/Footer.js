@@ -57,6 +57,7 @@ const Footer = () => {
     aplazos,
     setAplazos,
     promedioConAplazos,
+    promedioConCBC,
     editOptativa,
     removeOptativa,
   } = React.useContext(GraphContext);
@@ -64,11 +65,8 @@ const Footer = () => {
   const mobile = size.width < 750;
 
   function EditableControls(props) {
-    const {
-      isEditing,
-      getSubmitButtonProps,
-      getEditButtonProps,
-    } = useEditableControls();
+    const { isEditing, getSubmitButtonProps, getEditButtonProps } =
+      useEditableControls();
 
     const { defaultValue, optativa } = props;
     return (
@@ -314,22 +312,30 @@ const Footer = () => {
           <PopoverContent>
             <PopoverArrow />
             <PopoverBody>
-              <Text>
-                <strong>
-                  Promedio con
-                  <PinInput
-                    type="number"
-                    onChange={(v) => setAplazos(parseFloat(v || 0))}
-                    value={aplazos.toString()}
-                    size="sm"
-                    variant="flushed"
-                  >
-                    <PinInputField borderColor="red.500" />
-                  </PinInput>
-                  aplazos:
-                </strong>{" "}
-                {promedioConAplazos(aplazos)}
-              </Text>
+              <Flex justifyContent="space-between" alignItems="center">
+                <Text fontSize="md">
+                  <strong>
+                    Promedio con
+                    <PinInput
+                      type="number"
+                      onChange={(v) => setAplazos(parseFloat(v || 0))}
+                      value={aplazos.toString()}
+                      size="md"
+                      variant="flushed"
+                    >
+                      <PinInputField borderColor="red.500" />
+                    </PinInput>
+                    aplazos
+                  </strong>
+                </Text>
+                <Text fontSize="md">{promedioConAplazos(aplazos)}</Text>
+              </Flex>
+              <Flex justifyContent="space-between" alignItems="center">
+                <Text fontSize="md">
+                  <strong>Promedio con CBC</strong>
+                </Text>
+                <Text fontSize="md">{promedioConCBC()}</Text>
+              </Flex>
             </PopoverBody>
           </PopoverContent>
         </Popover>

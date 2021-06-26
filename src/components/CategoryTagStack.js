@@ -26,6 +26,7 @@ const CategoryTagStack = (props) => {
         .filter(
           (c) =>
             c !== "CBC" &&
+            c !== "*CBC" &&
             c !== "Materias Obligatorias" &&
             c !== "Fin de Carrera (Obligatorio)" &&
             c !== "Fin de Carrera" &&

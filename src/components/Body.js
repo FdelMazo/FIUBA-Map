@@ -47,6 +47,7 @@ const Body = (props) => {
     desaprobar,
     getNode,
     loadingGraph,
+    openCBC,
   } = React.useContext(GraphContext);
   const { user, logged, submitBug } = React.useContext(UserContext);
   const { setDisplayedNode } = props;
@@ -63,7 +64,10 @@ const Body = (props) => {
   const events = {
     click: (e) => {
       const id = e.nodes[0];
-      if (id === "CBC") return;
+      if (id === "CBC") {
+        openCBC();
+        return;
+      }
       const node = getNode(id);
       if (!node) {
         if (logged) setDisplayedNode("");

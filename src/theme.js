@@ -16,6 +16,7 @@ export const COLORS = {
     500: "#AF6FEC",
   },
   aprobadas: {
+    100: "#99EFC4",
     400: "#22DD7E",
     500: "#22DD7E",
     600: "#1BB165",
@@ -72,7 +73,7 @@ export const COLORS = {
     500: "#FF96FF",
   },
   orientacion4: {
-    500: "#5CFF8A",
+    500: "#C9EEED",
   },
   orientacion5: {
     500: "#FFDEB0",

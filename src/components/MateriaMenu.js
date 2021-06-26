@@ -85,37 +85,41 @@ const Header = (props) => {
           </NumberInput>
         </Tooltip>
 
-        <Tooltip closeOnClick hasArrow label="Poner en Final">
-          <Button
-            _hover={{
-              backgroundColor: "transparent",
-            }}
-            borderRadius="0"
-            cursor="pointer"
-            variant="link"
-            borderLeft="2px solid white"
-            fontSize="larger"
-            color="yellow.300"
-            onClick={() => aprobar(displayedNode, -1)}
-          >
-            <strong>F</strong>
-          </Button>
-        </Tooltip>
+        {getNode(displayedNode)?.categoria !== "*CBC" && (
+          <Tooltip closeOnClick hasArrow label="Poner en Final">
+            <Button
+              _hover={{
+                backgroundColor: "transparent",
+              }}
+              borderRadius="0"
+              cursor="pointer"
+              variant="link"
+              borderLeft="2px solid white"
+              fontSize="larger"
+              color="yellow.300"
+              onClick={() => aprobar(displayedNode, -1)}
+            >
+              <strong>F</strong>
+            </Button>
+          </Tooltip>
+        )}
       </HStack>
 
-      <Tooltip closeOnClick hasArrow label="Más Opciones">
-        <IconButton
-          mx={4}
-          border="2px"
-          onClick={() => setMoreOptionsOpen(!moreOptionsOpen)}
-          variant="outline"
-          color="white"
-          colorScheme="whiteAlpha"
-          fontSize="20px"
-          transform="rotate(90deg)"
-          icon={moreOptionsOpen ? <ArrowRightIcon /> : <ArrowLeftIcon />}
-        />
-      </Tooltip>
+      {getNode(displayedNode)?.categoria !== "*CBC" && (
+        <Tooltip closeOnClick hasArrow label="Más Opciones">
+          <IconButton
+            mx={4}
+            border="2px"
+            onClick={() => setMoreOptionsOpen(!moreOptionsOpen)}
+            variant="outline"
+            color="white"
+            colorScheme="whiteAlpha"
+            fontSize="20px"
+            transform="rotate(90deg)"
+            icon={moreOptionsOpen ? <ArrowRightIcon /> : <ArrowLeftIcon />}
+          />
+        </Tooltip>
+      )}
 
       <Collapse in={moreOptionsOpen} direction="left">
         <HStack spacing={4}>
