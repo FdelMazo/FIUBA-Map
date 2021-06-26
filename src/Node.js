@@ -103,6 +103,7 @@ class Node {
     if (this.categoria === "*CBC") {
       if (this.group === "Habilitadas") this.color = COLORS.aprobadas[100];
       if (this.group === "Aprobadas") this.color = COLORS.aprobadas[400];
+      this.font = { color: colorMode === "dark" ? "white" : "black" };
     }
 
     if (this.categoria === "CBC") {
@@ -121,6 +122,8 @@ class Node {
       if (showLabels && promedioCBC) this.label += "\n[" + promedioCBC + "]";
       if (materiasCBC.length === 6) this.color = COLORS.aprobadas[400];
       else this.color = COLORS.aprobadas[100];
+
+      this.font = { color: colorMode === "dark" ? "white" : "black" };
     }
 
     if (this.categoria === "Fin de Carrera") {
