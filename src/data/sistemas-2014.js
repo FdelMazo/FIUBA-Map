@@ -13,7 +13,6 @@ export const sistemas = [
     categoria: "*CBC",
     level: -2,
   },
-
   {
     id: "CBC24",
     materia: "Introducción al Conocimiento de la Sociedad y el Estado",

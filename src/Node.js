@@ -19,9 +19,11 @@ class Node {
     this.nota = -2;
     this.title =
       this.title ||
-      `Otorga ${this.creditos} créditos${
-        this.requiere ? "\nRequiere " + this.requiere + " créditos" : ""
-      }`;
+      (this.creditos
+        ? `Otorga ${this.creditos} créditos${
+            this.requiere ? "\nRequiere " + this.requiere + " créditos" : ""
+          }`
+        : undefined);
     this.cuatri = -1;
     this.hidden =
       this.categoria !== "Materias Obligatorias" &&
