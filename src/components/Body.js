@@ -73,12 +73,14 @@ const Body = (props) => {
         if (logged) setDisplayedNode("");
         return;
       }
+      if (logged) {
+        setDisplayedNode(id);
+        return;
+      }
       if (!node.aprobada) {
         aprobar(id, 4);
-        if (logged) setDisplayedNode(id);
       } else {
         desaprobar(id);
-        if (logged) setDisplayedNode("");
       }
     },
   };

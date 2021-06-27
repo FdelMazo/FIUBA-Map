@@ -1,4 +1,9 @@
-import { ArrowLeftIcon, ArrowRightIcon } from "@chakra-ui/icons";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  CheckIcon,
+  CloseIcon,
+} from "@chakra-ui/icons";
 import {
   Button,
   Collapse,
@@ -21,16 +26,16 @@ import { GraphContext } from "../Contexts";
 
 const Header = (props) => {
   const { displayedNode } = props;
-  const { getNode, aprobar, cursando } = React.useContext(GraphContext);
-  const [moreOptionsOpen, setMoreOptionsOpen] = React.useState(false);
+  const { getNode, aprobar, desaprobar, cursando } =
+    React.useContext(GraphContext);
+  const [moreOptionsOpen, setMoreOptionsOpen] = React.useState(
+    getNode(displayedNode)?.cuatri > -1
+  );
 
-  const format = (nota) => {
-    if (nota === -1) return "";
-    return nota;
-  };
+  const isCBC = getNode(displayedNode)?.categoria === "*CBC";
 
   const formatCuatri = (cuatri) => {
-    if (cuatri === -1) return "";
+    if (cuatri === -1) return "/";
     return `+` + cuatri;
   };
 
@@ -45,56 +50,87 @@ const Header = (props) => {
         </StatHelpText>
       </Stat>
 
-      <HStack borderRadius={6} border="2px solid white">
-        <Tooltip closeOnClick hasArrow label="Aprobar con Nota">
-          <NumberInput
-            css={{ margin: 0 }}
-            errorBorderColor="transparent"
-            borderColor="transparent"
-            inputMode="numeric"
-            onChange={(_, nota) => {
-              aprobar(displayedNode, nota);
-            }}
-            value={format(getNode(displayedNode)?.nota)}
-            min={4}
-            max={10}
-            maxW={16}
-          >
-            <NumberInputField
+      <Flex borderRadius={6} border="2px solid white" p={1} alignItems="center">
+        {getNode(displayedNode)?.nota > 0 ? (
+          <Tooltip closeOnClick hasArrow label="Aprobar con Nota">
+            <NumberInput
+              css={{ margin: 0 }}
+              errorBorderColor="transparent"
+              borderColor="transparent"
+              inputMode="numeric"
+              onChange={(_, nota) => {
+                aprobar(displayedNode, nota);
+              }}
+              value={getNode(displayedNode)?.nota}
+              min={4}
+              max={10}
+              maxW={16}
+            >
+              <NumberInputField
+                _hover={{
+                  borderColor: "transparent",
+                }}
+                _focus={{
+                  borderColor: "transparent",
+                }}
+                color="white"
+                fontWeight="bold"
+              />
+              <NumberInputStepper mr={1}>
+                <NumberIncrementStepper
+                  border="none"
+                  fontSize="small"
+                  color="green.500"
+                />
+                <NumberDecrementStepper
+                  border="none"
+                  fontSize="small"
+                  color="red.500"
+                />
+              </NumberInputStepper>
+            </NumberInput>
+          </Tooltip>
+        ) : (
+          <Tooltip closeOnClick hasArrow label="Aprobar">
+            <Button
               _hover={{
-                borderColor: "transparent",
+                backgroundColor: "transparent",
               }}
-              _focus={{
-                borderColor: "transparent",
-              }}
-              color="white"
-              fontWeight="bold"
-            />
-            <NumberInputStepper>
-              <NumberIncrementStepper
-                border="none"
-                fontSize="small"
-                color="green.500"
-              />
-              <NumberDecrementStepper
-                border="none"
-                fontSize="small"
-                color="red.500"
-              />
-            </NumberInputStepper>
-          </NumberInput>
+              borderRadius="0"
+              variant="link"
+              fontSize="larger"
+              color="green.500"
+              onClick={() => aprobar(displayedNode, 4)}
+            >
+              <CheckIcon />
+            </Button>
+          </Tooltip>
+        )}
+
+        <Tooltip closeOnClick hasArrow label="Desaprobar">
+          <Button
+            _hover={{
+              backgroundColor: "transparent",
+            }}
+            borderRadius="0"
+            variant="link"
+            borderLeft="2px solid white"
+            borderRight={isCBC ? undefined : "2px solid white"}
+            color="red.500"
+            onClick={() => desaprobar(displayedNode)}
+          >
+            <CloseIcon />
+          </Button>
         </Tooltip>
 
-        {getNode(displayedNode)?.categoria !== "*CBC" && (
+        {!isCBC && (
           <Tooltip closeOnClick hasArrow label="Poner en Final">
             <Button
               _hover={{
                 backgroundColor: "transparent",
               }}
               borderRadius="0"
-              cursor="pointer"
               variant="link"
-              borderLeft="2px solid white"
               fontSize="larger"
               color="yellow.300"
               onClick={() => aprobar(displayedNode, -1)}
@@ -103,9 +139,9 @@ const Header = (props) => {
             </Button>
           </Tooltip>
         )}
-      </HStack>
+      </Flex>
 
-      {getNode(displayedNode)?.categoria !== "*CBC" && (
+      {!isCBC && (
         <Tooltip closeOnClick hasArrow label="Más Opciones">
           <IconButton
             mx={4}
