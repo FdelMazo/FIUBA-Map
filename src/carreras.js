@@ -39,10 +39,10 @@ export const CARRERAS = [
     orientaciones: [
       {
         nombre: "Gestión Industrial de Sistemas",
-        color: COLORS.orientacion1[500],
+        colorScheme: "orientacion1",
       },
-      { nombre: "Sistemas Distribuidos", color: COLORS.orientacion2[500] },
-      { nombre: "Sistemas de Producción", color: COLORS.orientacion3[500] },
+      { nombre: "Sistemas Distribuidos", colorScheme: "orientacion2" },
+      { nombre: "Sistemas de Producción", colorScheme: "orientacion3" },
     ],
     finDeCarrera: [
       { id: "tesis", materia: "75.00" },
@@ -189,17 +189,17 @@ export const CARRERAS = [
     nombre: "Ingeniería Electrónica",
     nombrecorto: "Electrónica",
     orientaciones: [
-      { nombre: "Multiples Orientaciones", color: COLORS.orientacion0[500] },
-      { nombre: "Procesamiento de Señales", color: COLORS.orientacion1[500] },
-      { nombre: "Automatización y Control", color: COLORS.orientacion2[500] },
-      { nombre: "Física Electrónica", color: COLORS.orientacion3[500] },
-      { nombre: "Telecomunicaciones", color: COLORS.orientacion4[500] },
+      { nombre: "Multiples Orientaciones", colorScheme: "orientacion0" },
+      { nombre: "Procesamiento de Señales", colorScheme: "orientacion1" },
+      { nombre: "Automatización y Control", colorScheme: "orientacion2" },
+      { nombre: "Física Electrónica", colorScheme: "orientacion3" },
+      { nombre: "Telecomunicaciones", colorScheme: "orientacion4" },
       {
         nombre: "Sistemas Digitales y Computación",
-        color: COLORS.orientacion5[500],
+        colorScheme: "orientacion5",
       },
-      { nombre: "Multimedia", color: COLORS.orientacion6[500] },
-      { nombre: "Instrumentación Biomédica", color: COLORS.orientacion7[500] },
+      { nombre: "Multimedia", colorScheme: "orientacion6" },
+      { nombre: "Instrumentación Biomédica", colorScheme: "orientacion7" },
     ],
     finDeCarrera: [
       { id: "tesis", materia: "86.00" },
@@ -270,11 +270,11 @@ export const CARRERAS = [
     nombre: "Ingeniería Mecánica",
     nombrecorto: "Mecánica",
     orientaciones: [
-      { nombre: "Diseño Mecánico", color: COLORS.orientacion1[500] },
-      { nombre: "Termomecánica", color: COLORS.orientacion2[500] },
-      { nombre: "Metalúrgica", color: COLORS.orientacion3[500] },
-      { nombre: "Computación Aplicada", color: COLORS.orientacion4[500] },
-      { nombre: "Industrias", color: COLORS.orientacion5[500] },
+      { nombre: "Diseño Mecánico", colorScheme: "orientacion1" },
+      { nombre: "Termomecánica", colorScheme: "orientacion2" },
+      { nombre: "Metalúrgica", colorScheme: "orientacion3" },
+      { nombre: "Computación Aplicada", colorScheme: "orientacion4" },
+      { nombre: "Industrias", colorScheme: "orientacion5" },
     ],
     eligeOrientaciones: { tesis: true },
     finDeCarrera: [

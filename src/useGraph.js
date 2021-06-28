@@ -344,8 +344,8 @@ const useGraph = (loginHook) => {
       creditos.push({
         nombre: `Orientación: ${user.orientacion.nombre}`,
         nombrecorto: "Orientación",
-        color: "orientacion0",
-        bg: COLORS.orientacion0[50],
+        bg: COLORS[user.orientacion.colorScheme][50],
+        color: user.orientacion.colorScheme,
         creditosNecesarios: isNaN(getCorrectCreditos()?.orientacion)
           ? getCorrectCreditos().orientacion[user.finDeCarrera?.id]
           : getCorrectCreditos()?.orientacion,

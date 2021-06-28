@@ -64,24 +64,30 @@ export const COLORS = {
   },
   orientacion1: {
     50: "#FFE5E5",
-    500: "#FF9999",
+    500: "#FF8A8A",
   },
   orientacion2: {
-    500: "#80FFEC",
+    50: "#FFF4E5",
+    500: "#FFDEB0",
   },
   orientacion3: {
+    50: "#FFE5FF",
     500: "#FF96FF",
   },
   orientacion4: {
+    50: "#ECF9F9",
     500: "#C9EEED",
   },
   orientacion5: {
-    500: "#FFDEB0",
+    50: "#E5FBFF",
+    500: "#B8FFF4",
   },
   orientacion6: {
+    50: "#EEFFE5",
     500: "#DCFFC9",
   },
   orientacion7: {
+    50: "#E5FFFB",
     500: "#C9FFF7",
   },
 };

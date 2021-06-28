@@ -80,6 +80,7 @@ export const GRUPOS = {
   ...CARRERAS.filter((c) => c.orientaciones)
     .flatMap((c) => c.orientaciones)
     .reduce(function (map, obj) {
+      obj.color = COLORS[obj.colorScheme][500];
       map[obj.nombre] = obj;
       return map;
     }, {}),
