@@ -272,9 +272,13 @@ export const CARRERAS = [
     orientaciones: [
       { nombre: "Diseño Mecánico", colorScheme: "orientacion1" },
       { nombre: "Termomecánica", colorScheme: "orientacion2" },
-      { nombre: "Metalúrgica", colorScheme: "orientacion3" },
-      { nombre: "Computación Aplicada", colorScheme: "orientacion4" },
-      { nombre: "Industrias", colorScheme: "orientacion5" },
+      { nombre: "Metalúrgica", colorScheme: "orientacion3", nonEligible: true },
+      {
+        nombre: "Computación Aplicada",
+        colorScheme: "orientacion4",
+        nonEligible: true,
+      },
+      { nombre: "Industrias", colorScheme: "orientacion5", nonEligible: true },
     ],
     eligeOrientaciones: { tesis: true },
     finDeCarrera: [

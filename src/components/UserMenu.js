@@ -32,11 +32,13 @@ const UserMenu = (props) => {
       </MenuItemOption>
 
       {user.carrera?.orientaciones &&
-        user.carrera?.orientaciones.map((o) => (
-          <MenuItemOption type="checkbox" value={o.nombre}>
-            {o.nombre}
-          </MenuItemOption>
-        ))}
+        user.carrera?.orientaciones
+          .filter((o) => !o.nonEligible)
+          .map((o) => (
+            <MenuItemOption type="checkbox" value={o.nombre}>
+              {o.nombre}
+            </MenuItemOption>
+          ))}
     </MenuOptionGroup>
   );
 
