@@ -189,7 +189,6 @@ export const CARRERAS = [
     nombre: "Ingeniería Electrónica",
     nombrecorto: "Electrónica",
     orientaciones: [
-      { nombre: "Multiples Orientaciones", colorScheme: "orientacion0" },
       { nombre: "Procesamiento de Señales", colorScheme: "orientacion1" },
       { nombre: "Automatización y Control", colorScheme: "orientacion2" },
       { nombre: "Física Electrónica", colorScheme: "orientacion3" },
@@ -200,6 +199,7 @@ export const CARRERAS = [
       },
       { nombre: "Multimedia", colorScheme: "orientacion6" },
       { nombre: "Instrumentación Biomédica", colorScheme: "orientacion7" },
+      { nombre: "Multiples Orientaciones", colorScheme: "orientacion8" },
     ],
     finDeCarrera: [
       { id: "tesis", materia: "86.00" },

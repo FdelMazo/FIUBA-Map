@@ -39,7 +39,7 @@ export const COLORS = {
   enfinal: {
     50: "#FFF0B8",
     400: "#FEDC5D",
-    500: "#CBA001",
+    500: "#FDC802",
   },
   // https://color.adobe.com/create/color-wheel starting from #FF9999
   cursando: {
@@ -57,38 +57,32 @@ export const COLORS = {
     900: "#8c8d8e",
     1000: "#838485",
   },
-  orientacion0: {
-    50: "#D4D4B5",
-    400: "#C3C397",
-    500: "#A2A15D",
-  },
   orientacion1: {
     50: "#FFE5E5",
-    500: "#FF8A8A",
+    500: "#FF9999",
   },
   orientacion2: {
-    50: "#FFF4E5",
-    500: "#FFDEB0",
+    50: "#B8FFFD",
+    500: "#00cec9",
   },
   orientacion3: {
     50: "#FFE5FF",
-    500: "#FF96FF",
+    500: "#FF8AFF",
   },
   orientacion4: {
-    50: "#ECF9F9",
     500: "#C9EEED",
   },
   orientacion5: {
-    50: "#E5FBFF",
-    500: "#B8FFF4",
+    500: "#E2A6B8",
   },
   orientacion6: {
-    50: "#EEFFE5",
     500: "#DCFFC9",
   },
   orientacion7: {
-    50: "#E5FFFB",
-    500: "#C9FFF7",
+    500: "#f19066",
+  },
+  orientacion8: {
+    500: "#ccae62",
   },
 };
 
