@@ -83,6 +83,32 @@ const Body = (props) => {
         desaprobar(id);
       }
     },
+    doubleClick: (e) => {
+      const id = e.nodes[0];
+      if (!logged) return;
+      if (id === "CBC") return;
+      const node = getNode(id);
+      if (!node) return;
+      setDisplayedNode(id);
+      if (!node.aprobada) {
+        aprobar(id, 4);
+      } else {
+        desaprobar(id);
+      }
+    },
+    hold: (e) => {
+      const id = e.nodes[0];
+      if (!logged) return;
+      if (id === "CBC") return;
+      const node = getNode(id);
+      if (!node) return;
+      setDisplayedNode(id);
+      if (!(node.nota === -1)) {
+        aprobar(id, -1);
+      } else {
+        desaprobar(id);
+      }
+    },
   };
 
   return (
