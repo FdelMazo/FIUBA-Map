@@ -502,16 +502,23 @@ const useGraph = (loginHook) => {
   };
 
   const balanceShownElectivas = (group) => {
-    const electivasCrudas = group.filter((n) => {
-      const node = getNode(n.id);
-      return node.group === "Materias Electivas";
-    });
+    const sortByGroup = (a, b) => {
+      const nodeA = getNode(a.id);
+      const nodeB = getNode(b.id);
+      const groupOrder = [
+        "Aprobadas",
+        "En Final",
+        "Habilitadas",
+        "Materias Electivas",
+        "Cursando",
+        ...Array(10)
+          .fill()
+          .map((_, i) => `A Cursar (${i + 1})`),
+      ];
+      return groupOrder.indexOf(nodeA.group) - groupOrder.indexOf(nodeB.group);
+    };
 
-    const electivasNoCrudas = group.filter((n) => {
-      const node = getNode(n.id);
-      return node.group !== "Materias Electivas";
-    });
-    const electivas = [...electivasNoCrudas, ...electivasCrudas];
+    const electivas = group.sort(sortByGroup);
     const lastLevel = Math.max(
       ...nodes
         .get({
@@ -527,7 +534,7 @@ const useGraph = (loginHook) => {
     let counter = 0;
     let addLevel = 1;
 
-    electivas.foreach((n) => {
+    electivas.forEach((n) => {
       const node = getNode(n.id);
       counter += 1;
       if (counter === 7) {
