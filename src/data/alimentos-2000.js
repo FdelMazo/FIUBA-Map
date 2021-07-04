@@ -139,15 +139,6 @@ export const alimentos = [
     level: 4,
   },
   {
-    id: "61.06",
-    materia: "Probabilidad y Estadística",
-    creditos: 4,
-    correlativas: "61.03",
-    categoria: "Materias Electivas",
-    level: 4,
-  },
-
-  {
     id: "65.43",
     materia: "Ingeniería de las Instalaciones I",
     creditos: 6,
@@ -251,7 +242,6 @@ export const alimentos = [
     categoria: "Materias Obligatorias",
     level: 7,
   },
-
   {
     id: "FYB1",
     materia: "Legislación Alimentaria",
@@ -301,14 +291,6 @@ export const alimentos = [
     level: 9,
   },
   {
-    id: "CEX5",
-    materia: "Tecnología de Alimentos II",
-    creditos: 4,
-    correlativas: "CEX1-63.05",
-    categoria: "Materias Obligatorias",
-    level: 10,
-  },
-  {
     id: "76.41",
     materia: "Biotecnología",
     creditos: 4,
@@ -325,13 +307,28 @@ export const alimentos = [
     level: 9,
   },
   {
+    id: "CEX5",
+    materia: "Tecnología de Alimentos II",
+    creditos: 4,
+    correlativas: "CEX1-63.05",
+    categoria: "Materias Obligatorias",
+    level: 10,
+  },
+  {
     id: "71.56",
     materia:
-      "Legislación y EjercicioElectivas Profesional de la Ingeniería de Alimentos",
+      "Legislación y Ejercicio Profesional de la Ingeniería de Alimentos",
     creditos: 2,
     correlativas: "71.55",
     categoria: "Materias Obligatorias",
     level: 10,
+  },
+  {
+    id: "61.06",
+    materia: "Probabilidad y Estadística",
+    creditos: 4,
+    correlativas: "61.03",
+    categoria: "Materias Electivas",
   },
   {
     id: "CEX6",
@@ -339,7 +336,6 @@ export const alimentos = [
     creditos: 6,
     correlativas: "76.12",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "CEX7",
@@ -347,7 +343,6 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX1-63.05",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "AG1",
@@ -355,7 +350,6 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX5",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "CEX8",
@@ -363,7 +357,6 @@ export const alimentos = [
     creditos: 8,
     correlativas: "CEX3",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "71.03",
@@ -371,7 +364,6 @@ export const alimentos = [
     creditos: 6,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "71.31",
@@ -379,7 +371,6 @@ export const alimentos = [
     creditos: 6,
     correlativas: "CEX3-71.55",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "71.33",
@@ -387,7 +378,6 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX3-71.55",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "71.43",
@@ -395,7 +385,6 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX3-71.55",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "71.44",
@@ -403,7 +392,6 @@ export const alimentos = [
     creditos: 4,
     correlativas: "FYB1-71.55",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "71.57",
@@ -411,7 +399,6 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "72.14",
@@ -419,7 +406,6 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX3-75.55",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "76.19",
@@ -427,7 +413,6 @@ export const alimentos = [
     creditos: 4,
     correlativas: "76.41",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "FYB3",
@@ -436,7 +421,6 @@ export const alimentos = [
     creditos: 4,
     correlativas: "71.55",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "78.xx",
@@ -444,7 +428,6 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "76.44",
@@ -452,7 +435,6 @@ export const alimentos = [
     creditos: 4,
     correlativas: "CEX1",
     categoria: "Fin de Carrera (Obligatorio)",
-    level: -1,
   },
   {
     id: "76.90",
@@ -460,6 +442,5 @@ export const alimentos = [
     creditos: 12,
     correlativas: "CEX1",
     categoria: "Fin de Carrera (Obligatorio)",
-    level: -1,
   },
 ];

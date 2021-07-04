@@ -224,7 +224,6 @@ export const sistemasviejo = [
     creditos: 4,
     correlativas: "75.17",
     categoria: "Materias Electivas",
-    level: 7,
   },
   {
     id: "71.18",
@@ -232,7 +231,6 @@ export const sistemasviejo = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    level: 7,
   },
   {
     id: "71.20",
@@ -240,7 +238,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "71.15",
     categoria: "Materias Electivas",
-    level: 7,
   },
   {
     id: "78.xx",
@@ -248,7 +245,6 @@ export const sistemasviejo = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    level: 7,
   },
   {
     id: "71.58",
@@ -256,7 +252,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "71.15",
     categoria: "Materias Electivas",
-    level: 8,
   },
   {
     id: "71.46",
@@ -264,7 +259,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "71.13",
     categoria: "Materias Electivas",
-    level: 8,
   },
   {
     id: "75.12",
@@ -272,7 +266,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "61.03-61.08-75.41",
     categoria: "Materias Electivas",
-    level: 8,
   },
   {
     id: "75.14",
@@ -280,7 +273,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "61.07",
     categoria: "Materias Electivas",
-    level: 8,
   },
   {
     id: "75.16",
@@ -288,7 +280,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "75.14",
     categoria: "Materias Electivas",
-    level: 9,
   },
   {
     id: "75.19",
@@ -296,7 +287,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "75.08",
     categoria: "Materias Electivas",
-    level: 9,
   },
   {
     id: "75.20",
@@ -304,7 +294,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "75.08",
     categoria: "Materias Electivas",
-    level: 9,
   },
   {
     id: "75.22",
@@ -312,7 +301,6 @@ export const sistemasviejo = [
     creditos: 8,
     correlativas: "75.08",
     categoria: "Materias Electivas",
-    level: 9,
   },
   {
     id: "75.23",
@@ -320,7 +308,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "75.41",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "75.24",
@@ -328,7 +315,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "75.07",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "75.26",
@@ -336,7 +322,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "61.09",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "75.27",
@@ -344,7 +329,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "75.07",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "75.29",
@@ -352,7 +336,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "61.07-75.41",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "75.32",
@@ -360,7 +343,6 @@ export const sistemasviejo = [
     creditos: 3,
     correlativas: "71.13-75.10-75.15",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "75.33",
@@ -368,7 +350,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "75.08-75.15",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "75.34",
@@ -376,7 +357,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "75.33",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "75.36",
@@ -384,7 +364,6 @@ export const sistemasviejo = [
     creditos: 3,
     correlativas: "75.15",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "75.38",
@@ -392,7 +371,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "75.12",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "75.39",
@@ -400,7 +378,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "75.08-75.09",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "75.50",
@@ -408,7 +385,6 @@ export const sistemasviejo = [
     creditos: 6,
     correlativas: "61.09-71.14",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "75.71",
@@ -416,7 +392,6 @@ export const sistemasviejo = [
     creditos: 3,
     correlativas: "75.07",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "75.72",
@@ -424,6 +399,5 @@ export const sistemasviejo = [
     creditos: 3,
     correlativas: "75.06-75.41",
     categoria: "Materias Electivas",
-    level: 12,
   },
 ];

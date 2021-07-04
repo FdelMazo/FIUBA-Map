@@ -51,78 +51,6 @@ export const informatica = [
     correlativas: "CBC28-CBC27-CBC3-CBC5-CBC24-CBC40",
   },
   {
-    id: "75.58",
-    materia: "Evaluación de Proyectos y Manejo de Riesgos",
-    creditos: 4,
-    correlativas: "75.46-75.48",
-    categoria: "Materias Electivas",
-    level: 12,
-  },
-  {
-    id: "75.64",
-    materia: "Sistemas Multimediales",
-    creditos: 4,
-    correlativas: "66.74-75.74",
-    categoria: "Materias Electivas",
-    level: 13,
-  },
-  {
-    id: "66.46",
-    materia: "Procesamiento del Habla",
-    creditos: 6,
-    correlativas: "66.74",
-    categoria: "Materias Electivas",
-    level: 14,
-  },
-  {
-    id: "75.74",
-    materia: "Sistemas Distribuidos I",
-    creditos: 6,
-    correlativas: "75.43-75.59",
-    categoria: "Sistemas Distribuidos",
-    level: 7,
-  },
-  {
-    id: "75.56",
-    materia: "Organización de la Implantación y el Mantenimiento",
-    creditos: 6,
-    correlativas: "75.46-75.48",
-    categoria: "Materias Electivas",
-    level: 16,
-  },
-  {
-    id: "75.57",
-    materia: "Modelos de Proceso de Desarrollo",
-    creditos: 4,
-    correlativas: "75.46-75.48",
-    categoria: "Materias Electivas",
-    level: 11,
-  },
-  {
-    id: "75.63",
-    materia: "Sistemas Distribuidos II",
-    creditos: 4,
-    correlativas: "75.74",
-    categoria: "Materias Electivas",
-    level: 10,
-  },
-  {
-    id: "71.46",
-    materia: "Ingeniería Económica",
-    creditos: 6,
-    requiere: 140,
-    categoria: "Materias Electivas",
-    level: 13,
-  },
-  {
-    id: "75.69",
-    materia: "Sistemas Automáticos de Diagnóstico y Detección Fallas II",
-    creditos: 6,
-    correlativas: "75.67",
-    categoria: "Materias Electivas",
-    level: 13,
-  },
-  {
     id: "62.01",
     materia: "Física I A",
     creditos: 8,
@@ -155,14 +83,6 @@ export const informatica = [
     level: 2,
   },
   {
-    id: "63.01",
-    materia: "Química",
-    creditos: 6,
-    correlativas: "CBC",
-    categoria: "Materias Electivas",
-    level: 8,
-  },
-  {
     id: "61.08",
     materia: "Álgebra II A",
     creditos: 8,
@@ -177,22 +97,6 @@ export const informatica = [
     correlativas: "75.40",
     categoria: "Materias Obligatorias",
     level: 2,
-  },
-  {
-    id: "66.02",
-    materia: "Laboratorio",
-    creditos: 6,
-    correlativas: "62.03",
-    categoria: "Materias Electivas",
-    level: 8,
-  },
-  {
-    id: "62.15",
-    materia: "Física III D",
-    creditos: 4,
-    correlativas: "61.08-62.03",
-    categoria: "Materias Electivas",
-    level: 8,
   },
   {
     id: "66.70",
@@ -227,22 +131,6 @@ export const informatica = [
     level: 3,
   },
   {
-    id: "61.10",
-    materia: "Análisis Matemático III A",
-    creditos: 6,
-    correlativas: "61.03-61.08",
-    categoria: "Materias Electivas",
-    level: 8,
-  },
-  {
-    id: "66.20",
-    materia: "Organización de Computadoras",
-    creditos: 6,
-    correlativas: "66.70",
-    categoria: "Materias Electivas",
-    level: 8,
-  },
-  {
     id: "75.42",
     materia: "Taller de Programación I",
     creditos: 4,
@@ -255,6 +143,14 @@ export const informatica = [
     materia: "Organización de Datos",
     creditos: 6,
     correlativas: "61.08-75.41",
+    categoria: "Materias Obligatorias",
+    level: 4,
+  },
+  {
+    id: "75.08",
+    materia: "Sistemas Operativos",
+    creditos: 6,
+    correlativas: "66.70",
     categoria: "Materias Obligatorias",
     level: 4,
   },
@@ -275,20 +171,12 @@ export const informatica = [
     level: 5,
   },
   {
-    id: "75.08",
-    materia: "Sistemas Operativos",
-    creditos: 6,
-    correlativas: "66.70",
+    id: "75.52",
+    materia: "Taller de Programación II",
+    creditos: 4,
+    correlativas: "75.07-75.42",
     categoria: "Materias Obligatorias",
-    level: 4,
-  },
-  {
-    id: "71.12",
-    materia: "Estructura de las Organizaciones",
-    creditos: 6,
-    requiere: 60,
-    categoria: "Materias Electivas",
-    level: 8,
+    level: 5,
   },
   {
     id: "71.40",
@@ -298,14 +186,6 @@ export const informatica = [
     requiere: 140,
     categoria: "Materias Obligatorias",
     level: 6,
-  },
-  {
-    id: "75.52",
-    materia: "Taller de Programación II",
-    creditos: 4,
-    correlativas: "75.07-75.42",
-    categoria: "Materias Obligatorias",
-    level: 5,
   },
   {
     id: "75.15",
@@ -332,20 +212,12 @@ export const informatica = [
     level: 6,
   },
   {
-    id: "61.07",
-    materia: "Matemática Discreta",
+    id: "75.74",
+    materia: "Sistemas Distribuidos I",
     creditos: 6,
-    correlativas: "CBC",
-    categoria: "Materias Electivas",
-    level: 10,
-  },
-  {
-    id: "71.13",
-    materia: "Información en las Organizaciones",
-    creditos: 6,
-    correlativas: "71.12",
-    categoria: "Materias Electivas",
-    level: 9,
+    correlativas: "75.43-75.59",
+    categoria: "Sistemas Distribuidos",
+    level: 7,
   },
   {
     id: "75.44",
@@ -380,22 +252,6 @@ export const informatica = [
     level: 7,
   },
   {
-    id: "75.48",
-    materia: "Calidad en Desarrollo de Sistemas",
-    creditos: 4,
-    correlativas: "75.45",
-    categoria: "Materias Electivas",
-    level: 9,
-  },
-  {
-    id: "66.06",
-    materia: "Análisis de Circuitos",
-    creditos: 10,
-    correlativas: "61.10-62.03",
-    categoria: "Materias Electivas",
-    level: 9,
-  },
-  {
     id: "75.59",
     materia: "Técnicas de Programación Concurrente I",
     creditos: 6,
@@ -404,29 +260,12 @@ export const informatica = [
     level: 7,
   },
   {
-    id: "66.74",
-    materia: "Señales y Sistemas",
-    creditos: 6,
-    correlativas: "61.09-66.06",
-    categoria: "Materias Electivas",
-    level: 9,
-  },
-  {
     id: "75.61",
     materia: "Taller de Programación III",
     creditos: 6,
     correlativas: "75.74",
     categoria: "Sistemas Distribuidos",
     level: 7,
-  },
-
-  {
-    id: "64.05",
-    materia: "Estática y Resistencia de Materiales B",
-    creditos: 6,
-    correlativas: "61.03-61.08",
-    categoria: "Materias Electivas",
-    level: 9,
   },
   {
     id: "75.65",
@@ -445,14 +284,6 @@ export const informatica = [
     level: 7,
   },
   {
-    id: "72.01",
-    materia: "Materiales Industriales I",
-    creditos: 6,
-    correlativas: "63.01-64.05",
-    categoria: "Materias Electivas",
-    level: 9,
-  },
-  {
     id: "75.66",
     materia: "Manufactura Integrada por Computadora II",
     creditos: 6,
@@ -469,12 +300,158 @@ export const informatica = [
     level: 7,
   },
   {
+    id: "71.12",
+    materia: "Estructura de las Organizaciones",
+    creditos: 6,
+    requiere: 60,
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "61.07",
+    materia: "Matemática Discreta",
+    creditos: 6,
+    correlativas: "CBC",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "71.13",
+    materia: "Información en las Organizaciones",
+    creditos: 6,
+    correlativas: "71.12",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "75.58",
+    materia: "Evaluación de Proyectos y Manejo de Riesgos",
+    creditos: 4,
+    correlativas: "75.46-75.48",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "75.64",
+    materia: "Sistemas Multimediales",
+    creditos: 4,
+    correlativas: "66.74-75.74",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "66.46",
+    materia: "Procesamiento del Habla",
+    creditos: 6,
+    correlativas: "66.74",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "75.48",
+    materia: "Calidad en Desarrollo de Sistemas",
+    creditos: 4,
+    correlativas: "75.45",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "66.06",
+    materia: "Análisis de Circuitos",
+    creditos: 10,
+    correlativas: "61.10-62.03",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "66.74",
+    materia: "Señales y Sistemas",
+    creditos: 6,
+    correlativas: "61.09-66.06",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "64.05",
+    materia: "Estática y Resistencia de Materiales B",
+    creditos: 6,
+    correlativas: "61.03-61.08",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "72.01",
+    materia: "Materiales Industriales I",
+    creditos: 6,
+    correlativas: "63.01-64.05",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "63.01",
+    materia: "Química",
+    creditos: 6,
+    correlativas: "CBC",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "61.10",
+    materia: "Análisis Matemático III A",
+    creditos: 6,
+    correlativas: "61.03-61.08",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "66.20",
+    materia: "Organización de Computadoras",
+    creditos: 6,
+    correlativas: "66.70",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "75.56",
+    materia: "Organización de la Implantación y el Mantenimiento",
+    creditos: 6,
+    correlativas: "75.46-75.48",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "75.57",
+    materia: "Modelos de Proceso de Desarrollo",
+    creditos: 4,
+    correlativas: "75.46-75.48",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "75.63",
+    materia: "Sistemas Distribuidos II",
+    creditos: 4,
+    correlativas: "75.74",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "71.46",
+    materia: "Ingeniería Económica",
+    creditos: 6,
+    requiere: 140,
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "75.69",
+    materia: "Sistemas Automáticos de Diagnóstico y Detección Fallas II",
+    creditos: 6,
+    correlativas: "75.67",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "66.02",
+    materia: "Laboratorio",
+    creditos: 6,
+    correlativas: "62.03",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "62.15",
+    materia: "Física III D",
+    creditos: 4,
+    correlativas: "61.08-62.03",
+    categoria: "Materias Electivas",
+  },
+  {
     id: "61.18",
     materia: "Ecuaciones Diferenciales Ordinarias",
     creditos: 6,
     correlativas: "61.03-61.08",
     categoria: "Materias Electivas",
-    level: 17,
   },
   {
     id: "61.19",
@@ -482,7 +459,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.10",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "62.11",
@@ -490,7 +466,6 @@ export const informatica = [
     creditos: 4,
     correlativas: "61.10-62.01",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "66.08",
@@ -498,7 +473,6 @@ export const informatica = [
     creditos: 8,
     correlativas: "62.15-66.02-66.06",
     categoria: "Materias Electivas",
-    level: 16,
   },
   {
     id: "66.09",
@@ -506,7 +480,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.02-66.70",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "66.17",
@@ -514,7 +487,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.70",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "66.18",
@@ -522,7 +494,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.74",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "66.19",
@@ -530,7 +501,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.08-66.70",
     categoria: "Materias Electivas",
-    level: 17,
   },
   {
     id: "66.24",
@@ -538,7 +508,6 @@ export const informatica = [
     creditos: 4,
     correlativas: "66.74-66.75-66.70",
     categoria: "Materias Electivas",
-    level: 17,
   },
   {
     id: "66.26",
@@ -546,7 +515,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.20",
     categoria: "Materias Electivas",
-    level: 17,
   },
   {
     id: "66.32",
@@ -554,7 +522,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "62.11-66.18",
     categoria: "Materias Electivas",
-    level: 17,
   },
   {
     id: "66.35",
@@ -562,7 +529,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.07-66.17",
     categoria: "Materias Electivas",
-    level: 18,
   },
 
   {
@@ -571,7 +537,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.09-66.74",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "66.49",
@@ -579,7 +544,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.74-63.01",
     categoria: "Materias Electivas",
-    level: 17,
   },
   {
     id: "66.55",
@@ -587,7 +551,6 @@ export const informatica = [
     creditos: 4,
     correlativas: "66.18",
     categoria: "Materias Electivas",
-    level: 16,
   },
   {
     id: "66.69",
@@ -595,7 +558,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.43",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "66.71",
@@ -603,7 +565,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.03-61.08-75.41",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "66.75",
@@ -611,7 +572,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.03-61.09",
     categoria: "Materias Electivas",
-    level: 16,
   },
   {
     id: "67.61",
@@ -619,7 +579,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.08-75.07",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "71.15",
@@ -627,7 +586,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.09-71.14",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "71.18",
@@ -635,7 +593,6 @@ export const informatica = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "71.20",
@@ -643,7 +600,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "71.15",
     categoria: "Materias Electivas",
-    level: 16,
   },
   {
     id: "71.41",
@@ -651,7 +607,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "71.15",
     categoria: "Materias Electivas",
-    level: 16,
   },
   {
     id: "71.42",
@@ -659,7 +614,6 @@ export const informatica = [
     creditos: 4,
     correlativas: "71.46",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "71.44",
@@ -667,7 +621,6 @@ export const informatica = [
     creditos: 4,
     requiere: 140,
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "75.14",
@@ -675,7 +628,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.09",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "75.16",
@@ -683,7 +635,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.14",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "75.26",
@@ -691,7 +642,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.09",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "75.29",
@@ -699,7 +649,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.41",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "75.30",
@@ -707,7 +656,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.29",
     categoria: "Materias Electivas",
-    level: 17,
   },
   {
     id: "75.31",
@@ -715,7 +663,6 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.41",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "75.38",
@@ -723,7 +670,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.52",
     categoria: "Materias Electivas",
-    level: 18,
   },
   {
     id: "75.50",
@@ -731,7 +677,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "61.09-71.14",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "75.51",
@@ -739,7 +684,6 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.15-75.52",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "75.53",
@@ -747,7 +691,6 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.51",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "75.54",
@@ -755,7 +698,6 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.48-75.53",
     categoria: "Materias Electivas",
-    level: 18,
   },
   {
     id: "75.62",
@@ -763,7 +705,6 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.59",
     categoria: "Materias Electivas",
-    level: 15,
   },
 
   {
@@ -772,7 +713,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.50",
     categoria: "Materias Electivas",
-    level: 18,
   },
   {
     id: "75.71",
@@ -780,7 +720,6 @@ export const informatica = [
     creditos: 3,
     correlativas: "75.07",
     categoria: "Materias Electivas",
-    level: 18,
   },
   {
     id: "75.72",
@@ -788,7 +727,6 @@ export const informatica = [
     creditos: 3,
     correlativas: "75.06-75.44",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "75.73",
@@ -796,7 +734,6 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.07-75.09",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "78.xx",
@@ -804,7 +741,6 @@ export const informatica = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "66.63",
@@ -812,7 +748,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "66.74-66.75",
     categoria: "Materias Electivas",
-    level: 18,
   },
   {
     id: "75.00",
@@ -820,7 +755,6 @@ export const informatica = [
     creditos: 24,
     requiere: 140,
     categoria: "Fin de Carrera",
-    level: -1,
   },
   {
     id: "75.99",
@@ -828,6 +762,5 @@ export const informatica = [
     creditos: 12,
     requiere: 140,
     categoria: "Fin de Carrera",
-    level: -1,
   },
 ];

@@ -376,7 +376,6 @@ export const civil = [
     creditos: 6,
     correlativas: "81.01-81.02",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "84.08",
@@ -384,7 +383,6 @@ export const civil = [
     creditos: 8,
     correlativas: "84.06",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "84.09",
@@ -392,7 +390,6 @@ export const civil = [
     creditos: 4,
     correlativas: "84.06",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "84.10",
@@ -400,7 +397,6 @@ export const civil = [
     creditos: 2,
     correlativas: "84.06",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "84.12",
@@ -408,7 +404,6 @@ export const civil = [
     creditos: 4,
     correlativas: "95.10-84.03",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "84.13",
@@ -416,7 +411,6 @@ export const civil = [
     creditos: 3,
     correlativas: "95.10-84.03",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "84.14",
@@ -424,7 +418,6 @@ export const civil = [
     creditos: 4,
     correlativas: "84.06-94.01",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "85.35",
@@ -432,7 +425,6 @@ export const civil = [
     creditos: 4,
     correlativas: "81.02-84.02",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "87.02",
@@ -440,7 +432,6 @@ export const civil = [
     creditos: 8,
     correlativas: "82.02-81.02",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "88.01",
@@ -448,7 +439,6 @@ export const civil = [
     creditos: 6,
     correlativas: "88.09-84.07-94.01",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "88.02",
@@ -456,7 +446,6 @@ export const civil = [
     creditos: 6,
     correlativas: "88.09-84.07-94.01",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "88.03",
@@ -464,7 +453,6 @@ export const civil = [
     creditos: 2,
     correlativas: "88.09-84.07-94.01",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "88.04",
@@ -472,7 +460,6 @@ export const civil = [
     creditos: 4,
     correlativas: "88.09-84.07-94.01",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "88.05",
@@ -480,7 +467,6 @@ export const civil = [
     creditos: 4,
     correlativas: "88.09-84.07-94.01",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "88.06",
@@ -488,7 +474,6 @@ export const civil = [
     creditos: 6,
     correlativas: "88.09",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "88.07",
@@ -496,7 +481,6 @@ export const civil = [
     creditos: 4,
     correlativas: "88.10",
     categoria: "Materias Electivas",
-    level: 16,
   },
   {
     id: "88.08",
@@ -504,7 +488,6 @@ export const civil = [
     creditos: 4,
     correlativas: "88.09",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "89.03",
@@ -512,7 +495,6 @@ export const civil = [
     creditos: 6,
     correlativas: "89.10",
     categoria: "Materias Electivas",
-    level: 16,
   },
   {
     id: "89.04",
@@ -520,7 +502,6 @@ export const civil = [
     creditos: 4,
     correlativas: "89.10",
     categoria: "Materias Electivas",
-    level: 16,
   },
   {
     id: "89.06",
@@ -528,7 +509,6 @@ export const civil = [
     creditos: 4,
     correlativas: "89.10",
     categoria: "Materias Electivas",
-    level: 16,
   },
   {
     id: "89.07",
@@ -536,7 +516,6 @@ export const civil = [
     creditos: 4,
     correlativas: "89.10",
     categoria: "Materias Electivas",
-    level: 16,
   },
   {
     id: "89.08",
@@ -544,7 +523,6 @@ export const civil = [
     creditos: 4,
     correlativas: "89.10",
     categoria: "Materias Electivas",
-    level: 17,
   },
   {
     id: "89.13",
@@ -552,7 +530,6 @@ export const civil = [
     creditos: 4,
     correlativas: "84.07-89.09",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "89.14",
@@ -560,7 +537,6 @@ export const civil = [
     creditos: 4,
     correlativas: "84.07-89.09",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "89.15",
@@ -568,7 +544,6 @@ export const civil = [
     creditos: 4,
     correlativas: "89.10",
     categoria: "Materias Electivas",
-    level: 17,
   },
   {
     id: "89.16",
@@ -576,7 +551,6 @@ export const civil = [
     creditos: 4,
     correlativas: "89.11",
     categoria: "Materias Electivas",
-    level: 17,
   },
   {
     id: "94.06",
@@ -584,7 +558,6 @@ export const civil = [
     creditos: 6,
     correlativas: "89.10",
     categoria: "Materias Electivas",
-    level: 17,
   },
   {
     id: "94.07",
@@ -592,7 +565,6 @@ export const civil = [
     creditos: 4,
     correlativas: "94.03",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "94.08",
@@ -600,7 +572,6 @@ export const civil = [
     creditos: 6,
     correlativas: "94.02",
     categoria: "Materias Electivas",
-    level: 17,
   },
   {
     id: "94.11",
@@ -608,7 +579,6 @@ export const civil = [
     creditos: 6,
     correlativas: "94.10",
     categoria: "Materias Electivas",
-    level: 18,
   },
   {
     id: "94.13",
@@ -616,7 +586,6 @@ export const civil = [
     creditos: 4,
     correlativas: "94.03-94.04-94.10",
     categoria: "Materias Electivas",
-    level: 18,
   },
   {
     id: "94.14",
@@ -624,7 +593,6 @@ export const civil = [
     creditos: 4,
     correlativas: "84.06-84.04-94.03",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "94.15",
@@ -632,7 +600,6 @@ export const civil = [
     creditos: 4,
     correlativas: "91.09-94.01",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "94.16",
@@ -640,7 +607,6 @@ export const civil = [
     creditos: 6,
     correlativas: "94.01-94.09-94.10",
     categoria: "Materias Electivas",
-    level: 18,
   },
   {
     id: "94.17",
@@ -648,7 +614,6 @@ export const civil = [
     creditos: 6,
     correlativas: "84.07-94.01",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "94.18",
@@ -656,7 +621,6 @@ export const civil = [
     creditos: 6,
     correlativas: "94.01",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "94.19",
@@ -664,7 +628,6 @@ export const civil = [
     creditos: 4,
     correlativas: "84.06-94.12",
     categoria: "Materias Electivas",
-    level: 18,
   },
   {
     id: "94.20",
@@ -672,7 +635,6 @@ export const civil = [
     creditos: 4,
     correlativas: "94.05",
     categoria: "Materias Electivas",
-    level: 18,
   },
   {
     id: "95.04",
@@ -680,7 +642,6 @@ export const civil = [
     creditos: 6,
     correlativas: "95.10",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "84.99",
@@ -689,7 +650,5 @@ export const civil = [
     requiere: 200,
     correlativas: "88.14",
     categoria: "Fin de Carrera (Obligatorio)",
-
-    level: -1,
   },
 ];

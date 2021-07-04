@@ -56,7 +56,6 @@ export const electronica = [
     creditos: 4,
     correlativas: "86.10",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "82.01",
@@ -584,7 +583,6 @@ export const electronica = [
     creditos: 4,
     correlativas: "86.10",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "86.50",
@@ -776,7 +774,6 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.07-95.02",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "95.06",
@@ -808,7 +805,6 @@ export const electronica = [
     creditos: 18,
     correlativas: "83.01-95.04-82.03-86.08-86.09-86.12-86.13-86.14",
     categoria: "Fin de Carrera",
-    level: -1,
   },
   {
     id: "86.99",
@@ -816,7 +812,6 @@ export const electronica = [
     creditos: 18,
     correlativas: "83.01-95.04-82.03-86.08-86.09-86.12-86.13-86.14",
     categoria: "Fin de Carrera",
-    level: -1,
   },
   {
     id: "86.40",
@@ -832,6 +827,5 @@ export const electronica = [
     creditos: 6,
     correlativas: "86.10",
     categoria: "Materias Electivas",
-    level: 15,
   },
 ];

@@ -49,6 +49,7 @@ const useGraph = (loginHook) => {
         })
       )
     );
+    network.fit();
   };
 
   React.useEffect(() => {
@@ -217,10 +218,10 @@ const useGraph = (loginHook) => {
       default:
         break;
     }
+    balanceShownElectivas(group);
 
     nodes.update(group);
     actualizar();
-    network.fit();
   };
 
   const toggleGroup = (id) => {
@@ -233,7 +234,6 @@ const useGraph = (loginHook) => {
 
     nodes.update(group);
     actualizar();
-    network.fit();
   };
 
   const aprobar = (id, nota) => {
@@ -499,6 +499,44 @@ const useGraph = (loginHook) => {
 
   const openCBC = () => {
     toggleGroup("*CBC");
+  };
+
+  const balanceShownElectivas = (group) => {
+    const electivasCrudas = group.filter((n) => {
+      const node = getNode(n.id);
+      return node.group === "Materias Electivas";
+    });
+
+    const electivasNoCrudas = group.filter((n) => {
+      const node = getNode(n.id);
+      return node.group !== "Materias Electivas";
+    });
+    const electivas = [...electivasNoCrudas, ...electivasCrudas];
+    const lastLevel = Math.max(
+      ...nodes
+        .get({
+          filter: (n) =>
+            n.categoria !== "Materias Electivas" &&
+            n.categoria !== "Fin de Carrera" &&
+            n.categoria !== "Fin de Carrera (Obligatorio)",
+          fields: ["level"],
+          type: { level: "number" },
+        })
+        .map((n) => n.level)
+    );
+    let counter = 0;
+    let addLevel = 1;
+
+    electivas.foreach((n) => {
+      const node = getNode(n.id);
+      counter += 1;
+      if (counter === 7) {
+        counter = 0;
+        addLevel += 1;
+      }
+      node.level = lastLevel + addLevel;
+    });
+    nodes.update(electivas);
   };
 
   return {

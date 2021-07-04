@@ -368,7 +368,6 @@ export const industrial = [
     creditos: 6,
     correlativas: "81.02-82.02-83.01",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "85.20",
@@ -376,7 +375,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "85.38-87.14",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "87.15",
@@ -384,7 +382,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "87.13-92.01",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "91.14",
@@ -392,7 +389,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.08",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "91.17",
@@ -400,7 +396,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "91.20",
@@ -408,7 +403,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12-91.24",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "91.21",
@@ -416,7 +410,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "91.25",
@@ -424,7 +417,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.30",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "91.26",
@@ -432,7 +424,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "91.27",
@@ -440,7 +431,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.31",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "91.32",
@@ -448,7 +438,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.31",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "91.34",
@@ -456,7 +445,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.29",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "91.35",
@@ -464,7 +452,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.31",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "91.36",
@@ -472,7 +459,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "91.37",
@@ -480,7 +466,6 @@ export const industrial = [
     creditos: 4,
     requiere: 120,
     categoria: "Materias Electivas",
-    level: 16,
   },
   {
     id: "91.51",
@@ -488,7 +473,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.31-91.08",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "91.52",
@@ -496,7 +480,6 @@ export const industrial = [
     creditos: 4,
     requiere: 150,
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "91.54",
@@ -504,7 +487,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "81.02-91.30",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "92.08",
@@ -512,7 +494,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12-92.01",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "92.09",
@@ -520,7 +501,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "92.18",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "92.10",
@@ -528,7 +508,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "92.18",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "92.11",
@@ -536,7 +515,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "92.18",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "92.12",
@@ -544,7 +522,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12-92.01",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "92.13",
@@ -552,7 +529,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "92.01",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "92.15",
@@ -560,7 +536,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "92.18",
     categoria: "Materias Electivas",
-    level: 16,
   },
   {
     id: "92.17",
@@ -568,7 +543,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "92.18",
     categoria: "Materias Electivas",
-    level: 16,
   },
   {
     id: "92.20",
@@ -576,7 +550,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "91.12-92.04",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "92.14",
@@ -584,7 +557,6 @@ export const industrial = [
     creditos: 1,
     requiere: 150,
     categoria: "Materias Electivas",
-    level: 17,
   },
   {
     id: "92.16",
@@ -592,7 +564,6 @@ export const industrial = [
     creditos: 2,
     requiere: 150,
     categoria: "Materias Electivas",
-    level: 17,
   },
   {
     id: "92.21",
@@ -600,7 +571,6 @@ export const industrial = [
     creditos: 3,
     requiere: 150,
     categoria: "Materias Electivas",
-    level: 17,
   },
   {
     id: "92.24",
@@ -608,7 +578,6 @@ export const industrial = [
     creditos: 4,
     requiere: 150,
     categoria: "Materias Electivas",
-    level: 16,
   },
   {
     id: "92.26",
@@ -616,7 +585,6 @@ export const industrial = [
     creditos: 4,
     requiere: 150,
     categoria: "Materias Electivas",
-    level: 17,
   },
   {
     id: "HUM",
@@ -624,7 +592,6 @@ export const industrial = [
     creditos: 4,
     correlativas: "92.03",
     categoria: "Fin de Carrera (Obligatorio)",
-    level: 7,
   },
   {
     id: "92.00",
@@ -632,7 +599,6 @@ export const industrial = [
     creditos: 13,
     requiere: 160,
     categoria: "Fin de Carrera",
-    level: -1,
   },
   {
     id: "92.99",
@@ -641,6 +607,5 @@ export const industrial = [
     requiere: 160,
     correlativas: "76.52-76.53-76.56",
     categoria: "Fin de Carrera",
-    level: -1,
   },
 ];

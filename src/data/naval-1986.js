@@ -352,7 +352,6 @@ export const naval = [
     creditos: 4,
     correlativas: "64.13",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "64.15",
@@ -360,7 +359,6 @@ export const naval = [
     creditos: 6,
     correlativas: "64.13",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "64.16",
@@ -368,7 +366,6 @@ export const naval = [
     creditos: 2,
     correlativas: "64.13",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "67.23",
@@ -376,7 +373,6 @@ export const naval = [
     creditos: 2,
     requiere: 120,
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "67.38",
@@ -384,7 +380,6 @@ export const naval = [
     creditos: 6,
     correlativas: "67.02-68.13",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "67.61",
@@ -392,7 +387,6 @@ export const naval = [
     creditos: 6,
     correlativas: "61.08-67.02",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "68.03",
@@ -400,7 +394,6 @@ export const naval = [
     creditos: 6,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "68.08",
@@ -408,7 +401,6 @@ export const naval = [
     creditos: 6,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "71.07",
@@ -416,7 +408,6 @@ export const naval = [
     creditos: 8,
     correlativas: "71.31",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "71.36",
@@ -424,7 +415,6 @@ export const naval = [
     creditos: 4,
     correlativas: "61.06-73.07",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "71.38",
@@ -432,7 +422,6 @@ export const naval = [
     creditos: 4,
     correlativas: "73.07",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "71.34",
@@ -440,7 +429,6 @@ export const naval = [
     creditos: 4,
     correlativas: "71.50-71.51",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "71.51",
@@ -448,7 +436,6 @@ export const naval = [
     creditos: 4,
     correlativas: "71.50",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "72.06",
@@ -456,7 +443,6 @@ export const naval = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "73.14",
@@ -464,7 +450,6 @@ export const naval = [
     creditos: 4,
     correlativas: "73.02",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "73.15",
@@ -472,7 +457,6 @@ export const naval = [
     creditos: 6,
     correlativas: "73.05-73.11-73.12",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "73.16",
@@ -480,7 +464,6 @@ export const naval = [
     creditos: 6,
     correlativas: "73.07",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "77.01",
@@ -488,7 +471,6 @@ export const naval = [
     creditos: 4,
     correlativas: "73.02",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "77.02",
@@ -496,7 +478,6 @@ export const naval = [
     creditos: 4,
     correlativas: "73.09",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "78.xx",
@@ -504,7 +485,6 @@ export const naval = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "71.31",
@@ -512,7 +492,6 @@ export const naval = [
     creditos: 6,
     correlativas: "73.02",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "71.50",
@@ -520,7 +499,6 @@ export const naval = [
     creditos: 4,
     correlativas: "71.31",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "73.00",
@@ -528,15 +506,11 @@ export const naval = [
     creditos: 18,
     requiere: 140,
     categoria: "Fin de Carrera",
-
-    level: -1,
   },
   {
     id: "73.99",
     materia: "Trabajo Profesional de Ingeniería Naval y Mecánica",
     creditos: 0,
     categoria: "Fin de Carrera",
-
-    level: -1,
   },
 ];

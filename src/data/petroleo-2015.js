@@ -347,14 +347,6 @@ export const petroleo = [
     level: 8,
   },
   {
-    id: "67.58",
-    materia: "Introducción al Método de los Elementos Finitos",
-    creditos: 6,
-    correlativas: "95.13",
-    categoria: "Materias Electivas",
-    level: 11,
-  },
-  {
     id: "77.01",
     materia: "Higiene y Seguridad en el Trabajo",
     creditos: 4,
@@ -363,12 +355,18 @@ export const petroleo = [
     level: 9,
   },
   {
+    id: "67.58",
+    materia: "Introducción al Método de los Elementos Finitos",
+    creditos: 6,
+    correlativas: "95.13",
+    categoria: "Materias Electivas",
+  },
+  {
     id: "79.16",
     materia: "Integridad y Mantenimiento de Instalaciones de Producción",
     creditos: 4,
     correlativas: "79.15",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "79.17",
@@ -376,7 +374,6 @@ export const petroleo = [
     creditos: 4,
     correlativas: "79.22",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "79.26",
@@ -384,7 +381,6 @@ export const petroleo = [
     creditos: 4,
     correlativas: "79.01",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "81.05",
@@ -392,7 +388,6 @@ export const petroleo = [
     creditos: 6,
     correlativas: "81.01-81.02",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "82.07",
@@ -400,7 +395,6 @@ export const petroleo = [
     creditos: 4,
     correlativas: "81.02-62.04",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "89.19",
@@ -408,7 +402,6 @@ export const petroleo = [
     creditos: 6,
     correlativas: "76.65-89-17",
     categoria: "Materias Electivas",
-    level: 12,
   },
   {
     id: "92.01",
@@ -416,7 +409,6 @@ export const petroleo = [
     creditos: 6,
     correlativas: "84.05-83.01",
     categoria: "Materias Electivas",
-    level: 11,
   },
   {
     id: "79.23",
@@ -464,7 +456,6 @@ export const petroleo = [
     creditos: 18,
     correlativas: "79.12",
     categoria: "Fin de Carrera",
-    level: -1,
   },
   {
     id: "79.99",
@@ -472,6 +463,5 @@ export const petroleo = [
     correlativas: "79.12",
     creditos: 14,
     categoria: "Fin de Carrera",
-    level: -1,
   },
 ];

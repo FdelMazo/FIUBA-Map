@@ -307,20 +307,20 @@ export const mecanica = [
     level: 8,
   },
   {
-    id: "67.24",
-    materia: "Proyecto de Instalaciones Industriales",
-    creditos: 6,
-    correlativas: "65.06-67.18",
-    categoria: "Materias Obligatorias",
-    level: 9,
-  },
-  {
     id: "67.28",
     materia: "Sistemas Hidráulicos y Neumáticos",
     creditos: 4,
     correlativas: "66.03-67.18",
     categoria: "Materias Obligatorias",
     level: 8,
+  },
+  {
+    id: "67.24",
+    materia: "Proyecto de Instalaciones Industriales",
+    creditos: 6,
+    correlativas: "65.06-67.18",
+    categoria: "Materias Obligatorias",
+    level: 9,
   },
   {
     id: "77.01",
@@ -337,14 +337,6 @@ export const mecanica = [
     requiere: 100,
     categoria: "Materias Obligatorias",
     level: 9,
-  },
-  {
-    id: "61.06",
-    materia: "Probabilidad y Estadística A",
-    creditos: 4,
-    correlativas: "61.03",
-    categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "62.07",
@@ -377,30 +369,6 @@ export const mecanica = [
     correlativas: "64.13",
     categoria: "Computación Aplicada",
     level: 12,
-  },
-  {
-    id: "64.15",
-    materia: "Estabilidad IV B",
-    creditos: 6,
-    correlativas: "64.13",
-    categoria: "Materias Electivas",
-    level: 15,
-  },
-  {
-    id: "64.16",
-    materia: "Análisis Experimental de Tensiones",
-    creditos: 2,
-    correlativas: "64.13",
-    categoria: "Materias Electivas",
-    level: 15,
-  },
-  {
-    id: "62.18",
-    materia: "Física de Fluidos",
-    creditos: 4,
-    correlativas: "61.13-67.18",
-    categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "67.26",
@@ -547,12 +515,39 @@ export const mecanica = [
     level: 11,
   },
   {
+    id: "61.06",
+    materia: "Probabilidad y Estadística A",
+    creditos: 4,
+    correlativas: "61.03",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "64.15",
+    materia: "Estabilidad IV B",
+    creditos: 6,
+    correlativas: "64.13",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "64.16",
+    materia: "Análisis Experimental de Tensiones",
+    creditos: 2,
+    correlativas: "64.13",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "62.18",
+    materia: "Física de Fluidos",
+    creditos: 4,
+    correlativas: "61.13-67.18",
+    categoria: "Materias Electivas",
+  },
+  {
     id: "67.56",
     materia: "Técnicas Energéticas",
     creditos: 4,
     correlativas: "61.08-67.04",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "67.58",
@@ -560,7 +555,6 @@ export const mecanica = [
     creditos: 6,
     correlativas: "64.13-67.18-75.12",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "67.59",
@@ -568,7 +562,6 @@ export const mecanica = [
     creditos: 6,
     correlativas: "64.13-67.18-67.60",
     categoria: "Materias Electivas",
-    level: 14,
   },
   {
     id: "67.60",
@@ -576,7 +569,6 @@ export const mecanica = [
     creditos: 4,
     correlativas: "61.03-61.08",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "67.61",
@@ -584,7 +576,6 @@ export const mecanica = [
     creditos: 6,
     correlativas: "61.08-67.02",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "67.62",
@@ -592,7 +583,6 @@ export const mecanica = [
     creditos: 6,
     correlativas: "67.58-67.59",
     categoria: "Materias Electivas",
-    level: 15,
   },
   {
     id: "78.xx",
@@ -600,7 +590,6 @@ export const mecanica = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    level: 13,
   },
   {
     id: "67.00",
@@ -608,8 +597,6 @@ export const mecanica = [
     creditos: 18,
     requiere: 140,
     categoria: "Fin de Carrera",
-
-    level: -1,
   },
   {
     id: "67.98",
@@ -617,7 +604,5 @@ export const mecanica = [
     creditos: 14,
     requiere: 140,
     categoria: "Fin de Carrera",
-
-    level: -1,
   },
 ];

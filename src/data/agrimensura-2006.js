@@ -336,7 +336,6 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.09",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "70.26",
@@ -344,7 +343,6 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.09",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "77.02",
@@ -352,7 +350,6 @@ export const agrimensura = [
     creditos: 4,
     requiere: 100,
     categoria: "Materias Electivas",
-    level: 9,
   },
   {
     id: "68.11",
@@ -360,7 +357,6 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "68.06-70.27",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "70.40",
@@ -368,7 +364,6 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "62.03-70.06",
     categoria: "Materias Electivas",
-    level: 9,
   },
   {
     id: "70.41",
@@ -376,7 +371,6 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "61.03-62.03",
     categoria: "Materias Electivas",
-    level: 9,
   },
   {
     id: "70.42",
@@ -384,7 +378,6 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.32",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "70.43",
@@ -392,7 +385,6 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.12-70.09",
     categoria: "Materias Electivas",
-    level: 10,
   },
   {
     id: "70.44",
@@ -400,7 +392,6 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "70.04",
     categoria: "Materias Electivas",
-    level: 9,
   },
   {
     id: "78.xx",
@@ -408,7 +399,6 @@ export const agrimensura = [
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Electivas",
-    level: 9,
   },
   {
     id: "70.00",
@@ -416,8 +406,6 @@ export const agrimensura = [
     creditos: 18,
     requiere: 140,
     categoria: "Fin de Carrera",
-
-    level: -1,
   },
   {
     id: "70.99",
@@ -425,7 +413,5 @@ export const agrimensura = [
     creditos: 12,
     requiere: 140,
     categoria: "Fin de Carrera",
-
-    level: -1,
   },
 ];

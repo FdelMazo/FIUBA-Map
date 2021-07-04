@@ -25,6 +25,7 @@ class Node {
           }`
         : undefined);
     this.cuatri = -1;
+    this.level = this.level ?? -1;
     this.hidden =
       this.categoria !== "Materias Obligatorias" &&
       this.categoria !== "CBC" &&
