@@ -149,7 +149,7 @@ const Body = (props) => {
         position="absolute"
       >
         <Tooltip
-          label={`Toggle ${useColorModeValue("dark", "light")}`}
+          label={`${useColorModeValue("Dark", "Light")} theme`}
           placement="top"
         >
           <Link
