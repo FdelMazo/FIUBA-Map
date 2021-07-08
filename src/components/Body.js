@@ -276,7 +276,7 @@ const Body = (props) => {
                             </Flex>
                           </form>
                           <Text fontSize="sm" mt={2}>
-                            ¿Usas Github? me ayudas mucho más levantando un
+                            ¿Usás Github? me ayudás mucho más levantando un
                             issue{" "}
                             <Link
                               isExternal
