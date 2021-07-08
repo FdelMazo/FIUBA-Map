@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/FIUBA-Map/static/js/main.ccf80cd7.chunk.js",
-    "main.js.map": "/FIUBA-Map/static/js/main.ccf80cd7.chunk.js.map",
+    "main.js": "/FIUBA-Map/static/js/main.acffbd5b.chunk.js",
+    "main.js.map": "/FIUBA-Map/static/js/main.acffbd5b.chunk.js.map",
     "runtime-main.js": "/FIUBA-Map/static/js/runtime-main.9b100fd5.js",
     "runtime-main.js.map": "/FIUBA-Map/static/js/runtime-main.9b100fd5.js.map",
     "static/js/2.9b278607.chunk.js": "/FIUBA-Map/static/js/2.9b278607.chunk.js",
     "static/js/2.9b278607.chunk.js.map": "/FIUBA-Map/static/js/2.9b278607.chunk.js.map",
     "index.html": "/FIUBA-Map/index.html",
-    "precache-manifest.bd7503223f07768bffac2b0b9c4cee1f.js": "/FIUBA-Map/precache-manifest.bd7503223f07768bffac2b0b9c4cee1f.js",
+    "precache-manifest.3f817fc9d6945b3489ecc888f2398aaa.js": "/FIUBA-Map/precache-manifest.3f817fc9d6945b3489ecc888f2398aaa.js",
     "service-worker.js": "/FIUBA-Map/service-worker.js",
     "static/js/2.9b278607.chunk.js.LICENSE.txt": "/FIUBA-Map/static/js/2.9b278607.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.9b100fd5.js",
     "static/js/2.9b278607.chunk.js",
-    "static/js/main.ccf80cd7.chunk.js"
+    "static/js/main.acffbd5b.chunk.js"
   ]
 }
