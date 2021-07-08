@@ -13,6 +13,7 @@ import {
   AlertTitle,
   Box,
   CloseButton,
+  DarkMode,
   Flex,
   IconButton,
   LightMode,
@@ -54,7 +55,7 @@ const Body = (props) => {
   const toast = useToast();
   const bugToast = React.useRef();
   const [showGracias, setShowGracias] = React.useState(false);
-  const { toggleColorMode } = useColorMode();
+  const { colorMode, toggleColorMode } = useColorMode();
 
   const ref = useRef(null);
   const { width, height } = useResizeObserver({ ref });
@@ -216,11 +217,15 @@ const Body = (props) => {
                       borderRadius={6}
                       p={5}
                       mb="4em"
-                      bg="blue.500"
-                      color="black"
+                      borderColor={
+                        colorMode === "dark" ? "electivas.400" : "electivas.500"
+                      }
+                      borderWidth={2}
+                      bg={colorMode === "dark" ? "gray.700" : "gray.50"}
+                      color={colorMode === "dark" ? "textdark" : "text"}
                     >
                       <Box flex="1">
-                        <AlertTitle>Hola!</AlertTitle>{" "}
+                        <AlertTitle>Hola!</AlertTitle>
                         <AlertDescription px={5} display="block">
                           <Text>
                             Si encontras algo feo, incorrecto, lento, erroneo...
@@ -245,36 +250,63 @@ const Body = (props) => {
                             <Flex mt={3} alignItems="flex-end">
                               <Textarea
                                 resize="none"
-                                borderColor="black"
-                                color="black"
-                                focusBorderColor="black"
+                                borderColor={
+                                  colorMode === "dark" ? "textdark" : "text"
+                                }
+                                color={
+                                  colorMode === "dark" ? "textdark" : "text"
+                                }
+                                focusBorderColor={
+                                  colorMode === "dark"
+                                    ? "electivas.400"
+                                    : "electivas.500"
+                                }
                                 size="sm"
                                 name="bug"
                               />
-                              <IconButton
-                                ml={3}
-                                colorScheme="blackAlpha"
-                                size="sm"
-                                type="submit"
-                                icon={<ChatIcon />}
-                              />
+                              <DarkMode>
+                                <IconButton
+                                  ml={3}
+                                  colorScheme="purple"
+                                  size="sm"
+                                  type="submit"
+                                  icon={<ChatIcon />}
+                                />
+                              </DarkMode>
                             </Flex>
                           </form>
-                          <Text fontSize="sm">
+                          <Text fontSize="sm" mt={2}>
                             ¿Usas Github? me ayudas mucho más levantando un
                             issue{" "}
                             <Link
                               isExternal
+                              _hover={{
+                                color:
+                                  colorMode === "dark"
+                                    ? "electivas.400"
+                                    : "electivas.500",
+                              }}
                               href="https://github.com/FdelMazo/FIUBA-Map/issues/new"
                             >
                               directamente{" "}
-                              <ExternalLinkIcon color="white" mx="2px" />
+                              <ExternalLinkIcon
+                                color={
+                                  colorMode === "dark"
+                                    ? "electivas.400"
+                                    : "electivas.500"
+                                }
+                                mx="2px"
+                              />
                             </Link>
                           </Text>
                         </AlertDescription>
                       </Box>
                       <CloseButton
-                        color="white"
+                        color={
+                          colorMode === "dark"
+                            ? "electivas.400"
+                            : "electivas.500"
+                        }
                         onClick={() => toast.close(props.id)}
                         position="absolute"
                         right="8px"
