@@ -62,7 +62,7 @@ const useGraph = (loginHook) => {
 
   React.useEffect(() => {
     actualizar();
-  }, [colorMode]);
+  }, [colorMode, optativas]);
 
   React.useEffect(() => {
     if (logged && !firstTime) register();
@@ -87,12 +87,12 @@ const useGraph = (loginHook) => {
           }
           if (metadata.checkboxes)
             metadata.checkboxes.forEach((c) => toggleCheckbox(c));
-          if (metadata.optativas) setOptativas(metadata.optativas);
           if (user.orientacion) toggleGroup(user.orientacion.nombre);
           if (electivasStatus() === "hidden") toggleElectivas();
           nodes.update(toUpdate.flat());
           actualizar();
           setLoadingGraph(false);
+          if (metadata.optativas) setOptativas(metadata.optativas);
         })
         .catch((e) => {
           setLoadingGraph(false);
@@ -446,7 +446,6 @@ const useGraph = (loginHook) => {
     }
     setOptativas(() => {
       optativas.push({ id, nombre, creditos });
-      setCreditos(getCreditos());
       return optativas.filter(Boolean);
     });
   };
@@ -455,7 +454,6 @@ const useGraph = (loginHook) => {
     setOptativas(() => {
       const i = optativas.findIndex((o) => o.id === id);
       optativas[i] = { id, nombre, creditos };
-      setCreditos(getCreditos());
       return optativas.filter(Boolean);
     });
   };
@@ -463,7 +461,6 @@ const useGraph = (loginHook) => {
     setOptativas(() => {
       const i = optativas.findIndex((o) => o.id === id);
       delete optativas[i];
-      setCreditos(getCreditos());
       return optativas.filter(Boolean);
     });
   };
