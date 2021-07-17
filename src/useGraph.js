@@ -34,7 +34,6 @@ const useGraph = (loginHook) => {
   const actualizar = () => {
     if (!nodes) return;
     if (autosave) saveGraph();
-
     setPromedio(getPromedio());
     setCreditos(getCreditos());
     nodes.update(
@@ -49,7 +48,6 @@ const useGraph = (loginHook) => {
         })
       )
     );
-    network.fit();
   };
 
   React.useEffect(() => {
@@ -93,10 +91,12 @@ const useGraph = (loginHook) => {
           actualizar();
           setLoadingGraph(false);
           if (metadata.optativas) setOptativas(metadata.optativas);
+          network.fit();
         })
         .catch((e) => {
           setLoadingGraph(false);
           aprobar("CBC", 0);
+          network.fit();
         });
     }
   }, [shouldLoadGraph, nodes]);
@@ -105,6 +105,7 @@ const useGraph = (loginHook) => {
     if (!nodes?.carrera || nodes.carrera !== user.carrera?.id) return;
     if (user.orientacion) changeOrientacion(user.orientacion.nombre);
     aprobar("CBC", 0);
+    network.fit();
   }, [nodes, user.finDeCarrera, user.orientacion]);
 
   const getNode = (id) => {
@@ -222,6 +223,7 @@ const useGraph = (loginHook) => {
 
     nodes.update(group);
     actualizar();
+    network.fit();
   };
 
   const toggleGroup = (id) => {
@@ -234,6 +236,7 @@ const useGraph = (loginHook) => {
 
     nodes.update(group);
     actualizar();
+    network.fit();
   };
 
   const aprobar = (id, nota) => {
