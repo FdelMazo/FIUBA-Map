@@ -440,7 +440,7 @@ export const quimica = [
     id: "71.53",
     materia: "Evaluación de Proyectos de Plantas Químicas",
     creditos: 6,
-    requiere: 100,
+    requiere: 140,
     categoria: "Materias Obligatorias",
     level: 9,
   },
