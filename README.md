@@ -8,8 +8,6 @@ La idea de este proyecto es presentar de una manera interactiva y visualmente ri
 
 <a href='https://imgur.com/QkXbwFc'><img src='fmap.png'></a>
 
-Features:
-
 - Tiene todas las carreras que se dan en la Facultad de Ingeniería, en sus respectivos últimos planes de estudio.
 
 - Todas las carreras incluyen todas las materias electivas y todas las materias de sus respectivas orientaciones.
@@ -22,7 +20,7 @@ Features:
 
 ---
 
-Esta aplicación está hecha en React y todo su código fuente está en `src`. Para el front usaa [Chakra](https://chakra-ui.com/). El sitio compilado en sí está en el directorio `docs`, y esto es lo que se sirve con github pages.
+Esta aplicación está hecha en React y todo su código fuente está en `src`. Para el front usa [Chakra](https://chakra-ui.com/). El sitio compilado en sí está en el directorio `docs`, y esto es lo que se sirve con github pages.
 
 ## Desarrollo
 
