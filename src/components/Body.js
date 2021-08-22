@@ -188,7 +188,7 @@ const Body = (props) => {
             </Icon>
           </Link>
         </Tooltip>
-        <Tooltip label="Invitame un Cafecíto" placement="top">
+        <Tooltip label="Invitame un Cafecito" placement="top">
           <Link
             isExternal
             color={useColorModeValue("text", "textdark")}
@@ -228,7 +228,7 @@ const Body = (props) => {
                         <AlertTitle>Hola!</AlertTitle>
                         <AlertDescription px={5} display="block">
                           <Text>
-                            Si encontras algo feo, incorrecto, lento, erroneo...
+                            Si encontrás algo feo, incorrecto, lento, erroneo...
                             me decís?
                           </Text>
                           <Text>
