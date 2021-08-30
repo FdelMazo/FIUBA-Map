@@ -47,7 +47,10 @@ const Body = (props) => {
     setEdges,
     desaprobar,
     getNode,
+    nodes,
+    edges,
     loadingGraph,
+    network,
     openCBC,
   } = React.useContext(GraphContext);
   const { user, logged, submitBug } = React.useContext(UserContext);
@@ -109,6 +112,66 @@ const Body = (props) => {
       } else {
         desaprobar(id);
       }
+    },
+    hoverNode: (e) => {
+      const id = e.node;
+      const neighborNodes = network.getConnectedNodes(id);
+      const allOtherNodes = nodes.get({
+        filter: function (node) {
+          return !neighborNodes.includes(node.id) && !(node.id === id);
+        },
+      });
+      nodes.update(
+        allOtherNodes.map((node) => {
+          node.opacity = 0.6;
+          return node;
+        })
+      );
+
+      const neighborEdges = network.getConnectedEdges(id);
+      const allOtherEdges = edges.get({
+        filter: function (edge) {
+          return !neighborEdges.includes(edge.id);
+        },
+      });
+      edges.update(
+        allOtherEdges.map((edge) => {
+          edge.arrows = { to: { enabled: false } };
+          edge.dashes = true;
+          edge.color = { opacity: 0.6 };
+          return edge;
+        })
+      );
+    },
+    blurNode: (e) => {
+      const id = e.node;
+      const neighborNodes = network.getConnectedNodes(id);
+      const allOtherNodes = nodes.get({
+        filter: function (node) {
+          return !neighborNodes.includes(node.id) && !(node.id === id);
+        },
+      });
+      nodes.update(
+        allOtherNodes.map((node) => {
+          node.opacity = undefined;
+          return node;
+        })
+      );
+
+      const neighborEdges = network.getConnectedEdges(id);
+      const allOtherEdges = edges.get({
+        filter: function (edge) {
+          return !neighborEdges.includes(edge.id);
+        },
+      });
+      edges.update(
+        allOtherEdges.map((edge) => {
+          edge.arrows = { to: { enabled: true } };
+          edge.dashes = false;
+          edge.color = null;
+          return edge;
+        })
+      );
     },
   };
 
