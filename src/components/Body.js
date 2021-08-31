@@ -115,18 +115,20 @@ const Body = (props) => {
     },
     hoverNode: (e) => {
       const id = e.node;
-      const neighborNodes = network.getConnectedNodes(id);
-      const allOtherNodes = nodes.get({
-        filter: function (node) {
-          return !neighborNodes.includes(node.id) && !(node.id === id);
-        },
-      });
-      nodes.update(
-        allOtherNodes.map((node) => {
-          node.opacity = 0.6;
-          return node;
-        })
-      );
+
+      // ### Este codigo triguerea un update en nodes, haciendo que se re-renderice el grafo como cuando se aprueba una materia. Si estuviese la fisica prendida, esto no pasaria
+      // const neighborNodes = network.getConnectedNodes(id);
+      // const allOtherNodes = nodes.get({
+      //   filter: function (node) {
+      //     return !neighborNodes.includes(node.id) && !(node.id === id);
+      //   },
+      // });
+      // nodes.update(
+      //   allOtherNodes.map((node) => {
+      //     node.opacity = 0.6;
+      //     return node;
+      //   })
+      // );
 
       const neighborEdges = network.getConnectedEdges(id);
       const allOtherEdges = edges.get({
@@ -145,18 +147,19 @@ const Body = (props) => {
     },
     blurNode: (e) => {
       const id = e.node;
-      const neighborNodes = network.getConnectedNodes(id);
-      const allOtherNodes = nodes.get({
-        filter: function (node) {
-          return !neighborNodes.includes(node.id) && !(node.id === id);
-        },
-      });
-      nodes.update(
-        allOtherNodes.map((node) => {
-          node.opacity = undefined;
-          return node;
-        })
-      );
+      // ### Este codigo triguerea un update en nodes, haciendo que se re-renderice el grafo como cuando se aprueba una materia. Si estuviese la fisica prendida, esto no pasaria
+      // const neighborNodes = network.getConnectedNodes(id);
+      // const allOtherNodes = nodes.get({
+      //   filter: function (node) {
+      //     return !neighborNodes.includes(node.id) && !(node.id === id);
+      //   },
+      // });
+      // nodes.update(
+      //   allOtherNodes.map((node) => {
+      //     node.opacity = undefined;
+      //     return node;
+      //   })
+      // );
 
       const neighborEdges = network.getConnectedEdges(id);
       const allOtherEdges = edges.get({
