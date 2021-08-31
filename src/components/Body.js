@@ -47,7 +47,6 @@ const Body = (props) => {
     setEdges,
     desaprobar,
     getNode,
-    nodes,
     edges,
     loadingGraph,
     network,
