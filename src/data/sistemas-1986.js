@@ -189,7 +189,7 @@ export const sistemasviejo = [
   {
     id: "71.15",
     materia: "Modelos y Optimización II",
-    creditos: 4,
+    creditos: 6,
     correlativas: "61.09-71.14",
     categoria: "Materias Obligatorias",
     level: 6,
