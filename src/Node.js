@@ -20,7 +20,7 @@ class Node {
     this.title =
       this.title ||
       (this.creditos
-        ? `Otorga ${this.creditos} créditos${
+        ? `[${this.id}] ${this.materia}\n Otorga ${this.creditos} créditos${
             this.requiere ? "\nRequiere " + this.requiere + " créditos" : ""
           }`
         : undefined);
