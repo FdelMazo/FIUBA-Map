@@ -20,10 +20,10 @@ class Node {
     this.title =
       this.title ||
       (this.creditos
-        ? `[${this.id}] ${this.materia}\n Otorga ${this.creditos} créditos${
-            this.requiere ? "\nRequiere " + this.requiere + " créditos" : ""
+        ? `[${this.id}] ${this.materia}\n- Otorga ${this.creditos} créditos${
+            this.requiere ? "\n- Requiere " + this.requiere + " créditos" : ""
           }`
-        : undefined);
+        : `[${this.id}] ${this.materia}`);
     this.cuatri = -1;
     this.level = this.level ?? -1;
     this.hidden =
