@@ -32,8 +32,6 @@ const Header = (props) => {
     getNode(displayedNode)?.cuatri > -1
   );
 
-  const isCBC = getNode(displayedNode)?.categoria === "*CBC";
-
   const formatCuatri = (cuatri) => {
     if (cuatri === -1) return "/";
     return `+` + cuatri;
@@ -115,7 +113,7 @@ const Header = (props) => {
             borderRadius="0"
             variant="link"
             borderLeft="2px solid white"
-            borderRight={isCBC ? undefined : "2px solid white"}
+            borderRight="2px solid white"
             color="red.500"
             onClick={() => desaprobar(displayedNode)}
           >
@@ -123,39 +121,35 @@ const Header = (props) => {
           </Button>
         </Tooltip>
 
-        {!isCBC && (
-          <Tooltip closeOnClick hasArrow label="Poner en Final">
-            <Button
-              _hover={{
-                backgroundColor: "transparent",
-              }}
-              borderRadius="0"
-              variant="link"
-              fontSize="larger"
-              color="yellow.300"
-              onClick={() => aprobar(displayedNode, -1)}
-            >
-              <strong>F</strong>
-            </Button>
-          </Tooltip>
-        )}
+        <Tooltip closeOnClick hasArrow label="Poner en Final">
+          <Button
+            _hover={{
+              backgroundColor: "transparent",
+            }}
+            borderRadius="0"
+            variant="link"
+            fontSize="larger"
+            color="yellow.300"
+            onClick={() => aprobar(displayedNode, -1)}
+          >
+            <strong>F</strong>
+          </Button>
+        </Tooltip>
       </Flex>
 
-      {!isCBC && (
-        <Tooltip closeOnClick hasArrow label="Más Opciones">
-          <IconButton
-            mx={4}
-            border="2px"
-            onClick={() => setMoreOptionsOpen(!moreOptionsOpen)}
-            variant="outline"
-            color="white"
-            colorScheme="whiteAlpha"
-            fontSize="20px"
-            transform="rotate(90deg)"
-            icon={moreOptionsOpen ? <ArrowRightIcon /> : <ArrowLeftIcon />}
-          />
-        </Tooltip>
-      )}
+      <Tooltip closeOnClick hasArrow label="Más Opciones">
+        <IconButton
+          mx={4}
+          border="2px"
+          onClick={() => setMoreOptionsOpen(!moreOptionsOpen)}
+          variant="outline"
+          color="white"
+          colorScheme="whiteAlpha"
+          fontSize="20px"
+          transform="rotate(90deg)"
+          icon={moreOptionsOpen ? <ArrowRightIcon /> : <ArrowLeftIcon />}
+        />
+      </Tooltip>
 
       <Collapse in={moreOptionsOpen} direction="left">
         <HStack spacing={4}>
