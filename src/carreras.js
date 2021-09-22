@@ -4,7 +4,7 @@ import { COLORS } from "./theme";
 export const CARRERAS = [
   {
     id: "sistemas",
-    link: "http://www.fi.uba.ar/es/node/307",
+    link: "https://www.fi.uba.ar/grado/carreras/lic-en-analisis-de-sistemas/plan-de-estudios",
     graph: data.sistemas,
     nombre: "Licenciatura en Análisis de Sistemas",
     nombrecorto: "Sistemas",
@@ -32,7 +32,7 @@ export const CARRERAS = [
   },
   {
     id: "informatica",
-    link: "http://www.fi.uba.ar/es/node/302",
+    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-en-informatica/plan-de-estudios",
     graph: data.informatica,
     nombre: "Ingeniería en Informática",
     nombrecorto: "Informática",
@@ -70,7 +70,7 @@ export const CARRERAS = [
   },
   {
     id: "agrimensura",
-    link: "http://www.fi.uba.ar/es/node/301",
+    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-en-agrimensura/plan-de-estudios",
     graph: data.agrimensura,
     nombre: "Ingeniería en Agrimensura",
     nombrecorto: "Agrimensura",
@@ -94,7 +94,7 @@ export const CARRERAS = [
   },
   {
     id: "alimentos",
-    link: "http://www.fi.uba.ar/es/node/298",
+    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-de-alimentos/plan-de-estudios",
     graph: data.alimentos,
     nombre: "Ingeniería de Alimentos",
     nombrecorto: "Alimentos",
@@ -120,7 +120,7 @@ export const CARRERAS = [
   },
   {
     id: "civil",
-    link: "http://www.fi.uba.ar/es/node/297",
+    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-civil/plan-de-estudios",
     graph: data.civil,
     nombre: "Ingeniería Civil",
     nombrecorto: "Civil",
@@ -154,7 +154,7 @@ export const CARRERAS = [
   },
   {
     id: "electricista",
-    link: "http://www.fi.uba.ar/es/node/299",
+    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-electricista/plan-de-estudios",
     graph: data.electricista,
     nombre: "Ingeniería Electricista",
     nombrecorto: "Electricista",
@@ -184,7 +184,7 @@ export const CARRERAS = [
   },
   {
     id: "electronica",
-    link: "http://www.fi.uba.ar/es/node/300",
+    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-electronica/plan-de-estudios",
     graph: data.electronica,
     nombre: "Ingeniería Electrónica",
     nombrecorto: "Electrónica",
@@ -227,7 +227,7 @@ export const CARRERAS = [
   },
   {
     id: "industrial",
-    link: "http://www.fi.uba.ar/es/node/303",
+    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-industrial/plan-de-estudios",
     graph: data.industrial,
     nombre: "Ingeniería Industrial",
     nombrecorto: "Industrial",
@@ -265,7 +265,7 @@ export const CARRERAS = [
   },
   {
     id: "mecanica",
-    link: "http://www.fi.uba.ar/es/node/304",
+    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-mecanica/plan-de-estudios",
     graph: data.mecanica,
     nombre: "Ingeniería Mecánica",
     nombrecorto: "Mecánica",
@@ -294,7 +294,7 @@ export const CARRERAS = [
   },
   {
     id: "naval",
-    link: "http://www.fi.uba.ar/es/node/305",
+    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-naval-y-mecanica/plan-de-estudios",
     graph: data.naval,
     nombre: "Ingeniería Naval y Mecánica",
     nombrecorto: "Naval",
@@ -310,7 +310,7 @@ export const CARRERAS = [
   },
   {
     id: "petroleo",
-    link: "http://www.fi.uba.ar/es/node/2133",
+    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-en-petroleo/plan-de-estudios",
     graph: data.petroleo,
     nombre: "Ingeniería en Petróleo",
     nombrecorto: "Petróleo",
@@ -340,7 +340,7 @@ export const CARRERAS = [
   },
   {
     id: "quimica",
-    link: "http://www.fi.uba.ar/es/node/306",
+    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-quimica/plan-de-estudios",
     graph: data.quimica,
     nombre: "Ingeniería Química",
     nombrecorto: "Química",
@@ -356,7 +356,7 @@ export const CARRERAS = [
   },
   {
     id: "sistemasviejo",
-    link: "http://www.fi.uba.ar/es/node/307",
+    link: "https://www.fi.uba.ar/grado/carreras/lic-en-analisis-de-sistemas/plan-de-estudios",
     graph: data.sistemasviejo,
     nombre: "Licenciatura en Análisis de Sistemas (1986)",
     nombrecorto: "Sistemas (1986)",
