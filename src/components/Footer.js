@@ -71,25 +71,28 @@ const Footer = () => {
     const { defaultValue, optativa } = props;
     return (
       <>
-        <NumberInput
-          mr={1}
-          borderRadius={5}
-          size="sm"
-          maxW={isEditing ? 16 : 10}
-          defaultValue={defaultValue}
-          min={1}
-          onChange={(_, creditos) => {
-            editOptativa(optativa.id, optativa.nombre, creditos);
-          }}
-        >
-          <NumberInputField isReadOnly={!isEditing} />
-          {isEditing && (
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          )}
-        </NumberInput>
+        <Tooltip placement="bottom" label="Créditos">
+          <NumberInput
+            mr={1}
+            borderRadius={5}
+            size="sm"
+            maxW={isEditing ? 16 : 12}
+            defaultValue={defaultValue}
+            min={1}
+            onChange={(_, creditos) => {
+              if (isNaN(creditos)) return;
+              editOptativa(optativa.id, optativa.nombre, creditos);
+            }}
+          >
+            <NumberInputField isReadOnly={!isEditing} />
+            {isEditing && (
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            )}
+          </NumberInput>
+        </Tooltip>
 
         {isEditing ? (
           <>
