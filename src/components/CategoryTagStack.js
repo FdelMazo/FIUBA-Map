@@ -82,6 +82,7 @@ const CategoryTagStack = (props) => {
             <Tag
               cursor="pointer"
               bg={C.GRUPOS[c]?.color}
+              key={c}
               onClick={() => {
                 setKey(!key);
                 toggleGroup(c);

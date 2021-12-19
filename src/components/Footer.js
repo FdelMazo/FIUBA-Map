@@ -83,8 +83,9 @@ const Footer = () => {
               if (isNaN(creditos)) return;
               editOptativa(optativa.id, optativa.nombre, creditos);
             }}
+            isReadOnly={!isEditing}
           >
-            <NumberInputField isReadOnly={!isEditing} />
+            <NumberInputField />
             {isEditing && (
               <NumberInputStepper>
                 <NumberIncrementStepper />
@@ -153,7 +154,7 @@ const Footer = () => {
           templateColumns="repeat(10, 1fr)"
         >
           {creditos.map((c) => (
-            <GridItem colSpan={c.proportion}>
+            <GridItem colSpan={c.proportion} key={c.nombre}>
               <Popover placement="top" trigger="hover">
                 <LightMode>
                   <PopoverTrigger>

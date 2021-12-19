@@ -35,7 +35,7 @@ const UserMenu = (props) => {
         user.carrera?.orientaciones
           .filter((o) => !o.nonEligible)
           .map((o) => (
-            <MenuItemOption type="checkbox" value={o.nombre}>
+            <MenuItemOption type="checkbox" value={o.nombre} key={o.nombre}>
               {o.nombre}
             </MenuItemOption>
           ))}
@@ -84,7 +84,7 @@ const UserMenu = (props) => {
 
                 {user.carrera?.finDeCarrera &&
                   Object.values(user.carrera.finDeCarrera).map((v) => (
-                    <MenuItemOption type="checkbox" value={v.id}>
+                    <MenuItemOption type="checkbox" value={v.id} key={v.id}>
                       {getNode(v.materia)?.materia}
                     </MenuItemOption>
                   ))}

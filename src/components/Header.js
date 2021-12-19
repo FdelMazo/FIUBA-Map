@@ -67,7 +67,9 @@ const Header = (props) => {
               type="radio"
             >
               {CARRERAS.map((c) => (
-                <MenuItemOption value={c.id}>{c.nombre}</MenuItemOption>
+                <MenuItemOption key={c.id} value={c.id}>
+                  {c.nombre}
+                </MenuItemOption>
               ))}
             </MenuOptionGroup>
           </MenuList>
