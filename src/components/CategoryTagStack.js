@@ -1,6 +1,5 @@
-import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import {
-  HStack,
+  Icon,
   LightMode,
   SimpleGrid,
   Tag,
@@ -8,17 +7,13 @@ import {
   TagLeftIcon,
 } from "@chakra-ui/react";
 import React from "react";
+import { BiCircle } from "react-icons/bi";
+import { RiFocus2Line, RiFocusLine } from "react-icons/ri";
 import * as C from "../constants";
 import { GraphContext } from "../Contexts";
 
 const CategoryTagStack = (props) => {
-  const {
-    toggleGroup,
-    isGroupHidden,
-    toggleElectivas,
-    electivasStatus,
-    nodes,
-  } = React.useContext(GraphContext);
+  const { toggleGroup, groupStatus, nodes } = React.useContext(GraphContext);
   const [key, setKey] = React.useState(false);
   const categorias = nodes
     ? nodes
@@ -29,15 +24,18 @@ const CategoryTagStack = (props) => {
             c !== "*CBC" &&
             c !== "Materias Obligatorias" &&
             c !== "Fin de Carrera (Obligatorio)" &&
-            c !== "Fin de Carrera" &&
-            c !== "Materias Electivas"
+            c !== "Fin de Carrera"
         )
     : [];
+
+  const electivasIndex = categorias.indexOf("Materias Electivas");
+  categorias[electivasIndex] = categorias[0];
+  categorias[0] = "Materias Electivas";
 
   return (
     <LightMode>
       <SimpleGrid
-        columns={categorias.length + 1 > 4 ? 2 : 1}
+        columns={categorias.length > 4 ? 2 : 1}
         mb={3}
         ml={2}
         spacing={2}
@@ -45,38 +43,6 @@ const CategoryTagStack = (props) => {
         position="absolute"
         key={key}
       >
-        {nodes && (
-          <Tag
-            cursor="pointer"
-            bg={C.GRUPOS["Materias Electivas"]?.color}
-            onClick={() => {
-              setKey(!key);
-              toggleElectivas();
-            }}
-          >
-            <TagLeftIcon
-              as={() => {
-                switch (electivasStatus()) {
-                  case "hidden":
-                    return <AddIcon mr="0.5rem" />;
-                  case "partial":
-                    return (
-                      <HStack spacing={0} mr="0.5rem">
-                        <AddIcon />
-                        <AddIcon />
-                      </HStack>
-                    );
-
-                  case "shown":
-                    return <MinusIcon mr="0.5rem" />;
-                  default:
-                    return;
-                }
-              }}
-            />
-            <TagLabel>Materias Electivas</TagLabel>
-          </Tag>
-        )}
         {nodes &&
           categorias.map((c) => (
             <Tag
@@ -88,7 +54,26 @@ const CategoryTagStack = (props) => {
                 toggleGroup(c);
               }}
             >
-              <TagLeftIcon as={isGroupHidden(c) ? AddIcon : MinusIcon} />
+              <TagLeftIcon
+                as={() => {
+                  switch (groupStatus(c)) {
+                    case "hidden":
+                      return (
+                        <Icon boxSize={"1.3em"} as={BiCircle} mr="0.5rem" />
+                      );
+                    case "partial":
+                      return (
+                        <Icon boxSize={"1.3em"} as={RiFocusLine} mr="0.5rem" />
+                      );
+                    case "shown":
+                      return (
+                        <Icon boxSize={"1.3em"} as={RiFocus2Line} mr="0.5rem" />
+                      );
+                    default:
+                      return;
+                  }
+                }}
+              />
               <TagLabel>{c}</TagLabel>
             </Tag>
           ))}

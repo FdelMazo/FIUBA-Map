@@ -85,10 +85,14 @@ const useGraph = (loginHook) => {
           }
           if (metadata.checkboxes)
             metadata.checkboxes.forEach((c) => toggleCheckbox(c));
-          if (user.orientacion) toggleGroup(user.orientacion.nombre);
-          if (electivasStatus() === "hidden") toggleElectivas();
+          if (
+            user.orientacion &&
+            groupStatus(user.orientacion.nombre) === "hidden"
+          )
+            toggleGroup(user.orientacion.nombre);
           nodes.update(toUpdate.flat());
           actualizar();
+          showAprobadas();
           setLoadingGraph(false);
           if (metadata.optativas) setOptativas(metadata.optativas);
           network.fit();
@@ -161,12 +165,12 @@ const useGraph = (loginHook) => {
     setUser({ ...user, finDeCarrera });
   };
 
-  const electivasStatus = () => {
+  const groupStatus = (categoria) => {
     const status = [
       ...new Set(
         nodes
           .get({
-            filter: (c) => c.categoria === "Materias Electivas",
+            filter: (c) => c.categoria === categoria,
             fields: ["hidden"],
           })
           .map((n) => n.hidden)
@@ -178,16 +182,17 @@ const useGraph = (loginHook) => {
     return "partial";
   };
 
-  const toggleElectivas = () => {
-    const status = electivasStatus();
+  const toggleGroup = (categoria) => {
+    const status = groupStatus(categoria);
     let group = null;
     switch (status) {
       case "hidden":
         group = nodes
           .get({
             filter: (n) =>
-              n.categoria === "Materias Electivas" &&
-              n.group !== "Materias Electivas",
+              n.categoria === categoria &&
+              n.group !== categoria &&
+              n.group !== "Habilitadas",
             fields: ["id"],
           })
           .map((n) => {
@@ -199,7 +204,7 @@ const useGraph = (loginHook) => {
       // eslint-disable-next-line no-fallthrough
       case "partial":
         group = graph.nodes
-          .filter((n) => n.categoria === "Materias Electivas")
+          .filter((n) => n.categoria === categoria)
           .map((n) => {
             const node = getNode(n.id);
             node.hidden = false;
@@ -209,7 +214,7 @@ const useGraph = (loginHook) => {
 
       case "shown":
         group = graph.nodes
-          .filter((n) => n.categoria === "Materias Electivas")
+          .filter((n) => n.categoria === categoria)
           .map((n) => {
             const node = getNode(n.id);
             node.hidden = true;
@@ -219,20 +224,7 @@ const useGraph = (loginHook) => {
       default:
         break;
     }
-    balanceShownElectivas(group);
-
-    nodes.update(group);
-    actualizar();
-    network.fit();
-  };
-
-  const toggleGroup = (id) => {
-    const categoria = graph.nodes.filter((n) => n.categoria === id);
-    const group = categoria.map((n) => {
-      const node = getNode(n.id);
-      node.hidden = !node.hidden;
-      return node;
-    });
+    if (categoria === "Materias Electivas") balanceShownElectivas(group);
 
     nodes.update(group);
     actualizar();
@@ -252,13 +244,6 @@ const useGraph = (loginHook) => {
   const cursando = (id, cuatri) => {
     nodes.update(getNode(id).cursando(cuatri));
     actualizar();
-  };
-
-  const isGroupHidden = (id) => {
-    return nodes.get({
-      filter: (c) => c.categoria === id,
-      fields: ["hidden"],
-    })[0].hidden;
   };
 
   const toggleCheckbox = (c) => {
@@ -498,7 +483,15 @@ const useGraph = (loginHook) => {
   };
 
   const openCBC = () => {
-    toggleGroup("*CBC");
+    const categoria = graph.nodes.filter((n) => n.categoria === "*CBC");
+    const group = categoria.map((n) => {
+      const node = getNode(n.id);
+      node.hidden = !node.hidden;
+      return node;
+    });
+    nodes.update(group);
+    actualizar();
+    network.fit();
   };
 
   const balanceShownElectivas = (group) => {
@@ -508,13 +501,14 @@ const useGraph = (loginHook) => {
       const groupOrder = [
         "Aprobadas",
         "En Final",
-        "Habilitadas",
-        "Materias Electivas",
         "Cursando",
         ...Array(10)
           .fill()
           .map((_, i) => `A Cursar (${i + 1})`),
+        "Habilitadas",
+        "Materias Electivas",
       ];
+
       return groupOrder.indexOf(nodeA.group) - groupOrder.indexOf(nodeB.group);
     };
 
@@ -546,6 +540,44 @@ const useGraph = (loginHook) => {
     nodes.update(electivas);
   };
 
+  const showAprobadas = () => {
+    let electivas = nodes
+      .get({
+        filter: (n) =>
+          n.categoria === "Materias Electivas" &&
+          (n.aprobada || n.nota === -1 || n.cuatri >= 0),
+        fields: ["id"],
+      })
+      .map((n) => {
+        const node = getNode(n.id);
+        node.hidden = false;
+        return node;
+      });
+    balanceShownElectivas(electivas);
+
+    let resto = nodes
+      .get({
+        filter: (n) =>
+          n.categoria !== "CBC" &&
+          n.categoria !== "*CBC" &&
+          n.categoria !== "Materias Obligatorias" &&
+          n.categoria !== "Materias Electivas" &&
+          n.categoria !== "Fin de Carrera (Obligatorio)" &&
+          n.categoria !== "Fin de Carrera" &&
+          (n.aprobada || n.nota === -1 || n.cuatri >= 0),
+        fields: ["id"],
+      })
+      .map((n) => {
+        const node = getNode(n.id);
+        node.hidden = false;
+        return node;
+      });
+
+    nodes.update([...electivas, ...resto]);
+    actualizar();
+    network.fit();
+  };
+
   return {
     graph,
     toggleGroup,
@@ -573,11 +605,9 @@ const useGraph = (loginHook) => {
     toggleCheckbox,
     loadingGraph,
     setFirstTime,
-    isGroupHidden,
     actualizar,
     cursando,
-    electivasStatus,
-    toggleElectivas,
+    groupStatus,
     optativas,
     addOptativa,
     editOptativa,

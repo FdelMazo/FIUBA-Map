@@ -11,6 +11,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-graph-vis": "^1.0.7",
+    "react-icons": "^4.3.1",
     "react-scripts": "^3.4.3"
   },
   "homepage": "https://fede.dm/FIUBA-Map",
