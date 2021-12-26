@@ -45,9 +45,7 @@ const UserMenu = (props) => {
   return (
     <Menu
       defaultIsOpen={
-        ((user.carrera.eligeOrientaciones === true ||
-          user.carrera?.eligeOrientaciones?.[user.finDeCarrera?.id]) &&
-          !user.orientacion) ||
+        (user.carrera.eligeOrientaciones && !user.orientacion) ||
         (user.carrera.finDeCarrera && !user.finDeCarrera)
       }
       closeOnSelect={false}
@@ -91,10 +89,7 @@ const UserMenu = (props) => {
               </MenuOptionGroup>
             )}
 
-            {(user.carrera?.eligeOrientaciones === true ||
-              user.carrera?.eligeOrientaciones?.[user.finDeCarrera?.id]) && (
-              <OrientacionesMenuGroup />
-            )}
+            {user.carrera?.eligeOrientaciones && <OrientacionesMenuGroup />}
 
             <MenuItem onClick={logout}>
               <strong>Cerrar Sesión</strong>

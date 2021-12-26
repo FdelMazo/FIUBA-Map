@@ -272,7 +272,6 @@ export const CARRERAS = [
       },
       { nombre: "Industrias", colorScheme: "orientacion5", nonEligible: true },
     ],
-    eligeOrientaciones: { tesis: true },
     finDeCarrera: [
       { id: "tesis", materia: "67.00" },
       { id: "tpp", materia: "67.98" },
@@ -280,9 +279,18 @@ export const CARRERAS = [
     creditos: {
       total: 260,
       obligatorias: 190,
-      orientacion: { tesis: 28 },
-      electivas: { tesis: 24, tpp: 56 },
+      orientacion: {
+        "Diseño Mecánico": {
+          orientacion: 28,
+          electivas: { tesis: 24, tpp: 28 },
+        },
+        Termomecánica: {
+          orientacion: 28,
+          electivas: { tesis: 24, tpp: 28 },
+        },
+      },
     },
+    eligeOrientaciones: true,
   },
   {
     id: "naval",
