@@ -318,7 +318,7 @@ export const industrial = [
     id: "92.07",
     materia: "Instalaciones Industriales",
     creditos: 6,
-    correlativas: "85.38-87.17-91.12-92.18",
+    correlativas: "85.38-91.12-92.18",
     categoria: "Materias Obligatorias",
     level: 8,
   },
@@ -591,7 +591,7 @@ export const industrial = [
     materia: "Asignatura Humanística Electiva",
     creditos: 4,
     correlativas: "92.03",
-    categoria: "Fin de Carrera (Obligatorio)",
+    categoria: "Materias Electivas",
   },
   {
     id: "92.00",

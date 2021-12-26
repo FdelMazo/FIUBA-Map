@@ -238,14 +238,6 @@ export const CARRERAS = [
     creditos: {
       total: 245,
       obligatorias: 196,
-      materias: [
-        {
-          id: "HUM",
-          nombrecorto: "Humanística",
-          bg: COLORS.orientacion1[50],
-          color: "orientacion1",
-        },
-      ],
       checkbox: [
         {
           nombre: "Práctica Profesional de al menos 200 horas",
@@ -260,7 +252,7 @@ export const CARRERAS = [
           color: "enfinal",
         },
       ],
-      electivas: 32,
+      electivas: 36,
     },
   },
   {
