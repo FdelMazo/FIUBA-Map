@@ -31,6 +31,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useRef } from "react";
 import Graph from "react-graph-vis";
+import Snowfall from "react-snowfall";
 import useResizeObserver from "use-resize-observer";
 import * as C from "../constants";
 import { GraphContext, UserContext } from "../Contexts";
@@ -177,6 +178,13 @@ const Body = (props) => {
     },
   };
 
+  const isChristmasTime = () => {
+    const today = new Date();
+    const start = new Date(today.getFullYear(), 11, 20);
+    const end = new Date(today.getFullYear(), 11, 31);
+    return today >= start && today <= end;
+  };
+
   return (
     <Box
       ref={ref}
@@ -186,6 +194,7 @@ const Body = (props) => {
       height="1em"
       position="relative"
     >
+      {isChristmasTime() && <Snowfall color="lavender" />}
       <SlideFade in={loadingGraph} unmountOnExit>
         <LoadingGraph />
       </SlideFade>
