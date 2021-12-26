@@ -273,7 +273,7 @@ const useGraph = (loginHook) => {
     };
 
     const getCorrectCreditos = () => {
-      if (user.carrera.eligeOrientaciones === true)
+      if (user.carrera.eligeOrientaciones)
         return user.carrera.creditos.orientacion[user.orientacion?.nombre];
       return user.carrera.creditos;
     };
@@ -326,17 +326,14 @@ const useGraph = (loginHook) => {
     if (
       user.carrera.eligeOrientaciones &&
       user.orientacion &&
-      (user.carrera.creditos.orientacion[user.orientacion?.nombre] ||
-        user.carrera.creditos.orientacion[user.finDeCarrera?.id])
+      user.carrera.creditos.orientacion[user.orientacion?.nombre]
     )
       creditos.push({
         nombre: `Orientación: ${user.orientacion.nombre}`,
         nombrecorto: "Orientación",
         bg: COLORS[user.orientacion.colorScheme][50],
         color: user.orientacion.colorScheme,
-        creditosNecesarios: isNaN(getCorrectCreditos()?.orientacion)
-          ? getCorrectCreditos().orientacion[user.finDeCarrera?.id]
-          : getCorrectCreditos()?.orientacion,
+        creditosNecesarios: getCorrectCreditos()?.orientacion,
         creditos: nodes
           .get({
             filter: (n) =>

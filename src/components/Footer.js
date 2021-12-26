@@ -238,12 +238,12 @@ const Footer = () => {
                     ) : (
                       `Tenés ${c.creditos} créditos.
                       Elegí ${
-                        user.carrera.eligeOrientaciones === true &&
+                        user.carrera.eligeOrientaciones &&
                         !user.orientacion
                           ? "orientación"
                           : ""
                       }${
-                        user.carrera.eligeOrientaciones === true &&
+                        user.carrera.eligeOrientaciones &&
                         !user.orientacion &&
                         !user.finDeCarrera
                           ? " y "
