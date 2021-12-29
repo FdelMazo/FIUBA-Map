@@ -18,7 +18,6 @@ import {
   Stat,
   StatHelpText,
   StatLabel,
-  Text,
   Tooltip,
 } from "@chakra-ui/react";
 import React from "react";
@@ -41,10 +40,8 @@ const Header = (props) => {
     <Flex height="4em" alignItems="center" justifyContent="space-around">
       <Stat alignSelf="flex-end" mx={3} color="white">
         <StatLabel>[{getNode(displayedNode)?.id}]</StatLabel>
-        <StatHelpText>
-          <Text width="30ch" isTruncated>
-            {getNode(displayedNode)?.materia}
-          </Text>
+        <StatHelpText isTruncated width="30ch">
+          {getNode(displayedNode)?.materia}
         </StatHelpText>
       </Stat>
 
