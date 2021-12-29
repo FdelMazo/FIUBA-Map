@@ -106,6 +106,7 @@ const useLogin = () => {
     fetch(`${C.GRAPH_FORM}`, {
       body: formData,
       method: "POST",
+      mode: "no-cors",
     })
       .then((r) => setSaving(false))
       .catch((r) => setSaving(false));
@@ -157,6 +158,7 @@ const useLogin = () => {
     fetch(`${C.USER_FORM}`, {
       body: formData,
       method: "POST",
+      mode: "no-cors",
     });
 
     const carrera = CARRERAS.find((c) => c.id === carreraid);
@@ -217,6 +219,7 @@ const useLogin = () => {
     fetch(`${C.BUGS_FORM}`, {
       body: formData,
       method: "POST",
+      mode: "no-cors",
     });
   };
 
