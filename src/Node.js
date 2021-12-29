@@ -55,15 +55,20 @@ class Node {
   }
 
   isHabilitada(ctx) {
-    const { network, nodes, getNode } = ctx;
+    const { network, nodes, getNode, optativas } = ctx;
 
     const from = network.getConnectedNodes(this.id, "from");
-    const totalCreditos = nodes
-      .get({
-        filter: (n) => n.aprobada,
-        fields: ["creditos"],
-      })
-      .reduce((acc, n) => {
+    const totalCreditos =
+      nodes
+        .get({
+          filter: (n) => n.aprobada,
+          fields: ["creditos"],
+        })
+        .reduce((acc, n) => {
+          acc += n.creditos;
+          return acc;
+        }, 0) +
+      optativas.reduce((acc, n) => {
         acc += n.creditos;
         return acc;
       }, 0);

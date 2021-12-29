@@ -42,6 +42,7 @@ const useGraph = (loginHook) => {
           user,
           network,
           getNode,
+          optativas,
           showLabels: logged,
           nodes,
           colorMode,
