@@ -37,6 +37,7 @@ import * as C from "../constants";
 import { GraphContext, UserContext } from "../Contexts";
 import CategoryTagStack from "./CategoryTagStack";
 import LoadingGraph from "./LoadingGraph";
+import { Fireworks } from 'fireworks-js/dist/react'
 
 const Body = (props) => {
   const {
@@ -52,6 +53,7 @@ const Body = (props) => {
     loadingGraph,
     network,
     openCBC,
+    stats,
   } = React.useContext(GraphContext);
   const { user, logged, submitBug } = React.useContext(UserContext);
   const { setDisplayedNode } = props;
@@ -194,6 +196,7 @@ const Body = (props) => {
       height="1em"
       position="relative"
     >
+      {stats.isRecibido && <Fireworks options={{ speed: 3 }} style={{ width: '100%', height: '100%', position: 'fixed' }} />}
       {isChristmasTime() && <Snowfall color="lavender" />}
       <SlideFade in={loadingGraph} unmountOnExit>
         <LoadingGraph />

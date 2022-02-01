@@ -22,6 +22,7 @@ const useGraph = (loginHook) => {
   const [stats, setStats] = React.useState({
     materiasAprobadas: 0,
     creditosTotales: 0,
+    isRecibido: false,
   });
   const [shouldLoadGraph, setShouldLoadGraph] = React.useState(false);
   const [autosave, setAutosave] = React.useState(false);
@@ -416,9 +417,13 @@ const useGraph = (loginHook) => {
     });
     aprobadas.push(...optativas.filter(Boolean));
 
+    const allCreditosAprobados = creditos.every(c => c.creditos >= c.creditosNecesarios);
+    const creditosTotales = aprobadas.reduce(accumulator, 0)
+
     setStats({
       materiasAprobadas: aprobadas.length,
-      creditosTotales: aprobadas.reduce(accumulator, 0),
+      creditosTotales,
+      isRecibido: creditosTotales >= user.carrera?.creditos.total && allCreditosAprobados,
     });
 
     return creditos;
