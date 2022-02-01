@@ -98,6 +98,10 @@ export const GRAPHOPTIONS = {
     // Entonces, se puede tener un grupo nuevo 'HiddenGroup' que tenga hidden en true, y poner que todos los otros grupos tengan hidden en false
     // Asi, el boton de prender y apagar nodos tiene que manejar el grupo, y no directamente el atributo hidden
     // Se puede tener un nuevo atributo custom (nodo._hidden), y que ese atributo sea el que al cambiar haga que el nodo cambie de grupo (en el actualizar() de Node.js)
+    //
+    //
+    // Fede del futuro: Deja de intentar hacer funcionar esto. No trae casi nada de valor al programa, y ya pasaste más de 5 noches intentándolo, sin resultado alguno.
+    //   Si estas queriendo hacerlo andar, espero que este comentario te recuerde la realidad: no sirve de nada, y no te va a quedar lindo. Es un capricho, y no lo vale.
     // enabled: true
     enabled: false,
     hierarchicalRepulsion: {
