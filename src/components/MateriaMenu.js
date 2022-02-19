@@ -197,12 +197,14 @@ const Header = (props) => {
                     border="none"
                     color="cursando.500"
                     fontSize="large"
+                    height="50%"
                     children={<strong>+</strong>}
                   />
                   <NumberDecrementStepper
                     border="none"
                     color="futuro.1000"
                     fontSize="large"
+                    height="50%"
                     children={<strong>-</strong>}
                   />
                 </NumberInputStepper>
