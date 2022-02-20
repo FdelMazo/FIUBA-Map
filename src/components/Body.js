@@ -292,7 +292,7 @@ const Body = (props) => {
                   render: (props) => (
                     <Alert
                       borderRadius={6}
-                      p={5}
+                      p={6}
                       mb="4em"
                       borderColor={
                         colorMode === "dark" ? "electivas.400" : "electivas.500"
