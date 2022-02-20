@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/FIUBA-Map/static/js/main.0da4771e.chunk.js",
-    "main.js.map": "/FIUBA-Map/static/js/main.0da4771e.chunk.js.map",
+    "main.js": "/FIUBA-Map/static/js/main.567dfc7c.chunk.js",
+    "main.js.map": "/FIUBA-Map/static/js/main.567dfc7c.chunk.js.map",
     "runtime-main.js": "/FIUBA-Map/static/js/runtime-main.9b100fd5.js",
     "runtime-main.js.map": "/FIUBA-Map/static/js/runtime-main.9b100fd5.js.map",
     "static/js/2.a755798c.chunk.js": "/FIUBA-Map/static/js/2.a755798c.chunk.js",
     "static/js/2.a755798c.chunk.js.map": "/FIUBA-Map/static/js/2.a755798c.chunk.js.map",
     "index.html": "/FIUBA-Map/index.html",
-    "precache-manifest.200431622b30fcfd08ba157463ec1539.js": "/FIUBA-Map/precache-manifest.200431622b30fcfd08ba157463ec1539.js",
+    "precache-manifest.ec600cf02840f02065b4caf2175c7908.js": "/FIUBA-Map/precache-manifest.ec600cf02840f02065b4caf2175c7908.js",
     "service-worker.js": "/FIUBA-Map/service-worker.js",
     "static/js/2.a755798c.chunk.js.LICENSE.txt": "/FIUBA-Map/static/js/2.a755798c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.9b100fd5.js",
     "static/js/2.a755798c.chunk.js",
-    "static/js/main.0da4771e.chunk.js"
+    "static/js/main.567dfc7c.chunk.js"
   ]
 }
