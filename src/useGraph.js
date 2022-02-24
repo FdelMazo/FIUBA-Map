@@ -25,7 +25,6 @@ const useGraph = (loginHook) => {
     isRecibido: false,
   });
   const [shouldLoadGraph, setShouldLoadGraph] = React.useState(false);
-  const [autosave, setAutosave] = React.useState(false);
   const [loadingGraph, setLoadingGraph] = React.useState(false);
   const [firstTime, setFirstTime] = React.useState(true);
   const { user, setUser, register, logged, getGraph, postGraph } = loginHook;
@@ -34,7 +33,6 @@ const useGraph = (loginHook) => {
 
   const actualizar = () => {
     if (!nodes) return;
-    if (autosave) saveGraph();
     setPromedio(getPromedio());
     setCreditos(getCreditos());
     nodes.update(
@@ -600,8 +598,6 @@ const useGraph = (loginHook) => {
     setNodes,
     saveGraph,
     edges,
-    autosave,
-    setAutosave,
     setEdges,
     changeCarrera,
     changeOrientacion,
