@@ -42,42 +42,42 @@ const Header = (props) => {
         {getNode(displayedNode)?.nota > 0 ? (
           <Tooltip closeOnClick hasArrow label="Aprobar con Nota">
             <>
-            <NumberInput
-              css={{ margin: 0 }}
-              errorBorderColor="transparent"
-              borderColor="transparent"
-              inputMode="numeric"
-              onChange={(_, nota) => {
-                aprobar(displayedNode, nota);
-              }}
-              value={getNode(displayedNode)?.nota}
-              min={4}
-              max={10}
-              maxW={16}
-            >
-              <NumberInputField
-                _hover={{
-                  borderColor: "transparent",
+              <NumberInput
+                css={{ margin: 0 }}
+                errorBorderColor="transparent"
+                borderColor="transparent"
+                inputMode="numeric"
+                onChange={(_, nota) => {
+                  aprobar(displayedNode, nota);
                 }}
-                _focus={{
-                  borderColor: "transparent",
-                }}
-                color="white"
-                fontWeight="bold"
-              />
-              <NumberInputStepper mr={1}>
-                <NumberIncrementStepper
-                  border="none"
-                  fontSize="small"
-                  color="green.500"
+                value={getNode(displayedNode)?.nota}
+                min={4}
+                max={10}
+                maxW={16}
+              >
+                <NumberInputField
+                  _hover={{
+                    borderColor: "transparent",
+                  }}
+                  _focus={{
+                    borderColor: "transparent",
+                  }}
+                  color="white"
+                  fontWeight="bold"
                 />
-                <NumberDecrementStepper
-                  border="none"
-                  fontSize="small"
-                  color="red.500"
-                />
-              </NumberInputStepper>
-            </NumberInput>
+                <NumberInputStepper mr={1}>
+                  <NumberIncrementStepper
+                    border="none"
+                    fontSize="small"
+                    color="green.500"
+                  />
+                  <NumberDecrementStepper
+                    border="none"
+                    fontSize="small"
+                    color="red.500"
+                  />
+                </NumberInputStepper>
+              </NumberInput>
               <Tooltip closeOnClick hasArrow label="Aprobar por Equivalencia">
                 <Button
                   alignSelf="center"
@@ -145,65 +145,65 @@ const Header = (props) => {
         </Tooltip>
       </Flex>
 
-        <HStack spacing={4}>
-          <HStack borderRadius={6} ml={1} border="2px solid white">
-            <Tooltip closeOnClick hasArrow label="Cursando Actualmente">
-              <Button
-                _hover={{
-                  backgroundColor: "transparent",
-                }}
-                borderRadius="0"
-                cursor="pointer"
-                variant="link"
-                borderRight="2px solid white"
-                fontSize="larger"
-                color="cursando.500"
-                onClick={() => cursando(displayedNode, 0)}
-              >
-                <strong>C</strong>
-              </Button>
-            </Tooltip>
+      <HStack spacing={4}>
+        <HStack borderRadius={6} ml={1} border="2px solid white">
+          <Tooltip closeOnClick hasArrow label="Cursando Actualmente">
+            <Button
+              _hover={{
+                backgroundColor: "transparent",
+              }}
+              borderRadius="0"
+              cursor="pointer"
+              variant="link"
+              borderRight="2px solid white"
+              fontSize="larger"
+              color="cursando.500"
+              onClick={() => cursando(displayedNode, 0)}
+            >
+              <strong>C</strong>
+            </Button>
+          </Tooltip>
 
-            <Tooltip closeOnClick hasArrow label="A cursar en N cuatris">
-              <NumberInput
-                css={{ margin: 0 }}
-                errorBorderColor="white.500"
-                borderColor="transparent"
-                onChange={(_, cuatri) => {
-                  cursando(displayedNode, cuatri);
+          <Tooltip closeOnClick hasArrow label="A cursar en N cuatris">
+            <NumberInput
+              css={{ margin: 0 }}
+              errorBorderColor="white.500"
+              borderColor="transparent"
+              onChange={(_, cuatri) => {
+                cursando(displayedNode, cuatri);
+              }}
+              value={formatCuatri(getNode(displayedNode)?.cuatri)}
+              min={0}
+              max={10}
+            >
+              <NumberInputField
+                _hover={{
+                  borderColor: "transparent",
                 }}
-                value={formatCuatri(getNode(displayedNode)?.cuatri)}
-                min={0}
-                max={10}
-              >
-                <NumberInputField
-                  _hover={{
-                    borderColor: "transparent",
-                  }}
-                  _focus={{
-                    borderColor: "transparent",
-                  }}
-                  p={0}
-                  w="6ch"
-                  color="white"
-                  fontWeight="bold"
+                _focus={{
+                  borderColor: "transparent",
+                }}
+                p={0}
+                w="6ch"
+                color="white"
+                fontWeight="bold"
+              />
+              <NumberInputStepper>
+                <NumberIncrementStepper
+                  border="none"
+                  color="cursando.500"
+                  fontSize="large"
+                  height="50%"
+                  children={<strong>+</strong>}
                 />
-                <NumberInputStepper>
-                  <NumberIncrementStepper
-                    border="none"
-                    color="cursando.500"
-                    fontSize="large"
-                    height="50%"
-                    children={<strong>+</strong>}
-                  />
-                  <NumberDecrementStepper
-                    border="none"
-                    color="futuro.1000"
-                    fontSize="large"
-                    height="50%"
-                    children={<strong>-</strong>}
-                  />
-                </NumberInputStepper>
+                <NumberDecrementStepper
+                  border="none"
+                  color="futuro.1000"
+                  fontSize="large"
+                  height="50%"
+                  children={<strong>-</strong>}
+                />
+              </NumberInputStepper>
             </NumberInput>
           </Tooltip>
         </HStack>
