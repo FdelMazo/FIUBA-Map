@@ -1,15 +1,11 @@
 import {
-  ArrowLeftIcon,
-  ArrowRightIcon,
   CheckIcon,
   CloseIcon,
 } from "@chakra-ui/icons";
 import {
   Button,
-  Collapse,
   Flex,
   HStack,
-  IconButton,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
@@ -27,9 +23,6 @@ const Header = (props) => {
   const { displayedNode } = props;
   const { getNode, aprobar, desaprobar, cursando } =
     React.useContext(GraphContext);
-  const [moreOptionsOpen, setMoreOptionsOpen] = React.useState(
-    getNode(displayedNode)?.cuatri > -1
-  );
 
   const formatCuatri = (cuatri) => {
     if (cuatri === -1) return "/";
@@ -48,6 +41,7 @@ const Header = (props) => {
       <Flex borderRadius={6} border="2px solid white" p={1} alignItems="center">
         {getNode(displayedNode)?.nota > 0 ? (
           <Tooltip closeOnClick hasArrow label="Aprobar con Nota">
+            <>
             <NumberInput
               css={{ margin: 0 }}
               errorBorderColor="transparent"
@@ -84,6 +78,23 @@ const Header = (props) => {
                 />
               </NumberInputStepper>
             </NumberInput>
+              <Tooltip closeOnClick hasArrow label="Aprobar por Equivalencia">
+                <Button
+                  alignSelf="center"
+                  _hover={{
+                    backgroundColor: "transparent",
+                  }}
+                  variant="link"
+                  fontSize="small"
+                  color="aprobadas.400"
+                  minW={0}
+                  mr={2}
+                  onClick={() => aprobar(displayedNode, 0)}
+                >
+                  <strong>E</strong>
+                </Button>
+              </Tooltip>
+            </>
           </Tooltip>
         ) : (
           <Tooltip closeOnClick hasArrow label="Aprobar">
@@ -134,21 +145,6 @@ const Header = (props) => {
         </Tooltip>
       </Flex>
 
-      <Tooltip closeOnClick hasArrow label="Más Opciones">
-        <IconButton
-          mx={4}
-          border="2px"
-          onClick={() => setMoreOptionsOpen(!moreOptionsOpen)}
-          variant="outline"
-          color="white"
-          colorScheme="whiteAlpha"
-          fontSize="20px"
-          transform="rotate(90deg)"
-          icon={moreOptionsOpen ? <ArrowRightIcon /> : <ArrowLeftIcon />}
-        />
-      </Tooltip>
-
-      <Collapse in={moreOptionsOpen} direction="left">
         <HStack spacing={4}>
           <HStack borderRadius={6} ml={1} border="2px solid white">
             <Tooltip closeOnClick hasArrow label="Cursando Actualmente">
@@ -208,27 +204,10 @@ const Header = (props) => {
                     children={<strong>-</strong>}
                   />
                 </NumberInputStepper>
-              </NumberInput>
-            </Tooltip>
-          </HStack>
-          <Tooltip closeOnClick hasArrow label="Aprobar por Equivalencia">
-            <Button
-              p={2}
-              _hover={{
-                backgroundColor: "transparent",
-              }}
-              cursor="pointer"
-              variant="link"
-              border="2px solid white"
-              fontSize="larger"
-              color="aprobadas.400"
-              onClick={() => aprobar(displayedNode, 0)}
-            >
-              <strong>E</strong>
-            </Button>
+            </NumberInput>
           </Tooltip>
         </HStack>
-      </Collapse>
+      </HStack>
     </Flex>
   );
 };
