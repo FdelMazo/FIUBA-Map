@@ -250,7 +250,7 @@ export const electronica = [
     level: 7,
   },
   {
-    id: "86.13",
+    id: "86.69",
     materia: "Instrumentos y Mediciones Electrónicas",
     creditos: 6,
     correlativas: "82.06-86.06-86.07",
@@ -803,14 +803,14 @@ export const electronica = [
     id: "86.00",
     materia: "Tesis de Ingeniería Electrónica",
     creditos: 18,
-    correlativas: "83.01-95.04-82.03-86.08-86.09-86.12-86.13-86.14",
+    correlativas: "83.01-95.04-82.03-86.08-86.09-86.12-86.69-86.14",
     categoria: "Fin de Carrera",
   },
   {
     id: "86.99",
     materia: "Trabajo Profesional de Ingeniería Electrónica",
     creditos: 18,
-    correlativas: "83.01-95.04-82.03-86.08-86.09-86.12-86.13-86.14",
+    correlativas: "83.01-95.04-82.03-86.08-86.09-86.12-86.69-86.14",
     categoria: "Fin de Carrera",
   },
   {
