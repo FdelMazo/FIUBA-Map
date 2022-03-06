@@ -164,7 +164,7 @@ const Header = (props) => {
       </Flex>
 
       {getNode(displayedNode).categoria !== "CBC" && getNode(displayedNode).categoria !== "*CBC" && (
-        <HStack borderRadius={6} ml={2} border="2px solid white" height={"60%"}>
+        <HStack borderRadius={6} ml={2} border="2px solid white" height={"64%"}>
           <Tooltip closeOnClick hasArrow label="Planear Cuatri">
             <NumberInput
               css={{ margin: 0 }}
@@ -200,15 +200,25 @@ const Header = (props) => {
                   border="none"
                   color="white"
                   fontSize="large"
+                  fontWeight={"bold"}
+                  alignSelf={"center"}
                   height="50%"
-                  children={<strong>+</strong>}
+                  _hover={{
+                    color: "habilitadas.500"
+                  }}
+                  children="+"
                 />
                 <NumberDecrementStepper
                   border="none"
                   color="grey"
                   fontSize="large"
+                  fontWeight={"bold"}
+                  alignSelf={"center"}
                   height="50%"
-                  children={<strong>-</strong>}
+                  _hover={{
+                    color: "habilitadas.500"
+                  }}
+                  children="-"
                 />
               </NumberInputStepper>
             </NumberInput>
@@ -218,6 +228,7 @@ const Header = (props) => {
             <Button
               _hover={{
                 backgroundColor: "transparent",
+                color: "habilitadas.500"
               }}
               borderRadius="0"
               cursor="pointer"
