@@ -25,7 +25,8 @@ class Node {
           }`
         : `[${this.id}] ${this.materia}`);
     this.cuatrimestre = undefined;
-    this.level = this.level ?? -1;
+    this.originalLevel = this.level ?? -1;
+    this.level = this.originalLevel
     this.hidden =
       this.categoria !== "Materias Obligatorias" &&
       this.categoria !== "CBC" &&
@@ -124,6 +125,53 @@ class Node {
 
     if (this.categoria === "Fin de Carrera") {
       this.hidden = !(this.id === user.finDeCarrera?.materia);
+    }
+
+    const firstCuatrimestreSet = Math.min(
+      ...nodes
+        .get({
+          filter: (n) =>
+            !n.hidden &&
+            n.cuatrimestre &&
+            n.categoria !== "CBC" &&
+            n.categoria !== "*CBC" &&
+            n.categoria !== "Fin de Carrera" &&
+            n.categoria !== "Fin de Carrera (Obligatorio)",
+          fields: ["cuatrimestre"],
+          type: { cuatrimestre: "number" },
+        })
+        .map((n) => n.cuatrimestre)
+    );
+
+    const lastCuatrimestreSet = Math.max(
+      ...nodes
+        .get({
+          filter: (n) =>
+            !n.hidden &&
+            n.cuatrimestre &&
+            n.categoria !== "CBC" &&
+            n.categoria !== "*CBC" &&
+            n.categoria !== "Fin de Carrera" &&
+            n.categoria !== "Fin de Carrera (Obligatorio)",
+          fields: ["cuatrimestre"],
+          type: { cuatrimestre: "number" },
+        })
+        .map((n) => n.cuatrimestre)
+    );
+
+    if (this.cuatrimestre) {
+      this.level = ((this.cuatrimestre - firstCuatrimestreSet) / 0.5) + 1;
+    } else if (this.originalLevel !== -1) {
+      if (isFinite(lastCuatrimestreSet) && isFinite(firstCuatrimestreSet)) {
+        this.level = ((lastCuatrimestreSet - firstCuatrimestreSet) / 0.5) + this.originalLevel + 1;
+      }
+    }
+
+    if (
+      this.categoria === "CBC" ||
+      this.categoria === "*CBC"
+    ) {
+      this.level = this.originalLevel;
     }
 
     if (

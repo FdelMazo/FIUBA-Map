@@ -517,6 +517,8 @@ const useGraph = (loginHook) => {
         .get({
           filter: (n) =>
             n.categoria !== "Materias Electivas" &&
+            n.categoria !== "*CBC" &&
+            n.categoria !== "CBC" &&
             n.categoria !== "Fin de Carrera" &&
             n.categoria !== "Fin de Carrera (Obligatorio)",
           fields: ["level"],
@@ -534,6 +536,7 @@ const useGraph = (loginHook) => {
         counter = 0;
         addLevel += 1;
       }
+      node.originalLevel = lastLevel + addLevel;
       node.level = lastLevel + addLevel;
     });
     nodes.update(electivas);
