@@ -66,17 +66,6 @@ export const GRUPOS = {
     shape: "diamond",
     size: 45,
   },
-  Cursando: { color: COLORS.cursando[500] },
-  "A Cursar (1)": { color: COLORS.futuro[100] },
-  "A Cursar (2)": { color: COLORS.futuro[200] },
-  "A Cursar (3)": { color: COLORS.futuro[300] },
-  "A Cursar (4)": { color: COLORS.futuro[400] },
-  "A Cursar (5)": { color: COLORS.futuro[500] },
-  "A Cursar (6)": { color: COLORS.futuro[600] },
-  "A Cursar (7)": { color: COLORS.futuro[700] },
-  "A Cursar (8)": { color: COLORS.futuro[800] },
-  "A Cursar (9)": { color: COLORS.futuro[900] },
-  "A Cursar (10)": { color: COLORS.futuro[1000] },
   ...CARRERAS.filter((c) => c.orientaciones)
     .flatMap((c) => c.orientaciones)
     .reduce(function (map, obj) {

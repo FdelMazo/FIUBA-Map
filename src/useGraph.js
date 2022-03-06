@@ -504,10 +504,6 @@ const useGraph = (loginHook) => {
       const groupOrder = [
         "Aprobadas",
         "En Final",
-        "Cursando",
-        ...Array(10)
-          .fill()
-          .map((_, i) => `A Cursar (${i + 1})`),
         "Habilitadas",
         "Materias Electivas",
       ];
@@ -548,7 +544,7 @@ const useGraph = (loginHook) => {
       .get({
         filter: (n) =>
           n.categoria === "Materias Electivas" &&
-          (n.aprobada || n.nota === -1 || n.cuatri >= 0),
+          (n.aprobada || n.nota === -1 || n.cuatrimestre),
         fields: ["id"],
       })
       .map((n) => {
@@ -567,7 +563,7 @@ const useGraph = (loginHook) => {
           n.categoria !== "Materias Electivas" &&
           n.categoria !== "Fin de Carrera (Obligatorio)" &&
           n.categoria !== "Fin de Carrera" &&
-          (n.aprobada || n.nota === -1 || n.cuatri >= 0),
+          (n.aprobada || n.nota === -1 || n.cuatrimestre),
         fields: ["id"],
       })
       .map((n) => {

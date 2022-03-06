@@ -24,7 +24,6 @@ class Node {
             this.requiere ? "\n- Requiere " + this.requiere + " créditos" : ""
           }`
         : `[${this.id}] ${this.materia}`);
-    this.cuatri = -1;
     this.cuatrimestre = undefined;
     this.level = this.level ?? -1;
     this.hidden =
@@ -36,14 +35,12 @@ class Node {
   aprobar(nota) {
     if (nota < -1) return;
     this.aprobada = nota > -1 ? true : false;
-    this.cuatri = -1;
     this.nota = nota;
     return this;
   }
 
   desaprobar() {
     this.aprobada = false;
-    this.cuatri = -1;
     this.nota = -2;
     return this;
   }
@@ -86,8 +83,6 @@ class Node {
     let grupoDefault = this.categoria;
     if (this.aprobada && this.nota >= 0) grupoDefault = "Aprobadas";
     else if (this.nota === -1) grupoDefault = "En Final";
-    else if (this.cuatri === 0) grupoDefault = "Cursando";
-    else if (this.cuatri > 0) grupoDefault = `A Cursar (${this.cuatri})`;
     else if (this.isHabilitada(ctx)) grupoDefault = "Habilitadas";
     this.group = grupoDefault;
 
@@ -98,10 +93,6 @@ class Node {
       else if (this.aprobada && this.nota === 0)
         labelDefault += "\n[Equivalencia]";
       else if (this.nota === -1) labelDefault += "\n[En Final]";
-      else if (this.cuatri === 0) labelDefault += "\n[Cursando]";
-      else if (this.cuatri === 1) labelDefault += "\n[En 1 cuatri]";
-      else if (this.cuatri > 1)
-        labelDefault += "\n[En " + this.cuatri + " cuatris]";
     }
     this.label = labelDefault;
 

@@ -197,14 +197,14 @@ const Header = (props) => {
             <NumberInputStepper>
               <NumberIncrementStepper
                 border="none"
-                color="cursando.500"
+                color="white"
                 fontSize="large"
                 height="50%"
                 children={<strong>+</strong>}
               />
               <NumberDecrementStepper
                 border="none"
-                color="futuro.1000"
+                color="grey"
                 fontSize="large"
                 height="50%"
                 children={<strong>-</strong>}
@@ -223,7 +223,7 @@ const Header = (props) => {
             variant="link"
             borderLeft="2px solid white"
             fontSize="larger"
-            color="cursando.500"
+            color="white"
             onClick={() => cursando(displayedNode, undefined)}
           >
             <Icon boxSize={5} viewBox="0 0 24 24">
