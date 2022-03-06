@@ -79,8 +79,9 @@ const useGraph = (loginHook) => {
               if (!getNode(m.id)) return;
               if (m.nota >= -1) {
                 toUpdate.push(getNode(m.id).aprobar(m.nota));
-              } else if (m.cuatri >= 0) {
-                toUpdate.push(getNode(m.id).cursando(m.cuatri));
+              }
+              if (m.cuatrimestre) {
+                toUpdate.push(getNode(m.id).cursando(m.cuatrimestre));
               }
             });
           }
@@ -242,8 +243,8 @@ const useGraph = (loginHook) => {
     actualizar();
   };
 
-  const cursando = (id, cuatri) => {
-    nodes.update(getNode(id).cursando(cuatri));
+  const cursando = (id, cuatrimestre) => {
+    nodes.update(getNode(id).cursando(cuatrimestre));
     actualizar();
   };
 

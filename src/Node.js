@@ -25,6 +25,7 @@ class Node {
           }`
         : `[${this.id}] ${this.materia}`);
     this.cuatri = -1;
+    this.cuatrimestre = undefined;
     this.level = this.level ?? -1;
     this.hidden =
       this.categoria !== "Materias Obligatorias" &&
@@ -48,9 +49,7 @@ class Node {
   }
 
   cursando(cuatri) {
-    this.aprobada = false;
-    this.cuatri = cuatri;
-    this.nota = -2;
+    this.cuatrimestre = cuatri;
     return this;
   }
 
