@@ -586,38 +586,22 @@ const useGraph = (loginHook) => {
 
     if (conCuatri.length) {
       lastLevel = 0
-      const aprobadasSinCuatri = nodes.get({
-        filter: (n) => n.nota >= -1 &&
-          !n.cuatrimestre &&
-          !n.hidden &&
-          n.originalLevel &&
-          n.categoria !== "CBC" &&
-          n.categoria !== "*CBC"
-      })
-
-      if (aprobadasSinCuatri.length) {
-        toUpdate.push(...aprobadasSinCuatri.map((n) => {
-          n.level = n.originalLevel;
-          return n;
-        }))
-        lastLevel = Math.max(...(toUpdate.map(n => n.level)))
-      }
       toUpdate.push(...conCuatri.map((n) => {
         n.level = ((n.cuatrimestre - firstCuatri) / 0.5) + lastLevel + 1;
         return n;
       }))
       lastLevel = Math.max(...toUpdate.map(n => n.level))
-      const desaprobadasSinCuatri = nodes.get({
-        filter: (n) => n.nota === -2 &&
+      const sinCuatri = nodes.get({
+        filter: (n) => 
           !n.cuatrimestre &&
           !n.hidden &&
           n.originalLevel &&
           n.categoria !== "CBC" &&
           n.categoria !== "*CBC"
       })
-      if (desaprobadasSinCuatri.length) {
-        const firstOffset = Math.min(...desaprobadasSinCuatri.map(n => n.originalLevel))
-        toUpdate.push(...desaprobadasSinCuatri.map((n) => {
+      if (sinCuatri.length) {
+        const firstOffset = Math.min(...sinCuatri.map(n => n.originalLevel))
+        toUpdate.push(...sinCuatri.map((n) => {
           const offset = isFinite(firstOffset) && n.originalLevel ? n.originalLevel - firstOffset : 0
           n.level = lastLevel + offset + 1;
           return n;
