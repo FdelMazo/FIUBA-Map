@@ -22,16 +22,8 @@ import { GraphContext } from "../Contexts";
 
 const Header = (props) => {
   const { displayedNode } = props;
-  const { getNode, aprobar, desaprobar, cursando } =
+  const { getNode, aprobar, desaprobar, cursando, getCurrentCuatri } =
     React.useContext(GraphContext);
-
-  const getCurrentCuatri = () => {
-    const today = new Date();
-    let cuatri = today.getFullYear();
-    const month = today.getMonth();
-    if (month > 6) cuatri = cuatri + 0.5;
-    return cuatri;
-  }
 
   const formatCuatri = (cuatristr) => {
     if (!cuatristr) return "/";
@@ -71,7 +63,7 @@ const Header = (props) => {
                 value={getNode(displayedNode)?.nota}
                 min={4}
                 max={10}
-                maxW={16}
+                maxW="4.5rem"
               >
                 <NumberInputField
                   _hover={{
