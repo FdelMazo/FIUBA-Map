@@ -48,6 +48,7 @@ const useGraph = (loginHook) => {
         })
       )
     );
+    actualizarNiveles()
   };
 
   React.useEffect(() => {
@@ -76,11 +77,19 @@ const useGraph = (loginHook) => {
           const toUpdate = [];
           if (metadata.materias) {
             metadata.materias.forEach((m) => {
-              if (!getNode(m.id)) return;
+              let node = getNode(m.id)
+              if (!node) return;
+              if (m.cuatri >= 0) {
+                node.cuatri = m.cuatri
+                toUpdate.push(node);
+              }
               if (m.nota >= -1) {
-                toUpdate.push(getNode(m.id).aprobar(m.nota));
-              } else if (m.cuatri >= 0) {
-                toUpdate.push(getNode(m.id).cursando(m.cuatri));
+                node = node.aprobar(m.nota)
+                toUpdate.push(node);
+              }
+              if (m.cuatrimestre) {
+                node = node.cursando(m.cuatrimestre)
+                toUpdate.push(node);
               }
             });
           }
@@ -94,6 +103,7 @@ const useGraph = (loginHook) => {
           nodes.update(toUpdate.flat());
           actualizar();
           showAprobadas();
+          asumirPlan();
           setLoadingGraph(false);
           if (metadata.optativas) setOptativas(metadata.optativas);
           if (metadata.aplazos) setAplazos(metadata.aplazos);
@@ -189,14 +199,10 @@ const useGraph = (loginHook) => {
     let group = null;
     switch (status) {
       case "hidden":
-        group = nodes
-          .get({
-            filter: (n) =>
-              n.categoria === categoria &&
-              n.group !== categoria &&
-              n.group !== "Habilitadas",
-            fields: ["id"],
-          })
+        group = graph.nodes
+          .filter((n) =>
+            n.categoria === categoria &&
+            (n.cuatrimestre || n.nota >= -1))
           .map((n) => {
             const node = getNode(n.id);
             node.hidden = false;
@@ -226,9 +232,7 @@ const useGraph = (loginHook) => {
       default:
         break;
     }
-    if (categoria === "Materias Electivas") balanceShownElectivas(group);
 
-    nodes.update(group);
     actualizar();
     network.fit();
   };
@@ -243,8 +247,8 @@ const useGraph = (loginHook) => {
     actualizar();
   };
 
-  const cursando = (id, cuatri) => {
-    nodes.update(getNode(id).cursando(cuatri));
+  const cursando = (id, cuatrimestre) => {
+    nodes.update(getNode(id).cursando(cuatrimestre));
     actualizar();
   };
 
@@ -487,60 +491,13 @@ const useGraph = (loginHook) => {
 
   const openCBC = () => {
     const categoria = graph.nodes.filter((n) => n.categoria === "*CBC");
-    const group = categoria.map((n) => {
+    categoria.forEach((n) => {
       const node = getNode(n.id);
       node.hidden = !node.hidden;
       return node;
     });
-    nodes.update(group);
     actualizar();
     network.fit();
-  };
-
-  const balanceShownElectivas = (group) => {
-    const sortByGroup = (a, b) => {
-      const nodeA = getNode(a.id);
-      const nodeB = getNode(b.id);
-      const groupOrder = [
-        "Aprobadas",
-        "En Final",
-        "Cursando",
-        ...Array(10)
-          .fill()
-          .map((_, i) => `A Cursar (${i + 1})`),
-        "Habilitadas",
-        "Materias Electivas",
-      ];
-
-      return groupOrder.indexOf(nodeA.group) - groupOrder.indexOf(nodeB.group);
-    };
-
-    const electivas = group.sort(sortByGroup);
-    const lastLevel = Math.max(
-      ...nodes
-        .get({
-          filter: (n) =>
-            n.categoria !== "Materias Electivas" &&
-            n.categoria !== "Fin de Carrera" &&
-            n.categoria !== "Fin de Carrera (Obligatorio)",
-          fields: ["level"],
-          type: { level: "number" },
-        })
-        .map((n) => n.level)
-    );
-    let counter = 0;
-    let addLevel = 1;
-
-    electivas.forEach((n) => {
-      const node = getNode(n.id);
-      counter += 1;
-      if (counter === 7) {
-        counter = 0;
-        addLevel += 1;
-      }
-      node.level = lastLevel + addLevel;
-    });
-    nodes.update(electivas);
   };
 
   const showAprobadas = () => {
@@ -548,7 +505,7 @@ const useGraph = (loginHook) => {
       .get({
         filter: (n) =>
           n.categoria === "Materias Electivas" &&
-          (n.aprobada || n.nota === -1 || n.cuatri >= 0),
+          (n.aprobada || n.nota === -1 || n.cuatrimestre),
         fields: ["id"],
       })
       .map((n) => {
@@ -556,7 +513,6 @@ const useGraph = (loginHook) => {
         node.hidden = false;
         return node;
       });
-    balanceShownElectivas(electivas);
 
     let resto = nodes
       .get({
@@ -567,7 +523,7 @@ const useGraph = (loginHook) => {
           n.categoria !== "Materias Electivas" &&
           n.categoria !== "Fin de Carrera (Obligatorio)" &&
           n.categoria !== "Fin de Carrera" &&
-          (n.aprobada || n.nota === -1 || n.cuatri >= 0),
+          (n.aprobada || n.nota === -1 || n.cuatrimestre),
         fields: ["id"],
       })
       .map((n) => {
@@ -580,6 +536,193 @@ const useGraph = (loginHook) => {
     actualizar();
     network.fit();
   };
+
+  const balanceShownElectivas = (group, lastLevel) => {
+    const sortByGroup = (a, b) => {
+      const nodeA = getNode(a.id);
+      const nodeB = getNode(b.id);
+      const groupOrder = [
+        "Aprobadas",
+        "En Final",
+        "Habilitadas",
+        "Materias Electivas",
+      ];
+
+      return groupOrder.indexOf(nodeA.group) - groupOrder.indexOf(nodeB.group);
+    };
+
+    const electivas = group.sort(sortByGroup);
+
+    let counter = 0;
+    let addLevel = 1;
+
+    electivas.forEach((n) => {
+      counter += 1;
+      if (counter === 7) {
+        counter = 0;
+        addLevel += 1;
+      }
+      n.level = lastLevel + addLevel;
+    });
+    return electivas
+  };
+
+
+  const actualizarNiveles = () => {
+    const toUpdate = []
+    let lastLevel = Math.max(...nodes.get({
+      filter: (n) => !n.hidden &&
+        n.categoria !== "CBC" &&
+        n.categoria !== "*CBC"
+    }).map(n => n.level))
+
+    const conCuatri = nodes.get({
+      filter: (n) => n.cuatrimestre &&
+        !n.hidden &&
+        n.categoria !== "CBC" &&
+        n.categoria !== "*CBC"
+    })
+    const firstCuatri = Math.min(...conCuatri.map(n => n.cuatrimestre))
+
+    if (conCuatri.length) {
+      lastLevel = 0
+      const aprobadasSinCuatri = nodes.get({
+        filter: (n) => n.nota >= -1 &&
+          !n.cuatrimestre &&
+          !n.hidden &&
+          n.originalLevel &&
+          n.categoria !== "CBC" &&
+          n.categoria !== "*CBC"
+      })
+
+      if (aprobadasSinCuatri.length) {
+        toUpdate.push(...aprobadasSinCuatri.map((n) => {
+          n.level = n.originalLevel;
+          return n;
+        }))
+        lastLevel = Math.max(...(toUpdate.map(n => n.level)))
+      }
+      toUpdate.push(...conCuatri.map((n) => {
+        n.level = ((n.cuatrimestre - firstCuatri) / 0.5) + lastLevel + 1;
+        return n;
+      }))
+      lastLevel = Math.max(...toUpdate.map(n => n.level))
+      const desaprobadasSinCuatri = nodes.get({
+        filter: (n) => n.nota === -2 &&
+          !n.cuatrimestre &&
+          !n.hidden &&
+          n.originalLevel &&
+          n.categoria !== "CBC" &&
+          n.categoria !== "*CBC"
+      })
+      if (desaprobadasSinCuatri.length) {
+        const firstOffset = Math.min(...desaprobadasSinCuatri.map(n => n.originalLevel))
+        toUpdate.push(...desaprobadasSinCuatri.map((n) => {
+          const offset = isFinite(firstOffset) && n.originalLevel ? n.originalLevel - firstOffset : 0
+          n.level = lastLevel + offset + 1;
+          return n;
+        }))
+        lastLevel = Math.max(...toUpdate.map(n => n.level))
+      }
+    }
+
+    const electivas = nodes.get({
+      filter: (n) => n.categoria === "Materias Electivas" &&
+        !n.hidden &&
+        !n.cuatrimestre
+    })
+    toUpdate.push(...balanceShownElectivas(electivas, lastLevel));
+
+    lastLevel = Math.max(...toUpdate.map(n => n.level))
+    if (!isFinite(lastLevel)) {
+      lastLevel = Math.max(
+        ...nodes
+          .get({
+            filter: (n) =>
+              !n.hidden &&
+              n.categoria !== "Fin de Carrera" &&
+              n.categoria !== "Fin de Carrera (Obligatorio)",
+            fields: ["level"],
+            type: { level: "number" },
+          })
+          .map((n) => n.level)
+      );
+    }
+
+    const findecarrera = nodes.get({
+      filter: (n) =>
+        (n.categoria === "Fin de Carrera" || n.categoria === "Fin de Carrera (Obligatorio)") &&
+        !n.hidden &&
+        !n.cuatrimestre
+    })
+    toUpdate.push(...findecarrera.map((n) => {
+      n.level = lastLevel + 1;
+      return n
+    }))
+
+    nodes.update(toUpdate)
+  }
+
+  const asumirPlan = () => {
+    const usesCuatriFeature = nodes.get({
+      filter: (n) =>
+        n.cuatrimestre,
+    })
+    if (usesCuatriFeature.length) return
+
+    // Backwards compatibility: el feature nuevo se llama `node.cuatrimestre` (numeros absolutos), el viejo `node.cuatri` (relativos)
+    // Convertimos del viejo al nuevo con esto
+    const conFeatureViejo = nodes.get({
+      filter: (n) =>
+        n.cuatri >= 0,
+      fields: ["id", "cuatri"],
+    })
+
+    if (conFeatureViejo.length) {
+      nodes.update(...conFeatureViejo.map((n) => {
+        const cuatri = getCurrentCuatri() + (n.cuatri * 0.5)
+        return getNode(n.id).cursando(cuatri)
+      }))
+    }
+
+
+    const aprobadas = nodes.get({
+      filter: (n) =>
+        !n.cuatrimestre &&
+        n.nota >= 0 &&
+        n.categoria === "Materias Obligatorias",
+      fields: ["id", "level"],
+    })
+    const ultimaAprobada = aprobadas.sort((a, b) => b.level - a.level)[0]
+    if (!ultimaAprobada) return
+
+    const toUpdate = []
+    toUpdate.push(getNode(ultimaAprobada.id).cursando(getCurrentCuatri() - 1))
+
+    const allOtherAprobadas = nodes.get({
+      filter: (n) =>
+        !n.cuatrimestre &&
+        n.nota >= -1 &&
+        n.categoria !== "CBC" &&
+        n.categoria !== "*CBC" &&
+        n.originalLevel &&
+        n.id !== ultimaAprobada.id
+    })
+    toUpdate.push(...allOtherAprobadas.map((n) => {
+      const cuatri = getCurrentCuatri() - 1 + ((n.level - ultimaAprobada.level) * 0.5)
+      return getNode(n.id).cursando(cuatri)
+    }))
+
+    nodes.update(toUpdate)
+  }
+
+  const getCurrentCuatri = () => {
+    const today = new Date();
+    let cuatri = today.getFullYear();
+    const month = today.getMonth();
+    if (month > 6) cuatri = cuatri + 0.5;
+    return cuatri;
+  }
 
   return {
     graph,
@@ -616,6 +759,7 @@ const useGraph = (loginHook) => {
     aplazos,
     setAplazos,
     openCBC,
+    getCurrentCuatri,
   };
 };
 

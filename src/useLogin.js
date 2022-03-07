@@ -90,8 +90,8 @@ const useLogin = () => {
     const carreraid = user.carrera.id;
     const map = {
       materias: nodes.get({
-        filter: (n) => n.aprobada || n.nota === -1 || n.cuatri >= 0,
-        fields: ["id", "nota", "cuatri"],
+        filter: (n) => n.aprobada || n.nota === -1 || n.cuatrimestre,
+        fields: ["id", "nota", "cuatrimestre"],
       }),
     };
     if (checkboxes)

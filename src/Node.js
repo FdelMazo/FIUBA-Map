@@ -1,5 +1,8 @@
 import { COLORS } from "./theme";
 
+const FONT_AFUERA = ["CBC", "*CBC", "Fin de Carrera", "Fin de Carrera (Obligatorio)"]
+const ALWAYS_SHOW = ["Materias Obligatorias", "CBC", "Fin de Carrera (Obligatorio)"]
+
 function breakWords(string) {
   let broken = "";
   string.split(" ").forEach((element) => {
@@ -24,33 +27,27 @@ class Node {
             this.requiere ? "\n- Requiere " + this.requiere + " créditos" : ""
           }`
         : `[${this.id}] ${this.materia}`);
-    this.cuatri = -1;
-    this.level = this.level ?? -1;
-    this.hidden =
-      this.categoria !== "Materias Obligatorias" &&
-      this.categoria !== "CBC" &&
-      this.categoria !== "Fin de Carrera (Obligatorio)";
+    this.cuatrimestre = undefined;
+    this.originalLevel = this.level;
+    this.level = this.level ?? -3
+    this.hidden = !ALWAYS_SHOW.includes(this.categoria)
   }
 
   aprobar(nota) {
     if (nota < -1) return;
     this.aprobada = nota > -1 ? true : false;
-    this.cuatri = -1;
     this.nota = nota;
     return this;
   }
 
   desaprobar() {
     this.aprobada = false;
-    this.cuatri = -1;
     this.nota = -2;
     return this;
   }
 
   cursando(cuatri) {
-    this.aprobada = false;
-    this.cuatri = cuatri;
-    this.nota = -2;
+    this.cuatrimestre = cuatri;
     return this;
   }
 
@@ -87,8 +84,6 @@ class Node {
     let grupoDefault = this.categoria;
     if (this.aprobada && this.nota >= 0) grupoDefault = "Aprobadas";
     else if (this.nota === -1) grupoDefault = "En Final";
-    else if (this.cuatri === 0) grupoDefault = "Cursando";
-    else if (this.cuatri > 0) grupoDefault = `A Cursar (${this.cuatri})`;
     else if (this.isHabilitada(ctx)) grupoDefault = "Habilitadas";
     this.group = grupoDefault;
 
@@ -99,17 +94,12 @@ class Node {
       else if (this.aprobada && this.nota === 0)
         labelDefault += "\n[Equivalencia]";
       else if (this.nota === -1) labelDefault += "\n[En Final]";
-      else if (this.cuatri === 0) labelDefault += "\n[Cursando]";
-      else if (this.cuatri === 1) labelDefault += "\n[En 1 cuatri]";
-      else if (this.cuatri > 1)
-        labelDefault += "\n[En " + this.cuatri + " cuatris]";
     }
     this.label = labelDefault;
 
     if (this.categoria === "*CBC") {
       if (this.group === "Habilitadas") this.color = COLORS.aprobadas[100];
       if (this.group === "Aprobadas") this.color = COLORS.aprobadas[400];
-      this.font = { color: colorMode === "dark" ? "white" : "black" };
     }
 
     if (this.categoria === "CBC") {
@@ -128,31 +118,13 @@ class Node {
       if (showLabels && promedioCBC) this.label += "\n[" + promedioCBC + "]";
       if (materiasCBC.length === 6) this.color = COLORS.aprobadas[400];
       else this.color = COLORS.aprobadas[100];
-
-      this.font = { color: colorMode === "dark" ? "white" : "black" };
     }
 
     if (this.categoria === "Fin de Carrera") {
       this.hidden = !(this.id === user.finDeCarrera?.materia);
     }
 
-    if (
-      this.categoria === "Fin de Carrera" ||
-      this.categoria === "Fin de Carrera (Obligatorio)"
-    ) {
-      const lastLevel = Math.max(
-        ...nodes
-          .get({
-            filter: (n) =>
-              !n.hidden &&
-              n.categoria !== "Fin de Carrera" &&
-              n.categoria !== "Fin de Carrera (Obligatorio)",
-            fields: ["level"],
-            type: { level: "number" },
-          })
-          .map((n) => n.level)
-      );
-      this.level = lastLevel + 1;
+    if (FONT_AFUERA.includes(this.categoria)) {
       this.font = { color: colorMode === "dark" ? "white" : "black" };
     }
 
