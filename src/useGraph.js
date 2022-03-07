@@ -702,9 +702,7 @@ const useGraph = (loginHook) => {
     const allOtherAprobadas = nodes.get({
       filter: (n) =>
         !n.cuatrimestre &&
-        n.nota >= -1 &&
-        n.categoria !== "CBC" &&
-        n.categoria !== "*CBC" &&
+        n.categoria === "Materias Obligatorias" &&
         n.originalLevel &&
         n.id !== ultimaAprobada.id
     })
