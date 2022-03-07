@@ -674,7 +674,7 @@ const useGraph = (loginHook) => {
     if (!ultimaAprobada) return
 
     const toUpdate = []
-    toUpdate.push(getNode(ultimaAprobada.id).cursando(getCurrentCuatri()))
+    toUpdate.push(getNode(ultimaAprobada.id).cursando(getCurrentCuatri() - 1))
 
     const allOtherAprobadas = nodes.get({
       filter: (n) =>
@@ -686,7 +686,7 @@ const useGraph = (loginHook) => {
         n.id !== ultimaAprobada.id
     })
     toUpdate.push(...allOtherAprobadas.map((n) => {
-      const cuatri = getCurrentCuatri() + ((n.level - ultimaAprobada.level) * 0.5)
+      const cuatri = getCurrentCuatri() - 1 + ((n.level - ultimaAprobada.level) * 0.5)
       return getNode(n.id).cursando(cuatri)
     }))
 
