@@ -96,6 +96,7 @@ const useGraph = (loginHook) => {
           nodes.update(toUpdate.flat());
           actualizar();
           showAprobadas();
+          asumirPlan();
           setLoadingGraph(false);
           if (metadata.optativas) setOptativas(metadata.optativas);
           network.fit();
@@ -579,16 +580,17 @@ const useGraph = (loginHook) => {
     if (conCuatri.length) {
       lastLevel = 0
       const aprobadasSinCuatri = nodes.get({
-        filter: (n) => n.nota >= 1 &&
+        filter: (n) => n.nota >= -1 &&
           !n.cuatrimestre &&
           !n.hidden &&
+          n.originalLevel &&
           n.categoria !== "CBC" &&
           n.categoria !== "*CBC"
       })
 
       if (aprobadasSinCuatri.length) {
         toUpdate.push(...aprobadasSinCuatri.map((n) => {
-          n.level = n.originalLevel ? n.originalLevel : n.level;
+          n.level = n.originalLevel;
           return n;
         }))
         lastLevel = Math.max(...(toUpdate.map(n => n.level)))
@@ -652,8 +654,51 @@ const useGraph = (loginHook) => {
     }))
 
     nodes.update(toUpdate)
+  }
 
-    return
+  const asumirPlan = () => {
+    const usesCuatriFeature = nodes.get({
+      filter: (n) =>
+        n.cuatrimestre,
+    })
+    if (usesCuatriFeature.length) return
+
+    const aprobadas = nodes.get({
+      filter: (n) =>
+        !n.cuatrimestre &&
+        n.nota >= 0 &&
+        n.categoria === "Materias Obligatorias",
+      fields: ["id", "level"],
+    })
+    const ultimaAprobada = aprobadas.sort((a, b) => b.level - a.level)[0]
+    if (!ultimaAprobada) return
+
+    const toUpdate = []
+    toUpdate.push(getNode(ultimaAprobada.id).cursando(getCurrentCuatri()))
+
+    const allOtherAprobadas = nodes.get({
+      filter: (n) =>
+        !n.cuatrimestre &&
+        n.nota >= -1 &&
+        n.categoria !== "CBC" &&
+        n.categoria !== "*CBC" &&
+        n.originalLevel &&
+        n.id !== ultimaAprobada.id
+    })
+    toUpdate.push(...allOtherAprobadas.map((n) => {
+      const cuatri = getCurrentCuatri() + ((n.level - ultimaAprobada.level) * 0.5)
+      return getNode(n.id).cursando(cuatri)
+    }))
+
+    nodes.update(toUpdate)
+  }
+
+  const getCurrentCuatri = () => {
+    const today = new Date();
+    let cuatri = today.getFullYear();
+    const month = today.getMonth();
+    if (month > 6) cuatri = cuatri + 0.5;
+    return cuatri;
   }
 
   return {
@@ -691,6 +736,7 @@ const useGraph = (loginHook) => {
     aplazos,
     setAplazos,
     openCBC,
+    getCurrentCuatri,
   };
 };
 
