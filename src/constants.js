@@ -104,8 +104,8 @@ export const GRAPHOPTIONS = {
   layout: {
     hierarchical: {
       enabled: true,
-      levelSeparation: 145,
-      treeSpacing: 0,
+      parentCentralization: false,
+      blockShifting: false,
       edgeMinimization: false,
       direction: "LR",
     },
