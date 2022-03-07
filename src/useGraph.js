@@ -48,6 +48,7 @@ const useGraph = (loginHook) => {
         })
       )
     );
+    actualizarNiveles()
   };
 
   React.useEffect(() => {
@@ -189,14 +190,11 @@ const useGraph = (loginHook) => {
     let group = null;
     switch (status) {
       case "hidden":
-        group = nodes
-          .get({
-            filter: (n) =>
-              n.categoria === categoria &&
-              n.group !== categoria &&
-              n.group !== "Habilitadas",
-            fields: ["id"],
-          })
+        group = graph.nodes
+          .filter((n) =>
+            n.categoria === categoria &&
+            n.group !== categoria &&
+            n.group !== "Habilitadas")
           .map((n) => {
             const node = getNode(n.id);
             node.hidden = false;
@@ -226,9 +224,7 @@ const useGraph = (loginHook) => {
       default:
         break;
     }
-    if (categoria === "Materias Electivas") balanceShownElectivas(group);
 
-    nodes.update(group);
     actualizar();
     network.fit();
   };
@@ -487,59 +483,13 @@ const useGraph = (loginHook) => {
 
   const openCBC = () => {
     const categoria = graph.nodes.filter((n) => n.categoria === "*CBC");
-    const group = categoria.map((n) => {
+    categoria.forEach((n) => {
       const node = getNode(n.id);
       node.hidden = !node.hidden;
       return node;
     });
-    nodes.update(group);
     actualizar();
     network.fit();
-  };
-
-  const balanceShownElectivas = (group) => {
-    const sortByGroup = (a, b) => {
-      const nodeA = getNode(a.id);
-      const nodeB = getNode(b.id);
-      const groupOrder = [
-        "Aprobadas",
-        "En Final",
-        "Habilitadas",
-        "Materias Electivas",
-      ];
-
-      return groupOrder.indexOf(nodeA.group) - groupOrder.indexOf(nodeB.group);
-    };
-
-    const electivas = group.sort(sortByGroup);
-    const lastLevel = Math.max(
-      ...nodes
-        .get({
-          filter: (n) =>
-            n.categoria !== "Materias Electivas" &&
-            n.categoria !== "*CBC" &&
-            n.categoria !== "CBC" &&
-            n.categoria !== "Fin de Carrera" &&
-            n.categoria !== "Fin de Carrera (Obligatorio)",
-          fields: ["level"],
-          type: { level: "number" },
-        })
-        .map((n) => n.level)
-    );
-    let counter = 0;
-    let addLevel = 1;
-
-    electivas.forEach((n) => {
-      const node = getNode(n.id);
-      counter += 1;
-      if (counter === 7) {
-        counter = 0;
-        addLevel += 1;
-      }
-      node.originalLevel = lastLevel + addLevel;
-      node.level = lastLevel + addLevel;
-    });
-    nodes.update(electivas);
   };
 
   const showAprobadas = () => {
@@ -555,7 +505,6 @@ const useGraph = (loginHook) => {
         node.hidden = false;
         return node;
       });
-    balanceShownElectivas(electivas);
 
     let resto = nodes
       .get({
@@ -579,6 +528,107 @@ const useGraph = (loginHook) => {
     actualizar();
     network.fit();
   };
+
+  const balanceShownElectivas = (group, lastLevel) => {
+    const sortByGroup = (a, b) => {
+      const nodeA = getNode(a.id);
+      const nodeB = getNode(b.id);
+      const groupOrder = [
+        "Aprobadas",
+        "En Final",
+        "Habilitadas",
+        "Materias Electivas",
+      ];
+
+      return groupOrder.indexOf(nodeA.group) - groupOrder.indexOf(nodeB.group);
+    };
+
+    const electivas = group.sort(sortByGroup);
+
+    let counter = 0;
+    let addLevel = 1;
+
+    electivas.forEach((n) => {
+      counter += 1;
+      if (counter === 7) {
+        counter = 0;
+        addLevel += 1;
+      }
+      n.level = lastLevel + addLevel;
+    });
+    return electivas
+  };
+
+
+  const actualizarNiveles = () => {
+    const toUpdate = []
+    let lastLevel = Math.max(...nodes.get({
+      filter: (n) => !n.hidden &&
+        n.categoria !== "CBC" &&
+        n.categoria !== "*CBC"
+    }).map(n => n.level))
+
+    const conCuatri = nodes.get({
+      filter: (n) => n.cuatrimestre &&
+        !n.hidden &&
+        n.categoria !== "CBC" &&
+        n.categoria !== "*CBC"
+    })
+    const firstCuatri = Math.min(...conCuatri.map(n => n.cuatrimestre))
+
+    if (conCuatri.length) {
+      lastLevel = 0
+      const aprobadasSinCuatri = nodes.get({
+        filter: (n) => n.nota >= 1 &&
+          !n.cuatrimestre &&
+          !n.hidden &&
+          n.categoria !== "CBC" &&
+          n.categoria !== "*CBC"
+      })
+
+      if (aprobadasSinCuatri.length) {
+        toUpdate.push(...aprobadasSinCuatri.map((n) => {
+          n.level = n.originalLevel;
+          return n;
+        }))
+        lastLevel = Math.max(...(toUpdate.map(n => n.level)))
+      }
+
+      toUpdate.push(...conCuatri.map((n) => {
+        n.level = ((n.cuatrimestre - firstCuatri) / 0.5) + lastLevel + 1;
+        return n;
+      }))
+      lastLevel = Math.max(...toUpdate.map(n => n.level))
+      const desaprobadasSinCuatri = nodes.get({
+        filter: (n) => n.nota === -2 &&
+          !n.cuatrimestre &&
+          !n.hidden &&
+          n.originalLevel &&
+          n.categoria !== "CBC" &&
+          n.categoria !== "*CBC"
+      })
+      if (desaprobadasSinCuatri.length) {
+        const firstOffset = Math.min(...desaprobadasSinCuatri.map(n => n.originalLevel))
+        console.log(firstOffset)
+        toUpdate.push(...desaprobadasSinCuatri.map((n) => {
+          const offset = isFinite(firstOffset) && n.originalLevel ? n.originalLevel - firstOffset : 0
+          n.level = lastLevel + offset + 1;
+          return n;
+        }))
+        lastLevel = Math.max(...toUpdate.map(n => n.level))
+      }
+    }
+
+    const electivas = nodes.get({
+      filter: (n) => n.categoria === "Materias Electivas" &&
+        !n.hidden &&
+        !n.cuatrimestre
+    })
+    toUpdate.push(...balanceShownElectivas(electivas, lastLevel));
+    nodes.update(toUpdate)
+
+    return
+  }
 
   return {
     graph,

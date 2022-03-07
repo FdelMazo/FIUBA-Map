@@ -1,5 +1,8 @@
 import { COLORS } from "./theme";
 
+const FONT_AFUERA = ["CBC", "*CBC", "Fin de Carrera", "Fin de Carrera (Obligatorio)"]
+const ALWAYS_SHOW = ["Materias Obligatorias", "CBC", "Fin de Carrera (Obligatorio)"]
+
 function breakWords(string) {
   let broken = "";
   string.split(" ").forEach((element) => {
@@ -25,12 +28,9 @@ class Node {
           }`
         : `[${this.id}] ${this.materia}`);
     this.cuatrimestre = undefined;
-    this.originalLevel = this.level ?? -1;
-    this.level = this.originalLevel
-    this.hidden =
-      this.categoria !== "Materias Obligatorias" &&
-      this.categoria !== "CBC" &&
-      this.categoria !== "Fin de Carrera (Obligatorio)";
+    this.originalLevel = this.level;
+    this.level = this.level ?? -3
+    this.hidden = !ALWAYS_SHOW.includes(this.categoria)
   }
 
   aprobar(nota) {
@@ -100,7 +100,6 @@ class Node {
     if (this.categoria === "*CBC") {
       if (this.group === "Habilitadas") this.color = COLORS.aprobadas[100];
       if (this.group === "Aprobadas") this.color = COLORS.aprobadas[400];
-      this.font = { color: colorMode === "dark" ? "white" : "black" };
     }
 
     if (this.categoria === "CBC") {
@@ -119,78 +118,13 @@ class Node {
       if (showLabels && promedioCBC) this.label += "\n[" + promedioCBC + "]";
       if (materiasCBC.length === 6) this.color = COLORS.aprobadas[400];
       else this.color = COLORS.aprobadas[100];
-
-      this.font = { color: colorMode === "dark" ? "white" : "black" };
     }
 
     if (this.categoria === "Fin de Carrera") {
       this.hidden = !(this.id === user.finDeCarrera?.materia);
     }
 
-    const firstCuatrimestreSet = Math.min(
-      ...nodes
-        .get({
-          filter: (n) =>
-            !n.hidden &&
-            n.cuatrimestre &&
-            n.categoria !== "CBC" &&
-            n.categoria !== "*CBC" &&
-            n.categoria !== "Fin de Carrera" &&
-            n.categoria !== "Fin de Carrera (Obligatorio)",
-          fields: ["cuatrimestre"],
-          type: { cuatrimestre: "number" },
-        })
-        .map((n) => n.cuatrimestre)
-    );
-
-    const lastCuatrimestreSet = Math.max(
-      ...nodes
-        .get({
-          filter: (n) =>
-            !n.hidden &&
-            n.cuatrimestre &&
-            n.categoria !== "CBC" &&
-            n.categoria !== "*CBC" &&
-            n.categoria !== "Fin de Carrera" &&
-            n.categoria !== "Fin de Carrera (Obligatorio)",
-          fields: ["cuatrimestre"],
-          type: { cuatrimestre: "number" },
-        })
-        .map((n) => n.cuatrimestre)
-    );
-
-    if (this.cuatrimestre) {
-      this.level = ((this.cuatrimestre - firstCuatrimestreSet) / 0.5) + 1;
-    } else if (this.originalLevel !== -1) {
-      if (isFinite(lastCuatrimestreSet) && isFinite(firstCuatrimestreSet)) {
-        this.level = ((lastCuatrimestreSet - firstCuatrimestreSet) / 0.5) + this.originalLevel + 1;
-      }
-    }
-
-    if (
-      this.categoria === "CBC" ||
-      this.categoria === "*CBC"
-    ) {
-      this.level = this.originalLevel;
-    }
-
-    if (
-      this.categoria === "Fin de Carrera" ||
-      this.categoria === "Fin de Carrera (Obligatorio)"
-    ) {
-      const lastLevel = Math.max(
-        ...nodes
-          .get({
-            filter: (n) =>
-              !n.hidden &&
-              n.categoria !== "Fin de Carrera" &&
-              n.categoria !== "Fin de Carrera (Obligatorio)",
-            fields: ["level"],
-            type: { level: "number" },
-          })
-          .map((n) => n.level)
-      );
-      this.level = lastLevel + 1;
+    if (FONT_AFUERA.includes(this.categoria)) {
       this.font = { color: colorMode === "dark" ? "white" : "black" };
     }
 
