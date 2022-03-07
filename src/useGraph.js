@@ -625,6 +625,34 @@ const useGraph = (loginHook) => {
         !n.cuatrimestre
     })
     toUpdate.push(...balanceShownElectivas(electivas, lastLevel));
+
+    lastLevel = Math.max(...toUpdate.map(n => n.level))
+    if (!isFinite(lastLevel)) {
+      lastLevel = Math.max(
+        ...nodes
+          .get({
+            filter: (n) =>
+              !n.hidden &&
+              n.categoria !== "Fin de Carrera" &&
+              n.categoria !== "Fin de Carrera (Obligatorio)",
+            fields: ["level"],
+            type: { level: "number" },
+          })
+          .map((n) => n.level)
+      );
+    }
+
+    const findecarrera = nodes.get({
+      filter: (n) =>
+        (n.categoria === "Fin de Carrera" || n.categoria === "Fin de Carrera (Obligatorio)") &&
+        !n.hidden &&
+        !n.cuatrimestre
+    })
+    toUpdate.push(...findecarrera.map((n) => {
+      n.level = lastLevel + 1;
+      return n
+    }))
+
     nodes.update(toUpdate)
 
     return

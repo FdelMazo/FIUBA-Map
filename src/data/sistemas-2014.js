@@ -424,11 +424,11 @@ export const sistemas = [
     correlativas: "CBC",
     categoria: "Materias Electivas",
   },
-  // {
-  //   id: "95.61",
-  //   materia: "Trabajo Profesional de Licenciatura en Análisis de Sistemas",
-  //   creditos: 12,
-  //   correlativas: "95.24-95.59-95.60",
-  //   categoria: "Fin de Carrera (Obligatorio)",
-  // },
+  {
+    id: "95.61",
+    materia: "Trabajo Profesional de Licenciatura en Análisis de Sistemas",
+    creditos: 12,
+    correlativas: "95.24-95.59-95.60",
+    categoria: "Fin de Carrera (Obligatorio)",
+  },
 ];
