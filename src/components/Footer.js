@@ -76,7 +76,7 @@ const Footer = () => {
             mr={1}
             borderRadius={5}
             size="sm"
-            maxW={isEditing ? 16 : 12}
+            maxW={isEditing ? 16 : 14}
             defaultValue={defaultValue}
             min={1}
             onChange={(_, creditos) => {
