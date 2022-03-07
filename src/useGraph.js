@@ -537,7 +537,7 @@ const useGraph = (loginHook) => {
     network.fit();
   };
 
-  const balanceShownElectivas = (group, lastLevel) => {
+  const balanceSinNivel = (group, lastLevel) => {
     const sortByGroup = (a, b) => {
       const nodeA = getNode(a.id);
       const nodeB = getNode(b.id);
@@ -590,7 +590,7 @@ const useGraph = (loginHook) => {
         n.level = ((n.cuatrimestre - firstCuatri) / 0.5) + lastLevel + 1;
         return n;
       }))
-      lastLevel = Math.max(...toUpdate.map(n => n.level))
+      if (toUpdate.length) lastLevel = Math.max(...toUpdate.map(n => n.level))
       const sinCuatri = nodes.get({
         filter: (n) => 
           !n.cuatrimestre &&
@@ -606,18 +606,30 @@ const useGraph = (loginHook) => {
           n.level = lastLevel + offset + 1;
           return n;
         }))
-        lastLevel = Math.max(...toUpdate.map(n => n.level))
+        if (toUpdate.length) lastLevel = Math.max(...toUpdate.map(n => n.level))
       }
     }
+
+    const noElectivasPeroSinNivel = nodes.get({
+      filter: (n) => n.categoria !== "Materias Electivas" &&
+        n.categoria !== "Fin de Carrera" &&
+        n.categoria !== "Fin de Carrera (Obligatorio)" &&
+        !n.hidden &&
+        !n.cuatrimestre &&
+        !n.originalLevel &&
+        n.originalLevel !== 0
+    })
+    toUpdate.push(...balanceSinNivel(noElectivasPeroSinNivel, lastLevel));
+    if (toUpdate.length) lastLevel = Math.max(...toUpdate.map(n => n.level))
 
     const electivas = nodes.get({
       filter: (n) => n.categoria === "Materias Electivas" &&
         !n.hidden &&
         !n.cuatrimestre
     })
-    toUpdate.push(...balanceShownElectivas(electivas, lastLevel));
+    toUpdate.push(...balanceSinNivel(electivas, lastLevel));
 
-    lastLevel = Math.max(...toUpdate.map(n => n.level))
+    if (toUpdate.length) lastLevel = Math.max(...toUpdate.map(n => n.level))
     if (!isFinite(lastLevel)) {
       lastLevel = Math.max(
         ...nodes

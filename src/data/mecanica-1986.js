@@ -344,7 +344,6 @@ export const mecanica = [
     creditos: 4,
     correlativas: "61.03-62.06",
     categoria: "Diseño Mecánico",
-    level: 12,
   },
   {
     id: "67.44",
@@ -352,7 +351,6 @@ export const mecanica = [
     creditos: 4,
     correlativas: "67.33",
     categoria: "Termomecánica",
-    level: 11,
   },
   {
     id: "67.45",
@@ -360,7 +358,6 @@ export const mecanica = [
     creditos: 4,
     correlativas: "67.22-67.33",
     categoria: "Termomecánica",
-    level: 11,
   },
   {
     id: "64.14",
@@ -368,7 +365,6 @@ export const mecanica = [
     creditos: 4,
     correlativas: "64.13",
     categoria: "Computación Aplicada",
-    level: 12,
   },
   {
     id: "67.26",
@@ -376,7 +372,6 @@ export const mecanica = [
     creditos: 4,
     correlativas: "67.21",
     categoria: "Diseño Mecánico",
-    level: 10,
   },
   {
     id: "67.25",
@@ -384,7 +379,6 @@ export const mecanica = [
     creditos: 8,
     correlativas: "64.12-67.11",
     categoria: "Diseño Mecánico",
-    level: 10,
   },
   {
     id: "67.27",
@@ -392,7 +386,6 @@ export const mecanica = [
     creditos: 6,
     correlativas: "67.15-67.17",
     categoria: "Diseño Mecánico",
-    level: 10,
   },
   {
     id: "67.46",
@@ -400,7 +393,6 @@ export const mecanica = [
     creditos: 4,
     correlativas: "67.34",
     categoria: "Termomecánica",
-    level: 12,
   },
   {
     id: "67.29",
@@ -408,7 +400,6 @@ export const mecanica = [
     creditos: 6,
     correlativas: "62.06-67.25-67.27-67.28",
     categoria: "Diseño Mecánico",
-    level: 12,
   },
   {
     id: "67.30",
@@ -416,7 +407,6 @@ export const mecanica = [
     creditos: 4,
     correlativas: "63.01-67.04",
     categoria: "Termomecánica",
-    level: 10,
   },
   {
     id: "67.33",
@@ -424,7 +414,6 @@ export const mecanica = [
     creditos: 8,
     correlativas: "67.30-67.31",
     categoria: "Termomecánica",
-    level: 10,
   },
   {
     id: "67.31",
@@ -432,7 +421,6 @@ export const mecanica = [
     creditos: 4,
     correlativas: "67.04",
     categoria: "Termomecánica",
-    level: 10,
   },
   {
     id: "67.34",
@@ -440,7 +428,6 @@ export const mecanica = [
     creditos: 6,
     correlativas: "67.32-67.33",
     categoria: "Termomecánica",
-    level: 12,
   },
   {
     id: "67.32",
@@ -448,7 +435,6 @@ export const mecanica = [
     creditos: 6,
     correlativas: "67.18-67.31",
     categoria: "Termomecánica",
-    level: 11,
   },
   {
     id: "67.40",
@@ -456,7 +442,6 @@ export const mecanica = [
     creditos: 6,
     correlativas: "67.13-67.26-67.27",
     categoria: "Diseño Mecánico",
-    level: 11,
   },
   {
     id: "67.41",
@@ -464,7 +449,6 @@ export const mecanica = [
     creditos: 6,
     correlativas: "67.19-67.25",
     categoria: "Diseño Mecánico",
-    level: 11,
   },
   {
     id: "67.42",
@@ -472,7 +456,6 @@ export const mecanica = [
     creditos: 6,
     correlativas: "67.27",
     categoria: "Diseño Mecánico",
-    level: 11,
   },
   {
     id: "67.43",
@@ -480,7 +463,6 @@ export const mecanica = [
     creditos: 6,
     correlativas: "62.06-67.22",
     categoria: "Industrias",
-    level: 12,
   },
   {
     id: "67.47",
@@ -488,7 +470,6 @@ export const mecanica = [
     creditos: 6,
     correlativas: "67.13-67.16",
     categoria: "Metalúrgica",
-    level: 10,
   },
   {
     id: "67.48",
@@ -496,7 +477,6 @@ export const mecanica = [
     creditos: 4,
     correlativas: "67.13-67.16",
     categoria: "Metalúrgica",
-    level: 10,
   },
   {
     id: "67.49",
@@ -504,7 +484,6 @@ export const mecanica = [
     creditos: 6,
     correlativas: "61.03-62.03-63.01",
     categoria: "Metalúrgica",
-    level: 11,
   },
   {
     id: "67.50",
@@ -512,7 +491,6 @@ export const mecanica = [
     creditos: 4,
     correlativas: "67.13",
     categoria: "Metalúrgica",
-    level: 11,
   },
   {
     id: "61.06",
