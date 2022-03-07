@@ -29,10 +29,12 @@ const Header = (props) => {
     (event) => {
       const node = getNode(displayedNode)
       if (event.keyCode === 37) { // <-
+        if (getNode(displayedNode).categoria === "CBC" || getNode(displayedNode).categoria === "*CBC") return
         const prevCuatri = node.cuatrimestre ? node.cuatrimestre - 0.5 : getCurrentCuatri();
         cursando(displayedNode, prevCuatri);
       }
       if (event.keyCode === 39) { // ->
+        if (getNode(displayedNode).categoria === "CBC" || getNode(displayedNode).categoria === "*CBC") return
         const nextCuatri = node.cuatrimestre ? node.cuatrimestre + 0.5 : getCurrentCuatri();
         cursando(displayedNode, nextCuatri);
       }
