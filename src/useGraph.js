@@ -202,8 +202,7 @@ const useGraph = (loginHook) => {
         group = graph.nodes
           .filter((n) =>
             n.categoria === categoria &&
-            n.group !== categoria &&
-            n.group !== "Habilitadas")
+            (n.cuatrimestre || n.nota >= -1))
           .map((n) => {
             const node = getNode(n.id);
             node.hidden = false;
