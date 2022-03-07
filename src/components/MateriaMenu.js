@@ -25,6 +25,51 @@ const Header = (props) => {
   const { getNode, aprobar, desaprobar, cursando, getCurrentCuatri } =
     React.useContext(GraphContext);
 
+  const flechitas = React.useCallback(
+    (event) => {
+      const node = getNode(displayedNode)
+      if (event.keyCode === 37) { // <-
+        const prevCuatri = node.cuatrimestre ? node.cuatrimestre - 0.5 : getCurrentCuatri();
+        cursando(displayedNode, prevCuatri);
+      }
+      if (event.keyCode === 39) { // ->
+        const nextCuatri = node.cuatrimestre ? node.cuatrimestre + 0.5 : getCurrentCuatri();
+        cursando(displayedNode, nextCuatri);
+      }
+      if (event.keyCode === 38) { // ^
+        let nextNota = node.nota + 1;
+        if (node.nota === 0) nextNota = 4;
+        if (node.nota === 10) {
+          desaprobar(displayedNode)
+          return
+        };
+        aprobar(displayedNode, nextNota)
+      }
+      if (event.keyCode === 40) { // v
+        let prevNota = node.nota - 1;
+        if (node.nota === 4) prevNota = 0;
+        if (node.nota === -2) prevNota = 10;
+        if (node.nota === -1) {
+          desaprobar(displayedNode)
+          return
+        };
+        aprobar(displayedNode, prevNota)
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [displayedNode]
+  );
+
+  React.useEffect(() => {
+    document.addEventListener("keydown", flechitas, false);
+
+    return () => {
+      document.removeEventListener("keydown", flechitas, false);
+    };
+  }, [flechitas]);
+
+
+
   const formatCuatri = (cuatristr) => {
     if (!cuatristr) return "/";
     const cuatri = parseFloat(cuatristr)
