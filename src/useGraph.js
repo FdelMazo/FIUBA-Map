@@ -91,7 +91,6 @@ const useGraph = (loginHook) => {
                 node = node.cursando(m.cuatrimestre)
                 toUpdate.push(node);
               }
-              console.log(toUpdate)
             });
           }
           if (metadata.checkboxes)
