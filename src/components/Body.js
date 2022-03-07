@@ -135,7 +135,7 @@ const Body = (props) => {
       const neighborEdges = network.getConnectedEdges(id);
       const allOtherEdges = edges.get({
         filter: function (edge) {
-          return !neighborEdges.includes(edge.id);
+          return !neighborEdges.includes(edge.id) && edge.color !== "transparent";
         },
       });
       edges.update(
@@ -166,7 +166,7 @@ const Body = (props) => {
       const neighborEdges = network.getConnectedEdges(id);
       const allOtherEdges = edges.get({
         filter: function (edge) {
-          return !neighborEdges.includes(edge.id);
+          return !neighborEdges.includes(edge.id) && edge.color !== "transparent";
         },
       });
       edges.update(
