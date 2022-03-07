@@ -588,12 +588,11 @@ const useGraph = (loginHook) => {
 
       if (aprobadasSinCuatri.length) {
         toUpdate.push(...aprobadasSinCuatri.map((n) => {
-          n.level = n.originalLevel;
+          n.level = n.originalLevel ? n.originalLevel : n.level;
           return n;
         }))
         lastLevel = Math.max(...(toUpdate.map(n => n.level)))
       }
-
       toUpdate.push(...conCuatri.map((n) => {
         n.level = ((n.cuatrimestre - firstCuatri) / 0.5) + lastLevel + 1;
         return n;
@@ -609,7 +608,6 @@ const useGraph = (loginHook) => {
       })
       if (desaprobadasSinCuatri.length) {
         const firstOffset = Math.min(...desaprobadasSinCuatri.map(n => n.originalLevel))
-        console.log(firstOffset)
         toUpdate.push(...desaprobadasSinCuatri.map((n) => {
           const offset = isFinite(firstOffset) && n.originalLevel ? n.originalLevel - firstOffset : 0
           n.level = lastLevel + offset + 1;
