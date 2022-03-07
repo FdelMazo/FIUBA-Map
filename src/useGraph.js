@@ -96,6 +96,7 @@ const useGraph = (loginHook) => {
           showAprobadas();
           setLoadingGraph(false);
           if (metadata.optativas) setOptativas(metadata.optativas);
+          if (metadata.aplazos) setAplazos(metadata.aplazos);
           network.fit();
         })
         .catch((e) => {
@@ -121,7 +122,7 @@ const useGraph = (loginHook) => {
     if (network) network.redraw();
   };
   const saveGraph = () => {
-    postGraph(nodes, user.carrera.creditos.checkbox, optativas);
+    postGraph(nodes, user.carrera.creditos.checkbox, optativas, aplazos);
   };
 
   const changeCarrera = async (id) => {

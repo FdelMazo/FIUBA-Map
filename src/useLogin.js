@@ -83,7 +83,7 @@ const useLogin = () => {
     return true;
   };
 
-  const postGraph = (nodes, checkboxes, optativas) => {
+  const postGraph = (nodes, checkboxes, optativas, aplazos) => {
     setSaving(true);
     const formData = new FormData();
     const padron = user.padron;
@@ -99,6 +99,7 @@ const useLogin = () => {
         .filter((c) => c.check === true)
         .map((c) => c.nombre);
     if (optativas) map.optativas = optativas;
+    if (aplazos) map.aplazos = aplazos;
 
     formData.append(`${C.GRAPH_FORM_ENTRIES.padron}`, padron);
     formData.append(`${C.GRAPH_FORM_ENTRIES.carrera}`, carreraid);
