@@ -77,13 +77,21 @@ const useGraph = (loginHook) => {
           const toUpdate = [];
           if (metadata.materias) {
             metadata.materias.forEach((m) => {
-              if (!getNode(m.id)) return;
+              let node = getNode(m.id)
+              if (!node) return;
+              if (m.cuatri >= 0) {
+                node.cuatri = m.cuatri
+                toUpdate.push(node);
+              }
               if (m.nota >= -1) {
-                toUpdate.push(getNode(m.id).aprobar(m.nota));
+                node = node.aprobar(m.nota)
+                toUpdate.push(node);
               }
               if (m.cuatrimestre) {
-                toUpdate.push(getNode(m.id).cursando(m.cuatrimestre));
+                node = node.cursando(m.cuatrimestre)
+                toUpdate.push(node);
               }
+              console.log(toUpdate)
             });
           }
           if (metadata.checkboxes)
@@ -662,6 +670,22 @@ const useGraph = (loginHook) => {
         n.cuatrimestre,
     })
     if (usesCuatriFeature.length) return
+
+    // Backwards compatibility: el feature nuevo se llama `node.cuatrimestre` (numeros absolutos), el viejo `node.cuatri` (relativos)
+    // Convertimos del viejo al nuevo con esto
+    const conFeatureViejo = nodes.get({
+      filter: (n) =>
+        n.cuatri >= 0,
+      fields: ["id", "cuatri"],
+    })
+
+    if (conFeatureViejo.length) {
+      nodes.update(...conFeatureViejo.map((n) => {
+        const cuatri = getCurrentCuatri() + (n.cuatri * 0.5)
+        return getNode(n.id).cursando(cuatri)
+      }))
+    }
+
 
     const aprobadas = nodes.get({
       filter: (n) =>
