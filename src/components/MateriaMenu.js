@@ -1,7 +1,9 @@
 import {
+  AddIcon,
   CheckIcon,
   CloseIcon,
   Icon,
+  MinusIcon,
 } from "@chakra-ui/icons";
 import {
   Button,
@@ -95,7 +97,7 @@ const Header = (props) => {
         </StatHelpText>
       </Stat>
 
-      <Flex borderRadius={6} border="2px solid white" p={1} alignItems="center" height={"70%"}>
+      <Flex borderRadius={6} border="2px solid white" p={1} alignItems="center" height={"75%"}>
         {getNode(displayedNode)?.nota > 0 ? (
           <Tooltip closeOnClick hasArrow label="Aprobar con Nota">
             <>
@@ -203,7 +205,7 @@ const Header = (props) => {
       </Flex>
 
       {getNode(displayedNode).categoria !== "CBC" && getNode(displayedNode).categoria !== "*CBC" && (
-        <HStack borderRadius={6} ml={2} border="2px solid white" height={"64%"}>
+        <HStack borderRadius={6} ml={4} border="2px solid white" height={"68%"}>
           <Tooltip closeOnClick hasArrow label="Planear Cuatri">
             <NumberInput
               css={{ margin: 0 }}
@@ -220,6 +222,9 @@ const Header = (props) => {
               key={getNode(displayedNode)?.cuatrimestre}
               min={getNode(displayedNode)?.cuatrimestre ? 1986 : getCurrentCuatri()}
               max={2050}
+              onFocus={(ev) => {
+                ev.target.blur()
+              }}
             >
               <NumberInputField
                 _hover={{
@@ -233,31 +238,26 @@ const Header = (props) => {
                 w="10ch"
                 color="white"
                 fontWeight="bold"
+                cursor="default"
               />
-              <NumberInputStepper>
+              <NumberInputStepper height="100%" m={0}>
                 <NumberIncrementStepper
                   border="none"
                   color="white"
-                  fontSize="large"
-                  fontWeight={"bold"}
                   alignSelf={"center"}
-                  height="50%"
                   _hover={{
                     color: "habilitadas.500"
                   }}
-                  children="+"
+                  children={<AddIcon boxSize={3.5} />}
                 />
                 <NumberDecrementStepper
                   border="none"
                   color="grey"
-                  fontSize="large"
-                  fontWeight={"bold"}
                   alignSelf={"center"}
-                  height="50%"
                   _hover={{
                     color: "habilitadas.500"
                   }}
-                  children="-"
+                  children={<MinusIcon boxSize={3.5} />}
                 />
               </NumberInputStepper>
             </NumberInput>
