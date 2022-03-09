@@ -217,7 +217,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.43-75.59",
     categoria: "Sistemas Distribuidos",
-    level: 7,
   },
   {
     id: "75.44",
@@ -225,7 +224,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.10",
     categoria: "Gestión Industrial de Sistemas",
-    level: 7,
   },
   {
     id: "75.45",
@@ -233,7 +231,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.10",
     categoria: "Gestión Industrial de Sistemas",
-    level: 7,
   },
   {
     id: "75.46",
@@ -241,7 +238,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.44",
     categoria: "Gestión Industrial de Sistemas",
-    level: 7,
   },
   {
     id: "75.47",
@@ -249,7 +245,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.44-75.45",
     categoria: "Gestión Industrial de Sistemas",
-    level: 7,
   },
   {
     id: "75.59",
@@ -257,7 +252,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.08",
     categoria: "Sistemas Distribuidos",
-    level: 7,
   },
   {
     id: "75.61",
@@ -265,7 +259,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.74",
     categoria: "Sistemas Distribuidos",
-    level: 7,
   },
   {
     id: "75.65",
@@ -273,7 +266,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.15-75.52",
     categoria: "Sistemas de Producción",
-    level: 7,
   },
   {
     id: "75.67",
@@ -281,7 +273,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "71.14",
     categoria: "Sistemas de Producción",
-    level: 7,
   },
   {
     id: "75.66",
@@ -289,7 +280,6 @@ export const informatica = [
     creditos: 6,
     correlativas: "75.65",
     categoria: "Sistemas de Producción",
-    level: 7,
   },
   {
     id: "75.68",
@@ -297,7 +287,6 @@ export const informatica = [
     creditos: 4,
     correlativas: "75.65-75.67",
     categoria: "Sistemas de Producción",
-    level: 7,
   },
   {
     id: "71.12",
