@@ -546,6 +546,7 @@ const useGraph = (loginHook) => {
         "En Final",
         "Habilitadas",
         "Materias Electivas",
+        ...graph.groups,
       ];
 
       return groupOrder.indexOf(nodeA.group) - groupOrder.indexOf(nodeB.group);
