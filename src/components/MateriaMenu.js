@@ -21,11 +21,14 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext } from "../Contexts";
+import useWindowSize from "./useWindowSize";
 
-const Header = (props) => {
+const MateriaMenu = (props) => {
   const { displayedNode } = props;
   const { getNode, aprobar, desaprobar, cursando, getCurrentCuatri } =
     React.useContext(GraphContext);
+  const size = useWindowSize();
+  const mobile = size.width < 750;
 
   const flechitas = React.useCallback(
     (event) => {
@@ -92,7 +95,7 @@ const Header = (props) => {
     <Flex height="4em" alignItems="center" justifyContent="space-around">
       <Stat alignSelf="flex-end" mx={3} color="white">
         <StatLabel>[{getNode(displayedNode)?.id}]</StatLabel>
-        <StatHelpText isTruncated width="30ch">
+        <StatHelpText isTruncated width={mobile ? "8ch" : "30ch"}>
           {getNode(displayedNode)?.materia}
         </StatHelpText>
       </Stat>
@@ -292,4 +295,4 @@ const Header = (props) => {
   );
 };
 
-export default Header;
+export default MateriaMenu;
