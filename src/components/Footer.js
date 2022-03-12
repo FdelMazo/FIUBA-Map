@@ -225,7 +225,7 @@ const Footer = () => {
                           isIndeterminate={!!!c.check}
                           isChecked={!!c.check}
                           colorScheme={c.color}
-                          onClick={(e) => {
+                          onChange={(e) => {
                             e.preventDefault();
                             toggleCheckbox(c.nombre);
                           }}
