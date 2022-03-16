@@ -33,17 +33,17 @@ const MateriaMenu = (props) => {
   const flechitas = React.useCallback(
     (event) => {
       const node = getNode(displayedNode)
-      if (event.keyCode === 37) { // <-
-        if (getNode(displayedNode).categoria === "CBC" || getNode(displayedNode).categoria === "*CBC") return
+      if (event.key === "ArrowLeft") {
+        if (getNode(displayedNode).categoria === "*CBC") return
         const prevCuatri = node.cuatrimestre ? node.cuatrimestre - 0.5 : getCurrentCuatri();
         cursando(displayedNode, prevCuatri);
       }
-      if (event.keyCode === 39) { // ->
-        if (getNode(displayedNode).categoria === "CBC" || getNode(displayedNode).categoria === "*CBC") return
+      if (event.key === "ArrowRight") {
+        if (getNode(displayedNode).categoria === "*CBC") return
         const nextCuatri = node.cuatrimestre ? node.cuatrimestre + 0.5 : getCurrentCuatri();
         cursando(displayedNode, nextCuatri);
       }
-      if (event.keyCode === 38) { // ^
+      if (event.key === "ArrowUp") {
         let nextNota = node.nota + 1;
         if (node.nota === 0) nextNota = 4;
         if (node.nota === 10) {
@@ -52,7 +52,7 @@ const MateriaMenu = (props) => {
         };
         aprobar(displayedNode, nextNota)
       }
-      if (event.keyCode === 40) { // v
+      if (event.key === "ArrowDown") {
         let prevNota = node.nota - 1;
         if (node.nota === 4) prevNota = 0;
         if (node.nota === -2) prevNota = 10;
@@ -67,13 +67,29 @@ const MateriaMenu = (props) => {
     [displayedNode]
   );
 
+  const numeros = React.useCallback(
+    (event) => {
+      const n = parseInt(event.key)
+      if (n >= 4 && n <= 9) {
+        aprobar(displayedNode, n);
+      }
+      if (n === 0) {
+        aprobar(displayedNode, 10);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [displayedNode]
+  );
+
   React.useEffect(() => {
     document.addEventListener("keydown", flechitas, false);
+    document.addEventListener("keydown", numeros, false);
 
     return () => {
       document.removeEventListener("keydown", flechitas, false);
+      document.removeEventListener("keydown", numeros, false);
     };
-  }, [flechitas]);
+  }, [flechitas, numeros]);
 
 
 
