@@ -132,7 +132,7 @@ export const industrial = [
   },
   {
     id: "87.13",
-    materia: "Medios de Reperesentación",
+    materia: "Medios de Representación",
     creditos: 4,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",

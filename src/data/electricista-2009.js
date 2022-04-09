@@ -108,7 +108,7 @@ export const electricista = [
   },
   {
     id: "81.02",
-    materia: "Algebra II",
+    materia: "Álgebra II",
     creditos: 8,
     correlativas: "CBC",
     categoria: "Materias Obligatorias",

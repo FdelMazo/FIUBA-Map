@@ -258,7 +258,7 @@ export const sistemas = [
   },
   {
     id: "91.24",
-    materia: "Macroeconomía y Estructura Económica  Argentina",
+    materia: "Macroeconomía y Estructura Económica Argentina",
     creditos: 6,
     correlativas: "91.39",
     categoria: "Materias Electivas",
