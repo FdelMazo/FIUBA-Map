@@ -131,8 +131,13 @@ const useGraph = (loginHook) => {
   const redraw = () => {
     if (network) network.redraw();
   };
+
   const saveGraph = () => {
     postGraph(nodes, user.carrera.creditos.checkbox, optativas, aplazos);
+  };
+
+  const restartGraph = () => {
+    nodes.map((n) => cursando(n.id, undefined));
   };
 
   const changeCarrera = async (id) => {
@@ -736,6 +741,7 @@ const useGraph = (loginHook) => {
     nodes,
     setNodes,
     saveGraph,
+    restartGraph,
     edges,
     setEdges,
     changeCarrera,
