@@ -103,7 +103,6 @@ const useGraph = (loginHook) => {
           nodes.update(toUpdate.flat());
           actualizar();
           showAprobadas();
-          asumirPlan();
           setLoadingGraph(false);
           if (metadata.optativas) setOptativas(metadata.optativas);
           if (metadata.aplazos) setAplazos(metadata.aplazos);
@@ -664,57 +663,6 @@ const useGraph = (loginHook) => {
     toUpdate.push(...findecarrera.map((n) => {
       n.level = lastLevel + 1;
       return n
-    }))
-
-    nodes.update(toUpdate)
-  }
-
-  const asumirPlan = () => {
-    const usesCuatriFeature = nodes.get({
-      filter: (n) =>
-        n.cuatrimestre,
-    })
-    if (usesCuatriFeature.length) return
-
-    // Backwards compatibility: el feature nuevo se llama `node.cuatrimestre` (numeros absolutos), el viejo `node.cuatri` (relativos)
-    // Convertimos del viejo al nuevo con esto
-    const conFeatureViejo = nodes.get({
-      filter: (n) =>
-        n.cuatri >= 0,
-      fields: ["id", "cuatri"],
-    })
-
-    if (conFeatureViejo.length) {
-      nodes.update(...conFeatureViejo.map((n) => {
-        const cuatri = getCurrentCuatri() + (n.cuatri * 0.5)
-        return getNode(n.id).cursando(cuatri)
-      }))
-    }
-
-
-    const aprobadas = nodes.get({
-      filter: (n) =>
-        !n.cuatrimestre &&
-        n.nota >= 0 &&
-        n.categoria === "Materias Obligatorias",
-      fields: ["id", "level"],
-    })
-    const ultimaAprobada = aprobadas.sort((a, b) => b.level - a.level)[0]
-    if (!ultimaAprobada) return
-
-    const toUpdate = []
-    toUpdate.push(getNode(ultimaAprobada.id).cursando(getCurrentCuatri() - 1))
-
-    const allOtherAprobadas = nodes.get({
-      filter: (n) =>
-        !n.cuatrimestre &&
-        n.categoria === "Materias Obligatorias" &&
-        n.originalLevel &&
-        n.id !== ultimaAprobada.id
-    })
-    toUpdate.push(...allOtherAprobadas.map((n) => {
-      const cuatri = getCurrentCuatri() - 1 + ((n.level - ultimaAprobada.level) * 0.5)
-      return getNode(n.id).cursando(cuatri)
     }))
 
     nodes.update(toUpdate)
