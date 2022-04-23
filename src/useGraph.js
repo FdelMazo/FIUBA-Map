@@ -137,7 +137,11 @@ const useGraph = (loginHook) => {
   };
 
   const restartGraph = () => {
-    nodes.map((n) => cursando(n.id, undefined));
+    nodes.update(nodes?.get({
+      filter: (n) => n.cuatrimestre,
+      fields: ["id", "cuatrimestre"],
+    }).map((n) => getNode(n.id).cursando(undefined)));
+    actualizar();
   };
 
   const changeCarrera = async (id) => {
