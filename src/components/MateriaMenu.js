@@ -294,6 +294,7 @@ const MateriaMenu = (props) => {
               borderLeft="2px solid white"
               fontSize="larger"
               color="white"
+              disabled={!getNode(displayedNode)?.cuatrimestre}
               onClick={() => cursando(displayedNode, undefined)}
             >
               <Icon boxSize={5} viewBox="0 0 24 24">
