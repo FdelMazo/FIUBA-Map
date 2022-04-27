@@ -242,6 +242,7 @@ const useGraph = (loginHook) => {
     }
 
     actualizar();
+    redraw();
     network.fit();
   };
 
@@ -310,9 +311,8 @@ const useGraph = (loginHook) => {
     });
 
     creditos.push({
-      nombre: `Materias Electivas${
-        user.finDeCarrera ? ` (eligiendo ${user.finDeCarrera.id})` : ""
-      }`,
+      nombre: `Materias Electivas${user.finDeCarrera ? ` (eligiendo ${user.finDeCarrera.id})` : ""
+        }`,
       nombrecorto: "Electivas",
       color: "electivas",
       bg: COLORS.electivas[50],
@@ -601,7 +601,7 @@ const useGraph = (loginHook) => {
       }))
       if (toUpdate.length) lastLevel = Math.max(...toUpdate.map(n => n.level))
       const sinCuatri = nodes.get({
-        filter: (n) => 
+        filter: (n) =>
           !n.cuatrimestre &&
           !n.hidden &&
           n.originalLevel &&
