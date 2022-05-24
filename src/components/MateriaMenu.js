@@ -118,8 +118,8 @@ const MateriaMenu = (props) => {
 
       <Flex borderRadius={6} border="2px solid white" p={1} alignItems="center" height={"75%"}>
         {getNode(displayedNode)?.nota > 0 ? (
-          <Tooltip closeOnClick hasArrow label="Aprobar con Nota">
-            <>
+          <>
+            <Tooltip closeOnClick hasArrow label="Nota">
               <NumberInput
                 css={{ margin: 0 }}
                 errorBorderColor="transparent"
@@ -156,24 +156,24 @@ const MateriaMenu = (props) => {
                   />
                 </NumberInputStepper>
               </NumberInput>
-              <Tooltip closeOnClick hasArrow label="Aprobar por Equivalencia">
-                <Button
-                  alignSelf="center"
-                  _hover={{
-                    backgroundColor: "transparent",
-                  }}
-                  variant="link"
-                  fontSize="small"
-                  color="aprobadas.400"
-                  minW={0}
-                  mr={2}
-                  onClick={() => aprobar(displayedNode, 0)}
-                >
-                  <strong>E</strong>
-                </Button>
-              </Tooltip>
-            </>
-          </Tooltip>
+            </Tooltip>
+            <Tooltip closeOnClick hasArrow label="Aprobar por Equivalencia">
+              <Button
+                alignSelf="center"
+                _hover={{
+                  backgroundColor: "transparent",
+                }}
+                variant="link"
+                fontSize="small"
+                color="aprobadas.400"
+                minW={0}
+                mr={2}
+                onClick={() => aprobar(displayedNode, 0)}
+              >
+                <strong>E</strong>
+              </Button>
+            </Tooltip>
+          </>
         ) : (
           <Tooltip closeOnClick hasArrow label="Aprobar">
             <Button
