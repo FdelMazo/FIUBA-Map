@@ -232,8 +232,10 @@ const MateriaMenu = (props) => {
                   _hover={{
                     backgroundColor: "transparent",
                   }}
+                  height={"68%"}
                   ml={4}
-                  borderRadius="0"
+                  borderRadius={6}
+                  border="2px solid white"
                   variant="link"
                   fontSize="larger"
                   color="habilitadas.500"
