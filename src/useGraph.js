@@ -167,9 +167,7 @@ const useGraph = (loginHook) => {
       carrera.graph.forEach((n) => {
         if (n.correlativas)
           n.correlativas.split("-").forEach((c) => {
-            const correlativaNode = graphNodes.find((n) => n.id === c);
-            const diffLevels = n.level - correlativaNode.level;
-            graphEdges.push({ from: c, to: n.id, smooth: { enabled: true, type: "curvedCW", roundness: diffLevels === 1 ? 0 : 0.1 } });
+            graphEdges.push({ from: c, to: n.id, smooth: { enabled: true, type: "curvedCW", roundness: 0.1 } });
           });
         if (n.requiere)
           graphEdges.push({ from: "CBC", to: n.id, color: "transparent" });
