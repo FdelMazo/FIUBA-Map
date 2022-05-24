@@ -397,7 +397,7 @@ export const alimentos = [
     id: "72.14",
     materia: "Diseño de Producto",
     creditos: 4,
-    correlativas: "CEX3-75.55",
+    correlativas: "CEX3-71.55",
     categoria: "Materias Electivas",
   },
   {

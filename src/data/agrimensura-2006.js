@@ -230,7 +230,7 @@ export const agrimensura = [
     id: "70.17",
     materia: "Geodesia III",
     creditos: 4,
-    correlativas: "62.03-70.07–70.13",
+    correlativas: "62.03-70.07-70.13",
     categoria: "Materias Obligatorias",
     level: 6,
   },

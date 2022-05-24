@@ -605,7 +605,6 @@ export const industrial = [
     materia: "Trabajo Profesional de Ingeniería Industrial",
     creditos: 13,
     requiere: 160,
-    correlativas: "76.52-76.53-76.56",
     categoria: "Fin de Carrera",
   },
 ];

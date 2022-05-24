@@ -378,7 +378,7 @@ export const naval = [
     id: "67.38",
     materia: "Tecnología Mecánica B",
     creditos: 6,
-    correlativas: "67.02-68.13",
+    correlativas: "67.02-67.13",
     categoria: "Materias Electivas",
   },
   {

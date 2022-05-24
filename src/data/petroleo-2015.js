@@ -222,7 +222,7 @@ export const petroleo = [
     id: "95.13",
     materia: "Métodos Matemáticos y Numéricos",
     creditos: 6,
-    correlativas: "82.02-84.05-95.01",
+    correlativas: "62.04-84.05-95.01",
     categoria: "Materias Obligatorias",
     level: 5,
   },
@@ -400,7 +400,7 @@ export const petroleo = [
     id: "89.19",
     materia: "Transporte De Fluidos Por Tuberías",
     creditos: 6,
-    correlativas: "76.65-89-17",
+    correlativas: "76.65-89.17",
     categoria: "Materias Electivas",
   },
   {
