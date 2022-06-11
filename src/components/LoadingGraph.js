@@ -47,6 +47,7 @@ const LoadingGraph = (props) => {
         bg={useColorModeValue("headerbg", "white")}
         h="3em"
         w="3em"
+        zIndex={1450}
       />
     </Modal>
   );
