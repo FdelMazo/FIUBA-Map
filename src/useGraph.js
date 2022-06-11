@@ -48,12 +48,50 @@ const useGraph = (loginHook) => {
         })
       )
     );
-    actualizarNiveles()
   };
 
   React.useEffect(() => {
     if (!logged) changeCarrera(CARRERAS[0].id);
   }, []);
+
+  React.useEffect(() => {
+    if (!network) return
+    // Copied from https://github.com/visjs/vis-network/blob/2c774997ff234fa93555f36ca8040cf4d489e5df/lib/network/modules/NodesHandler.js#L325
+    // Removed the last call to body.emit(datachanged)
+    network.nodesHandler.update = (ids, changedData, oldData) => {
+      const nodes = network.body.nodes;
+      let dataChanged = false;
+      for (let i = 0; i < ids.length; i++) {
+        const id = ids[i];
+        let node = nodes[id];
+        const data = changedData[i];
+        if (node !== undefined) {
+          // update node
+          if (node.setOptions(data)) {
+            dataChanged = true;
+          }
+        } else {
+          dataChanged = true;
+          // create node
+          node = network.create(data);
+          nodes[id] = node;
+        }
+      }
+
+      if (!dataChanged && oldData !== undefined) {
+        // Check for any changes which should trigger a layout recalculation
+        // For now, this is just 'level' for hierarchical layout
+        // Assumption: old and new data arranged in same order; at time of writing, this holds.
+        dataChanged = changedData.some(function (newValue, index) {
+          const oldValue = oldData[index];
+          return oldValue && oldValue.level !== newValue.level;
+        });
+      }
+
+      network.body.emitter.emit("_dataUpdated");
+    }
+  }, [network]);
+
 
   React.useEffect(() => {
     if (logged) changeCarrera(user.carrera.id);
@@ -102,6 +140,7 @@ const useGraph = (loginHook) => {
             toggleGroup(user.orientacion.nombre);
           nodes.update(toUpdate.flat());
           actualizar();
+          actualizarNiveles()
           showAprobadas();
           setLoadingGraph(false);
           if (metadata.optativas) setOptativas(metadata.optativas);
@@ -111,6 +150,7 @@ const useGraph = (loginHook) => {
         .catch((e) => {
           setLoadingGraph(false);
           aprobar("CBC", 0);
+          actualizarNiveles()
           network.fit();
         });
     }
@@ -120,6 +160,7 @@ const useGraph = (loginHook) => {
     if (!nodes?.carrera || nodes.carrera !== user.carrera?.id) return;
     if (user.orientacion) changeOrientacion(user.orientacion.nombre);
     aprobar("CBC", 0);
+    actualizarNiveles()
     network.fit();
   }, [nodes, user.finDeCarrera, user.orientacion]);
 
@@ -244,6 +285,7 @@ const useGraph = (loginHook) => {
     }
 
     actualizar();
+    actualizarNiveles()
     redraw();
     network.fit();
   };
@@ -261,6 +303,7 @@ const useGraph = (loginHook) => {
   const cursando = (id, cuatrimestre) => {
     nodes.update(getNode(id).cursando(cuatrimestre));
     actualizar();
+    actualizarNiveles()
   };
 
   const toggleCheckbox = (c) => {
@@ -507,6 +550,7 @@ const useGraph = (loginHook) => {
       return node;
     });
     actualizar();
+    actualizarNiveles()
     network.fit();
   };
 
@@ -544,6 +588,7 @@ const useGraph = (loginHook) => {
 
     nodes.update([...electivas, ...resto]);
     actualizar();
+    actualizarNiveles()
     network.fit();
   };
 
@@ -584,7 +629,9 @@ const useGraph = (loginHook) => {
     let lastLevel = Math.max(...nodes.get({
       filter: (n) => !n.hidden &&
         n.categoria !== "CBC" &&
-        n.categoria !== "*CBC"
+        n.categoria !== "*CBC" &&
+        n.categoria !== "Fin de Carrera" &&
+        n.categoria !== "Fin de Carrera (Obligatorio)"
     }).map(n => n.level))
 
     const conCuatri = nodes.get({
@@ -668,6 +715,7 @@ const useGraph = (loginHook) => {
     }))
 
     nodes.update(toUpdate)
+    network.body.emitter.emit("_dataChanged");
   }
 
   const getCurrentCuatri = () => {

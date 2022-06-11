@@ -54,6 +54,7 @@ const Body = (props) => {
     network,
     openCBC,
     stats,
+    nodes,
   } = React.useContext(GraphContext);
   const { user, logged, submitBug } = React.useContext(UserContext);
   const { setDisplayedNode } = props;
@@ -118,19 +119,18 @@ const Body = (props) => {
     hoverNode: (e) => {
       const id = e.node;
 
-      // ### Este codigo triguerea un update en nodes, haciendo que se re-renderice el grafo como cuando se aprueba una materia. Si estuviese la fisica prendida, esto no pasaria
-      // const neighborNodes = network.getConnectedNodes(id);
-      // const allOtherNodes = nodes.get({
-      //   filter: function (node) {
-      //     return !neighborNodes.includes(node.id) && !(node.id === id);
-      //   },
-      // });
-      // nodes.update(
-      //   allOtherNodes.map((node) => {
-      //     node.opacity = 0.6;
-      //     return node;
-      //   })
-      // );
+      const neighborNodes = network.getConnectedNodes(id);
+      const allOtherNodes = nodes.get({
+        filter: function (node) {
+          return !neighborNodes.includes(node.id) && !(node.id === id);
+        },
+      });
+      nodes.update(
+        allOtherNodes.map((node) => {
+          node.opacity = 0.3;
+          return node;
+        })
+      );
 
       const neighborEdges = network.getConnectedEdges(id);
       const allOtherEdges = edges.get({
@@ -142,26 +142,26 @@ const Body = (props) => {
         allOtherEdges.map((edge) => {
           edge.arrows = { to: { enabled: false } };
           edge.dashes = true;
-          edge.color = { opacity: 0.6 };
+          edge.color = { opacity: 0.3 };
           return edge;
         })
       );
     },
     blurNode: (e) => {
       const id = e.node;
-      // ### Este codigo triguerea un update en nodes, haciendo que se re-renderice el grafo como cuando se aprueba una materia. Si estuviese la fisica prendida, esto no pasaria
-      // const neighborNodes = network.getConnectedNodes(id);
-      // const allOtherNodes = nodes.get({
-      //   filter: function (node) {
-      //     return !neighborNodes.includes(node.id) && !(node.id === id);
-      //   },
-      // });
-      // nodes.update(
-      //   allOtherNodes.map((node) => {
-      //     node.opacity = undefined;
-      //     return node;
-      //   })
-      // );
+
+      const neighborNodes = network.getConnectedNodes(id);
+      const allOtherNodes = nodes.get({
+        filter: function (node) {
+          return !neighborNodes.includes(node.id) && !(node.id === id);
+        },
+      });
+      nodes.update(
+        allOtherNodes.map((node) => {
+          node.opacity = undefined;
+          return node;
+        })
+      );
 
       const neighborEdges = network.getConnectedEdges(id);
       const allOtherEdges = edges.get({
@@ -183,7 +183,7 @@ const Body = (props) => {
   const isChristmasTime = () => {
     const today = new Date();
     const start = new Date(today.getFullYear(), 11, 19);
-    const end = new Date(today.getFullYear()+1, 0, 1);
+    const end = new Date(today.getFullYear() + 1, 0, 1);
     return today >= start && today <= end;
   };
 
@@ -313,7 +313,7 @@ const Body = (props) => {
                             también!
                           </Text>
                           <Text>
-                            Estas sugerencias son *anónimas*. Si querés que te responda, 
+                            Estas sugerencias son *anónimas*. Si querés que te responda,
                             escribime tu mail o telegram!
                           </Text>
                           <form
