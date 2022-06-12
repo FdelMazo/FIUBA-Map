@@ -60,6 +60,7 @@ const Footer = () => {
     promedioConCBC,
     editOptativa,
     removeOptativa,
+    loadingGraph
   } = React.useContext(GraphContext);
   const size = useWindowSize();
   const mobile = size.width < 750;
@@ -125,10 +126,11 @@ const Footer = () => {
   }
 
   return (
-    <Collapse in={logged} key={user.carrera?.id} position="relative">
+    <Collapse in={logged && !loadingGraph} position="relative">
       <Flex
         alignItems="center"
         bg={useColorModeValue("headerbg", "headerbgdark")}
+        key={user.carrera?.id}
       >
         <Box>
           <Tooltip
