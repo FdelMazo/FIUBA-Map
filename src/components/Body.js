@@ -122,7 +122,7 @@ const Body = (props) => {
       const neighborNodes = network.getConnectedNodes(id);
       const allOtherNodes = nodes.get({
         filter: function (node) {
-          return !neighborNodes.includes(node.id) && !(node.id === id);
+          return !neighborNodes.includes(node.id) && !(node.id === id) && !node.hidden;
         },
       });
       nodes.update(
@@ -132,17 +132,16 @@ const Body = (props) => {
         })
       );
 
-      const neighborEdges = network.getConnectedEdges(id);
-      const allOtherEdges = edges.get({
+      const neighborEdgesIds = network.getConnectedEdges(id);
+      const neighborEdges = edges.get({
         filter: function (edge) {
-          return !neighborEdges.includes(edge.id) && edge.color !== "transparent";
+          return neighborEdgesIds.includes(edge.id);
         },
       });
       edges.update(
-        allOtherEdges.map((edge) => {
-          edge.arrows = { to: { enabled: false } };
-          edge.dashes = true;
-          edge.color = { opacity: 0.3 };
+        neighborEdges.map((edge) => {
+          edge.arrows = { to: { scaleFactor: 0.7 } };
+          edge.color = { opacity: 1 };
           return edge;
         })
       );
@@ -153,7 +152,7 @@ const Body = (props) => {
       const neighborNodes = network.getConnectedNodes(id);
       const allOtherNodes = nodes.get({
         filter: function (node) {
-          return !neighborNodes.includes(node.id) && !(node.id === id);
+          return !neighborNodes.includes(node.id) && !(node.id === id) && !node.hidden;
         },
       });
       nodes.update(
@@ -163,17 +162,16 @@ const Body = (props) => {
         })
       );
 
-      const neighborEdges = network.getConnectedEdges(id);
-      const allOtherEdges = edges.get({
+      const neighborEdgesIds = network.getConnectedEdges(id);
+      const neighborEdges = edges.get({
         filter: function (edge) {
-          return !neighborEdges.includes(edge.id) && edge.color !== "transparent";
+          return neighborEdgesIds.includes(edge.id);
         },
       });
       edges.update(
-        allOtherEdges.map((edge) => {
-          edge.arrows = { to: { enabled: true } };
-          edge.dashes = false;
-          edge.color = null;
+        neighborEdges.map((edge) => {
+          edge.arrows = undefined
+          edge.color = undefined
           return edge;
         })
       );

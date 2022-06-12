@@ -105,9 +105,9 @@ export const GRAPHOPTIONS = {
   edges: {
     arrowStrikethrough: false,
     arrows: {
-      to: { enabled: true, scaleFactor: 0.7, type: "arrow" },
+      to: { enabled: true, scaleFactor: 0.6, type: "arrow" },
     },
-    color: { inherit: "from" },
+    color: { inherit: "from", opacity: 0.7 },
   },
   groups: { ...GRUPOS },
 };
