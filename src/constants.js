@@ -103,6 +103,7 @@ export const GRAPHOPTIONS = {
     },
   },
   edges: {
+    hoverWidth:0,
     arrowStrikethrough: false,
     arrows: {
       to: { enabled: true, scaleFactor: 0.6, type: "arrow" },

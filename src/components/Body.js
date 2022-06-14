@@ -140,6 +140,7 @@ const Body = (props) => {
       });
       edges.update(
         neighborEdges.map((edge) => {
+          edge.hoverWidth = 2
           edge.arrows = { to: { scaleFactor: 0.7 } };
           edge.color = { opacity: 1 };
           return edge;
@@ -170,6 +171,7 @@ const Body = (props) => {
       });
       edges.update(
         neighborEdges.map((edge) => {
+          edge.hoverWidth = undefined
           edge.arrows = undefined
           edge.color = undefined
           return edge;
