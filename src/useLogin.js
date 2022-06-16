@@ -1,6 +1,7 @@
 import React from "react";
 import CARRERAS from "./carreras";
 import * as C from "./constants";
+import ALIAS_MATERIAS from "./data/alias_materias";
 
 const userObj = {
   padron: "",
@@ -224,6 +225,57 @@ const useLogin = () => {
     });
   };
 
+  const [fiubaRepos, setFiubaRepos] = React.useState([])
+  const fetchFiubaRepos = async () => {
+    let totalCount = null;
+    const items = [];
+    let i = 1;
+    while (!totalCount || items.length < totalCount) {
+      const res = await fetch(
+        `https://api.github.com/search/repositories?` + new URLSearchParams({
+          q: "topic:fiuba fork:true",
+          sort: "updated",
+          order: "desc",
+          page: i,
+          per_page: 100,
+        }), {
+        headers: {
+          Accept: "application/vnd.github.v3+json"
+        }
+      });
+      const json = await res.json();
+      if (!json.items || !json.items.length) break;
+      totalCount = json.total_count;
+      items.push(...json.items);
+      i++;
+    }
+
+    const codigosMaterias = [...new Set(items.flatMap(r =>
+      r.topics.filter(t => t.match(/^\d\d\d\d$/))
+    ))]
+
+    setFiubaRepos(codigosMaterias.filter(c => ALIAS_MATERIAS[c]).reduce((acc, c) => {
+      const nombre = ALIAS_MATERIAS[c];
+      let m = acc.find(mx => mx.nombre === nombre)
+      if (m) {
+        m.reponames = new Set([...m.reponames, ...items.filter(r => r.topics.includes(c)).map(r => r.full_name)])
+        m.codigos.push(c)
+      } else {
+        acc.push({
+          codigos: [c],
+          nombre,
+          reponames: new Set(items.filter(r => r.topics.includes(c)).map(r => r.full_name))
+        })
+      }
+      return acc;
+    }, []))
+  };
+
+
+  React.useEffect(() => {
+    fetchFiubaRepos();
+  }, []);
+
   return {
     user,
     logged,
@@ -238,6 +290,7 @@ const useLogin = () => {
     getGraph,
     padronInput,
     setPadronInput,
+    fiubaRepos
   };
 };
 
