@@ -416,7 +416,7 @@ export const civil = [
     id: "84.14",
     materia: "Análisis sísmico",
     creditos: 4,
-    correlativas: "84.06-94.01",
+    correlativas: "94.01",
     categoria: "Materias Electivas",
   },
   {
