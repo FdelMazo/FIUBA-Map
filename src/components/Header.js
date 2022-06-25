@@ -75,7 +75,7 @@ const Header = (props) => {
           </MenuList>
         </Menu>
         {!mobile && (
-          <Tooltip label="Plan de Estudios" placement="bottom-start">
+          <Tooltip closeOnClick hasArrow label="Plan de Estudios" placement="bottom-start">
             <Link color="white" href={user.carrera?.link} isExternal>
               <Icon boxSize={6} ml={2} viewBox="0 0 512 512">
                 <path

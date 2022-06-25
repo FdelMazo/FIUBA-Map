@@ -133,21 +133,28 @@ const Footer = () => {
         key={user.carrera?.id}
       >
         <Box>
-          <Tooltip
-            placement="top"
-            label={
-              stats.materiasAprobadas === 1
-                ? stats.materiasAprobadas + " materia aprobada"
-                : stats.materiasAprobadas + " materias aprobadas"
-            }
-          >
-            <Stat p="0.4em" color="white" size="sm">
-              <StatLabel>Créditos</StatLabel>
-              <StatNumber>
-                {stats.creditosTotales + " de " + user.carrera?.creditos.total}
-              </StatNumber>
-            </Stat>
-          </Tooltip>
+          <Popover placement="top" trigger="hover">
+            <LightMode>
+              <PopoverTrigger>
+                <Box>
+                  <Stat p="0.4em" color="white" size="sm">
+                    <StatLabel>Créditos</StatLabel>
+                    <StatNumber>
+                      {stats.creditosTotales + " de " + user.carrera?.creditos.total}
+                    </StatNumber>
+                  </Stat>
+                </Box>
+              </PopoverTrigger>
+            </LightMode>
+            <PopoverContent width="fit-content">
+              <PopoverArrow />
+              <PopoverBody>
+                <Text fontSize="md">
+                  <strong>{stats.materiasAprobadas} materias aprobadas{stats.materiasAprobadas === 6 ? " (CBC)" : ''}</strong>
+                </Text>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
         </Box>
         <Grid
           flexGrow={1}
@@ -239,19 +246,16 @@ const Footer = () => {
                       `${c.creditos} de ${c.creditosNecesarios} créditos necesarios`
                     ) : (
                       `Tenés ${c.creditos} créditos.
-                      Elegí ${
-                        user.carrera.eligeOrientaciones &&
+                      Elegí ${user.carrera.eligeOrientaciones &&
                         !user.orientacion
-                          ? "orientación"
-                          : ""
-                      }${
-                        user.carrera.eligeOrientaciones &&
+                        ? "orientación"
+                        : ""
+                      }${user.carrera.eligeOrientaciones &&
                         !user.orientacion &&
                         !user.finDeCarrera
-                          ? " y "
-                          : ""
-                      }${
-                        !user.finDeCarrera ? "entre tesis y tpp" : ""
+                        ? " y "
+                        : ""
+                      }${!user.finDeCarrera ? "entre tesis y tpp" : ""
                       } para saber cuantos necesitás`
                     )}
                     {c.nombre.includes("Materias Electivas") &&

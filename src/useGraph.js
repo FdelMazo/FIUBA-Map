@@ -339,6 +339,27 @@ const useGraph = (loginHook) => {
     };
 
     creditos.push({
+      nombre: "Ciclo Básico Común",
+      nombrecorto: "CBC",
+      bg: COLORS.aprobadas[50],
+      color: "aprobadas",
+      creditosNecesarios: nodes
+        .get({
+          filter: (n) =>
+            n.categoria === "*CBC",
+          fields: ["creditos"],
+        })
+        .reduce(accumulator, 0),
+      creditos: nodes
+        .get({
+          filter: (n) =>
+            n.categoria === "*CBC",
+          fields: ["creditos"],
+        })
+        .reduce(accumulator, 0),
+    });
+
+    creditos.push({
       nombre: "Materias Obligatorias",
       nombrecorto: "Obligatorias",
       bg: COLORS.obligatorias[50],
@@ -461,8 +482,8 @@ const useGraph = (loginHook) => {
       return acc;
     }, 0);
 
-    if (fullProportion > 10) creditos[0].proportion -= fullProportion - 10;
-    else if (fullProportion < 10) creditos[0].proportion += 10 - fullProportion;
+    if (fullProportion > 10) creditos[1].proportion -= fullProportion - 10;
+    else if (fullProportion < 10) creditos[1].proportion += 10 - fullProportion;
 
     const aprobadas = nodes.get({
       filter: (n) =>
@@ -472,6 +493,11 @@ const useGraph = (loginHook) => {
         n.nota >= 0,
       fields: ["creditos"],
     });
+    aprobadas.push(...nodes.get({
+      filter: (n) =>
+        n.categoria === "*CBC",
+      fields: ["creditos"],
+    }));
     aprobadas.push(...optativas.filter(Boolean));
 
     const allCreditosAprobados = creditos.every(c => c.creditos >= c.creditosNecesarios);

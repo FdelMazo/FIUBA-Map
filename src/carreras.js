@@ -9,7 +9,7 @@ export const CARRERAS = [
     nombre: "Licenciatura en Análisis de Sistemas",
     nombrecorto: "Sistemas",
     creditos: {
-      total: 176,
+      total: 214,
       obligatorias: 136,
       electivas: 28,
       checkbox: [
@@ -49,7 +49,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "75.99" },
     ],
     creditos: {
-      total: 248,
+      total: 286,
       obligatorias: 122,
       orientacion: {
         "Gestión Industrial de Sistemas": {
@@ -79,7 +79,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "70.99" },
     ],
     creditos: {
-      total: 208,
+      total: 246,
       obligatorias: 178,
       checkbox: [
         {
@@ -99,7 +99,7 @@ export const CARRERAS = [
     nombre: "Ingeniería de Alimentos",
     nombrecorto: "Alimentos",
     creditos: {
-      total: 234,
+      total: 272,
       materias: [
         {
           id: "76.44",
@@ -125,7 +125,7 @@ export const CARRERAS = [
     nombre: "Ingeniería Civil",
     nombrecorto: "Civil",
     creditos: {
-      total: 257,
+      total: 295,
       obligatorias: 210,
       electivas: 34,
       materias: [
@@ -163,7 +163,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "85.99" },
     ],
     creditos: {
-      total: 242,
+      total: 280,
       obligatorias: 206,
       checkbox: [
         {
@@ -206,7 +206,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "86.99" },
     ],
     creditos: {
-      total: 240,
+      total: 278,
       obligatorias: 166,
       electivas: 56,
       checkbox: [
@@ -236,7 +236,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "92.99" },
     ],
     creditos: {
-      total: 245,
+      total: 283,
       obligatorias: 196,
       checkbox: [
         {
@@ -277,7 +277,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "67.98" },
     ],
     creditos: {
-      total: 260,
+      total: 298,
       obligatorias: 190,
       orientacion: {
         "Diseño Mecánico": {
@@ -303,7 +303,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "73.99" },
     ],
     creditos: {
-      total: 264,
+      total: 302,
       obligatorias: 226,
       electivas: { tesis: 20, tpp: 38 },
     },
@@ -319,7 +319,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "79.99" },
     ],
     creditos: {
-      total: 246,
+      total: 284,
       obligatorias: 216,
       electivas: { tesis: 12, tpp: 16 },
       checkbox: [
@@ -349,7 +349,7 @@ export const CARRERAS = [
       { id: "tpp", materia: "76.59-76.62" },
     ],
     creditos: {
-      total: 252,
+      total: 290,
       obligatorias: 216,
       electivas: { tesis: 18, tpp: 24 },
     },
@@ -361,7 +361,7 @@ export const CARRERAS = [
     nombre: "Licenciatura en Análisis de Sistemas (1986)",
     nombrecorto: "Sistemas (1986)",
     creditos: {
-      total: 170,
+      total: 208,
       obligatorias: 130,
       electivas: 40,
     },
