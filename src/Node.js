@@ -58,7 +58,7 @@ class Node {
     const totalCreditos =
       nodes
         .get({
-          filter: (n) => n.aprobada,
+          filter: (n) => n.aprobada || n.categoria === "*CBC",
           fields: ["creditos"],
         })
         .reduce((acc, n) => {
