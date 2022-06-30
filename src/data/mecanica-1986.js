@@ -341,7 +341,7 @@ export const mecanica = [
     id: "62.07",
     materia: "Mecánica II",
     creditos: 4,
-    correlativas: "61.03-62.06",
+    correlativas: "61.13-62.06",
     categoria: "Diseño Mecánico",
   },
   {
