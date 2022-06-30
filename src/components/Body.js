@@ -119,7 +119,12 @@ const Body = (props) => {
     hoverNode: (e) => {
       const id = e.node;
 
-      const neighborNodes = network.getConnectedNodes(id);
+      const node = getNode(id)
+      let neighborNodes = network.getConnectedNodes(id);
+      if (node.requiere) {
+        neighborNodes = neighborNodes.filter((node) => node !== "CBC");
+      }
+
       const allOtherNodes = nodes.get({
         filter: function (node) {
           return !neighborNodes.includes(node.id) && !(node.id === id) && !node.hidden;
@@ -150,14 +155,8 @@ const Body = (props) => {
     blurNode: (e) => {
       const id = e.node;
 
-      const neighborNodes = network.getConnectedNodes(id);
-      const allOtherNodes = nodes.get({
-        filter: function (node) {
-          return !neighborNodes.includes(node.id) && !(node.id === id) && !node.hidden;
-        },
-      });
       nodes.update(
-        allOtherNodes.map((node) => {
+        nodes.map((node) => {
           node.opacity = undefined;
           return node;
         })

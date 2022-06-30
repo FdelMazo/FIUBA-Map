@@ -644,7 +644,7 @@ export const civil = [
   },
   {
     id: "84.99",
-    materia: "Trabajo profesional de Ingeniería Civil",
+    materia: "Trabajo Profesional de Ingeniería Civil",
     creditos: 13,
     requiere: 200,
     correlativas: "88.14",
