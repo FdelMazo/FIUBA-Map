@@ -1,6 +1,6 @@
 import { COLORS } from "./theme";
 
-const FONT_AFUERA = ["CBC", "*CBC", "Fin de Carrera", "Fin de Carrera (Obligatorio)"]
+const FONT_AFUERA = ["CBC", "*CBC"]
 const ALWAYS_SHOW = ["Materias Obligatorias", "CBC", "Fin de Carrera (Obligatorio)"]
 
 function breakWords(string) {

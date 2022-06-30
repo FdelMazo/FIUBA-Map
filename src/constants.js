@@ -58,13 +58,121 @@ export const GRUPOS = {
   "Materias Electivas": { color: COLORS.electivas[400] },
   "Fin de Carrera": {
     color: COLORS.findecarrera[400],
-    shape: "diamond",
-    size: 45,
+    label: "custom",
+    shape: "custom",
+    ctxRenderer: ({
+      ctx,
+      id,
+      x,
+      y,
+      state: { selected, hover },
+      style,
+      label
+    }) => {
+      let r = style.size;
+      const drawNode = () => {
+        if (selected || hover) {
+          r += 5
+        }
+        ctx.beginPath();
+        const sides = 4;
+        const a = (Math.PI * 2) / sides;
+        ctx.moveTo(x, y + r);
+        for (let i = 1; i < sides; i++) {
+          ctx.lineTo(x + r * Math.sin(a * i), y + r * Math.cos(a * i));
+        }
+        ctx.closePath();
+        ctx.save();
+
+        ctx.fillStyle = style.color;
+        ctx.globalAlpha = style.opacity
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.textAlign = 'center'
+        const lines = label.split('\n')
+        const lineheight = 13;
+        const mid = Math.floor(lines.length / 2);
+        let fontSize = 12
+        let maxLineWidth = 0
+        for (let i = 0; i < lines.length; i++) {
+          if (ctx.measureText(lines[i]).width > maxLineWidth) {
+            maxLineWidth = ctx.measureText(lines[i]).width
+          }
+        }
+        if (maxLineWidth > r * 1.5) {
+          fontSize -= 1
+        }
+        ctx.font = `bold ${fontSize}px arial`
+        for (let i = 0; i < lines.length; i++) {
+          ctx.fillText(lines[i], x, y + ((i + 0.2 - mid) * lineheight))
+        }
+      };
+      return {
+        drawNode,
+      };
+    },
+    size: 60,
   },
   "Fin de Carrera (Obligatorio)": {
     color: COLORS.findecarrera[400],
-    shape: "diamond",
-    size: 45,
+    label: "custom",
+    shape: "custom",
+    ctxRenderer: ({
+      ctx,
+      id,
+      x,
+      y,
+      state: { selected, hover },
+      style,
+      label
+    }) => {
+      let r = style.size;
+      const drawNode = () => {
+        if (selected || hover) {
+          r += 5
+        }
+        ctx.beginPath();
+        const sides = 4;
+        const a = (Math.PI * 2) / sides;
+        ctx.moveTo(x, y + r);
+        for (let i = 1; i < sides; i++) {
+          ctx.lineTo(x + r * Math.sin(a * i), y + r * Math.cos(a * i));
+        }
+        ctx.closePath();
+        ctx.save();
+
+        ctx.fillStyle = style.color;
+        ctx.globalAlpha = style.opacity
+        ctx.fill();
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.textAlign = 'center'
+        const lines = label.split('\n')
+        const lineheight = 13;
+        const mid = Math.floor(lines.length / 2);
+        let fontSize = 12
+        let maxLineWidth = 0
+        for (let i = 0; i < lines.length; i++) {
+          if (ctx.measureText(lines[i]).width > maxLineWidth) {
+            maxLineWidth = ctx.measureText(lines[i]).width
+          }
+        }
+        if (maxLineWidth > r * 1.5) {
+          fontSize -= 1
+        }
+        ctx.font = `bold ${fontSize}px arial`
+        for (let i = 0; i < lines.length; i++) {
+          ctx.fillText(lines[i], x, y + ((i + 0.2 - mid) * lineheight))
+        }
+      };
+      return {
+        drawNode,
+      };
+    },
+    size: 60,
   },
   ...CARRERAS.filter((c) => c.orientaciones)
     .flatMap((c) => c.orientaciones)
