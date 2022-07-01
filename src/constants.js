@@ -86,7 +86,7 @@ export const GRUPOS = {
 
         ctx.fillStyle = style.color;
         ctx.strokeStyle = selected || hover ? 'black' : 'gray';
-        ctx.lineWidth = selected || hover ? 4 : 2;
+        ctx.lineWidth = selected || hover ? 3 : 2;
         ctx.globalAlpha = style.opacity
         ctx.fill();
         ctx.stroke();
@@ -149,7 +149,7 @@ export const GRUPOS = {
 
         ctx.fillStyle = style.color;
         ctx.strokeStyle = selected || hover ? 'black' : 'gray';
-        ctx.lineWidth = selected || hover ? 4 : 2;
+        ctx.lineWidth = selected || hover ? 3 : 2;
         ctx.globalAlpha = style.opacity
         ctx.fill();
         ctx.stroke();
