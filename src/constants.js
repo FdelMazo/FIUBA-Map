@@ -72,7 +72,7 @@ export const GRUPOS = {
       let r = style.size;
       const drawNode = () => {
         if (selected || hover) {
-          r += 5
+          r += 3
         }
         ctx.beginPath();
         const sides = 4;
@@ -85,6 +85,8 @@ export const GRUPOS = {
         ctx.save();
 
         ctx.fillStyle = style.color;
+        ctx.strokeStyle = selected || hover ? 'black' : 'gray';
+        ctx.lineWidth = selected || hover ? 4 : 2;
         ctx.globalAlpha = style.opacity
         ctx.fill();
         ctx.stroke();
@@ -93,7 +95,7 @@ export const GRUPOS = {
         ctx.textAlign = 'center'
         const lines = label.split('\n')
         const lineheight = 13;
-        const mid = Math.floor(lines.length / 2);
+        let mid = lines.length / 2;
         let fontSize = 12
         let maxLineWidth = 0
         for (let i = 0; i < lines.length; i++) {
@@ -104,9 +106,11 @@ export const GRUPOS = {
         if (maxLineWidth > r * 1.5) {
           fontSize -= 1
         }
-        ctx.font = `bold ${fontSize}px arial`
+        let boldness = selected || hover ? 'bold' : '500'
+        ctx.font = `${boldness} ${fontSize}px arial`
+        ctx.fillStyle = selected || hover ? 'black' : '';
         for (let i = 0; i < lines.length; i++) {
-          ctx.fillText(lines[i], x, y + ((i + 0.2 - mid) * lineheight))
+          ctx.fillText(lines[i], x, y + ((i + 0.5 - mid) * lineheight))
         }
       };
       return {
@@ -131,7 +135,7 @@ export const GRUPOS = {
       let r = style.size;
       const drawNode = () => {
         if (selected || hover) {
-          r += 5
+          r += 3
         }
         ctx.beginPath();
         const sides = 4;
@@ -144,6 +148,8 @@ export const GRUPOS = {
         ctx.save();
 
         ctx.fillStyle = style.color;
+        ctx.strokeStyle = selected || hover ? 'black' : 'gray';
+        ctx.lineWidth = selected || hover ? 4 : 2;
         ctx.globalAlpha = style.opacity
         ctx.fill();
         ctx.stroke();
@@ -152,7 +158,7 @@ export const GRUPOS = {
         ctx.textAlign = 'center'
         const lines = label.split('\n')
         const lineheight = 13;
-        const mid = Math.floor(lines.length / 2);
+        let mid = lines.length / 2;
         let fontSize = 12
         let maxLineWidth = 0
         for (let i = 0; i < lines.length; i++) {
@@ -163,9 +169,11 @@ export const GRUPOS = {
         if (maxLineWidth > r * 1.5) {
           fontSize -= 1
         }
-        ctx.font = `bold ${fontSize}px arial`
+        let boldness = selected || hover ? 'bold' : '500'
+        ctx.font = `${boldness} ${fontSize}px arial`
+        ctx.fillStyle = selected || hover ? 'black' : '';
         for (let i = 0; i < lines.length; i++) {
-          ctx.fillText(lines[i], x, y + ((i + 0.2 - mid) * lineheight))
+          ctx.fillText(lines[i], x, y + ((i + 0.5 - mid) * lineheight))
         }
       };
       return {
@@ -211,7 +219,7 @@ export const GRAPHOPTIONS = {
     },
   },
   edges: {
-    hoverWidth:0,
+    hoverWidth: 0,
     arrowStrikethrough: false,
     arrows: {
       to: { enabled: true, scaleFactor: 0.6, type: "arrow" },
