@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/FIUBA-Map/precache-manifest.63979132bcd6f3e5f7d9a399c798777b.js"
+  "/FIUBA-Map/precache-manifest.ac24080a37aa41f5eb634a66b358f1f7.js"
 );
 
 self.addEventListener('message', (event) => {
