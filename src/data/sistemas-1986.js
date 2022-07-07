@@ -310,9 +310,9 @@ export const sistemasviejo = [
   },
   {
     id: "75.24",
-    materia: "Teoría de la Programación IV",
-    creditos: 6,
-    correlativas: "75.07",
+    materia: "Teoría de la Programación",
+    creditos: 4,
+    correlativas: "75.41",
     categoria: "Materias Electivas",
   },
   {
