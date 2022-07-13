@@ -149,9 +149,18 @@ const Footer = () => {
             <PopoverContent width="fit-content">
               <PopoverArrow />
               <PopoverBody>
-                <Text fontSize="md">
-                  <strong>{stats.materiasAprobadas} materias aprobadas{stats.materiasAprobadas === 6 ? " (CBC)" : ''}</strong>
-                </Text>
+                { stats.creditosTotales > 38 &&
+                  <Flex fontSize="md"justifyContent="space-between">
+                    <strong>Carrera</strong>
+                    <Text ml={6} textAlign='right' color="gray.800" fontWeight="semibold">
+                      {stats.creditosTotales - 38}/{user.carrera?.creditos.total - 38} ({stats.materiasAprobadas - 6} {(stats.materiasAprobadas - 6) > 1 ? `materias` : `materia`})
+                    </Text>
+                  </Flex>
+                }
+                <Flex fontSize="md" justifyContent="space-between">
+                  <strong>CBC</strong>
+                  <Text ml={6} textAlign='right' color="gray.800" fontWeight="semibold">38/38 (6 materias)</Text>
+                </Flex>
               </PopoverBody>
             </PopoverContent>
           </Popover>
@@ -288,7 +297,8 @@ const Footer = () => {
                       )}
                     {c.nombre.includes("Materias Electivas") && (
                       <Tooltip
-                        placement="bottom"
+                        placement="left"
+                        hasArrow
                         label="Agregar créditos por fuera del plan"
                       >
                         <IconButton
