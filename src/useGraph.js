@@ -365,6 +365,13 @@ const useGraph = (loginHook) => {
       bg: COLORS.obligatorias[50],
       color: "obligatorias",
       creditosNecesarios: user.carrera.creditos.obligatorias,
+      nmaterias: nodes.get({
+        filter: (n) =>
+          n.categoria === "Materias Obligatorias" &&
+          n.aprobada &&
+          n.nota >= 0,
+        fields: ["creditos"],
+      }).length,
       creditos: nodes
         .get({
           filter: (n) =>
@@ -386,6 +393,19 @@ const useGraph = (loginHook) => {
         ? getCorrectCreditos()?.electivas[user.finDeCarrera?.id]
         : getCorrectCreditos()?.electivas,
 
+      nmaterias: nodes
+      .get({
+        filter: (n) =>
+          n.categoria !== "CBC" &&
+          n.categoria !== "*CBC" &&
+          n.categoria !== "Materias Obligatorias" &&
+          n.categoria !== "Fin de Carrera" &&
+          n.categoria !== "Fin de Carrera (Obligatorio)" &&
+          n.categoria !== user.orientacion?.nombre &&
+          n.aprobada &&
+          n.nota >= 0,
+        fields: ["creditos"],
+      }).length,
       creditos:
         nodes
           .get({
@@ -414,6 +434,14 @@ const useGraph = (loginHook) => {
         bg: COLORS[user.orientacion.colorScheme][50],
         color: user.orientacion.colorScheme,
         creditosNecesarios: getCorrectCreditos()?.orientacion,
+        nmaterias: nodes
+          .get({
+            filter: (n) =>
+              n.categoria === user.orientacion.nombre &&
+              n.aprobada &&
+              n.nota >= 0,
+            fields: ["creditos"],
+          }).length,
         creditos: nodes
           .get({
             filter: (n) =>
