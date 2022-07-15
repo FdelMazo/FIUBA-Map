@@ -38,6 +38,7 @@ import {
   StatNumber,
   Text,
   Tooltip,
+  useColorMode,
   useColorModeValue,
   useEditableControls,
 } from "@chakra-ui/react";
@@ -47,6 +48,7 @@ import useWindowSize from "./useWindowSize";
 
 const Footer = () => {
   const { logged, user } = React.useContext(UserContext);
+  const { colorMode } = useColorMode();
   const {
     promedio,
     creditos,
@@ -152,14 +154,14 @@ const Footer = () => {
                 { stats.creditosTotales > 38 &&
                   <Flex fontSize="md"justifyContent="space-between">
                     <strong>Carrera</strong>
-                    <Text ml={6} textAlign='right' color="gray.800" fontWeight="semibold">
+                    <Text ml={6} textAlign='right' color={colorMode === "dark" ? "gray.50" : "gray.800"} fontWeight="semibold">
                       {stats.creditosTotales - 38}/{user.carrera?.creditos.total - 38} ({stats.materiasAprobadas - 6} {(stats.materiasAprobadas - 6) > 1 ? `materias` : `materia`})
                     </Text>
                   </Flex>
                 }
                 <Flex fontSize="md" justifyContent="space-between">
                   <strong>CBC</strong>
-                  <Text ml={6} textAlign='right' color="gray.800" fontWeight="semibold">38/38 (6 materias)</Text>
+                  <Text ml={6} textAlign='right' color={colorMode === "dark" ? "gray.50" : "gray.800"} fontWeight="semibold">38/38 (6 materias)</Text>
                 </Flex>
               </PopoverBody>
             </PopoverContent>
