@@ -138,7 +138,7 @@ const Footer = () => {
           <Popover placement="top" trigger="hover">
             <LightMode>
               <PopoverTrigger>
-                <Box w="10ch">
+                <Box w="12ch">
                   <Stat p="0.4em" color="white" size="sm">
                     <StatLabel>Créditos</StatLabel>
                     <StatNumber>
@@ -323,7 +323,7 @@ const Footer = () => {
         <Popover placement="top" trigger="hover">
           <LightMode>
             <PopoverTrigger>
-              <Box w="10ch">
+              <Box w="12ch">
                 <Stat p="0.4em" color="white" size="sm" textAlign="right">
                   <StatLabel>Promedio</StatLabel>
                   <StatNumber>{promedio}</StatNumber>
