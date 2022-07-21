@@ -236,8 +236,8 @@ const Footer = () => {
                 <PopoverContent>
                   <PopoverArrow />
                   <PopoverHeader border="none">
-                    <strong>{c.nombre}</strong>
-                    {c.nmaterias > 1 && <strong>({c.nmaterias} aprobadas)</strong>}
+                    <Text><strong>{c.nombre}</strong></Text>
+                    <Text>{c.nmaterias > 1 && <strong>({c.nmaterias} aprobadas)</strong>}</Text>
                   </PopoverHeader>
                   <PopoverBody>
                     {c.checkbox ? (
