@@ -429,6 +429,20 @@ export const quimica = [
     categoria: "Materias Electivas",
   },
   {
+    id: "76.32",
+    materia: "Preservación de Alimentos",
+    creditos: 6,
+    correlativas: "76.49-76.52-76.55",
+    categoria: "Materias Electivas",
+  },
+  {
+    id: "76.33",
+    materia: "Procesamiento Industrial de Alimentos",
+    creditos: 6,
+    correlativas: "76.32",
+    categoria: "Materias Electivas",
+  },
+  {
     id: "78.xx",
     materia: "Idioma",
     creditos: 4,
