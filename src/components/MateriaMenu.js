@@ -142,6 +142,9 @@ const MateriaMenu = (props) => {
                   min={4}
                   max={10}
                   maxW="4.5rem"
+                  onFocus={(ev) => {
+                    ev.target.blur()
+                  }}
                 >
                   <NumberInputField
                     _hover={{
