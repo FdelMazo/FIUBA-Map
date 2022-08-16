@@ -116,7 +116,7 @@ const MateriaMenu = (props) => {
     <>
       <Flex width={mobile ? "100%" : "undefined"} alignItems="center" justifyContent="space-around" flexWrap="wrap">
         {mobile ? (
-          <Text textAlign="center" alignSelf="flex-end" m={2} isTruncated width={"100%"}><strong>[{getNode(displayedNode)?.id}]</strong> {getNode(displayedNode)?.materia}</Text>
+          <Text textAlign="center" alignSelf="flex-end" m={2} isTruncated width={"100%"} color="white"><strong>[{getNode(displayedNode)?.id}]</strong> {getNode(displayedNode)?.materia}</Text>
         ) : (
           <Stat alignSelf="flex-end" mx={3} color="white">
             <StatLabel>[{getNode(displayedNode)?.id}]</StatLabel>
@@ -126,7 +126,7 @@ const MateriaMenu = (props) => {
             </Stat>
         )}
 
-        <Flex borderRadius={6} border="2px solid white" p={1} alignItems="center" height={"75%"}>
+        <Flex borderRadius={6} border="2px solid white" alignItems="center" height={"75%"}>
           {getNode(displayedNode)?.nota > 0 ? (
             <>
               <Tooltip closeOnClick hasArrow label="Nota">

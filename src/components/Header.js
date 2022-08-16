@@ -34,7 +34,8 @@ const Header = (props) => {
       align="center"
       justify="space-between"
       bg={useColorModeValue("headerbg", "headerbgdark")}
-      padding={mobile ? "0.4em" : "0.8em"}
+      px={mobile ? "0.4em" : "0.8em"}
+      py={1}
     >
       {displayedNode && <MateriaMenu displayedNode={displayedNode} />}
       <ScaleFade in={!displayedNode}>
