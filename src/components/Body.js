@@ -68,35 +68,83 @@ const Body = (props) => {
 
   useEffect(redraw, [width, height]);
 
+  const blurOthers = (id) => {
+    const node = getNode(id)
+    if (!node) return;
+
+    let neighborNodes = network.getConnectedNodes(node.id);
+    if (node.requiere) {
+      neighborNodes = neighborNodes.filter((node) => node !== "CBC");
+    }
+
+    const allOtherNodes = nodes.get({
+      filter: function (n) {
+        return !neighborNodes.includes(n.id) && !(n.id === node.id) && !n.hidden;
+      },
+    });
+    nodes.update(
+      allOtherNodes.map((n) => {
+        n.opacity = 0.3;
+        return n;
+      })
+    );
+
+    const neighborEdgesIds = network.getConnectedEdges(node.id);
+    const neighborEdges = edges.get({
+      filter: function (edge) {
+        return neighborEdgesIds.includes(edge.id) && edge.color !== "transparent"
+      },
+    });
+    edges.update(
+      neighborEdges.map((edge) => {
+        edge.hoverWidth = 2
+        edge.selectionWidth = 2
+        edge.arrows = { to: { scaleFactor: 0.7 } };
+        edge.color = { opacity: 1 };
+        return edge;
+      })
+    );
+  }
+
+  const unblurAll = () => {
+    nodes.update(
+      nodes.map((n) => {
+        n.opacity = undefined;
+        return n;
+      })
+    );
+
+    const neighborEdges = edges.get({
+      filter: function (edge) {
+        return edge.color !== "transparent" && edge.selectionWidth === 2
+      },
+    });
+    edges.update(
+      neighborEdges.map((edge) => {
+        edge.selectionWidth = undefined
+        edge.hoverWidth = undefined
+        edge.arrows = undefined
+        edge.color = undefined
+        return edge;
+      })
+    );
+  }
+
   const events = {
     click: (e) => {
+      // click: abre/cierra CBC
       const id = e.nodes[0];
       if (id === "CBC") {
         openCBC();
-        return;
-      }
-      const node = getNode(id);
-      if (!node) {
-        if (logged) setDisplayedNode("");
-        return;
-      }
-      if (logged) {
-        setDisplayedNode(id);
-        return;
-      }
-      if (!node.aprobada) {
-        aprobar(id, 4);
-      } else {
-        desaprobar(id);
       }
     },
     doubleClick: (e) => {
+      // dobleclick: aprobar/desaprobar
       const id = e.nodes[0];
-      if (!logged) return;
       if (id === "CBC") return;
       const node = getNode(id);
       if (!node) return;
-      setDisplayedNode(id);
+
       if (!node.aprobada) {
         aprobar(id, 4);
       } else {
@@ -104,12 +152,13 @@ const Body = (props) => {
       }
     },
     hold: (e) => {
+      // holdclick logeado: poner/sacar en final
+      // no tiene sentido que alguien deslogueado use el feature de final
       const id = e.nodes[0];
-      if (!logged) return;
-      if (id === "CBC") return;
+      if (!logged || id === "CBC") return;
       const node = getNode(id);
       if (!node) return;
-      setDisplayedNode(id);
+
       if (!(node.nota === -1)) {
         aprobar(id, -1);
       } else {
@@ -118,64 +167,27 @@ const Body = (props) => {
     },
     hoverNode: (e) => {
       const id = e.node;
-
-      const node = getNode(id)
-      let neighborNodes = network.getConnectedNodes(id);
-      if (node.requiere) {
-        neighborNodes = neighborNodes.filter((node) => node !== "CBC");
+      if (network.getSelectedNodes().length) {
+        unblurAll()
       }
-
-      const allOtherNodes = nodes.get({
-        filter: function (node) {
-          return !neighborNodes.includes(node.id) && !(node.id === id) && !node.hidden;
-        },
-      });
-      nodes.update(
-        allOtherNodes.map((node) => {
-          node.opacity = 0.3;
-          return node;
-        })
-      );
-
-      const neighborEdgesIds = network.getConnectedEdges(id);
-      const neighborEdges = edges.get({
-        filter: function (edge) {
-          return neighborEdgesIds.includes(edge.id) && edge.color !== "transparent"
-        },
-      });
-      edges.update(
-        neighborEdges.map((edge) => {
-          edge.hoverWidth = 2
-          edge.arrows = { to: { scaleFactor: 0.7 } };
-          edge.color = { opacity: 1 };
-          return edge;
-        })
-      );
+      blurOthers(id)
     },
     blurNode: (e) => {
-      const id = e.node;
-
-      nodes.update(
-        nodes.map((node) => {
-          node.opacity = undefined;
-          return node;
-        })
-      );
-
-      const neighborEdgesIds = network.getConnectedEdges(id);
-      const neighborEdges = edges.get({
-        filter: function (edge) {
-          return neighborEdgesIds.includes(edge.id) && edge.color !== "transparent"
-        },
-      });
-      edges.update(
-        neighborEdges.map((edge) => {
-          edge.hoverWidth = undefined
-          edge.arrows = undefined
-          edge.color = undefined
-          return edge;
-        })
-      );
+      unblurAll()
+      if (network.getSelectedNodes().length) {
+        blurOthers(network.getSelectedNodes()[0])
+      }
+    },
+    selectNode: (e) => {
+      const id = e.nodes[0];
+      unblurAll()
+      blurOthers(id)
+      if (!logged || id === "CBC") return;
+      setDisplayedNode(id);
+    },
+    deselectNode: (e) => {
+      unblurAll()
+      setDisplayedNode("");
     },
   };
 
