@@ -182,6 +182,7 @@ const useGraph = (loginHook) => {
       fields: ["id", "cuatrimestre"],
     }).map((n) => getNode(n.id).cursando(undefined)));
     actualizar();
+    actualizarNiveles()
   };
 
   const changeCarrera = async (id) => {
