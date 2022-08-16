@@ -6,7 +6,6 @@ import {
   Icon,
   IconButton,
   Input,
-  LightMode,
   Tooltip,
 } from "@chakra-ui/react";
 import React from "react";
@@ -54,10 +53,12 @@ const PadronInput = (props) => {
             <>
               <UserMenu displayedNode={props.displayedNode} />
               {!props.displayedNode && (
-                <LightMode>
+                <>
                   <Tooltip closeOnClick hasArrow placement="bottom" label="Guardar datos">
                     <IconButton
-                      colorScheme="teal"
+                      bg="teal.500"
+                      _hover={{ bg: "teal.600" }}
+                      color="white"
                       size="sm"
                       isLoading={saving}
                       mx={2}
@@ -80,7 +81,9 @@ const PadronInput = (props) => {
                   }).length > 0 && (
                       <Tooltip closeOnClick hasArrow placement="bottom" label="Limpiar todos los cuatris">
                         <IconButton
-                          colorScheme="teal"
+                          bg="teal.500"
+                          _hover={{ bg: "teal.600" }}
+                          color="white"
                           size="sm"
                           mx={0}
                           onClick={() => {
@@ -96,11 +99,11 @@ const PadronInput = (props) => {
                         </IconButton>
                       </Tooltip>
                     )}
-                </LightMode>
+                </>
               )}
             </>
           ) : (
-            <LightMode>
+            <>
               <Input
                 css={{
                   "&::placeholder": {
@@ -134,7 +137,7 @@ const PadronInput = (props) => {
               >
                 {showRegisterButton ? "Registrarse" : <CheckCircleIcon />}
               </Button>
-            </LightMode>
+            </>
           )}
         </Flex>
       </form>

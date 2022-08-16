@@ -1,7 +1,6 @@
 import { SettingsIcon } from "@chakra-ui/icons";
 import {
   Button,
-  LightMode,
   Menu,
   MenuButton,
   MenuItem,
@@ -52,19 +51,20 @@ const UserMenu = (props) => {
     >
       {!props.displayedNode && (
         <>
-          <LightMode>
-            <MenuButton
-              w="20ch"
-              textAlign="left"
-              as={Button}
-              leftIcon={<SettingsIcon />}
-              size="sm"
-              colorScheme="teal"
-              alignSelf="flex-end"
-            >
-              {user.padron}
-            </MenuButton>
-          </LightMode>
+          <MenuButton
+            w="20ch"
+            textAlign="left"
+            as={Button}
+            leftIcon={<SettingsIcon />}
+            size="sm"
+            alignSelf="flex-end"
+            bg="teal.500"
+            _hover={{ bg: "teal.600" }}
+            _active={{ bg: "teal.600" }}
+            color="white"
+          >
+            {user.padron}
+          </MenuButton>
           <MenuList>
             {user.carrera.finDeCarrera && (
               <MenuOptionGroup
