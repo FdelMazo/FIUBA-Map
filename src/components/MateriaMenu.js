@@ -113,13 +113,18 @@ const MateriaMenu = (props) => {
   }
 
   return (
-    <Flex height="4em" alignItems="center" justifyContent="space-around">
-      <Stat alignSelf="flex-end" mx={3} color="white">
-        <StatLabel>[{getNode(displayedNode)?.id}]</StatLabel>
-        <StatHelpText isTruncated width={mobile ? "8ch" : "30ch"}>
-          {getNode(displayedNode)?.materia}
-        </StatHelpText>
-      </Stat>
+    <>
+      <Flex width={mobile ? "100%" : "undefined"} alignItems="center" justifyContent="space-around" flexWrap="wrap">
+        {mobile ? (
+          <Text textAlign="center" alignSelf="flex-end" m={2} isTruncated width={"100%"}><strong>[{getNode(displayedNode)?.id}]</strong> {getNode(displayedNode)?.materia}</Text>
+        ) : (
+          <Stat alignSelf="flex-end" mx={3} color="white">
+            <StatLabel>[{getNode(displayedNode)?.id}]</StatLabel>
+              <StatHelpText isTruncated width={"30ch"}>
+                {getNode(displayedNode)?.materia}
+              </StatHelpText>
+            </Stat>
+        )}
 
       <Flex borderRadius={6} border="2px solid white" p={1} alignItems="center" height={"75%"}>
         {getNode(displayedNode)?.nota > 0 ? (
@@ -340,7 +345,7 @@ const MateriaMenu = (props) => {
         </>
       )}
 
-      {fiubaRepos.find(materia => materia.codigos.includes(displayedNode.replace('.', ''))) && (
+      {!mobile && fiubaRepos.find(materia => materia.codigos.includes(displayedNode.replace('.', ''))) && (
         <>
           <Tooltip closeOnClick hasArrow label={
             <Box textAlign="center">
@@ -371,7 +376,8 @@ const MateriaMenu = (props) => {
         </>
       )}
 
-    </Flex>
+      </Flex>
+    </>
   );
 };
 

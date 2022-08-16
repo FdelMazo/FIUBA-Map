@@ -28,12 +28,13 @@ const Header = (props) => {
   const reallysmallmobile = size.width < 420;
   return (
     <Flex
-      height="4em"
+      height="fit-content"
+      minHeight="4em"
       zIndex={11}
       align="center"
       justify="space-between"
       bg={useColorModeValue("headerbg", "headerbgdark")}
-      padding="0.8em"
+      padding={mobile ? "0.4em" : "0.8em"}
     >
       {displayedNode && <MateriaMenu displayedNode={displayedNode} />}
       <ScaleFade in={!displayedNode}>
