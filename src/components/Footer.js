@@ -148,8 +148,8 @@ const Footer = () => {
                 </Box>
               </PopoverTrigger>
             </LightMode>
-            <PopoverContent width="fit-content">
-              <PopoverArrow />
+            <PopoverContent borderColor="electivas.500" width="fit-content">
+              <PopoverArrow bg="electivas.500" />
               <PopoverBody>
                 { stats.creditosTotales > 38 &&
                   <Flex fontSize="md"justifyContent="space-between">
@@ -233,8 +233,8 @@ const Footer = () => {
                     </Box>
                   </PopoverTrigger>
                 </LightMode>
-                <PopoverContent>
-                  <PopoverArrow />
+                <PopoverContent borderColor="electivas.500">
+                  <PopoverArrow bg="electivas.500" />
                   <PopoverHeader border="none">
                     <Text><strong>{c.nombre}</strong></Text>
                     <Text>{c.nmaterias > 1 && <strong>({c.nmaterias} aprobadas)</strong>}</Text>
@@ -332,8 +332,8 @@ const Footer = () => {
               </Box>
             </PopoverTrigger>
           </LightMode>
-          <PopoverContent>
-            <PopoverArrow />
+          <PopoverContent borderColor="electivas.500">
+            <PopoverArrow bg="electivas.500" />
             <PopoverBody>
               <Flex justifyContent="space-between" alignItems="center">
                 <Text fontSize="md">
