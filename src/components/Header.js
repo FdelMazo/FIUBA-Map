@@ -25,6 +25,7 @@ const Header = (props) => {
   const { user } = React.useContext(UserContext);
   const size = useWindowSize();
   const mobile = size.width < 750;
+  const reallysmallmobile = size.width < 420;
   return (
     <Flex
       height="4em"
@@ -46,14 +47,14 @@ const Header = (props) => {
             _expanded={{ borderColor: "blue.400" }}
             _focus={{ borderColor: "blue.400" }}
             px={4}
-            py={2}
+            py={reallysmallmobile ? 1 : 2}
             color="white"
             borderColor="white"
             borderRadius="md"
             borderWidth="1px"
           >
             {mobile ? user.carrera?.nombrecorto : user.carrera?.nombre}
-            <ChevronDownIcon ml={2} />
+            {!reallysmallmobile && <ChevronDownIcon ml={2} />}
           </MenuButton>
 
           <MenuList>

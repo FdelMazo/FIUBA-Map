@@ -359,7 +359,7 @@ export const CARRERAS = [
     link: "https://www.fi.uba.ar/grado/carreras/lic-en-analisis-de-sistemas/plan-de-estudios",
     graph: data.sistemasviejo,
     nombre: "Licenciatura en Análisis de Sistemas (1986)",
-    nombrecorto: "Sistemas (1986)",
+    nombrecorto: "Sistemas 1986",
     creditos: {
       total: 208,
       obligatorias: 130,
