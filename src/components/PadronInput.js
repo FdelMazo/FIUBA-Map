@@ -115,6 +115,7 @@ const PadronInput = (props) => {
                 name="padron"
                 placeholder="Padrón"
                 value={user.padron || padronInput}
+                autoFocus={true}
                 onChange={(e) => setPadronInput(e.target.value)}
                 isDisabled={loading}
               />
