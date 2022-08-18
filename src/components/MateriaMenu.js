@@ -240,7 +240,7 @@ const MateriaMenu = (props) => {
           <>
             {!getNode(displayedNode).cuatrimestre ?
               (
-                <Tooltip closeOnClick hasArrow label="Pleaner Cuatrimestre">
+                <Tooltip closeOnClick hasArrow label="Planear Cuatrimestre">
                   <Button
                     _hover={{
                       backgroundColor: "transparent",
