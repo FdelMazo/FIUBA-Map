@@ -35,6 +35,9 @@ const MateriaMenu = (props) => {
   const size = useWindowSize();
   const mobile = size.width < 750;
 
+  const reposCodigo = displayedNode.replace('.', '')
+  const repos = fiubaRepos.find(materia => materia.codigos.includes(reposCodigo))
+
   const flechitas = React.useCallback(
     (event) => {
       const node = getNode(displayedNode)
@@ -348,12 +351,12 @@ const MateriaMenu = (props) => {
           </>
         )}
 
-        {!mobile && fiubaRepos.find(materia => materia.codigos.includes(displayedNode.replace('.', ''))) && (
+        {!mobile && repos && (
           <>
             <Tooltip closeOnClick hasArrow label={
               <Box textAlign="center">
                 <Text>
-                  Chusmeá los {fiubaRepos.find(materia => materia.codigos.includes(displayedNode.replace('.', ''))).reponames.size} FIUBA-Repos
+                  Chusmeá {repos.reponames.size === 1 ? 'el FIUBA-Repo' : `los ${repos.reponames.size} FIUBA-Repos`}
                 </Text>
                 <Text>
                   de esta materia!
@@ -365,7 +368,7 @@ const MateriaMenu = (props) => {
                 isExternal
                 ml={8}
                 color="white"
-                href="https://fede.dm/FIUBA-Repos/"
+                href={`https://fede.dm/FIUBA-Repos?c=${reposCodigo}`}
               >
 
                 <Icon boxSize={5} viewBox="0 0 16 16">
