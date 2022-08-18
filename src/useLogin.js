@@ -254,21 +254,32 @@ const useLogin = () => {
       r.topics.filter(t => t.match(/^\d\d\d\d$/))
     ))]
 
-    setFiubaRepos(codigosMaterias.filter(c => ALIAS_MATERIAS[c]).reduce((acc, c) => {
+    let allMaterias = Object.keys(ALIAS_MATERIAS).reduce((acc, c) => {
       const nombre = ALIAS_MATERIAS[c];
       let m = acc.find(mx => mx.nombre === nombre)
       if (m) {
-        m.reponames = new Set([...m.reponames, ...items.filter(r => r.topics.includes(c)).map(r => r.full_name)])
         m.codigos.push(c)
       } else {
         acc.push({
           codigos: [c],
           nombre,
-          reponames: new Set(items.filter(r => r.topics.includes(c)).map(r => r.full_name))
         })
       }
       return acc;
-    }, []))
+    }, [])
+
+    codigosMaterias.forEach(c => {
+      const materia = allMaterias.find(m => m.codigos.includes(c))
+      if (!materia) return;
+      if (materia.reponames) {
+        materia.reponames = new Set([...materia.reponames, ...items.filter(r => r.topics.includes(c)).map(r => r.full_name)])
+      } else {
+        materia['reponames'] = new Set(items.filter(r => r.topics.includes(c)).map(r => r.full_name))
+      }
+    })
+
+    const processedMaterias = allMaterias.filter(m => m.reponames?.size > 0);
+    setFiubaRepos(processedMaterias)
   };
 
 
