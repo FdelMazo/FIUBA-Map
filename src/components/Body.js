@@ -168,15 +168,15 @@ const Body = (props) => {
     hoverNode: (e) => {
       const id = e.node;
       if (network.getSelectedNodes().length) {
-        unblurAll()
+        return
       }
       blurOthers(id)
     },
     blurNode: (e) => {
-      unblurAll()
       if (network.getSelectedNodes().length) {
-        blurOthers(network.getSelectedNodes()[0])
+        return
       }
+      unblurAll()
     },
     selectNode: (e) => {
       const id = e.nodes[0];
