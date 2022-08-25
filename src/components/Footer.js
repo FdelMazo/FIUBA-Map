@@ -138,9 +138,20 @@ const Footer = () => {
           <Popover placement="top" trigger="hover">
             <LightMode>
               <PopoverTrigger>
-                <Box w="12ch">
+                <Box w="14ch">
                   <Stat p="0.4em" color="white" size="sm">
-                    <StatLabel>Créditos</StatLabel>
+                    <StatLabel>
+                      Créditos
+                      <Badge
+                        ml={"4px"}
+                        colorScheme="green"
+                        variant="outline"
+                      >
+                        {Math.round(
+                          (stats.creditosTotales / user.carrera?.creditos.total) * 100
+                        ) + "%"}
+                      </Badge>
+                    </StatLabel>
                     <StatNumber>
                       {stats.creditosTotales + " de " + user.carrera?.creditos.total}
                     </StatNumber>
@@ -169,7 +180,6 @@ const Footer = () => {
         </Box>
         <Grid
           flexGrow={1}
-          mx={5}
           columns={creditos.length}
           templateColumns="repeat(10, 1fr)"
         >
