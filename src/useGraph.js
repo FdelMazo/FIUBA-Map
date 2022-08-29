@@ -662,7 +662,9 @@ const useGraph = (loginHook) => {
         "Materias Electivas",
         ...graph.groups,
       ];
-
+      if (nodeA.creditos && nodeB.creditos && nodeA.group === nodeB.group) {
+        return nodeB.creditos - nodeA.creditos;
+      }
       return groupOrder.indexOf(nodeA.group) - groupOrder.indexOf(nodeB.group);
     };
 
