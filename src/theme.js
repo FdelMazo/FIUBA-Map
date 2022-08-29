@@ -14,6 +14,7 @@ export const COLORS = {
     50: "#DCC0F7",
     400: "#C597F1",
     500: "#AF6FEC",
+    600: "#821EE1",
   },
   aprobadas: {
     50: "#C1F5DB",
