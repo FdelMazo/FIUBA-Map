@@ -155,7 +155,7 @@ const Footer = () => {
             <PopoverContent borderColor="electivas.500" width="fit-content">
               <PopoverArrow bg="electivas.500" />
               <PopoverHeader border="none">
-                <Flex>
+                <Flex justifyContent="space-between">
                   <Tooltip
                     placement="top"
                     hasArrow
