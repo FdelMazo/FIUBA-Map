@@ -33,6 +33,7 @@ import {
   PopoverTrigger,
   Progress,
   Stat,
+  StatHelpText,
   StatLabel,
   StatNumber,
   Text,
@@ -284,11 +285,27 @@ const Footer = () => {
                 <PopoverContent borderColor="electivas.500">
                   <PopoverArrow bg="electivas.500" />
                   <PopoverHeader border="none">
-                    <Text><strong>{c.nombre}</strong></Text>
-                    <Text>{c.nmaterias > 1 && <strong>({c.nmaterias} aprobadas)</strong>}</Text>
+                    <Stat size="sm">
+                      <StatLabel><strong>{c.nombre}</strong></StatLabel>
+                      {!c.checkbox && (
+                        <>
+                          <StatNumber fontWeight="normal" fontSize="larger">{c.creditos}{!!c.creditosNecesarios && ` de ${c.creditosNecesarios} `} créditos</StatNumber>
+                          {!c.creditosNecesarios &&
+                            <StatHelpText fontSize="smaller">
+                              Elegí {user.carrera.eligeOrientaciones && !user.orientacion ? "orientación" : ""}
+                              {user.carrera.eligeOrientaciones && !user.orientacion && !user.finDeCarrera ? " y " : ""}
+                              {!user.finDeCarrera ? "entre tesis y tpp" : ""} para saber cuantos necesitás.
+                            </StatHelpText>
+                          }
+                          <>
+                            {!!c.nmaterias && <StatHelpText fontSize="smaller">({c.nmaterias} {c.nmaterias === 1 ? 'materia aprobada' : 'materias aprobadas'})</StatHelpText>}
+                          </>
+                        </>
+                      )}
+                    </Stat>
                   </PopoverHeader>
-                  <PopoverBody>
-                    {c.checkbox ? (
+                  {!!c.checkbox && (
+                    <PopoverBody>
                       <LightMode>
                         <Checkbox
                           isIndeterminate={!!!c.check}
@@ -302,23 +319,7 @@ const Footer = () => {
                           Marcar como completo
                         </Checkbox>
                       </LightMode>
-                    ) : c.creditosNecesarios ? (
-                      `${c.creditos} de ${c.creditosNecesarios} créditos necesarios`
-                    ) : (
-                      `Tenés ${c.creditos} créditos.
-                      Elegí ${user.carrera.eligeOrientaciones &&
-                        !user.orientacion
-                        ? "orientación"
-                        : ""
-                      }${user.carrera.eligeOrientaciones &&
-                        !user.orientacion &&
-                        !user.finDeCarrera
-                        ? " y "
-                        : ""
-                      }${!user.finDeCarrera ? "entre tesis y tpp" : ""
-                      } para saber cuantos necesitás`
-                    )}
-                  </PopoverBody>
+                    </PopoverBody>)}
                 </PopoverContent>
               </Popover>
             </GridItem>

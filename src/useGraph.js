@@ -358,6 +358,11 @@ const useGraph = (loginHook) => {
           fields: ["creditos"],
         })
         .reduce(accumulator, 0),
+      nmaterias: nodes.get({
+        filter: (n) =>
+          n.categoria === "*CBC",
+        fields: ["creditos"],
+      }).length,
     });
 
     creditos.push({
@@ -385,8 +390,7 @@ const useGraph = (loginHook) => {
     });
 
     creditos.push({
-      nombre: `Materias Electivas${user.finDeCarrera ? ` (eligiendo ${user.finDeCarrera.id})` : ""
-        }`,
+      nombre: "Materias Electivas",
       nombrecorto: "Electivas",
       color: "electivas",
       bg: COLORS.electivas[50],
