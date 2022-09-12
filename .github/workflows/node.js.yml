@@ -1,23 +1,13 @@
-# Basic github action to deploy the site. Runs npm ci (similar to npm install but for ci environments) and then runs npm run build.
-name: npm CI
+name: Build & Deploy to Github Pages
 
 on:
   push:
     branches: [master]
 
 jobs:
-  build:
+  node-to-gh:
     runs-on: ubuntu-latest
+    name: Build & Deploy to Github Pages
     steps:
-      - uses: actions/checkout@v2
-      - run: npm ci
-      - run: npm run build --if-present
-      - name: Add & Commit
-        uses: EndBug/add-and-commit@v8.0.2
-        with:
-          default_author: github_actions
-          message: "Builds site w/gh actions [auto]"
-
-        env:
-          # This is necessary in order to push a commit to the repo
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
+      - id: node-to-gh
+        uses: fdelmazo/node-to-gh-action@v1

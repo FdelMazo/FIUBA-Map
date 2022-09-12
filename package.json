@@ -19,8 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "eject": "react-scripts eject",
-    "postbuild": "rm -rf docs && mv build/ docs/"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
