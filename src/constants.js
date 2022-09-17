@@ -41,6 +41,64 @@ export const SHEETS = {
 
 export const KEY = "AIzaSyA9snz4CXDq_K8fJeUXkRtRZAQM90HTFp4";
 
+const drawFinDeCarrera = ({
+  ctx,
+  id,
+  x,
+  y,
+  state: { selected, hover },
+  style,
+  label
+}) => {
+  let r = style.size;
+  const drawNode = () => {
+    if (selected || hover) {
+      r += 3
+    }
+    ctx.beginPath();
+    const sides = 4;
+    const a = (Math.PI * 2) / sides;
+    ctx.moveTo(x, y + r);
+    for (let i = 1; i < sides; i++) {
+      ctx.lineTo(x + r * Math.sin(a * i), y + r * Math.cos(a * i));
+    }
+    ctx.closePath();
+    ctx.save();
+
+    ctx.fillStyle = style.color;
+    ctx.strokeStyle = selected || hover ? 'black' : 'gray';
+    ctx.lineWidth = selected || hover ? 3 : 2;
+    ctx.globalAlpha = style.opacity
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+
+    ctx.textAlign = 'center'
+    const lines = label.split('\n')
+    const lineheight = 13;
+    let mid = lines.length / 2;
+    let fontSize = 12
+    let maxLineWidth = 0
+    for (let i = 0; i < lines.length; i++) {
+      if (ctx.measureText(lines[i]).width > maxLineWidth) {
+        maxLineWidth = ctx.measureText(lines[i]).width
+      }
+    }
+    if (maxLineWidth > r * 1.5) {
+      fontSize -= 1
+    }
+    let boldness = selected || hover ? 'bold' : '500'
+    ctx.font = `${boldness} ${fontSize}px arial`
+    ctx.fillStyle = selected || hover ? 'black' : '';
+    for (let i = 0; i < lines.length; i++) {
+      ctx.fillText(lines[i], x, y + ((i + 0.5 - mid) * lineheight))
+    }
+  };
+  return {
+    drawNode,
+  };
+}
+
 export const GRUPOS = {
   Aprobadas: { color: COLORS.aprobadas[400] },
   CBC: {
@@ -60,127 +118,15 @@ export const GRUPOS = {
     color: COLORS.findecarrera[400],
     label: "custom",
     shape: "custom",
-    ctxRenderer: ({
-      ctx,
-      id,
-      x,
-      y,
-      state: { selected, hover },
-      style,
-      label
-    }) => {
-      let r = style.size;
-      const drawNode = () => {
-        if (selected || hover) {
-          r += 3
-        }
-        ctx.beginPath();
-        const sides = 4;
-        const a = (Math.PI * 2) / sides;
-        ctx.moveTo(x, y + r);
-        for (let i = 1; i < sides; i++) {
-          ctx.lineTo(x + r * Math.sin(a * i), y + r * Math.cos(a * i));
-        }
-        ctx.closePath();
-        ctx.save();
-
-        ctx.fillStyle = style.color;
-        ctx.strokeStyle = selected || hover ? 'black' : 'gray';
-        ctx.lineWidth = selected || hover ? 3 : 2;
-        ctx.globalAlpha = style.opacity
-        ctx.fill();
-        ctx.stroke();
-        ctx.restore();
-
-        ctx.textAlign = 'center'
-        const lines = label.split('\n')
-        const lineheight = 13;
-        let mid = lines.length / 2;
-        let fontSize = 12
-        let maxLineWidth = 0
-        for (let i = 0; i < lines.length; i++) {
-          if (ctx.measureText(lines[i]).width > maxLineWidth) {
-            maxLineWidth = ctx.measureText(lines[i]).width
-          }
-        }
-        if (maxLineWidth > r * 1.5) {
-          fontSize -= 1
-        }
-        let boldness = selected || hover ? 'bold' : '500'
-        ctx.font = `${boldness} ${fontSize}px arial`
-        ctx.fillStyle = selected || hover ? 'black' : '';
-        for (let i = 0; i < lines.length; i++) {
-          ctx.fillText(lines[i], x, y + ((i + 0.5 - mid) * lineheight))
-        }
-      };
-      return {
-        drawNode,
-      };
-    },
     size: 60,
+    ctxRenderer: drawFinDeCarrera,
   },
   "Fin de Carrera (Obligatorio)": {
     color: COLORS.findecarrera[400],
     label: "custom",
     shape: "custom",
-    ctxRenderer: ({
-      ctx,
-      id,
-      x,
-      y,
-      state: { selected, hover },
-      style,
-      label
-    }) => {
-      let r = style.size;
-      const drawNode = () => {
-        if (selected || hover) {
-          r += 3
-        }
-        ctx.beginPath();
-        const sides = 4;
-        const a = (Math.PI * 2) / sides;
-        ctx.moveTo(x, y + r);
-        for (let i = 1; i < sides; i++) {
-          ctx.lineTo(x + r * Math.sin(a * i), y + r * Math.cos(a * i));
-        }
-        ctx.closePath();
-        ctx.save();
-
-        ctx.fillStyle = style.color;
-        ctx.strokeStyle = selected || hover ? 'black' : 'gray';
-        ctx.lineWidth = selected || hover ? 3 : 2;
-        ctx.globalAlpha = style.opacity
-        ctx.fill();
-        ctx.stroke();
-        ctx.restore();
-
-        ctx.textAlign = 'center'
-        const lines = label.split('\n')
-        const lineheight = 13;
-        let mid = lines.length / 2;
-        let fontSize = 12
-        let maxLineWidth = 0
-        for (let i = 0; i < lines.length; i++) {
-          if (ctx.measureText(lines[i]).width > maxLineWidth) {
-            maxLineWidth = ctx.measureText(lines[i]).width
-          }
-        }
-        if (maxLineWidth > r * 1.5) {
-          fontSize -= 1
-        }
-        let boldness = selected || hover ? 'bold' : '500'
-        ctx.font = `${boldness} ${fontSize}px arial`
-        ctx.fillStyle = selected || hover ? 'black' : '';
-        for (let i = 0; i < lines.length; i++) {
-          ctx.fillText(lines[i], x, y + ((i + 0.5 - mid) * lineheight))
-        }
-      };
-      return {
-        drawNode,
-      };
-    },
     size: 60,
+    ctxRenderer: drawFinDeCarrera,
   },
   ...CARRERAS.filter((c) => c.orientaciones)
     .flatMap((c) => c.orientaciones)
