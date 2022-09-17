@@ -23,8 +23,8 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 import React from "react";
-import { GraphContext, UserContext } from "../Contexts";
-import useWindowSize from "./useWindowSize";
+import { GraphContext, UserContext } from "../../Contexts";
+import useWindowSize from "../useWindowSize";
 
 const MateriaMenu = (props) => {
   const { displayedNode } = props;
@@ -123,10 +123,10 @@ const MateriaMenu = (props) => {
         ) : (
           <Stat alignSelf="flex-end" mx={3} color="white">
             <StatLabel>[{getNode(displayedNode)?.id}]</StatLabel>
-              <StatHelpText isTruncated width={"30ch"}>
-                {getNode(displayedNode)?.materia}
-              </StatHelpText>
-            </Stat>
+            <StatHelpText isTruncated width={"30ch"}>
+              {getNode(displayedNode)?.materia}
+            </StatHelpText>
+          </Stat>
         )}
 
         <Flex borderRadius={6} border="2px solid white" alignItems="center" height={"75%"}>

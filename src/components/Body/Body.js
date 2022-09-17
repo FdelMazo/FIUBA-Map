@@ -33,8 +33,8 @@ import React, { useEffect, useRef } from "react";
 import Graph from "react-graph-vis";
 import Snowfall from "react-snowfall";
 import useResizeObserver from "use-resize-observer";
-import * as C from "../constants";
-import { GraphContext, UserContext } from "../Contexts";
+import * as C from "../../constants";
+import { GraphContext, UserContext } from "../../Contexts";
 import CategoryTagStack from "./CategoryTagStack";
 import LoadingGraph from "./LoadingGraph";
 import { Fireworks } from 'fireworks-js/dist/react'

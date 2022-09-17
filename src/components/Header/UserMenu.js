@@ -9,7 +9,7 @@ import {
   MenuOptionGroup,
 } from "@chakra-ui/react";
 import React from "react";
-import { GraphContext, UserContext } from "../Contexts";
+import { GraphContext, UserContext } from "../../Contexts";
 
 const UserMenu = (props) => {
   const { logout, user } = React.useContext(UserContext);

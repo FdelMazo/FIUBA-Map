@@ -13,11 +13,11 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
-import CARRERAS from "../carreras";
-import { GraphContext, UserContext } from "../Contexts";
+import CARRERAS from "../../carreras";
+import { GraphContext, UserContext } from "../../Contexts";
 import MateriaMenu from "./MateriaMenu";
 import PadronInput from "./PadronInput";
-import useWindowSize from "./useWindowSize";
+import useWindowSize from "../useWindowSize";
 
 const Header = (props) => {
   const { displayedNode } = props;

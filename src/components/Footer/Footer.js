@@ -42,8 +42,8 @@ import {
   useEditableControls,
 } from "@chakra-ui/react";
 import React from "react";
-import { GraphContext, UserContext } from "../Contexts";
-import useWindowSize from "./useWindowSize";
+import { GraphContext, UserContext } from "../../Contexts";
+import useWindowSize from "../useWindowSize";
 
 const Footer = () => {
   const { logged, user } = React.useContext(UserContext);
@@ -106,9 +106,9 @@ const Footer = () => {
             />
           </Tooltip>
         ) : (
-            <Tooltip placement="top" label="Editar" hasArrow>
-              <IconButton size="sm" icon={<EditIcon />} {...getEditButtonProps()} />
-            </Tooltip>
+          <Tooltip placement="top" label="Editar" hasArrow>
+            <IconButton size="sm" icon={<EditIcon />} {...getEditButtonProps()} />
+          </Tooltip>
         )}
 
         {!isEditing && <Tooltip placement="top" label="Eliminar" hasArrow>

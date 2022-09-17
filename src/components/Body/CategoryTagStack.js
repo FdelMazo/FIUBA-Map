@@ -9,23 +9,23 @@ import {
 import React from "react";
 import { BiCircle } from "react-icons/bi";
 import { RiFocus2Line, RiFocusLine } from "react-icons/ri";
-import * as C from "../constants";
-import { GraphContext } from "../Contexts";
+import * as C from "../../constants";
+import { GraphContext } from "../../Contexts";
 
 const CategoryTagStack = (props) => {
   const { toggleGroup, groupStatus, nodes } = React.useContext(GraphContext);
   const [key, setKey] = React.useState(false);
   const categorias = nodes
     ? nodes
-        .distinct("categoria")
-        .filter(
-          (c) =>
-            c !== "CBC" &&
-            c !== "*CBC" &&
-            c !== "Materias Obligatorias" &&
-            c !== "Fin de Carrera (Obligatorio)" &&
-            c !== "Fin de Carrera"
-        )
+      .distinct("categoria")
+      .filter(
+        (c) =>
+          c !== "CBC" &&
+          c !== "*CBC" &&
+          c !== "Materias Obligatorias" &&
+          c !== "Fin de Carrera (Obligatorio)" &&
+          c !== "Fin de Carrera"
+      )
     : [];
 
   const electivasIndex = categorias.indexOf("Materias Electivas");
