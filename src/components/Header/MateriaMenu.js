@@ -32,8 +32,7 @@ const MateriaMenu = (props) => {
     React.useContext(UserContext);
   const { getNode, aprobar, desaprobar, cursando, getCurrentCuatri } =
     React.useContext(GraphContext);
-  const size = useWindowSize();
-  const mobile = size.width < 750;
+  const { isMobile } = useWindowSize();
 
   const reposCodigo = displayedNode.replace('.', '')
   const repos = fiubaRepos.find(materia => materia.codigos.includes(reposCodigo))
@@ -117,8 +116,8 @@ const MateriaMenu = (props) => {
 
   return (
     <>
-      <Flex width={mobile ? "100%" : "undefined"} alignItems="center" justifyContent="space-around" flexWrap="wrap">
-        {mobile ? (
+      <Flex width={isMobile ? "100%" : "undefined"} alignItems="center" justifyContent="space-around" flexWrap="wrap">
+        {isMobile ? (
           <Text textAlign="center" alignSelf="flex-end" m={2} isTruncated width={"100%"} color="white"><strong>[{getNode(displayedNode)?.id}]</strong> {getNode(displayedNode)?.materia}</Text>
         ) : (
           <Stat alignSelf="flex-end" mx={3} color="white">
@@ -351,7 +350,7 @@ const MateriaMenu = (props) => {
           </>
         )}
 
-        {!mobile && repos && (
+        {!isMobile && repos && (
           <>
             <Tooltip closeOnClick hasArrow label={
               <Box textAlign="center">

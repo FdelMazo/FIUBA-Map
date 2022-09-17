@@ -62,8 +62,7 @@ const Footer = () => {
     removeOptativa,
     loadingGraph
   } = React.useContext(GraphContext);
-  const size = useWindowSize();
-  const mobile = size.width < 750;
+  const { isMobile } = useWindowSize();
 
   function EditableControls(props) {
     const { isEditing, getSubmitButtonProps, getEditButtonProps } =
@@ -257,7 +256,7 @@ const Footer = () => {
                               ) || 0) + "%"}
                           </Badge>
                         )}
-                        {!mobile && (
+                        {!isMobile && (
                           <Badge
                             fontSize="x-small"
                             ml={1}

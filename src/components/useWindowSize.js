@@ -7,9 +7,10 @@ export default function useWindowSize() {
 
   const [windowSize, setWindowSize] = useState({
     width: undefined,
-
     height: undefined,
   });
+  const [isMobile, setIsMobile] = useState(false);
+  const [isSmallMobile, setIsSmallMobile] = useState(false);
 
   useEffect(() => {
     // Handler to call on window resize
@@ -19,9 +20,10 @@ export default function useWindowSize() {
 
       setWindowSize({
         width: window.innerWidth,
-
         height: window.innerHeight,
       });
+      setIsMobile(window.innerWidth < 750);
+      setIsSmallMobile(window.innerWidth < 420);
     }
 
     // Add event listener
@@ -37,5 +39,5 @@ export default function useWindowSize() {
     return () => window.removeEventListener("resize", handleResize);
   }, []); // Empty array ensures that effect is only run on mount
 
-  return windowSize;
+  return { windowSize, isMobile, isSmallMobile };
 }
