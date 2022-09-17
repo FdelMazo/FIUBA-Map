@@ -5,7 +5,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../../Contexts";
-import MateriaMenu from "./MateriaMenu";
+import MateriaDisplay from "./MateriaDisplay";
 import PadronInput from "./PadronInput";
 import useWindowSize from "../useWindowSize";
 import DropdownCarreras from "./DropdownCarreras";
@@ -27,7 +27,7 @@ const Header = () => {
       px={isMobile ? "0.4em" : "0.8em"}
       py={1}
     >
-      {displayedNode && <MateriaMenu />}
+      {displayedNode && <MateriaDisplay />}
 
       <ScaleFade in={!displayedNode}>
         {logged ? (
