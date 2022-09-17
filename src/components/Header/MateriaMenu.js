@@ -26,11 +26,10 @@ import React from "react";
 import { GraphContext, UserContext } from "../../Contexts";
 import useWindowSize from "../useWindowSize";
 
-const MateriaMenu = (props) => {
-  const { displayedNode } = props;
+const MateriaMenu = () => {
   const { fiubaRepos } =
     React.useContext(UserContext);
-  const { getNode, aprobar, desaprobar, cursando, getCurrentCuatri } =
+  const { getNode, aprobar, displayedNode, desaprobar, cursando, getCurrentCuatri } =
     React.useContext(GraphContext);
   const { isMobile } = useWindowSize();
 

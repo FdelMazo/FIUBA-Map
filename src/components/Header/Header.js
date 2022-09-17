@@ -4,15 +4,18 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
-import { GraphContext } from "../../Contexts";
+import { GraphContext, UserContext } from "../../Contexts";
 import MateriaMenu from "./MateriaMenu";
 import PadronInput from "./PadronInput";
 import useWindowSize from "../useWindowSize";
 import DropdownCarreras from "./DropdownCarreras";
+import UserMenu from "./UserMenu";
 
 const Header = () => {
   const { displayedNode } = React.useContext(GraphContext);
   const { isMobile } = useWindowSize();
+
+  const { logged } = React.useContext(UserContext);
   return (
     <Flex
       height="fit-content"
@@ -24,9 +27,14 @@ const Header = () => {
       px={isMobile ? "0.4em" : "0.8em"}
       py={1}
     >
-      {displayedNode && <MateriaMenu displayedNode={displayedNode} />}
+      {displayedNode && <MateriaMenu />}
+
       <ScaleFade in={!displayedNode}>
-        <PadronInput displayedNode={displayedNode} />
+        {logged ? (
+          <UserMenu />
+        ) : (
+          <PadronInput />
+        )}
       </ScaleFade>
 
       <ScaleFade in={!displayedNode} unmountOnExit>
