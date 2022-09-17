@@ -12,7 +12,7 @@ import { RiFocus2Line, RiFocusLine } from "react-icons/ri";
 import * as C from "../../constants";
 import { GraphContext } from "../../Contexts";
 
-const CategoryTagStack = (props) => {
+const CategoryTagStack = () => {
   const { toggleGroup, groupStatus, nodes } = React.useContext(GraphContext);
   const [key, setKey] = React.useState(false);
   const categorias = nodes

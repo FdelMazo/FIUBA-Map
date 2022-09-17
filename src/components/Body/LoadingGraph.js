@@ -17,7 +17,7 @@ const injectStyle = (style) => {
   styleSheet.insertRule(style, styleSheet.cssRules.length);
 };
 
-const LoadingGraph = (props) => {
+const LoadingGraph = () => {
   const keyframesStyle = `
       @keyframes sk-rotateplane {
         0% {
