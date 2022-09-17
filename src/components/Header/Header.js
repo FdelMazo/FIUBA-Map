@@ -19,9 +19,8 @@ import MateriaMenu from "./MateriaMenu";
 import PadronInput from "./PadronInput";
 import useWindowSize from "../useWindowSize";
 
-const Header = (props) => {
-  const { displayedNode } = props;
-  const { changeCarrera, setFirstTime } = React.useContext(GraphContext);
+const Header = () => {
+  const { changeCarrera, setFirstTime, displayedNode } = React.useContext(GraphContext);
   const { user } = React.useContext(UserContext);
   const size = useWindowSize();
   const mobile = size.width < 750;

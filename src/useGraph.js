@@ -15,6 +15,7 @@ const useGraph = (loginHook) => {
   const [network, setNetwork] = React.useState(null);
   const [nodes, setNodes] = React.useState(null);
   const [edges, setEdges] = React.useState(null);
+  const [displayedNode, setDisplayedNode] = React.useState("");
   const [graph, setGraph] = React.useState(graphObj);
   const [promedio, setPromedio] = React.useState(0);
   const [creditos, setCreditos] = React.useState([]);
@@ -824,6 +825,8 @@ const useGraph = (loginHook) => {
     setAplazos,
     openCBC,
     getCurrentCuatri,
+    displayedNode,
+    setDisplayedNode,
   };
 };
 

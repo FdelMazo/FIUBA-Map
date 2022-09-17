@@ -39,7 +39,7 @@ import CategoryTagStack from "./CategoryTagStack";
 import LoadingGraph from "./LoadingGraph";
 import { Fireworks } from 'fireworks-js/dist/react'
 
-const Body = (props) => {
+const Body = () => {
   const {
     graph,
     aprobar,
@@ -55,9 +55,9 @@ const Body = (props) => {
     openCBC,
     stats,
     nodes,
+    setDisplayedNode
   } = React.useContext(GraphContext);
   const { user, logged, submitBug } = React.useContext(UserContext);
-  const { setDisplayedNode } = props;
   const toast = useToast();
   const bugToast = React.useRef();
   const [showGracias, setShowGracias] = React.useState(false);

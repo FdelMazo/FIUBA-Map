@@ -5,12 +5,10 @@ import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
 
 const MainApp = () => {
-  const [displayedNode, setDisplayedNode] = React.useState("");
-
   return (
     <Flex direction="column" h="100vh">
-      <Header displayedNode={displayedNode} />
-      <Body setDisplayedNode={setDisplayedNode} />
+      <Header />
+      <Body />
       <Footer />
     </Flex>
   );
