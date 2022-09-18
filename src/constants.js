@@ -39,7 +39,7 @@ export const SHEETS = {
   registros: "registros",
 };
 
-export const KEY = "AIzaSyA9snz4CXDq_K8fJeUXkRtRZAQM90HTFp4";
+export const KEY = process.env.REACT_APP_FEDE_KEY || "AIzaSyA9snz4CXDq_K8fJeUXkRtRZAQM90HTFp4";
 
 const drawFinDeCarrera = ({
   ctx,
