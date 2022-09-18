@@ -1,4 +1,4 @@
-export default {
+const alias = {
     "6103": "Análisis Matemático II",
     "6106": "Probabilidad y Estadística",
     "6107": "Matemática Discreta",
@@ -669,3 +669,5 @@ export default {
     "9705": "Gestion Ambiental",
     "9708": "Gestión Ambiental para Ingeniería en Petróleo",
 }
+
+export default alias

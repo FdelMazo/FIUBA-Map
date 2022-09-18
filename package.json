@@ -3,17 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@chakra-ui/icons": "^1.0.1",
-    "@chakra-ui/react": "^1.8.6",
-    "@emotion/react": "^11.0.0",
-    "@emotion/styled": "^11.0.0",
-    "framer-motion": "^4.1.17",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "@chakra-ui/icons": "^2.0.9",
+    "@chakra-ui/react": "^2.3.2",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "fireworks-js": "^1.3.5",
+    "framer-motion": "^6.5.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-graph-vis": "^1.0.7",
     "react-icons": "^4.3.1",
-    "react-scripts": "^3.4.3",
-    "react-snowfall": "^1.1.1"
+    "react-scripts": "^5.0.1",
+    "react-snowfall": "^1.1.1",
+    "use-resize-observer": "^9.0.2"
   },
   "homepage": "https://fede.dm/FIUBA-Map",
   "scripts": {
@@ -35,9 +37,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "fireworks-js": "^1.3.5",
-    "use-resize-observer": "^7.0.0"
   }
 }
