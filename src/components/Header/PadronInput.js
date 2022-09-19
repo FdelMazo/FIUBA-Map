@@ -2,6 +2,7 @@ import { CheckCircleIcon } from "@chakra-ui/icons";
 import {
   Button,
   Input,
+  Tooltip,
 } from "@chakra-ui/react";
 import React from "react";
 import { UserContext } from "../../Contexts";
@@ -44,7 +45,7 @@ const PadronInput = () => {
             color: "LightGray",
           },
         }}
-        borderRadius={4}
+        borderRadius={"md"}
         size="sm"
         w="20ch"
         borderColor="white"
@@ -58,20 +59,29 @@ const PadronInput = () => {
         isDisabled={loading}
       />
 
-      <Button
-        colorScheme={showRegisterButton ? "red" : "whiteAlpha"}
-        color="white"
-        variant={showRegisterButton ? "solid" : "outline"}
-        size="sm"
-        title={!showRegisterButton && "Ingresar"}
-        px={showRegisterButton && 7}
-        mx={2}
-        isLoading={loading}
-        isDisabled={padronInput === ""}
-        type="submit"
-      >
-        {showRegisterButton ? "Registrarse" : <CheckCircleIcon />}
-      </Button>
+      <Tooltip closeOnClick hasArrow label={showRegisterButton ? undefined : "Ingresar"} placement="bottom-start">
+        <Button
+          colorScheme={"whiteAlpha"}
+          color="white"
+          variant={"outline"}
+          size="sm"
+          ml={2}
+          px={0}
+          isLoading={loading}
+          isDisabled={padronInput === ""}
+          type="submit"
+          {...(showRegisterButton && {
+            px: 6,
+            title: false,
+            variant: "solid",
+            bg: "red.500",
+            _hover: { bg: "red.600" },
+            size: "sm"
+          })}
+        >
+          {showRegisterButton ? "Registrarse" : <CheckCircleIcon />}
+        </Button>
+      </Tooltip>
     </form>
 
   );
