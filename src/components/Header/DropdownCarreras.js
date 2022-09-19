@@ -10,6 +10,7 @@ import {
     MenuList,
     MenuOptionGroup,
     Tooltip,
+    Box,
 } from "@chakra-ui/react";
 import CARRERAS from "../../carreras";
 import { GraphContext, UserContext } from "../../Contexts";
@@ -20,7 +21,7 @@ const DropdownCarreras = () => {
     const { changeCarrera, setFirstTime } = React.useContext(GraphContext);
     const { isMobile, isSmallMobile } = useWindowSize();
 
-    return (<>
+    return (<Box>
         <Menu placement="bottom-end" isLazy>
             <MenuButton
                 colorScheme="whiteAlpha"
@@ -64,7 +65,7 @@ const DropdownCarreras = () => {
                 </Link>
             </Tooltip>
         )}
-    </>)
+    </Box>)
 }
 
 export default DropdownCarreras;

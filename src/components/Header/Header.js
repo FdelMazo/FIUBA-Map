@@ -1,6 +1,5 @@
 import {
   Flex,
-  ScaleFade,
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
@@ -20,26 +19,27 @@ const Header = () => {
     <Flex
       height="fit-content"
       minHeight="4em"
-      zIndex={11}
       align="center"
       justify="space-between"
       bg={useColorModeValue("headerbg", "headerbgdark")}
-      px={isMobile ? "0.4em" : "0.8em"}
-      py={1}
+      px={4}
+      py={4}
+      gap={2}
+      flexWrap="wrap"
+      justifyContent={isMobile ? "space-around" : "space-between"}
     >
-      {displayedNode && <MateriaDisplay />}
-
-      <ScaleFade in={!displayedNode}>
-        {logged ? (
-          <UserMenu />
-        ) : (
-          <PadronInput />
-        )}
-      </ScaleFade>
-
-      <ScaleFade in={!displayedNode} unmountOnExit>
-        <DropdownCarreras />
-      </ScaleFade>
+      {displayedNode ? (
+        <MateriaDisplay />
+      ) : (
+        <>
+          {logged ? (
+            <UserMenu />
+          ) : (
+            <PadronInput />
+          )}
+            <DropdownCarreras />
+        </>
+      )}
     </Flex>
   );
 };

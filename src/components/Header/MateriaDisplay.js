@@ -1,27 +1,23 @@
-import {
-  Flex,
-} from "@chakra-ui/react";
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { GraphContext } from "../../Contexts";
-import useWindowSize from "../useWindowSize";
 import MateriaControl from "./MateriaControl";
 import MateriaStatus from "./MateriaStatus";
 
-const MateriaMenu = () => {
+const MateriaDisplay = () => {
   const { getNode, aprobar, displayedNode, desaprobar, cursando, getCurrentCuatri } =
     React.useContext(GraphContext);
-  const { isMobile } = useWindowSize();
 
   const flechitas = React.useCallback(
     (event) => {
       const node = getNode(displayedNode)
       if (event.key === "ArrowLeft") {
-        if (getNode(displayedNode).categoria === "*CBC") return
+        if (node.categoria === "*CBC") return
         const prevCuatri = node.cuatrimestre ? node.cuatrimestre - 0.5 : getCurrentCuatri();
         cursando(displayedNode, prevCuatri);
       }
       if (event.key === "ArrowRight") {
-        if (getNode(displayedNode).categoria === "*CBC") return
+        if (node.categoria === "*CBC") return
         const nextCuatri = node.cuatrimestre ? node.cuatrimestre + 0.5 : getCurrentCuatri();
         cursando(displayedNode, nextCuatri);
       }
@@ -45,7 +41,6 @@ const MateriaMenu = () => {
         aprobar(displayedNode, prevNota)
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [displayedNode]
   );
 
@@ -59,7 +54,6 @@ const MateriaMenu = () => {
         aprobar(displayedNode, 10);
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [displayedNode]
   );
 
@@ -73,14 +67,12 @@ const MateriaMenu = () => {
     };
   }, [flechitas, numeros]);
 
-
-
   return (
-    <Flex width={isMobile ? "100%" : "undefined"} alignItems="center" justifyContent="space-around" flexWrap="wrap">
+    <>
       <MateriaStatus />
       <MateriaControl />
-    </Flex>
+    </>
   );
 };
 
-export default MateriaMenu;
+export default MateriaDisplay;

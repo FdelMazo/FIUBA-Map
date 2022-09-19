@@ -11,6 +11,7 @@ import {
   IconButton,
   Tooltip,
   Text,
+  Box,
 } from "@chakra-ui/react";
 import { BiLogOut } from "react-icons/bi";
 import { FaSave, FaUndo } from "react-icons/fa";
@@ -41,14 +42,8 @@ const UserMenu = () => {
 
   const { saveGraph, restartGraph, nodes, setFirstTime, changeOrientacion, changeFinDeCarrera, getNode } = React.useContext(GraphContext);
   return (
-    <>
-      <Menu
-        defaultIsOpen={
-          (user?.carrera?.eligeOrientaciones && !user?.orientacion) ||
-          (user?.carrera?.finDeCarrera && !user?.finDeCarrera)
-        }
-        closeOnSelect={false}
-      >
+    <Box>
+      <Menu closeOnSelect={false}>
         <MenuButton
           w="20ch"
           textAlign="left"
@@ -140,7 +135,7 @@ const UserMenu = () => {
             </IconButton>
           </Tooltip>
         )}
-    </>
+    </Box>
   );
 };
 

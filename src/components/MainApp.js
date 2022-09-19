@@ -6,7 +6,7 @@ import Header from "./Header/Header";
 
 const MainApp = () => {
   return (
-    <Flex direction="column" h="100vh">
+    <Flex direction="column" h="100vh" overflow="hidden">
       <Header />
       <Body />
       <Footer />
