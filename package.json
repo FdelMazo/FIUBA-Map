@@ -14,8 +14,7 @@
     "react-graph-vis": "^1.0.7",
     "react-icons": "^4.3.1",
     "react-scripts": "^5.0.1",
-    "react-snowfall": "^1.1.1",
-    "use-resize-observer": "^9.0.2"
+    "react-snowfall": "^1.1.1"
   },
   "homepage": "https://fede.dm/FIUBA-Map",
   "scripts": {

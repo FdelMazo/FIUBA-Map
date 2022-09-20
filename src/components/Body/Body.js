@@ -4,6 +4,7 @@ import {
   SlideFade,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { useSize } from "@chakra-ui/react-use-size"
 import React, { useEffect, useRef } from "react";
 import Graph from "react-graph-vis";
 import Snowfall from "react-snowfall";
@@ -13,7 +14,6 @@ import CategoryTagStack from "./CategoryTagStack";
 import LoadingGraph from "./LoadingGraph";
 import { Fireworks } from 'fireworks-js/dist/react'
 import Controls from "./Controls";
-import useResizeObserver from "use-resize-observer";
 
 const Body = () => {
   const {
@@ -36,9 +36,8 @@ const Body = () => {
   const { user, logged } = React.useContext(UserContext);
 
   const ref = useRef(null);
-  const { width, height } = useResizeObserver({ ref });
-
-  useEffect(redraw, [width, height]);
+  const dimensions = useSize(ref);
+  useEffect(redraw, [dimensions]);
 
   const blurOthers = (id) => {
     const node = getNode(id)
