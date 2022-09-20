@@ -11,9 +11,7 @@ import Promedio from "./Promedio";
 
 const Footer = () => {
   const { logged, user } = React.useContext(UserContext);
-  const {
-    loadingGraph
-  } = React.useContext(GraphContext);
+  const { loadingGraph } = React.useContext(GraphContext);
 
 
   return (

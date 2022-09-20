@@ -1,6 +1,4 @@
 import {
-  CheckIcon,
-  EditIcon,
   PlusSquareIcon,
   SmallCloseIcon,
 } from "@chakra-ui/icons";
@@ -30,7 +28,6 @@ import {
   Text,
   Tooltip,
   useColorModeValue,
-  useEditableControls,
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../../Contexts";
@@ -44,61 +41,6 @@ const Creditos = () => {
     editOptativa,
     removeOptativa } = React.useContext(GraphContext);
 
-  function EditableControls(props) {
-    const { isEditing, getSubmitButtonProps, getEditButtonProps } =
-      useEditableControls();
-
-    const { defaultValue, optativa } = props;
-    return (
-      <>
-        <Tooltip placement="top" label="Créditos" hasArrow>
-          <NumberInput
-            mr={1}
-            borderRadius={5}
-            size="sm"
-            maxW={isEditing ? 16 : 14}
-            defaultValue={defaultValue}
-            min={1}
-            onChange={(_, creditos) => {
-              if (isNaN(creditos)) return;
-              editOptativa(optativa.id, optativa.nombre, creditos);
-            }}
-            isReadOnly={!isEditing}
-          >
-            <NumberInputField />
-            {isEditing && (
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            )}
-          </NumberInput>
-        </Tooltip>
-
-        {isEditing ? (
-          <Tooltip placement="top" label="Confirmar" hasArrow>
-
-            <IconButton
-              size="sm"
-              icon={<CheckIcon />}
-              {...getSubmitButtonProps()}
-            />
-          </Tooltip>
-        ) : (
-          <Tooltip placement="top" label="Editar" hasArrow>
-            <IconButton size="sm" icon={<EditIcon />} {...getEditButtonProps()} />
-          </Tooltip>
-        )}
-
-        {!isEditing && <Tooltip placement="top" label="Eliminar" hasArrow>
-          <IconButton mx={1} onClick={() => {
-            removeOptativa(optativa.id);
-          }} icon={<SmallCloseIcon />} size="sm" />
-        </Tooltip>}
-      </>
-    );
-  }
-
   return (
     <Box>
       <Popover placement="top" trigger="hover">
@@ -109,7 +51,7 @@ const Creditos = () => {
                 <StatLabel>
                   Créditos
                   <Badge
-                    ml={"4px"}
+                    ml={1}
                     colorScheme="green"
                     variant="outline"
                   >
@@ -152,41 +94,57 @@ const Creditos = () => {
                 }} />
               </Tooltip>
             </Flex>
-
           </PopoverHeader>
 
-          <PopoverBody>
-            {optativas.length > 0 && (
-              <>
-                {optativas.map((o) => (
-                  <Editable
-                    key={o.id}
-                    m={2}
-                    textAlign="left"
-                    defaultValue={o.nombre}
-                    isPreviewFocusable={false}
-                    submitOnBlur={false}
-                    onSubmit={(nombre) =>
-                      editOptativa(o.id, nombre, o.creditos)
-                    }
-                  >
-                    <Flex>
-                      <Tooltip placement="top" label="Motivo" hasArrow>
-                        <EditablePreview width="70%" pl={2} mr={2} />
-                      </Tooltip>
-                      <Tooltip placement="top" label="Motivo" hasArrow>
-                        <EditableInput width="70%" pl={2} mr={2} />
-                      </Tooltip>
-                      <EditableControls
-                        optativa={o}
+          {optativas.length > 0 && (
+            <PopoverBody>
+              {optativas.map((o) => (
+                <Editable
+                  key={o.id}
+                  m={1}
+                  textAlign="left"
+                  defaultValue={o.nombre}
+                  onSubmit={(nombre) =>
+                    editOptativa(o.id, nombre, o.creditos)
+                  }
+                  submitOnBlur={false}
+                >
+                  <Flex justifyContent="space-between">
+                    <Tooltip placement="top" label="Motivo" hasArrow>
+                      <EditablePreview px={2} width="12rem" noOfLines={1} />
+                    </Tooltip>
+                    <Tooltip placement="top" label="Motivo" hasArrow>
+                      <EditableInput px={2} width="12rem" noOfLines={1} />
+                    </Tooltip>
+                    <Tooltip placement="top" label="Créditos" hasArrow>
+                      <NumberInput
+                        mx={2}
+                        borderRadius={5}
+                        size="sm"
+                        width="4rem"
                         defaultValue={o.creditos}
-                      />
-                    </Flex>
-                  </Editable>
-                ))}
-              </>
-            )}
-          </PopoverBody>
+                        min={0}
+                        onChange={(_, creditos) => {
+                          editOptativa(o.id, o.nombre, creditos);
+                        }}
+                      >
+                        <NumberInputField />
+                        <NumberInputStepper>
+                          <NumberIncrementStepper />
+                          <NumberDecrementStepper />
+                        </NumberInputStepper>
+                      </NumberInput>
+                    </Tooltip>
+                    <Tooltip placement="top" label="Eliminar" hasArrow>
+                      <IconButton mx={1} onClick={() => {
+                        removeOptativa(o.id);
+                      }} icon={<SmallCloseIcon />} size="sm" />
+                    </Tooltip>
+                  </Flex>
+                </Editable>
+              ))}
+            </PopoverBody>
+          )}
         </PopoverContent>
       </Popover>
     </Box>

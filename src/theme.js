@@ -41,7 +41,7 @@ export const COLORS = {
   enfinal: {
     50: "#FFF0B8",
     400: "#FEDC5D",
-    500: "#FDC802",
+    500: "#E1C252",
   },
   // https://color.adobe.com/create/color-wheel starting from #FF9999
   orientacion1: {

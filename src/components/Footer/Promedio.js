@@ -2,8 +2,11 @@ import {
   Box,
   Flex,
   LightMode,
-  PinInput,
-  PinInputField,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -43,18 +46,32 @@ const Promedio = () => {
         <PopoverArrow bg="electivas.500" />
         <PopoverBody>
           <Flex justifyContent="space-between" alignItems="center">
-            <Text fontSize="md">
+            <Text fontSize="md" as={'span'}>
               <strong>
                 Promedio con
-                <PinInput
-                  type="number"
+                <NumberInput
+                  display="inline-block"
+                  borderRadius={5}
+                  mx={2}
+                  size="xs"
+                  width="6ch"
+                  defaultValue={aplazos}
+                  min={0}
+
                   onChange={(v) => setAplazos(parseFloat(v || 0))}
-                  value={aplazos.toString()}
-                  size="md"
-                  variant="flushed"
                 >
-                  <PinInputField borderColor="red.500" />
-                </PinInput>
+                  <NumberInputField
+                    _hover={{
+                      borderColor: "transparent",
+                    }}
+                    _focus={{
+                      borderColor: "transparent",
+                    }} />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
                 aplazos
               </strong>
             </Text>
