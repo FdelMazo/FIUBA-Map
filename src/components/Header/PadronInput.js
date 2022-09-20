@@ -72,7 +72,6 @@ const PadronInput = () => {
           type="submit"
           {...(showRegisterButton && {
             px: 6,
-            title: false,
             variant: "solid",
             bg: "red.500",
             _hover: { bg: "red.600" },

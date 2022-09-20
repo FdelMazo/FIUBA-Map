@@ -10,6 +10,7 @@ const MateriaDisplay = () => {
 
   const flechitas = React.useCallback(
     (event) => {
+      if (!displayedNode) return;
       const node = getNode(displayedNode)
       if (event.key === "ArrowLeft") {
         if (node.categoria === "*CBC") return
@@ -46,6 +47,7 @@ const MateriaDisplay = () => {
 
   const numeros = React.useCallback(
     (event) => {
+      if (!displayedNode) return;
       const n = parseInt(event.key)
       if (n >= 4 && n <= 9) {
         aprobar(displayedNode, n);

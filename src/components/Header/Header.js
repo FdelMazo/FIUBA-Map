@@ -13,7 +13,7 @@ import UserMenu from "./UserMenu";
 
 
 const Header = () => {
-  const { isMobile } = React.useContext(UserContext);
+  const { isMobile, logged } = React.useContext(UserContext);
   const { displayedNode } = React.useContext(GraphContext);
 
   const CommonProps = {
@@ -37,8 +37,6 @@ const Header = () => {
     m: 0,
   }
 
-
-  const { logged } = React.useContext(UserContext);
   return (
     <Box {...CommonProps}>
       <Fade in={displayedNode}>

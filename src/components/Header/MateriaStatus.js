@@ -15,10 +15,8 @@ import React from "react";
 import { GraphContext, UserContext } from "../../Contexts";
 
 const MateriaStatus = () => {
-  const { fiubaRepos, isMobile } =
-    React.useContext(UserContext);
-  const { getNode, displayedNode } =
-    React.useContext(GraphContext);
+  const { fiubaRepos, isMobile } = React.useContext(UserContext);
+  const { getNode, displayedNode } = React.useContext(GraphContext);
 
   const node = React.useMemo(() => getNode(displayedNode), [displayedNode, getNode])
   const repos = React.useMemo(() => fiubaRepos.find(materia => materia.codigos.includes(node?.id.replace('.', ''))), [fiubaRepos, node])
