@@ -1,5 +1,7 @@
 import {
+  Fade,
   Flex,
+  Box,
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
@@ -9,37 +11,52 @@ import PadronInput from "./PadronInput";
 import DropdownCarreras from "./DropdownCarreras";
 import UserMenu from "./UserMenu";
 
+
 const Header = () => {
   const { isMobile } = React.useContext(UserContext);
   const { displayedNode } = React.useContext(GraphContext);
 
+  const CommonProps = {
+    height: isMobile ? "fit-content" : "4.5rem",
+    bg: useColorModeValue("headerbg", "headerbgdark")
+  }
+
+  const FlexProps = {
+    py: isMobile ? 4 : 2,
+    px: 4,
+    gap: 4,
+    align: "center",
+    justify: "space-between",
+    flexWrap: "wrap",
+    justifyContent: isMobile ? "space-around" : "space-between",
+  }
+
+  const AntiFlexProps = {
+    height: 0,
+    p: 0,
+    m: 0,
+  }
+
+
   const { logged } = React.useContext(UserContext);
   return (
-    <Flex
-      height="fit-content"
-      minHeight="4em"
-      align="center"
-      justify="space-between"
-      bg={useColorModeValue("headerbg", "headerbgdark")}
-      px={4}
-      py={4}
-      gap={2}
-      flexWrap="wrap"
-      justifyContent={isMobile ? "space-around" : "space-between"}
-    >
-      {displayedNode ? (
-        <MateriaDisplay />
-      ) : (
-        <>
+    <Box {...CommonProps}>
+      <Fade in={displayedNode}>
+        <Flex {...CommonProps} {...(displayedNode && FlexProps)} {...(!displayedNode && AntiFlexProps)}>
+          <MateriaDisplay />
+        </Flex>
+      </Fade>
+      <Fade in={!displayedNode}>
+        <Flex {...CommonProps} {...(!displayedNode && FlexProps)} {...(displayedNode && AntiFlexProps)}>
           {logged ? (
             <UserMenu />
           ) : (
             <PadronInput />
           )}
-            <DropdownCarreras />
-        </>
-      )}
-    </Flex>
+          <DropdownCarreras />
+        </Flex>
+      </Fade>
+    </Box>
   );
 };
 

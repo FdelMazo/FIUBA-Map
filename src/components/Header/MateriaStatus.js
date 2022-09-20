@@ -21,10 +21,10 @@ const MateriaStatus = () => {
     React.useContext(GraphContext);
 
   const node = React.useMemo(() => getNode(displayedNode), [displayedNode, getNode])
-  const repos = React.useMemo(() => fiubaRepos.find(materia => materia.codigos.includes(node?.id.replace('.', ''))), [fiubaRepos, node.id])
+  const repos = React.useMemo(() => fiubaRepos.find(materia => materia.codigos.includes(node?.id.replace('.', ''))), [fiubaRepos, node])
 
-  return (
-    <Flex>
+  return displayedNode && (
+    <Flex alignItems="flex-end" height="fit-content">
       {isMobile ? (
         <Text textAlign="center" noOfLines={1} width="100vw" px={8} color="white"><strong>[{node?.id}]</strong> {node?.materia}</Text>
       ) : (

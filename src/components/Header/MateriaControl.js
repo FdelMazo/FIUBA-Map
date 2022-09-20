@@ -63,8 +63,8 @@ const MateriaControl = () => {
 
   const node = React.useMemo(() => getNode(displayedNode), [displayedNode, getNode])
 
-  return (
-    <Flex alignItems="center">
+  return displayedNode && (
+    <Flex alignItems="center" height="fit-content">
       <Flex {...ControlProps} alignItems="center" p={1}>
         {node?.nota > 0 ? (
           <>

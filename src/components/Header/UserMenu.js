@@ -43,7 +43,12 @@ const UserMenu = () => {
   const { saveGraph, restartGraph, nodes, setFirstTime, changeOrientacion, changeFinDeCarrera, getNode } = React.useContext(GraphContext);
   return (
     <Box>
-      <Menu closeOnSelect={false}>
+      <Menu
+        closeOnSelect={false}
+        defaultIsOpen={
+          (user?.carrera?.eligeOrientaciones && !user?.orientacion) ||
+          (user?.carrera?.finDeCarrera && !user?.finDeCarrera)
+        }>
         <MenuButton
           w="20ch"
           textAlign="left"
