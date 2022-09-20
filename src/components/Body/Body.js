@@ -5,7 +5,7 @@ import {
   useColorModeValue,
   useConst,
 } from "@chakra-ui/react";
-import { useSize } from "@chakra-ui/react-use-size"
+import useResizeObserver from "use-resize-observer";
 import React, { useEffect, useRef } from "react";
 import Graph from "react-graph-vis";
 import Snowfall from "react-snowfall";
@@ -37,8 +37,8 @@ const Body = () => {
   const { user, logged } = React.useContext(UserContext);
 
   const ref = useRef(null);
-  const dimensions = useSize(ref);
-  useEffect(redraw, [dimensions]);
+  const { width, height } = useResizeObserver({ ref });
+  useEffect(redraw, [width, height]);
 
   const blurOthers = (id) => {
     const node = getNode(id)
