@@ -1,3 +1,4 @@
+import { useMediaQuery } from "@chakra-ui/react";
 import React from "react";
 import CARRERAS from "./carreras";
 import * as C from "./constants";
@@ -287,6 +288,8 @@ const useLogin = () => {
     fetchFiubaRepos();
   }, []);
 
+  const [isSmallMobile, isMobile] = useMediaQuery(['(max-width: 420px)', '(max-width: 750px)']);
+
   return {
     user,
     logged,
@@ -301,7 +304,9 @@ const useLogin = () => {
     getGraph,
     padronInput,
     setPadronInput,
-    fiubaRepos
+    fiubaRepos,
+    isMobile,
+    isSmallMobile,
   };
 };
 

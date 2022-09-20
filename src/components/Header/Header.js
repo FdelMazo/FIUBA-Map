@@ -6,13 +6,12 @@ import React from "react";
 import { GraphContext, UserContext } from "../../Contexts";
 import MateriaDisplay from "./MateriaDisplay";
 import PadronInput from "./PadronInput";
-import useWindowSize from "../useWindowSize";
 import DropdownCarreras from "./DropdownCarreras";
 import UserMenu from "./UserMenu";
 
 const Header = () => {
+  const { isMobile } = React.useContext(UserContext);
   const { displayedNode } = React.useContext(GraphContext);
-  const { isMobile } = useWindowSize();
 
   const { logged } = React.useContext(UserContext);
   return (

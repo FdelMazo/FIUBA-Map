@@ -14,12 +14,10 @@ import {
 } from "@chakra-ui/react";
 import CARRERAS from "../../carreras";
 import { GraphContext, UserContext } from "../../Contexts";
-import useWindowSize from "../useWindowSize";
 
 const DropdownCarreras = () => {
-    const { user } = React.useContext(UserContext);
+    const { user, isMobile, isSmallMobile } = React.useContext(UserContext);
     const { changeCarrera, setFirstTime } = React.useContext(GraphContext);
-    const { isMobile, isSmallMobile } = useWindowSize();
 
     return (<Box>
         <Menu placement="bottom-end" isLazy>

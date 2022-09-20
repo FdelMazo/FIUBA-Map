@@ -21,16 +21,13 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../../Contexts";
-import useWindowSize from "../useWindowSize";
 
 const ProgressBar = () => {
-  const { user } = React.useContext(UserContext);
+  const { user, isMobile } = React.useContext(UserContext);
   const {
     creditos,
     toggleCheckbox
   } = React.useContext(GraphContext);
-  const { isMobile } = useWindowSize();
-
 
   return (
     <Grid

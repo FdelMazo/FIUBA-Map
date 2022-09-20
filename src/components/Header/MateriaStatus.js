@@ -13,11 +13,9 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../../Contexts";
-import useWindowSize from "../useWindowSize";
 
 const MateriaStatus = () => {
-  const { isMobile } = useWindowSize();
-  const { fiubaRepos } =
+  const { fiubaRepos, isMobile } =
     React.useContext(UserContext);
   const { getNode, displayedNode } =
     React.useContext(GraphContext);
