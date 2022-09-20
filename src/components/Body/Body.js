@@ -3,6 +3,7 @@ import {
   Box,
   SlideFade,
   useColorModeValue,
+  useConst,
 } from "@chakra-ui/react";
 import { useSize } from "@chakra-ui/react-use-size"
 import React, { useEffect, useRef } from "react";
@@ -162,12 +163,12 @@ const Body = () => {
     },
   };
 
-  const isChristmasTime = () => {
+  const isChristmasTime = useConst(() => {
     const today = new Date();
     const start = new Date(today.getFullYear(), 11, 19);
     const end = new Date(today.getFullYear() + 1, 0, 1);
     return today >= start && today <= end;
-  };
+  });
 
   return (
     <Box
@@ -179,7 +180,7 @@ const Body = () => {
       position="relative"
     >
       {stats.isRecibido && <Fireworks options={{ speed: 3 }} style={{ width: '100%', height: '100%', position: 'fixed' }} />}
-      {isChristmasTime() && <Snowfall color="lavender" />}
+      {isChristmasTime && <Snowfall color="lavender" />}
       <SlideFade in={loadingGraph} unmountOnExit>
         <LoadingGraph />
       </SlideFade>
