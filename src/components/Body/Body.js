@@ -34,7 +34,7 @@ const Body = () => {
     nodes,
     setDisplayedNode
   } = React.useContext(GraphContext);
-  const { user, logged } = React.useContext(UserContext);
+  const { user, logged, loggingIn } = React.useContext(UserContext);
 
   const ref = useRef(null);
   const { width, height } = useResizeObserver({ ref });
@@ -181,7 +181,7 @@ const Body = () => {
     >
       {stats.isRecibido && <Fireworks options={{ speed: 3 }} style={{ width: '100%', height: '100%', position: 'fixed' }} />}
       {isChristmasTime && <Snowfall color="lavender" />}
-      <SlideFade in={loadingGraph} unmountOnExit>
+      <SlideFade in={loadingGraph || loggingIn} unmountOnExit>
         <LoadingGraph />
       </SlideFade>
       <Graph

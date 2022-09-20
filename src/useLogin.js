@@ -15,6 +15,7 @@ const userObj = {
 const useLogin = () => {
   const [user, setUser] = React.useState(userObj);
   const [loading, setLoading] = React.useState(false);
+  const [loggingIn, setLoggingIn] = React.useState(false);
   const [saving, setSaving] = React.useState(false);
   const [padronInput, setPadronInput] = React.useState("");
   const logged = user.padron !== "";
@@ -55,6 +56,7 @@ const useLogin = () => {
       return false;
     }
 
+    setLoggingIn(true)
     let ranges = indexes.map(
       (index) => `&ranges=${C.SHEETS.user}!${index + 1}:${index + 1}`
     );
@@ -82,6 +84,7 @@ const useLogin = () => {
     });
     window.localStorage.setItem("padron", padron);
     setLoading(false);
+    setLoggingIn(false)
     return true;
   };
 
@@ -307,6 +310,7 @@ const useLogin = () => {
     fiubaRepos,
     isMobile,
     isSmallMobile,
+    loggingIn,
   };
 };
 
