@@ -874,6 +874,12 @@ const useGraph = (loginHook) => {
   const events = {
     click: (e) => {
       // click: abre/cierra CBC
+      // click en ningun nodo: limpiar blur/selection
+      if (!e.nodes.length) {
+        unblurAll()
+        setDisplayedNode("");
+        return;
+      }
       const id = e.nodes[0];
       if (id === "CBC") {
         openCBC();
@@ -925,10 +931,6 @@ const useGraph = (loginHook) => {
       blurOthers(id)
       if (!logged || id === "CBC") return;
       setDisplayedNode(id);
-    },
-    deselectNode: () => {
-      unblurAll()
-      setDisplayedNode("");
     },
   };
 
