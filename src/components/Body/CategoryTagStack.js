@@ -6,7 +6,7 @@ import {
   TagLabel,
   TagLeftIcon,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useMemo } from "react";
 import { BiCircle } from "react-icons/bi";
 import { RiFocus2Line, RiFocusLine } from "react-icons/ri";
 import * as C from "../../constants";
@@ -14,24 +14,8 @@ import { GraphContext, UserContext } from "../../Contexts";
 
 const CategoryTagStack = () => {
   const { isMobile } = React.useContext(UserContext);
-  const { toggleGroup, groupStatus, nodes } = React.useContext(GraphContext);
-  const [key, setKey] = React.useState(false);
-  const categorias = nodes
-    ? nodes
-      .distinct("categoria")
-      .filter(
-        (c) =>
-          c !== "CBC" &&
-          c !== "*CBC" &&
-          c !== "Materias Obligatorias" &&
-          c !== "Fin de Carrera (Obligatorio)" &&
-          c !== "Fin de Carrera"
-      )
-    : [];
-
-  const electivasIndex = categorias.indexOf("Materias Electivas");
-  categorias[electivasIndex] = categorias[0];
-  categorias[0] = "Materias Electivas";
+  const { toggleGroup, groupStatus, getters } = React.useContext(GraphContext);
+  const categorias = useMemo(() => getters.selectableCategorias(), [getters]);
 
   return (
     <LightMode>
@@ -42,17 +26,14 @@ const CategoryTagStack = () => {
         spacing={2}
         bottom={0}
         position="absolute"
-        key={key}
       >
-        {nodes &&
-          categorias.map((c) => (
+        {categorias.map((c) => (
             <Tag
               cursor="pointer"
               bg={C.GRUPOS[c]?.color}
               key={c}
               size={isMobile ? "sm" : "md"}
               onClick={() => {
-                setKey(!key);
                 toggleGroup(c);
               }}
             >
