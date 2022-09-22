@@ -18,9 +18,7 @@ const useGraph = (loginHook) => {
   const [edges, setEdges] = React.useState(null);
   const [displayedNode, setDisplayedNode] = React.useState("");
   const [graph, setGraph] = React.useState(graphObj);
-  const [promedio, setPromedio] = React.useState(0);
   const [creditos, setCreditos] = React.useState([]);
-  const [aplazos, setAplazos] = React.useState(0);
   const [stats, setStats] = React.useState({
     materiasAprobadas: 0,
     creditosTotales: 0,
@@ -35,7 +33,7 @@ const useGraph = (loginHook) => {
 
   const actualizar = () => {
     if (!nodes) return;
-    setPromedio(getPromedio());
+    updatePromedio()
     setCreditos(getCreditos());
     nodes.update(
       nodes.map((n) =>
@@ -316,18 +314,6 @@ const useGraph = (loginHook) => {
     actualizar();
   };
 
-  const getPromedio = () => {
-    const materias = nodes.get({
-      filter: (n) => n.aprobada && n.nota > 0 && n.categoria !== "*CBC",
-      fields: ["nota"],
-    });
-    const sum = materias.reduce((acc, node) => {
-      acc += node.nota;
-      return acc;
-    }, 0);
-    return sum ? (sum / materias.length).toFixed(2) : 0;
-  };
-
   const getCreditos = () => {
     let creditos = [];
     const accumulator = (acc, node) => {
@@ -574,35 +560,6 @@ const useGraph = (loginHook) => {
     });
   };
 
-  const promedioConAplazos = (n) => {
-    if (!nodes) return 0;
-    const materias = nodes.get({
-      filter: (n) => n.aprobada && n.nota > 0 && n.categoria !== "*CBC",
-      fields: ["nota"],
-    });
-    materias.push(...Array(n).fill({ nota: 2 }));
-
-    const sum = materias.reduce((acc, node) => {
-      acc += node.nota;
-      return acc;
-    }, 0);
-    return sum ? (sum / materias.length).toFixed(2) : 0;
-  };
-
-  const promedioConCBC = () => {
-    if (!nodes) return 0;
-    const materias = nodes.get({
-      filter: (n) => n.aprobada && n.nota > 0,
-      fields: ["nota"],
-    });
-
-    const sum = materias.reduce((acc, node) => {
-      acc += node.nota;
-      return acc;
-    }, 0);
-    return sum ? (sum / materias.length).toFixed(2) : 0;
-  };
-
   const openCBC = () => {
     const categoria = graph.nodes.filter((n) => n.categoria === "*CBC");
     categoria.forEach((n) => {
@@ -806,7 +763,17 @@ const useGraph = (loginHook) => {
         categorias.unshift('Materias Electivas');
       }
       return categorias
-    }
+    },
+    materiasAprobadasSinCBC: () =>
+      nodes ? nodes.get({
+        filter: (n) => n.aprobada && n.nota > 0 && n.categoria !== "*CBC",
+        fields: ["nota"],
+      }) : [],
+    materiasAprobadasConCBC: () =>
+      nodes ? nodes.get({
+        filter: (n) => n.aprobada && n.nota > 0,
+        fields: ["nota"],
+      }) : [],
   }
 
   const blurOthers = (id) => {
@@ -934,6 +901,29 @@ const useGraph = (loginHook) => {
     },
   };
 
+
+  const [aplazos, setAplazos] = React.useState(0)
+  const [promedio, setPromedio] = React.useState({
+    promedio: 0,
+    promedioConAplazos: 0,
+    promedioConCBC: 0,
+  })
+
+  const updatePromedio = () => {
+    setPromedio({
+      promedio: promediar(getters.materiasAprobadasSinCBC()),
+      promedioConAplazos: promediar([
+        ...getters.materiasAprobadasSinCBC(),
+        ...Array(aplazos).fill({ nota: 2 })
+      ]),
+      promedioConCBC: promediar(getters.materiasAprobadasConCBC()),
+    })
+  }
+
+  React.useEffect(() => {
+    updatePromedio()
+  }, [aplazos])
+
   return {
     graph,
     toggleGroup,
@@ -941,9 +931,6 @@ const useGraph = (loginHook) => {
     aprobar,
     desaprobar,
     redraw,
-    promedio,
-    promedioConAplazos,
-    promedioConCBC,
     creditos,
     stats,
     network,
@@ -967,15 +954,24 @@ const useGraph = (loginHook) => {
     addOptativa,
     editOptativa,
     removeOptativa,
-    aplazos,
-    setAplazos,
     openCBC,
     getCurrentCuatri,
     displayedNode,
     setDisplayedNode,
     getters,
     events,
+    aplazos,
+    setAplazos,
+    promedio,
   };
+};
+
+const promediar = (materias) => {
+  const sum = materias.reduce((acc, node) => {
+    acc += node.nota;
+    return acc;
+  }, 0);
+  return sum ? (sum / materias.length).toFixed(2) : 0;
 };
 
 export default useGraph;

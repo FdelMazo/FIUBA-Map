@@ -24,9 +24,7 @@ const Promedio = () => {
   const {
     promedio,
     aplazos,
-    setAplazos,
-    promedioConAplazos,
-    promedioConCBC
+    setAplazos
   } = React.useContext(GraphContext);
 
 
@@ -37,7 +35,7 @@ const Promedio = () => {
           <Box w="12ch">
             <Stat p="0.4em" color="white" size="sm" textAlign="right">
               <StatLabel>Promedio</StatLabel>
-              <StatNumber>{promedio}</StatNumber>
+              <StatNumber>{promedio.promedio}</StatNumber>
             </Stat>
           </Box>
         </PopoverTrigger>
@@ -57,8 +55,7 @@ const Promedio = () => {
                   width="6ch"
                   defaultValue={aplazos}
                   min={0}
-
-                  onChange={(v) => setAplazos(parseFloat(v || 0))}
+                  onChange={(v) => setAplazos(parseFloat(v))}
                 >
                   <NumberInputField
                     _hover={{
@@ -75,13 +72,13 @@ const Promedio = () => {
                 aplazos
               </strong>
             </Text>
-            <Text fontSize="md">{promedioConAplazos(aplazos)}</Text>
+            <Text fontSize="md">{promedio.promedioConAplazos}</Text>
           </Flex>
           <Flex justifyContent="space-between" alignItems="center">
             <Text fontSize="md">
               <strong>Promedio con CBC</strong>
             </Text>
-            <Text fontSize="md">{promedioConCBC()}</Text>
+            <Text fontSize="md">{promedio.promedioConCBC}</Text>
           </Flex>
         </PopoverBody>
       </PopoverContent>
