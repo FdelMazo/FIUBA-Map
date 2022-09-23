@@ -37,9 +37,8 @@ const Creditos = () => {
   const {
     stats,
     optativas,
-    addOptativa,
-    editOptativa,
-    removeOptativa } = React.useContext(GraphContext);
+    optativasDispatch
+  } = React.useContext(GraphContext);
 
   return (
     <Box>
@@ -90,7 +89,7 @@ const Creditos = () => {
                 label="Agregar créditos"
               >
                 <PlusSquareIcon boxSize={5} alignSelf="center" color={useColorModeValue("electivas.600", "electivas.400")} cursor="pointer" onClick={() => {
-                  addOptativa("Materia Optativa", 4);
+                  optativasDispatch({ action: 'create' });
                 }} />
               </Tooltip>
             </Flex>
@@ -105,7 +104,10 @@ const Creditos = () => {
                   textAlign="left"
                   defaultValue={o.nombre}
                   onSubmit={(nombre) =>
-                    editOptativa(o.id, nombre, o.creditos)
+                    optativasDispatch({
+                      action: 'edit',
+                      value: { id: o.id, nombre, creditos: o.creditos }
+                    })
                   }
                   submitOnBlur={false}
                 >
@@ -125,7 +127,10 @@ const Creditos = () => {
                         defaultValue={o.creditos}
                         min={0}
                         onChange={(_, creditos) => {
-                          editOptativa(o.id, o.nombre, creditos);
+                          optativasDispatch({
+                            action: 'edit',
+                            value: { id: o.id, nombre: o.nombre, creditos }
+                          })
                         }}
                       >
                         <NumberInputField />
@@ -137,7 +142,10 @@ const Creditos = () => {
                     </Tooltip>
                     <Tooltip placement="top" label="Eliminar" hasArrow>
                       <IconButton mx={1} onClick={() => {
-                        removeOptativa(o.id);
+                        optativasDispatch({
+                          action: 'remove',
+                          value: { id: o.id }
+                        })
                       }} icon={<SmallCloseIcon />} size="sm" />
                     </Tooltip>
                   </Flex>

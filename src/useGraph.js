@@ -29,7 +29,39 @@ const useGraph = (loginHook) => {
   const [firstTime, setFirstTime] = React.useState(true);
   const { user, setUser, register, logged, getGraph, postGraph } = loginHook;
   const { colorMode } = useColorMode();
-  const [optativas, setOptativas] = React.useState([]);
+  const [optativas, optativasDispatch] = React.useReducer((prevstate, dispatched) => {
+    let newstate = prevstate;
+    const { action, value } = dispatched
+    switch (action) {
+      case 'override':
+        newstate = value;
+        break;
+      case 'create':
+        const lastOptativaId = prevstate.map((o) => o.id).pop() || 0;
+        newstate = [
+          ...newstate,
+          {
+            id: lastOptativaId + 1,
+            nombre: "Materia Optativa",
+            creditos: 4
+          }
+        ]
+        break;
+      case 'remove':
+        newstate = prevstate.filter((o) => o.id !== value.id)
+        break;
+      case 'edit':
+        newstate = [
+          ...prevstate.filter((o) => o.id !== value.id),
+          { ...value }
+        ]
+        break;
+      default:
+        return newstate;
+    }
+    return newstate;
+  }, []);
+
 
   const actualizar = () => {
     if (!nodes) return;
@@ -143,7 +175,9 @@ const useGraph = (loginHook) => {
           actualizarNiveles()
           showAprobadas();
           setLoadingGraph(false);
-          if (metadata.optativas) setOptativas(metadata.optativas);
+          if (metadata.optativas) {
+            optativasDispatch({ action: 'override', value: metadata.optativas })
+          };
           if (metadata.aplazos) setAplazos(metadata.aplazos);
           network.fit();
         })
@@ -519,7 +553,7 @@ const useGraph = (loginHook) => {
         n.categoria === "*CBC",
       fields: ["creditos"],
     }));
-    aprobadas.push(...optativas.filter(Boolean));
+    aprobadas.push(...optativas);
 
     const allCreditosAprobados = creditos.every(c => c.creditos >= c.creditosNecesarios);
     const creditosTotales = aprobadas.reduce(accumulator, 0)
@@ -531,33 +565,6 @@ const useGraph = (loginHook) => {
     });
 
     return creditos;
-  };
-
-  const addOptativa = (nombre, creditos) => {
-    const ids = optativas.map((o) => o.id);
-    let id = ids.length + 1;
-    for (let i = 0; i < ids.length; i++) {
-      if (ids[i] !== i + 1) id = i;
-    }
-    setOptativas(() => {
-      optativas.push({ id, nombre, creditos });
-      return optativas.filter(Boolean);
-    });
-  };
-
-  const editOptativa = (id, nombre, creditos) => {
-    setOptativas(() => {
-      const i = optativas.findIndex((o) => o.id === id);
-      optativas[i] = { id, nombre, creditos };
-      return optativas.filter(Boolean);
-    });
-  };
-  const removeOptativa = (id) => {
-    setOptativas(() => {
-      const i = optativas.findIndex((o) => o.id === id);
-      delete optativas[i];
-      return optativas.filter(Boolean);
-    });
   };
 
   const openCBC = () => {
@@ -951,9 +958,7 @@ const useGraph = (loginHook) => {
     cursando,
     groupStatus,
     optativas,
-    addOptativa,
-    editOptativa,
-    removeOptativa,
+    optativasDispatch,
     openCBC,
     getCurrentCuatri,
     displayedNode,
