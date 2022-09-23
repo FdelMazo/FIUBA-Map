@@ -20,8 +20,8 @@ const useGraph = (loginHook) => {
   const [graph, setGraph] = React.useState(graphObj);
   const [creditos, setCreditos] = React.useState([]);
   const [stats, setStats] = React.useState({
-    materiasAprobadas: 0,
     creditosTotales: 0,
+    creditosTotalesNecesarios: 0,
     isRecibido: false,
   });
   const [shouldLoadGraph, setShouldLoadGraph] = React.useState(false);
@@ -361,95 +361,34 @@ const useGraph = (loginHook) => {
       return user.carrera.creditos;
     };
 
+    const cbc = getters.CBC()
     creditos.push({
-      nombre: "Ciclo Básico Común",
-      nombrecorto: "CBC",
-      bg: COLORS.aprobadas[50],
-      color: "aprobadas",
-      creditosNecesarios: nodes
-        .get({
-          filter: (n) =>
-            n.categoria === "*CBC",
-          fields: ["creditos"],
-        })
-        .reduce(accumulator, 0),
-      creditos: nodes
-        .get({
-          filter: (n) =>
-            n.categoria === "*CBC",
-          fields: ["creditos"],
-        })
-        .reduce(accumulator, 0),
-      nmaterias: nodes.get({
-        filter: (n) =>
-          n.categoria === "*CBC",
-        fields: ["creditos"],
-      }).length,
+      ...CREDITOS['CBC'],
+      creditosNecesarios: cbc.reduce(accumulator, 0),
+      creditos: cbc.reduce(accumulator, 0),
+      nmaterias: cbc.length,
     });
 
+    const obligatorias = getters.ObligatoriasAprobadas()
     creditos.push({
-      nombre: "Materias Obligatorias",
-      nombrecorto: "Obligatorias",
-      bg: COLORS.obligatorias[50],
-      color: "obligatorias",
+      ...CREDITOS['Obligatorias'],
       creditosNecesarios: user.carrera.creditos.obligatorias,
-      nmaterias: nodes.get({
-        filter: (n) =>
-          n.categoria === "Materias Obligatorias" &&
-          n.aprobada &&
-          n.nota >= 0,
-        fields: ["creditos"],
-      }).length,
-      creditos: nodes
-        .get({
-          filter: (n) =>
-            n.categoria === "Materias Obligatorias" &&
-            n.aprobada &&
-            n.nota >= 0,
-          fields: ["creditos"],
-        })
-        .reduce(accumulator, 0),
+      nmaterias: obligatorias.length,
+      creditos: obligatorias.reduce(accumulator, 0),
     });
 
+    const electivas = getters.ElectivasAprobadas()
     creditos.push({
-      nombre: "Materias Electivas",
-      nombrecorto: "Electivas",
-      color: "electivas",
-      bg: COLORS.electivas[50],
+      ...CREDITOS['Electivas'],
       creditosNecesarios: isNaN(getCorrectCreditos()?.electivas)
         ? getCorrectCreditos()?.electivas[user.finDeCarrera?.id]
         : getCorrectCreditos()?.electivas,
 
-      nmaterias: nodes
-      .get({
-        filter: (n) =>
-          n.categoria !== "CBC" &&
-          n.categoria !== "*CBC" &&
-          n.categoria !== "Materias Obligatorias" &&
-          n.categoria !== "Fin de Carrera" &&
-          n.categoria !== "Fin de Carrera (Obligatorio)" &&
-          n.categoria !== user.orientacion?.nombre &&
-          n.aprobada &&
-          n.nota >= 0,
-        fields: ["creditos"],
-      }).length,
-      creditos:
-        nodes
-          .get({
-            filter: (n) =>
-              n.categoria !== "CBC" &&
-              n.categoria !== "*CBC" &&
-              n.categoria !== "Materias Obligatorias" &&
-              n.categoria !== "Fin de Carrera" &&
-              n.categoria !== "Fin de Carrera (Obligatorio)" &&
-              n.categoria !== user.orientacion?.nombre &&
-              n.aprobada &&
-              n.nota >= 0,
-            fields: ["creditos"],
-          })
-          .reduce(accumulator, 0) + optativas.reduce(accumulator, 0),
+      nmaterias: electivas.length,
+      creditos: electivas.reduce(accumulator, 0) + optativas.reduce(accumulator, 0),
     });
 
+    const orientacion = getters.OrientacionAprobadas()
     if (
       user.carrera.eligeOrientaciones &&
       user.orientacion &&
@@ -461,23 +400,8 @@ const useGraph = (loginHook) => {
         bg: COLORS[user.orientacion.colorScheme][50],
         color: user.orientacion.colorScheme,
         creditosNecesarios: getCorrectCreditos()?.orientacion,
-        nmaterias: nodes
-          .get({
-            filter: (n) =>
-              n.categoria === user.orientacion.nombre &&
-              n.aprobada &&
-              n.nota >= 0,
-            fields: ["creditos"],
-          }).length,
-        creditos: nodes
-          .get({
-            filter: (n) =>
-              n.categoria === user.orientacion.nombre &&
-              n.aprobada &&
-              n.nota >= 0,
-            fields: ["creditos"],
-          })
-          .reduce(accumulator, 0),
+        nmaterias: orientacion.length,
+        creditos: orientacion.reduce(accumulator, 0),
       });
 
     if (user.carrera.creditos.checkbox) {
@@ -498,28 +422,25 @@ const useGraph = (loginHook) => {
     if (user.carrera.creditos.materias)
       user.carrera.creditos.materias.forEach((m) => {
         const node = getNode(m.id);
-        if (node)
-          creditos.push({
-            nombre: node.materia,
-            nombrecorto: m.nombrecorto,
-            color: m.color,
-            bg: m.bg,
-            creditosNecesarios: node.creditos,
-            creditos: node.aprobada ? node.creditos : 0,
-          });
+        creditos.push({
+          nombre: node.materia,
+          nombrecorto: m.nombrecorto,
+          color: m.color,
+          bg: m.bg,
+          creditosNecesarios: node.creditos,
+          creditos: node.aprobada ? node.creditos : 0,
+        });
       });
 
     if (user.finDeCarrera) {
       const node = getNode(user.finDeCarrera.materia);
-      if (node && node.creditos)
-        creditos.push({
-          nombre: node.materia,
-          nombrecorto: user.finDeCarrera.id,
-          color: "findecarrera",
-          bg: COLORS.findecarrera[50],
-          creditosNecesarios: node.creditos,
-          creditos: node.aprobada ? node.creditos : 0,
-        });
+      creditos.push({
+        ...CREDITOS['Fin de Carrera'],
+        nombre: node.materia,
+        nombrecorto: user.finDeCarrera.id,
+        creditosNecesarios: node.creditos,
+        creditos: node.aprobada ? node.creditos : 0,
+      });
     }
 
     const totalNecesarios = creditos.reduce((acc, grupo) => {
@@ -540,28 +461,16 @@ const useGraph = (loginHook) => {
     if (fullProportion > 10) creditos[1].proportion -= fullProportion - 10;
     else if (fullProportion < 10) creditos[1].proportion += 10 - fullProportion;
 
-    const aprobadas = nodes.get({
-      filter: (n) =>
-        n.categoria !== "CBC" &&
-        n.categoria !== "*CBC" &&
-        n.aprobada &&
-        n.nota >= 0,
-      fields: ["creditos"],
-    });
-    aprobadas.push(...nodes.get({
-      filter: (n) =>
-        n.categoria === "*CBC",
-      fields: ["creditos"],
-    }));
-    aprobadas.push(...optativas);
-
-    const allCreditosAprobados = creditos.every(c => c.creditos >= c.creditosNecesarios);
+    const aprobadas = [...getters.MateriasAprobadasSinCBC(), ...cbc, ...optativas]
     const creditosTotales = aprobadas.reduce(accumulator, 0)
+    const allCreditosAprobados = creditos.every(c => c.creditos >= c.creditosNecesarios);
+    const creditosTotalesNecesarios = user.carrera?.creditos.total
+    const isRecibido = creditosTotales >= user.carrera?.creditos.total && allCreditosAprobados
 
     setStats({
-      materiasAprobadas: aprobadas.length,
       creditosTotales,
-      isRecibido: creditosTotales >= user.carrera?.creditos.total && allCreditosAprobados,
+      creditosTotalesNecesarios,
+      isRecibido,
     });
 
     return creditos;
@@ -754,7 +663,7 @@ const useGraph = (loginHook) => {
   }
 
   const getters = {
-    selectableCategorias: () => {
+    SelectableCategorias: () => {
       const categorias = nodes ? nodes
         .distinct("categoria")
         .filter(
@@ -771,16 +680,52 @@ const useGraph = (loginHook) => {
       }
       return categorias
     },
-    materiasAprobadasSinCBC: () =>
+    MateriasAprobadasSinCBC: () =>
       nodes ? nodes.get({
-        filter: (n) => n.aprobada && n.nota > 0 && n.categoria !== "*CBC",
-        fields: ["nota"],
+        filter: (n) => n.aprobada && n.nota > 0 && n.categoria !== "*CBC" && n.categoria !== "CBC",
+        fields: ["nota", "creditos"],
       }) : [],
-    materiasAprobadasConCBC: () =>
-      nodes ? nodes.get({
+    MateriasAprobadasConCBC: () =>
+      nodes ? nodes
+        .get({
         filter: (n) => n.aprobada && n.nota > 0,
-        fields: ["nota"],
+          fields: ["nota", "creditos"],
+        }) : [],
+    CBC: () => nodes ? nodes
+      .get({
+        filter: (n) =>
+          n.categoria === "*CBC",
+        fields: ["creditos"],
       }) : [],
+    ObligatoriasAprobadas: () => nodes ? nodes
+      .get({
+        filter: (n) =>
+          n.categoria === "Materias Obligatorias" &&
+          n.aprobada &&
+          n.nota >= 0,
+        fields: ["creditos"],
+      }) : [],
+    ElectivasAprobadas: () => nodes ? nodes
+      .get({
+        filter: (n) =>
+          n.categoria !== "CBC" &&
+          n.categoria !== "*CBC" &&
+          n.categoria !== "Materias Obligatorias" &&
+          n.categoria !== "Fin de Carrera" &&
+          n.categoria !== "Fin de Carrera (Obligatorio)" &&
+          n.categoria !== user.orientacion?.nombre &&
+          n.aprobada &&
+          n.nota >= 0,
+        fields: ["creditos"],
+      }) : [],
+    OrientacionAprobadas: () => nodes ? nodes
+      .get({
+        filter: (n) =>
+          n.categoria === user.orientacion?.nombre &&
+          n.aprobada &&
+          n.nota >= 0,
+        fields: ["creditos"],
+      }) : []
   }
 
   const blurOthers = (id) => {
@@ -918,12 +863,12 @@ const useGraph = (loginHook) => {
 
   const updatePromedio = () => {
     setPromedio({
-      promedio: promediar(getters.materiasAprobadasSinCBC()),
+      promedio: promediar(getters.MateriasAprobadasSinCBC()),
       promedioConAplazos: promediar([
-        ...getters.materiasAprobadasSinCBC(),
+        ...getters.MateriasAprobadasSinCBC(),
         ...Array(aplazos).fill({ nota: 2 })
       ]),
-      promedioConCBC: promediar(getters.materiasAprobadasConCBC()),
+      promedioConCBC: promediar(getters.MateriasAprobadasConCBC()),
     })
   }
 
@@ -978,5 +923,30 @@ const promediar = (materias) => {
   }, 0);
   return sum ? (sum / materias.length).toFixed(2) : 0;
 };
+
+export const CREDITOS = {
+  "CBC": {
+    nombrecorto: "CBC",
+    nombre: "Ciclo Básico Común",
+    bg: COLORS.aprobadas[50],
+    color: "aprobadas",
+  },
+  "Obligatorias": {
+    nombrecorto: "Obligatorias",
+    nombre: "Materias Obligatorias",
+    bg: COLORS.obligatorias[50],
+    color: "obligatorias",
+  },
+  "Electivas": {
+    nombrecorto: "Electivas",
+    nombre: "Materias Electivas",
+    color: "electivas",
+    bg: COLORS.electivas[50],
+  },
+  "Fin de Carrera": {
+    color: "findecarrera",
+    bg: COLORS.findecarrera[50],
+  }
+}
 
 export default useGraph;

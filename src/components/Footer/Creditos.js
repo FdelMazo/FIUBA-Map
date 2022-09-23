@@ -30,10 +30,9 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
-import { GraphContext, UserContext } from "../../Contexts";
+import { GraphContext } from "../../Contexts";
 
 const Creditos = () => {
-  const { user } = React.useContext(UserContext);
   const {
     stats,
     optativas,
@@ -55,12 +54,12 @@ const Creditos = () => {
                     variant="outline"
                   >
                     {Math.round(
-                      (stats.creditosTotales / user.carrera?.creditos.total) * 100
+                      (stats.creditosTotales / stats.creditosTotalesNecesarios) * 100
                     ) + "%"}
                   </Badge>
                 </StatLabel>
                 <StatNumber>
-                  {stats.creditosTotales + " de " + user.carrera?.creditos.total}
+                  {stats.creditosTotales + " de " + stats.creditosTotalesNecesarios}
                 </StatNumber>
               </Stat>
             </Box>

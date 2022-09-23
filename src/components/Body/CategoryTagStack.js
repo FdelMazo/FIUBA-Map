@@ -15,7 +15,7 @@ import { GraphContext, UserContext } from "../../Contexts";
 const CategoryTagStack = () => {
   const { isMobile } = React.useContext(UserContext);
   const { toggleGroup, groupStatus, getters } = React.useContext(GraphContext);
-  const categorias = useMemo(() => getters.selectableCategorias(), [getters]);
+  const categorias = useMemo(() => getters.SelectableCategorias(), [getters]);
 
   return (
     <LightMode>
