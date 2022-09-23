@@ -19,6 +19,7 @@ import {
 import React from "react";
 import { FaUndo } from "react-icons/fa";
 import { GraphContext } from "../../Contexts";
+import { getCurrentCuatri } from "../../utils";
 
 const ControlProps = {
   height: "fit-content",
@@ -58,7 +59,7 @@ const NumberStepperProps = {
 }
 
 const MateriaControl = () => {
-  const { getNode, aprobar, displayedNode, desaprobar, cursando, getCurrentCuatri } =
+  const { getNode, aprobar, displayedNode, desaprobar, cursando } =
     React.useContext(GraphContext);
 
   const node = React.useMemo(() => getNode(displayedNode), [displayedNode, getNode])

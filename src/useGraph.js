@@ -2,8 +2,10 @@
 import { useColorMode } from "@chakra-ui/color-mode";
 import React from "react";
 import CARRERAS from "./carreras";
+import { CREDITOS } from "./constants";
 import Node from "./Node";
 import { COLORS } from "./theme";
+import { accCreditos, accCreditosNecesarios, accProportion, promediar } from "./utils";
 
 const graphObj = {
   nodes: [],
@@ -12,23 +14,25 @@ const graphObj = {
 };
 
 const useGraph = (loginHook) => {
-  // https://dmitripavlutin.com/react-usereducer/
+  const { user, setUser, register, logged, getGraph, postGraph } = loginHook;
+  const { colorMode } = useColorMode();
   const [network, setNetwork] = React.useState(null);
+  const [graph, setGraph] = React.useState(graphObj);
   const [nodes, setNodes] = React.useState(null);
   const [edges, setEdges] = React.useState(null);
+
+  const [shouldLoadGraph, setShouldLoadGraph] = React.useState(false);
+  const [loadingGraph, setLoadingGraph] = React.useState(false);
+  const [firstTime, setFirstTime] = React.useState(true);
+
   const [displayedNode, setDisplayedNode] = React.useState("");
-  const [graph, setGraph] = React.useState(graphObj);
   const [creditos, setCreditos] = React.useState([]);
   const [stats, setStats] = React.useState({
     creditosTotales: 0,
     creditosTotalesNecesarios: 0,
     isRecibido: false,
   });
-  const [shouldLoadGraph, setShouldLoadGraph] = React.useState(false);
-  const [loadingGraph, setLoadingGraph] = React.useState(false);
-  const [firstTime, setFirstTime] = React.useState(true);
-  const { user, setUser, register, logged, getGraph, postGraph } = loginHook;
-  const { colorMode } = useColorMode();
+
   const [optativas, optativasDispatch] = React.useReducer((prevstate, dispatched) => {
     let newstate = prevstate;
     const { action, value } = dispatched
@@ -61,7 +65,6 @@ const useGraph = (loginHook) => {
     }
     return newstate;
   }, []);
-
 
   const actualizar = () => {
     if (!nodes) return;
@@ -123,7 +126,6 @@ const useGraph = (loginHook) => {
       network.body.emitter.emit("_dataUpdated");
     }
   }, [network]);
-
 
   React.useEffect(() => {
     if (logged) changeCarrera(user.carrera.id);
@@ -211,10 +213,8 @@ const useGraph = (loginHook) => {
   };
 
   const restartGraph = () => {
-    nodes.update(nodes?.get({
-      filter: (n) => n.cuatrimestre,
-      fields: ["id", "cuatrimestre"],
-    }).map((n) => getNode(n.id).cursando(undefined)));
+    nodes.update(getters.Cuatrimestres().map((n) => getNode(n.id).cursando(undefined)));
+
     actualizar();
     actualizarNiveles()
   };
@@ -350,11 +350,6 @@ const useGraph = (loginHook) => {
 
   const getCreditos = () => {
     let creditos = [];
-    const accumulator = (acc, node) => {
-      acc += node.creditos;
-      return acc;
-    };
-
     const getCorrectCreditos = () => {
       if (user.carrera.eligeOrientaciones)
         return user.carrera.creditos.orientacion[user.orientacion?.nombre];
@@ -364,8 +359,8 @@ const useGraph = (loginHook) => {
     const cbc = getters.CBC()
     creditos.push({
       ...CREDITOS['CBC'],
-      creditosNecesarios: cbc.reduce(accumulator, 0),
-      creditos: cbc.reduce(accumulator, 0),
+      creditosNecesarios: cbc.reduce(accCreditos, 0),
+      creditos: cbc.reduce(accCreditos, 0),
       nmaterias: cbc.length,
     });
 
@@ -374,7 +369,7 @@ const useGraph = (loginHook) => {
       ...CREDITOS['Obligatorias'],
       creditosNecesarios: user.carrera.creditos.obligatorias,
       nmaterias: obligatorias.length,
-      creditos: obligatorias.reduce(accumulator, 0),
+      creditos: obligatorias.reduce(accCreditos, 0),
     });
 
     const electivas = getters.ElectivasAprobadas()
@@ -385,7 +380,9 @@ const useGraph = (loginHook) => {
         : getCorrectCreditos()?.electivas,
 
       nmaterias: electivas.length,
-      creditos: electivas.reduce(accumulator, 0) + optativas.reduce(accumulator, 0),
+      creditos:
+        electivas.reduce(accCreditos, 0) +
+        optativas.reduce(accCreditos, 0),
     });
 
     const orientacion = getters.OrientacionAprobadas()
@@ -401,7 +398,7 @@ const useGraph = (loginHook) => {
         color: user.orientacion.colorScheme,
         creditosNecesarios: getCorrectCreditos()?.orientacion,
         nmaterias: orientacion.length,
-        creditos: orientacion.reduce(accumulator, 0),
+        creditos: orientacion.reduce(accCreditos, 0),
       });
 
     if (user.carrera.creditos.checkbox) {
@@ -443,26 +440,18 @@ const useGraph = (loginHook) => {
       });
     }
 
-    const totalNecesarios = creditos.reduce((acc, grupo) => {
-      acc += grupo.creditosNecesarios;
-      return acc;
-    }, 0);
-
+    const totalNecesarios = creditos.reduce(accCreditosNecesarios, 0);
     creditos.forEach((c) => {
       c.proportion =
         Math.round((c.creditosNecesarios / totalNecesarios) * 10) || 1;
     });
 
-    const fullProportion = creditos.reduce((acc, grupo) => {
-      acc += grupo.proportion;
-      return acc;
-    }, 0);
-
+    const fullProportion = creditos.reduce(accProportion, 0);
     if (fullProportion > 10) creditos[1].proportion -= fullProportion - 10;
     else if (fullProportion < 10) creditos[1].proportion += 10 - fullProportion;
 
     const aprobadas = [...getters.MateriasAprobadasSinCBC(), ...cbc, ...optativas]
-    const creditosTotales = aprobadas.reduce(accumulator, 0)
+    const creditosTotales = aprobadas.reduce(accCreditos, 0)
     const allCreditosAprobados = creditos.every(c => c.creditos >= c.creditosNecesarios);
     const creditosTotalesNecesarios = user.carrera?.creditos.total
     const isRecibido = creditosTotales >= user.carrera?.creditos.total && allCreditosAprobados
@@ -654,15 +643,11 @@ const useGraph = (loginHook) => {
     network.body.emitter.emit("_dataChanged");
   }
 
-  const getCurrentCuatri = () => {
-    const today = new Date();
-    let cuatri = today.getFullYear();
-    const month = today.getMonth();
-    if (month > 6) cuatri = cuatri + 0.5;
-    return cuatri;
-  }
-
   const getters = {
+    Cuatrimestres: () => nodes ? nodes.get({
+      filter: (n) => n.cuatrimestre,
+      fields: ["id", "cuatrimestre"],
+    }) : [],
     SelectableCategorias: () => {
       const categorias = nodes ? nodes
         .distinct("categoria")
@@ -885,13 +870,10 @@ const useGraph = (loginHook) => {
     redraw,
     creditos,
     stats,
-    network,
     setNetwork,
-    nodes,
     setNodes,
     saveGraph,
     restartGraph,
-    edges,
     setEdges,
     changeCarrera,
     changeOrientacion,
@@ -899,13 +881,11 @@ const useGraph = (loginHook) => {
     toggleCheckbox,
     loadingGraph,
     setFirstTime,
-    actualizar,
     cursando,
     groupStatus,
     optativas,
     optativasDispatch,
     openCBC,
-    getCurrentCuatri,
     displayedNode,
     setDisplayedNode,
     getters,
@@ -915,38 +895,5 @@ const useGraph = (loginHook) => {
     promedio,
   };
 };
-
-const promediar = (materias) => {
-  const sum = materias.reduce((acc, node) => {
-    acc += node.nota;
-    return acc;
-  }, 0);
-  return sum ? (sum / materias.length).toFixed(2) : 0;
-};
-
-export const CREDITOS = {
-  "CBC": {
-    nombrecorto: "CBC",
-    nombre: "Ciclo Básico Común",
-    bg: COLORS.aprobadas[50],
-    color: "aprobadas",
-  },
-  "Obligatorias": {
-    nombrecorto: "Obligatorias",
-    nombre: "Materias Obligatorias",
-    bg: COLORS.obligatorias[50],
-    color: "obligatorias",
-  },
-  "Electivas": {
-    nombrecorto: "Electivas",
-    nombre: "Materias Electivas",
-    color: "electivas",
-    bg: COLORS.electivas[50],
-  },
-  "Fin de Carrera": {
-    color: "findecarrera",
-    bg: COLORS.findecarrera[50],
-  }
-}
 
 export default useGraph;

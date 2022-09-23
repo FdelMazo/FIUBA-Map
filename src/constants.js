@@ -174,3 +174,29 @@ export const GRAPHOPTIONS = {
   },
   groups: { ...GRUPOS },
 };
+
+
+export const CREDITOS = {
+  "CBC": {
+    nombrecorto: "CBC",
+    nombre: "Ciclo Básico Común",
+    bg: COLORS.aprobadas[50],
+    color: "aprobadas",
+  },
+  "Obligatorias": {
+    nombrecorto: "Obligatorias",
+    nombre: "Materias Obligatorias",
+    bg: COLORS.obligatorias[50],
+    color: "obligatorias",
+  },
+  "Electivas": {
+    nombrecorto: "Electivas",
+    nombre: "Materias Electivas",
+    color: "electivas",
+    bg: COLORS.electivas[50],
+  },
+  "Fin de Carrera": {
+    color: "findecarrera",
+    bg: COLORS.findecarrera[50],
+  }
+}

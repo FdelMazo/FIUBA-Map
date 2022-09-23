@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { GraphContext } from "../../Contexts";
+import { getCurrentCuatri } from "../../utils";
 import MateriaControl from "./MateriaControl";
 import MateriaStatus from "./MateriaStatus";
 
 const MateriaDisplay = () => {
-  const { getNode, aprobar, displayedNode, desaprobar, cursando, getCurrentCuatri } =
+  const { getNode, aprobar, displayedNode, desaprobar, cursando } =
     React.useContext(GraphContext);
 
   const flechitas = React.useCallback(

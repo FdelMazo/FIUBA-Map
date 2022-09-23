@@ -40,7 +40,7 @@ const UserMenu = () => {
     saving,
   } = React.useContext(UserContext);
 
-  const { saveGraph, restartGraph, nodes, setFirstTime, changeOrientacion, changeFinDeCarrera, getNode } = React.useContext(GraphContext);
+  const { saveGraph, restartGraph, getters, setFirstTime, changeOrientacion, changeFinDeCarrera, getNode } = React.useContext(GraphContext);
   return (
     <Box>
       <Menu
@@ -126,10 +126,7 @@ const UserMenu = () => {
         </IconButton>
       </Tooltip>
 
-      {nodes?.get({
-        filter: (n) => n.cuatrimestre,
-        fields: ["cuatrimestre"],
-      }).length > 0 && (
+      {getters.Cuatrimestres().length > 0 && (
         <Tooltip {...TooltipProps} label="Limpiar todos los cuatris">
           <IconButton
             {...ButtonProps}
