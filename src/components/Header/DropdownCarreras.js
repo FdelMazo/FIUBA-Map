@@ -17,7 +17,7 @@ import { GraphContext, UserContext } from "../../Contexts";
 
 const DropdownCarreras = () => {
     const { user, isMobile, isSmallMobile } = React.useContext(UserContext);
-    const { changeCarrera, setFirstTime } = React.useContext(GraphContext);
+    const { changeCarrera, setNeedsRegister } = React.useContext(GraphContext);
 
     return (<Box>
         <Menu placement="bottom-end" isLazy>
@@ -36,7 +36,7 @@ const DropdownCarreras = () => {
             <MenuList>
                 <MenuOptionGroup
                     onChange={(v) => {
-                        setFirstTime(false);
+                        setNeedsRegister(true);
                         changeCarrera(v);
                     }}
                     key={user.carrera?.id}

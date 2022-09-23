@@ -5,7 +5,7 @@ import CARRERAS from "./carreras";
 import { CREDITOS } from "./constants";
 import Node from "./Node";
 import { COLORS } from "./theme";
-import { accCreditos, accCreditosNecesarios, accProportion, promediar } from "./utils";
+import { accCreditos, accCreditosNecesarios, accProportion, overrideVisJsUpdate, promediar } from "./utils";
 
 const graphObj = {
   nodes: [],
@@ -23,7 +23,7 @@ const useGraph = (loginHook) => {
 
   const [shouldLoadGraph, setShouldLoadGraph] = React.useState(false);
   const [loadingGraph, setLoadingGraph] = React.useState(false);
-  const [firstTime, setFirstTime] = React.useState(true);
+  const [needsRegister, setNeedsRegister] = React.useState(false);
 
   const [displayedNode, setDisplayedNode] = React.useState("");
   const [creditos, setCreditos] = React.useState([]);
@@ -66,10 +66,153 @@ const useGraph = (loginHook) => {
     return newstate;
   }, []);
 
+  // En boot, si no estoy logueado, muestro lic en sistemas
+  React.useEffect(() => {
+    if (!logged) changeCarrera(CARRERAS[0].id);
+  }, []);
+
+  // Cuando me loggeo, me cambio a la carrera del usuario
+  React.useEffect(() => {
+    if (logged) changeCarrera(user.carrera.id);
+  }, [logged]);
+
+  // Cuando cambia la network, le overrideo el update para que no este redibujandose constantemente
+  React.useEffect(() => {
+    if (!network) return
+    overrideVisJsUpdate(network);
+  }, [network]);
+
+  // Si cambia cualquier cosa del usuario, actualizamos su registro en la db
+  React.useEffect(() => {
+    if (logged && needsRegister) register();
+  }, [user.carrera, user.orientacion, user.finDeCarrera]);
+
+  const getters = {
+    Cuatrimestres: () => nodes ? nodes.get({
+      filter: (n) => n.cuatrimestre,
+      fields: ["id", "cuatrimestre"],
+    }) : [],
+    SelectableCategorias: () => {
+      const categorias = nodes ? nodes
+        .distinct("categoria")
+        .filter(
+          (c) =>
+            c !== "CBC" &&
+            c !== "*CBC" &&
+            c !== "Materias Obligatorias" &&
+            c !== "Fin de Carrera (Obligatorio)" &&
+            c !== "Fin de Carrera"
+        ) : []
+      if (categorias.indexOf('Materias Electivas') > 0) {
+        categorias.splice(categorias.indexOf('Materias Electivas'), 1);
+        categorias.unshift('Materias Electivas');
+      }
+      return categorias
+    },
+    MateriasAprobadasSinCBC: () =>
+      nodes ? nodes.get({
+        filter: (n) => n.aprobada && n.nota > 0 && n.categoria !== "*CBC" && n.categoria !== "CBC",
+        fields: ["nota", "creditos"],
+      }) : [],
+    MateriasAprobadasConCBC: () =>
+      nodes ? nodes
+        .get({
+          filter: (n) => n.aprobada && n.nota > 0,
+          fields: ["nota", "creditos"],
+        }) : [],
+    CBC: () => nodes ? nodes
+      .get({
+        filter: (n) =>
+          n.categoria === "*CBC",
+      }) : [],
+    ObligatoriasAprobadas: () => nodes ? nodes
+      .get({
+        filter: (n) =>
+          n.categoria === "Materias Obligatorias" &&
+          n.aprobada &&
+          n.nota >= 0,
+        fields: ["creditos"],
+      }) : [],
+    ElectivasAprobadas: () => nodes ? nodes
+      .get({
+        filter: (n) =>
+          n.categoria !== "CBC" &&
+          n.categoria !== "*CBC" &&
+          n.categoria !== "Materias Obligatorias" &&
+          n.categoria !== "Fin de Carrera" &&
+          n.categoria !== "Fin de Carrera (Obligatorio)" &&
+          n.categoria !== user.orientacion?.nombre &&
+          n.aprobada &&
+          n.nota >= 0,
+        fields: ["creditos"],
+      }) : [],
+    OrientacionAprobadas: () => nodes ? nodes
+      .get({
+        filter: (n) =>
+          n.categoria === user.orientacion?.nombre &&
+          n.aprobada &&
+          n.nota >= 0,
+        fields: ["creditos"],
+      }) : []
+  }
+
+  const getNode = (id) => {
+    return nodes?.get(id)?.nodeRef;
+  };
+
+  const redraw = () => {
+    if (network) network.redraw();
+  };
+
+  const saveGraph = () => {
+    postGraph(nodes, user.carrera.creditos.checkbox, optativas, aplazos);
+  };
+
+  const aprobar = (id, nota) => {
+    nodes.update(getNode(id).aprobar(nota));
+    actualizar();
+  };
+
+  const desaprobar = (id) => {
+    nodes.update(getNode(id).desaprobar());
+    actualizar();
+  };
+
+  const cursando = (id, cuatrimestre) => {
+    nodes.update(getNode(id).cursando(cuatrimestre));
+    actualizar();
+    actualizarNiveles()
+  };
+
+  const restartGraphCuatris = () => {
+    nodes.update(getters.Cuatrimestres().map((n) => getNode(n.id).cursando(undefined)));
+    actualizar();
+    actualizarNiveles()
+  };
+
+  const toggleCheckbox = (c) => {
+    const value = !!user.carrera.creditos.checkbox.find((ch) => ch.nombre === c).check;
+    user.carrera.creditos.checkbox.find((ch) => ch.nombre === c).check = !value;
+    actualizar();
+  };
+
+  const openCBC = () => {
+    const categoria = getters.CBC();
+    categoria.forEach((n) => {
+      const node = getNode(n.id);
+      node.hidden = !node.hidden;
+      return node;
+    });
+    actualizar();
+    actualizarNiveles()
+    network.fit();
+  };
+
+  // De aca para abajo, hay que optimizar o refactorizar o ponerle amor
   const actualizar = () => {
     if (!nodes) return;
     updatePromedio()
-    setCreditos(getCreditos());
+    updateCreditos()
     nodes.update(
       nodes.map((n) =>
         getNode(n.id).actualizar({
@@ -86,58 +229,8 @@ const useGraph = (loginHook) => {
   };
 
   React.useEffect(() => {
-    if (!logged) changeCarrera(CARRERAS[0].id);
-  }, []);
-
-  React.useEffect(() => {
-    if (!network) return
-    // Copied from https://github.com/visjs/vis-network/blob/2c774997ff234fa93555f36ca8040cf4d489e5df/lib/network/modules/NodesHandler.js#L325
-    // Removed the last call to body.emit(datachanged)
-    network.nodesHandler.update = (ids, changedData, oldData) => {
-      const nodes = network.body.nodes;
-      let dataChanged = false;
-      for (let i = 0; i < ids.length; i++) {
-        const id = ids[i];
-        let node = nodes[id];
-        const data = changedData[i];
-        if (node !== undefined) {
-          // update node
-          if (node.setOptions(data)) {
-            dataChanged = true;
-          }
-        } else {
-          dataChanged = true;
-          // create node
-          node = network.create(data);
-          nodes[id] = node;
-        }
-      }
-
-      if (!dataChanged && oldData !== undefined) {
-        // Check for any changes which should trigger a layout recalculation
-        // For now, this is just 'level' for hierarchical layout
-        // Assumption: old and new data arranged in same order; at time of writing, this holds.
-        dataChanged = changedData.some(function (newValue, index) {
-          const oldValue = oldData[index];
-          return oldValue && oldValue.level !== newValue.level;
-        });
-      }
-
-      network.body.emitter.emit("_dataUpdated");
-    }
-  }, [network]);
-
-  React.useEffect(() => {
-    if (logged) changeCarrera(user.carrera.id);
-  }, [logged]);
-
-  React.useEffect(() => {
     actualizar();
   }, [colorMode, optativas]);
-
-  React.useEffect(() => {
-    if (logged && !firstTime) register();
-  }, [user.carrera, user.orientacion, user.finDeCarrera]);
 
   React.useEffect(() => {
     if (!nodes?.carrera || nodes.carrera !== user.carrera?.id) return;
@@ -199,25 +292,6 @@ const useGraph = (loginHook) => {
     actualizarNiveles()
     network.fit();
   }, [nodes, user.finDeCarrera, user.orientacion]);
-
-  const getNode = (id) => {
-    return nodes?.get(id)?.nodeRef;
-  };
-
-  const redraw = () => {
-    if (network) network.redraw();
-  };
-
-  const saveGraph = () => {
-    postGraph(nodes, user.carrera.creditos.checkbox, optativas, aplazos);
-  };
-
-  const restartGraph = () => {
-    nodes.update(getters.Cuatrimestres().map((n) => getNode(n.id).cursando(undefined)));
-
-    actualizar();
-    actualizarNiveles()
-  };
 
   const changeCarrera = async (id) => {
     setUser(({ ...rest }) => {
@@ -305,7 +379,6 @@ const useGraph = (loginHook) => {
             return node;
           });
         break;
-
       case "shown":
         group = graph.nodes
           .filter((n) => n.categoria === categoria)
@@ -325,30 +398,7 @@ const useGraph = (loginHook) => {
     network.fit();
   };
 
-  const aprobar = (id, nota) => {
-    nodes.update(getNode(id).aprobar(nota));
-    actualizar();
-  };
-
-  const desaprobar = (id) => {
-    nodes.update(getNode(id).desaprobar());
-    actualizar();
-  };
-
-  const cursando = (id, cuatrimestre) => {
-    nodes.update(getNode(id).cursando(cuatrimestre));
-    actualizar();
-    actualizarNiveles()
-  };
-
-  const toggleCheckbox = (c) => {
-    const value = !!user.carrera.creditos.checkbox.find((ch) => ch.nombre === c)
-      .check;
-    user.carrera.creditos.checkbox.find((ch) => ch.nombre === c).check = !value;
-    actualizar();
-  };
-
-  const getCreditos = () => {
+  const updateCreditos = () => {
     let creditos = [];
     const getCorrectCreditos = () => {
       if (user.carrera.eligeOrientaciones)
@@ -462,19 +512,7 @@ const useGraph = (loginHook) => {
       isRecibido,
     });
 
-    return creditos;
-  };
-
-  const openCBC = () => {
-    const categoria = graph.nodes.filter((n) => n.categoria === "*CBC");
-    categoria.forEach((n) => {
-      const node = getNode(n.id);
-      node.hidden = !node.hidden;
-      return node;
-    });
-    actualizar();
-    actualizarNiveles()
-    network.fit();
+    setCreditos(creditos)
   };
 
   const showAprobadas = () => {
@@ -643,76 +681,6 @@ const useGraph = (loginHook) => {
     network.body.emitter.emit("_dataChanged");
   }
 
-  const getters = {
-    Cuatrimestres: () => nodes ? nodes.get({
-      filter: (n) => n.cuatrimestre,
-      fields: ["id", "cuatrimestre"],
-    }) : [],
-    SelectableCategorias: () => {
-      const categorias = nodes ? nodes
-        .distinct("categoria")
-        .filter(
-          (c) =>
-            c !== "CBC" &&
-            c !== "*CBC" &&
-            c !== "Materias Obligatorias" &&
-            c !== "Fin de Carrera (Obligatorio)" &&
-            c !== "Fin de Carrera"
-        ) : []
-      if (categorias.indexOf('Materias Electivas') > 0) {
-        categorias.splice(categorias.indexOf('Materias Electivas'), 1);
-        categorias.unshift('Materias Electivas');
-      }
-      return categorias
-    },
-    MateriasAprobadasSinCBC: () =>
-      nodes ? nodes.get({
-        filter: (n) => n.aprobada && n.nota > 0 && n.categoria !== "*CBC" && n.categoria !== "CBC",
-        fields: ["nota", "creditos"],
-      }) : [],
-    MateriasAprobadasConCBC: () =>
-      nodes ? nodes
-        .get({
-        filter: (n) => n.aprobada && n.nota > 0,
-          fields: ["nota", "creditos"],
-        }) : [],
-    CBC: () => nodes ? nodes
-      .get({
-        filter: (n) =>
-          n.categoria === "*CBC",
-        fields: ["creditos"],
-      }) : [],
-    ObligatoriasAprobadas: () => nodes ? nodes
-      .get({
-        filter: (n) =>
-          n.categoria === "Materias Obligatorias" &&
-          n.aprobada &&
-          n.nota >= 0,
-        fields: ["creditos"],
-      }) : [],
-    ElectivasAprobadas: () => nodes ? nodes
-      .get({
-        filter: (n) =>
-          n.categoria !== "CBC" &&
-          n.categoria !== "*CBC" &&
-          n.categoria !== "Materias Obligatorias" &&
-          n.categoria !== "Fin de Carrera" &&
-          n.categoria !== "Fin de Carrera (Obligatorio)" &&
-          n.categoria !== user.orientacion?.nombre &&
-          n.aprobada &&
-          n.nota >= 0,
-        fields: ["creditos"],
-      }) : [],
-    OrientacionAprobadas: () => nodes ? nodes
-      .get({
-        filter: (n) =>
-          n.categoria === user.orientacion?.nombre &&
-          n.aprobada &&
-          n.nota >= 0,
-        fields: ["creditos"],
-      }) : []
-  }
-
   const blurOthers = (id) => {
     const node = getNode(id)
     if (!node) return;
@@ -857,6 +825,7 @@ const useGraph = (loginHook) => {
     })
   }
 
+  // Si cambian los aplazos, hay que actualizar el objeto promedio
   React.useEffect(() => {
     updatePromedio()
   }, [aplazos])
@@ -873,19 +842,18 @@ const useGraph = (loginHook) => {
     setNetwork,
     setNodes,
     saveGraph,
-    restartGraph,
+    restartGraphCuatris,
     setEdges,
     changeCarrera,
     changeOrientacion,
     changeFinDeCarrera,
     toggleCheckbox,
     loadingGraph,
-    setFirstTime,
+    setNeedsRegister,
     cursando,
     groupStatus,
     optativas,
     optativasDispatch,
-    openCBC,
     displayedNode,
     setDisplayedNode,
     getters,

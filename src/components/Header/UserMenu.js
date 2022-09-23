@@ -40,7 +40,7 @@ const UserMenu = () => {
     saving,
   } = React.useContext(UserContext);
 
-  const { saveGraph, restartGraph, getters, setFirstTime, changeOrientacion, changeFinDeCarrera, getNode } = React.useContext(GraphContext);
+  const { saveGraph, restartGraphCuatris, getters, setNeedsRegister, changeOrientacion, changeFinDeCarrera, getNode } = React.useContext(GraphContext);
   return (
     <Box>
       <Menu
@@ -64,7 +64,7 @@ const UserMenu = () => {
           {user?.carrera?.finDeCarrera && (
             <MenuOptionGroup
               onChange={(value) => {
-                setFirstTime(false);
+                setNeedsRegister(true);
                 changeFinDeCarrera(value);
               }}
               value={user?.finDeCarrera?.id || "none"}
@@ -87,7 +87,7 @@ const UserMenu = () => {
           {user?.carrera?.eligeOrientaciones &&
             (<MenuOptionGroup
               onChange={(value) => {
-                setFirstTime(false);
+                setNeedsRegister(true);
                 changeOrientacion(value);
               }}
               value={user?.orientacion?.nombre || "none"}
@@ -131,7 +131,7 @@ const UserMenu = () => {
           <IconButton
             {...ButtonProps}
             ml={2}
-            onClick={restartGraph}
+            onClick={restartGraphCuatris}
           >
             <Icon boxSize={4} as={FaUndo} />
             </IconButton>
