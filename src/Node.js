@@ -1,4 +1,5 @@
 import { COLORS } from "./theme";
+import { promediar } from "./utils";
 
 const FONT_AFUERA = ["CBC", "*CBC"]
 const ALWAYS_SHOW = ["Materias Obligatorias", "CBC", "Fin de Carrera (Obligatorio)"]
@@ -54,35 +55,19 @@ class Node {
   }
 
   isHabilitada(ctx) {
-    const { network, nodes, getNode, optativas } = ctx;
-
-    const from = network.getConnectedNodes(this.id, "from");
-    const totalCreditos =
-      nodes
-        .get({
-          filter: (n) => n.aprobada || n.categoria === "*CBC",
-          fields: ["creditos"],
-        })
-        .reduce((acc, n) => {
-          acc += n.creditos;
-          return acc;
-        }, 0) +
-      optativas.reduce((acc, n) => {
-        acc += n.creditos;
-        return acc;
-      }, 0);
-
+    const { getters, getNode, creditosTotales } = ctx;
+    const from = getters.NodesFrom(this.id);
     let todoAprobado = true;
-    for (let i = 0; i < from.length; i++) {
-      const m = getNode(from[i]);
+    for (let id of from) {
+      const m = getNode(id);
       todoAprobado &= m.aprobada;
     }
-    if (this.requiere) todoAprobado &= totalCreditos >= this.requiere;
+    if (this.requiere) todoAprobado &= creditosTotales >= this.requiere;
     return todoAprobado;
   }
 
   actualizar(ctx) {
-    const { user, showLabels, nodes, colorMode } = ctx;
+    const { user, showLabels, colorMode, getters } = ctx;
     let grupoDefault = this.categoria;
     if (this.aprobada && this.nota >= 0) grupoDefault = "Aprobadas";
     else if (this.nota === -1) grupoDefault = "En Final";
@@ -90,7 +75,7 @@ class Node {
     this.group = grupoDefault;
 
     let labelDefault = breakWords(this.materia);
-    if (showLabels) {
+    if (showLabels && this.id !== "CBC") {
       if (this.aprobada && this.nota > 0)
         labelDefault += "\n[" + this.nota + "]";
       else if (this.aprobada && this.nota === 0)
@@ -105,18 +90,8 @@ class Node {
     }
 
     if (this.categoria === "CBC") {
-      const materiasCBC = nodes.get({
-        filter: (n) => n.categoria === "*CBC" && n.aprobada && n.nota > 0,
-        fields: ["nota"],
-      });
-      const sumCBC = materiasCBC.reduce((acc, node) => {
-        acc += node.nota;
-        return acc;
-      }, 0);
-
-      const promedioCBC = sumCBC ? (sumCBC / materiasCBC.length).toFixed(2) : 0;
-
-      this.label = breakWords("Ciclo Básico Común");
+      const materiasCBC = getters.MateriasAprobadasCBC();
+      const promedioCBC = promediar(materiasCBC)
       if (showLabels && promedioCBC) this.label += "\n[" + promedioCBC + "]";
       if (materiasCBC.length === 6) this.color = COLORS.aprobadas[400];
       else this.color = COLORS.aprobadas[100];

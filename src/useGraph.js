@@ -58,6 +58,10 @@ const useGraph = (loginHook) => {
   ///
 
   const getters = {
+    NodesFrom: (id) => network.getConnectedNodes(id, "from"),
+    NodesTo: (id) => network.getConnectedNodes(id, "to"),
+    NeighborNodes: (id) => network.getConnectedNodes(id),
+    NeighborEdges: (id) => network.getConnectedNodes(id),
     Cuatrimestres: () => nodes ? nodes.get({
       filter: (n) => n.cuatrimestre,
       fields: ["id", "cuatrimestre"],
@@ -79,6 +83,11 @@ const useGraph = (loginHook) => {
       }
       return categorias
     },
+    MateriasAprobadasCBC: () =>
+      nodes ? nodes.get({
+        filter: (n) => n.categoria === "*CBC" && n.aprobada && n.nota > 0,
+        fields: ["nota"],
+      }) : [],
     MateriasAprobadasSinCBC: () =>
       nodes ? nodes.get({
         filter: (n) => n.aprobada && n.nota > 0 && n.categoria !== "*CBC" && n.categoria !== "CBC",
@@ -204,16 +213,16 @@ const useGraph = (loginHook) => {
   const actualizar = () => {
     if (!nodes) return;
     updatePromedio()
-    updateCreditos()
+    const creditosTotales = updateCreditos()
     nodes.update(
       nodes.map((n) =>
         getNode(n.id).actualizar({
+          getters,
           user,
           network,
           getNode,
-          optativas,
+          creditosTotales,
           showLabels: logged,
-          nodes,
           colorMode,
         })
       )
@@ -677,6 +686,8 @@ const useGraph = (loginHook) => {
     });
 
     setCreditos(creditos)
+
+    return creditosTotales
   };
 
   ///
@@ -714,7 +725,7 @@ const useGraph = (loginHook) => {
     const node = getNode(id)
     if (!node) return;
 
-    let neighborNodes = network.getConnectedNodes(node.id);
+    let neighborNodes = getters.NeighborNodes(id)
     if (node.requiere) {
       neighborNodes = neighborNodes.filter((node) => node !== "CBC");
     }
@@ -731,7 +742,7 @@ const useGraph = (loginHook) => {
       })
     );
 
-    const neighborEdgesIds = network.getConnectedEdges(node.id);
+    const neighborEdgesIds = getters.NeighborEdges(id)
     const neighborEdges = edges.get({
       filter: function (edge) {
         return neighborEdgesIds.includes(edge.id) && edge.color !== "transparent"
