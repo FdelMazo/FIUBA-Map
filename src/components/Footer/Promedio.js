@@ -53,7 +53,7 @@ const Promedio = () => {
                   mx={2}
                   size="xs"
                   width="6ch"
-                  defaultValue={aplazos}
+                  value={aplazos}
                   min={0}
                   onChange={(v) => setAplazos(parseFloat(v))}
                 >

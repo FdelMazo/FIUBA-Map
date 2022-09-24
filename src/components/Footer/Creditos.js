@@ -123,12 +123,14 @@ const Creditos = () => {
                         borderRadius={5}
                         size="sm"
                         width="4rem"
-                        defaultValue={o.creditos}
+                        value={o.creditos}
                         min={0}
                         onChange={(_, creditos) => {
                           optativasDispatch({
                             action: 'edit',
-                            value: { id: o.id, nombre: o.nombre, creditos }
+                            value: {
+                              id: o.id, nombre: o.nombre, creditos: creditos || 0
+                            }
                           })
                         }}
                       >
