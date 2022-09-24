@@ -241,10 +241,6 @@ const useGraph = (loginHook) => {
             metadata.materias.forEach((m) => {
               let node = getNode(m.id)
               if (!node) return;
-              if (m.cuatri >= 0) {
-                node.cuatri = m.cuatri
-                toUpdate.push(node);
-              }
               if (m.nota >= -1) {
                 node = node.aprobar(m.nota)
                 toUpdate.push(node);
