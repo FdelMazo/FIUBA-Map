@@ -26,45 +26,10 @@ const useGraph = (loginHook) => {
   const [needsRegister, setNeedsRegister] = React.useState(false);
 
   const [displayedNode, setDisplayedNode] = React.useState("");
-  const [creditos, setCreditos] = React.useState([]);
-  const [stats, setStats] = React.useState({
-    creditosTotales: 0,
-    creditosTotalesNecesarios: 0,
-    isRecibido: false,
-  });
 
-  const [optativas, optativasDispatch] = React.useReducer((prevstate, dispatched) => {
-    let newstate = prevstate;
-    const { action, value } = dispatched
-    switch (action) {
-      case 'override':
-        newstate = value;
-        break;
-      case 'create':
-        const lastOptativaId = prevstate.map((o) => o.id).pop() || 0;
-        newstate = [
-          ...newstate,
-          {
-            id: lastOptativaId + 1,
-            nombre: "Materia Optativa",
-            creditos: 4
-          }
-        ]
-        break;
-      case 'remove':
-        newstate = prevstate.filter((o) => o.id !== value.id)
-        break;
-      case 'edit':
-        newstate = [
-          ...prevstate.filter((o) => o.id !== value.id),
-          { ...value }
-        ]
-        break;
-      default:
-        return newstate;
-    }
-    return newstate;
-  }, []);
+  ///
+  /// useEffects
+  ///
 
   // En boot, si no estoy logueado, muestro lic en sistemas
   React.useEffect(() => {
@@ -86,6 +51,11 @@ const useGraph = (loginHook) => {
   React.useEffect(() => {
     if (logged && needsRegister) register();
   }, [user.carrera, user.orientacion, user.finDeCarrera]);
+
+
+  ///
+  /// Getters
+  ///
 
   const getters = {
     Cuatrimestres: () => nodes ? nodes.get({
@@ -168,6 +138,10 @@ const useGraph = (loginHook) => {
       }) : [],
   }
 
+  ///
+  /// Acciones y helpers
+  ///
+
   const getNode = (id) => {
     return nodes?.get(id)?.nodeRef;
   };
@@ -223,7 +197,10 @@ const useGraph = (loginHook) => {
     network.fit();
   };
 
-  // De aca para abajo, hay que optimizar o refactorizar o ponerle amor
+  ///
+  /// De aca para abajo, hay que optimizar o refactorizar o ponerle amor
+  ///
+
   const actualizar = () => {
     if (!nodes) return;
     updatePromedio()
@@ -242,10 +219,6 @@ const useGraph = (loginHook) => {
       )
     );
   };
-
-  React.useEffect(() => {
-    actualizar();
-  }, [colorMode, optativas]);
 
   React.useEffect(() => {
     if (!nodes?.carrera || nodes.carrera !== user.carrera?.id) return;
@@ -404,123 +377,6 @@ const useGraph = (loginHook) => {
     network.fit();
   };
 
-  const updateCreditos = () => {
-    let creditos = [];
-    const getCorrectCreditos = () => {
-      if (user.carrera.eligeOrientaciones)
-        return user.carrera.creditos.orientacion[user.orientacion?.nombre];
-      return user.carrera.creditos;
-    };
-
-    const cbc = getters.CBC()
-    creditos.push({
-      ...CREDITOS['CBC'],
-      creditosNecesarios: cbc.reduce(accCreditos, 0),
-      creditos: cbc.reduce(accCreditos, 0),
-      nmaterias: cbc.length,
-    });
-
-    const obligatorias = getters.ObligatoriasAprobadas()
-    creditos.push({
-      ...CREDITOS['Obligatorias'],
-      creditosNecesarios: user.carrera.creditos.obligatorias,
-      nmaterias: obligatorias.length,
-      creditos: obligatorias.reduce(accCreditos, 0),
-    });
-
-    const electivas = getters.ElectivasAprobadas()
-    creditos.push({
-      ...CREDITOS['Electivas'],
-      creditosNecesarios: isNaN(getCorrectCreditos()?.electivas)
-        ? getCorrectCreditos()?.electivas[user.finDeCarrera?.id]
-        : getCorrectCreditos()?.electivas,
-
-      nmaterias: electivas.length,
-      creditos:
-        electivas.reduce(accCreditos, 0) +
-        optativas.reduce(accCreditos, 0),
-    });
-
-    const orientacion = getters.OrientacionAprobadas()
-    if (
-      user.carrera.eligeOrientaciones &&
-      user.orientacion &&
-      user.carrera.creditos.orientacion[user.orientacion?.nombre]
-    )
-      creditos.push({
-        nombre: `Orientación: ${user.orientacion.nombre}`,
-        nombrecorto: "Orientación",
-        bg: COLORS[user.orientacion.colorScheme][50],
-        color: user.orientacion.colorScheme,
-        creditosNecesarios: getCorrectCreditos()?.orientacion,
-        nmaterias: orientacion.length,
-        creditos: orientacion.reduce(accCreditos, 0),
-      });
-
-    if (user.carrera.creditos.checkbox) {
-      user.carrera.creditos.checkbox.forEach((m) => {
-        creditos.push({
-          nombre: m.nombre,
-          nombrecorto: m.nombrecorto,
-          color: m.color,
-          bg: m.bg,
-          creditosNecesarios: 8,
-          creditos: m.check ? 8 : 0,
-          checkbox: true,
-          check: m.check,
-        });
-      });
-    }
-
-    if (user.carrera.creditos.materias)
-      user.carrera.creditos.materias.forEach((m) => {
-        const node = getNode(m.id);
-        creditos.push({
-          nombre: node.materia,
-          nombrecorto: m.nombrecorto,
-          color: m.color,
-          bg: m.bg,
-          creditosNecesarios: node.creditos,
-          creditos: node.aprobada ? node.creditos : 0,
-        });
-      });
-
-    if (user.finDeCarrera) {
-      const node = getNode(user.finDeCarrera.materia);
-      creditos.push({
-        ...CREDITOS['Fin de Carrera'],
-        nombre: node.materia,
-        nombrecorto: user.finDeCarrera.id,
-        creditosNecesarios: node.creditos,
-        creditos: node.aprobada ? node.creditos : 0,
-      });
-    }
-
-    const totalNecesarios = creditos.reduce(accCreditosNecesarios, 0);
-    creditos.forEach((c) => {
-      c.proportion =
-        Math.round((c.creditosNecesarios / totalNecesarios) * 10) || 1;
-    });
-
-    const fullProportion = creditos.reduce(accProportion, 0);
-    if (fullProportion > 10) creditos[1].proportion -= fullProportion - 10;
-    else if (fullProportion < 10) creditos[1].proportion += 10 - fullProportion;
-
-    const aprobadas = [...getters.MateriasAprobadasSinCBC(), ...cbc, ...optativas]
-    const creditosTotales = aprobadas.reduce(accCreditos, 0)
-    const allCreditosAprobados = creditos.every(c => c.creditos >= c.creditosNecesarios);
-    const creditosTotalesNecesarios = user.carrera?.creditos.total
-    const isRecibido = creditosTotales >= user.carrera?.creditos.total && allCreditosAprobados
-
-    setStats({
-      creditosTotales,
-      creditosTotalesNecesarios,
-      isRecibido,
-    });
-
-    setCreditos(creditos)
-  };
-
   const showRelevantes = () => {
     const relevantes = getters.AllRelevantes().map((n) => {
       const node = getNode(n.id);
@@ -662,6 +518,198 @@ const useGraph = (loginHook) => {
     network.body.emitter.emit("_dataChanged");
   }
 
+  ///
+  /// Logica de creditos y optativas
+  ///
+
+  const [creditos, setCreditos] = React.useState([]);
+  const [stats, setStats] = React.useState({
+    creditosTotales: 0,
+    creditosTotalesNecesarios: 0,
+    isRecibido: false,
+  });
+
+  const [optativas, optativasDispatch] = React.useReducer((prevstate, dispatched) => {
+    let newstate = prevstate;
+    const { action, value } = dispatched
+    switch (action) {
+      case 'override':
+        newstate = value;
+        break;
+      case 'create':
+        const lastOptativaId = prevstate.map((o) => o.id).pop() || 0;
+        newstate = [
+          ...newstate,
+          {
+            id: lastOptativaId + 1,
+            nombre: "Materia Optativa",
+            creditos: 4
+          }
+        ]
+        break;
+      case 'remove':
+        newstate = prevstate.filter((o) => o.id !== value.id)
+        break;
+      case 'edit':
+        newstate = [
+          ...prevstate.filter((o) => o.id !== value.id),
+          { ...value }
+        ]
+        break;
+      default:
+        return newstate;
+    }
+    return newstate;
+  }, []);
+
+  const updateCreditos = () => {
+    let creditos = [];
+    const getCorrectCreditos = () => {
+      if (user.carrera.eligeOrientaciones)
+        return user.carrera.creditos.orientacion[user.orientacion?.nombre];
+      return user.carrera.creditos;
+    };
+
+    const cbc = getters.CBC()
+    creditos.push({
+      ...CREDITOS['CBC'],
+      creditosNecesarios: cbc.reduce(accCreditos, 0),
+      creditos: cbc.reduce(accCreditos, 0),
+      nmaterias: cbc.length,
+    });
+
+    const obligatorias = getters.ObligatoriasAprobadas()
+    creditos.push({
+      ...CREDITOS['Obligatorias'],
+      creditosNecesarios: user.carrera.creditos.obligatorias,
+      nmaterias: obligatorias.length,
+      creditos: obligatorias.reduce(accCreditos, 0),
+    });
+
+    const electivas = getters.ElectivasAprobadas()
+    creditos.push({
+      ...CREDITOS['Electivas'],
+      creditosNecesarios: isNaN(getCorrectCreditos()?.electivas)
+        ? getCorrectCreditos()?.electivas[user.finDeCarrera?.id]
+        : getCorrectCreditos()?.electivas,
+
+      nmaterias: electivas.length,
+      creditos:
+        electivas.reduce(accCreditos, 0) +
+        optativas.reduce(accCreditos, 0),
+    });
+
+    const orientacion = getters.OrientacionAprobadas()
+    if (
+      user.carrera.eligeOrientaciones &&
+      user.orientacion &&
+      user.carrera.creditos.orientacion[user.orientacion?.nombre]
+    )
+      creditos.push({
+        nombre: `Orientación: ${user.orientacion.nombre}`,
+        nombrecorto: "Orientación",
+        bg: COLORS[user.orientacion.colorScheme][50],
+        color: user.orientacion.colorScheme,
+        creditosNecesarios: getCorrectCreditos()?.orientacion,
+        nmaterias: orientacion.length,
+        creditos: orientacion.reduce(accCreditos, 0),
+      });
+
+    if (user.carrera.creditos.checkbox) {
+      user.carrera.creditos.checkbox.forEach((m) => {
+        creditos.push({
+          nombre: m.nombre,
+          nombrecorto: m.nombrecorto,
+          color: m.color,
+          bg: m.bg,
+          creditosNecesarios: 8,
+          creditos: m.check ? 8 : 0,
+          checkbox: true,
+          check: m.check,
+        });
+      });
+    }
+
+    if (user.carrera.creditos.materias)
+      user.carrera.creditos.materias.forEach((m) => {
+        const node = getNode(m.id);
+        creditos.push({
+          nombre: node.materia,
+          nombrecorto: m.nombrecorto,
+          color: m.color,
+          bg: m.bg,
+          creditosNecesarios: node.creditos,
+          creditos: node.aprobada ? node.creditos : 0,
+        });
+      });
+
+    if (user.finDeCarrera) {
+      const node = getNode(user.finDeCarrera.materia);
+      creditos.push({
+        ...CREDITOS['Fin de Carrera'],
+        nombre: node.materia,
+        nombrecorto: user.finDeCarrera.id,
+        creditosNecesarios: node.creditos,
+        creditos: node.aprobada ? node.creditos : 0,
+      });
+    }
+
+    const totalNecesarios = creditos.reduce(accCreditosNecesarios, 0);
+    creditos.forEach((c) => {
+      c.proportion =
+        Math.round((c.creditosNecesarios / totalNecesarios) * 10) || 1;
+    });
+
+    const fullProportion = creditos.reduce(accProportion, 0);
+    if (fullProportion > 10) creditos[1].proportion -= fullProportion - 10;
+    else if (fullProportion < 10) creditos[1].proportion += 10 - fullProportion;
+
+    const aprobadas = [...getters.MateriasAprobadasSinCBC(), ...cbc, ...optativas]
+    const creditosTotales = aprobadas.reduce(accCreditos, 0)
+    const allCreditosAprobados = creditos.every(c => c.creditos >= c.creditosNecesarios);
+    const creditosTotalesNecesarios = user.carrera?.creditos.total
+    const isRecibido = creditosTotales >= user.carrera?.creditos.total && allCreditosAprobados
+
+    setStats({
+      creditosTotales,
+      creditosTotalesNecesarios,
+      isRecibido,
+    });
+
+    setCreditos(creditos)
+  };
+
+  ///
+  /// Logica de aplazos y promedio
+  ///
+
+  const [aplazos, setAplazos] = React.useState(0)
+  const [promedio, setPromedio] = React.useState({
+    promedio: 0,
+    promedioConAplazos: 0,
+    promedioConCBC: 0,
+  })
+
+  const updatePromedio = () => {
+    setPromedio({
+      promedio: promediar(getters.MateriasAprobadasSinCBC()),
+      promedioConAplazos: promediar([
+        ...getters.MateriasAprobadasSinCBC(),
+        ...Array(aplazos).fill({ nota: 2 })
+      ]),
+      promedioConCBC: promediar(getters.MateriasAprobadasConCBC()),
+    })
+  }
+
+  // Si cambian los aplazos, hay que actualizar el objeto promedio
+  React.useEffect(() => {
+    updatePromedio()
+  }, [aplazos])
+
+  ///
+  /// Logica de interacción con el grafo
+  ///
+
   const blurOthers = (id) => {
     const node = getNode(id)
     if (!node) return;
@@ -797,28 +845,14 @@ const useGraph = (loginHook) => {
   };
 
 
-  const [aplazos, setAplazos] = React.useState(0)
-  const [promedio, setPromedio] = React.useState({
-    promedio: 0,
-    promedioConAplazos: 0,
-    promedioConCBC: 0,
-  })
+  ///
+  ///
+  ///
 
-  const updatePromedio = () => {
-    setPromedio({
-      promedio: promediar(getters.MateriasAprobadasSinCBC()),
-      promedioConAplazos: promediar([
-        ...getters.MateriasAprobadasSinCBC(),
-        ...Array(aplazos).fill({ nota: 2 })
-      ]),
-      promedioConCBC: promediar(getters.MateriasAprobadasConCBC()),
-    })
-  }
-
-  // Si cambian los aplazos, hay que actualizar el objeto promedio
+  // Estoy seguro de que estoy se puede refactorizar
   React.useEffect(() => {
-    updatePromedio()
-  }, [aplazos])
+    actualizar();
+  }, [colorMode, optativas]);
 
   return {
     graph,
