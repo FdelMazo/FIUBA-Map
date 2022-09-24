@@ -153,7 +153,19 @@ const useGraph = (loginHook) => {
           n.aprobada &&
           n.nota >= 0,
         fields: ["creditos"],
-      }) : []
+      }) : [],
+    CategoriaOnly: (categoria) => nodes ? nodes
+      .get({
+        filter: (n) => n.categoria === categoria,
+      }) : [],
+    CategoriaRelevantes: (categoria) => nodes ? nodes
+      .get({
+        filter: (n) => n.categoria === categoria && (n.cuatrimestre || n.nota >= -1)
+      }) : [],
+    AllRelevantes: () => nodes ? nodes
+      .get({
+        filter: (n) => n.categoria !== "*CBC" && (n.cuatrimestre || n.nota >= -1)
+      }) : [],
   }
 
   const getNode = (id) => {
@@ -161,7 +173,10 @@ const useGraph = (loginHook) => {
   };
 
   const redraw = () => {
-    if (network) network.redraw();
+    if (network) {
+      network.redraw()
+      network.fit();
+    }
   };
 
   const saveGraph = () => {
@@ -268,7 +283,7 @@ const useGraph = (loginHook) => {
           nodes.update(toUpdate.flat());
           actualizar();
           actualizarNiveles()
-          showAprobadas();
+          showRelevantes();
           setLoadingGraph(false);
           if (metadata.optativas) {
             optativasDispatch({ action: 'override', value: metadata.optativas })
@@ -340,12 +355,7 @@ const useGraph = (loginHook) => {
   const groupStatus = (categoria) => {
     const status = [
       ...new Set(
-        nodes
-          .get({
-            filter: (c) => c.categoria === categoria,
-            fields: ["hidden"],
-          })
-          .map((n) => n.hidden)
+        getters.CategoriaOnly(categoria).map((n) => n.hidden)
       ),
     ];
     if (status.length === 1) {
@@ -359,20 +369,15 @@ const useGraph = (loginHook) => {
     let group = null;
     switch (status) {
       case "hidden":
-        group = graph.nodes
-          .filter((n) =>
-            n.categoria === categoria &&
-            (n.cuatrimestre || n.nota >= -1))
-          .map((n) => {
-            const node = getNode(n.id);
-            node.hidden = false;
-            return node;
-          });
+        group = getters.CategoriaRelevantes(categoria).map((n) => {
+          const node = getNode(n.id);
+          node.hidden = false;
+          return node;
+        });
         if (group.length) break;
       // eslint-disable-next-line no-fallthrough
       case "partial":
-        group = graph.nodes
-          .filter((n) => n.categoria === categoria)
+        group = getters.CategoriaOnly(categoria)
           .map((n) => {
             const node = getNode(n.id);
             node.hidden = false;
@@ -380,21 +385,22 @@ const useGraph = (loginHook) => {
           });
         break;
       case "shown":
-        group = graph.nodes
-          .filter((n) => n.categoria === categoria)
+        group = getters.CategoriaOnly(categoria)
           .map((n) => {
             const node = getNode(n.id);
             node.hidden = true;
             return node;
           });
+        if (group.map(n => n.id).includes(network.getSelectedNodes()[0])) {
+          deselectNode()
+        }
         break;
       default:
         break;
     }
 
     actualizar();
-    actualizarNiveles()
-    redraw();
+    actualizarNiveles();
     network.fit();
   };
 
@@ -515,39 +521,14 @@ const useGraph = (loginHook) => {
     setCreditos(creditos)
   };
 
-  const showAprobadas = () => {
-    let electivas = nodes
-      .get({
-        filter: (n) =>
-          n.categoria === "Materias Electivas" &&
-          (n.aprobada || n.nota === -1 || n.cuatrimestre),
-        fields: ["id"],
-      })
-      .map((n) => {
-        const node = getNode(n.id);
-        node.hidden = false;
-        return node;
-      });
+  const showRelevantes = () => {
+    const relevantes = getters.AllRelevantes().map((n) => {
+      const node = getNode(n.id);
+      node.hidden = false;
+      return node;
+    });
 
-    let resto = nodes
-      .get({
-        filter: (n) =>
-          n.categoria !== "CBC" &&
-          n.categoria !== "*CBC" &&
-          n.categoria !== "Materias Obligatorias" &&
-          n.categoria !== "Materias Electivas" &&
-          n.categoria !== "Fin de Carrera (Obligatorio)" &&
-          n.categoria !== "Fin de Carrera" &&
-          (n.aprobada || n.nota === -1 || n.cuatrimestre),
-        fields: ["id"],
-      })
-      .map((n) => {
-        const node = getNode(n.id);
-        node.hidden = false;
-        return node;
-      });
-
-    nodes.update([...electivas, ...resto]);
+    nodes.update(relevantes);
     actualizar();
     actualizarNiveles()
     network.fit();
@@ -743,13 +724,25 @@ const useGraph = (loginHook) => {
     );
   }
 
+  const deselectNode = () => {
+    unblurAll()
+    setDisplayedNode("");
+    network.selectNodes([]);
+  }
+
+  const selectNode = (id) => {
+    unblurAll()
+    blurOthers(id)
+    if (!logged || id === "CBC") return;
+    setDisplayedNode(id);
+  }
+
   const events = {
     click: (e) => {
       // click: abre/cierra CBC
       // click en ningun nodo: limpiar blur/selection
       if (!e.nodes.length) {
-        unblurAll()
-        setDisplayedNode("");
+        deselectNode()
         return;
       }
       const id = e.nodes[0];
@@ -799,10 +792,7 @@ const useGraph = (loginHook) => {
     },
     selectNode: (e) => {
       const id = e.nodes[0];
-      unblurAll()
-      blurOthers(id)
-      if (!logged || id === "CBC") return;
-      setDisplayedNode(id);
+      selectNode(id)
     },
   };
 
