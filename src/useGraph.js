@@ -145,6 +145,62 @@ const useGraph = (loginHook) => {
       .get({
         filter: (n) => n.categoria !== "*CBC" && (n.cuatrimestre || n.nota >= -1)
       }) : [],
+    AllShown: () => nodes ? nodes
+      .get({
+        filter: (n) => !n.hidden &&
+          n.categoria !== "CBC" &&
+          n.categoria !== "*CBC" &&
+          n.categoria !== "Fin de Carrera" &&
+          n.categoria !== "Fin de Carrera (Obligatorio)"
+      }) : [],
+    AllShownWithCuatri: () => nodes ? nodes
+      .get({
+        filter: (n) => n.cuatrimestre &&
+          !n.hidden &&
+          n.categoria !== "CBC" &&
+          n.categoria !== "*CBC"
+      }) : [],
+    AllShownWithoutCuatri: () => nodes ? nodes
+      .get({
+        filter: (n) =>
+          !n.cuatrimestre &&
+          !n.hidden &&
+          n.originalLevel &&
+          n.categoria !== "CBC" &&
+          n.categoria !== "*CBC"
+      }) : [],
+    WithoutNivel: () => nodes ? nodes
+      .get({
+        filter: (n) => n.categoria !== "Materias Electivas" &&
+          n.categoria !== "Fin de Carrera" &&
+          n.categoria !== "Fin de Carrera (Obligatorio)" &&
+          !n.hidden &&
+          !n.cuatrimestre &&
+          !n.originalLevel &&
+          n.originalLevel !== 0
+      }) : [],
+    Electivas: () => nodes ? nodes
+      .get({
+        filter: (n) => n.categoria === "Materias Electivas" &&
+          !n.hidden &&
+          !n.cuatrimestre
+      }) : [],
+    Levels: () => nodes ? nodes
+      .get({
+        filter: (n) =>
+          !n.hidden &&
+          n.categoria !== "Fin de Carrera" &&
+          n.categoria !== "Fin de Carrera (Obligatorio)",
+        fields: ["level"],
+        type: { level: "number" },
+      }) : [],
+    FinDeCarrera: () => nodes ? nodes
+      .get({
+        filter: (n) =>
+          (n.categoria === "Fin de Carrera" || n.categoria === "Fin de Carrera (Obligatorio)") &&
+          !n.hidden &&
+          !n.cuatrimestre
+      }) : [],
   }
 
   ///
@@ -207,7 +263,7 @@ const useGraph = (loginHook) => {
   };
 
   ///
-  /// De aca para abajo, hay que optimizar o refactorizar o ponerle amor
+  /// Funcion clave: recorre todos los nodos y llama a nodo.actualizar()
   ///
 
   const actualizar = () => {
@@ -228,6 +284,10 @@ const useGraph = (loginHook) => {
       )
     );
   };
+
+  ///
+  /// Login Stuff... Muchísimo cuidado al tocar esto
+  ///
 
   React.useEffect(() => {
     if (!nodes?.carrera || nodes.carrera !== user.carrera?.id) return;
@@ -262,18 +322,18 @@ const useGraph = (loginHook) => {
           actualizar();
           actualizarNiveles()
           showRelevantes();
-          setLoadingGraph(false);
           if (metadata.optativas) {
             optativasDispatch({ action: 'override', value: metadata.optativas })
           };
           if (metadata.aplazos) setAplazos(metadata.aplazos);
           network.fit();
+          setLoadingGraph(false);
         })
         .catch((e) => {
-          setLoadingGraph(false);
           aprobar("CBC", 0);
           actualizarNiveles()
           network.fit();
+          setLoadingGraph(false);
         });
     }
   }, [shouldLoadGraph, nodes]);
@@ -320,15 +380,21 @@ const useGraph = (loginHook) => {
       return { ...rest, carrera, orientacion, finDeCarrera };
     });
   };
+
   const changeOrientacion = (id) => {
     const orientacion = user.carrera.orientaciones.find((c) => c.nombre === id);
     setUser({ ...user, orientacion });
   };
+
   const changeFinDeCarrera = (id) => {
     const finDeCarrera =
       user.carrera.finDeCarrera.find((c) => c.id === id) || null;
     setUser({ ...user, finDeCarrera });
   };
+
+  ///
+  /// Manejo de grupos/categorias y sus niveles
+  ///
 
   const groupStatus = (categoria) => {
     const status = [
@@ -413,10 +479,8 @@ const useGraph = (loginHook) => {
     };
 
     const electivas = group.sort(sortByGroup);
-
     let counter = 0;
     let addLevel = 1;
-
     electivas.forEach((n) => {
       counter += 1;
       if (counter === 7) {
@@ -431,20 +495,9 @@ const useGraph = (loginHook) => {
 
   const actualizarNiveles = () => {
     const toUpdate = []
-    let lastLevel = Math.max(...nodes.get({
-      filter: (n) => !n.hidden &&
-        n.categoria !== "CBC" &&
-        n.categoria !== "*CBC" &&
-        n.categoria !== "Fin de Carrera" &&
-        n.categoria !== "Fin de Carrera (Obligatorio)"
-    }).map(n => n.level))
+    let lastLevel = Math.max(...getters.AllShown().map(n => n.level))
 
-    const conCuatri = nodes.get({
-      filter: (n) => n.cuatrimestre &&
-        !n.hidden &&
-        n.categoria !== "CBC" &&
-        n.categoria !== "*CBC"
-    })
+    const conCuatri = getters.AllShownWithCuatri()
     const firstCuatri = Math.min(...conCuatri.map(n => n.cuatrimestre))
 
     if (conCuatri.length) {
@@ -454,14 +507,7 @@ const useGraph = (loginHook) => {
         return n;
       }))
       if (toUpdate.length) lastLevel = Math.max(...toUpdate.map(n => n.level))
-      const sinCuatri = nodes.get({
-        filter: (n) =>
-          !n.cuatrimestre &&
-          !n.hidden &&
-          n.originalLevel &&
-          n.categoria !== "CBC" &&
-          n.categoria !== "*CBC"
-      })
+      const sinCuatri = getters.AllShownWithoutCuatri()
       if (sinCuatri.length) {
         const firstOffset = Math.min(...sinCuatri.map(n => n.originalLevel))
         toUpdate.push(...sinCuatri.map((n) => {
@@ -473,47 +519,19 @@ const useGraph = (loginHook) => {
       }
     }
 
-    const noElectivasPeroSinNivel = nodes.get({
-      filter: (n) => n.categoria !== "Materias Electivas" &&
-        n.categoria !== "Fin de Carrera" &&
-        n.categoria !== "Fin de Carrera (Obligatorio)" &&
-        !n.hidden &&
-        !n.cuatrimestre &&
-        !n.originalLevel &&
-        n.originalLevel !== 0
-    })
+    const noElectivasPeroSinNivel = getters.WithoutNivel()
     toUpdate.push(...balanceSinNivel(noElectivasPeroSinNivel, lastLevel));
     if (toUpdate.length) lastLevel = Math.max(...toUpdate.map(n => n.level))
 
-    const electivas = nodes.get({
-      filter: (n) => n.categoria === "Materias Electivas" &&
-        !n.hidden &&
-        !n.cuatrimestre
-    })
+    const electivas = getters.Electivas()
     toUpdate.push(...balanceSinNivel(electivas, lastLevel));
 
     if (toUpdate.length) lastLevel = Math.max(...toUpdate.map(n => n.level))
     if (!isFinite(lastLevel)) {
-      lastLevel = Math.max(
-        ...nodes
-          .get({
-            filter: (n) =>
-              !n.hidden &&
-              n.categoria !== "Fin de Carrera" &&
-              n.categoria !== "Fin de Carrera (Obligatorio)",
-            fields: ["level"],
-            type: { level: "number" },
-          })
-          .map((n) => n.level)
-      );
+      lastLevel = Math.max(...getters.Levels().map((n) => n.level))
     }
 
-    const findecarrera = nodes.get({
-      filter: (n) =>
-        (n.categoria === "Fin de Carrera" || n.categoria === "Fin de Carrera (Obligatorio)") &&
-        !n.hidden &&
-        !n.cuatrimestre
-    })
+    const findecarrera = getters.FinDeCarrera()
     toUpdate.push(...findecarrera.map((n) => {
       n.level = lastLevel + 1;
       return n
@@ -852,11 +870,8 @@ const useGraph = (loginHook) => {
   };
 
 
-  ///
-  ///
-  ///
-
-  // Estoy seguro de que estoy se puede refactorizar
+  // Cambiar las optativas actualiza los creditos que actualiza el mapa...
+  // Cambiar el colorMode tiene que actualizar el texto de las materias con texto afuera
   React.useEffect(() => {
     actualizar();
   }, [colorMode, optativas]);
