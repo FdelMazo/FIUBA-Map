@@ -267,7 +267,7 @@ const useGraph = (loginHook) => {
   ///
 
   const actualizar = () => {
-    if (!nodes) return;
+    if (!nodes?.carrera) return;
     updatePromedio()
     const creditosTotales = updateCreditos()
     nodes.update(
@@ -586,6 +586,7 @@ const useGraph = (loginHook) => {
   }, []);
 
   const updateCreditos = () => {
+    if (!nodes?.carrera) return;
     let creditos = [];
     const getCorrectCreditos = () => {
       if (user.carrera.eligeOrientaciones)
