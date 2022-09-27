@@ -807,7 +807,6 @@ const useGraph = (loginHook) => {
   const selectNode = (id) => {
     unblurAll()
     blurOthers(id)
-    if (!logged || id === "CBC") return;
     setDisplayedNode(id);
   }
 
@@ -856,12 +855,14 @@ const useGraph = (loginHook) => {
       if (network.getSelectedNodes().length) {
         return
       }
+      selectNode(id)
       blurOthers(id)
     },
     blurNode: () => {
       if (network.getSelectedNodes().length) {
         return
       }
+      deselectNode()
       unblurAll()
     },
     selectNode: (e) => {

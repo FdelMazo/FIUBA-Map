@@ -21,15 +21,6 @@ class Node {
     this.group = this.categoria;
     this.aprobada = false;
     this.nota = -2;
-    // Remove hover title on mobile
-    // https://stackoverflow.com/a/19715406
-    if (!(!!("ontouchstart" in window) || window.navigator.msMaxTouchPoints > 0)) { 
-      this.title =
-        this.title ||
-        (this.creditos
-          ? `[${this.id}] ${this.materia}\n- Otorga ${this.creditos} créditos${this.requiere ? "\n- Requiere " + this.requiere + " créditos" : ""}`
-          : `[${this.id}] ${this.materia}`);
-    }
     this.cuatrimestre = undefined;
     this.originalLevel = this.level;
     this.level = this.level ?? -3

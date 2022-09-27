@@ -62,7 +62,7 @@ const NumberStepperProps = {
 }
 
 const MateriaControl = () => {
-  const { fiubaRepos, isMobile } = React.useContext(UserContext);
+  const { fiubaRepos, isMobile, logged } = React.useContext(UserContext);
 
   const { getNode, aprobar, displayedNode, desaprobar, cursando } =
     React.useContext(GraphContext);
@@ -70,7 +70,7 @@ const MateriaControl = () => {
   const node = React.useMemo(() => getNode(displayedNode), [displayedNode, getNode])
   const repos = React.useMemo(() => fiubaRepos.find(materia => materia.codigos.includes(node?.id.replace('.', ''))), [fiubaRepos, node])
 
-  return displayedNode && (
+  return displayedNode && logged && node.id !== "CBC" && (
     <Flex alignItems="center" height="fit-content">
       {!isMobile && repos && (
         <>

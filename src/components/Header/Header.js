@@ -17,7 +17,7 @@ const Header = () => {
   const { displayedNode } = React.useContext(GraphContext);
 
   const CommonProps = {
-    height: isMobile ? "7.5rem" : "4.5rem",
+    height: isMobile ? "8.7rem" : "4.5rem",
     bg: useColorModeValue("headerbg", "headerbgdark")
   }
 
