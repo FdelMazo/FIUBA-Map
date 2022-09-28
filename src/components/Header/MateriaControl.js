@@ -70,7 +70,7 @@ const MateriaControl = () => {
   const node = React.useMemo(() => getNode(displayedNode), [displayedNode, getNode])
   const repos = React.useMemo(() => fiubaRepos.find(materia => materia.codigos.includes(node?.id.replace('.', ''))), [fiubaRepos, node])
 
-  return displayedNode && logged && node.id !== "CBC" && (
+  return displayedNode && logged && (node?.id !== "CBC") && (
     <Flex alignItems="center" height="fit-content">
       {!isMobile && repos && (
         <>
@@ -183,7 +183,7 @@ const MateriaControl = () => {
         </Tooltip>
       </Flex>
 
-      {node.categoria !== "CBC" && node.categoria !== "*CBC" && (
+      {node?.categoria !== "CBC" && node?.categoria !== "*CBC" && (
         <>
           {!node.cuatrimestre ?
             (

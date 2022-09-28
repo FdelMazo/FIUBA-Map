@@ -35,16 +35,16 @@ const MateriaStatus = () => {
           colorScheme="green"
           variant="outline"
         >
-          {node.id === "CBC" ? `Clickealo para ver las materias!` : `Otorga ${node.creditos} créditos`}
+          {node?.id === "CBC" ? `Clickealo para ver las materias!` : `Otorga ${node?.creditos} créditos`}
         </Badge>
 
-        {node.requiere && <Badge
+        {node?.requiere && <Badge
           width="100%"
           px={2}
           colorScheme="orange"
           variant="outline"
         >
-          Requiere {node.requiere} créditos
+          Requiere {node?.requiere} créditos
         </Badge>}
       </Flex>
     </Flex>
