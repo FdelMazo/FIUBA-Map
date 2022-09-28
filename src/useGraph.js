@@ -41,6 +41,11 @@ const useGraph = (loginHook) => {
     if (logged) changeCarrera(user.carrera.id);
   }, [logged]);
 
+  // Cuando el usuario se desloguea, llamamos a actualizar para sacar los labels de la nota
+  React.useEffect(() => {
+    if (!logged) actualizar();
+  }, [logged]);
+
   // Cuando cambia la network, le overrideo el update para que no este redibujandose constantemente
   React.useEffect(() => {
     if (!network) return
