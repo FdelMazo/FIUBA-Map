@@ -297,6 +297,7 @@ const useGraph = (loginHook) => {
   React.useEffect(() => {
     if (!nodes?.carrera || nodes.carrera !== user.carrera?.id) return;
     if (shouldLoadGraph) {
+      setDisplayedNode("")
       setShouldLoadGraph(false);
       setLoadingGraph(true);
       getGraph(user.padron, user.carrera.id)
@@ -346,12 +347,14 @@ const useGraph = (loginHook) => {
   React.useEffect(() => {
     if (!nodes?.carrera || nodes.carrera !== user.carrera?.id) return;
     if (user.orientacion) changeOrientacion(user.orientacion.nombre);
+    setDisplayedNode("");
     aprobar("CBC", 0);
     actualizarNiveles()
     network.fit();
   }, [nodes, user.finDeCarrera, user.orientacion]);
 
   const changeCarrera = async (id) => {
+    setDisplayedNode("");
     setUser(({ ...rest }) => {
       const carrera = CARRERAS.find((c) => c.id === id);
 
