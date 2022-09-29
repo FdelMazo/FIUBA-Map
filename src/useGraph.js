@@ -66,7 +66,7 @@ const useGraph = (loginHook) => {
     NodesFrom: (id) => network.getConnectedNodes(id, "from"),
     NodesTo: (id) => network.getConnectedNodes(id, "to"),
     NeighborNodes: (id) => network.getConnectedNodes(id),
-    NeighborEdges: (id) => network.getConnectedNodes(id),
+    NeighborEdges: (id) => network.getConnectedEdges(id),
     Cuatrimestres: () => nodes ? nodes.get({
       filter: (n) => n.cuatrimestre,
       fields: ["id", "cuatrimestre"],
