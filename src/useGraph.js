@@ -150,6 +150,10 @@ const useGraph = (loginHook) => {
       .get({
         filter: (n) => n.categoria !== "*CBC" && (n.cuatrimestre || n.nota >= -1)
       }) : [],
+    Shown: () => nodes ? nodes
+      .get({
+        filter: (n) => !n.hidden
+      }) : [],
     AllShown: () => nodes ? nodes
       .get({
         filter: (n) => !n.hidden &&
@@ -784,7 +788,7 @@ const useGraph = (loginHook) => {
 
   const unblurAll = () => {
     nodes.update(
-      nodes.map((n) => {
+      getters.Shown().map((n) => {
         n.opacity = undefined;
         return n;
       })
