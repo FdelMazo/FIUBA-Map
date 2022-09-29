@@ -70,8 +70,16 @@ const useLogin = () => {
       findecarreraid: d.values[0][4],
     }));
 
-    const { carreraid, orientacionid, findecarreraid } = allLogins[0];
-    const carrera = CARRERAS.find((c) => c.id === carreraid);
+    let carrera, carreraid, orientacionid, findecarreraid
+    for (let login of allLogins) {
+      carreraid = login.carreraid
+      orientacionid = login.orientacionid
+      findecarreraid = login.findecarreraid
+      if (CARRERAS.find((c) => c.id === carreraid)) {
+        carrera = CARRERAS.find((c) => c.id === carreraid);
+        break
+      };
+    }
 
     setUser({
       padron,
