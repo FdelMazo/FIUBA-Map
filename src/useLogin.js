@@ -75,7 +75,9 @@ const useLogin = () => {
       carreraid = login.carreraid
       orientacionid = login.orientacionid
       findecarreraid = login.findecarreraid
+      // eslint-disable-next-line no-loop-func
       if (CARRERAS.find((c) => c.id === carreraid)) {
+        // eslint-disable-next-line no-loop-func
         carrera = CARRERAS.find((c) => c.id === carreraid);
         break
       };
