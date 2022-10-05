@@ -1,9 +1,9 @@
 import {
-  AddIcon,
+  ArrowBackIcon,
+  ArrowForwardIcon,
   CheckIcon,
   CloseIcon,
   Icon,
-  MinusIcon,
 } from "@chakra-ui/icons";
 import {
   Button,
@@ -205,7 +205,6 @@ const MateriaControl = () => {
                 <Tooltip {...TooltipProps} label="Cuatrimestre">
                   <NumberInput
                     borderColor="transparent"
-                    width="12ch"
                     onChange={(_, cuatri) => {
                       cursando(displayedNode, cuatri);
                     }}
@@ -225,22 +224,27 @@ const MateriaControl = () => {
                     onFocus={(ev) => {
                       ev.target.blur()
                     }}
+                    display="flex"
                   >
-                    <NumberInputField {...NumberInputProps} />
-                    <NumberInputStepper height="100%" my={0}>
-                      <NumberIncrementStepper
-                        {...NumberStepperProps}
-                        color="white"
-                        _hover={{ color: "habilitadas.500" }}
-                        children={<AddIcon boxSize={3} />}
-                      />
-                      <NumberDecrementStepper
-                        {...NumberStepperProps}
-                        color="grey"
-                        _hover={{ color: "habilitadas.500" }}
-                        children={<MinusIcon boxSize={3} />}
-                      />
-                    </NumberInputStepper>
+                    <NumberDecrementStepper
+                      {...NumberStepperProps}
+                      mx={2}
+                      color="white"
+                      _hover={{ color: "habilitadas.500" }}
+                      children={<ArrowBackIcon boxSize={4} />}
+                    />
+                    <NumberInputField
+                      textAlign="center"
+                      width="8ch"
+                      p={0} {...NumberInputProps}
+                    />
+                    <NumberIncrementStepper
+                      {...NumberStepperProps}
+                      mx={2}
+                      color="white"
+                      _hover={{ color: "habilitadas.500" }}
+                      children={<ArrowForwardIcon boxSize={4} />}
+                    />
                   </NumberInput>
                 </Tooltip>
 
