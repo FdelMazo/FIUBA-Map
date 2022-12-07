@@ -95,6 +95,11 @@ const useGraph = (loginHook) => {
       }) : [],
     MateriasAprobadasSinCBC: () =>
       nodes ? nodes.get({
+        filter: (n) => n.aprobada && n.nota >= 0 && n.categoria !== "*CBC" && n.categoria !== "CBC",
+        fields: ["nota", "creditos"],
+      }) : [],
+    MateriasAprobadasSinEquivalenciasSinCBC: () =>
+      nodes ? nodes.get({
         filter: (n) => n.aprobada && n.nota > 0 && n.categoria !== "*CBC" && n.categoria !== "CBC",
         fields: ["nota", "creditos"],
       }) : [],
@@ -730,9 +735,9 @@ const useGraph = (loginHook) => {
 
   const updatePromedio = () => {
     setPromedio({
-      promedio: promediar(getters.MateriasAprobadasSinCBC()),
+      promedio: promediar(getters.MateriasAprobadasSinEquivalenciasSinCBC()),
       promedioConAplazos: promediar([
-        ...getters.MateriasAprobadasSinCBC(),
+        ...getters.MateriasAprobadasSinEquivalenciasSinCBC(),
         ...Array(aplazos).fill({ nota: 2 })
       ]),
       promedioConCBC: promediar(getters.MateriasAprobadasConCBC()),
