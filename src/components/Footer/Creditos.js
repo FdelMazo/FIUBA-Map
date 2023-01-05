@@ -108,7 +108,7 @@ const Creditos = () => {
                       value: { id: o.id, nombre, creditos: o.creditos }
                     })
                   }
-                  submitOnBlur={false}
+                  submitOnBlur={true}
                 >
                   <Flex justifyContent="space-between">
                     <Tooltip placement="top" label="Motivo" hasArrow>
