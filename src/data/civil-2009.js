@@ -651,4 +651,12 @@ export const civil = [
     correlativas: "88.14",
     categoria: "Fin de Carrera (Obligatorio)",
   },
+  {
+    id: "84.00",
+    materia: "Tesis de Ingeniería Civil",
+    creditos: 14,
+    requiere: 160,
+    requiereCBC: false,
+    categoria: "Materias Electivas",
+  },
 ];
