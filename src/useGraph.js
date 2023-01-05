@@ -114,6 +114,12 @@ const useGraph = (loginHook) => {
         filter: (n) =>
           n.categoria === "*CBC",
       }) : [],
+    Obligatorias: () => nodes ? nodes
+      .get({
+        filter: (n) =>
+          n.categoria === "Materias Obligatorias",
+        fields: ["creditos"],
+      }) : [],
     ObligatoriasAprobadas: () => nodes ? nodes
       .get({
         filter: (n) =>
@@ -624,6 +630,7 @@ const useGraph = (loginHook) => {
       ...CREDITOS['Obligatorias'],
       creditosNecesarios: user.carrera.creditos.obligatorias,
       nmaterias: obligatorias.length,
+      totalmaterias: getters.Obligatorias().length,
       creditos: obligatorias.reduce(accCreditos, 0),
     });
 

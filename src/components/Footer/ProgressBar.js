@@ -103,7 +103,7 @@ const ProgressBar = () => {
                         </StatHelpText>
                       }
                       <>
-                        {!!c.nmaterias && <StatHelpText fontSize="smaller">({c.nmaterias} {c.nmaterias === 1 ? 'materia aprobada' : 'materias aprobadas'})</StatHelpText>}
+                        {!!c.nmaterias && <StatHelpText fontSize="smaller">({c.nmaterias} {c.nmaterias === 1 ? 'materia aprobada' : 'materias aprobadas'}{c.totalmaterias && ` de ${c.totalmaterias}`})</StatHelpText>}
                       </>
                     </>
                   )}
