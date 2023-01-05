@@ -174,6 +174,7 @@ export const industrial = [
     materia: "Microeconomía Aplicada",
     creditos: 4,
     requiere: 88,
+    requiereCBC: true,
     categoria: "Materias Obligatorias",
     level: 4,
   },
@@ -222,6 +223,7 @@ export const industrial = [
     materia: "Higiene y Seguridad Industrial",
     creditos: 4,
     requiere: 118,
+    requiereCBC: true,
     categoria: "Materias Obligatorias",
     level: 5,
   },
@@ -358,6 +360,7 @@ export const industrial = [
     materia: "Ingenería Legal para Ingenería Industrial",
     creditos: 4,
     requiere: 138,
+    requiereCBC: true,
     categoria: "Materias Obligatorias",
     level: 9,
   },
@@ -464,6 +467,7 @@ export const industrial = [
     materia: "Emprendimientos de Ingeniería",
     creditos: 4,
     requiere: 158,
+    requiereCBC: true,
     categoria: "Materias Electivas",
   },
   {
@@ -478,6 +482,7 @@ export const industrial = [
     materia: "Gestión de la Innovación",
     creditos: 4,
     requiere: 188,
+    requiereCBC: true,
     categoria: "Materias Electivas",
   },
   {
@@ -555,6 +560,7 @@ export const industrial = [
     materia: "Seminario de Ingeniería Industrial I",
     creditos: 1,
     requiere: 188,
+    requiereCBC: true,
     categoria: "Materias Electivas",
   },
   {
@@ -562,6 +568,7 @@ export const industrial = [
     materia: "Seminario de Ingeniería Industrial II",
     creditos: 2,
     requiere: 188,
+    requiereCBC: true,
     categoria: "Materias Electivas",
   },
   {
@@ -569,6 +576,7 @@ export const industrial = [
     materia: "Seminario de Ingeniería Industrial III",
     creditos: 3,
     requiere: 188,
+    requiereCBC: true,
     categoria: "Materias Electivas",
   },
   {
@@ -576,6 +584,7 @@ export const industrial = [
     materia: "Ingeniería y Desarrollo de Envaes y Embalajes",
     creditos: 4,
     requiere: 188,
+    requiereCBC: true,
     categoria: "Materias Electivas",
   },
   {
@@ -583,6 +592,7 @@ export const industrial = [
     materia: "Seminario de Ingeniería Industrial IV",
     creditos: 4,
     requiere: 188,
+    requiereCBC: true,
     categoria: "Materias Electivas",
   },
   {
@@ -597,6 +607,7 @@ export const industrial = [
     materia: "Tesis de Ingeniería Industrial",
     creditos: 13,
     requiere: 198,
+    requiereCBC: true,
     categoria: "Fin de Carrera",
   },
   {
@@ -604,6 +615,7 @@ export const industrial = [
     materia: "Trabajo Profesional de Ingeniería Industrial",
     creditos: 13,
     requiere: 198,
+    requiereCBC: true,
     categoria: "Fin de Carrera",
   },
 ];

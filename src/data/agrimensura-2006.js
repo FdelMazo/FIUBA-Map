@@ -348,6 +348,7 @@ export const agrimensura = [
     materia: "Introducción a la Ingeniería Ambiental",
     creditos: 4,
     requiere: 100,
+    requiereCBC: undefined,
     categoria: "Materias Electivas",
   },
   {
@@ -404,6 +405,7 @@ export const agrimensura = [
     materia: "Tesis de Ingeniería en Agrimensura",
     creditos: 18,
     requiere: 140,
+    requiereCBC: undefined,
     categoria: "Fin de Carrera",
   },
   {
@@ -411,6 +413,7 @@ export const agrimensura = [
     materia: "Trabajo Profesional de la Ingeniería en Agrimensura",
     creditos: 12,
     requiere: 140,
+    requiereCBC: undefined,
     categoria: "Fin de Carrera",
   },
 ];

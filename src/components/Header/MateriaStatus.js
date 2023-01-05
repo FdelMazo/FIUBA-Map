@@ -4,8 +4,12 @@ import {
   Stat,
   StatHelpText,
   StatLabel,
+  Tooltip,
   Text,
 } from "@chakra-ui/react";
+import {
+  QuestionIcon
+} from "@chakra-ui/icons";
 import React from "react";
 import { GraphContext, UserContext } from "../../Contexts";
 
@@ -44,7 +48,14 @@ const MateriaStatus = () => {
           colorScheme="orange"
           variant="outline"
         >
-          Requiere {node?.requiere} créditos
+          Requiere {node?.requiere} créditos {
+            node?.requiereCBC ? "(con CBC)" :
+              node?.requiereCBC === false ? "(sin CBC)" : (<>
+                <Tooltip placement="bottom" label="El plan de estudios no dice si hay que contabilizar los créditos del CBC para esta cuenta. Si tenes información certera de esto, podrías pasarmela, así actualizo el FIUBA-Map? Gracias!">
+                  <QuestionIcon />
+                </Tooltip>
+              </>)
+          }
         </Badge>}
       </Flex>
     </Flex>

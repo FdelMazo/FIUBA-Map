@@ -371,6 +371,7 @@ export const naval = [
     materia: "Conversión de la Energía",
     creditos: 2,
     requiere: 120,
+    requiereCBC: undefined,
     categoria: "Materias Electivas",
   },
   {
@@ -504,6 +505,7 @@ export const naval = [
     materia: "Tesis de Ingeniería Naval y Mecánica",
     creditos: 18,
     requiere: 140,
+    requiereCBC: undefined,
     categoria: "Fin de Carrera",
   },
   {

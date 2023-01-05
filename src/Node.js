@@ -53,7 +53,13 @@ class Node {
       const m = getNode(id);
       todoAprobado &= m.aprobada;
     }
-    if (this.requiere) todoAprobado &= creditosTotales >= this.requiere;
+    if (this.requiere) {
+      if (this.requiereCBC) {
+        todoAprobado &= creditosTotales >= this.requiere;
+      } else {
+        todoAprobado &= (creditosTotales - 38) >= this.requiere
+      }
+    };
     return todoAprobado;
   }
 

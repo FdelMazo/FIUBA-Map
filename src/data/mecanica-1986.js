@@ -302,6 +302,7 @@ export const mecanica = [
     materia: "Conversión de Energía",
     creditos: 2,
     requiere: 120,
+    requiereCBC: undefined,
     categoria: "Materias Obligatorias",
     level: 8,
   },
@@ -334,6 +335,7 @@ export const mecanica = [
     materia: "Legislación y Ejercicio Profesional de la Ingeniería Mecánica",
     creditos: 2,
     requiere: 100,
+    requiereCBC: undefined,
     categoria: "Materias Obligatorias",
     level: 9,
   },
@@ -573,6 +575,7 @@ export const mecanica = [
     materia: "Tesis de Ingeniería Mecánica",
     creditos: 18,
     requiere: 140,
+    requiereCBC: undefined,
     categoria: "Fin de Carrera",
   },
   {
@@ -580,6 +583,7 @@ export const mecanica = [
     materia: "Trabajo Profesional de Ingeniería Mecánica",
     creditos: 14,
     requiere: 140,
+    requiereCBC: undefined,
     categoria: "Fin de Carrera",
   },
 ];

@@ -183,6 +183,7 @@ export const informatica = [
       "Legislación y Ejercicio Profesional de la Ingeniería en Informática",
     creditos: 4,
     requiere: 140,
+    requiereCBC: true,
     categoria: "Materias Obligatorias",
     level: 6,
   },
@@ -292,6 +293,7 @@ export const informatica = [
     materia: "Estructura de las Organizaciones",
     creditos: 6,
     requiere: 60,
+    requiereCBC: true,
     categoria: "Materias Electivas",
   },
   {
@@ -411,6 +413,7 @@ export const informatica = [
     materia: "Ingeniería Económica",
     creditos: 6,
     requiere: 140,
+    requiereCBC: true,
     categoria: "Materias Electivas",
   },
   {
@@ -608,6 +611,7 @@ export const informatica = [
     materia: "Recursos Humanos",
     creditos: 4,
     requiere: 144,
+    requiereCBC: true,
     categoria: "Materias Electivas",
   },
   {
@@ -742,6 +746,7 @@ export const informatica = [
     materia: "Tesis de Ingeniería Informática",
     creditos: 24,
     requiere: 140,
+    requiereCBC: true,
     categoria: "Fin de Carrera",
   },
   {
@@ -749,6 +754,7 @@ export const informatica = [
     materia: "Trabajo Profesional de Ingeniería Informática",
     creditos: 12,
     requiere: 140,
+    requiereCBC: true,
     categoria: "Fin de Carrera",
   },
 ];

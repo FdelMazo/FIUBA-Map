@@ -310,6 +310,7 @@ export const electricista = [
     materia: "Organización de la Producción",
     creditos: 6,
     requiere: 100,
+    requiereCBC: undefined,
     categoria: "Materias Obligatorias",
     level: 8,
   },
@@ -319,6 +320,7 @@ export const electricista = [
       "Legislación y Ejercicio Profesional de la Ingeniería Electricista",
     creditos: 4,
     requiere: 100,
+    requiereCBC: undefined,
     categoria: "Materias Obligatorias",
     level: 9,
   },
@@ -392,6 +394,7 @@ export const electricista = [
     materia: "Recursos Humanos",
     creditos: 4,
     requiere: 120,
+    requiereCBC: undefined,
     categoria: "Materias Electivas",
   },
   {
@@ -518,6 +521,7 @@ export const electricista = [
     materia: "Tesis de Ingeniería Electricista",
     creditos: 20,
     requiere: 140,
+    requiereCBC: undefined,
     categoria: "Fin de Carrera",
   },
   {
@@ -525,6 +529,7 @@ export const electricista = [
     materia: "Trabajo Profesional de Ingeniería Electricista ",
     creditos: 14,
     requiere: 140,
+    requiereCBC: undefined,
     categoria: "Fin de Carrera",
   },
 ];

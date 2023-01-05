@@ -647,6 +647,7 @@ export const civil = [
     materia: "Trabajo Profesional de Ingeniería Civil",
     creditos: 13,
     requiere: 200,
+    requiereCBC: false,
     correlativas: "88.14",
     categoria: "Fin de Carrera (Obligatorio)",
   },
