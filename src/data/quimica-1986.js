@@ -272,7 +272,7 @@ export const quimica = [
     materia: "Legislación y Ejercicio Profesional de la Ingeniería Química",
     creditos: 4,
     requiere: 140,
-    requiereCBC: undefined,
+    requiereCBC: false,
     categoria: "Materias Obligatorias",
     level: 9,
   },

@@ -51,7 +51,7 @@ const MateriaStatus = () => {
           Requiere {node?.requiere} créditos {
             node?.requiereCBC ? "(con CBC)" :
               node?.requiereCBC === false ? "(sin CBC)" : (<>
-                <Tooltip placement="bottom" label="El plan de estudios no dice si hay que contabilizar los créditos del CBC para esta cuenta. Si tenes información certera de esto, podrías pasarmela, así actualizo el FIUBA-Map? Gracias!">
+                <Tooltip placement="bottom" label="El plan de estudios no dice si hay que contabilizar los créditos del CBC para esto, entonces no estoy seguro de que es válido acá. Si tenes información certera de esto (mail del departamento, el número que pide el SIU, etc), podrías pasarmela, así actualizo el FIUBA-Map? Gracias!">
                   <QuestionIcon />
                 </Tooltip>
               </>)
