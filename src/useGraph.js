@@ -834,6 +834,7 @@ const useGraph = (loginHook) => {
     setDisplayedNode(id);
   }
 
+  let hovertimer = undefined;
   const events = {
     click: (e) => {
       // click: abre/cierra CBC
@@ -879,15 +880,22 @@ const useGraph = (loginHook) => {
       if (network.getSelectedNodes().length) {
         return
       }
-      selectNode(id)
-      blurOthers(id)
+      hovertimer = setTimeout(() => {
+        selectNode(id)
+        blurOthers(id)
+      }, 300);
     },
     blurNode: () => {
       if (network.getSelectedNodes().length) {
         return
       }
-      deselectNode()
-      unblurAll()
+      if (hovertimer) {
+        clearTimeout(hovertimer);
+        hovertimer = undefined;
+      } else {
+        deselectNode()
+        unblurAll()
+      }
     },
     selectNode: (e) => {
       const id = e.nodes[0];
