@@ -899,6 +899,10 @@ const useGraph = (loginHook) => {
     },
     selectNode: (e) => {
       const id = e.nodes[0];
+      if (hovertimer) {
+        clearTimeout(hovertimer);
+        hovertimer = undefined;
+      }
       selectNode(id)
     },
   };

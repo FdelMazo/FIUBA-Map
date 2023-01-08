@@ -1,5 +1,5 @@
 import {
-  Fade,
+  ScaleFade,
   Flex,
   Box,
   useColorModeValue,
@@ -39,12 +39,12 @@ const Header = () => {
 
   return (
     <Box {...CommonProps}>
-      <Fade in={displayedNode}>
+      <ScaleFade in={displayedNode}>
         <Flex {...CommonProps} {...(displayedNode && FlexProps)} {...(!displayedNode && AntiFlexProps)}>
           <MateriaDisplay />
         </Flex>
-      </Fade>
-      <Fade in={!displayedNode}>
+      </ScaleFade>
+      <ScaleFade in={!displayedNode}>
         <Flex {...CommonProps} {...(!displayedNode && FlexProps)} {...(displayedNode && AntiFlexProps)}>
           {logged ? (
             <UserMenu />
@@ -53,7 +53,7 @@ const Header = () => {
           )}
           <DropdownCarreras />
         </Flex>
-      </Fade>
+      </ScaleFade>
     </Box>
   );
 };
