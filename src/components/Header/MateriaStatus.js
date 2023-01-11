@@ -42,21 +42,22 @@ const MateriaStatus = () => {
           {node?.id === "CBC" ? `Clickealo para ver las materias!` : `Otorga ${node?.creditos} créditos`}
         </Badge>
 
-        {node?.requiere && <Badge
-          width="100%"
-          px={2}
-          colorScheme="orange"
-          variant="outline"
-        >
-          Requiere {node?.requiere} créditos {
-            node?.requiereCBC ? "(con CBC)" :
-              node?.requiereCBC === false ? "(sin CBC)" : (<>
-                <Tooltip placement="bottom" label="El plan de estudios no dice si hay que contabilizar los créditos del CBC para esto, entonces no estoy seguro de que es válido acá. Si tenes información certera de esto (mail del departamento, el número que pide el SIU, etc), podrías pasarmela, así actualizo el FIUBA-Map? Gracias!">
-                  <QuestionIcon />
-                </Tooltip>
-              </>)
-          }
-        </Badge>}
+        {node?.requiere &&
+          <Tooltip placement="bottom" label="El plan de estudios no es muy claro de si hay que contabilizar los créditos del CBC para esto, entonces no estoy seguro de que es válido acá. Si tenes información certera de esto (mail del departamento, el número que pide el SIU, etc), podrías pasarmela, así actualizo el FIUBA-Map? Gracias!">
+            <Badge
+              width="100%"
+              px={2}
+              colorScheme="orange"
+              variant="outline"
+            >
+              Requiere {node?.requiere} créditos {
+                node?.requiereCBC ? "(con CBC)" :
+                  node?.requiereCBC === false ? "(sin CBC)" :
+                    <QuestionIcon />
+              }
+            </Badge>
+          </Tooltip>
+        }
       </Flex>
     </Flex>
   )
