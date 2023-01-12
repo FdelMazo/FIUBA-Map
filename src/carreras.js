@@ -1,11 +1,10 @@
-import * as data from "./data";
 import { COLORS } from "./theme";
 
 export const CARRERAS = [
   {
     id: "sistemas",
     link: "https://www.fi.uba.ar/grado/carreras/lic-en-analisis-de-sistemas/plan-de-estudios",
-    graph: data.sistemas,
+    graph: require("./data/sistemas-2014.json"),
     nombre: "Licenciatura en Análisis de Sistemas",
     nombrecorto: "Sistemas",
     creditos: {
@@ -33,7 +32,7 @@ export const CARRERAS = [
   {
     id: "informatica",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-en-informatica/plan-de-estudios",
-    graph: data.informatica,
+    graph: require("./data/informatica-1986.json"),
     nombre: "Ingeniería en Informática",
     nombrecorto: "Informática",
     orientaciones: [
@@ -71,7 +70,7 @@ export const CARRERAS = [
   {
     id: "agrimensura",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-en-agrimensura/plan-de-estudios",
-    graph: data.agrimensura,
+    graph: require("./data/agrimensura-2006.json"),
     nombre: "Ingeniería en Agrimensura",
     nombrecorto: "Agrimensura",
     finDeCarrera: [
@@ -95,7 +94,7 @@ export const CARRERAS = [
   {
     id: "alimentos",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-de-alimentos/plan-de-estudios",
-    graph: data.alimentos,
+    graph: require("./data/alimentos-2000.json"),
     nombre: "Ingeniería de Alimentos",
     nombrecorto: "Alimentos",
     creditos: {
@@ -121,7 +120,7 @@ export const CARRERAS = [
   {
     id: "civil",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-civil/plan-de-estudios",
-    graph: data.civil,
+    graph: require("./data/civil-2009.json"),
     nombre: "Ingeniería Civil",
     nombrecorto: "Civil",
     creditos: {
@@ -155,7 +154,7 @@ export const CARRERAS = [
   {
     id: "electricista",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-electricista/plan-de-estudios",
-    graph: data.electricista,
+    graph: require("./data/electricista-2009.json"),
     nombre: "Ingeniería Electricista",
     nombrecorto: "Electricista",
     finDeCarrera: [
@@ -185,7 +184,7 @@ export const CARRERAS = [
   {
     id: "electronica",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-electronica/plan-de-estudios",
-    graph: data.electronica,
+    graph: require("./data/electronica-2009.json"),
     nombre: "Ingeniería Electrónica",
     nombrecorto: "Electrónica",
     orientaciones: [
@@ -228,7 +227,7 @@ export const CARRERAS = [
   {
     id: "industrial",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-industrial/plan-de-estudios",
-    graph: data.industrial,
+    graph: require("./data/industrial-2011.json"),
     nombre: "Ingeniería Industrial",
     nombrecorto: "Industrial",
     finDeCarrera: [
@@ -258,7 +257,7 @@ export const CARRERAS = [
   {
     id: "mecanica",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-mecanica/plan-de-estudios",
-    graph: data.mecanica,
+    graph: require("./data/mecanica-1986.json"),
     nombre: "Ingeniería Mecánica",
     nombrecorto: "Mecánica",
     orientaciones: [
@@ -295,7 +294,7 @@ export const CARRERAS = [
   {
     id: "naval",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-naval-y-mecanica/plan-de-estudios",
-    graph: data.naval,
+    graph: require("./data/naval-1986.json"),
     nombre: "Ingeniería Naval y Mecánica",
     nombrecorto: "Naval",
     finDeCarrera: [
@@ -311,7 +310,7 @@ export const CARRERAS = [
   {
     id: "petroleo",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-en-petroleo/plan-de-estudios",
-    graph: data.petroleo,
+    graph: require("./data/petroleo-2015.json"),
     nombre: "Ingeniería en Petróleo",
     nombrecorto: "Petróleo",
     finDeCarrera: [
@@ -341,7 +340,7 @@ export const CARRERAS = [
   {
     id: "quimica",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-quimica/plan-de-estudios",
-    graph: data.quimica,
+    graph: require("./data/quimica-1986.json"),
     nombre: "Ingeniería Química",
     nombrecorto: "Química",
     finDeCarrera: [
@@ -357,7 +356,7 @@ export const CARRERAS = [
   {
     id: "sistemasviejo",
     link: "https://www.fi.uba.ar/grado/carreras/lic-en-analisis-de-sistemas/plan-de-estudios",
-    graph: data.sistemasviejo,
+    graph: require("./data/sistemas-1986.json"),
     nombre: "Licenciatura en Análisis de Sistemas (1986)",
     nombrecorto: "Sistemas 1986",
     creditos: {
