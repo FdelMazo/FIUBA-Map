@@ -205,6 +205,7 @@
         "materia": "Introducción a la Economía y Organización de la Empresa",
         "creditos": 4,
         "requiere": 48,
+        "requiereCBC": true,
         "categoria": "Materias Obligatorias",
         "level": 5
     },
@@ -269,6 +270,7 @@
         "materia": "Seguridad Ambiental y del Trabajo",
         "creditos": 4,
         "requiere": 90,
+        "requiereCBC": true,
         "categoria": "Materias Obligatorias",
         "level": 8
     },
@@ -277,6 +279,7 @@
         "materia": "Legislación y Ejercicio Profesional de la Ingeniería Electrónica",
         "creditos": 4,
         "requiere": 90,
+        "requiereCBC": true,
         "categoria": "Materias Obligatorias",
         "level": 8
     },
