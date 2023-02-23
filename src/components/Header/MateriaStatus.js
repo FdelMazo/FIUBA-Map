@@ -24,7 +24,7 @@ const MateriaStatus = () => {
       {isMobile ? (
         <Text textAlign="center" noOfLines={1} width="100vw" px={8} color="white"><strong>[{node?.id}]</strong> {node?.materia}</Text>
       ) : (
-          <Stat color="white" maxWidth="30ch">
+          <Stat color="white" minWidth="16ch" maxWidth="30ch" mr="1">
             <StatLabel>[{node?.id}]</StatLabel>
           <StatHelpText noOfLines={1}>
             {node?.materia}
