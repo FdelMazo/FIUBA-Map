@@ -10,4 +10,4 @@ jobs:
     name: Build & Deploy to Github Pages
     steps:
       - id: node-to-gh
-        uses: fdelmazo/node-to-gh-action@v1
+        uses: fdelmazo/node-to-gh-action@v2
