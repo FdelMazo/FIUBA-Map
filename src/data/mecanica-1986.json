@@ -28,8 +28,8 @@
     "level": -1
   },
   {
-    "id": "CBC90",
-    "materia": "Pensamiento Computacional",
+    "id": "CBC5",
+    "materia": "Química / Pensamiento Computacional",
     "creditos": 6,
     "categoria": "*CBC",
     "level": -1
@@ -47,7 +47,7 @@
     "creditos": 0,
     "categoria": "CBC",
     "level": 0,
-    "correlativas": "CBC28-CBC27-CBC3-CBC90-CBC24-CBC40"
+    "correlativas": "CBC28-CBC27-CBC3-CBC5-CBC24-CBC40"
   },
   {
     "id": "62.01",
