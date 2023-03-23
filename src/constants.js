@@ -2,7 +2,7 @@ import CARRERAS from "./carreras";
 import { COLORS } from "./theme";
 
 export const USER_FORM =
-  "https://docs.google.com/forms/u/1/d/e/1FAIpQLSedZWz0SJOLsxEscmHo8FDdTQyIF5xTczGBqr1Z6oLwKwiemw/formResponse";
+  "https://docs.google.com/forms/d/e/1FAIpQLSfSyej0mitKggzGKazRKzhxl0Efx6DUDEbHrrzRGo9OzXvo1w/formResponse";
 
 export const USER_FORM_ENTRIES = {
   padron: "entry.1608351524",
@@ -12,7 +12,7 @@ export const USER_FORM_ENTRIES = {
 };
 
 export const GRAPH_FORM =
-  "https://docs.google.com/forms/d/e/1FAIpQLScEomNxSEdv07ifB9ep5olsemzRjdPoMMhWL6GLGhswm93shg/formResponse";
+  "https://docs.google.com/forms/d/e/1FAIpQLScBb-AmNj1M0gLYsIxIqqwKmF04kYb5bbg5NiGYurQsM09lNQ/formResponse";
 
 export const GRAPH_FORM_ENTRIES = {
   padron: "entry.2064135385",
@@ -21,7 +21,7 @@ export const GRAPH_FORM_ENTRIES = {
 };
 
 export const BUGS_FORM =
-  "https://docs.google.com/forms/d/1Mr4-4qWqZKaobjG3GI30aPvC5qlMsd6Eib3YGUbLd2k/formResponse";
+  "https://docs.google.com/forms/d/e/1FAIpQLSeH9C1U_w9fBclEQrI5oBEqmnRhDGP81neoyWd7PUnTY9EEVw/formResponse";
 
 export const BUGS_FORM_ENTRIES = {
   padron: "entry.108884877",
@@ -101,11 +101,11 @@ const drawFinDeCarrera = ({
 
 export const GRUPOS = {
   Aprobadas: { color: COLORS.aprobadas[400] },
-  CBC: {
+  CDN: {
     shape: "hexagon",
     size: 30,
   },
-  "*CBC": {
+  "*CDN": {
     color: COLORS.aprobadas[100],
     shape: "square",
     size: 15,
@@ -177,8 +177,8 @@ export const GRAPHOPTIONS = {
 
 
 export const CREDITOS = {
-  "CBC": {
-    nombrecorto: "CBC",
+  "CDN": {
+    nombrecorto: "CDN",
     nombre: "Ciclo Básico Común",
     bg: COLORS.aprobadas[50],
     color: "aprobadas",

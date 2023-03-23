@@ -1,0 +1,396 @@
+[
+    {
+        "id": "CDN",
+        "materia": "Curso de Nivelación",
+        "creditos": 0,
+        "categoria": "CDN",
+        "level": 0,
+        "correlativas": ""
+    },
+    {
+        "id": "140",
+        "codigo": "140",
+        "materia": "Introducción a la Administración de Empresas",
+        "creditos": 1,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 1
+    },
+    {
+        "id": "141",
+        "materia": "Sistemas Numericos",
+        "creditos": 1,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 1
+    },
+    {
+        "id": "142",
+        "materia": "Analisis Matemático I",
+        "creditos": 2,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 1
+    },
+    {
+        "id": "143",
+        "materia": "Metodología de la Investigación",
+        "creditos": 1,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 1
+    },
+    {
+        "id": "144",
+        "materia": "Introducción a la Programación",
+        "creditos": 1,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 1
+    },
+    {
+        "id": "145",
+        "materia": "Arquitectura de Computadoras",
+        "creditos": 1,
+        "correlativas": "141",
+        "categoria": "Materias Obligatorias",
+        "level": 2
+    },
+    {
+        "id": "146",
+        "materia": "Álgebra I",
+        "creditos": 1,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 2
+    },
+    {
+        "id": "147",
+        "materia": "Paradigmas de la Programación",
+        "creditos": 1,
+        "correlativas": "144",
+        "categoria": "Materias Obligatorias",
+        "level": 2
+    },
+    {
+        "id": "148",
+        "materia": "Programación I",
+        "creditos": 1,
+        "correlativas": "144",
+        "categoria": "Materias Obligatorias",
+        "level": 2
+    },
+    {
+        "id": "149",
+        "materia": "Sistemas de Representación",
+        "creditos": 1,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 2
+    },
+    {
+        "id": "159",
+        "materia": "Química General",
+        "creditos": 1,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 2
+    },
+    {
+        "id": "150",
+        "materia": "Física I",
+        "creditos": 1,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 3
+    },
+    {
+        "id": "151",
+        "materia": "Cálculo Numérico",
+        "creditos": 1,
+        "correlativas": "142",
+        "categoria": "Materias Obligatorias",
+        "level": 3
+    },
+    {
+        "id": "152",
+        "materia": "Estructura de Datos y Algoritmos",
+        "creditos": 2,
+        "correlativas": "144",
+        "categoria": "Materias Obligatorias",
+        "level": 3
+    },
+    {
+        "id": "153",
+        "materia": "Sistemas de la Información I",
+        "creditos": 2,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 3
+    },
+    {
+        "id": "154",
+        "materia": "Álgebra II",
+        "creditos": 1,
+        "correlativas": "146",
+        "categoria": "Materias Obligatorias",
+        "level": 3
+    },
+    {
+        "id": "155",
+        "materia": "Filosofía",
+        "creditos": 1,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 4
+    },
+    {
+        "id": "156",
+        "materia": "Programación II",
+        "creditos": 1,
+        "correlativas": "147-148",
+        "categoria": "Materias Obligatorias",
+        "level": 4
+    },
+    {
+        "id": "157",
+        "materia": "Teoría del Lenguaje",
+        "creditos": 1,
+        "correlativas": "147-148",
+        "categoria": "Materias Obligatorias",
+        "level": 4
+    },
+    {
+        "id": "158",
+        "materia": "Analisis Matemático II",
+        "creditos": 1,
+        "correlativas": "142",
+        "categoria": "Materias Obligatorias",
+        "level": 4
+    },
+    {
+        "id": "160",
+        "materia": "Física II",
+        "creditos": 1,
+        "correlativas": "150",
+        "categoria": "Materias Obligatorias",
+        "level": 4
+    },
+    {
+        "id": "161",
+        "materia": "Sistemas Operativos",
+        "creditos": 2,
+        "correlativas": "152",
+        "categoria": "Materias Obligatorias",
+        "level": 5
+    },
+    {
+        "id": "162",
+        "materia": "Sistemas de Información II",
+        "creditos": 2,
+        "correlativas": "153",
+        "categoria": "Materias Obligatorias",
+        "level": 5
+    },
+    {
+        "id": "163",
+        "materia": "Sistemas de Bases de Datos",
+        "creditos": 2,
+        "correlativas": "152",
+        "categoria": "Materias Obligatorias",
+        "level": 5
+    },
+    {
+        "id": "164",
+        "materia": "Probabilidad y Estadística",
+        "creditos": 2,
+        "correlativas": "154",
+        "categoria": "Materias Obligatorias",
+        "level": 5
+    },
+    {
+        "id": "165",
+        "materia": "Programación Avanzada",
+        "creditos": 1,
+        "correlativas": "156",
+        "categoria": "Materias Obligatorias",
+        "level": 5
+    },
+    {
+        "id": "166",
+        "materia": "Teleinformática",
+        "creditos": 1,
+        "correlativas": "145",
+        "categoria": "Materias Obligatorias",
+        "level": 6
+    },
+    {
+        "id": "167",
+        "materia": "Física III",
+        "creditos": 1,
+        "correlativas": "160",
+        "categoria": "Materias Obligatorias",
+        "level": 6
+    },
+    {
+        "id": "168",
+        "materia": "Inglés I",
+        "creditos": 1,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 6
+    },
+    {
+        "id": "169",
+        "materia": "Inglés II",
+        "creditos": 1,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 6
+    },
+    {
+        "id": "170",
+        "materia": "Tecnología Informática",
+        "creditos": 1,
+        "correlativas": "161",
+        "categoria": "Materias Obligatorias",
+        "level": 7
+    },
+    {
+        "id": "171",
+        "materia": "Ingeniería del Software",
+        "creditos": 1,
+        "correlativas": "162",
+        "categoria": "Materias Obligatorias",
+        "level": 7
+    },
+    {
+        "id": "172",
+        "materia": "Seminario de Integración Profesional",
+        "creditos": 2,
+        "correlativas": "156-162",
+        "categoria": "Materias Obligatorias",
+        "level": 7
+    },
+    {
+        "id": "173",
+        "materia": "Investigación Operativa",
+        "creditos": 1,
+        "correlativas": "164",
+        "categoria": "Materias Obligatorias",
+        "level": 7
+    },
+    {
+        "id": "174",
+        "materia": "Arquitectura de Redes",
+        "creditos": 1,
+        "correlativas": "166",
+        "categoria": "Materias Obligatorias",
+        "level": 7
+    },
+    {
+        "id": "175",
+        "materia": "Dirección de Proyectos Informáticos",
+        "creditos": 1,
+        "correlativas": "162",
+        "categoria": "Materias Obligatorias",
+        "level": 8
+    },
+    {
+        "id": "176",
+        "materia": "Auditoria de Sistemas",
+        "creditos": 1,
+        "correlativas": "162",
+        "categoria": "Materias Obligatorias",
+        "level": 8
+    },
+    {
+        "id": "177",
+        "materia": "Teología",
+        "creditos": 1,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 8
+    },
+    {
+        "id": "180",
+        "materia": "Ética Profesional",
+        "creditos": 1,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 8
+    },
+    {
+        "id": "178",
+        "materia": "Modelos y Simulación",
+        "creditos": 1,
+        "correlativas": "164",
+        "categoria": "Materias Obligatorias",
+        "level": 8
+    },
+    {
+        "id": "179",
+        "materia": "Derecho Informático",
+        "creditos": 1,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 8
+    },
+    {
+        "id": "185",
+        "materia": "Aseguramiento de la Calidad del Software",
+        "creditos": 1,
+        "correlativas": "171",
+        "categoria": "Materias Obligatorias",
+        "level": 9
+    },
+    {
+        "id": "181",
+        "materia": "Tecnologías Emergentes",
+        "creditos": 1,
+        "correlativas": "170",
+        "categoria": "Materias Obligatorias",
+        "level": 9
+    },
+    {
+        "id": "182",
+        "materia": "Sistemas Inteligentes",
+        "creditos": 2,
+        "correlativas": "165",
+        "categoria": "Materias Obligatorias",
+        "level": 9
+    },
+    {
+        "id": "183",
+        "materia": "Proyecto Final de Ingeniería Informática",
+        "creditos": 2,
+        "correlativas": "172-175",
+        "categoria": "Materias Obligatorias",
+        "level": 9
+    },
+    {
+        "id": "186",
+        "materia": "Seguridad Informática",
+        "creditos": 1,
+        "correlativas": "176",
+        "categoria": "Materias Obligatorias",
+        "level": 10
+    },
+    {
+        "id": "187",
+        "materia": "Elementos de Enconomía",
+        "creditos": 1,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 10
+    },
+    {
+        "id": "184",
+        "materia": "Gestión Ambiental",
+        "creditos": 1,
+        "correlativas": "CDN",
+        "categoria": "Materias Obligatorias",
+        "level": 10
+    }
+]
+  

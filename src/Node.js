@@ -1,8 +1,8 @@
 import { COLORS } from "./theme";
 import { promediar } from "./utils";
 
-const FONT_AFUERA = ["CBC", "*CBC"]
-const ALWAYS_SHOW = ["Materias Obligatorias", "CBC", "Fin de Carrera (Obligatorio)"]
+const FONT_AFUERA = ["CDN", "*CDN"]
+const ALWAYS_SHOW = ["Materias Obligatorias", "CDN", "Fin de Carrera (Obligatorio)"]
 
 function breakWords(string) {
   let broken = "";
@@ -54,7 +54,7 @@ class Node {
       todoAprobado &= m.aprobada;
     }
     if (this.requiere) {
-      if (this.requiereCBC) {
+      if (this.requiereCDN) {
         todoAprobado &= creditosTotales >= this.requiere;
       } else {
         todoAprobado &= (creditosTotales - 38) >= this.requiere
@@ -65,6 +65,7 @@ class Node {
 
   actualizar(ctx) {
     const { user, showLabels, colorMode, getters } = ctx;
+    //const { user, showLabels, getters } = ctx;
     let grupoDefault = this.categoria;
     if (this.aprobada && this.nota >= 0) grupoDefault = "Aprobadas";
     else if (this.nota === -1) grupoDefault = "En Final";
@@ -72,7 +73,7 @@ class Node {
     this.group = grupoDefault;
 
     let labelDefault = breakWords(this.materia);
-    if (showLabels && this.id !== "CBC") {
+    if (showLabels && this.id !== "CDN") {
       if (this.aprobada && this.nota > 0)
         labelDefault += "\n[" + this.nota + "]";
       else if (this.aprobada && this.nota === 0)
@@ -81,23 +82,23 @@ class Node {
     }
     this.label = labelDefault;
 
-    if (this.categoria === "*CBC") {
+    if (this.categoria === "*CDN") {
       if (this.group === "Habilitadas") this.color = COLORS.aprobadas[100];
       if (this.group === "Aprobadas") this.color = COLORS.aprobadas[400];
     }
 
-    if (this.categoria === "CBC") {
-      const materiasCBC = getters.MateriasAprobadasCBC();
-      const promedioCBC = promediar(materiasCBC)
-      if (showLabels && promedioCBC) this.label += "\n[" + promedioCBC + "]";
-      if (materiasCBC.length === 6) this.color = COLORS.aprobadas[400];
+    if (this.categoria === "CDN") {
+      const materiasCDN = getters.MateriasAprobadasCDN();
+      const promedioCDN = promediar(materiasCDN)
+      if (showLabels && promedioCDN) this.label += "\n[" + promedioCDN + "]";
+      if (materiasCDN.length === 6) this.color = COLORS.aprobadas[400];
       else this.color = COLORS.aprobadas[100];
     }
 
     if (this.categoria === "Fin de Carrera") {
       this.hidden = !(this.id === user.finDeCarrera?.materia);
     }
-
+    
     if (FONT_AFUERA.includes(this.categoria)) {
       this.font = { color: colorMode === "dark" ? "white" : "black" };
     }

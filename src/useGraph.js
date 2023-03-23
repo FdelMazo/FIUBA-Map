@@ -76,8 +76,8 @@ const useGraph = (loginHook) => {
         .distinct("categoria")
         .filter(
           (c) =>
-            c !== "CBC" &&
-            c !== "*CBC" &&
+            c !== "CDN" &&
+            c !== "*CDN" &&
             c !== "Materias Obligatorias" &&
             c !== "Fin de Carrera (Obligatorio)" &&
             c !== "Fin de Carrera"
@@ -88,31 +88,31 @@ const useGraph = (loginHook) => {
       }
       return categorias
     },
-    MateriasAprobadasCBC: () =>
+    MateriasAprobadasCDN: () =>
       nodes ? nodes.get({
-        filter: (n) => n.categoria === "*CBC" && n.aprobada && n.nota > 0,
+        filter: (n) => n.categoria === "*CDN" && n.aprobada && n.nota > 0,
         fields: ["nota"],
       }) : [],
-    MateriasAprobadasSinCBC: () =>
+    MateriasAprobadasSinCDN: () =>
       nodes ? nodes.get({
-        filter: (n) => n.aprobada && n.nota >= 0 && n.categoria !== "*CBC" && n.categoria !== "CBC",
+        filter: (n) => n.aprobada && n.nota >= 0 && n.categoria !== "*CDN" && n.categoria !== "CDN",
         fields: ["nota", "creditos"],
       }) : [],
-    MateriasAprobadasSinEquivalenciasSinCBC: () =>
+    MateriasAprobadasSinEquivalenciasSinCDN: () =>
       nodes ? nodes.get({
-        filter: (n) => n.aprobada && n.nota > 0 && n.categoria !== "*CBC" && n.categoria !== "CBC",
+        filter: (n) => n.aprobada && n.nota > 0 && n.categoria !== "*CDN" && n.categoria !== "CDN",
         fields: ["nota", "creditos"],
       }) : [],
-    MateriasAprobadasConCBC: () =>
+    MateriasAprobadasConCDN: () =>
       nodes ? nodes
         .get({
           filter: (n) => n.aprobada && n.nota > 0,
           fields: ["nota", "creditos"],
         }) : [],
-    CBC: () => nodes ? nodes
+    CDN: () => nodes ? nodes
       .get({
         filter: (n) =>
-          n.categoria === "*CBC",
+          n.categoria === "*CDN",
       }) : [],
     Obligatorias: () => nodes ? nodes
       .get({
@@ -131,8 +131,8 @@ const useGraph = (loginHook) => {
     ElectivasAprobadas: () => nodes ? nodes
       .get({
         filter: (n) =>
-          n.categoria !== "CBC" &&
-          n.categoria !== "*CBC" &&
+          n.categoria !== "CDN" &&
+          n.categoria !== "*CDN" &&
           n.categoria !== "Materias Obligatorias" &&
           n.categoria !== "Fin de Carrera" &&
           n.categoria !== "Fin de Carrera (Obligatorio)" &&
@@ -159,7 +159,7 @@ const useGraph = (loginHook) => {
       }) : [],
     AllRelevantes: () => nodes ? nodes
       .get({
-        filter: (n) => n.categoria !== "*CBC" && (n.cuatrimestre || n.nota >= -1)
+        filter: (n) => n.categoria !== "*CDN" && (n.cuatrimestre || n.nota >= -1)
       }) : [],
     Shown: () => nodes ? nodes
       .get({
@@ -168,8 +168,8 @@ const useGraph = (loginHook) => {
     AllShown: () => nodes ? nodes
       .get({
         filter: (n) => !n.hidden &&
-          n.categoria !== "CBC" &&
-          n.categoria !== "*CBC" &&
+          n.categoria !== "CDN" &&
+          n.categoria !== "*CDN" &&
           n.categoria !== "Fin de Carrera" &&
           n.categoria !== "Fin de Carrera (Obligatorio)"
       }) : [],
@@ -177,8 +177,8 @@ const useGraph = (loginHook) => {
       .get({
         filter: (n) => n.cuatrimestre &&
           !n.hidden &&
-          n.categoria !== "CBC" &&
-          n.categoria !== "*CBC"
+          n.categoria !== "CDN" &&
+          n.categoria !== "*CDN"
       }) : [],
     AllShownWithoutCuatri: () => nodes ? nodes
       .get({
@@ -186,8 +186,8 @@ const useGraph = (loginHook) => {
           !n.cuatrimestre &&
           !n.hidden &&
           n.originalLevel &&
-          n.categoria !== "CBC" &&
-          n.categoria !== "*CBC"
+          n.categoria !== "CDN" &&
+          n.categoria !== "*CDN"
       }) : [],
     WithoutNivel: () => nodes ? nodes
       .get({
@@ -270,18 +270,6 @@ const useGraph = (loginHook) => {
     actualizar();
   };
 
-  const openCBC = () => {
-    const categoria = getters.CBC();
-    categoria.forEach((n) => {
-      const node = getNode(n.id);
-      node.hidden = !node.hidden;
-      return node;
-    });
-    actualizar();
-    actualizarNiveles()
-    network.fit();
-  };
-
   ///
   /// Funcion clave: recorre todos los nodos y llama a nodo.actualizar()
   ///
@@ -351,7 +339,7 @@ const useGraph = (loginHook) => {
           setLoadingGraph(false);
         })
         .catch((e) => {
-          aprobar("CBC", 0);
+          aprobar("CDN", 0);
           actualizarNiveles()
           network.fit();
           setLoadingGraph(false);
@@ -363,7 +351,7 @@ const useGraph = (loginHook) => {
     if (!nodes?.carrera || nodes.carrera !== user.carrera?.id) return;
     if (user.orientacion) changeOrientacion(user.orientacion.nombre);
     setDisplayedNode("");
-    aprobar("CBC", 0);
+    aprobar("CDN", 0);
     actualizarNiveles()
     network.fit();
   }, [nodes, user.finDeCarrera, user.orientacion]);
@@ -396,7 +384,7 @@ const useGraph = (loginHook) => {
             graphEdges.push({ from: c, to: n.id, smooth: { enabled: true, type: "curvedCW", roundness: 0.1 } });
           });
         if (n.requiere)
-          graphEdges.push({ from: "CBC", to: n.id, color: "transparent" });
+          graphEdges.push({ from: "CDN", to: n.id, color: "transparent" });
       });
       const groups = Array.from(new Set(carrera.graph.map((n) => n.categoria)));
       setGraph({ nodes: graphNodes, edges: graphEdges, groups });
@@ -617,12 +605,12 @@ const useGraph = (loginHook) => {
       return user.carrera.creditos;
     };
 
-    const cbc = getters.CBC()
+    const CDN = getters.CDN()
     creditos.push({
-      ...CREDITOS['CBC'],
-      creditosNecesarios: cbc.reduce(accCreditos, 0),
-      creditos: cbc.reduce(accCreditos, 0),
-      nmaterias: cbc.length,
+      ...CREDITOS['CDN'],
+      creditosNecesarios: CDN.reduce(accCreditos, 0),
+      creditos: CDN.reduce(accCreditos, 0),
+      nmaterias: CDN.length,
     });
 
     const obligatorias = getters.ObligatoriasAprobadas()
@@ -712,7 +700,7 @@ const useGraph = (loginHook) => {
     if (fullProportion > 10) creditos[1].proportion -= fullProportion - 10;
     else if (fullProportion < 10) creditos[1].proportion += 10 - fullProportion;
 
-    const aprobadas = [...getters.MateriasAprobadasSinCBC(), ...cbc, ...optativas]
+    const aprobadas = [...getters.MateriasAprobadasSinCDN(), ...CDN, ...optativas]
     const creditosTotales = aprobadas.reduce(accCreditos, 0)
     const allCreditosAprobados = creditos.every(c => c.creditos >= c.creditosNecesarios);
     const creditosTotalesNecesarios = user.carrera?.creditos.total
@@ -737,17 +725,17 @@ const useGraph = (loginHook) => {
   const [promedio, setPromedio] = React.useState({
     promedio: 0,
     promedioConAplazos: 0,
-    promedioConCBC: 0,
+    promedioConCDN: 0,
   })
 
   const updatePromedio = () => {
     setPromedio({
-      promedio: promediar(getters.MateriasAprobadasSinEquivalenciasSinCBC()),
+      promedio: promediar(getters.MateriasAprobadasSinEquivalenciasSinCDN()),
       promedioConAplazos: promediar([
-        ...getters.MateriasAprobadasSinEquivalenciasSinCBC(),
+        ...getters.MateriasAprobadasSinEquivalenciasSinCDN(),
         ...Array(aplazos).fill({ nota: 2 })
       ]),
-      promedioConCBC: promediar(getters.MateriasAprobadasConCBC()),
+      promedioConCDN: promediar(getters.MateriasAprobadasConCDN()),
     })
   }
 
@@ -766,7 +754,7 @@ const useGraph = (loginHook) => {
 
     let neighborNodes = getters.NeighborNodes(id)
     if (node.requiere) {
-      neighborNodes = neighborNodes.filter((node) => node !== "CBC");
+      neighborNodes = neighborNodes.filter((node) => node !== "CDN");
     }
 
     const allOtherNodes = nodes.get({
@@ -837,21 +825,18 @@ const useGraph = (loginHook) => {
   let hovertimer = undefined;
   const events = {
     click: (e) => {
-      // click: abre/cierra CBC
+      // click: abre/cierra CDN
       // click en ningun nodo: limpiar blur/selection
       if (!e.nodes.length) {
         deselectNode()
         return;
       }
       const id = e.nodes[0];
-      if (id === "CBC") {
-        openCBC();
-      }
     },
     doubleClick: (e) => {
       // dobleclick: aprobar/desaprobar
       const id = e.nodes[0];
-      if (id === "CBC") return;
+      if (id === "CDN") return;
       const node = getNode(id);
       if (!node) return;
 
@@ -865,7 +850,7 @@ const useGraph = (loginHook) => {
       // holdclick logeado: poner/sacar en final
       // no tiene sentido que alguien deslogueado use el feature de final
       const id = e.nodes[0];
-      if (!logged || id === "CBC") return;
+      if (!logged || id === "CDN") return;
       const node = getNode(id);
       if (!node) return;
 
