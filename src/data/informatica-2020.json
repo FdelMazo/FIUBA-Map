@@ -390,19 +390,11 @@
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID27",
-        "materia": "Tesis de Ingeniería Informática",
-        "creditos": 12,
-        "requiere": 140,
-        "requiereCBC": true,
-        "categoria": "Fin de Carrera"
-    },
-    {
         "id": "ID29",
-        "materia": "Trabajo Profesional de Ingeniería Informática",
+        "materia": "Tésis o Trabajo Profesional de Ingeniería Informática",
         "creditos": 12,
         "requiere": 140,
         "requiereCBC": true,
-        "categoria": "Fin de Carrera"
+        "categoria": "Fin de Carrera (Obligatorio)"
     }
 ]

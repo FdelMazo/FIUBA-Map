@@ -2,7 +2,6 @@ import {
   ScaleFade,
   Flex,
   Alert,
-  Link,
   Box,
   useColorModeValue,
 } from "@chakra-ui/react";
@@ -17,7 +16,7 @@ import UserMenu from "./UserMenu";
 const Header = () => {
   const { isMobile, logged, user } = React.useContext(UserContext);
   const { displayedNode } = React.useContext(GraphContext);
-  const isInformatica = user?.carrera?.id === "informatica";
+  const isBeta = user?.carrera?.beta;
   const CommonProps = {
     height: isMobile ? "8.7rem" : "4.5rem",
     bg: useColorModeValue("headerbg", "headerbgdark")
@@ -53,14 +52,9 @@ const Header = () => {
           ) : (
             <PadronInput />
           )}
-          {!isMobile && isInformatica &&
+          {!isMobile && isBeta &&
             <Alert colorScheme='purple' borderRadius="full" w="fit-content">
-              <Link
-                isExternal
-                href="https://youtu.be/I0AxrOUJ62E"
-              >
-                Trabajando duramente en el plan 2020.
-              </Link>
+              No te preocupes, nada de lo que hagas acá se guarda.
             </Alert>
           }
           <DropdownCarreras />

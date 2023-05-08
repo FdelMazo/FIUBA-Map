@@ -41,6 +41,8 @@ const UserMenu = () => {
   } = React.useContext(UserContext);
 
   const { saveGraph, restartGraphCuatris, getters, setNeedsRegister, changeOrientacion, changeFinDeCarrera, getNode } = React.useContext(GraphContext);
+
+  const isBeta = user?.carrera?.beta;
   return (
     <Box>
       <Menu
@@ -121,6 +123,7 @@ const UserMenu = () => {
           ml={2}
           isLoading={saving}
           onClick={saveGraph}
+          disabled={isBeta}
         >
           <Icon boxSize={5} as={FaSave} />
         </IconButton>
