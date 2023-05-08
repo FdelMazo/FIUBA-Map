@@ -381,7 +381,8 @@ const useGraph = (loginHook) => {
       const userdata = logged
         ? user.allLogins.find((l) => l.carreraid === id)
         : false;
-      setShouldLoadGraph(!!userdata);
+      // Forzar a siempre recargar todo si es informatica 2020...
+      setShouldLoadGraph(!!userdata || id === "informatica-2020");
       const orientacion =
         carrera.orientaciones?.find(
           (c) => c.nombre === userdata?.orientacionid

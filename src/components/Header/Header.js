@@ -5,6 +5,7 @@ import {
   Box,
   useColorModeValue,
   Text,
+  VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../../Contexts";
@@ -55,12 +56,10 @@ const Header = () => {
           )}
           {!isMobile && isBeta &&
             <Alert colorScheme='purple' borderRadius="md" p={"4px"} w="fit-content" textAlign="center">
-              <Text fontSize="xs">
-                No te preocupes, nada de lo que hagas acá se guarda.
-                <br />
-                <Text fontSize="smaller" >Si no te anda de una, proba recargar la página.</Text>
-                <Text fontSize="xx-small" >regalame un cafecito no seas mal tipo</Text>
-              </Text>
+              <VStack spacing={0}>
+                <Text fontSize="small">No te preocupes, nada de lo que hagas acá se guarda.</Text>
+                <Text fontSize="xx-small">regalame un cafecito no seas mala persona</Text>
+              </VStack>
             </Alert>
           }
           <DropdownCarreras />
