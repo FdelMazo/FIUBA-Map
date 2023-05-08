@@ -1,0 +1,408 @@
+[
+    {
+        "id": "CBC66",
+        "materia": "Análisis Matemático A",
+        "creditos": 9,
+        "categoria": "*CBC",
+        "level": -2
+    },
+    {
+        "id": "CBC62",
+        "materia": "Álgebra A",
+        "creditos": 9,
+        "categoria": "*CBC",
+        "level": -2
+    },
+    {
+        "id": "CBC24",
+        "materia": "Introducción al Conocimiento de la Sociedad y el Estado",
+        "creditos": 4,
+        "categoria": "*CBC",
+        "level": -2
+    },
+    {
+        "id": "CBC3",
+        "materia": "Física",
+        "creditos": 6,
+        "categoria": "*CBC",
+        "level": -1
+    },
+    {
+        "id": "CBC90",
+        "materia": "Pensamiento Computacional",
+        "creditos": 6,
+        "categoria": "*CBC",
+        "level": -1
+    },
+    {
+        "id": "CBC40",
+        "materia": "Introducción al Conocimiento Científico",
+        "creditos": 4,
+        "categoria": "*CBC",
+        "level": -1
+    },
+    {
+        "id": "CBC",
+        "materia": "Ciclo Básico Común",
+        "creditos": 0,
+        "categoria": "CBC",
+        "level": 0,
+        "correlativas": "CBC66-CBC62-CBC24-CBC3-CBC90-CBC40"
+    },
+    {
+        "id": "ID00",
+        "materia": "Análisis Matemático II", 
+        "creditos": 8,
+        "correlativas": "CBC",
+        "categoria": "Materias Obligatorias",
+        "level": 1
+    },
+    {
+        "id": "ID01",
+        "materia": "Algoritmos y Estructura de Datos",      
+        "creditos": 6,
+        "correlativas": "CBC",
+        "categoria": "Materias Obligatorias",
+        "level": 1
+    },
+    {
+        "id": "ID02",
+        "materia": "Introducción al Desarrollo de Software",
+        "creditos": 6,
+        "correlativas": "CBC",
+        "categoria": "Materias Obligatorias",
+        "level": 1
+    },
+    {
+        "id": "ID03",
+        "materia": "Álgebra Lineal",
+        "creditos": 8,
+        "correlativas": "CBC",
+        "categoria": "Materias Obligatorias",
+        "level": 2
+    },
+    {
+        "id": "ID04",
+        "materia": "Organización del Computador",
+        "creditos": 6,
+        "correlativas": "ID01",
+        "categoria": "Materias Obligatorias",
+        "level": 2
+    },
+    {
+        "id": "ID05",
+        "materia": "Paradigmas de Programación",
+        "creditos": 6,
+        "correlativas": "ID01",
+        "categoria": "Materias Obligatorias",
+        "level": 2
+    },
+    {
+        "id": "ID06",
+        "materia": "Probabilidad y Estadística",
+        "creditos": 6,
+        "correlativas": "ID00-ID03",
+        "categoria": "Materias Obligatorias",
+        "level": 3
+    },
+    {
+        "id": "ID07",
+        "materia": "Teoría de Algoritmos",
+        "creditos": 6,
+        "correlativas": "ID01",
+        "categoria": "Materias Obligatorias",
+        "level": 3
+    },
+    {
+        "id": "ID08",
+        "materia": "Sistemas Operativos",
+        "creditos": 8,
+        "correlativas": "ID04",
+        "categoria": "Materias Obligatorias",
+        "level": 3
+    },
+    {
+        "id": "ID09",
+        "materia": "Lenguajes y Compiladores I",
+        "creditos": 6,
+        "correlativas": "ID05",
+        "categoria": "Materias Obligatorias",
+        "level": 3
+    },
+    {
+        "id": "ID11",
+        "materia": "Modelación Numérica",
+        "creditos": 4,
+        "correlativas": "ID00-ID03-ID07",
+        "categoria": "Materias Obligatorias",
+        "level": 4
+    },
+    {
+        "id": "ID10",
+        "materia": "Base de Datos",
+        "creditos": 6,
+        "correlativas": "ID04-ID07",
+        "categoria": "Materias Obligatorias",
+        "level": 4
+    },
+    {
+        "id": "ID12",
+        "materia": "Taller de Programación",
+        "creditos": 8,
+        "correlativas": "ID04-ID05",
+        "categoria": "Materias Obligatorias",
+        "level": 4
+    },
+    {
+        "id": "ID13",
+        "materia": "Ingeniería de Software I",
+        "creditos": 8,
+        "correlativas": "ID05",
+        "categoria": "Materias Obligatorias",
+        "level": 4
+    },
+    {
+        "id": "ID14",
+        "materia": "Ciencia de Datos",
+        "creditos": 6,
+        "correlativas": "ID06-ID10-ID11",
+        "categoria": "Materias Obligatorias",
+        "level": 5
+    },
+    {
+        "id": "ID17",
+        "materia": "Redes",
+        "creditos": 6,
+        "correlativas": "ID08",
+        "categoria": "Materias Obligatorias",
+        "level": 5
+    },
+    {
+        "id": "ID16",
+        "materia": "Programación Concurrente",
+        "creditos": 6,
+        "correlativas": "ID08-ID12",
+        "categoria": "Materias Obligatorias",
+        "level": 5
+    },
+    {
+        "id": "ID15",
+        "materia": "Ingeniería de Software II",
+        "creditos": 6,
+        "correlativas": "ID10-ID13",
+        "categoria": "Materias Obligatorias",
+        "level": 5
+    },
+    {
+        "id": "ID18",
+        "materia": "Física para Informática",
+        "creditos": 4,
+        "correlativas": "ID14",
+        "categoria": "Materias Obligatorias",
+        "level": 6
+    },
+    {
+        "id": "ID19",
+        "materia": "Empresas de Base Tecnológica I",
+        "creditos": 6,
+        "requiere": 100,
+        "requiereCBC": true,
+        "categoria": "Materias Obligatorias",
+        "level": 6
+    },
+    {
+        "id": "ID21",
+        "materia": "Sistemas Distribuidos I",
+        "creditos": 6,
+        "correlativas": "ID16-ID17",
+        "categoria": "Materias Obligatorias",
+        "level": 6
+    },
+    {
+        "id": "ID20",
+        "materia": "Gestión del Desarrollo de Sistemas Informáticos",
+        "creditos": 6,
+        "correlativas": "ID13",
+        "categoria": "Materias Obligatorias",
+        "level": 6
+    },
+    {
+        "id": "ID26",
+        "materia": "Empresas de Base Tecnológica II",
+        "creditos": 8,
+        "correlativas": "ID19",
+        "categoria": "Materias Obligatorias",
+        "level": 7
+    },
+    {
+        "id": "ID22",
+        "materia": "Taller de Seguridad Informática",
+        "creditos": 8,
+        "correlativas": "ID17",
+        "categoria": "Materias Obligatorias",
+        "level": 7
+    },
+    {
+        "id": "ID30",
+        "materia": "Fundamentos Matemáticos de la Criptografía",
+        "creditos": 6,
+        "correlativas": "ID03",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID31",
+        "materia": "Criptografía I",
+        "creditos": 6,
+        "correlativas": "ID03-ID07",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID32",
+        "materia": "Criptografía II",
+        "creditos": 6,
+        "correlativas": "ID30-ID31",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID33",
+        "materia": "Sistemas Distribuidos II",
+        "creditos": 6,
+        "correlativas": "ID21",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID34",
+        "materia": "Técnicas de Ingeniería Inversa",
+        "creditos": 6,
+        "correlativas": "ID31-ID22",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID35",
+        "materia": "Criptoanálisis",
+        "creditos": 6,
+        "correlativas": "ID31-ID22",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID36",
+        "materia": "Ingeniería de Datos",
+        "creditos": 6,
+        "correlativas": "ID14-ID15",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID37",
+        "materia": "Optimización Convexa",
+        "creditos": 6,
+        "correlativas": "ID06-ID14",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID38",
+        "materia": "Aprendizaje Automático",
+        "creditos": 6,
+        "correlativas": "ID06-ID14",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID39",
+        "materia": "Aprendizaje Profundo",
+        "creditos": 6,
+        "correlativas": "ID38",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID40",
+        "materia": "Aprendizaje por Refuerzo",
+        "creditos": 6,
+        "correlativas": "ID38",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID41",
+        "materia": "Simulación",
+        "creditos": 6,
+        "correlativas": "ID06-ID11",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID42",
+        "materia": "Sistemas Complejos",
+        "creditos": 6,
+        "correlativas": "ID06-ID11",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID43",
+        "materia": "Redes Complejas",
+        "creditos": 6,
+        "correlativas": "ID42",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID44",
+        "materia": "Teoría Algorítmica de Juegos",
+        "creditos": 4,
+        "correlativas": "ID00-ID03-ID07",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID45",
+        "materia": "Teoría de Computabilidad",
+        "creditos": 6,
+        "correlativas": "ID09-ID07",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID46",
+        "materia": "Teoría de la Información",
+        "creditos": 6,
+        "correlativas": "ID06-ID07",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID47",
+        "materia": "Computación Cuántica",
+        "creditos": 6,
+        "correlativas": "ID06",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID48",
+        "materia": "Lenguajes y Compiladores II",
+        "creditos": 6,
+        "correlativas": "ID09-ID08",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID49",
+        "materia": "Análisis Matemático III",
+        "creditos": 6,
+        "correlativas": "ID00-ID03",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID50",
+        "materia": "Arquitectura de Software",
+        "creditos": 4,
+        "correlativas": "ID13",
+        "categoria": "Materias Electivas"
+    },
+    {
+        "id": "ID27",
+        "materia": "Tesis de Ingeniería Informática",
+        "creditos": 12,
+        "requiere": 140,
+        "requiereCBC": true,
+        "categoria": "Fin de Carrera"
+    },
+    {
+        "id": "ID29",
+        "materia": "Trabajo Profesional de Ingeniería Informática",
+        "creditos": 12,
+        "requiere": 140,
+        "requiereCBC": true,
+        "categoria": "Fin de Carrera"
+    }
+]
