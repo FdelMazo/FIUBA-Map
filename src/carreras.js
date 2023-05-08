@@ -66,6 +66,29 @@ export const CARRERAS = [
       },
     },
     eligeOrientaciones: true,
+  },{
+    id: "informaticanueva",
+    link: "https://mli-fiuba.notion.site/Ingenier-a-en-Inform-tica-48e3eeece07e471dbfe1cd947f7ca245",
+    graph: require("./data/informatica-2023.json"),
+    nombre: "Ingeniería en Informática (2023)",
+    nombrecorto: "Informática 2023",
+    finDeCarrera: [
+      { id: "tesis", materia: "ID27" },
+      { id: "tpp", materia: "ID29" },
+    ],
+    creditos: {
+      total: 228,
+      obligatorias: 156,
+      electivas: 24,
+      checkbox: [
+        {
+          nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
+          bg: COLORS.enfinal[50],
+          color: "enfinal",
+        },
+      ],
+    },
   },
   {
     id: "agrimensura",
