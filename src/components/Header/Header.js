@@ -1,11 +1,8 @@
 import {
   ScaleFade,
   Flex,
-  Alert,
   Box,
   useColorModeValue,
-  Text,
-  VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../../Contexts";
@@ -16,9 +13,8 @@ import UserMenu from "./UserMenu";
 
 
 const Header = () => {
-  const { isMobile, logged, user } = React.useContext(UserContext);
+  const { isMobile, logged } = React.useContext(UserContext);
   const { displayedNode } = React.useContext(GraphContext);
-  const isBeta = user?.carrera?.beta;
   const CommonProps = {
     height: isMobile ? "8.7rem" : "4.5rem",
     bg: useColorModeValue("headerbg", "headerbgdark")
@@ -54,14 +50,6 @@ const Header = () => {
           ) : (
             <PadronInput />
           )}
-          {!isMobile && isBeta &&
-            <Alert colorScheme='purple' borderRadius="md" p={"4px"} w="fit-content" textAlign="center">
-              <VStack spacing={0}>
-                <Text fontSize="small">No te preocupes, nada de lo que hagas acá se guarda.</Text>
-                <Text fontSize="xx-small">regalame un cafecito no seas mala persona</Text>
-              </VStack>
-            </Alert>
-          }
           <DropdownCarreras />
         </Flex>
       </ScaleFade>
