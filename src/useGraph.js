@@ -316,7 +316,7 @@ const useGraph = (loginHook) => {
       setShouldLoadGraph(false);
       setLoadingGraph(true);
       getGraph(user.padron, user.carrera.id)
-        .then((metadata) => {
+        .then(async (metadata) => {
           const toUpdate = [];
           if (metadata.materias) {
             metadata.materias.forEach((m) => {
@@ -348,6 +348,11 @@ const useGraph = (loginHook) => {
           };
           if (metadata.aplazos) setAplazos(metadata.aplazos);
           network.fit();
+
+          if (user.carrera?.id === "informatica-2020") {
+            await transicionInformatica2020()
+          }
+
           setLoadingGraph(false);
         })
         .catch((e) => {
@@ -913,6 +918,91 @@ const useGraph = (loginHook) => {
   React.useEffect(() => {
     actualizar();
   }, [colorMode, optativas]);
+
+
+  const transicionInformatica2020 = async () => {
+    const planViejo = require("./data/informatica-1986.json")
+    const findMateria = (id) => {
+      return planViejo.find((m) => m.id === id)
+    }
+
+    let toUpdate = [];
+    let creditosElectivas = 0
+
+    const informaticaVieja = await getGraph(user.padron, "informatica")
+    let aprobadas = informaticaVieja.materias.filter((m) => m.nota >= 0)
+    // Primero, nos encargamos de algunos casos borde. Materias nuevas que equivalen a dos materias viejas
+    const equivLenguajesCompiladores1 = aprobadas.filter((m) => m.id === '75.31' || m.id === '75.16')
+    if (equivLenguajesCompiladores1.length >= 1) {
+      const lenguajesCompiladoresI = getNode('ID09')
+      toUpdate.push(lenguajesCompiladoresI.aprobar(equivLenguajesCompiladores1[0].nota));
+    }
+    if (equivLenguajesCompiladores1 === 2) {
+      creditosElectivas += 4
+    }
+
+    const equivtallerSeguridad = aprobadas.filter((m) => m.id === '66.69' || m.id === '66.20')
+    if (equivtallerSeguridad.length >= 1) {
+      const tallerSeguridad = getNode('ID22')
+      toUpdate.push(tallerSeguridad.aprobar(equivtallerSeguridad[0].nota));
+    }
+    if (equivtallerSeguridad === 2) {
+      creditosElectivas += 6
+    }
+
+    const equivBaseTecno = aprobadas.filter((m) => m.id === '71.40' || m.id === '71.46')
+    if (equivBaseTecno.length === 2) {
+      const baseTecnologica = getNode('ID19')
+      toUpdate.push(baseTecnologica.aprobar(equivBaseTecno[0].nota));
+    }
+
+    // Descartamos las materias que acabamos de aplicar
+    // tambien descarto el idioma, porque en el plan viejo no estaba especificado que idioma era el aprobado
+    aprobadas = aprobadas.filter(m => !['78.xx', '75.31', '75.16', '66.69', '66.20', '71.40', '71.46'].includes(m.id))
+    // Ahora, aprobamos todas las materias directamente equivalentes, y nos cargamos
+    // los creditos de las materias que ya no estan como creditos de electivas para el plan nuevo
+    // No hacemos nada con las que estan en final...
+    for (const m of aprobadas) {
+      let node = getNode(m.id)
+      if (m.nota >= 0) {
+        if (!node) {
+          let materia = findMateria(m.id)
+          creditosElectivas += materia.creditos
+          continue
+        };
+        toUpdate.push(node.aprobar(m.nota));
+
+        // Física 2 te da 4 creditos extra
+        if (m.id === "62.03") {
+          creditosElectivas += 4
+        }
+
+        // Analisis numerico te da 2 creditos extra
+        if (m.id === "75.12") {
+          creditosElectivas += 2
+        }
+      };
+    }
+
+    // Los creditos por optativas me los traigo de la carrera vieja
+    creditosElectivas += informaticaVieja.optativas.reduce((acc, curr) => {
+      return acc + curr.creditos
+    }, 0)
+
+    nodes.update(toUpdate.flat());
+    actualizar();
+    actualizarNiveles()
+    if (creditosElectivas > 0) {
+      optativasDispatch({
+        action: 'override', value: [{
+          id: 1,
+          nombre: "Vienen del Plan 1986",
+          creditos: creditosElectivas >= 24 ? 24 : creditosElectivas,
+        }]
+      })
+    };
+    network.fit();
+  }
 
   return {
     graph,
