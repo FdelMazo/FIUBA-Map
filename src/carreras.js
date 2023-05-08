@@ -67,18 +67,18 @@ export const CARRERAS = [
     },
     eligeOrientaciones: true,
   },{
-    id: "informaticanueva",
+    id: "informatica-2020",
     link: "https://mli-fiuba.notion.site/Ingenier-a-en-Inform-tica-48e3eeece07e471dbfe1cd947f7ca245",
     graph: require("./data/informatica-2023.json"),
-    nombre: "Ingeniería en Informática (2023)",
-    nombrecorto: "Informática 2023",
+    nombre: "Ingeniería en Informática (2020) - BETA",
+    nombrecorto: "Informática 2020",
     finDeCarrera: [
       { id: "tesis", materia: "ID27" },
       { id: "tpp", materia: "ID29" },
     ],
     creditos: {
       total: 228,
-      obligatorias: 156,
+      obligatorias: 154,
       electivas: 24,
       checkbox: [
         {
