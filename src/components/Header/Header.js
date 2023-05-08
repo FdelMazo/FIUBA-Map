@@ -4,6 +4,7 @@ import {
   Alert,
   Box,
   useColorModeValue,
+  Text,
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../../Contexts";
@@ -53,8 +54,13 @@ const Header = () => {
             <PadronInput />
           )}
           {!isMobile && isBeta &&
-            <Alert colorScheme='purple' borderRadius="full" w="fit-content">
-              No te preocupes, nada de lo que hagas acá se guarda.
+            <Alert colorScheme='purple' borderRadius="md" p={"4px"} w="fit-content" textAlign="center">
+              <Text fontSize="xs">
+                No te preocupes, nada de lo que hagas acá se guarda.
+                <br />
+                <Text fontSize="smaller" >Si no te anda de una, proba recargar la página.</Text>
+                <Text fontSize="xx-small" >regalame un cafecito no seas mal tipo</Text>
+              </Text>
             </Alert>
           }
           <DropdownCarreras />
