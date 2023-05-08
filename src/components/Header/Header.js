@@ -53,17 +53,16 @@ const Header = () => {
           ) : (
             <PadronInput />
           )}
-          <ScaleFade in={isInformatica}>
-            <Alert colorScheme='purple' borderRadius="full">
+          {!isMobile && isInformatica &&
+            <Alert colorScheme='purple' borderRadius="full" w="fit-content">
               <Link
                 isExternal
                 href="https://youtu.be/I0AxrOUJ62E"
               >
                 Trabajando duramente en el plan 2020.
-
               </Link>
             </Alert>
-          </ScaleFade>
+          }
           <DropdownCarreras />
         </Flex>
       </ScaleFade>
