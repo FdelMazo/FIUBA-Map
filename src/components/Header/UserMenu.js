@@ -111,7 +111,7 @@ const UserMenu = () => {
             </MenuOptionGroup>)
           }
 
-          <MenuItem onClick={logout} icon={<BiLogOut size={"1.5rem"} />}>
+          <MenuItem onClick={logout} icon={<BiLogOut size={"1.8em"} />}>
             <strong>Cerrar Sesión</strong>
           </MenuItem>
 
