@@ -5,6 +5,7 @@ import {
   Icon,
   MoonIcon,
   SunIcon,
+  WarningTwoIcon,
 } from "@chakra-ui/icons";
 import {
   LightMode,
@@ -26,6 +27,7 @@ import {
   useColorMode,
   useColorModeValue,
   useToast,
+  VStack,
 } from "@chakra-ui/react";
 import React from "react";
 import { UserContext } from "../../Contexts";
@@ -115,20 +117,46 @@ const Controls = () => {
                     color={colorMode === "dark" ? "textdark" : "text"}
                   >
                     <Box flex="1">
-                      <AlertTitle>Hola!</AlertTitle>
+                      <AlertTitle mb={2}>Hola!</AlertTitle>
                       <AlertDescription px={5} display="block">
+                        <VStack spacing={2}>
+                          <Text>
+                            Este proyecto ya cumplió su ciclo... las últimas actualizaciones que hubo que hacer (Plan 2020) terminaron de quemarme. Sin hablar de que algún día
+                            <Link
+                              isExternal
+                              _hover={{
+                                color:
+                                  colorMode === "dark"
+                                    ? "electivas.400"
+                                    : "electivas.500",
+                              }}
+                              href="https://status.fede.dm"
+                            >
+                              {" "}me voy a recibir{" "}
+                              <ExternalLinkIcon
+                                color={
+                                  colorMode === "dark"
+                                    ? "electivas.400"
+                                    : "electivas.500"
+                                }
+                              />
+                            </Link>
+
+                            {" "}y tengo que dejar esto de lado.
+                          </Text>
                         <Text>
-                          Si encontrás algo feo, incorrecto, lento, erroneo...
-                          me decís?
+                            Estoy buscando alguien que quiera ayudarme a mantenerlo y eventualmente tomarlo del todo. Si te interesa, escribime!
                         </Text>
                         <Text>
-                          Si ves algo que te gustó, o tenés alguna idea,
-                          también!
+                            Hay mil cosas que estaría bárbaro agregarle: integración con el SIU, login con contraseña, que funcione para toda la UBA y no solo FIUBA... hasta incluso es una idea digna para un trabajo profesional.
                         </Text>
-                        <Text>
-                          Estas sugerencias son *anónimas*. Si querés que te responda,
-                          escribime tu mail o telegram!
-                        </Text>
+                          <Text>
+                            Más allá de eso, todo lo que sea un bug crítico lo voy a seguir arreglando, así que si encontrás algo que no funciona, avisame!
+                          </Text>
+                          <Text>
+                            Y si llegaste tan lejos, gracias por usar la herramienta! Espero que te haya servido. Si me querés tirar un cafecito, te lo agradezco mucho! (Aunque para ser sincero, aprecio mucho más los mensajitos que los cafecitos)
+                          </Text>
+                        </VStack>
                         <form
                           onSubmit={(t) => {
                             t.preventDefault();
@@ -211,8 +239,8 @@ const Controls = () => {
               }));
             }}
           >
-            <TagLabel>{showGracias ? "Gracias!" : "Sugerencias"}</TagLabel>
-            <TagRightIcon as={showGracias ? CheckIcon : ChatIcon} />
+            <TagLabel>{showGracias ? "Gracias!" : "Estamos contratando"}</TagLabel>
+            <TagRightIcon as={showGracias ? CheckIcon : WarningTwoIcon} />
           </Tag>
         </Box>
       </LightMode>
