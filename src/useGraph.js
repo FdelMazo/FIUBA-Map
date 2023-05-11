@@ -349,7 +349,7 @@ const useGraph = (loginHook) => {
           if (metadata.aplazos) setAplazos(metadata.aplazos);
           network.fit();
 
-          if (user.carrera?.id === "informatica-2020") {
+          if (user.padron && user.carrera?.id === "informatica-2020") {
             await transicionInformatica2020()
           }
 
