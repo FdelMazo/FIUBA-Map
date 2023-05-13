@@ -396,13 +396,28 @@ const useGraph = (loginHook) => {
       carrera.graph.forEach((n) => {
         graphNodes.push(new Node(n));
       })
+      // Primero agregamos las aristas de cursada para cursar
+      console.log(carrera.graph)
       carrera.graph.forEach((n) => {
-        if (n.correlativas)
-          n.correlativas.split("-").forEach((c) => {
-            graphEdges.push({ from: c, to: n.id, smooth: { enabled: true, type: "curvedCW", roundness: 0.1 } });
+        if (n.cursadas_para_cursar)
+          n.cursadas_para_cursar.forEach((c) => {
+            graphEdges.push({ 
+              from: c, 
+              to: n.id, 
+              smooth: { enabled: true, type: "curvedCW", roundness: 0.1 },
+            });
           });
-        if (n.requiere)
-          graphEdges.push({ from: "CBC", to: n.id, color: "transparent" });
+      });
+      carrera.graph.forEach((n) => {
+        if (n.correlativas_aux)
+          n.correlativas_aux.forEach((c) => {
+            graphEdges.push({ 
+              from: c, 
+              to: n.id, 
+              smooth: { enabled: true, type: "curvedCW", roundness: 0.1 , opacity: 0.0},
+              color: 'transparent',
+            });
+          });
       });
       const groups = Array.from(new Set(carrera.graph.map((n) => n.categoria)));
       setGraph({ nodes: graphNodes, edges: graphEdges, groups });

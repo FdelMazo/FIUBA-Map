@@ -4,8 +4,8 @@ import {
   ExternalLinkIcon,
   Icon,
   MoonIcon,
+  QuestionIcon,
   SunIcon,
-  WarningTwoIcon,
 } from "@chakra-ui/icons";
 import {
   LightMode,
@@ -53,24 +53,10 @@ const Controls = () => {
           {useColorModeValue(<MoonIcon boxSize={isMobile ? 4 : 5} />, <SunIcon boxSize={isMobile ? 4 : 5} />)}
         </Link>
       </Tooltip>
-      <Tooltip placement="top" label="FIUBA-Plan">
+      <Tooltip placement="top" label="alejorodriguez96/PSICO-UNLP-Map">
         <Link
           isExternal
-          color={useColorModeValue("text", "textdark")}
-          href="https://fede.dm/FIUBA-Plan/"
-        >
-          <Icon boxSize={isMobile ? 4 : 5} ml={isMobile ? 1 : 2} viewBox="0 0 448 512">
-            <path
-              fill="currentColor"
-              d="M0 464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V192H0v272zm64-192c0-8.8 7.2-16 16-16h96c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16v-96zM400 64h-48V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H160V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48H48C21.5 64 0 85.5 0 112v48h448v-48c0-26.5-21.5-48-48-48z"
-            />
-          </Icon>
-        </Link>
-      </Tooltip>
-      <Tooltip placement="top" label="FdelMazo/FIUBA-Map">
-        <Link
-          isExternal
-          href="https://github.com/fdelmazo/FIUBA-Map"
+          href="https://github.com/alejorodriguez96/PSICO-UNLP-Map"
         >
           <Icon boxSize={isMobile ? 4 : 5} ml={isMobile ? 1 : 2} viewBox="0 0 16 16">
             <path
@@ -83,7 +69,7 @@ const Controls = () => {
       <Tooltip placement="top" label="Invitame un Cafecito">
         <Link
           isExternal
-          href="https://cafecito.app/fdelmazo"
+          href="https://cafecito.app/alejorodriguez96"
         >
           <Icon boxSize={isMobile ? 4 : 5} ml={isMobile ? 1 : 2} viewBox="0 0 512 512">
             <path
@@ -121,7 +107,7 @@ const Controls = () => {
                       <AlertDescription px={5} display="block">
                         <VStack spacing={2}>
                           <Text>
-                            Este proyecto ya cumplió su ciclo... las últimas actualizaciones que hubo que hacer (Plan 2020) terminaron de quemarme. Sin hablar de que algún día
+                            Este proyecto surge a partir de 
                             <Link
                               isExternal
                               _hover={{
@@ -130,9 +116,30 @@ const Controls = () => {
                                     ? "electivas.400"
                                     : "electivas.500",
                               }}
-                              href="https://status.fede.dm"
+                              href="https://fede.dm/FIUBA-Map/"
                             >
-                              {" "}me voy a recibir{" "}
+                              {" "}FIUBA-Map{" "}
+                              <ExternalLinkIcon
+                                color={
+                                  colorMode === "dark"
+                                    ? "electivas.400"
+                                    : "electivas.500"
+                                }
+                              />
+                            </Link>
+                            , creado para mostrar de forma interactiva los planes de estudio de la Facultad de Ingeniería de la UBA. 
+                            Fue creado por 
+                            <Link
+                              isExternal
+                              _hover={{
+                                color:
+                                  colorMode === "dark"
+                                    ? "electivas.400"
+                                    : "electivas.500",
+                              }}
+                              href="https://fede.dm/"
+                            >
+                              {" "}FdelMazo{" "}
                               <ExternalLinkIcon
                                 color={
                                   colorMode === "dark"
@@ -142,19 +149,16 @@ const Controls = () => {
                               />
                             </Link>
 
-                            {" "}y tengo que dejar esto de lado.
+                            {" "}
                           </Text>
                         <Text>
-                            Estoy buscando alguien que quiera ayudarme a mantenerlo y eventualmente tomarlo del todo. Si te interesa, escribime!
+                            Más adelante completaré esta sección con una breve introducción al funcionamiento de la app. 
                         </Text>
                         <Text>
-                            Hay mil cosas que estaría bárbaro agregarle: integración con el SIU, login con contraseña, que funcione para toda la UBA y no solo FIUBA... hasta incluso es una idea digna para un trabajo profesional.
+                            Falta agregar muchas cosas aún, pero por ahora lo principal es que la app funcione como herramienta de consulta del plan de estudios y del avance en la carrera.
                         </Text>
                           <Text>
-                            Más allá de eso, todo lo que sea un bug crítico de la app lo voy a seguir arreglando, así que si encontrás algo que no funciona, avisame!
-                          </Text>
-                          <Text>
-                            Y si llegaste tan lejos, gracias por usar la app! Espero que te haya servido. Si me querés tirar un cafecito, te lo agradezco mucho! (Aunque para ser sincero, aprecio mucho más los mensajitos que los cafecitos)
+                            Espero te sea util!
                           </Text>
                         </VStack>
                         <form
@@ -193,30 +197,6 @@ const Controls = () => {
                             </DarkMode>
                           </Flex>
                         </form>
-                        <Text fontSize="sm" mt={2}>
-                          ¿Usás Github? Me ayudás mucho más levantando un
-                          issue{" "}
-                          <Link
-                            isExternal
-                            _hover={{
-                              color:
-                                colorMode === "dark"
-                                  ? "electivas.400"
-                                  : "electivas.500",
-                            }}
-                            href="https://github.com/FdelMazo/FIUBA-Map/issues/new"
-                          >
-                            directamente{" "}
-                            <ExternalLinkIcon
-                              color={
-                                colorMode === "dark"
-                                  ? "electivas.400"
-                                  : "electivas.500"
-                              }
-                              mx="2px"
-                            />
-                          </Link>
-                        </Text>
                       </AlertDescription>
                     </Box>
                     <CloseButton
@@ -239,8 +219,8 @@ const Controls = () => {
               }));
             }}
           >
-            <TagLabel>{showGracias ? "Gracias!" : "Estamos contratando"}</TagLabel>
-            <TagRightIcon as={showGracias ? CheckIcon : WarningTwoIcon} />
+            <TagLabel>{showGracias ? "Gracias!" : "Qué es esto?"}</TagLabel>
+            <TagRightIcon as={showGracias ? CheckIcon : QuestionIcon} />
           </Tag>
         </Box>
       </LightMode>

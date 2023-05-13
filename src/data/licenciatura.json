@@ -1,0 +1,1016 @@
+[
+    {
+        "id": "CBC",
+        "materia": "Curso de ingreso",
+        "creditos": 0,
+        "categoria": "CBC",
+        "level": 0
+    },
+    {
+        "id": 1,
+        "materia": "Psicología I",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 1,
+        "finales_para_cursar": [
+            "CBC"
+        ],
+        "cursadas_para_cursar": [
+            "CBC"
+        ],
+        "finales_para_rendir": [
+            "CBC"
+        ],
+        "finales_para_cursar_str": [
+            "Curso de ingreso"
+        ],
+        "cursadas_para_cursar_str": [
+            "Curso de ingreso"
+        ],
+        "finales_para_rendir_str": [
+            "Curso de ingreso"
+        ]
+    },
+    {
+        "id": 2,
+        "materia": "Antropología Cultural y Social",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 1,
+        "finales_para_cursar": [
+            "CBC"
+        ],
+        "cursadas_para_cursar": [
+            "CBC"
+        ],
+        "finales_para_rendir": [
+            "CBC"
+        ],
+        "finales_para_cursar_str": [
+            "Curso de ingreso"
+        ],
+        "cursadas_para_cursar_str": [
+            "Curso de ingreso"
+        ],
+        "finales_para_rendir_str": [
+            "Curso de ingreso"
+        ]
+    },
+    {
+        "id": 3,
+        "materia": "Biología Humana",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 1,
+        "finales_para_cursar": [
+            "CBC"
+        ],
+        "cursadas_para_cursar": [
+            "CBC"
+        ],
+        "finales_para_rendir": [
+            "CBC"
+        ],
+        "finales_para_cursar_str": [
+            "Curso de ingreso"
+        ],
+        "cursadas_para_cursar_str": [
+            "Curso de ingreso"
+        ],
+        "finales_para_rendir_str": [
+            "Curso de ingreso"
+        ]
+    },
+    {
+        "id": 4,
+        "materia": "Lógica",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 1,
+        "finales_para_cursar": [
+            "CBC"
+        ],
+        "cursadas_para_cursar": [
+            "CBC"
+        ],
+        "finales_para_rendir": [
+            "CBC"
+        ],
+        "finales_para_cursar_str": [
+            "Curso de ingreso"
+        ],
+        "cursadas_para_cursar_str": [
+            "Curso de ingreso"
+        ],
+        "finales_para_rendir_str": [
+            "Curso de ingreso"
+        ]
+    },
+    {
+        "id": 5,
+        "materia": "Filosofía",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 1,
+        "finales_para_cursar": [
+            "CBC"
+        ],
+        "cursadas_para_cursar": [
+            "CBC"
+        ],
+        "finales_para_rendir": [
+            "CBC"
+        ],
+        "finales_para_cursar_str": [
+            "Curso de ingreso"
+        ],
+        "cursadas_para_cursar_str": [
+            "Curso de ingreso"
+        ],
+        "finales_para_rendir_str": [
+            "Curso de ingreso"
+        ]
+    },
+    {
+        "id": 6,
+        "materia": "Psicología II",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 2,
+        "finales_para_cursar": [],
+        "cursadas_para_cursar": [
+            1
+        ],
+        "finales_para_rendir": [
+            1
+        ],
+        "finales_para_cursar_str": [],
+        "cursadas_para_cursar_str": [
+            "Psicología I"
+        ],
+        "finales_para_rendir_str": [
+            "Psicología I"
+        ]
+    },
+    {
+        "id": 7,
+        "materia": "Teoría Psicoanalítica",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 2,
+        "finales_para_cursar": [],
+        "cursadas_para_cursar": [
+            1
+        ],
+        "finales_para_rendir": [
+            1
+        ],
+        "finales_para_cursar_str": [],
+        "cursadas_para_cursar_str": [
+            "Psicología I"
+        ],
+        "finales_para_rendir_str": [
+            "Psicología I"
+        ]
+    },
+    {
+        "id": 8,
+        "materia": "Sociología",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 2,
+        "finales_para_cursar": [],
+        "cursadas_para_cursar": [],
+        "finales_para_rendir": [
+            2
+        ],
+        "finales_para_cursar_str": [],
+        "cursadas_para_cursar_str": [],
+        "finales_para_rendir_str": [
+            "Antropología Cultural y Social"
+        ]
+    },
+    {
+        "id": 9,
+        "materia": "Estadística",
+        "creditos": 1,
+        "requiere": "Haber ingresado hace 3 años.",
+        "categoria": "Materias Obligatorias",
+        "level": 2
+    },
+    {
+        "id": 10,
+        "materia": "Psicología Genética",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 2,
+        "finales_para_cursar": [],
+        "cursadas_para_cursar": [
+            1
+        ],
+        "finales_para_rendir": [
+            1
+        ],
+        "finales_para_cursar_str": [],
+        "cursadas_para_cursar_str": [
+            "Psicología I"
+        ],
+        "finales_para_rendir_str": [
+            "Psicología I"
+        ]
+    },
+    {
+        "id": 11,
+        "materia": "Lingüística",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 2,
+        "finales_para_cursar": [],
+        "cursadas_para_cursar": [
+            4
+        ],
+        "finales_para_rendir": [
+            4
+        ],
+        "finales_para_cursar_str": [],
+        "cursadas_para_cursar_str": [
+            "Lógica"
+        ],
+        "finales_para_rendir_str": [
+            "Lógica"
+        ]
+    },
+    {
+        "id": 12,
+        "materia": "Epistemología y Metodología",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 3,
+        "finales_para_cursar": [
+            1
+        ],
+        "cursadas_para_cursar": [
+            4,
+            6,
+            7
+        ],
+        "finales_para_rendir": [
+            4,
+            6,
+            7
+        ],
+        "finales_para_cursar_str": [
+            "Psicología I"
+        ],
+        "cursadas_para_cursar_str": [
+            "Lógica",
+            "Psicología II",
+            "Teoría Psicoanalítica"
+        ],
+        "finales_para_rendir_str": [
+            "Lógica",
+            "Psicología II",
+            "Teoría Psicoanalítica"
+        ]
+    },
+    {
+        "id": 13,
+        "materia": "Fundamentos I",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 3,
+        "finales_para_cursar": [
+            1
+        ],
+        "cursadas_para_cursar": [
+            4,
+            6,
+            7,
+            9
+        ],
+        "finales_para_rendir": [
+            9,
+            12
+        ],
+        "finales_para_cursar_str": [
+            "Psicología I"
+        ],
+        "cursadas_para_cursar_str": [
+            "Lógica",
+            "Psicología II",
+            "Teoría Psicoanalítica",
+            "Estadística"
+        ],
+        "finales_para_rendir_str": [
+            "Estadística",
+            "Epistemología y Metodología"
+        ]
+    },
+    {
+        "id": 14,
+        "materia": "Psicología Evolutiva I",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 3,
+        "finales_para_cursar": [
+            1
+        ],
+        "cursadas_para_cursar": [
+            7,
+            10
+        ],
+        "finales_para_rendir": [
+            7,
+            10
+        ],
+        "finales_para_cursar_str": [
+            "Psicología I"
+        ],
+        "cursadas_para_cursar_str": [
+            "Teoría Psicoanalítica",
+            "Psicología Genética"
+        ],
+        "finales_para_rendir_str": [
+            "Teoría Psicoanalítica",
+            "Psicología Genética"
+        ]
+    },
+    {
+        "id": 15,
+        "materia": "Psicología Evolutiva II",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 3,
+        "finales_para_cursar": [
+            1
+        ],
+        "cursadas_para_cursar": [
+            14
+        ],
+        "finales_para_rendir": [
+            14
+        ],
+        "finales_para_cursar_str": [
+            "Psicología I"
+        ],
+        "cursadas_para_cursar_str": [
+            "Psicología Evolutiva I"
+        ],
+        "finales_para_rendir_str": [
+            "Psicología Evolutiva I"
+        ]
+    },
+    {
+        "id": 16,
+        "materia": "Corrientes Actuales en Psicología",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 3,
+        "finales_para_cursar": [
+            1,
+            4
+        ],
+        "cursadas_para_cursar": [
+            6,
+            11
+        ],
+        "finales_para_rendir": [
+            6,
+            11
+        ],
+        "finales_para_cursar_str": [
+            "Psicología I",
+            "Lógica"
+        ],
+        "cursadas_para_cursar_str": [
+            "Psicología II",
+            "Lingüística"
+        ],
+        "finales_para_rendir_str": [
+            "Psicología II",
+            "Lingüística"
+        ]
+    },
+    {
+        "id": 17,
+        "materia": "Psicología Social",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 3,
+        "finales_para_cursar": [
+            1,
+            2
+        ],
+        "cursadas_para_cursar": [
+            4,
+            6,
+            7,
+            8
+        ],
+        "finales_para_rendir": [
+            8,
+            12
+        ],
+        "finales_para_cursar_str": [
+            "Psicología I",
+            "Antropología Cultural y Social"
+        ],
+        "cursadas_para_cursar_str": [
+            "Lógica",
+            "Psicología II",
+            "Teoría Psicoanalítica",
+            "Sociología"
+        ],
+        "finales_para_rendir_str": [
+            "Sociología",
+            "Epistemología y Metodología"
+        ]
+    },
+    {
+        "id": 18,
+        "materia": "Neuroanatomía y Neurofisiología",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 3,
+        "requiere": "Haber ingresado hace 3 años.",
+        "finales_para_cursar": [],
+        "cursadas_para_cursar": [
+            3
+        ],
+        "finales_para_rendir": [
+            3
+        ],
+        "finales_para_cursar_str": [],
+        "cursadas_para_cursar_str": [
+            "Biología Humana"
+        ],
+        "finales_para_rendir_str": [
+            "Biología Humana"
+        ]
+    },
+    {
+        "id": 19,
+        "materia": "Psicopatología I",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 4,
+        "finales_para_cursar": [
+            3,
+            7,
+            10
+        ],
+        "cursadas_para_cursar": [
+            15,
+            18
+        ],
+        "finales_para_rendir": [
+            15,
+            18
+        ],
+        "finales_para_cursar_str": [
+            "Biología Humana",
+            "Teoría Psicoanalítica",
+            "Psicología Genética"
+        ],
+        "cursadas_para_cursar_str": [
+            "Psicología Evolutiva II",
+            "Neuroanatomía y Neurofisiología"
+        ],
+        "finales_para_rendir_str": [
+            "Psicología Evolutiva II",
+            "Neuroanatomía y Neurofisiología"
+        ]
+    },
+    {
+        "id": 20,
+        "materia": "Psicología Institucional",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 4,
+        "finales_para_cursar": [
+            4,
+            6,
+            8,
+            9
+        ],
+        "cursadas_para_cursar": [
+            12,
+            17
+        ],
+        "finales_para_rendir": [
+            12,
+            17
+        ],
+        "finales_para_cursar_str": [
+            "Lógica",
+            "Psicología II",
+            "Sociología",
+            "Estadística"
+        ],
+        "cursadas_para_cursar_str": [
+            "Epistemología y Metodología",
+            "Psicología Social"
+        ],
+        "finales_para_rendir_str": [
+            "Epistemología y Metodología",
+            "Psicología Social"
+        ]
+    },
+    {
+        "id": 21,
+        "materia": "Psicología Experimental",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 4,
+        "finales_para_cursar": [
+            4,
+            6,
+            7,
+            9
+        ],
+        "cursadas_para_cursar": [
+            12,
+            13
+        ],
+        "finales_para_rendir": [
+            12,
+            13
+        ],
+        "finales_para_cursar_str": [
+            "Lógica",
+            "Psicología II",
+            "Teoría Psicoanalítica",
+            "Estadística"
+        ],
+        "cursadas_para_cursar_str": [
+            "Epistemología y Metodología",
+            "Fundamentos I"
+        ],
+        "finales_para_rendir_str": [
+            "Epistemología y Metodología",
+            "Fundamentos I"
+        ]
+    },
+    {
+        "id": 22,
+        "materia": "Psicopatología II",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 4,
+        "finales_para_cursar": [
+            3,
+            7,
+            10
+        ],
+        "cursadas_para_cursar": [
+            14,
+            15,
+            18
+        ],
+        "finales_para_rendir": [
+            19
+        ],
+        "finales_para_cursar_str": [
+            "Biología Humana",
+            "Teoría Psicoanalítica",
+            "Psicología Genética"
+        ],
+        "cursadas_para_cursar_str": [
+            "Psicología Evolutiva I",
+            "Psicología Evolutiva II",
+            "Neuroanatomía y Neurofisiología"
+        ],
+        "finales_para_rendir_str": [
+            "Psicopatología I"
+        ]
+    },
+    {
+        "id": 23,
+        "materia": "Fundamentos II",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 4,
+        "finales_para_cursar": [
+            4,
+            6,
+            7,
+            9
+        ],
+        "cursadas_para_cursar": [
+            12,
+            13
+        ],
+        "finales_para_rendir": [
+            12,
+            13
+        ],
+        "finales_para_cursar_str": [
+            "Lógica",
+            "Psicología II",
+            "Teoría Psicoanalítica",
+            "Estadística"
+        ],
+        "cursadas_para_cursar_str": [
+            "Epistemología y Metodología",
+            "Fundamentos I"
+        ],
+        "finales_para_rendir_str": [
+            "Epistemología y Metodología",
+            "Fundamentos I"
+        ]
+    },
+    {
+        "id": 24,
+        "materia": "Psicodiagnóstico",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 5,
+        "finales_para_cursar": [
+            13,
+            15,
+            18
+        ],
+        "cursadas_para_cursar": [
+            19,
+            22,
+            23
+        ],
+        "finales_para_rendir": [
+            22,
+            23
+        ],
+        "finales_para_cursar_str": [
+            "Fundamentos I",
+            "Psicología Evolutiva II",
+            "Neuroanatomía y Neurofisiología"
+        ],
+        "cursadas_para_cursar_str": [
+            "Psicopatología I",
+            "Psicopatología II",
+            "Fundamentos II"
+        ],
+        "finales_para_rendir_str": [
+            "Psicopatología II",
+            "Fundamentos II"
+        ]
+    },
+    {
+        "id": 25,
+        "materia": "Psicología Educacional",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 5,
+        "finales_para_cursar": [
+            13,
+            15,
+            17,
+            18
+        ],
+        "cursadas_para_cursar": [
+            19,
+            20,
+            22,
+            23
+        ],
+        "finales_para_rendir": [
+            20,
+            23
+        ],
+        "finales_para_cursar_str": [
+            "Fundamentos I",
+            "Psicología Evolutiva II",
+            "Psicología Social",
+            "Neuroanatomía y Neurofisiología"
+        ],
+        "cursadas_para_cursar_str": [
+            "Psicopatología I",
+            "Psicología Institucional",
+            "Psicopatología II",
+            "Fundamentos II"
+        ],
+        "finales_para_rendir_str": [
+            "Psicología Institucional",
+            "Fundamentos II"
+        ]
+    },
+    {
+        "id": 26,
+        "materia": "Psicoterapia I",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 5,
+        "finales_para_cursar": [
+            15,
+            18
+        ],
+        "cursadas_para_cursar": [
+            19,
+            22
+        ],
+        "finales_para_rendir": [
+            22
+        ],
+        "finales_para_cursar_str": [
+            "Psicología Evolutiva II",
+            "Neuroanatomía y Neurofisiología"
+        ],
+        "cursadas_para_cursar_str": [
+            "Psicopatología I",
+            "Psicopatología II"
+        ],
+        "finales_para_rendir_str": [
+            "Psicopatología II"
+        ]
+    },
+    {
+        "id": 27,
+        "materia": "Psicoterapia II",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 5,
+        "finales_para_cursar": [
+            15,
+            17,
+            18
+        ],
+        "cursadas_para_cursar": [
+            19,
+            20,
+            22
+        ],
+        "finales_para_rendir": [
+            20,
+            22
+        ],
+        "finales_para_cursar_str": [
+            "Psicología Evolutiva II",
+            "Psicología Social",
+            "Neuroanatomía y Neurofisiología"
+        ],
+        "cursadas_para_cursar_str": [
+            "Psicopatología I",
+            "Psicología Institucional",
+            "Psicopatología II"
+        ],
+        "finales_para_rendir_str": [
+            "Psicología Institucional",
+            "Psicopatología II"
+        ]
+    },
+    {
+        "id": 28,
+        "materia": "Psicología Preventiva",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 5,
+        "finales_para_cursar": [
+            15,
+            17,
+            18
+        ],
+        "cursadas_para_cursar": [
+            19,
+            20,
+            22
+        ],
+        "finales_para_rendir": [
+            20
+        ],
+        "finales_para_cursar_str": [
+            "Psicología Evolutiva II",
+            "Psicología Social",
+            "Neuroanatomía y Neurofisiología"
+        ],
+        "cursadas_para_cursar_str": [
+            "Psicopatología I",
+            "Psicología Institucional",
+            "Psicopatología II"
+        ],
+        "finales_para_rendir_str": [
+            "Psicología Institucional"
+        ]
+    },
+    {
+        "id": 29,
+        "materia": "Clínica de Niños y Adolescentes",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 6,
+        "finales_para_cursar": [
+            20,
+            22,
+            23
+        ],
+        "cursadas_para_cursar": [
+            24,
+            26,
+            27
+        ],
+        "finales_para_rendir": [
+            24,
+            26,
+            27
+        ],
+        "finales_para_cursar_str": [
+            "Psicología Institucional",
+            "Psicopatología II",
+            "Fundamentos II"
+        ],
+        "cursadas_para_cursar_str": [
+            "Psicodiagnóstico",
+            "Psicoterapia I",
+            "Psicoterapia II"
+        ],
+        "finales_para_rendir_str": [
+            "Psicodiagnóstico",
+            "Psicoterapia I",
+            "Psicoterapia II"
+        ]
+    },
+    {
+        "id": 30,
+        "materia": "Clínica de Adultos y Gerontes",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 6,
+        "finales_para_cursar": [
+            19,
+            20,
+            23
+        ],
+        "cursadas_para_cursar": [
+            24,
+            26,
+            27
+        ],
+        "finales_para_rendir": [
+            24,
+            26,
+            27
+        ],
+        "finales_para_cursar_str": [
+            "Psicopatología I",
+            "Psicología Institucional",
+            "Fundamentos II"
+        ],
+        "cursadas_para_cursar_str": [
+            "Psicodiagnóstico",
+            "Psicoterapia I",
+            "Psicoterapia II"
+        ],
+        "finales_para_rendir_str": [
+            "Psicodiagnóstico",
+            "Psicoterapia I",
+            "Psicoterapia II"
+        ]
+    },
+    {
+        "id": 31,
+        "materia": "Orientación Vocacional",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 6,
+        "finales_para_cursar": [
+            20,
+            22,
+            23
+        ],
+        "cursadas_para_cursar": [
+            24,
+            28
+        ],
+        "finales_para_rendir": [
+            24,
+            28
+        ],
+        "finales_para_cursar_str": [
+            "Psicología Institucional",
+            "Psicopatología II",
+            "Fundamentos II"
+        ],
+        "cursadas_para_cursar_str": [
+            "Psicodiagnóstico",
+            "Psicología Preventiva"
+        ],
+        "finales_para_rendir_str": [
+            "Psicodiagnóstico",
+            "Psicología Preventiva"
+        ]
+    },
+    {
+        "id": 32,
+        "materia": "Psicología Laboral",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 6,
+        "finales_para_cursar": [
+            19,
+            20,
+            23
+        ],
+        "cursadas_para_cursar": [
+            24,
+            28
+        ],
+        "finales_para_rendir": [
+            24,
+            28
+        ],
+        "finales_para_cursar_str": [
+            "Psicopatología I",
+            "Psicología Institucional",
+            "Fundamentos II"
+        ],
+        "cursadas_para_cursar_str": [
+            "Psicodiagnóstico",
+            "Psicología Preventiva"
+        ],
+        "finales_para_rendir_str": [
+            "Psicodiagnóstico",
+            "Psicología Preventiva"
+        ]
+    },
+    {
+        "id": 33,
+        "materia": "Psicología Forense",
+        "creditos": 1,
+        "categoria": "Materias Obligatorias",
+        "level": 6,
+        "finales_para_cursar": [
+            20,
+            22,
+            23
+        ],
+        "cursadas_para_cursar": [
+            24,
+            28
+        ],
+        "finales_para_rendir": [
+            24,
+            28
+        ],
+        "finales_para_cursar_str": [
+            "Psicología Institucional",
+            "Psicopatología II",
+            "Fundamentos II"
+        ],
+        "cursadas_para_cursar_str": [
+            "Psicodiagnóstico",
+            "Psicología Preventiva"
+        ],
+        "finales_para_rendir_str": [
+            "Psicodiagnóstico",
+            "Psicología Preventiva"
+        ]
+    },
+    {
+        "id": 34,
+        "materia": "Taller de Producción Textual",
+        "creditos": 1,
+        "level": 6,
+        "categoria": "Materias Electivas",
+        "finales_para_cursar": [],
+        "cursadas_para_cursar": [
+            19,
+            20,
+            21,
+            22,
+            23
+        ],
+        "finales_para_rendir": [],
+        "finales_para_cursar_str": [],
+        "cursadas_para_cursar_str": [
+            "Psicopatología I",
+            "Psicología Institucional",
+            "Psicología Experimental",
+            "Psicopatología II",
+            "Fundamentos II"
+        ],
+        "finales_para_rendir_str": []
+    },
+    {
+        "id": 35,
+        "materia": "Inglés/Alemán",
+        "creditos": 1,
+        "level": 6,
+        "categoria": "Materias Electivas",
+        "requiere": "12 finales rendidos"
+    },
+    {
+        "id": 36,
+        "materia": "Francés/Italiano",
+        "creditos": 1,
+        "level": 6,
+        "categoria": "Materias Electivas",
+        "requiere": "12 finales rendidos"
+    },
+    {
+        "id": 37,
+        "materia": "Trabajo Integrador Final",
+        "creditos": 0,
+        "level": 8,
+        "categoria": "Fin de Carrera (Obligatorio)",
+        "correlativas_aux": [33],
+        "requiere": "Finales hasta 4to año y el 50% de las cursadas de 5to año"
+    }
+]

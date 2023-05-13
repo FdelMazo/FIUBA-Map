@@ -51,7 +51,7 @@ const PadronInput = () => {
         borderColor="white"
         color="white"
         name="padron"
-        placeholder="Padrón"
+        placeholder="Legajo"
         value={user.padron || padronInput}
         autoFocus={true}
         isReadOnly={loading || logged}

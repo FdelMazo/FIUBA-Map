@@ -71,6 +71,23 @@ export const COLORS = {
   orientacion8: {
     500: "#ccae62",
   },
+  finales_para_cursar: {
+    aprobadas: {
+      500: "red",
+    },
+    habilitadas: {
+      500: "red",
+    },
+    obligatorias: {
+      500: "red",
+    },
+    findecarrera: {
+      500: "red",
+    },
+    enfinal: {
+      500: "red",
+    },
+  }
 };
 
 const config = {

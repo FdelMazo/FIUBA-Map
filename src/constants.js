@@ -170,7 +170,7 @@ export const GRAPHOPTIONS = {
     arrows: {
       to: { enabled: true, scaleFactor: 0.6, type: "arrow" },
     },
-    color: { inherit: "from", opacity: 0.7 },
+    color: { opacity: 0.7 },
   },
   groups: { ...GRUPOS },
 };
