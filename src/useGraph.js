@@ -391,6 +391,9 @@ const useGraph = (loginHook) => {
         carrera.finDeCarrera?.find((c) => c.id === userdata?.findecarreraid) ||
         null;
 
+      // TODO: resetear las optativas acá
+      setAplazos(0)
+
       const graphNodes = [];
       const graphEdges = [];
       carrera.graph.forEach((n) => {
