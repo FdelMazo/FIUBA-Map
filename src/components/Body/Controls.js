@@ -142,13 +142,10 @@ const Controls = () => {
                               />
                             </Link>
 
-                            {" "}y tengo que dejar esto de lado.
+                            {" "}y quiero dejar esto de lado.
                           </Text>
                         <Text>
-                            Estoy buscando alguien que quiera ayudarme a mantenerlo y eventualmente tomarlo del todo. Si te interesa, escribime! Hablame a telegram, o mandame un mail, o abrime un issue en el repo.
-                        </Text>
-                        <Text>
-                            Hay mil cosas que estaría bárbaro agregarle: integración con el SIU, login con contraseña, que funcione para toda la UBA y no solo FIUBA... hasta incluso es una idea digna para un trabajo profesional.
+                            Estoy buscando alguien que quiera ayudarme a mantenerlo. Si te interesa, escribime! Hablame a telegram o abrime un issue. O mucho mejor, forkea el repo, hacé algún pull request, agrega código en donde quieras.
                         </Text>
                           <Text>
                             Más allá de eso, todo lo que sea un bug crítico lo voy a seguir arreglando, así que si encontrás algo que no funciona, avisame!
