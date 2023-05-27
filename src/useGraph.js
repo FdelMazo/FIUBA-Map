@@ -1040,13 +1040,14 @@ const useGraph = (loginHook) => {
 
     nodes.update(toUpdate.flat());
     actualizar();
-    actualizarNiveles()
-    if (creditosElectivas > 0) {
+    actualizarNiveles();
+    const creditos = creditosElectivas >= (24 - creditosElectivasPlanNuevo) ? (24 - creditosElectivasPlanNuevo) : creditosElectivas;
+    if (creditos > 0) {
       optativasDispatch({
         action: 'override', value: [{
           id: 1,
           nombre: "Vienen del Plan 1986",
-          creditos:  creditosElectivas >= (24 - creditosElectivasPlanNuevo) ? (24 - creditosElectivasPlanNuevo) : creditosElectivas,
+          creditos,
         }]
       })
     };
