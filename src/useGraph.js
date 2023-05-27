@@ -936,14 +936,17 @@ const useGraph = (loginHook) => {
     const informaticaVieja = await getGraph(user.padron, "informatica")
     let aprobadas = informaticaVieja.materias.filter((m) => m.nota >= 0)
     // Primero, nos encargamos de algunos casos borde. Materias nuevas que equivalen a dos materias viejas
-    const equivLenguajesCompiladores1 = aprobadas.filter((m) => m.id === '75.31' || m.id === '75.16')
+    const equivLenguajesCompiladores1 = aprobadas.filter((m) => m.id === '75.31' || m.id === '75.16' || m.id === '75.14')
     if (equivLenguajesCompiladores1.length >= 1) {
       const lenguajesCompiladoresI = getNode('ID09')
-      toUpdate.push(lenguajesCompiladoresI.aprobar(equivLenguajesCompiladores1[0].nota));
+      toUpdate.push(lenguajesCompiladoresI.aprobar(equivLenguajesCompiladores1[0].nota)); 
     }
-    if (equivLenguajesCompiladores1 === 2) {
-      creditosElectivas += 4
-    }
+    equivLenguajesCompiladores1.slice(1).forEach((m) => {
+      const materia = findMateria(m.id);
+      if (materia) {
+        creditosElectivas += materia.creditos;
+      }
+    });
 
     const equivtallerSeguridad = aprobadas.filter((m) => m.id === '66.69' || m.id === '66.20')
     if (equivtallerSeguridad.length >= 1) {
@@ -954,15 +957,27 @@ const useGraph = (loginHook) => {
       creditosElectivas += 6
     }
 
-    const equivBaseTecno = aprobadas.filter((m) => m.id === '71.40' || m.id === '71.46')
-    if (equivBaseTecno.length === 2) {
+    const legal = aprobadas.find((m) => m.id === '71.40');
+    const equivBaseTecno = aprobadas.filter((m) => m.id === '71.46' || m.id === '71.18')
+    if (legal && equivBaseTecno.length >= 1) {
       const baseTecnologica = getNode('ID19')
-      toUpdate.push(baseTecnologica.aprobar(equivBaseTecno[0].nota));
+      toUpdate.push(baseTecnologica.aprobar(legal.nota));
+    }
+    if (equivBaseTecno.length === 2) {
+      creditosElectivas += 6;
+    }
+
+    const tdd = aprobadas.find((m) => m.id === '75.10');
+    let taller2 = aprobadas.find((m) => m.id === '75.52');
+    if (!tdd && taller2) {
+      const ingSoft2 = getNode('75.10');
+      toUpdate.push(ingSoft2.aprobar(taller2.nota));
+      taller2 = undefined; // Si uso taller para ing soft 2 no la puedo usar para distribuidos
     }
 
     // Descartamos las materias que acabamos de aplicar
     // tambien descarto el idioma, porque en el plan viejo no estaba especificado que idioma era el aprobado
-    aprobadas = aprobadas.filter(m => !['78.xx', '75.31', '75.16', '66.69', '66.20', '71.40', '71.46'].includes(m.id))
+    aprobadas = aprobadas.filter(m => !['78.xx', '75.31', '75.16', '75.14', '66.69', '66.20', '71.40', '71.46', '71.18', '75.52'].includes(m.id))
     // Ahora, aprobamos todas las materias directamente equivalentes, y nos cargamos
     // los creditos de las materias que ya no estan como creditos de electivas para el plan nuevo
     // No hacemos nada con las que estan en final...
@@ -992,6 +1007,33 @@ const useGraph = (loginHook) => {
     creditosElectivas += informaticaVieja.optativas.reduce((acc, curr) => {
       return acc + curr.creditos
     }, 0)
+
+    const tda = aprobadas.find((m) => m.id === '75.29');
+    const modelos = aprobadas.find((m) => m.id === '71.14');
+    const discreta = aprobadas.find((m) => m.id === '61.07');
+    if (!tda && modelos) {
+      const tdaNueva = getNode('75.29');
+      toUpdate.push(tdaNueva.aprobar(modelos.nota));
+      creditosElectivas -= 6; // los 6 creditos de modelos se sumaron arriba
+      console.log('tda por modelos');
+    } else if (!tda && discreta && creditosElectivas >= 8) {
+      const tdaNueva = getNode('75.29');
+      toUpdate.push(tdaNueva.aprobar(discreta.nota));
+      creditosElectivas -= 8; // los 6 creditos de discreta que se sumaron + 2 de la equivalencia
+      console.log('tda por discreta');
+    }
+
+    const distri = aprobadas.find((m) => m.id === '75.74');
+    if (!distri && taller2 && creditosElectivas >= 2) {
+      const distriNueva = getNode('75.74');
+      toUpdate.push(distriNueva.aprobar(taller2.nota));
+      creditosElectivas -= 2;
+      taller2 = undefined;
+    }
+    
+    if (taller2) {
+      creditosElectivas += 4;
+    }
 
     nodes.update(toUpdate.flat());
     actualizar();
