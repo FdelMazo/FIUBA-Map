@@ -981,6 +981,7 @@ const useGraph = (loginHook) => {
     // Ahora, aprobamos todas las materias directamente equivalentes, y nos cargamos
     // los creditos de las materias que ya no estan como creditos de electivas para el plan nuevo
     // No hacemos nada con las que estan en final...
+    let creditosElectivasPlanNuevo = 0;
     for (const m of aprobadas) {
       let node = getNode(m.id)
       if (m.nota >= 0) {
@@ -999,6 +1000,10 @@ const useGraph = (loginHook) => {
         // Analisis numerico te da 2 creditos extra
         if (m.id === "75.12") {
           creditosElectivas += 2
+        }
+
+        if (node.categoria === "Materias Electivas") {
+          creditosElectivasPlanNuevo += node.creditos;
         }
       };
     }
@@ -1041,7 +1046,7 @@ const useGraph = (loginHook) => {
         action: 'override', value: [{
           id: 1,
           nombre: "Vienen del Plan 1986",
-          creditos: creditosElectivas >= 24 ? 24 : creditosElectivas,
+          creditos:  creditosElectivas >= (24 - creditosElectivasPlanNuevo) ? (24 - creditosElectivasPlanNuevo) : creditosElectivas,
         }]
       })
     };
