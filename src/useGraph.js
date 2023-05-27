@@ -1014,13 +1014,11 @@ const useGraph = (loginHook) => {
     if (!tda && modelos) {
       const tdaNueva = getNode('75.29');
       toUpdate.push(tdaNueva.aprobar(modelos.nota));
-      creditosElectivas -= 6; // los 6 creditos de modelos se sumaron arriba
-      console.log('tda por modelos');
+      creditosElectivas -= 6; // por los 6 creditos de modelos que ya se sumaron
     } else if (!tda && discreta && creditosElectivas >= 8) {
       const tdaNueva = getNode('75.29');
       toUpdate.push(tdaNueva.aprobar(discreta.nota));
-      creditosElectivas -= 8; // los 6 creditos de discreta que se sumaron + 2 de la equivalencia
-      console.log('tda por discreta');
+      creditosElectivas -= 8; // por los 6 creditos de discreta que ya se sumaron + 2 de la equivalencia
     }
 
     const distri = aprobadas.find((m) => m.id === '75.74');
