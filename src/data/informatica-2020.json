@@ -93,7 +93,7 @@
         "id": "75.07",
         "materia": "Paradigmas de Programación",
         "creditos": 6,
-        "correlativas": "75.41",
+        "correlativas": "75.41-75.40",
         "categoria": "Materias Obligatorias",
         "level": 2
     },
@@ -109,7 +109,7 @@
         "id": "75.29",
         "materia": "Teoría de Algoritmos",
         "creditos": 6,
-        "correlativas": "75.41",
+        "correlativas": "75.41-75.40",
         "categoria": "Materias Obligatorias",
         "level": 3
     },
@@ -125,7 +125,7 @@
         "id": "ID09",
         "materia": "Lenguajes y Compiladores I",
         "creditos": 6,
-        "correlativas": "75.07",
+        "correlativas": "75.07-66.70",
         "categoria": "Materias Obligatorias",
         "level": 3
     },
@@ -141,7 +141,7 @@
         "id": "75.15",
         "materia": "Base de Datos",
         "creditos": 6,
-        "correlativas": "66.70-75.29",
+        "correlativas": "66.70",
         "categoria": "Materias Obligatorias",
         "level": 4
     },
@@ -165,7 +165,7 @@
         "id": "75.06",
         "materia": "Ciencia de Datos",
         "creditos": 6,
-        "correlativas": "61.09-75.15-75.12",
+        "correlativas": "61.09-75.15-75.12-75.29",
         "categoria": "Materias Obligatorias",
         "level": 5
     },
@@ -238,7 +238,7 @@
         "id": "ID22",
         "materia": "Taller de Seguridad Informática",
         "creditos": 8,
-        "correlativas": "75.43",
+        "correlativas": "75.43-ID09",
         "categoria": "Materias Obligatorias",
         "level": 7
     },
