@@ -294,14 +294,22 @@ export const CARRERAS = [
     graph: require("./data/industrial-2020.json"),
     nombre: "Ingeniería Industrial (2020) - BETA",
     nombrecorto: "Industial 2020",
-    finDeCarrera: [
-      { id: "tesis", materia: "92.00" },
-      { id: "tpp", materia: "92.99" },
-    ],
+    // finDeCarrera: [
+    //   { id: "tesis", materia: "92.00" },
+    //   { id: "tpp", materia: "92.99" },
+    // ],
     creditos: {
-      total: 237,
+      total: 236,
       obligatorias: 162,
       electivas: 24,
+      materias: [
+        {
+          id: "92.XX",
+          nombrecorto: "TESIS/TPP",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
+        },
+      ],
       checkbox: [
         {
           nombre: "Práctica Profesional de al menos 200 horas",
