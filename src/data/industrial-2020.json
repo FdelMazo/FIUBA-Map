@@ -1,0 +1,460 @@
+[
+  {
+    "id": "CBC66",
+    "materia": "Análisis Matemático A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC62",
+    "materia": "Álgebra A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC24",
+    "materia": "Introducción al Conocimiento de la Sociedad y el Estado",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC3",
+    "materia": "Física",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC5",
+    "materia": "Química / Pensamiento Computacional",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC40",
+    "materia": "Introducción al Pensamiento Científico",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC",
+    "materia": "Ciclo Básico Común",
+    "creditos": 0,
+    "categoria": "CBC",
+    "level": 0,
+    "correlativas": "CBC66-CBC62-CBC3-CBC5-CBC24-CBC40"
+  },
+  {
+    "id": "81.01",
+    "materia": "Análisis Matemático II",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "82.01",
+    "materia": "Física de los Sistemas de Partículas",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "92.03",
+    "materia": "Principios de Ingeniería Industrial",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "83.01",
+    "materia": "Química Básica",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "81.02",
+    "materia": "Álgebra Lineal",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "84.05",
+    "materia": "Estática y Resistencia de Materiales",
+    "creditos": 6,
+    "correlativas": "81.01-82.01",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "91.08",
+    "materia": "Organización y Dirección Empresaria",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "81.16",
+    "materia": "Probabilidad",
+    "creditos": 6,
+    "correlativas": "81.01",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "ID09",
+    "materia": "Economía",
+    "creditos": 6,
+    "correlativas": "81.01",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "ID10",
+    "materia": "Conversión de la Energía",
+    "creditos": 8,
+    "correlativas": "81.01-82.01-83.01",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "92.01",
+    "materia": "Materiales y Aplicaciones I",
+    "creditos": 6,
+    "correlativas": "83.01-84.05-92.03",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "ID12",
+    "materia": "Electricidad y Magnetismo",
+    "creditos": 6,
+    "correlativas": "81.01-82.01",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "ID13",
+    "materia": "Desarrollo Económico",
+    "creditos": 4,
+    "correlativas": "ID09",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "91.03",
+    "materia": "Estadística Aplicada",
+    "creditos": 8,
+    "correlativas": "81.16",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "ID15",
+    "materia": "Gestión Integral de la Cadena de Valor",
+    "creditos": 8,
+    "correlativas": "91.08-92.03",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "85.38",
+    "materia": "Electrotecnia, Máquinas e Instalaciones Eléctricas",
+    "creditos": 6,
+    "correlativas": "ID12",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "91.07",
+    "materia": "Investigación Operativa",
+    "creditos": 8,
+    "correlativas": "81.02-81.16",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "91.28",
+    "materia": "Sistemas Contables y Gestión de Costos",
+    "creditos": 4,
+    "correlativas": "ID09-ID15",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "ID19",
+    "materia": "Industrias Digitales",
+    "creditos": 4,
+    "correlativas": "91.03",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "97.05",
+    "materia": "Ingeniería Ambiental, Sustentabilidad y Cuidado del Planeta",
+    "creditos": 4,
+    "requiere": 138,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "91.29",
+    "materia": "Ingeniería Económica",
+    "creditos": 4,
+    "correlativas": "ID13-91.28",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "ID22",
+    "materia": "Equipos y Sistemas para Automatización Industrial",
+    "creditos": 6,
+    "correlativas": "85.38-92.01",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "92.18",
+    "materia": "Industrias Químicas",
+    "creditos": 4,
+    "correlativas": "ID10-92.01",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "ID24",
+    "materia": "Transformación de Materiales",
+    "creditos": 8,
+    "correlativas": "92.01",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "97.01",
+    "materia": "Higiene y Seguridad",
+    "creditos": 2,
+    "requiere": 138,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "92.02",
+    "materia": "Industrias Extractivas",
+    "creditos": 4,
+    "correlativas": "ID10-92.01-97.05",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "ID27",
+    "materia": "Proyecto Industrial",
+    "creditos": 8,
+    "correlativas": "85.38-ID10-92.01-97.01-97.05",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "91.22",
+    "materia": "Legislación y Ejercicio Profesional",
+    "creditos": 2,
+    "requiere": 138,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  },
+  {
+    "id": "95.13",
+    "materia": "Modelación Numérica",
+    "creditos": 4,
+    "correlativas": "81.01-81.02",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "91.34",
+    "materia": "Gestión Financiera y Presupuestaria",
+    "creditos": 4,
+    "correlativas": "91.28",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "91.54",
+    "materia": "Ciencia de Datos para la Toma de Decisiones",
+    "creditos": 4,
+    "correlativas": "91.03",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "91.30",
+    "materia": "Estadística Aplicada Superior",
+    "creditos": 4,
+    "correlativas": "91.03",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "91.32",
+    "materia": "Investigación Operativa Superior",
+    "creditos": 4,
+    "correlativas": "91.07",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "91.17",
+    "materia": "Capital Humano y Comportamiento Organizacional",
+    "creditos": 4,
+    "requiere": 138,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "91.20",
+    "materia": "Comercialización de Productos y Servicios",
+    "creditos": 4,
+    "correlativas": "ID15",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "91.36",
+    "materia": "Gerenciamiento de la Calidad",
+    "creditos": 4,
+    "correlativas": "ID15",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "91.14",
+    "materia": "Informática para la Gestión de Empresas",
+    "creditos": 4,
+    "correlativas": "ID19",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "91.27",
+    "materia": "Logística y Supply Chain",
+    "creditos": 4,
+    "correlativas": "ID15",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "91.51",
+    "materia": "Desarrollo y Gestión de Proyectos e Innovación",
+    "creditos": 4,
+    "correlativas": "ID15",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "91.37",
+    "materia": "Emprendimientos en Ingeniería",
+    "creditos": 4,
+    "requiere": 138,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "92.08",
+    "materia": "Diseño de Producto",
+    "creditos": 4,
+    "correlativas": "ID15-92.01",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ID42",
+    "materia": "Diseño de Producto Digital",
+    "creditos": 4,
+    "correlativas": "ID19",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "92.24",
+    "materia": "Ingeniería y Desarrollo de Envases y Embalajes",
+    "creditos": 4,
+    "requiere": 138,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ID44",
+    "materia": "Agroindustria y Bioeconomía",
+    "creditos": 4,
+    "requiere": 138,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "92.09",
+    "materia": "Biopolímeros e Industrias Plásticas",
+    "creditos": 4,
+    "correlativas": "92.18",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "92.20",
+    "materia": "Industria Automotriz",
+    "creditos": 4,
+    "correlativas": "ID15",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "92.10",
+    "materia": "Industrias de Celulosa y Papel",
+    "creditos": 4,
+    "correlativas": "92.18",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "92.15",
+    "materia": "Industrias de la Alimentación",
+    "creditos": 4,
+    "correlativas": "92.18",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "92.12",
+    "materia": "Industrias Textiles",
+    "creditos": 4,
+    "correlativas": "ID15-92.01",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ID50",
+    "materia": "Mantenimiento e Ingeniería de Planta",
+    "creditos": 4,
+    "correlativas": "ID15",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "92.13",
+    "materia": "Materiales y Aplicaciones II",
+    "creditos": 4,
+    "correlativas": "92.01",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "92.00",
+    "materia": "Tesis de Ingeniería Industrial",
+    "creditos": 13,
+    "requiere": 178,
+    "requiereCBC": true,
+    "categoria": "Fin de Carrera"
+  },
+  {
+    "id": "92.99",
+    "materia": "Trabajo Profesional de Ingeniería Industrial",
+    "creditos": 13,
+    "requiere": 178,
+    "requiereCBC": true,
+    "categoria": "Fin de Carrera"
+  }
+]
