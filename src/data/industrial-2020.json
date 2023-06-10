@@ -66,7 +66,7 @@
     "level": 1
   },
   {
-    "id": "92.03",
+    "id": "ID02",
     "materia": "Principios de Ingeniería Industrial",
     "creditos": 6,
     "correlativas": "CBC",
@@ -133,7 +133,7 @@
     "id": "92.01",
     "materia": "Materiales y Aplicaciones I",
     "creditos": 6,
-    "correlativas": "83.01-84.05-92.03",
+    "correlativas": "83.01-84.05-ID02",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
@@ -154,7 +154,7 @@
     "level": 4
   },
   {
-    "id": "91.03",
+    "id": "ID14",
     "materia": "Estadística Aplicada",
     "creditos": 8,
     "correlativas": "81.16",
@@ -165,7 +165,7 @@
     "id": "ID15",
     "materia": "Gestión Integral de la Cadena de Valor",
     "creditos": 8,
-    "correlativas": "91.08-92.03",
+    "correlativas": "91.08-ID02",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
@@ -178,7 +178,7 @@
     "level": 5
   },
   {
-    "id": "91.07",
+    "id": "ID17",
     "materia": "Investigación Operativa",
     "creditos": 8,
     "correlativas": "81.02-81.16",
@@ -194,10 +194,10 @@
     "level": 5
   },
   {
-    "id": "ID19",
+    "id": "92.26",
     "materia": "Industrias Digitales",
     "creditos": 4,
-    "correlativas": "91.03",
+    "correlativas": "ID14",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
@@ -294,21 +294,21 @@
     "id": "91.54",
     "materia": "Ciencia de Datos para la Toma de Decisiones",
     "creditos": 4,
-    "correlativas": "91.03",
+    "correlativas": "ID14",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "91.30",
+    "id": "ID32",
     "materia": "Estadística Aplicada Superior",
     "creditos": 4,
-    "correlativas": "91.03",
+    "correlativas": "ID14",
     "categoria": "Materias Electivas"
   },
   {
     "id": "91.32",
     "materia": "Investigación Operativa Superior",
     "creditos": 4,
-    "correlativas": "91.07",
+    "correlativas": "ID17",
     "categoria": "Materias Electivas"
   },
   {
@@ -337,7 +337,7 @@
     "id": "91.14",
     "materia": "Informática para la Gestión de Empresas",
     "creditos": 4,
-    "correlativas": "ID19",
+    "correlativas": "92.26",
     "categoria": "Materias Electivas"
   },
   {
@@ -373,7 +373,7 @@
     "id": "ID42",
     "materia": "Diseño de Producto Digital",
     "creditos": 4,
-    "correlativas": "ID19",
+    "correlativas": "92.26",
     "categoria": "Materias Electivas"
   },
   {
