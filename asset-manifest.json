@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/FIUBA-Map/static/js/main.73896d4b.js",
+    "main.js": "/FIUBA-Map/static/js/main.d6a2acea.js",
     "index.html": "/FIUBA-Map/index.html",
-    "main.73896d4b.js.map": "/FIUBA-Map/static/js/main.73896d4b.js.map"
+    "main.d6a2acea.js.map": "/FIUBA-Map/static/js/main.d6a2acea.js.map"
   },
   "entrypoints": [
-    "static/js/main.73896d4b.js"
+    "static/js/main.d6a2acea.js"
   ]
 }
