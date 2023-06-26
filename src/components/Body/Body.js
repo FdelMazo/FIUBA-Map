@@ -3,7 +3,6 @@ import {
   Box,
   SlideFade,
   useColorModeValue,
-  useConst,
 } from "@chakra-ui/react";
 import useResizeObserver from "use-resize-observer";
 import React from "react";
@@ -15,6 +14,11 @@ import CategoryTagStack from "./CategoryTagStack";
 import LoadingGraph from "./LoadingGraph";
 import { Fireworks } from 'fireworks-js/dist/react'
 import Controls from "./Controls";
+
+const today = new Date();
+const start = new Date(today.getFullYear(), 11, 19);
+const end = new Date(today.getFullYear() + 1, 0, 1);
+const isChristmasTime = today >= start && today <= end;
 
 const Body = () => {
   const {
@@ -31,13 +35,6 @@ const Body = () => {
 
   const { ref, width, height } = useResizeObserver();
   React.useEffect(redraw, [width, height]);
-
-  const isChristmasTime = useConst(() => {
-    const today = new Date();
-    const start = new Date(today.getFullYear(), 11, 19);
-    const end = new Date(today.getFullYear() + 1, 0, 1);
-    return today >= start && today <= end;
-  });
 
   return (
     <Box
