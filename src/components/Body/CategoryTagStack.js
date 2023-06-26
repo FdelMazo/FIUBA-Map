@@ -6,7 +6,7 @@ import {
   TagLabel,
   TagLeftIcon,
 } from "@chakra-ui/react";
-import React, { useMemo } from "react";
+import React from "react";
 import { BiCircle } from "react-icons/bi";
 import { RiFocus2Line, RiFocusLine } from "react-icons/ri";
 import * as C from "../../constants";
@@ -15,7 +15,7 @@ import { GraphContext, UserContext } from "../../Contexts";
 const CategoryTagStack = () => {
   const { isMobile } = React.useContext(UserContext);
   const { toggleGroup, groupStatus, getters } = React.useContext(GraphContext);
-  const categorias = useMemo(() => getters.SelectableCategorias(), [getters]);
+  const categorias = React.useMemo(() => getters.SelectableCategorias(), [getters]);
 
   return (
     <LightMode>
