@@ -6,7 +6,7 @@ import {
   useConst,
 } from "@chakra-ui/react";
 import useResizeObserver from "use-resize-observer";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Graph from "react-graph-vis";
 import Snowfall from "react-snowfall";
 import * as C from "../../constants";
@@ -29,9 +29,8 @@ const Body = () => {
   } = React.useContext(GraphContext);
   const { user, loggingIn } = React.useContext(UserContext);
 
-  const ref = useRef(null);
-  const { width, height } = useResizeObserver({ ref });
-  useEffect(redraw, [width, height]);
+  const { ref, width, height } = useResizeObserver();
+  React.useEffect(redraw, [width, height]);
 
   const isChristmasTime = useConst(() => {
     const today = new Date();
