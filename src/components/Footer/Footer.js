@@ -19,7 +19,7 @@ const Footer = () => {
       <Flex
         alignItems="center"
         bg={useColorModeValue("headerbg", "headerbgdark")}
-        key={user.carrera?.id}
+        key={user.carrera.id}
       >
         <Creditos />
         <ProgressBar />

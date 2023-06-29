@@ -104,3 +104,32 @@ export const getFiubaRepos = async () => {
 
     return allMaterias.filter(m => m.reponames?.size > 0);
 }
+
+export const getGraphs = async (padron) => {
+    const data = await fetch(
+        `${C.SPREADSHEET}/${C.SHEETS.registros}!B:D?majorDimension=COLUMNS&key=${C.KEY}`
+    )
+        .then((res) => res.json())
+        .then((res) => (!res.error ? res.values : null));
+    if (!data) return;
+
+    const [padrones, carreras, maps] = data;
+    const indexes = [];
+    let j = -1;
+    while ((j = padrones.indexOf(padron, j + 1)) !== -1) {
+        indexes.push(j);
+    }
+
+    const allLogins = [];
+    for (let i = 0; i < indexes.length; i++) {
+        allLogins.push({
+            carreraid: carreras[indexes[i]],
+            map: maps[indexes[i]],
+        });
+    }
+
+    return allLogins.map((l) => ({
+        carreraid: l.carreraid,
+        map: JSON.parse(l.map),
+    }));
+};

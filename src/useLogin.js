@@ -2,14 +2,15 @@ import { useMediaQuery } from "@chakra-ui/react";
 import React from "react";
 import CARRERAS from "./carreras";
 import * as C from "./constants";
-import { getFiubaRepos } from './dbutils'
+import { getFiubaRepos, getGraphs } from "./dbutils";
 
 const userObj = {
   padron: "",
-  carrera: null,
+  carrera: CARRERAS.find((c) => c.id === "sistemas"),
   orientacion: null,
   finDeCarrera: null,
   allLogins: [],
+  maps: [],
 };
 
 const useLogin = () => {
@@ -20,9 +21,10 @@ const useLogin = () => {
   const logged = user.padron !== "";
 
   React.useEffect(() => {
-    if (window.localStorage.getItem("padron")) {
-      setPadronInput(window.localStorage.getItem("padron"));
-      login(window.localStorage.getItem("padron"));
+    const padronStorage = window.localStorage.getItem("padron");
+    if (padronStorage) {
+      setPadronInput(padronStorage);
+      login(padronStorage);
     }
   }, []);
 
@@ -56,10 +58,10 @@ const useLogin = () => {
     }
 
     setLoggingIn(true)
-    let ranges = indexes.map(
+    const ranges = indexes.map(
       (index) => `&ranges=${C.SHEETS.user}!${index + 1}:${index + 1}`
     );
-    let data = await fetch(
+    const data = await fetch(
       `${C.SPREADSHEET}:batchGet?key=${C.KEY}${ranges.join("")}`
     ).then((res) => res.json().then((res) => res.valueRanges));
 
@@ -69,62 +71,33 @@ const useLogin = () => {
       findecarreraid: d.values[0][4],
     }));
 
-    let carrera, carreraid, orientacionid, findecarreraid
+    let carrera, orientacion, finDeCarrera
     for (let login of allLogins) {
-      carreraid = login.carreraid
-      orientacionid = login.orientacionid
-      findecarreraid = login.findecarreraid
-      // eslint-disable-next-line no-loop-func
-      if (CARRERAS.find((c) => c.id === carreraid)) {
-        // eslint-disable-next-line no-loop-func
-        carrera = CARRERAS.find((c) => c.id === carreraid);
+      const foundCarrera = CARRERAS.find((c) => c.id === login.carreraid);
+      if (foundCarrera) {
+        carrera = foundCarrera
+        orientacion = foundCarrera.orientaciones?.find(
+          (c) => c.nombre === login.orientacionid
+        )
+        finDeCarrera = carrera.finDeCarrera?.find((c) => c.id === login.findecarreraid)
         break
       };
     }
 
+    const maps = await getGraphs(padron)
+
     setUser({
       padron,
       carrera,
-      orientacion: carrera.orientaciones?.find(
-        (c) => c.nombre === orientacionid
-      ),
-      finDeCarrera: carrera.finDeCarrera?.find((c) => c.id === findecarreraid),
+      orientacion,
+      finDeCarrera,
       allLogins,
+      maps,
     });
     window.localStorage.setItem("padron", padron);
     setLoading(false);
     setLoggingIn(false)
     return true;
-  };
-
-  const getGraph = async (padron, carrera) => {
-    const data = await fetch(
-      `${C.SPREADSHEET}/${C.SHEETS.registros}!B:D?majorDimension=COLUMNS&key=${C.KEY}`
-    )
-      .then((res) => res.json())
-      .then((res) => (!res.error ? res.values : null));
-    if (!data) return;
-
-    const padrones = data[0];
-    const carreras = data[1];
-    const maps = data[2];
-
-    const indexes = [];
-    let j = -1;
-    while ((j = padrones.indexOf(padron, j + 1)) !== -1) {
-      indexes.push(j);
-    }
-
-    const allLogins = [];
-    for (let i = 0; i < indexes.length; i++) {
-      allLogins.push({
-        carreraid: carreras[indexes[i]],
-        map: maps[indexes[i]],
-      });
-    }
-
-    const map = allLogins.find((l) => l.carreraid === carrera)?.map || "{}";
-    return JSON.parse(map);
   };
 
   const register = async (p) => {
@@ -205,7 +178,6 @@ const useLogin = () => {
     register,
     logout,
     setUser,
-    getGraph,
     padronInput,
     setPadronInput,
     fiubaRepos,

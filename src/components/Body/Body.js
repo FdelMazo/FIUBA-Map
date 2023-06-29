@@ -24,7 +24,6 @@ const Body = () => {
     graph,
     createNetwork,
     networkRef,
-    setNodes,
     loadingGraph,
     creditos,
     events,
@@ -32,7 +31,7 @@ const Body = () => {
   const { user, loggingIn } = React.useContext(UserContext);
 
   const isRecibido = React.useMemo(() => {
-    return creditos.every(c => c.creditos >= c.creditosNecesarios);
+    return !!creditos.length && creditos.every(c => c.creditos >= c.creditosNecesarios);
   }, [creditos])
 
   return (
@@ -50,13 +49,9 @@ const Body = () => {
         <LoadingGraph />
       </SlideFade>
       <Graph
-        key={user.carrera?.id}
+        key={user.carrera.id}
         graph={graph}
         getNetwork={createNetwork}
-        getNodes={(r) => {
-          r.carrera = user.carrera?.id;
-          setNodes(r);
-        }}
         options={C.GRAPHOPTIONS}
         events={events}
       />

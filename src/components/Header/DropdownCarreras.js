@@ -17,7 +17,7 @@ import { GraphContext, UserContext } from "../../Contexts";
 
 const DropdownCarreras = () => {
     const { user, isMobile, isSmallMobile } = React.useContext(UserContext);
-    const { changeCarrera, setNeedsRegister } = React.useContext(GraphContext);
+    const { changeCarrera } = React.useContext(GraphContext);
 
     return (<Box>
         <Menu placement="bottom-end" isLazy>
@@ -30,17 +30,16 @@ const DropdownCarreras = () => {
                 mr={2}
                 rightIcon={isSmallMobile ? undefined : <ChevronDownIcon />}
             >
-                {isMobile ? user.carrera?.nombrecorto : user.carrera?.nombre}
+                {isMobile ? user.carrera.nombrecorto : user.carrera.nombre}
             </MenuButton>
 
             <MenuList>
                 <MenuOptionGroup
                     onChange={(v) => {
-                        setNeedsRegister(true);
                         changeCarrera(v);
                     }}
-                    key={user.carrera?.id}
-                    defaultValue={user.carrera?.id}
+                    key={user.carrera.id}
+                    defaultValue={user.carrera.id}
                     type="radio"
                 >
                     {CARRERAS.map((c) => (
@@ -53,7 +52,7 @@ const DropdownCarreras = () => {
         </Menu>
         {!isMobile && (
             <Tooltip closeOnClick hasArrow label="Plan de Estudios" placement="bottom">
-                <Link color="white" href={user.carrera?.link} isExternal>
+                <Link color="white" href={user.carrera.link} isExternal>
                     <Icon boxSize={6} viewBox="0 0 512 512">
                         <path
                             fill="currentColor"

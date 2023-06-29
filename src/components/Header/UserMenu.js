@@ -39,7 +39,7 @@ const UserMenu = () => {
     user,
   } = React.useContext(UserContext);
 
-  const { saveGraph, restartGraphCuatris, getters, setNeedsRegister, changeOrientacion, changeFinDeCarrera, getNode } = React.useContext(GraphContext);
+  const { saveGraph, restartGraphCuatris, getters, changeOrientacion, changeFinDeCarrera, getNode } = React.useContext(GraphContext);
 
   const [saving, setSaving] = React.useState(false);
 
@@ -67,7 +67,6 @@ const UserMenu = () => {
           {user?.carrera?.finDeCarrera && (
             <MenuOptionGroup
               onChange={(value) => {
-                setNeedsRegister(true);
                 changeFinDeCarrera(value);
               }}
               value={user?.finDeCarrera?.id || "none"}
@@ -89,8 +88,7 @@ const UserMenu = () => {
 
           {user?.carrera?.eligeOrientaciones &&
             (<MenuOptionGroup
-              onChange={(value) => {
-                setNeedsRegister(true);
+            onChange={(value) => {
                 changeOrientacion(value);
               }}
               value={user?.orientacion?.nombre || "none"}
