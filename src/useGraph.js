@@ -270,7 +270,10 @@ const useGraph = (loginHook) => {
     actualizar();
   };
 
-  const openCBC = () => {
+  const toggleCBC = () => {
+    // TODO: estaria barbaro que con network.fit/network.moveTo
+    // se logre que cuando haces click en el CBC el grafo se acomode
+    // y no haga que se te mueva todo (o sea, que el click sea idempotente)
     const categoria = getters.CBC();
     categoria.forEach((n) => {
       const node = getNode(n.id);
@@ -469,6 +472,7 @@ const useGraph = (loginHook) => {
           });
         if (group.map(n => n.id).includes(network.getSelectedNodes()[0])) {
           deselectNode()
+          network.selectNodes([]);
         }
         break;
       default:
@@ -794,7 +798,6 @@ const useGraph = (loginHook) => {
   const deselectNode = () => {
     unblurAll()
     setDisplayedNode("");
-    network.selectNodes([]);
   }
 
   const selectNode = (id) => {
@@ -805,18 +808,6 @@ const useGraph = (loginHook) => {
 
   let hovertimer = undefined;
   const events = {
-    click: (e) => {
-      // click: abre/cierra CBC
-      // click en ningun nodo: limpiar blur/selection
-      if (!e.nodes.length) {
-        deselectNode()
-        return;
-      }
-      const id = e.nodes[0];
-      if (id === "CBC") {
-        openCBC();
-      }
-    },
     doubleClick: (e) => {
       // dobleclick: aprobar/desaprobar
       const id = e.nodes[0];
@@ -830,20 +821,6 @@ const useGraph = (loginHook) => {
         desaprobar(id);
       }
     },
-    hold: (e) => {
-      // holdclick logeado: poner/sacar en final
-      // no tiene sentido que alguien deslogueado use el feature de final
-      const id = e.nodes[0];
-      if (!logged || id === "CBC") return;
-      const node = getNode(id);
-      if (!node) return;
-
-      if (!(node.nota === -1)) {
-        aprobar(id, -1);
-      } else {
-        desaprobar(id);
-      }
-    },
     hoverNode: (e) => {
       const id = e.node;
       if (network.getSelectedNodes().length) {
@@ -851,7 +828,6 @@ const useGraph = (loginHook) => {
       }
       hovertimer = setTimeout(() => {
         selectNode(id)
-        blurOthers(id)
       }, 300);
     },
     blurNode: () => {
@@ -863,16 +839,28 @@ const useGraph = (loginHook) => {
         hovertimer = undefined;
       } else {
         deselectNode()
-        unblurAll()
       }
     },
     selectNode: (e) => {
-      const id = e.nodes[0];
       if (hovertimer) {
         clearTimeout(hovertimer);
         hovertimer = undefined;
       }
+      const id = e.nodes[0];
+      if (id === "CBC") {
+        toggleCBC();
+        deselectNode()
+        network.selectNodes([]);
+        return
+      }
       selectNode(id)
+    },
+    deselectNode: (e) => {
+      if (hovertimer) {
+        clearTimeout(hovertimer);
+        hovertimer = undefined;
+      }
+      deselectNode()
     },
   };
 
