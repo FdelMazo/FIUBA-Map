@@ -30,14 +30,33 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
-import { GraphContext } from "../../Contexts";
+import { GraphContext, UserContext } from "../../Contexts";
 
 const Creditos = () => {
   const {
-    stats,
+    user,
+  } = React.useContext(UserContext);
+
+  const {
     optativas,
-    optativasDispatch
+    optativasDispatch,
+    creditos,
   } = React.useContext(GraphContext);
+
+  const creditosTotales = React.useMemo(() => {
+    return creditos.reduce((acc, c) => {
+      if (c.checkbox) return acc
+      return acc + c.creditos
+    }, 0)
+  }, [creditos])
+
+  const creditosTotalesNecesarios = React.useMemo(() => {
+    if (!user.carrera) return 0
+    // TODO: En un mundo ideal esto no esta hardcodeado y se computa
+    // pero cada carrera es tan distinta que esto se hace imposible
+    // con la estructura actual de carreras.js
+    return user.carrera.creditos.total
+  }, [user.carrera])
 
   return (
     <Box>
@@ -54,12 +73,12 @@ const Creditos = () => {
                     variant="outline"
                   >
                     {Math.round(
-                      (stats.creditosTotales / stats.creditosTotalesNecesarios) * 100
+                      (creditosTotales / creditosTotalesNecesarios) * 100
                     ) + "%"}
                   </Badge>
                 </StatLabel>
                 <StatNumber>
-                  {stats.creditosTotales + " de " + stats.creditosTotalesNecesarios}
+                  {creditosTotales + " de " + creditosTotalesNecesarios}
                 </StatNumber>
               </Stat>
             </Box>

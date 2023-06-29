@@ -28,13 +28,17 @@ const Body = () => {
     setNodes,
     setEdges,
     loadingGraph,
-    stats,
+    creditos,
     events,
   } = React.useContext(GraphContext);
   const { user, loggingIn } = React.useContext(UserContext);
 
   const { ref, width, height } = useResizeObserver();
   React.useEffect(redraw, [width, height]);
+
+  const isRecibido = React.useMemo(() => {
+    return creditos.every(c => c.creditos >= c.creditosNecesarios);
+  }, [creditos])
 
   return (
     <Box
@@ -45,7 +49,7 @@ const Body = () => {
       height="1em"
       position="relative"
     >
-      {stats.isRecibido && <Fireworks options={{ speed: 3 }} style={{ width: '100%', height: '100%', position: 'fixed' }} />}
+      {isRecibido && <Fireworks options={{ speed: 3 }} style={{ width: '100%', height: '100%', position: 'fixed' }} />}
       {isChristmasTime && <Snowfall color="lavender" />}
       <SlideFade in={loadingGraph || loggingIn} unmountOnExit>
         <LoadingGraph />

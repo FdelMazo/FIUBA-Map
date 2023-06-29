@@ -46,7 +46,7 @@ class Node {
   }
 
   isHabilitada(ctx) {
-    const { getters, getNode, creditosTotales } = ctx;
+    const { getters, getNode, creditos } = ctx;
     const from = getters.NodesFrom(this.id);
     let todoAprobado = true;
     for (let id of from) {
@@ -55,9 +55,9 @@ class Node {
     }
     if (this.requiere) {
       if (this.requiereCBC) {
-        todoAprobado &= creditosTotales >= this.requiere;
+        todoAprobado &= creditos >= this.requiere;
       } else {
-        todoAprobado &= (creditosTotales - 38) >= this.requiere
+        todoAprobado &= (creditos - 38) >= this.requiere
       }
     };
     return todoAprobado;

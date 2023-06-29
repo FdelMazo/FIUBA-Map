@@ -288,7 +288,7 @@ const useGraph = (loginHook) => {
 
   const actualizar = () => {
     if (!nodes?.carrera) return;
-    const creditosTotales = updateCreditos()
+    const creditos = [...getters.MateriasAprobadasSinCBC(), ...getters.CBC(), ...optativas].reduce(accCreditos, 0)
     nodes.update(
       nodes.map((n) =>
         getNode(n.id).actualizar({
@@ -296,12 +296,13 @@ const useGraph = (loginHook) => {
           user,
           network,
           getNode,
-          creditosTotales,
+          creditos,
           showLabels: logged,
           colorMode,
         })
       )
     );
+    updateCreditos()
   };
 
   ///
@@ -577,11 +578,6 @@ const useGraph = (loginHook) => {
   ///
 
   const [creditos, setCreditos] = React.useState([]);
-  const [stats, setStats] = React.useState({
-    creditosTotales: 0,
-    creditosTotalesNecesarios: 0,
-    isRecibido: false,
-  });
 
   const [optativas, optativasDispatch] = React.useReducer((prevstate, dispatched) => {
     let newstate = prevstate;
@@ -719,22 +715,7 @@ const useGraph = (loginHook) => {
     const fullProportion = creditos.reduce(accProportion, 0);
     if (fullProportion > 10) creditos[1].proportion -= fullProportion - 10;
     else if (fullProportion < 10) creditos[1].proportion += 10 - fullProportion;
-
-    const aprobadas = [...getters.MateriasAprobadasSinCBC(), ...cbc, ...optativas]
-    const creditosTotales = aprobadas.reduce(accCreditos, 0)
-    const allCreditosAprobados = creditos.every(c => c.creditos >= c.creditosNecesarios);
-    const creditosTotalesNecesarios = user.carrera?.creditos.total
-    const isRecibido = creditosTotales >= user.carrera?.creditos.total && allCreditosAprobados
-
-    setStats({
-      creditosTotales,
-      creditosTotalesNecesarios,
-      isRecibido,
-    });
-
     setCreditos(creditos)
-
-    return creditosTotales
   };
 
   ///
@@ -1041,7 +1022,6 @@ const useGraph = (loginHook) => {
     desaprobar,
     redraw,
     creditos,
-    stats,
     setNetwork,
     setNodes,
     saveGraph,
