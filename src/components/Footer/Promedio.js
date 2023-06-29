@@ -19,14 +19,25 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext } from "../../Contexts";
+import { promediar } from "../../utils";
 
 const Promedio = () => {
   const {
-    promedio,
+    getters,
     aplazos,
-    setAplazos
+    setAplazos,
   } = React.useContext(GraphContext);
 
+  const promedio = React.useMemo(() => {
+    return {
+      promedio: promediar(getters.MateriasAprobadasSinEquivalenciasSinCBC()),
+      promedioConCBC: promediar(getters.MateriasAprobadasConCBC()),
+      promedioConAplazos: promediar([
+        ...getters.MateriasAprobadasSinEquivalenciasSinCBC(),
+        ...Array(aplazos).fill({ nota: 2 })
+      ]),
+    }
+  }, [aplazos, getters])
 
   return (
     <Popover placement="top" trigger="hover">

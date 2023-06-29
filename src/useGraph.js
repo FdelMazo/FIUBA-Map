@@ -5,7 +5,7 @@ import CARRERAS from "./carreras";
 import { CREDITOS } from "./constants";
 import Node from "./Node";
 import { COLORS } from "./theme";
-import { accCreditos, accCreditosNecesarios, accProportion, overrideVisJsUpdate, promediar } from "./utils";
+import { accCreditos, accCreditosNecesarios, accProportion, overrideVisJsUpdate } from "./utils";
 
 const graphObj = {
   nodes: [],
@@ -288,7 +288,6 @@ const useGraph = (loginHook) => {
 
   const actualizar = () => {
     if (!nodes?.carrera) return;
-    updatePromedio()
     const creditosTotales = updateCreditos()
     nodes.update(
       nodes.map((n) =>
@@ -739,31 +738,11 @@ const useGraph = (loginHook) => {
   };
 
   ///
-  /// Logica de aplazos y promedio
+  /// Logica de aplazos
   ///
 
   const [aplazos, setAplazos] = React.useState(0)
-  const [promedio, setPromedio] = React.useState({
-    promedio: 0,
-    promedioConAplazos: 0,
-    promedioConCBC: 0,
-  })
 
-  const updatePromedio = () => {
-    setPromedio({
-      promedio: promediar(getters.MateriasAprobadasSinEquivalenciasSinCBC()),
-      promedioConAplazos: promediar([
-        ...getters.MateriasAprobadasSinEquivalenciasSinCBC(),
-        ...Array(aplazos).fill({ nota: 2 })
-      ]),
-      promedioConCBC: promediar(getters.MateriasAprobadasConCBC()),
-    })
-  }
-
-  // Si cambian los aplazos, hay que actualizar el objeto promedio
-  React.useEffect(() => {
-    updatePromedio()
-  }, [aplazos])
 
   ///
   /// Logica de interacción con el grafo
@@ -939,7 +918,7 @@ const useGraph = (loginHook) => {
     const equivLenguajesCompiladores1 = aprobadas.filter((m) => m.id === '75.31' || m.id === '75.16' || m.id === '75.14')
     if (equivLenguajesCompiladores1.length >= 1) {
       const lenguajesCompiladoresI = getNode('ID09')
-      toUpdate.push(lenguajesCompiladoresI.aprobar(equivLenguajesCompiladores1[0].nota)); 
+      toUpdate.push(lenguajesCompiladoresI.aprobar(equivLenguajesCompiladores1[0].nota));
     }
     equivLenguajesCompiladores1.slice(1).forEach((m) => {
       const materia = findMateria(m.id);
@@ -1033,7 +1012,7 @@ const useGraph = (loginHook) => {
       creditosElectivas -= 2;
       taller2 = undefined;
     }
-    
+
     if (taller2) {
       creditosElectivas += 4;
     }
@@ -1084,7 +1063,6 @@ const useGraph = (loginHook) => {
     events,
     aplazos,
     setAplazos,
-    promedio,
   };
 };
 
