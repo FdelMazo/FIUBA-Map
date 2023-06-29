@@ -4,7 +4,6 @@ import {
   SlideFade,
   useColorModeValue,
 } from "@chakra-ui/react";
-import useResizeObserver from "use-resize-observer";
 import React from "react";
 import Graph from "react-graph-vis";
 import Snowfall from "react-snowfall";
@@ -23,8 +22,8 @@ const isChristmasTime = today >= start && today <= end;
 const Body = () => {
   const {
     graph,
-    setNetwork,
-    redraw,
+    createNetwork,
+    networkRef,
     setNodes,
     setEdges,
     loadingGraph,
@@ -33,16 +32,13 @@ const Body = () => {
   } = React.useContext(GraphContext);
   const { user, loggingIn } = React.useContext(UserContext);
 
-  const { ref, width, height } = useResizeObserver();
-  React.useEffect(redraw, [width, height]);
-
   const isRecibido = React.useMemo(() => {
     return creditos.every(c => c.creditos >= c.creditosNecesarios);
   }, [creditos])
 
   return (
     <Box
-      ref={ref}
+      ref={networkRef}
       css={{ "& *:focus": { outline: "none" } }}
       bg={useColorModeValue("graphbg", "graphbgdark")}
       flexGrow="1"
@@ -57,9 +53,7 @@ const Body = () => {
       <Graph
         key={user.carrera?.id}
         graph={graph}
-        getNetwork={(r) => {
-          setNetwork(r);
-        }}
+        getNetwork={createNetwork}
         getNodes={(r) => {
           r.carrera = user.carrera?.id;
           setNodes(r);

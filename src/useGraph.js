@@ -5,8 +5,9 @@ import CARRERAS from "./carreras";
 import { CREDITOS } from "./constants";
 import Node from "./Node";
 import { COLORS } from "./theme";
-import { accCreditos, accCreditosNecesarios, accProportion, overrideVisJsUpdate } from "./utils";
+import { accCreditos, accCreditosNecesarios, accProportion } from "./utils";
 import { postGraph } from "./dbutils";
+import useResizeObserver from "use-resize-observer";
 
 const graphObj = {
   nodes: [],
@@ -18,6 +19,55 @@ const useGraph = (loginHook) => {
   const { user, setUser, register, logged, getGraph } = loginHook;
   const { colorMode } = useColorMode();
   const [network, setNetwork] = React.useState(null);
+
+  const createNetwork = (network) => {
+    // Avoid re-rendering the whole graph when the data changes
+    // Copied from https://github.com/visjs/vis-network/blob/2c774997ff234fa93555f36ca8040cf4d489e5df/lib/network/modules/NodesHandler.js#L325
+    // Removed the last call to body.emit(datachanged)
+    network.nodesHandler.update = (ids, changedData, oldData) => {
+      const nodes = network.body.nodes;
+      let dataChanged = false;
+      for (let i = 0; i < ids.length; i++) {
+        const id = ids[i];
+        let node = nodes[id];
+        const data = changedData[i];
+        if (node !== undefined) {
+          // update node
+          if (node.setOptions(data)) {
+            dataChanged = true;
+          }
+        } else {
+          dataChanged = true;
+          // create node
+          node = network.create(data);
+          nodes[id] = node;
+        }
+      }
+
+      if (!dataChanged && oldData !== undefined) {
+        // Check for any changes which should trigger a layout recalculation
+        // For now, this is just 'level' for hierarchical layout
+        // Assumption: old and new data arranged in same order; at time of writing, this holds.
+        dataChanged = changedData.some(function (newValue, index) {
+          const oldValue = oldData[index];
+          return oldValue && oldValue.level !== newValue.level;
+        });
+      }
+
+      network.body.emitter.emit("_dataUpdated");
+    }
+    setNetwork(network)
+  }
+
+  const { ref: networkRef, width, height } = useResizeObserver();
+
+  React.useEffect(() => {
+    if (!network) return;
+    network.redraw()
+    network.fit();
+  }, [network, width, height]);
+
+
   const [graph, setGraph] = React.useState(graphObj);
   const [nodes, setNodes] = React.useState(null);
   const [edges, setEdges] = React.useState(null);
@@ -46,12 +96,6 @@ const useGraph = (loginHook) => {
   React.useEffect(() => {
     if (!logged) actualizar();
   }, [logged]);
-
-  // Cuando cambia la network, le overrideo el update para que no este redibujandose constantemente
-  React.useEffect(() => {
-    if (!network) return
-    overrideVisJsUpdate(network);
-  }, [network]);
 
   // Si cambia cualquier cosa del usuario, actualizamos su registro en la db
   React.useEffect(() => {
@@ -230,13 +274,6 @@ const useGraph = (loginHook) => {
 
   const getNode = (id) => {
     return nodes?.get(id)?.nodeRef;
-  };
-
-  const redraw = () => {
-    if (network) {
-      network.redraw()
-      network.fit();
-    }
   };
 
   const saveGraph = async () => {
@@ -1009,7 +1046,6 @@ const useGraph = (loginHook) => {
     getNode,
     aprobar,
     desaprobar,
-    redraw,
     creditos,
     setNetwork,
     setNodes,
@@ -1032,6 +1068,8 @@ const useGraph = (loginHook) => {
     events,
     aplazos,
     setAplazos,
+    createNetwork,
+    networkRef,
   };
 };
 
