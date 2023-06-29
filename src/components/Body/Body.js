@@ -25,7 +25,6 @@ const Body = () => {
     createNetwork,
     networkRef,
     setNodes,
-    setEdges,
     loadingGraph,
     creditos,
     events,
@@ -57,9 +56,6 @@ const Body = () => {
         getNodes={(r) => {
           r.carrera = user.carrera?.id;
           setNodes(r);
-        }}
-        getEdges={(r) => {
-          setEdges(r);
         }}
         options={C.GRAPHOPTIONS}
         events={events}

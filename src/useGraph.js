@@ -70,13 +70,17 @@ const useGraph = (loginHook) => {
 
   const [graph, setGraph] = React.useState(graphObj);
   const [nodes, setNodes] = React.useState(null);
-  const [edges, setEdges] = React.useState(null);
 
   const [shouldLoadGraph, setShouldLoadGraph] = React.useState(false);
   const [loadingGraph, setLoadingGraph] = React.useState(false);
   const [needsRegister, setNeedsRegister] = React.useState(false);
 
   const [displayedNode, setDisplayedNode] = React.useState("");
+
+  const edges = React.useMemo(() => {
+    return network?.body.data.edges;
+  }, [network]);
+
 
   ///
   /// useEffects
@@ -1051,7 +1055,6 @@ const useGraph = (loginHook) => {
     setNodes,
     saveGraph,
     restartGraphCuatris,
-    setEdges,
     changeCarrera,
     changeOrientacion,
     changeFinDeCarrera,
