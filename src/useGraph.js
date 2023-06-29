@@ -6,6 +6,7 @@ import { CREDITOS } from "./constants";
 import Node from "./Node";
 import { COLORS } from "./theme";
 import { accCreditos, accCreditosNecesarios, accProportion, overrideVisJsUpdate } from "./utils";
+import { postGraph } from "./dbutils";
 
 const graphObj = {
   nodes: [],
@@ -14,7 +15,7 @@ const graphObj = {
 };
 
 const useGraph = (loginHook) => {
-  const { user, setUser, register, logged, getGraph, postGraph } = loginHook;
+  const { user, setUser, register, logged, getGraph } = loginHook;
   const { colorMode } = useColorMode();
   const [network, setNetwork] = React.useState(null);
   const [graph, setGraph] = React.useState(graphObj);
@@ -238,8 +239,8 @@ const useGraph = (loginHook) => {
     }
   };
 
-  const saveGraph = () => {
-    postGraph(nodes, user.carrera.creditos.checkbox, optativas, aplazos);
+  const saveGraph = async () => {
+    return postGraph(user, nodes, user.carrera.creditos.checkbox, optativas, aplazos);
   };
 
   const aprobar = (id, nota) => {

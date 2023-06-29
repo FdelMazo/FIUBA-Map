@@ -2,7 +2,7 @@ import { useMediaQuery } from "@chakra-ui/react";
 import React from "react";
 import CARRERAS from "./carreras";
 import * as C from "./constants";
-import ALIAS_MATERIAS from "./data/alias_materias";
+import { getFiubaRepos } from './dbutils'
 
 const userObj = {
   padron: "",
@@ -16,7 +16,6 @@ const useLogin = () => {
   const [user, setUser] = React.useState(userObj);
   const [loading, setLoading] = React.useState(false);
   const [loggingIn, setLoggingIn] = React.useState(false);
-  const [saving, setSaving] = React.useState(false);
   const [padronInput, setPadronInput] = React.useState("");
   const logged = user.padron !== "";
 
@@ -96,36 +95,6 @@ const useLogin = () => {
     setLoading(false);
     setLoggingIn(false)
     return true;
-  };
-
-  const postGraph = (nodes, checkboxes, optativas, aplazos) => {
-    setSaving(true);
-    const formData = new FormData();
-    const padron = user.padron;
-    const carreraid = user.carrera.id;
-    const map = {
-      materias: nodes.get({
-        filter: (n) => n.aprobada || n.nota === -1 || n.cuatrimestre,
-        fields: ["id", "nota", "cuatrimestre"],
-      }),
-    };
-    if (checkboxes)
-      map.checkboxes = checkboxes
-        .filter((c) => c.check === true)
-        .map((c) => c.nombre);
-    if (optativas) map.optativas = optativas;
-    if (aplazos) map.aplazos = aplazos;
-
-    formData.append(`${C.GRAPH_FORM_ENTRIES.padron}`, padron);
-    formData.append(`${C.GRAPH_FORM_ENTRIES.carrera}`, carreraid);
-    formData.append(`${C.GRAPH_FORM_ENTRIES.map}`, JSON.stringify(map));
-    fetch(`${C.GRAPH_FORM}`, {
-      body: formData,
-      method: "POST",
-      mode: "no-cors",
-    })
-      .then((r) => setSaving(false))
-      .catch((r) => setSaving(false));
   };
 
   const getGraph = async (padron, carrera) => {
@@ -217,87 +186,12 @@ const useLogin = () => {
     window.localStorage.removeItem("padron");
   };
 
-  const submitBug = (bug) => {
-    if (!bug) return;
-    const formData = new FormData();
-    const padron = user.padron;
-    const carreraid = user.carrera?.id;
-    const orientacionid = user.orientacion?.nombre;
-    const findecarreraid = user.finDeCarrera?.id;
-    formData.append(`${C.BUGS_FORM_ENTRIES.padron}`, padron);
-    formData.append(`${C.BUGS_FORM_ENTRIES.carrera}`, carreraid);
-    formData.append(`${C.BUGS_FORM_ENTRIES.orientacion}`, orientacionid || "");
-    formData.append(
-      `${C.BUGS_FORM_ENTRIES.finDeCarrera}`,
-      findecarreraid || ""
-    );
-    formData.append(`${C.BUGS_FORM_ENTRIES.bug}`, bug || "");
-    fetch(`${C.BUGS_FORM}`, {
-      body: formData,
-      method: "POST",
-      mode: "no-cors",
-    });
-  };
-
   const [fiubaRepos, setFiubaRepos] = React.useState([])
-  const fetchFiubaRepos = async () => {
-    let totalCount = null;
-    const items = [];
-    let i = 1;
-    while (!totalCount || items.length < totalCount) {
-      const res = await fetch(
-        `https://api.github.com/search/repositories?` + new URLSearchParams({
-          q: "topic:fiuba fork:true",
-          sort: "updated",
-          order: "desc",
-          page: i,
-          per_page: 100,
-        }), {
-        headers: {
-          Accept: "application/vnd.github.v3+json"
-        }
-      });
-      const json = await res.json();
-      if (!json.items || !json.items.length) break;
-      totalCount = json.total_count;
-      items.push(...json.items);
-      i++;
-    }
-
-    const codigosMaterias = [...new Set(items.flatMap(r =>
-      r.topics.filter(t => t.match(/^\d\d\d\d$/))
-    ))]
-
-    let allMaterias = Object.keys(ALIAS_MATERIAS).reduce((acc, c) => {
-      const nombre = ALIAS_MATERIAS[c];
-      let m = acc.find(mx => mx.nombre === nombre)
-      if (m) {
-        m.codigos.push(c)
-      } else {
-        acc.push({
-          codigos: [c],
-          nombre,
-        })
-      }
-      return acc;
-    }, [])
-
-    codigosMaterias.forEach(c => {
-      const materia = allMaterias.find(m => m.codigos.includes(c))
-      if (!materia) return;
-      if (materia.reponames) {
-        materia.reponames = new Set([...materia.reponames, ...items.filter(r => r.topics.includes(c)).map(r => r.full_name)])
-      } else {
-        materia['reponames'] = new Set(items.filter(r => r.topics.includes(c)).map(r => r.full_name))
-      }
-    })
-
-    const processedMaterias = allMaterias.filter(m => m.reponames?.size > 0);
-    setFiubaRepos(processedMaterias)
-  };
-
 
   React.useEffect(() => {
+    const fetchFiubaRepos = async () => {
+      setFiubaRepos(await getFiubaRepos())
+    };
     fetchFiubaRepos();
   }, []);
 
@@ -310,9 +204,6 @@ const useLogin = () => {
     loading,
     register,
     logout,
-    saving,
-    postGraph,
-    submitBug,
     setUser,
     getGraph,
     padronInput,

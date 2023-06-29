@@ -27,16 +27,18 @@ const PadronInput = () => {
     <form
       onSubmit={async (t) => {
         t.preventDefault();
-        const padron = t.target.elements["padron"].value;
         if (showRegisterButton) {
           setLastInput("");
-          register(padron);
+          register(padronInput);
           return;
         }
 
-        const couldLogin = await login(padron);
-        if (!couldLogin) setNotRegistered(true);
-        setLastInput(padron);
+        await login(padronInput).then((res) => {
+          if (!res) {
+            setNotRegistered(true);
+            setLastInput(padronInput);
+          }
+        })
       }}
     >
       <Input

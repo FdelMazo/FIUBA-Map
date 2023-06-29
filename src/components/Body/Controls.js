@@ -31,9 +31,10 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { UserContext } from "../../Contexts";
+import { submitBug } from "../../dbutils";
 
 const Controls = () => {
-  const { submitBug, isMobile } = React.useContext(UserContext);
+  const { user, isMobile } = React.useContext(UserContext);
   const toast = useToast();
   const bugToast = React.useRef();
   const [showGracias, setShowGracias] = React.useState(false);
@@ -155,9 +156,10 @@ const Controls = () => {
                           </Text>
                         </VStack>
                         <form
-                          onSubmit={(t) => {
+                          onSubmit={async (t) => {
                             t.preventDefault();
-                            submitBug(t.target.elements["bug"].value);
+                            await submitBug(user, t.target.elements["bug"].value)
+                              .catch(console.error);
                             setShowGracias(true);
                             toast.close(bugToast.current);
                           }}

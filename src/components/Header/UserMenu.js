@@ -37,10 +37,11 @@ const UserMenu = () => {
   const {
     logout,
     user,
-    saving,
   } = React.useContext(UserContext);
 
   const { saveGraph, restartGraphCuatris, getters, setNeedsRegister, changeOrientacion, changeFinDeCarrera, getNode } = React.useContext(GraphContext);
+
+  const [saving, setSaving] = React.useState(false);
 
   const isBeta = user?.carrera?.beta;
   return (
@@ -122,7 +123,11 @@ const UserMenu = () => {
           {...ButtonProps}
           ml={2}
           isLoading={saving}
-          onClick={saveGraph}
+          onClick={async () => {
+            setSaving(true);
+            await saveGraph().catch(console.error);
+            setSaving(false);
+          }}
           disabled={isBeta}
         >
           <Icon boxSize={5} as={FaSave} />
