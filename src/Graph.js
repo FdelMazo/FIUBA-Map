@@ -999,10 +999,12 @@ const Graph = (userContext) => {
   // Cuando el usuario se desloguea, llamamos a actualizar para sacar los labels de la nota
   // Cambiar las optativas actualiza los creditos que actualiza el mapa...
   // Cambiar el colorMode tiene que actualizar el texto de las materias con texto afuera
+  // Cuando cambia o la orientacion o el fin de carrera actualizamos el mapa para mostrar los creditos y las materias
   React.useEffect(() => {
     if (!network) return
     actualizar();
-  }, [logged, colorMode, optativas]);
+    actualizarNiveles()
+  }, [logged, colorMode, optativas, user.orientacion?.nombre, user.finDeCarrera?.id]);
 
   return {
     graph,
