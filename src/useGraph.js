@@ -6,11 +6,10 @@ import { CREDITOS } from "./constants";
 import Node from "./Node";
 import { COLORS } from "./theme";
 import { accCreditos, accCreditosNecesarios, accProportion } from "./utils";
-import { postGraph } from "./dbutils";
 import useResizeObserver from "use-resize-observer";
 
 const useGraph = (loginHook) => {
-  const { user, setUser, logged } = loginHook;
+  const { user, setUser, logged, saveUserGraph, register } = loginHook;
   const { colorMode } = useColorMode();
   const [network, setNetwork] = React.useState(null);
 
@@ -270,7 +269,13 @@ const useGraph = (loginHook) => {
   };
 
   const saveGraph = async () => {
-    return postGraph(user, nodes, user.carrera.creditos.checkbox, optativas, aplazos);
+    const materias = nodes.get({
+      filter: (n) => n.aprobada || n.nota === -1 || n.cuatrimestre,
+      fields: ["id", "nota", "cuatrimestre"],
+    })
+    const checkboxes = user.carrera.creditos.checkbox
+      ?.filter((c) => c.check === true).map((c) => c.nombre)
+    return saveUserGraph(user, materias, checkboxes, optativas, aplazos);
   };
 
   const aprobar = (id, nota) => {
@@ -398,26 +403,28 @@ const useGraph = (loginHook) => {
   const changeCarrera = (id) => {
     const userdata = user.allLogins.find((l) => l.carreraid === id)
     const carrera = CARRERAS.find((c) => c.id === id);
+    let newUser = { ...user, carrera };
     if (userdata) {
       const orientacion = carrera.orientaciones?.find((c) => c.nombre === userdata.orientacionid);
       const finDeCarrera = carrera.finDeCarrera?.find((c) => c.id === userdata.findecarreraid);
-      setUser({ ...user, carrera, orientacion, finDeCarrera });
-    } else {
-      setUser({ ...user, carrera });
+      newUser = { ...newUser, orientacion, finDeCarrera };
     }
-    // if (logged) register();
+    if (logged) register(newUser);
+    setUser(newUser);
   }
 
   const changeOrientacion = (id) => {
     const orientacion = user.carrera.orientaciones?.find((c) => c.nombre === id);
-    setUser({ ...user, orientacion });
-    // if (logged) register();
+    const newUser = { ...user, orientacion };
+    if (logged) register(newUser);
+    setUser(newUser);
   };
 
   const changeFinDeCarrera = (id) => {
     const finDeCarrera = user.carrera.finDeCarrera?.find((c) => c.id === id);
-    setUser({ ...user, finDeCarrera });
-    // if (logged) register();
+    const newUser = { ...user, finDeCarrera };
+    if (logged) register(newUser);
+    setUser(newUser);
   };
 
   ///

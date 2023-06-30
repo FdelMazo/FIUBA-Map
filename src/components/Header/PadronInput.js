@@ -13,7 +13,7 @@ const PadronInput = () => {
     logged,
     user,
     loading,
-    register,
+    signup,
     padronInput,
     setPadronInput,
   } = React.useContext(UserContext);
@@ -29,7 +29,7 @@ const PadronInput = () => {
         t.preventDefault();
         if (showRegisterButton) {
           setLastInput("");
-          register(padronInput);
+          await signup(padronInput);
           return;
         }
 

@@ -2,7 +2,7 @@ import { useMediaQuery } from "@chakra-ui/react";
 import React from "react";
 import CARRERAS from "./carreras";
 import * as C from "./constants";
-import { getFiubaRepos, getGraphs } from "./dbutils";
+import { getFiubaRepos, getGraphs, postGraph, postUser } from "./dbutils";
 
 const userObj = {
   padron: "",
@@ -100,63 +100,72 @@ const useLogin = () => {
     return true;
   };
 
-  const register = async (p) => {
-    const formData = new FormData();
-    const padron = p || user.padron;
-    const carreraid = user.carrera.id;
-    const orientacionid = user.orientacion?.nombre;
-    const findecarreraid = user.finDeCarrera?.id;
-    formData.append(`${C.USER_FORM_ENTRIES.padron}`, padron);
-    formData.append(`${C.USER_FORM_ENTRIES.carrera}`, carreraid);
-    formData.append(`${C.USER_FORM_ENTRIES.orientacion}`, orientacionid || "");
-    formData.append(
-      `${C.USER_FORM_ENTRIES.finDeCarrera}`,
-      findecarreraid || ""
-    );
-    fetch(`${C.USER_FORM}`, {
-      body: formData,
-      method: "POST",
-      mode: "no-cors",
-    });
-
-    const carrera = CARRERAS.find((c) => c.id === carreraid);
-
+  const register = async (user) => {
     const addToAllLogins = () => {
       const newAllLogins = user.allLogins.filter(
-        (l) => l.carreraid !== carreraid
+        (l) => l.carreraid !== user.carrera.id
       );
       newAllLogins.push({
-        carreraid,
-        orientacionid,
-        findecarreraid,
+        carreraid: user.carrera.id,
+        orientacionid: user.orientacion?.nombre,
+        findecarreraid: user.finDeCarrera?.id,
       });
       return newAllLogins;
     };
 
-    if (!logged) {
-      setUser({
-        padron,
-        carrera,
-        orientacion: carrera.orientaciones?.find(
-          (c) => c.nombre === orientacionid
-        ),
-        finDeCarrera: carrera.finDeCarrera?.find(
-          (c) => c.id === findecarreraid
-        ),
-        allLogins: [...addToAllLogins()],
-      });
-      window.localStorage.setItem("padron", padron);
-    } else {
-      setUser({
-        ...user,
-        allLogins: [...addToAllLogins()],
-      });
-    }
+    await postUser(user)
+    setUser({
+      ...user,
+      allLogins: [...addToAllLogins()],
+    });
   };
+
+  const signup = async (padron) => {
+    const newUser = {
+      ...user,
+      padron,
+    }
+    window.localStorage.setItem("padron", padron);
+    setLoading(true)
+    await register(newUser)
+    setLoading(false)
+  }
 
   const logout = () => {
     setUser({ ...user, padron: "" });
     window.localStorage.removeItem("padron");
+  };
+
+  const saveUserGraph = async (user, materias, checkboxes, optativas, aplazos) => {
+    const map = {
+      materias
+    };
+    if (checkboxes) {
+      map.checkboxes = checkboxes;
+    }
+    if (optativas) {
+      map.optativas = optativas
+    };
+    if (aplazos) {
+      map.aplazos = aplazos
+    };
+    await postGraph(user, map)
+
+    const addToMaps = () => {
+      const newMaps = user.maps.filter(
+        (l) => l.carreraid !== user.carrera.id
+      );
+      newMaps.push({
+        carreraid: user.carrera.id,
+        map,
+      });
+      return newMaps;
+    };
+
+    setUser({
+      ...user,
+      maps: [...addToMaps()],
+    });
   };
 
   const [fiubaRepos, setFiubaRepos] = React.useState([])
@@ -184,6 +193,8 @@ const useLogin = () => {
     isMobile,
     isSmallMobile,
     loggingIn,
+    saveUserGraph,
+    signup
   };
 };
 

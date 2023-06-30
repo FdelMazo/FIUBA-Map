@@ -22,25 +22,27 @@ export const submitBug = async (user, bug) => {
     });
 };
 
-export const postGraph = async (user, nodes, checkboxes, optativas, aplazos) => {
+export const postUser = async (user) => {
     const formData = new FormData();
     const padron = user.padron;
     const carreraid = user.carrera.id;
-    const map = {
-        materias: nodes.get({
-            filter: (n) => n.aprobada || n.nota === -1 || n.cuatrimestre,
-            fields: ["id", "nota", "cuatrimestre"],
-        }),
-    };
-    if (checkboxes)
-        map.checkboxes = checkboxes
-            .filter((c) => c.check === true)
-            .map((c) => c.nombre);
-    if (optativas) map.optativas = optativas;
-    if (aplazos) map.aplazos = aplazos;
+    const orientacionid = user.orientacion?.nombre;
+    const findecarreraid = user.finDeCarrera?.id;
+    formData.append(`${C.USER_FORM_ENTRIES.padron}`, padron);
+    formData.append(`${C.USER_FORM_ENTRIES.carrera}`, carreraid);
+    formData.append(`${C.USER_FORM_ENTRIES.orientacion}`, orientacionid || "");
+    formData.append(`${C.USER_FORM_ENTRIES.finDeCarrera}`, findecarreraid || "");
+    return fetch(`${C.USER_FORM}`, {
+        body: formData,
+        method: "POST",
+        mode: "no-cors",
+    });
+};
 
-    formData.append(`${C.GRAPH_FORM_ENTRIES.padron}`, padron);
-    formData.append(`${C.GRAPH_FORM_ENTRIES.carrera}`, carreraid);
+export const postGraph = async (user, map) => {
+    const formData = new FormData();
+    formData.append(`${C.GRAPH_FORM_ENTRIES.padron}`, user.padron);
+    formData.append(`${C.GRAPH_FORM_ENTRIES.carrera}`, user.carrera.id);
     formData.append(`${C.GRAPH_FORM_ENTRIES.map}`, JSON.stringify(map));
     return fetch(`${C.GRAPH_FORM}`, {
         body: formData,
