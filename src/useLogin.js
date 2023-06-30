@@ -4,7 +4,7 @@ import CARRERAS from "./carreras";
 import * as C from "./constants";
 import { getFiubaRepos, getGraphs, postGraph, postUser } from "./dbutils";
 
-const userObj = {
+const initialUser = {
   padron: "",
   carrera: CARRERAS.find((c) => c.id === "sistemas"),
   orientacion: null,
@@ -14,7 +14,7 @@ const userObj = {
 };
 
 const useLogin = () => {
-  const [user, setUser] = React.useState(userObj);
+  const [user, setUser] = React.useState(initialUser);
   const [loading, setLoading] = React.useState(false);
   const [loggingIn, setLoggingIn] = React.useState(false);
   const [padronInput, setPadronInput] = React.useState("");
