@@ -356,9 +356,6 @@ const Graph = (userContext) => {
 
   // Clickear en la materia "CBC" te muestra las materias adentro del CBC
   const toggleCBC = () => {
-    // TODO: estaria barbaro que con network.focus/network.moveTo
-    // se logre que cuando haces click en el CBC el grafo se acomode
-    // y no haga que se te mueva todo (o sea, que el click sea idempotente)
     const categoria = getters.CBC();
     categoria.forEach((n) => {
       const node = getNode(n.id);
@@ -367,7 +364,17 @@ const Graph = (userContext) => {
     });
     actualizar();
     actualizarNiveles()
-    network.fit();
+
+    const isOpening = categoria.some(n => !n.hidden)
+    const { x, y } = network.getViewPosition()
+
+    // El 150 esta hardcodeado a la dif de la posicion del nodo del CBC
+    // cuando se prende y cuando se apaga
+    if (isOpening) {
+      network.moveTo({ position: { x: x - 150, y } })
+    } else {
+      network.moveTo({ position: { x: x + 150, y } })
+    }
   };
 
   ///
