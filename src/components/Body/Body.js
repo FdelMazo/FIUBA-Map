@@ -11,7 +11,7 @@ import * as C from "../../constants";
 import { GraphContext, UserContext } from "../../MapContext";
 import CategoryTagStack from "./CategoryTagStack";
 import LoadingGraph from "./LoadingGraph";
-import { Fireworks } from 'fireworks-js/dist/react'
+import { Fireworks } from '@fireworks-js/react'
 import Controls from "./Controls";
 
 const today = new Date();
