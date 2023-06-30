@@ -200,3 +200,5 @@ export const CREDITOS = {
     bg: COLORS.findecarrera[50],
   }
 }
+
+export const FIUBAREPOSJSON = "https://raw.githubusercontent.com/FdelMazo/FIUBA-Repos/85806e2f4ea00e3d1ae4ebbf49465e2b28168011/src/data/materias.json"

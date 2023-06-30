@@ -1,5 +1,4 @@
 import * as C from "./constants";
-import ALIAS_MATERIAS from "./data/alias_materias";
 
 export const submitBug = async (user, bug) => {
     if (!bug) return;
@@ -51,6 +50,8 @@ export const postGraph = async (user, nodes, checkboxes, optativas, aplazos) => 
 };
 
 export const getFiubaRepos = async () => {
+    const ALIAS_MATERIAS = await fetch(C.FIUBAREPOSJSON).then(res => res.json())
+
     let totalCount = null;
     const items = [];
     let i = 1;
