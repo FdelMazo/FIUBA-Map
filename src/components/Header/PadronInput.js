@@ -5,7 +5,7 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 import React from "react";
-import { UserContext } from "../../Contexts";
+import { UserContext } from "../../MapContext";
 
 const PadronInput = () => {
   const {

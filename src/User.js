@@ -13,7 +13,7 @@ const initialUser = {
   maps: [],
 };
 
-const useLogin = () => {
+const Login = () => {
   const [user, setUser] = React.useState(initialUser);
   const [loading, setLoading] = React.useState(false);
   const [loggingIn, setLoggingIn] = React.useState(false);
@@ -198,4 +198,4 @@ const useLogin = () => {
   };
 };
 
-export default useLogin;
+export default Login;

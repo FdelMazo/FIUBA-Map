@@ -8,8 +8,8 @@ import { COLORS } from "./theme";
 import { accCreditos, accCreditosNecesarios, accProportion } from "./utils";
 import useResizeObserver from "use-resize-observer";
 
-const useGraph = (loginHook) => {
-  const { user, setUser, logged, saveUserGraph, register } = loginHook;
+const Graph = (userContext) => {
+  const { user, setUser, logged, saveUserGraph, register } = userContext;
   const { colorMode } = useColorMode();
   const [network, setNetwork] = React.useState(null);
 
@@ -1032,4 +1032,4 @@ const useGraph = (loginHook) => {
   };
 };
 
-export default useGraph;
+export default Graph;

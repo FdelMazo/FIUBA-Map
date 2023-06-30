@@ -11,7 +11,7 @@ import {
   QuestionIcon
 } from "@chakra-ui/icons";
 import React from "react";
-import { GraphContext, UserContext } from "../../Contexts";
+import { GraphContext, UserContext } from "../../MapContext";
 
 const MateriaStatus = () => {
   const { isMobile } = React.useContext(UserContext);

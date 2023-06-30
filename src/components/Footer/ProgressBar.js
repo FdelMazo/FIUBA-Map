@@ -21,7 +21,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { FaGraduationCap } from "react-icons/fa";
-import { GraphContext, UserContext } from "../../Contexts";
+import { GraphContext, UserContext } from "../../MapContext";
 
 const ProgressBar = () => {
   const { user, isMobile } = React.useContext(UserContext);

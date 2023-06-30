@@ -21,7 +21,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { FaUndo } from "react-icons/fa";
-import { GraphContext, UserContext } from "../../Contexts";
+import { GraphContext, UserContext } from "../../MapContext";
 import { getCurrentCuatri } from "../../utils";
 
 const ControlProps = {

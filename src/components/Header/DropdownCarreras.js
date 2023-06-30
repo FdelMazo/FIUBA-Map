@@ -13,7 +13,7 @@ import {
     Box,
 } from "@chakra-ui/react";
 import CARRERAS from "../../carreras";
-import { GraphContext, UserContext } from "../../Contexts";
+import { GraphContext, UserContext } from "../../MapContext";
 
 const DropdownCarreras = () => {
     const { user, isMobile, isSmallMobile } = React.useContext(UserContext);

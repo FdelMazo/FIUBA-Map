@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-import { GraphContext } from "../../Contexts";
+import { GraphContext } from "../../MapContext";
 import { getCurrentCuatri } from "../../utils";
 import MateriaControl from "./MateriaControl";
 import MateriaStatus from "./MateriaStatus";

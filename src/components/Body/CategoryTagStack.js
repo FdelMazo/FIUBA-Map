@@ -10,7 +10,7 @@ import React from "react";
 import { BiCircle } from "react-icons/bi";
 import { RiFocus2Line, RiFocusLine } from "react-icons/ri";
 import * as C from "../../constants";
-import { GraphContext, UserContext } from "../../Contexts";
+import { GraphContext, UserContext } from "../../MapContext";
 
 const CategoryTagStack = () => {
   const { isMobile } = React.useContext(UserContext);

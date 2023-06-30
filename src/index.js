@@ -2,21 +2,14 @@ import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import React from "react";
 import ReactDOM from "react-dom";
 import MainApp from "./components/MainApp";
-import { GraphContext, UserContext } from "./Contexts";
 import { customTheme } from "./theme";
-import useGraph from "./useGraph";
-import useLogin from "./useLogin";
+import { MapProvider } from "./MapContext";
 
 const App = () => {
-  const loginHook = useLogin();
-  const graphHook = useGraph(loginHook);
-
   return (
-    <UserContext.Provider value={loginHook}>
-      <GraphContext.Provider value={graphHook}>
+    <MapProvider>
         <MainApp />
-      </GraphContext.Provider>
-    </UserContext.Provider>
+    </MapProvider>
   );
 };
 

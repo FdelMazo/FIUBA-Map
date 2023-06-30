@@ -18,7 +18,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import { GraphContext } from "../../Contexts";
+import { GraphContext } from "../../MapContext";
 import { promediar } from "../../utils";
 
 const Promedio = () => {

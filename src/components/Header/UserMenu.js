@@ -17,7 +17,7 @@ import { BiLogOut } from "react-icons/bi";
 import { FaSave, FaUndo } from "react-icons/fa";
 
 import React from "react";
-import { GraphContext, UserContext } from "../../Contexts";
+import { GraphContext, UserContext } from "../../MapContext";
 
 const ButtonProps = {
   bg: "teal.500",

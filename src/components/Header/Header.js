@@ -5,7 +5,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
-import { GraphContext, UserContext } from "../../Contexts";
+import { GraphContext, UserContext } from "../../MapContext";
 import MateriaDisplay from "./MateriaDisplay";
 import PadronInput from "./PadronInput";
 import DropdownCarreras from "./DropdownCarreras";

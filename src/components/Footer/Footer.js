@@ -4,7 +4,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
-import { GraphContext, UserContext } from "../../Contexts";
+import { GraphContext, UserContext } from "../../MapContext";
 import Creditos from "./Creditos";
 import ProgressBar from "./ProgressBar";
 import Promedio from "./Promedio";
