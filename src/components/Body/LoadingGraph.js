@@ -9,14 +9,12 @@ import React from "react";
 const injectStyle = (style) => {
   const styleElement = document.createElement("style");
   let styleSheet = null;
-
   document.head.appendChild(styleElement);
-
   styleSheet = styleElement.sheet;
-
   styleSheet.insertRule(style, styleSheet.cssRules.length);
 };
 
+// El mejor loading component que existe
 const LoadingGraph = () => {
   const keyframesStyle = `
       @keyframes sk-rotateplane {

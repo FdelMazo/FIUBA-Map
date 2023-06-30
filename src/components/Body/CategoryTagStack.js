@@ -12,6 +12,7 @@ import { RiFocus2Line, RiFocusLine } from "react-icons/ri";
 import * as C from "../../constants";
 import { GraphContext, UserContext } from "../../MapContext";
 
+// Componente para mostrar/ocultar grupos de materias
 const CategoryTagStack = () => {
   const { isMobile } = React.useContext(UserContext);
   const { toggleGroup, groupStatus, getters } = React.useContext(GraphContext);

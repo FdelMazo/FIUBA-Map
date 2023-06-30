@@ -33,6 +33,7 @@ import React from "react";
 import { UserContext } from "../../MapContext";
 import { submitBug } from "../../dbutils";
 
+// Componente con links externos, setupeo de color mode y un toast para reportar bugs
 const Controls = () => {
   const { user, isMobile } = React.useContext(UserContext);
   const toast = useToast();

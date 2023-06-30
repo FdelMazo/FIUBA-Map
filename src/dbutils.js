@@ -1,5 +1,6 @@
 import * as C from "./constants";
 
+// Le pega al form de bugs
 export const submitBug = async (user, bug) => {
     if (!bug) return;
     const formData = new FormData();
@@ -22,6 +23,7 @@ export const submitBug = async (user, bug) => {
     });
 };
 
+// Le pega al form que almacena [padron,carrera,orientacion,findecarrera]
 export const postUser = async (user) => {
     const formData = new FormData();
     const padron = user.padron;
@@ -39,6 +41,8 @@ export const postUser = async (user) => {
     });
 };
 
+// Le pega al form que almacena [padron,carrera,map]
+// el map es un json stringifeado que tiene [materias,optativas,aplazos,checkboxes]
 export const postGraph = async (user, map) => {
     const formData = new FormData();
     formData.append(`${C.GRAPH_FORM_ENTRIES.padron}`, user.padron);
@@ -51,6 +55,9 @@ export const postGraph = async (user, map) => {
     })
 };
 
+// Hace lo mismo que fiuba repos: se fija si hay repos con el topic fiuba
+// y los clasifica segun carreras, para poder decir "mira los N repos de esta materia!"
+// Despues, con eso, solamente se redirige a fiuba repos
 export const getFiubaRepos = async () => {
     const ALIAS_MATERIAS = await fetch(C.FIUBAREPOSJSON).then(res => res.json())
 
@@ -108,6 +115,7 @@ export const getFiubaRepos = async () => {
     return allMaterias.filter(m => m.reponames?.size > 0);
 }
 
+// Consigue todos los mapas asociados a un padron, de todas las carreras
 export const getGraphs = async (padron) => {
     const data = await fetch(
         `${C.SPREADSHEET}/${C.SHEETS.registros}!B:D?majorDimension=COLUMNS&key=${C.KEY}`

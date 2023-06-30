@@ -9,6 +9,8 @@ import Creditos from "./Creditos";
 import ProgressBar from "./ProgressBar";
 import Promedio from "./Promedio";
 
+// Footer que solo se muestra si estas logueado
+// (no tiene sentido ver promedio, creditos, etc si no los vas a guardar)
 const Footer = () => {
   const { logged, user } = React.useContext(UserContext);
 

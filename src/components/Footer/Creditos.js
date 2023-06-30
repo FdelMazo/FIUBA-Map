@@ -32,6 +32,8 @@ import {
 import React from "react";
 import { GraphContext, UserContext } from "../../MapContext";
 
+// Componente para mostrar los creditos totales de la carrera
+// y en hover setupear creditos por fuera del plan (materias optativas)
 const Creditos = () => {
   const { user, isMobile } = React.useContext(UserContext);
   const {

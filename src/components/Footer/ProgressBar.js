@@ -23,6 +23,8 @@ import React from "react";
 import { FaGraduationCap } from "react-icons/fa";
 import { GraphContext, UserContext } from "../../MapContext";
 
+// Componente con una barra de progresso para mostrar todos los creditos de las
+// materias aprobadas
 const ProgressBar = () => {
   const { user, isMobile } = React.useContext(UserContext);
   const {

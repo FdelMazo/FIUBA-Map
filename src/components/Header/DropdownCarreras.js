@@ -16,6 +16,7 @@ import {
 import CARRERAS from "../../carreras";
 import { GraphContext, UserContext } from "../../MapContext";
 
+// Componente para elegir carrera
 const DropdownCarreras = () => {
     const { user, isMobile, isSmallMobile } = React.useContext(UserContext);
     const { changeCarrera } = React.useContext(GraphContext);

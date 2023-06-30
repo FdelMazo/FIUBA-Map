@@ -61,6 +61,7 @@ const NumberStepperProps = {
   fontSize: "small"
 }
 
+// Botonera para cambiar la nota y el cuatri de la materia seleccionada
 const MateriaControl = () => {
   const { fiubaRepos, isMobile, logged } = React.useContext(UserContext);
 

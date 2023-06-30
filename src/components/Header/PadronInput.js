@@ -7,6 +7,9 @@ import {
 import React from "react";
 import { UserContext } from "../../MapContext";
 
+// Input del padron, para cuando no estas logueado
+// On boot, si hay un padron en el local storage, usa ese
+// Si el padron se pudo loguear, genial. Si no, te muestra un botoncito de "registrate" para guardar en la db
 const PadronInput = () => {
   const {
     login,

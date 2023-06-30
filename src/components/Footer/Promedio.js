@@ -21,6 +21,8 @@ import React from "react";
 import { GraphContext } from "../../MapContext";
 import { promediar } from "../../utils";
 
+// Componente para mostrar el promedio general de la carrera
+// y en hover mostrar el promedio con CBC y poder agregar aplazos
 const Promedio = () => {
   const {
     getters,

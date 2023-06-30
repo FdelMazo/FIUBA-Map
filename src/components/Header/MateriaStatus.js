@@ -13,6 +13,7 @@ import {
 import React from "react";
 import { GraphContext, UserContext } from "../../MapContext";
 
+// Cuando hay una materia seleccionada, te muestra el codigo, cuantos creditos da, etc
 const MateriaStatus = () => {
   const { isMobile } = React.useContext(UserContext);
   const { getNode, displayedNode } = React.useContext(GraphContext);

@@ -12,6 +12,10 @@ import DropdownCarreras from "./DropdownCarreras";
 import UserMenu from "./UserMenu";
 
 
+// Componente toplevel de header
+// Si tengo una materia clickeada, muestra sus controles
+// Si no, muestra un input para loguearse (o un menu del usuario loguead) y
+//  un dropdown para elegir las carrera
 const Header = () => {
   const { isMobile, logged } = React.useContext(UserContext);
   const { displayedNode } = React.useContext(GraphContext);

@@ -33,6 +33,9 @@ const TooltipProps = {
   placement: "bottom"
 }
 
+// Menu para elegir orientacion y fin de carrera (y para "cerrar sesion")
+// Es un botoncito de settings donde esta el padron, arriba a la izquierda de la app
+// Tambien botones para guardar el grafo, y reiniciar los cuatrimestres planeados
 const UserMenu = () => {
   const {
     logout,

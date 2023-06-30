@@ -19,6 +19,7 @@ const start = new Date(today.getFullYear(), 11, 19);
 const end = new Date(today.getFullYear() + 1, 0, 1);
 const isChristmasTime = today >= start && today <= end;
 
+// Muestra el grafo y un par de pavadas mas
 const Body = () => {
   const {
     graph,
@@ -43,7 +44,7 @@ const Body = () => {
       height="1em"
       position="relative"
     >
-      {isRecibido && <Fireworks options={{ speed: 3 }} style={{ width: '100%', height: '100%', position: 'fixed' }} />}
+      {isRecibido && <Fireworks options={{ traceSpeed: 1 }} style={{ width: '100%', height: '100%', position: 'fixed' }} />}
       {isChristmasTime && <Snowfall color="lavender" />}
       <SlideFade in={loadingGraph || loggingIn} unmountOnExit>
         <LoadingGraph />
