@@ -4,71 +4,54 @@ import { GraphContext } from "../../MapContext";
 import { getCurrentCuatri } from "../../utils";
 import MateriaControl from "./MateriaControl";
 import MateriaStatus from "./MateriaStatus";
+import { useHotkeys } from "react-hotkeys-hook";
 
 const MateriaDisplay = () => {
   const { getNode, aprobar, displayedNode, desaprobar, cursando } =
     React.useContext(GraphContext);
+  const node = React.useMemo(() => getNode(displayedNode), [displayedNode, getNode])
 
-  const flechitas = React.useCallback(
-    (event) => {
-      if (!displayedNode) return;
-      const node = getNode(displayedNode)
-      if (event.key === "ArrowLeft") {
-        if (node.categoria === "*CBC") return
-        const prevCuatri = node.cuatrimestre ? node.cuatrimestre - 0.5 : getCurrentCuatri();
-        cursando(displayedNode, prevCuatri);
-      }
-      if (event.key === "ArrowRight") {
-        if (node.categoria === "*CBC") return
-        const nextCuatri = node.cuatrimestre ? node.cuatrimestre + 0.5 : getCurrentCuatri();
-        cursando(displayedNode, nextCuatri);
-      }
-      if (event.key === "ArrowUp") {
-        let nextNota = node.nota + 1;
-        if (node.nota === 0) nextNota = 4;
-        if (node.nota === 10) {
-          desaprobar(displayedNode)
-          return
-        };
-        aprobar(displayedNode, nextNota)
-      }
-      if (event.key === "ArrowDown") {
-        let prevNota = node.nota - 1;
-        if (node.nota === 4) prevNota = 0;
-        if (node.nota === -2) prevNota = 10;
-        if (node.nota === -1) {
-          desaprobar(displayedNode)
-          return
-        };
-        aprobar(displayedNode, prevNota)
-      }
-    },
-    [displayedNode]
-  );
-
-  const numeros = React.useCallback(
-    (event) => {
-      if (!displayedNode) return;
-      const n = parseInt(event.key)
-      if (n >= 4 && n <= 9) {
-        aprobar(displayedNode, n);
-      }
-      if (n === 0) {
-        aprobar(displayedNode, 10);
-      }
-    },
-    [displayedNode]
-  );
-
-  React.useEffect(() => {
-    document.addEventListener("keydown", flechitas, false);
-    document.addEventListener("keydown", numeros, false);
-
-    return () => {
-      document.removeEventListener("keydown", flechitas, false);
-      document.removeEventListener("keydown", numeros, false);
+  useHotkeys('up', () => {
+    let nextNota = node.nota + 1;
+    if (node.nota === 0) nextNota = 4;
+    if (node.nota === 10) {
+      desaprobar(displayedNode)
+      return
     };
-  }, [flechitas, numeros]);
+    aprobar(displayedNode, nextNota)
+  })
+
+  useHotkeys('down', () => {
+    let prevNota = node.nota - 1;
+    if (node.nota === 4) prevNota = 0;
+    if (node.nota === -2) prevNota = 10;
+    if (node.nota === -1) {
+      desaprobar(displayedNode)
+      return
+    };
+    aprobar(displayedNode, prevNota)
+  })
+
+  useHotkeys('left', () => {
+    if (node.categoria === "*CBC") return
+    const prevCuatri = node.cuatrimestre ? node.cuatrimestre - 0.5 : getCurrentCuatri();
+    cursando(displayedNode, prevCuatri);
+  })
+
+  useHotkeys('right', () => {
+    if (node.categoria === "*CBC") return
+    const nextCuatri = node.cuatrimestre ? node.cuatrimestre + 0.5 : getCurrentCuatri();
+    cursando(displayedNode, nextCuatri);
+  })
+
+  useHotkeys('0,4,5,6,7,8,9', (e) => {
+    const n = parseInt(e.key)
+    if (n === 0) {
+      aprobar(displayedNode, 10);
+    } else {
+      aprobar(displayedNode, n);
+    }
+  })
 
   return (
     <>
