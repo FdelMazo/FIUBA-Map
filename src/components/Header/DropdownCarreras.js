@@ -11,6 +11,7 @@ import {
     MenuOptionGroup,
     Tooltip,
     Box,
+    Text,
 } from "@chakra-ui/react";
 import CARRERAS from "../../carreras";
 import { GraphContext, UserContext } from "../../MapContext";
@@ -21,18 +22,27 @@ const DropdownCarreras = () => {
 
     return (<Box>
         <Menu placement="bottom-end" isLazy>
-            <MenuButton
-                colorScheme="whiteAlpha"
-                variant="outline"
-                color="white"
-                borderRadius="md"
-                as={Button}
-                mr={2}
-                rightIcon={isSmallMobile ? undefined : <ChevronDownIcon />}
+            <Tooltip placement="bottom"
+                label={
+                    user.carrera.beta && (<Box fontSize="xs">
+                        <Text >Los planes nuevos (y como pasarse de plan) cambian todo el tiempo.</Text>
+                        <Text>Esto está solamente para <Text as="em">darse una idea</Text> de como te quedaría la carrera si te cambias de plan, pero no es algo estricto ni 100% fiel a la realidad.</Text>
+                        <Text>Cuando se oficialicen los planes, lo mejor va a ser revisar uno por uno todo lo aprobado contra el SIU para confirmar que no quedó nada mal cargado</Text>
+                    </Box>)
+                }
             >
-                {isMobile ? user.carrera.nombrecorto : user.carrera.nombre}
-            </MenuButton>
-
+                <MenuButton
+                    colorScheme="whiteAlpha"
+                    variant="outline"
+                    color="white"
+                    borderRadius="md"
+                    as={Button}
+                    mr={2}
+                    rightIcon={isSmallMobile ? undefined : <ChevronDownIcon />}
+                >
+                    {isMobile ? user.carrera.nombrecorto : user.carrera.nombre}
+                </MenuButton>
+            </Tooltip>
             <MenuList>
                 <MenuOptionGroup
                     onChange={(v) => {
