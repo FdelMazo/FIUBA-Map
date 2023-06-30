@@ -83,8 +83,6 @@ const Graph = (userContext) => {
     return { nodes, edges, groups, key }
   }, [user.carrera.id])
 
-  const [loadingGraph, setLoadingGraph] = React.useState(false);
-
   const edges = React.useMemo(() => {
     return network?.body.data.edges;
   }, [network]);
@@ -329,7 +327,8 @@ const Graph = (userContext) => {
 
   const actualizar = () => {
     if (!network || graph.key !== network.carrera) return
-    const creditos = [...getters.MateriasAprobadasSinCBC(), ...getters.CBC(), ...optativas].reduce(accCreditos, 0)
+    const creditosTotales = [...getters.MateriasAprobadasSinCBC(), ...getters.CBC(), ...optativas].reduce(accCreditos, 0)
+    const creditosCBC = [...getters.CBC()].reduce(accCreditos, 0)
     nodes.update(
       nodes.map((n) =>
         getNode(n.id).actualizar({
@@ -337,7 +336,7 @@ const Graph = (userContext) => {
           user,
           network,
           getNode,
-          creditos,
+          creditos: { creditosTotales, creditosCBC },
           showLabels: logged,
           colorMode,
         })
@@ -352,10 +351,19 @@ const Graph = (userContext) => {
 
   React.useEffect(() => {
     if (!network || graph.key !== network.carrera) return
-    // TODO: check displayed node aca?
+    if (user.carrera.beta) {
+      if (user.padron && user.carrera.id === "informatica-2020") {
+        transicionInformatica2020()
+        actualizar();
+        actualizarNiveles()
+        showRelevantes();
+        network.fit();
+        return
+      }
+    }
+
     const map = user.maps.find((map) => map.carreraid === user.carrera.id)?.map
     if (map) {
-      setLoadingGraph(true)
       const toUpdate = []
 
       map.materias.forEach((m) => {
@@ -372,28 +380,23 @@ const Graph = (userContext) => {
         }
       });
 
-      nodes.update(toUpdate);
       map.checkboxes?.forEach((c) => toggleCheckbox(c));
+      optativasDispatch({ action: 'override', value: map.optativas ?? [] })
+      setAplazos(map.aplazos || 0);
 
       if (user.orientacion && groupStatus(user.orientacion.nombre) === "hidden") {
         toggleGroup(user.orientacion.nombre);
       }
 
+      nodes.update(toUpdate);
+
       actualizar();
       actualizarNiveles()
       showRelevantes();
-
-      // TODO: Fix cambio de optativas con cambio de carrera
-      optativasDispatch({ action: 'override', value: map.optativas ?? [] })
-      setAplazos(map.aplazos || 0);
       network.fit();
-
-      if (user.padron && user.carrera.id === "informatica-2020") {
-        transicionInformatica2020()
-      }
-
-      setLoadingGraph(false)
     } else {
+      optativasDispatch({ action: 'override', value: [] })
+      setAplazos(0);
       aprobar("CBC", 0);
       actualizarNiveles()
       network.fit();
@@ -981,8 +984,6 @@ const Graph = (userContext) => {
     }
 
     nodes.update(toUpdate.flat());
-    actualizar();
-    actualizarNiveles();
     const creditos = creditosElectivas >= (24 - creditosElectivasPlanNuevo) ? (24 - creditosElectivasPlanNuevo) : creditosElectivas;
     if (creditos > 0) {
       optativasDispatch({
@@ -993,7 +994,6 @@ const Graph = (userContext) => {
         }]
       })
     };
-    network.fit();
   }
 
   // Cuando el usuario se desloguea, llamamos a actualizar para sacar los labels de la nota
@@ -1001,7 +1001,7 @@ const Graph = (userContext) => {
   // Cambiar el colorMode tiene que actualizar el texto de las materias con texto afuera
   // Cuando cambia o la orientacion o el fin de carrera actualizamos el mapa para mostrar los creditos y las materias
   React.useEffect(() => {
-    if (!network) return
+    if (!network || graph.key !== network.carrera) return
     actualizar();
     actualizarNiveles()
   }, [logged, colorMode, optativas, user.orientacion?.nombre, user.finDeCarrera?.id]);
@@ -1020,7 +1020,6 @@ const Graph = (userContext) => {
     changeOrientacion,
     changeFinDeCarrera,
     toggleCheckbox,
-    loadingGraph,
     cursando,
     groupStatus,
     optativas,

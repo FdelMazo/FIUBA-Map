@@ -4,17 +4,16 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
-import { GraphContext, UserContext } from "../../MapContext";
+import { UserContext } from "../../MapContext";
 import Creditos from "./Creditos";
 import ProgressBar from "./ProgressBar";
 import Promedio from "./Promedio";
 
 const Footer = () => {
   const { logged, user } = React.useContext(UserContext);
-  const { loadingGraph } = React.useContext(GraphContext);
 
   return (
-    <Collapse in={logged && !loadingGraph} position="relative">
+    <Collapse in={logged} position="relative">
       <Flex
         alignItems="center"
         bg={useColorModeValue("headerbg", "headerbgdark")}

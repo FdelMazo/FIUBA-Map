@@ -113,7 +113,7 @@ const Creditos = () => {
             <PopoverBody>
               {optativas.map((o) => (
                 <Editable
-                  key={o.id}
+                  key={[o.nombre, o.id].join('-')}
                   m={1}
                   textAlign="left"
                   defaultValue={o.nombre}

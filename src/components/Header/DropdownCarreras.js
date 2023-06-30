@@ -38,7 +38,6 @@ const DropdownCarreras = () => {
                     onChange={(v) => {
                         changeCarrera(v);
                     }}
-                    key={user.carrera.id}
                     defaultValue={user.carrera.id}
                     type="radio"
                 >
