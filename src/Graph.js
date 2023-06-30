@@ -61,7 +61,10 @@ const Graph = (userContext) => {
     network.fit();
   }, [network, width, height]);
 
+  const [displayedNode, setDisplayedNode] = React.useState("");
+
   const graph = React.useMemo(() => {
+    setDisplayedNode("")
     const nodes = user.carrera.graph.map((n) => new Node(n));
     const edges = user.carrera.graph.flatMap((n) => {
       let e = [];
@@ -81,7 +84,6 @@ const Graph = (userContext) => {
   }, [user.carrera.id])
 
   const [loadingGraph, setLoadingGraph] = React.useState(false);
-  const [displayedNode, setDisplayedNode] = React.useState("");
 
   const edges = React.useMemo(() => {
     return network?.body.data.edges;

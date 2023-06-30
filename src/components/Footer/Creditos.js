@@ -33,10 +33,7 @@ import React from "react";
 import { GraphContext, UserContext } from "../../MapContext";
 
 const Creditos = () => {
-  const {
-    user,
-  } = React.useContext(UserContext);
-
+  const { user, isMobile } = React.useContext(UserContext);
   const {
     optativas,
     optativasDispatch,
@@ -51,7 +48,6 @@ const Creditos = () => {
   }, [creditos])
 
   const creditosTotalesNecesarios = React.useMemo(() => {
-    if (!user.carrera) return 0
     // TODO: En un mundo ideal esto no esta hardcodeado y se computa
     // pero cada carrera es tan distinta que esto se hace imposible
     // con la estructura actual de carreras.js
@@ -67,15 +63,15 @@ const Creditos = () => {
               <Stat p="0.4em" color="white" size="sm">
                 <StatLabel>
                   Créditos
-                  <Badge
+                  {!isMobile && <Badge
                     ml={1}
                     colorScheme="green"
-                    variant="outline"
+                    variant="solid"
                   >
                     {Math.round(
                       (creditosTotales / creditosTotalesNecesarios) * 100
                     ) + "%"}
-                  </Badge>
+                  </Badge>}
                 </StatLabel>
                 <StatNumber>
                   {creditosTotales + " de " + creditosTotalesNecesarios}

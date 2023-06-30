@@ -13,7 +13,6 @@ const Footer = () => {
   const { logged, user } = React.useContext(UserContext);
   const { loadingGraph } = React.useContext(GraphContext);
 
-
   return (
     <Collapse in={logged && !loadingGraph} position="relative">
       <Flex
