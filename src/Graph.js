@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useColorMode } from "@chakra-ui/color-mode";
 import React from "react";
 import CARRERAS from "./carreras";
@@ -87,7 +86,7 @@ const Graph = (userContext) => {
     setNetwork(network)
   }
 
-    // El graph es el contenido de la red. Al cambiar la carrera se rellena con lo que tiene el json
+  // El graph es el contenido de la red. Al cambiar la carrera se rellena con lo que tiene el json
   // y despues, con un useEffect, se rellena con lo que tiene el usuario en la DB
   const graph = React.useMemo(() => {
     // Esta mal que un useMemo no sea puro...
@@ -112,7 +111,7 @@ const Graph = (userContext) => {
     // y despues la usamos para chequear contra la carrera de la network
     const key = user.carrera.id
     return { nodes, edges, groups, key }
-  }, [user.carrera.id])
+  }, [user.carrera.graph, user.carrera.id])
 
   // Cuando cambia la carrera, poblamos el nuevo grafo con lo que hay en la DB
   // (o, simplemente aprobamos el CBC si el usuario no tenia nada)
@@ -1111,6 +1110,8 @@ const Graph = (userContext) => {
     if (!network || graph.key !== network.key) return
     actualizar();
     actualizarNiveles()
+  // Sabemos clavado en que momentos queremos forzar una actualización
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [logged, colorMode, optativas, user.orientacion?.nombre, user.finDeCarrera?.id]);
 
   return {

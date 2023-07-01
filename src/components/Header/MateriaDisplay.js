@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { GraphContext } from "../../MapContext";
 import { getCurrentCuatri } from "../../utils";
