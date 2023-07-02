@@ -821,6 +821,10 @@ const Graph = (userContext) => {
     let creditosElectivas = 0
 
     const informaticaVieja = user.maps.find((map) => map.carreraid === 'informatica')?.map
+    if (!informaticaVieja) {
+      aprobar("CBC", 0)
+      return
+    };
     let aprobadas = informaticaVieja.materias.filter((m) => m.nota >= 0)
     // Primero, nos encargamos de algunos casos borde. Materias nuevas que equivalen a dos materias viejas
     const equivLenguajesCompiladores1 = aprobadas.filter((m) => m.id === '75.31' || m.id === '75.16' || m.id === '75.14')
