@@ -739,6 +739,7 @@ const Graph = (userContext) => {
   }
 
   const deselectNode = () => {
+    if (!displayedNode) return;
     unblurAll()
     setDisplayedNode("");
   }
@@ -766,31 +767,28 @@ const Graph = (userContext) => {
       if (network.getSelectedNodes().length) {
         return
       }
+
       // Hacemos que esto solo suceda despues de un tiempo, para evitar que
       // cuando pasamos el mouse asi nomas se seleccione el nodo
+      clearTimeout(hovertimer);
       hovertimer = setTimeout(() => {
         selectNode(id)
       }, 300);
     },
     blurNode: () => {
       // unhover: volvemos al estado original
+      clearTimeout(hovertimer);
+      hovertimer = undefined;
+
       if (network.getSelectedNodes().length) {
         return
       }
-      if (hovertimer) {
-        clearTimeout(hovertimer);
-        hovertimer = undefined;
-      } else {
-        deselectNode()
-      }
+      deselectNode()
     },
     selectNode: (e) => {
       // click: seleccionar un nodo
-      if (hovertimer) {
-        clearTimeout(hovertimer);
-        hovertimer = undefined;
-      }
       const id = e.nodes[0];
+
       // Si clickeo el CBC, lo abro/cierro
       if (id === "CBC") {
         toggleCBC();
@@ -802,10 +800,6 @@ const Graph = (userContext) => {
     },
     deselectNode: (e) => {
       // click en otro nodo/click en cualquier lado del mapa: deseleccionar lo que teniamos
-      if (hovertimer) {
-        clearTimeout(hovertimer);
-        hovertimer = undefined;
-      }
       deselectNode()
     },
   };
