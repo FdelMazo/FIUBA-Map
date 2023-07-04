@@ -5,7 +5,6 @@ import {
   Icon,
   MoonIcon,
   SunIcon,
-  WarningTwoIcon,
 } from "@chakra-ui/icons";
 import {
   LightMode,
@@ -147,13 +146,35 @@ const Controls = () => {
                             {" "}y quiero dejar esto de lado.
                           </Text>
                         <Text>
-                            Estoy buscando alguien que quiera ayudarme a mantenerlo. Si te interesa, escribime! Hablame a telegram o abrime un issue. O mucho mejor, forkea el repo, hacé algún pull request, agrega código en donde quieras.
+                            Actualmente mucho no hay para hacer, pero eventualmente van a salir más planes nuevos y voy a necesitar ayuda. Si te interesa, deja un comentario <Link
+                              isExternal
+                              _hover={{
+                                color:
+                                  colorMode === "dark"
+                                    ? "electivas.400"
+                                    : "electivas.500",
+                              }}
+                              href="https://github.com/FdelMazo/FIUBA-Map/issues/168"
+                            >
+                              {" "}acá.{" "}
+                              <ExternalLinkIcon
+                                color={
+                                  colorMode === "dark"
+                                    ? "electivas.400"
+                                    : "electivas.500"
+                                }
+                              />
+                            </Link>
                         </Text>
                           <Text>
                             Más allá de eso, todo lo que sea un bug crítico lo voy a seguir arreglando, así que si encontrás algo que no funciona, avisame!
                           </Text>
                           <Text>
-                            Y si llegaste tan lejos, gracias por usar la herramienta! Espero que te haya servido. Si me querés tirar un cafecito, te lo agradezco mucho! (Aunque para ser sincero, aprecio mucho más los mensajitos que los cafecitos)
+                            Y si llegaste tan lejos, gracias por usar la herramienta! Espero que te haya servido. Si me querés tirar un cafecito, te lo agradezco mucho!
+                            <br />
+                            <Text fontSize="xs" as="span">
+                              {" "}(Aunque para ser sincero, aprecio más los mensajes que los cafecitos...)
+                            </Text>
                           </Text>
                         </VStack>
                         <form
@@ -239,8 +260,8 @@ const Controls = () => {
               }));
             }}
           >
-            <TagLabel>{showGracias ? "Gracias!" : "Estamos contratando"}</TagLabel>
-            <TagRightIcon as={showGracias ? CheckIcon : WarningTwoIcon} />
+            <TagLabel>{showGracias ? "Gracias!" : "Sugerencias"}</TagLabel>
+            <TagRightIcon as={showGracias ? CheckIcon : ChatIcon} />
           </Tag>
         </Box>
       </LightMode>
