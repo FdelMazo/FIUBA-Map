@@ -25,6 +25,10 @@ export const getCurrentCuatri = () => {
   const today = new Date();
   let cuatri = today.getFullYear();
   const month = today.getMonth();
-  if (month > 6) cuatri = cuatri + 0.5;
+  // recordemos que el month esta 0-indexed
+  // 1C entre marzo (2) y julio (6)
+  // 2C entre agosto (7) y febrero (1)
+  if (month < 2) cuatri = cuatri - 0.5;
+  else if (month > 6) cuatri = cuatri + 0.5;
   return cuatri;
 }

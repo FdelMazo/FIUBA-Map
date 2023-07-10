@@ -188,12 +188,12 @@ const MateriaControl = () => {
         <>
           {!node.cuatrimestre ?
             (
-              <Tooltip {...TooltipProps} label="Planear Cuatrimestre">
+              <Tooltip {...TooltipProps} label="Cursando Actualmente">
                 <Button
                   {...ButtonProps}
                   {...ControlProps}
                   p={0}
-                  color="habilitadas.500"
+                  color="cursando.400"
                   onClick={() => cursando(displayedNode, getCurrentCuatri())}
                 >
                   <strong>C</strong>

@@ -1,5 +1,5 @@
 import { COLORS } from "./theme";
-import { promediar } from "./utils";
+import { getCurrentCuatri, promediar } from "./utils";
 
 const FONT_AFUERA = ["CBC", "*CBC"]
 const ALWAYS_SHOW = ["Materias Obligatorias", "CBC", "Fin de Carrera (Obligatorio)"]
@@ -123,6 +123,7 @@ class Node {
     let grupoDefault = this.categoria;
     if (this.aprobada && this.nota >= 0) grupoDefault = "Aprobadas";
     else if (this.nota === -1) grupoDefault = "En Final";
+    else if (this.cuatrimestre === getCurrentCuatri()) grupoDefault = "Cursando";
     else if (this.isHabilitada(ctx)) grupoDefault = "Habilitadas";
     this.group = grupoDefault;
 
@@ -133,6 +134,7 @@ class Node {
       else if (this.aprobada && this.nota === 0)
         labelDefault += "\n[Equivalencia]";
       else if (this.nota === -1) labelDefault += "\n[En Final]";
+      else if (this.cuatrimestre === getCurrentCuatri()) labelDefault += "\n[Cursando]";
     }
     this.label = labelDefault;
 

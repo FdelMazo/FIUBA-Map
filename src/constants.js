@@ -119,6 +119,7 @@ export const GRUPOS = {
     size: 15,
   },
   Habilitadas: { color: COLORS.habilitadas[400] },
+  Cursando: { color: COLORS.cursando[400] },
   "En Final": { color: COLORS.enfinal[400] },
   "Materias Obligatorias": { color: COLORS.obligatorias[400] },
   "Materias Electivas": { color: COLORS.electivas[400] },
