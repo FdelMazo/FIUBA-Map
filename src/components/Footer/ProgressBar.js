@@ -88,7 +88,7 @@ const ProgressBar = () => {
                     // MAGIC: https://github.com/chakra-ui/chakra-ui/issues/68
                     isAnimated
                     sx={{
-                      "& > div:first-child": {
+                      "& > div:first-of-type": {
                         transitionProperty: "width",
                       },
                     }}
