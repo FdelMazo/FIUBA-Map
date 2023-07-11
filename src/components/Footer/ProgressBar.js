@@ -86,7 +86,6 @@ const ProgressBar = () => {
                     value={c.creditos}
                     colorScheme={c.color}
                     // MAGIC: https://github.com/chakra-ui/chakra-ui/issues/68
-                    isAnimated
                     sx={{
                       "& > div:first-of-type": {
                         transitionProperty: "width",
