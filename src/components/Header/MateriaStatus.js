@@ -44,7 +44,7 @@ const MateriaStatus = () => {
         </Badge>
 
         {node?.requiere &&
-          <Tooltip placement="bottom" label="El plan de estudios no es muy claro de si hay que contabilizar los créditos del CBC para esto, entonces no estoy seguro de que es válido acá. Si tenes información certera de esto (mail del departamento, el número que pide el SIU, etc), podrías pasarmela, así actualizo el FIUBA-Map? Gracias!">
+          <Tooltip placement="bottom" label="El plan de estudios no es muy claro de si hay que contabilizar los créditos del CBC para esto, entonces no estoy seguro de que es válido acá. Además, los docentes suelen hacer lo que quieren con esto, así que toma todo con pinzas y asegurate de poder cursar la materia antes de anotarte.">
             <Badge
               width="100%"
               px={2}
