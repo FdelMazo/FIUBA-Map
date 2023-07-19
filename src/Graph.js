@@ -178,8 +178,9 @@ const Graph = (userContext) => {
       network.fit();
     }
     // Solo queremos poblar el grafo cuando el usuario cambia de carrera
+    // o cuando el usuario se loguea y cambia el padron
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [graph.key, network])
+  }, [user.padron, graph.key, network])
 
   // Funcion importantisimaaaa, recorre todos los nodos y los actualiza a todos
   // Se llama casi siempre que pasa algo.
