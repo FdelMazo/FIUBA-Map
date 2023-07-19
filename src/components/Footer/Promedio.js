@@ -68,7 +68,7 @@ const Promedio = () => {
                   width="6ch"
                   value={aplazos}
                   min={0}
-                  onChange={(v) => setAplazos(parseFloat(v))}
+                  onChange={(v) => setAplazos(parseFloat(v) || 0)}
                 >
                   <NumberInputField
                     _hover={{
