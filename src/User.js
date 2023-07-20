@@ -1,4 +1,3 @@
-import { useMediaQuery } from "@chakra-ui/react";
 import React from "react";
 import CARRERAS from "./carreras";
 import * as C from "./constants";
@@ -210,9 +209,6 @@ const Login = () => {
     });
   };
 
-  // Usamos los mismos valores de mobile/no mobile en toda la app, para no volverse loco con el responsiveness
-  const [isSmallMobile, isMobile] = useMediaQuery(['(max-width: 420px)', '(max-width: 750px)']);
-
   return {
     user,
     logged,
@@ -224,8 +220,6 @@ const Login = () => {
     padronInput,
     setPadronInput,
     fiubaRepos,
-    isMobile,
-    isSmallMobile,
     loggingIn,
     saveUserGraph,
     signup

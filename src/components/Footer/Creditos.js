@@ -9,6 +9,7 @@ import {
   EditableInput,
   EditablePreview,
   Flex,
+  Hide,
   IconButton,
   LightMode,
   NumberDecrementStepper,
@@ -35,7 +36,7 @@ import { GraphContext, UserContext } from "../../MapContext";
 // Componente para mostrar los creditos totales de la carrera
 // y en hover setupear creditos por fuera del plan (materias optativas)
 const Creditos = () => {
-  const { user, isMobile } = React.useContext(UserContext);
+  const { user } = React.useContext(UserContext);
   const {
     optativas,
     optativasDispatch,
@@ -65,15 +66,17 @@ const Creditos = () => {
               <Stat p="0.4em" color="white" size="sm">
                 <StatLabel>
                   Créditos
-                  {!isMobile && <Badge
-                    ml={1}
-                    colorScheme="green"
-                    variant="solid"
-                  >
-                    {Math.round(
-                      (creditosTotales / creditosTotalesNecesarios) * 100
-                    ) + "%"}
-                  </Badge>}
+                  <Hide ssr={false} below="md">
+                    <Badge
+                      ml={1}
+                      colorScheme="green"
+                      variant="solid"
+                    >
+                      {Math.round(
+                        (creditosTotales / creditosTotalesNecesarios) * 100
+                      ) + "%"}
+                    </Badge>
+                  </Hide>
                 </StatLabel>
                 <StatNumber>
                   {creditosTotales + " de " + creditosTotalesNecesarios}

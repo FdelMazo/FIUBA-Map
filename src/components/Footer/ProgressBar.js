@@ -5,6 +5,7 @@ import {
   Flex,
   Grid,
   GridItem,
+  Hide,
   Icon,
   LightMode,
   Popover,
@@ -26,7 +27,7 @@ import { GraphContext, UserContext } from "../../MapContext";
 // Componente con una barra de progresso para mostrar todos los creditos de las
 // materias aprobadas
 const ProgressBar = () => {
-  const { user, isMobile } = React.useContext(UserContext);
+  const { user } = React.useContext(UserContext);
   const {
     creditos,
     toggleCheckbox
@@ -64,7 +65,7 @@ const ProgressBar = () => {
                           ) || 0) + "%"}
                       </Badge>
                     )}
-                    {!isMobile && (
+                    <Hide ssr={false} below="md">
                       <Badge
                         fontSize="x-small"
                         ml={1}
@@ -74,7 +75,7 @@ const ProgressBar = () => {
                       >
                         {c.nombrecorto}
                       </Badge>
-                    )}
+                    </Hide>
                   </Flex>
                   <Progress
                     hasStripe

@@ -12,13 +12,15 @@ import {
     Tooltip,
     Box,
     Text,
+    Hide,
+    Show,
 } from "@chakra-ui/react";
 import CARRERAS from "../../carreras";
 import { GraphContext, UserContext } from "../../MapContext";
 
 // Componente para elegir carrera
 const DropdownCarreras = () => {
-    const { user, isMobile, isSmallMobile } = React.useContext(UserContext);
+    const { user } = React.useContext(UserContext);
     const { changeCarrera } = React.useContext(GraphContext);
 
     return (<Box>
@@ -39,9 +41,15 @@ const DropdownCarreras = () => {
                     borderRadius="md"
                     as={Button}
                     mr={2}
-                    rightIcon={isSmallMobile ? undefined : <ChevronDownIcon />}
+                    rightIcon={<ChevronDownIcon />}
                 >
-                    {isMobile ? user.carrera.nombrecorto : user.carrera.nombre}
+                    {/* Hardcoded to chakra md breakpoint */}
+                    <Show ssr={false} breakpoint='(max-width: 48em)'>
+                        {user.carrera.nombrecorto}
+                    </Show>
+                    <Hide ssr={false} breakpoint='(max-width: 48em)'>
+                        {user.carrera.nombre}
+                    </Hide>
                 </MenuButton>
             </Tooltip>
             <MenuList>
@@ -60,7 +68,7 @@ const DropdownCarreras = () => {
                 </MenuOptionGroup>
             </MenuList>
         </Menu>
-        {!isMobile && (
+        <Hide ssr={false} below="md">
             <Tooltip closeOnClick hasArrow label="Plan de Estudios" placement="bottom">
                 <Link color="white" href={user.carrera.link} isExternal>
                     <Icon boxSize={6} viewBox="0 0 512 512">
@@ -71,7 +79,7 @@ const DropdownCarreras = () => {
                     </Icon>
                 </Link>
             </Tooltip>
-        )}
+        </Hide>
     </Box>)
 }
 
