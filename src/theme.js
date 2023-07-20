@@ -86,8 +86,6 @@ export const customTheme = extendTheme({
     heading: "Georgia, serif",
     mono: "Menlo, monospace",
   },
-  colors: {
-    ...COLORS,
-  },
+  colors: COLORS,
   config,
 });
