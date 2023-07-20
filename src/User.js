@@ -22,23 +22,26 @@ const initialUser = {
 
 const Login = () => {
   const [user, setUser] = React.useState(initialUser);
-  const [padronInput, setPadronInput] = React.useState("");
+
+  // Inicializamos el padron en lo que hay en el storage, o vacio
+  const [padronInput, setPadronInput] = React.useState(window.localStorage.getItem("padron") || "");
   const logged = user.padron !== "";
 
   // Loading es para el spinner del input del padron
-  const [loading, setLoading] = React.useState(false);
+  // Si tenemos algo en el storage, directo arrancamos con loading
+  const [loading, setLoading] = React.useState(!!window.localStorage.getItem("padron"));
+
   // Loggin in es para cuando la pagina entera esta cargando todos los datos del usuario
   const [loggingIn, setLoggingIn] = React.useState(false);
 
 
-  // On boot nos fijamos si hay un padron guardado en el local storage
+  // On boot nos fijamos si hay un padron inicial del storage
   // Si existe, lo usamos para loguear al usuario
   React.useEffect(() => {
-    const padronStorage = window.localStorage.getItem("padron");
-    if (padronStorage) {
-      setPadronInput(padronStorage);
-      login(padronStorage);
+    if (padronInput) {
+      login(padronInput);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // On boot pedimos todos los fiuba repos para poder mostrarlos en el header
