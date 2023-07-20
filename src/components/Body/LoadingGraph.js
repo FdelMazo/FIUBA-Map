@@ -35,7 +35,7 @@ const LoadingGraph = () => {
   return (
     <Modal isOpen={true}>
       <ModalOverlay />
-      <Box position="fixed" top="20%" left="50%" transform="translate(-50%, -50%)">
+      <Box position="fixed" top="25%" left="50%" transform="translate(-50%, -50%)">
         <Box
           animation="sk-rotateplane 1.2s infinite ease-in-out"
           bg={useColorModeValue("headerbg", "white")}
