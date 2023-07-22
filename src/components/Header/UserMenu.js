@@ -128,7 +128,7 @@ const UserMenu = () => {
             await saveGraph().catch(console.error);
             setSaving(false);
           }}
-          disabled={isBeta}
+          isDisabled={isBeta}
         >
           <Icon boxSize={5} as={FaSave} />
         </IconButton>
