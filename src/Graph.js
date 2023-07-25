@@ -740,9 +740,10 @@ const Graph = (userContext) => {
   }
 
   const deselectNode = () => {
-    if (!displayedNode) return;
     unblurAll()
-    setDisplayedNode("");
+    if (displayedNode) {
+      setDisplayedNode("");
+    }
   }
 
   let hovertimer = undefined;
