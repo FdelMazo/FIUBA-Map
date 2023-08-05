@@ -170,14 +170,6 @@
         "level": 5
     },
     {
-        "id": "75.43",
-        "materia": "Redes",
-        "creditos": 6,
-        "correlativas": "75.08",
-        "categoria": "Materias Obligatorias",
-        "level": 5
-    },
-    {
         "id": "75.59",
         "materia": "Programación Concurrente",
         "creditos": 6,
@@ -186,10 +178,10 @@
         "level": 5
     },
     {
-        "id": "75.10",
-        "materia": "Ingeniería de Software II",
+        "id": "75.43",
+        "materia": "Redes",
         "creditos": 6,
-        "correlativas": "75.15-75.09",
+        "correlativas": "75.08",
         "categoria": "Materias Obligatorias",
         "level": 5
     },
@@ -211,6 +203,14 @@
         "level": 6
     },
     {
+        "id": "75.10",
+        "materia": "Ingeniería de Software II",
+        "creditos": 6,
+        "correlativas": "75.15-75.09",
+        "categoria": "Materias Obligatorias",
+        "level": 6
+    },
+    {
         "id": "75.74",
         "materia": "Sistemas Distribuidos I",
         "creditos": 6,
@@ -224,7 +224,7 @@
         "creditos": 6,
         "correlativas": "75.09",
         "categoria": "Materias Obligatorias",
-        "level": 6
+        "level": 5
     },
     {
         "id": "71.12",
