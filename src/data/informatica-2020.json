@@ -207,7 +207,7 @@
         "id": "75.10",
         "materia": "Ingeniería de Software II",
         "creditos": 6,
-        "correlativas": "75.15-75.09",
+        "correlativas": "75.15-75.09-75.42",
         "categoria": "Materias Obligatorias",
         "level": 6
     },
@@ -239,7 +239,7 @@
         "id": "ID22",
         "materia": "Taller de Seguridad Informática",
         "creditos": 8,
-        "correlativas": "75.43-ID09",
+        "correlativas": "75.43",
         "categoria": "Materias Obligatorias",
         "level": 7
     },
