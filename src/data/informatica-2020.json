@@ -303,14 +303,14 @@
         "id": "ID37",
         "materia": "Optimización Convexa",
         "creditos": 6,
-        "correlativas": "61.09-75.06",
+        "correlativas": "75.06",
         "categoria": "Materias Electivas"
     },
     {
         "id": "ID38",
         "materia": "Aprendizaje Automático",
         "creditos": 6,
-        "correlativas": "61.09-75.06",
+        "correlativas": "75.06",
         "categoria": "Materias Electivas"
     },
     {
@@ -345,7 +345,7 @@
         "id": "ID43",
         "materia": "Redes Complejas",
         "creditos": 6,
-        "correlativas": "ID42",
+        "correlativas": "ID42-ID44",
         "categoria": "Materias Electivas"
     },
     {
