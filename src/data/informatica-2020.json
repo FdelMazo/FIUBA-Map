@@ -114,18 +114,18 @@
         "level": 3
     },
     {
-        "id": "75.29",
-        "materia": "Teoría de Algoritmos",
+        "id": "75.08",
+        "materia": "Sistemas Operativos",
         "creditos": 6,
-        "correlativas": "75.41-75.40",
+        "correlativas": "66.70",
         "categoria": "Materias Obligatorias",
         "level": 3
     },
     {
-        "id": "75.08",
-        "materia": "Sistemas Operativos",
-        "creditos": 8,
-        "correlativas": "66.70",
+        "id": "75.29",
+        "materia": "Teoría de Algoritmos",
+        "creditos": 6,
+        "correlativas": "75.41-75.40",
         "categoria": "Materias Obligatorias",
         "level": 3
     },
