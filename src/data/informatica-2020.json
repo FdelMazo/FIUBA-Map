@@ -189,7 +189,8 @@
         "id": "62.03",
         "materia": "Física 2 C para Informáticos",
         "creditos": 4,
-        "correlativas": "75.06",
+        "requiere": 120,
+        "requiereCBC": true,
         "categoria": "Materias Obligatorias",
         "level": 6
     },
