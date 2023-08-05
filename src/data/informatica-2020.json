@@ -58,8 +58,8 @@
         "level": 1
     },
     {
-        "id": "75.41",
-        "materia": "Algoritmos y Estructura de Datos",
+        "id": "ID49",
+        "materia": "Fundamentos de Programación",
         "creditos": 6,
         "correlativas": "CBC",
         "categoria": "Materias Obligatorias",
@@ -85,7 +85,15 @@
         "id": "66.70",
         "materia": "Organización del Computador",
         "creditos": 6,
-        "correlativas": "75.41",
+        "correlativas": "75.40-ID49",
+        "categoria": "Materias Obligatorias",
+        "level": 2
+    },
+    {
+        "id": "75.41",
+        "materia": "Algoritmos y Estructura de Datos",
+        "creditos": 6,
+        "correlativas": "74.40-ID49",
         "categoria": "Materias Obligatorias",
         "level": 2
     },
@@ -95,7 +103,7 @@
         "creditos": 6,
         "correlativas": "75.41-75.40",
         "categoria": "Materias Obligatorias",
-        "level": 2
+        "level": 3
     },
     {
         "id": "61.09",
@@ -118,14 +126,6 @@
         "materia": "Sistemas Operativos",
         "creditos": 8,
         "correlativas": "66.70",
-        "categoria": "Materias Obligatorias",
-        "level": 3
-    },
-    {
-        "id": "ID09",
-        "materia": "Lenguajes y Compiladores I",
-        "creditos": 6,
-        "correlativas": "75.07-66.70",
         "categoria": "Materias Obligatorias",
         "level": 3
     },
@@ -241,6 +241,13 @@
         "correlativas": "75.43-ID09",
         "categoria": "Materias Obligatorias",
         "level": 7
+    },
+    {
+        "id": "ID09",
+        "materia": "Lenguajes y Compiladores I",
+        "creditos": 6,
+        "correlativas": "75.07-66.70-75.29",
+        "categoria": "Materias Electivas"
     },
     {
         "id": "ID30",
