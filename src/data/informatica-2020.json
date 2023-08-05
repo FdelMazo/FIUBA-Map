@@ -197,7 +197,7 @@
         "id": "ID19",
         "materia": "Empresas de Base Tecnológica I",
         "creditos": 6,
-        "requiere": 100,
+        "requiere": 120,
         "requiereCBC": true,
         "categoria": "Materias Obligatorias",
         "level": 6
