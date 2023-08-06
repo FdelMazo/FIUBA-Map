@@ -98,7 +98,7 @@ export const CARRERAS = [
     // para no volverse loco con los fin de carrera, dejamos todo junto por ahora
     // finDeCarrera: [
     //   { id: "tesis", materia: "ID27" },
-    //   { id: "tpp", materia: "ID29" },
+    //   { id: "tpp", materia: "TESISOTPP" },
     // ],
     creditos: {
       total: 228,
@@ -106,7 +106,7 @@ export const CARRERAS = [
       electivas: 24,
       materias: [
         {
-          id: "ID29",
+          id: "TESISOTPP",
           nombrecorto: "TESIS/TPP",
           bg: COLORS.findecarrera[50],
           color: "findecarrera",

@@ -244,161 +244,161 @@
         "level": 7
     },
     {
-        "id": "ID09",
+        "id": "LYCI",
         "materia": "Lenguajes y Compiladores I",
         "creditos": 6,
         "correlativas": "PDP-ORGCOMPU-TDA",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID30",
+        "id": "FMCRIPTO",
         "materia": "Fundamentos Matemáticos de la Criptografía",
         "creditos": 6,
         "correlativas": "ALGL",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID31",
+        "id": "CRIPTOI",
         "materia": "Criptografía I",
         "creditos": 6,
         "correlativas": "ALGL-TDA",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID32",
+        "id": "CRIPTOII",
         "materia": "Criptografía II",
         "creditos": 6,
-        "correlativas": "ID30-ID31",
+        "correlativas": "FMCRIPTO-CRIPTOI",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "75.63",
+        "id": "SDII",
         "materia": "Sistemas Distribuidos II",
         "creditos": 6,
         "correlativas": "SDI",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID34",
+        "id": "TII",
         "materia": "Técnicas de Ingeniería Inversa",
         "creditos": 6,
-        "correlativas": "ID31-TDSINF",
+        "correlativas": "CRIPTOI-TDSINF",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID35",
+        "id": "CRIPTOAN",
         "materia": "Criptoanálisis",
         "creditos": 6,
-        "correlativas": "ID31-TDSINF",
+        "correlativas": "CRIPTOI-TDSINF",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID36",
+        "id": "IDD",
         "materia": "Ingeniería de Datos",
         "creditos": 6,
         "correlativas": "CDD-INGSOFTII",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID37",
+        "id": "OPTCONV",
         "materia": "Optimización Convexa",
         "creditos": 6,
         "correlativas": "CDD",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID38",
+        "id": "AA",
         "materia": "Aprendizaje Automático",
         "creditos": 6,
         "correlativas": "CDD",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID39",
+        "id": "AP",
         "materia": "Aprendizaje Profundo",
         "creditos": 6,
-        "correlativas": "ID38",
+        "correlativas": "AA",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID40",
+        "id": "APR",
         "materia": "Aprendizaje por Refuerzo",
         "creditos": 6,
-        "correlativas": "ID38",
+        "correlativas": "AA",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "75.26",
+        "id": "SIM",
         "materia": "Simulación",
         "creditos": 6,
         "correlativas": "PYE-MODNUM",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID42",
+        "id": "SISTC",
         "materia": "Sistemas Complejos",
         "creditos": 6,
         "correlativas": "PYE-MODNUM",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID43",
+        "id": "REDESC",
         "materia": "Redes Complejas",
         "creditos": 6,
-        "correlativas": "ID42-ID44",
+        "correlativas": "SISTC-TADJ",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID44",
+        "id": "TADJ",
         "materia": "Teoría Algorítmica de Juegos",
         "creditos": 4,
         "correlativas": "AMII-ALGL-TDA",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID45",
+        "id": "TDCOMPU",
         "materia": "Teoría de Computabilidad",
         "creditos": 6,
-        "correlativas": "ID09-TDA",
+        "correlativas": "LYCI-TDA",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID46",
+        "id": "TDLI",
         "materia": "Teoría de la Información",
         "creditos": 6,
         "correlativas": "PYE-TDA",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID47",
+        "id": "CC",
         "materia": "Computación Cuántica",
         "creditos": 6,
         "correlativas": "PYE",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID48",
+        "id": "LYCII",
         "materia": "Lenguajes y Compiladores II",
         "creditos": 6,
-        "correlativas": "ID09-SISOPS",
+        "correlativas": "LYCI-SISOPS",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "61.10",
+        "id": "AMIII",
         "materia": "Análisis Matemático III",
         "creditos": 6,
         "correlativas": "AMII-ALGL",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "75.73",
+        "id": "ARQSOFT",
         "materia": "Arquitectura de Software",
         "creditos": 4,
         "correlativas": "INGSOFTI",
         "categoria": "Materias Electivas"
     },
     {
-        "id": "ID29",
+        "id": "TESISOTPP",
         "materia": "Tésis o Trabajo Profesional de Ingeniería Informática",
         "creditos": 12,
         "requiere": 140,
