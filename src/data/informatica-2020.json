@@ -194,8 +194,8 @@
         "level": 5
     },
     {
-        "id": "FIIC",
-        "materia": "Física 2 C para Informáticos",
+        "id": "FPI",
+        "materia": "Física para Informática",
         "creditos": 4,
         "requiere": 120,
         "requiereCBC": true,
@@ -230,7 +230,7 @@
     {
         "id": "EBTII",
         "materia": "Empresas de Base Tecnológica II",
-        "creditos": 8,
+        "creditos": 6,
         "correlativas": "EBTI",
         "categoria": "Materias Obligatorias",
         "level": 7
