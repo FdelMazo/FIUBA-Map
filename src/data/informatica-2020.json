@@ -74,7 +74,7 @@
         "level": 1
     },
     {
-        "id": "ALGL",
+        "id": "AL",
         "materia": "Álgebra Lineal",
         "creditos": 8,
         "correlativas": "CBC",
@@ -109,7 +109,7 @@
         "id": "PYE",
         "materia": "Probabilidad y Estadística",
         "creditos": 6,
-        "correlativas": "AMII-ALGL",
+        "correlativas": "AMII-AL",
         "categoria": "Materias Obligatorias",
         "level": 3
     },
@@ -133,7 +133,7 @@
         "id": "MODNUM",
         "materia": "Modelación Numérica",
         "creditos": 4,
-        "correlativas": "AMII-ALGL-AED",
+        "correlativas": "AMII-AL-AED",
         "categoria": "Materias Obligatorias",
         "level": 4
     },
@@ -254,14 +254,14 @@
         "id": "FMCRIPTO",
         "materia": "Fundamentos Matemáticos de la Criptografía",
         "creditos": 6,
-        "correlativas": "ALGL",
+        "correlativas": "AL",
         "categoria": "Materias Electivas"
     },
     {
         "id": "CRIPTOI",
         "materia": "Criptografía I",
         "creditos": 6,
-        "correlativas": "ALGL-TDA",
+        "correlativas": "AL-TDA",
         "categoria": "Materias Electivas"
     },
     {
@@ -352,7 +352,7 @@
         "id": "TADJ",
         "materia": "Teoría Algorítmica de Juegos",
         "creditos": 4,
-        "correlativas": "AMII-ALGL-TDA",
+        "correlativas": "AMII-AL-TDA",
         "categoria": "Materias Electivas"
     },
     {
@@ -387,7 +387,7 @@
         "id": "AMIII",
         "materia": "Análisis Matemático III",
         "creditos": 6,
-        "correlativas": "AMII-ALGL",
+        "correlativas": "AMII-AL",
         "categoria": "Materias Electivas"
     },
     {
