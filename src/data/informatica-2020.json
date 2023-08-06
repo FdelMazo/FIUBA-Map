@@ -28,7 +28,7 @@
         "level": -1
     },
     {
-        "id": "CBC5",
+        "id": "CBC90",
         "materia": "Pensamiento Computacional",
         "creditos": 6,
         "categoria": "*CBC",
@@ -47,10 +47,10 @@
         "creditos": 0,
         "categoria": "CBC",
         "level": 0,
-        "correlativas": "CBC28-CBC27-CBC3-CBC5-CBC24-CBC40"
+        "correlativas": "CBC28-CBC27-CBC3-CBC90-CBC24-CBC40"
     },
     {
-        "id": "61.03",
+        "id": "AMII",
         "materia": "Análisis Matemático II",
         "creditos": 8,
         "correlativas": "CBC",
@@ -58,7 +58,7 @@
         "level": 1
     },
     {
-        "id": "ID49",
+        "id": "FDP",
         "materia": "Fundamentos de Programación",
         "creditos": 6,
         "correlativas": "CBC",
@@ -66,7 +66,7 @@
         "level": 1
     },
     {
-        "id": "75.40",
+        "id": "IDS",
         "materia": "Introducción al Desarrollo de Software",
         "creditos": 6,
         "correlativas": "CBC",
@@ -74,7 +74,7 @@
         "level": 1
     },
     {
-        "id": "61.08",
+        "id": "ALGL",
         "materia": "Álgebra Lineal",
         "creditos": 8,
         "correlativas": "CBC",
@@ -82,10 +82,10 @@
         "level": 2
     },
     {
-        "id": "66.70",
+        "id": "ORGCOMPU",
         "materia": "Organización del Computador",
         "creditos": 6,
-        "correlativas": "75.40-ID49",
+        "correlativas": "IDS-FDP",
         "categoria": "Materias Obligatorias",
         "level": 2
     },
@@ -93,7 +93,7 @@
         "id": "75.41",
         "materia": "Algoritmos y Estructura de Datos",
         "creditos": 6,
-        "correlativas": "74.40-ID49",
+        "correlativas": "74.40-FDP",
         "categoria": "Materias Obligatorias",
         "level": 2
     },
@@ -101,7 +101,7 @@
         "id": "75.07",
         "materia": "Paradigmas de Programación",
         "creditos": 6,
-        "correlativas": "75.41-75.40",
+        "correlativas": "75.41-IDS",
         "categoria": "Materias Obligatorias",
         "level": 3
     },
@@ -125,7 +125,7 @@
         "id": "75.29",
         "materia": "Teoría de Algoritmos",
         "creditos": 6,
-        "correlativas": "75.41-75.40",
+        "correlativas": "75.41-IDS",
         "categoria": "Materias Obligatorias",
         "level": 3
     },
