@@ -91,10 +91,9 @@ export const CARRERAS = [
     eligeOrientaciones: true,
   },{
     id: "informatica-2020",
-    beta: true,
     link: "https://mli-fiuba.notion.site/Ingenier-a-en-Inform-tica-48e3eeece07e471dbfe1cd947f7ca245",
     graph: require("./data/informatica-2020.json"),
-    nombre: "Ingeniería en Informática (2020) - BETA",
+    nombre: "Ingeniería en Informática (2020)",
     nombrecorto: "Informática 2020",
     // para no volverse loco con los fin de carrera, dejamos todo junto por ahora
     // finDeCarrera: [
