@@ -117,7 +117,7 @@
         "id": "SISOPS",
         "materia": "Sistemas Operativos",
         "creditos": 6,
-        "correlativas": "66.70",
+        "correlativas": "ORGCOMPU",
         "categoria": "Materias Obligatorias",
         "level": 3
     },
@@ -141,7 +141,7 @@
         "id": "BDD",
         "materia": "Base de Datos",
         "creditos": 6,
-        "correlativas": "66.70-PDP",
+        "correlativas": "ORGCOMPU-PDP",
         "categoria": "Materias Obligatorias",
         "level": 4
     },
@@ -149,7 +149,7 @@
         "id": "TDP",
         "materia": "Taller de Programación",
         "creditos": 8,
-        "correlativas": "66.70-PDP",
+        "correlativas": "ORGCOMPU-PDP",
         "categoria": "Materias Obligatorias",
         "level": 4
     },
@@ -247,7 +247,7 @@
         "id": "ID09",
         "materia": "Lenguajes y Compiladores I",
         "creditos": 6,
-        "correlativas": "PDP-66.70-TDA",
+        "correlativas": "PDP-ORGCOMPU-TDA",
         "categoria": "Materias Electivas"
     },
     {
