@@ -9,6 +9,7 @@ import {
   EditableInput,
   EditablePreview,
   Flex,
+  Hide,
   IconButton,
   LightMode,
   NumberDecrementStepper,
@@ -30,14 +31,31 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
-import { GraphContext } from "../../Contexts";
+import { GraphContext, UserContext } from "../../MapContext";
 
+// Componente para mostrar los creditos totales de la carrera
+// y en hover setupear creditos por fuera del plan (materias optativas)
 const Creditos = () => {
+  const { user } = React.useContext(UserContext);
   const {
-    stats,
     optativas,
-    optativasDispatch
+    optativasDispatch,
+    creditos,
   } = React.useContext(GraphContext);
+
+  const creditosTotales = React.useMemo(() => {
+    return creditos.reduce((acc, c) => {
+      if (c.checkbox) return acc
+      return acc + c.creditos
+    }, 0)
+  }, [creditos])
+
+  const creditosTotalesNecesarios = React.useMemo(() => {
+    // TODO: En un mundo ideal esto no esta hardcodeado y se computa
+    // pero cada carrera es tan distinta que esto se hace imposible
+    // con la estructura actual de carreras.js
+    return user.carrera.creditos.total
+  }, [user.carrera])
 
   return (
     <Box>
@@ -48,18 +66,20 @@ const Creditos = () => {
               <Stat p="0.4em" color="white" size="sm">
                 <StatLabel>
                   Créditos
-                  <Badge
-                    ml={1}
-                    colorScheme="green"
-                    variant="outline"
-                  >
-                    {Math.round(
-                      (stats.creditosTotales / stats.creditosTotalesNecesarios) * 100
-                    ) + "%"}
-                  </Badge>
+                  <Hide ssr={false} below="md">
+                    <Badge
+                      ml={1}
+                      colorScheme="green"
+                      variant="solid"
+                    >
+                      {Math.round(
+                        (creditosTotales / creditosTotalesNecesarios) * 100
+                      ) + "%"}
+                    </Badge>
+                  </Hide>
                 </StatLabel>
                 <StatNumber>
-                  {stats.creditosTotales + " de " + stats.creditosTotalesNecesarios}
+                  {creditosTotales + " de " + creditosTotalesNecesarios}
                 </StatNumber>
               </Stat>
             </Box>
@@ -98,7 +118,7 @@ const Creditos = () => {
             <PopoverBody>
               {optativas.map((o) => (
                 <Editable
-                  key={o.id}
+                  key={[o.nombre, o.id].join('-')}
                   m={1}
                   textAlign="left"
                   defaultValue={o.nombre}

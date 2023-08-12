@@ -1,5 +1,5 @@
 import {
-  Center,
+  Box,
   Modal,
   ModalOverlay,
   useColorModeValue,
@@ -9,14 +9,12 @@ import React from "react";
 const injectStyle = (style) => {
   const styleElement = document.createElement("style");
   let styleSheet = null;
-
   document.head.appendChild(styleElement);
-
   styleSheet = styleElement.sheet;
-
   styleSheet.insertRule(style, styleSheet.cssRules.length);
 };
 
+// El mejor loading component que existe
 const LoadingGraph = () => {
   const keyframesStyle = `
       @keyframes sk-rotateplane {
@@ -37,18 +35,15 @@ const LoadingGraph = () => {
   return (
     <Modal isOpen={true}>
       <ModalOverlay />
-      <Center
-        style={{
-          position: "fixed",
-          top: "20%",
-          left: "50%",
-          animation: "sk-rotateplane 1.2s infinite ease-in-out",
-        }}
-        bg={useColorModeValue("headerbg", "white")}
-        h="3em"
-        w="3em"
-        zIndex={1450}
-      />
+      <Box position="fixed" top="25%" left="50%" transform="translate(-50%, -50%)">
+        <Box
+          animation="sk-rotateplane 1.2s infinite ease-in-out"
+          bg={useColorModeValue("headerbg", "white")}
+          h="3em"
+          w="3em"
+          zIndex={1450}
+        />
+      </Box>
     </Modal>
   );
 };

@@ -1,72 +1,57 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Box,
   SlideFade,
   useColorModeValue,
-  useConst,
 } from "@chakra-ui/react";
-import useResizeObserver from "use-resize-observer";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Graph from "react-graph-vis";
 import Snowfall from "react-snowfall";
 import * as C from "../../constants";
-import { GraphContext, UserContext } from "../../Contexts";
+import { GraphContext, UserContext } from "../../MapContext";
 import CategoryTagStack from "./CategoryTagStack";
 import LoadingGraph from "./LoadingGraph";
-import { Fireworks } from 'fireworks-js/dist/react'
+import { Fireworks } from '@fireworks-js/react'
 import Controls from "./Controls";
 
+const today = new Date();
+const start = new Date(today.getFullYear(), 11, 19);
+const end = new Date(today.getFullYear() + 1, 0, 1);
+const isChristmasTime = today >= start && today <= end;
+
+// Muestra el grafo y un par de pavadas mas
 const Body = () => {
   const {
     graph,
-    setNetwork,
-    redraw,
-    setNodes,
-    setEdges,
+    createNetwork,
+    networkRef,
     loadingGraph,
-    stats,
+    creditos,
     events,
   } = React.useContext(GraphContext);
   const { user, loggingIn } = React.useContext(UserContext);
 
-  const ref = useRef(null);
-  const { width, height } = useResizeObserver({ ref });
-  useEffect(redraw, [width, height]);
-
-  const isChristmasTime = useConst(() => {
-    const today = new Date();
-    const start = new Date(today.getFullYear(), 11, 19);
-    const end = new Date(today.getFullYear() + 1, 0, 1);
-    return today >= start && today <= end;
-  });
+  const isRecibido = React.useMemo(() => {
+    return !!creditos.length && creditos.every(c => c.creditos >= c.creditosNecesarios);
+  }, [creditos])
 
   return (
     <Box
-      ref={ref}
+      ref={networkRef}
       css={{ "& *:focus": { outline: "none" } }}
       bg={useColorModeValue("graphbg", "graphbgdark")}
       flexGrow="1"
       height="1em"
       position="relative"
     >
-      {stats.isRecibido && <Fireworks options={{ speed: 3 }} style={{ width: '100%', height: '100%', position: 'fixed' }} />}
+      {isRecibido && <Fireworks options={{ traceSpeed: 1 }} style={{ width: '100%', height: '100%', position: 'fixed' }} />}
       {isChristmasTime && <Snowfall color="lavender" />}
       <SlideFade in={loadingGraph || loggingIn} unmountOnExit>
         <LoadingGraph />
       </SlideFade>
       <Graph
-        key={user.carrera?.id}
+        key={user.carrera.id}
         graph={graph}
-        getNetwork={(r) => {
-          setNetwork(r);
-        }}
-        getNodes={(r) => {
-          r.carrera = user.carrera?.id;
-          setNodes(r);
-        }}
-        getEdges={(r) => {
-          setEdges(r);
-        }}
+        getNetwork={createNetwork}
         options={C.GRAPHOPTIONS}
         events={events}
       />

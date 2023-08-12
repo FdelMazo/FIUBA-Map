@@ -17,7 +17,7 @@ import { BiLogOut } from "react-icons/bi";
 import { FaSave, FaUndo } from "react-icons/fa";
 
 import React from "react";
-import { GraphContext, UserContext } from "../../Contexts";
+import { GraphContext, UserContext } from "../../MapContext";
 
 const ButtonProps = {
   bg: "teal.500",
@@ -33,23 +33,26 @@ const TooltipProps = {
   placement: "bottom"
 }
 
+// Menu para elegir orientacion y fin de carrera (y para "cerrar sesion")
+// Es un botoncito de settings donde esta el padron, arriba a la izquierda de la app
+// Tambien botones para guardar el grafo, y reiniciar los cuatrimestres planeados
 const UserMenu = () => {
   const {
     logout,
     user,
-    saving,
   } = React.useContext(UserContext);
 
-  const { saveGraph, restartGraphCuatris, getters, setNeedsRegister, changeOrientacion, changeFinDeCarrera, getNode } = React.useContext(GraphContext);
+  const { saveGraph, restartGraphCuatris, getters, changeOrientacion, changeFinDeCarrera, getNode } = React.useContext(GraphContext);
+  const [saving, setSaving] = React.useState(false);
 
-  const isBeta = user?.carrera?.beta;
+  const isBeta = user.carrera.beta;
   return (
     <Box>
       <Menu
         closeOnSelect={false}
         defaultIsOpen={
-          (user?.carrera?.eligeOrientaciones && !user?.orientacion) ||
-          (user?.carrera?.finDeCarrera && !user?.finDeCarrera)
+          (user.carrera.eligeOrientaciones && !user.orientacion) ||
+          (user.carrera.finDeCarrera && !user.finDeCarrera)
         }>
         <MenuButton
           w="20ch"
@@ -59,17 +62,16 @@ const UserMenu = () => {
           {...ButtonProps}
         >
           <Text overflow='hidden' textOverflow='ellipsis'>
-            {user?.padron}
+            {user.padron}
           </Text>
         </MenuButton>
         <MenuList>
-          {user?.carrera?.finDeCarrera && (
+          {user.carrera.finDeCarrera && (
             <MenuOptionGroup
               onChange={(value) => {
-                setNeedsRegister(true);
                 changeFinDeCarrera(value);
               }}
-              value={user?.finDeCarrera?.id || "none"}
+              value={user.finDeCarrera?.id || "none"}
               title="Fin de Carrera"
               type="radio"
             >
@@ -77,8 +79,8 @@ const UserMenu = () => {
                 No me decidí
               </MenuItemOption>
 
-              {user?.carrera?.finDeCarrera &&
-                Object.values(user?.carrera.finDeCarrera).map((v) => (
+              {user.carrera.finDeCarrera &&
+                Object.values(user.carrera.finDeCarrera).map((v) => (
                   <MenuItemOption type="checkbox" value={v.id} key={v.id}>
                     {getNode(v.materia)?.materia}
                   </MenuItemOption>
@@ -86,13 +88,12 @@ const UserMenu = () => {
             </MenuOptionGroup>
           )}
 
-          {user?.carrera?.eligeOrientaciones &&
+          {user.carrera.eligeOrientaciones &&
             (<MenuOptionGroup
-              onChange={(value) => {
-                setNeedsRegister(true);
+            onChange={(value) => {
                 changeOrientacion(value);
               }}
-              value={user?.orientacion?.nombre || "none"}
+            value={user.orientacion?.nombre || "none"}
               title="Orientación"
               type="radio"
             >
@@ -100,8 +101,8 @@ const UserMenu = () => {
                 No me decidí
               </MenuItemOption>
 
-              {user?.carrera?.orientaciones &&
-                user?.carrera?.orientaciones
+            {user.carrera.orientaciones &&
+              user.carrera.orientaciones
                   .filter((o) => !o.nonEligible)
                   .map((o) => (
                     <MenuItemOption type="checkbox" value={o.nombre} key={o.nombre}>
@@ -122,8 +123,12 @@ const UserMenu = () => {
           {...ButtonProps}
           ml={2}
           isLoading={saving}
-          onClick={saveGraph}
-          disabled={isBeta}
+          onClick={async () => {
+            setSaving(true);
+            await saveGraph().catch(console.error);
+            setSaving(false);
+          }}
+          isDisabled={isBeta}
         >
           <Icon boxSize={5} as={FaSave} />
         </IconButton>

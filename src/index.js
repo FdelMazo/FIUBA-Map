@@ -1,29 +1,23 @@
-import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import MainApp from "./components/MainApp";
-import { GraphContext, UserContext } from "./Contexts";
 import { customTheme } from "./theme";
-import useGraph from "./useGraph";
-import useLogin from "./useLogin";
+import { MapProvider } from "./MapContext";
 
 const App = () => {
-  const loginHook = useLogin();
-  const graphHook = useGraph(loginHook);
-
   return (
-    <UserContext.Provider value={loginHook}>
-      <GraphContext.Provider value={graphHook}>
+    <MapProvider>
         <MainApp />
-      </GraphContext.Provider>
-    </UserContext.Provider>
+    </MapProvider>
   );
 };
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = ReactDOM.createRoot(container);
+
+root.render(
   <ChakraProvider theme={customTheme}>
-    <ColorModeScript initialColorMode={customTheme.config.initialColorMode} />
     <App />
-  </ChakraProvider>,
-  document.getElementById("root")
+  </ChakraProvider>
 );

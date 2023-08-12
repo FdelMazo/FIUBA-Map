@@ -5,15 +5,18 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 import React from "react";
-import { UserContext } from "../../Contexts";
+import { UserContext } from "../../MapContext";
 
+// Input del padron, para cuando no estas logueado
+// On boot, si hay un padron en el local storage, usa ese
+// Si el padron se pudo loguear, genial. Si no, te muestra un botoncito de "registrate" para guardar en la db
 const PadronInput = () => {
   const {
     login,
     logged,
     user,
     loading,
-    register,
+    signup,
     padronInput,
     setPadronInput,
   } = React.useContext(UserContext);
@@ -27,16 +30,18 @@ const PadronInput = () => {
     <form
       onSubmit={async (t) => {
         t.preventDefault();
-        const padron = t.target.elements["padron"].value;
         if (showRegisterButton) {
           setLastInput("");
-          register(padron);
+          await signup(padronInput);
           return;
         }
 
-        const couldLogin = await login(padron);
-        if (!couldLogin) setNotRegistered(true);
-        setLastInput(padron);
+        await login(padronInput).then((res) => {
+          if (!res) {
+            setNotRegistered(true);
+            setLastInput(padronInput);
+          }
+        })
       }}
     >
       <Input

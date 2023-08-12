@@ -39,8 +39,15 @@ export const SHEETS = {
   registros: "registros",
 };
 
+export const FIUBAREPOSJSON = "https://raw.githubusercontent.com/FdelMazo/FIUBA-Repos/85806e2f4ea00e3d1ae4ebbf49465e2b28168011/src/data/materias.json"
+
+// Por default, una google key que solo funciona desde el dominio "fede.dm"
+// para que ande en todos lados (o sea, para poder testear la herramienta) hay que tener un archivo
+// .env solamente con la linea `REACT_APP_FEDE_KEY="<KEY>"` (pedirle la key a algun autor...)
+// (si, por algun motivo la envvar tiene que empezar con `REACT_APP`)
 export const KEY = process.env.REACT_APP_FEDE_KEY || "AIzaSyA9snz4CXDq_K8fJeUXkRtRZAQM90HTFp4";
 
+// Dibuja un rombo
 const drawFinDeCarrera = ({
   ctx,
   id,
@@ -99,6 +106,7 @@ const drawFinDeCarrera = ({
   };
 }
 
+// Colores y formas de cada grupo
 export const GRUPOS = {
   Aprobadas: { color: COLORS.aprobadas[400] },
   CBC: {
@@ -111,6 +119,7 @@ export const GRUPOS = {
     size: 15,
   },
   Habilitadas: { color: COLORS.habilitadas[400] },
+  Cursando: { color: COLORS.cursando[400] },
   "En Final": { color: COLORS.enfinal[400] },
   "Materias Obligatorias": { color: COLORS.obligatorias[400] },
   "Materias Electivas": { color: COLORS.electivas[400] },
@@ -137,6 +146,8 @@ export const GRUPOS = {
     }, {}),
 };
 
+// Muchas opciones de la network
+// tiene buenas cosas para tunear y experimentar
 export const GRAPHOPTIONS = {
   nodes: { shape: "box" },
   interaction: {
@@ -176,6 +187,7 @@ export const GRAPHOPTIONS = {
 };
 
 
+// Colores asignados a cada barrita de progreso de los creditos
 export const CREDITOS = {
   "CBC": {
     nombrecorto: "CBC",

@@ -28,6 +28,9 @@ export const COLORS = {
     400: "#FDA45E",
     500: "#FC8A30",
   },
+  cursando: {
+    400: "#D4DBE2",
+  },
   obligatorias: {
     50: "#BCE1FA",
     400: "#66B9F4",
@@ -83,8 +86,6 @@ export const customTheme = extendTheme({
     heading: "Georgia, serif",
     mono: "Menlo, monospace",
   },
-  colors: {
-    ...COLORS,
-  },
+  colors: COLORS,
   config,
 });

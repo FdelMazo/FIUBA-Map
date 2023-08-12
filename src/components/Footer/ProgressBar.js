@@ -5,6 +5,7 @@ import {
   Flex,
   Grid,
   GridItem,
+  Hide,
   Icon,
   LightMode,
   Popover,
@@ -21,10 +22,12 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { FaGraduationCap } from "react-icons/fa";
-import { GraphContext, UserContext } from "../../Contexts";
+import { GraphContext, UserContext } from "../../MapContext";
 
+// Componente con una barra de progresso para mostrar todos los creditos de las
+// materias aprobadas
 const ProgressBar = () => {
-  const { user, isMobile } = React.useContext(UserContext);
+  const { user } = React.useContext(UserContext);
   const {
     creditos,
     toggleCheckbox
@@ -62,7 +65,7 @@ const ProgressBar = () => {
                           ) || 0) + "%"}
                       </Badge>
                     )}
-                    {!isMobile && (
+                    <Hide ssr={false} below="md">
                       <Badge
                         fontSize="x-small"
                         ml={1}
@@ -72,7 +75,7 @@ const ProgressBar = () => {
                       >
                         {c.nombrecorto}
                       </Badge>
-                    )}
+                    </Hide>
                   </Flex>
                   <Progress
                     hasStripe
@@ -83,6 +86,12 @@ const ProgressBar = () => {
                     max={c.creditosNecesarios}
                     value={c.creditos}
                     colorScheme={c.color}
+                    // MAGIC: https://github.com/chakra-ui/chakra-ui/issues/68
+                    sx={{
+                      "& > div:first-of-type": {
+                        transitionProperty: "width",
+                      },
+                    }}
                   />
                 </Box>
               </PopoverTrigger>

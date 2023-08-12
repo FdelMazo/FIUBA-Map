@@ -18,10 +18,11 @@ import {
   NumberInputField,
   NumberInputStepper,
   Tooltip,
+  Hide,
 } from "@chakra-ui/react";
 import React from "react";
 import { FaUndo } from "react-icons/fa";
-import { GraphContext, UserContext } from "../../Contexts";
+import { GraphContext, UserContext } from "../../MapContext";
 import { getCurrentCuatri } from "../../utils";
 
 const ControlProps = {
@@ -61,8 +62,9 @@ const NumberStepperProps = {
   fontSize: "small"
 }
 
+// Botonera para cambiar la nota y el cuatri de la materia seleccionada
 const MateriaControl = () => {
-  const { fiubaRepos, isMobile, logged } = React.useContext(UserContext);
+  const { fiubaRepos, logged } = React.useContext(UserContext);
 
   const { getNode, aprobar, displayedNode, desaprobar, cursando } =
     React.useContext(GraphContext);
@@ -72,35 +74,36 @@ const MateriaControl = () => {
 
   return displayedNode && logged && (node?.id !== "CBC") && (
     <Flex alignItems="center" height="fit-content">
-      {!isMobile && repos && (
-        <>
-          <Tooltip closeOnClick hasArrow label={
-            <Box textAlign="center">
-              <Text>
-                Chusmeá {repos.reponames.size === 1 ? 'el FIUBA-Repo' : `los ${repos.reponames.size} FIUBA-Repos`}
-              </Text>
-              <Text>
-                de esta materia!
-              </Text>
-            </Box>
-          }>
-            <Link
-              mx={3}
-              isExternal
-              color="white"
-              href={`https://fede.dm/FIUBA-Repos?c=${node?.id.replace('.', '')}`}
-            >
-              <Icon boxSize={5} viewBox="0 0 16 16">
-                <path
-                  fill="currentColor"
-                  d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"
-                />
-              </Icon>
-            </Link>
-          </Tooltip>
-        </>
-      )}
-
+      <Hide ssr={false} below="md">
+        {repos && (
+          <>
+            <Tooltip closeOnClick hasArrow label={
+              <Box textAlign="center">
+                <Text>
+                  Chusmeá {repos.reponames.size === 1 ? 'el FIUBA-Repo' : `los ${repos.reponames.size} FIUBA-Repos`}
+                </Text>
+                <Text>
+                  de esta materia!
+                </Text>
+              </Box>
+            }>
+              <Link
+                mx={3}
+                isExternal
+                color="white"
+                href={`https://fede.dm/FIUBA-Repos?c=${node?.id.replace('.', '')}`}
+              >
+                <Icon boxSize={5} viewBox="0 0 16 16">
+                  <path
+                    fill="currentColor"
+                    d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"
+                  />
+                </Icon>
+              </Link>
+            </Tooltip>
+          </>
+        )}
+      </Hide>
       <Flex {...ControlProps} alignItems="center" p={1}>
         {node?.nota > 0 ? (
           <>
@@ -187,12 +190,12 @@ const MateriaControl = () => {
         <>
           {!node.cuatrimestre ?
             (
-              <Tooltip {...TooltipProps} label="Planear Cuatrimestre">
+              <Tooltip {...TooltipProps} label="Cursando Actualmente">
                 <Button
                   {...ButtonProps}
                   {...ControlProps}
                   p={0}
-                  color="habilitadas.500"
+                  color="cursando.400"
                   onClick={() => cursando(displayedNode, getCurrentCuatri())}
                 >
                   <strong>C</strong>

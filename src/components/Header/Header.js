@@ -5,29 +5,33 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
-import { GraphContext, UserContext } from "../../Contexts";
+import { GraphContext, UserContext } from "../../MapContext";
 import MateriaDisplay from "./MateriaDisplay";
 import PadronInput from "./PadronInput";
 import DropdownCarreras from "./DropdownCarreras";
 import UserMenu from "./UserMenu";
 
 
+// Componente toplevel de header
+// Si tengo una materia clickeada, muestra sus controles
+// Si no, muestra un input para loguearse (o un menu del usuario loguead) y
+//  un dropdown para elegir las carrera
 const Header = () => {
-  const { isMobile, logged } = React.useContext(UserContext);
+  const { logged } = React.useContext(UserContext);
   const { displayedNode } = React.useContext(GraphContext);
   const CommonProps = {
-    height: isMobile ? "8.7rem" : "4.5rem",
+    height: { base: "8.7rem", md: "4.5rem" },
     bg: useColorModeValue("headerbg", "headerbgdark")
   }
 
   const FlexProps = {
-    py: isMobile ? 4 : 2,
+    py: { base: 4, md: 2 },
     px: 4,
     gap: 4,
     align: "center",
     justify: "space-between",
     flexWrap: "wrap",
-    justifyContent: isMobile ? "space-around" : "space-between",
+    justifyContent: { base: "space-around", md: "space-between" }
   }
 
   const AntiFlexProps = {

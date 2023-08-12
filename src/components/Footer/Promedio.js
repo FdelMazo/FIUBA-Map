@@ -18,15 +18,28 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React from "react";
-import { GraphContext } from "../../Contexts";
+import { GraphContext } from "../../MapContext";
+import { promediar } from "../../utils";
 
+// Componente para mostrar el promedio general de la carrera
+// y en hover mostrar el promedio con CBC y poder agregar aplazos
 const Promedio = () => {
   const {
-    promedio,
+    getters,
     aplazos,
-    setAplazos
+    setAplazos,
   } = React.useContext(GraphContext);
 
+  const promedio = React.useMemo(() => {
+    return {
+      promedio: promediar(getters.MateriasAprobadasSinEquivalenciasSinCBC()),
+      promedioConCBC: promediar(getters.MateriasAprobadasConCBC()),
+      promedioConAplazos: promediar([
+        ...getters.MateriasAprobadasSinEquivalenciasSinCBC(),
+        ...Array(aplazos).fill({ nota: 2 })
+      ]),
+    }
+  }, [aplazos, getters])
 
   return (
     <Popover placement="top" trigger="hover">
@@ -55,7 +68,7 @@ const Promedio = () => {
                   width="6ch"
                   value={aplazos}
                   min={0}
-                  onChange={(v) => setAplazos(parseFloat(v))}
+                  onChange={(v) => setAplazos(parseFloat(v) || 0)}
                 >
                   <NumberInputField
                     _hover={{
