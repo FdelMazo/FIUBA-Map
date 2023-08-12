@@ -303,27 +303,18 @@ export const CARRERAS = [
   },
   {
     id: "industrial-2020",
-    beta: true,
     link: "https://mli-fiuba.notion.site/Ingenier-a-Industrial-f1bc735b7f1c44afb7d259d7b2d581a2",
     graph: require("./data/industrial-2020.json"),
-    nombre: "Ingeniería Industrial (2020) - BETA",
+    nombre: "Ingeniería Industrial (2020)",
     nombrecorto: "Industial 2020",
-    // finDeCarrera: [
-    //   { id: "tesis", materia: "92.00" },
-    //   { id: "tpp", materia: "92.99" },
-    // ],
+    finDeCarrera: [
+      { id: "tesis", materia: "TESIS" },
+      { id: "tpp", materia: "TPP" },
+    ],
     creditos: {
       total: 236,
       obligatorias: 162,
       electivas: 24,
-      materias: [
-        {
-          id: "92.XX",
-          nombrecorto: "TESIS/TPP",
-          bg: COLORS.findecarrera[50],
-          color: "findecarrera",
-        },
-      ],
       checkbox: [
         {
           nombre: "Práctica Profesional de al menos 200 horas",
