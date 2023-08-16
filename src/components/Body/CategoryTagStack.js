@@ -26,6 +26,7 @@ const CategoryTagStack = () => {
         spacing={2}
         bottom={0}
         position="absolute"
+        maxW="60%"
       >
         {categorias.map((c) => (
             <Tag
