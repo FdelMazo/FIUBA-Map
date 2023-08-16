@@ -6,26 +6,50 @@ import {
     Link,
     Menu,
     MenuButton,
-    MenuItemOption,
     MenuList,
-    MenuOptionGroup,
     Tooltip,
     Box,
     Text,
     Hide,
     Show,
     Badge,
+    MenuItem,
+    Popover,
+    PopoverTrigger,
+    PopoverContent,
+    PopoverBody,
 } from "@chakra-ui/react";
-import CARRERAS from "../../carreras";
+import { CARRERAS, PLANES } from "../../carreras";
 import { GraphContext, UserContext } from "../../MapContext";
+
+const AnoBadge = ({ ano, active, ...rest }) => {
+    const commonProps = {
+        mx: 1,
+        variant: active ? "solid" : "outline",
+        textAlign: "center",
+        colorScheme: "gray",
+        ...rest,
+    }
+    if (ano === 2020) {
+        return <Badge  {...commonProps} fontSize="x-small" colorScheme="green">
+            PLAN <br /> 2020
+        </Badge>
+    }
+    return <Badge  {...commonProps} fontSize="small">{ano}</Badge>
+}
 
 // Componente para elegir carrera
 const DropdownCarreras = () => {
     const { user } = React.useContext(UserContext);
     const { changeCarrera } = React.useContext(GraphContext);
 
+    const carrera = React.useMemo(() => {
+        const { nombre, nombrecorto } = PLANES.find((p) => p.planes.includes(user.carrera.id));
+        return { nombre, nombrecorto };
+    }, [user.carrera.id]);
+
     return (<Box>
-        <Menu placement="bottom-end" isLazy>
+        <Menu placement="bottom" isLazy>
             <Tooltip placement="bottom"
                 label={
                     user.carrera.beta && (<Box fontSize="xs">
@@ -44,31 +68,67 @@ const DropdownCarreras = () => {
                     mr={2}
                     rightIcon={<ChevronDownIcon />}
                 >
+                    {user.carrera.beta && <Badge variant="subtle" mr={1} colorScheme='purple'>BETA</Badge>}
                     {/* Hardcoded to chakra md breakpoint */}
                     <Show ssr={false} breakpoint='(max-width: 48em)'>
-                        {user.carrera.nombrecorto}
+                        {carrera.nombrecorto}
                     </Show>
                     <Hide ssr={false} breakpoint='(max-width: 48em)'>
-                        {user.carrera.nombre}
+                        {carrera.nombre}
                     </Hide>
-                    {user.carrera.beta && <Badge variant="subtle" ml={1} colorScheme='purple'>BETA</Badge>}
+                    <AnoBadge ano={user.carrera.ano} active={true} />
                 </MenuButton>
             </Tooltip>
             <MenuList>
-                <MenuOptionGroup
-                    onChange={(v) => {
-                        changeCarrera(v);
-                    }}
-                    defaultValue={user.carrera.id}
-                    type="radio"
-                >
-                    {CARRERAS.map((c) => (
-                        <MenuItemOption key={c.id} value={c.id}>
-                            {c.nombre}
-                            {c.beta && <Badge variant="subtle" ml={2} colorScheme='purple'>BETA</Badge>}
-                        </MenuItemOption>
-                    ))}
-                </MenuOptionGroup>
+                {PLANES.map((p) => {
+                    const Item = (
+                        <MenuItem
+                            key={p.nombrecorto}
+                            display="flex"
+                            justifyContent="space-between"
+                            {...(p.planes.length === 1
+                                ? { onClick: () => { changeCarrera(p.planes[0]) } }
+                                : { cursor: "not-allowed", closeOnSelect: false, }
+                            )}
+                        >
+                            <Text as={p.planes.includes(user.carrera.id) && 'b'}>
+                                {p.nombre}
+                            </Text>
+                            <Box ml={2}>
+                                {p.planes.map((c) => {
+                                    const plan = CARRERAS.find((carrera) => carrera.id === c)
+                                    return <AnoBadge key={c} ano={plan.ano} active={user.carrera.id === c} />
+                                })}
+                            </Box>
+                        </MenuItem>
+                    )
+
+                    if (p.planes.length === 1) {
+                        return Item
+                    } else {
+                        return (
+                            <Popover key={p.nombrecorto} placement="left" trigger="hover" closeOnBlur={false}>
+                                <PopoverTrigger>
+                                    {Item}
+                                </PopoverTrigger>
+                                <PopoverContent w="fit-content">
+                                    <PopoverBody>
+                                        {p.planes.map((c) => {
+                                            const plan = CARRERAS.find((carrera) => carrera.id === c)
+                                            return <AnoBadge
+                                                key={c}
+                                                ano={plan.ano}
+                                                active={user.carrera.id === c}
+                                                cursor="pointer"
+                                                onClick={() => { changeCarrera(c) }}
+                                            />
+                                        })}
+                                    </PopoverBody>
+                                </PopoverContent>
+                            </Popover>
+                        )
+                    }
+                })}
             </MenuList>
         </Menu>
         <Hide ssr={false} below="md">

@@ -1,6 +1,6 @@
 import { useColorMode } from "@chakra-ui/color-mode";
 import React from "react";
-import CARRERAS from "./carreras";
+import { CARRERAS } from "./carreras";
 import { CREDITOS } from "./constants";
 import Node from "./Node";
 import { COLORS } from "./theme";
