@@ -115,13 +115,17 @@ const DropdownCarreras = () => {
                                     <PopoverBody>
                                         {p.planes.map((c) => {
                                             const plan = CARRERAS.find((carrera) => carrera.id === c)
-                                            return <AnoBadge
+                                            return <Button
+                                                mx={1}
+                                                size="sm"
+                                                variant="outline"
+                                                isActive={user.carrera.id === c}
+                                                colorScheme={plan.ano === 2020 ? "green" : "gray"}
                                                 key={c}
-                                                ano={plan.ano}
-                                                active={user.carrera.id === c}
-                                                cursor="pointer"
                                                 onClick={() => { changeCarrera(c) }}
-                                            />
+                                            >
+                                                {plan.ano}
+                                            </Button>
                                         })}
                                     </PopoverBody>
                                 </PopoverContent>
