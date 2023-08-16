@@ -1,4 +1,4 @@
-import CARRERAS from "./carreras";
+import { CARRERAS } from "./carreras";
 import { COLORS } from "./theme";
 
 export const USER_FORM =

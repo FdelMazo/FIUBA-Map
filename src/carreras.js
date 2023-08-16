@@ -23,13 +23,16 @@ import { COLORS } from "./theme";
 // Se puede intentar armar ese json parseando los PDFs de la facultad, o a manopla
 // Con el tiempo si hay alguna correlativa esta mal escrita, alguien se da cuenta y lo avisa
 
+// Técnicamente este array no es de carreras, es de planes de estudio de cada carrera
+// Pero el fiuba map arranco antes de que existan muchos planes para cada carrera, y
+// ahora quedo que el usuario tiene una "carrera" asociada, aunque sea un plan, así que
+// lo dejamos así
 export const CARRERAS = [
   {
     id: "sistemas",
     link: "https://www.fi.uba.ar/grado/carreras/lic-en-analisis-de-sistemas/plan-de-estudios",
+    ano: 2014,
     graph: require("./data/sistemas-2014.json"),
-    nombre: "Licenciatura en Análisis de Sistemas",
-    nombrecorto: "Sistemas",
     creditos: {
       total: 214,
       obligatorias: 136,
@@ -55,9 +58,8 @@ export const CARRERAS = [
   {
     id: "informatica",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-en-informatica/plan-de-estudios",
+    ano: 1986,
     graph: require("./data/informatica-1986.json"),
-    nombre: "Ingeniería en Informática",
-    nombrecorto: "Informática",
     orientaciones: [
       {
         nombre: "Gestión Industrial de Sistemas",
@@ -92,10 +94,10 @@ export const CARRERAS = [
   },
   {
     id: "informatica-2020",
+    // TODO: cambiar este link cuando este en la pagina de la facultad
     link: "https://mli-fiuba.notion.site/Ingenier-a-en-Inform-tica-48e3eeece07e471dbfe1cd947f7ca245",
+    ano: 2020,
     graph: require("./data/informatica-2020.json"),
-    nombre: "Ingeniería en Informática (2020)",
-    nombrecorto: "Informática 2020",
     finDeCarrera: [
       { id: "tesis", materia: "TESIS" },
       { id: "tpp", materia: "TPP" }
@@ -117,9 +119,8 @@ export const CARRERAS = [
   {
     id: "agrimensura",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-en-agrimensura/plan-de-estudios",
+    ano: 2006,
     graph: require("./data/agrimensura-2006.json"),
-    nombre: "Ingeniería en Agrimensura",
-    nombrecorto: "Agrimensura",
     finDeCarrera: [
       { id: "tesis", materia: "70.00" },
       { id: "tpp", materia: "70.99" },
@@ -141,9 +142,8 @@ export const CARRERAS = [
   {
     id: "alimentos",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-de-alimentos/plan-de-estudios",
+    ano: 2001,
     graph: require("./data/alimentos-2000.json"),
-    nombre: "Ingeniería de Alimentos",
-    nombrecorto: "Alimentos",
     creditos: {
       total: 272,
       materias: [
@@ -167,9 +167,8 @@ export const CARRERAS = [
   {
     id: "civil",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-civil/plan-de-estudios",
+    ano: 2009,
     graph: require("./data/civil-2009.json"),
-    nombre: "Ingeniería Civil",
-    nombrecorto: "Civil",
     creditos: {
       total: 295,
       obligatorias: 210,
@@ -201,9 +200,8 @@ export const CARRERAS = [
   {
     id: "electricista",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-electricista/plan-de-estudios",
+    ano: 2009,
     graph: require("./data/electricista-2009.json"),
-    nombre: "Ingeniería Electricista",
-    nombrecorto: "Electricista",
     finDeCarrera: [
       { id: "tesis", materia: "85.00" },
       { id: "tpp", materia: "85.99" },
@@ -231,9 +229,8 @@ export const CARRERAS = [
   {
     id: "electronica",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-electronica/plan-de-estudios",
+    ano: 2009,
     graph: require("./data/electronica-2009.json"),
-    nombre: "Ingeniería Electrónica",
-    nombrecorto: "Electrónica",
     orientaciones: [
       { nombre: "Procesamiento de Señales", colorScheme: "orientacion1" },
       { nombre: "Automatización y Control", colorScheme: "orientacion2" },
@@ -274,9 +271,8 @@ export const CARRERAS = [
   {
     id: "industrial",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-industrial/plan-de-estudios",
+    ano: 2011,
     graph: require("./data/industrial-2011.json"),
-    nombre: "Ingeniería Industrial",
-    nombrecorto: "Industrial",
     finDeCarrera: [
       { id: "tesis", materia: "92.00" },
       { id: "tpp", materia: "92.99" },
@@ -303,10 +299,10 @@ export const CARRERAS = [
   },
   {
     id: "industrial-2020",
+    // TODO: cambiar este link cuando este en la pagina de la facultad
     link: "https://mli-fiuba.notion.site/Ingenier-a-Industrial-f1bc735b7f1c44afb7d259d7b2d581a2",
+    ano: 2020,
     graph: require("./data/industrial-2020.json"),
-    nombre: "Ingeniería Industrial (2020)",
-    nombrecorto: "Industrial 2020",
     finDeCarrera: [
       { id: "tesis", materia: "TESIS" },
       { id: "tpp", materia: "TPP" },
@@ -335,9 +331,8 @@ export const CARRERAS = [
   {
     id: "mecanica",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-mecanica/plan-de-estudios",
+    ano: 1986,
     graph: require("./data/mecanica-1986.json"),
-    nombre: "Ingeniería Mecánica",
-    nombrecorto: "Mecánica",
     orientaciones: [
       { nombre: "Diseño Mecánico", colorScheme: "orientacion1" },
       { nombre: "Termomecánica", colorScheme: "orientacion2" },
@@ -372,9 +367,8 @@ export const CARRERAS = [
   {
     id: "naval",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-naval-y-mecanica/plan-de-estudios",
+    ano: 1986,
     graph: require("./data/naval-1986.json"),
-    nombre: "Ingeniería Naval y Mecánica",
-    nombrecorto: "Naval",
     finDeCarrera: [
       { id: "tesis", materia: "73.00" },
       { id: "tpp", materia: "73.99" },
@@ -388,9 +382,8 @@ export const CARRERAS = [
   {
     id: "petroleo",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-en-petroleo/plan-de-estudios",
+    ano: 2015,
     graph: require("./data/petroleo-2015.json"),
-    nombre: "Ingeniería en Petróleo",
-    nombrecorto: "Petróleo",
     finDeCarrera: [
       { id: "tesis", materia: "79.00" },
       { id: "tpp", materia: "79.99" },
@@ -418,9 +411,8 @@ export const CARRERAS = [
   {
     id: "quimica",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-quimica/plan-de-estudios",
+    ano: 1986,
     graph: require("./data/quimica-1986.json"),
-    nombre: "Ingeniería Química",
-    nombrecorto: "Química",
     finDeCarrera: [
       { id: "tesis", materia: "76.64" },
       { id: "tpp", materia: "76.59-76.62" },
@@ -434,9 +426,8 @@ export const CARRERAS = [
   {
     id: "sistemasviejo",
     link: "https://www.fi.uba.ar/grado/carreras/lic-en-analisis-de-sistemas/plan-de-estudios",
+    ano: 1986,
     graph: require("./data/sistemas-1986.json"),
-    nombre: "Licenciatura en Análisis de Sistemas (1986)",
-    nombrecorto: "Sistemas 1986",
     creditos: {
       total: 208,
       obligatorias: 130,
@@ -445,4 +436,67 @@ export const CARRERAS = [
   },
 ];
 
-export default CARRERAS;
+// Acá se define como se le presentan al usuario la lista de planes/carreras
+// Todos los ids de `CARRERAS` tienen que estar usados acá
+export const PLANES = [
+  {
+    nombre: "Ingeniería Civil",
+    nombrecorto: "Civil",
+    planes: ["civil"],
+  },
+  {
+    nombre: "Ingeniería de Alimentos",
+    nombrecorto: "Alimentos",
+    planes: ["alimentos"],
+  },
+  {
+    nombre: "Ingeniería Electricista",
+    nombrecorto: "Electricista",
+    planes: ["electricista"],
+  },
+  {
+    nombre: "Ingeniería Electrónica",
+    nombrecorto: "Electrónica",
+    planes: ["electronica"],
+  },
+  {
+    nombre: "Ingeniería en Agrimensura",
+    nombrecorto: "Agrimensura",
+    planes: ["agrimensura"],
+  },
+  {
+    nombre: "Ingeniería en Informática",
+    nombrecorto: "Informática",
+    planes: ["informatica", "informatica-2020"],
+  },
+  {
+    nombre: "Ingeniería en Petróleo",
+    nombrecorto: "Petróleo",
+    planes: ["petroleo"],
+  },
+  {
+    nombre: "Ingeniería Industrial",
+    nombrecorto: "Industrial",
+    planes: ["industrial", "industrial-2020"],
+  },
+  {
+    nombre: "Ingeniería Mecánica",
+    nombrecorto: "Mecánica",
+    planes: ["mecanica"],
+  },
+  {
+    nombre: "Ingeniería Naval y Mecánica",
+    nombrecorto: "Naval",
+    planes: ["naval"],
+  },
+  {
+    nombre: "Ingeniería Química",
+    nombrecorto: "Química",
+    planes: ["quimica"],
+  },
+  {
+    nombre: "Licenciatura en Análisis de Sistemas",
+    nombrecorto: "Sistemas",
+    planes: ["sistemasviejo", "sistemas"],
+  },
+]

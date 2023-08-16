@@ -1,5 +1,5 @@
 import React from "react";
-import CARRERAS from "./carreras";
+import { CARRERAS } from "./carreras";
 import * as C from "./constants";
 import { getFiubaRepos, getGraphs, postGraph, postUser } from "./dbutils";
 
