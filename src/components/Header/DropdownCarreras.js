@@ -14,6 +14,7 @@ import {
     Text,
     Hide,
     Show,
+    Badge,
 } from "@chakra-ui/react";
 import CARRERAS from "../../carreras";
 import { GraphContext, UserContext } from "../../MapContext";
@@ -28,9 +29,9 @@ const DropdownCarreras = () => {
             <Tooltip placement="bottom"
                 label={
                     user.carrera.beta && (<Box fontSize="xs">
-                        <Text >Los planes nuevos (y como pasarse de plan) cambian todo el tiempo.</Text>
-                        <Text>Esto está solamente para <Text as="em">darse una idea</Text> de como te quedaría la carrera si te cambias de plan, pero no es algo estricto ni 100% fiel a la realidad.</Text>
-                        <Text>Cuando se oficialicen los planes, lo mejor va a ser revisar uno por uno todo lo aprobado contra el SIU para confirmar que no quedó nada mal cargado</Text>
+                        <Text>Los planes nuevos cambian todo el tiempo.</Text>
+                        <Text>Esto puede estar desactualizado frente a los últimos anuncios.</Text>
+                        <Text>Haceme saber si falta alguna actualización sustancial del plan.</Text>
                     </Box>)
                 }
             >
@@ -50,6 +51,7 @@ const DropdownCarreras = () => {
                     <Hide ssr={false} breakpoint='(max-width: 48em)'>
                         {user.carrera.nombre}
                     </Hide>
+                    {user.carrera.beta && <Badge variant="subtle" ml={1} colorScheme='purple'>BETA</Badge>}
                 </MenuButton>
             </Tooltip>
             <MenuList>
@@ -63,6 +65,7 @@ const DropdownCarreras = () => {
                     {CARRERAS.map((c) => (
                         <MenuItemOption key={c.id} value={c.id}>
                             {c.nombre}
+                            {c.beta && <Badge variant="subtle" ml={2} colorScheme='purple'>BETA</Badge>}
                         </MenuItemOption>
                     ))}
                 </MenuOptionGroup>

@@ -30,7 +30,8 @@ const ButtonProps = {
 const TooltipProps = {
   closeOnClick: true,
   hasArrow: true,
-  placement: "bottom"
+  placement: "bottom",
+  textAlign: "center"
 }
 
 // Menu para elegir orientacion y fin de carrera (y para "cerrar sesion")
@@ -118,7 +119,7 @@ const UserMenu = () => {
 
         </MenuList>
       </Menu>
-      <Tooltip {...TooltipProps} label="Guardar datos">
+      <Tooltip {...TooltipProps} label={isBeta ? "No se pueden guardar datos hasta que se oficialice el plan" : "Guardar datos"}>
         <IconButton
           {...ButtonProps}
           ml={2}
