@@ -306,7 +306,7 @@ export const CARRERAS = [
     link: "https://mli-fiuba.notion.site/Ingenier-a-Industrial-f1bc735b7f1c44afb7d259d7b2d581a2",
     graph: require("./data/industrial-2020.json"),
     nombre: "Ingeniería Industrial (2020)",
-    nombrecorto: "Industial 2020",
+    nombrecorto: "Industrial 2020",
     finDeCarrera: [
       { id: "tesis", materia: "TESIS" },
       { id: "tpp", materia: "TPP" },
@@ -315,20 +315,21 @@ export const CARRERAS = [
       total: 236,
       obligatorias: 162,
       electivas: 24,
-      checkbox: [
-        {
-          nombre: "Práctica Profesional de al menos 200 horas",
-          nombrecorto: "PP",
-          bg: COLORS.habilitadas[50],
-          color: "habilitadas",
-        },
-        {
-          nombre: "Prueba de nivel de idioma inglés",
-          nombrecorto: "Inglés",
-          bg: COLORS.enfinal[50],
-          color: "enfinal",
-        },
-      ],
+      // TODO: Asegurarse el estado de esto!!
+      // checkbox: [
+      //   {
+      //     nombre: "Práctica Profesional de al menos 200 horas",
+      //     nombrecorto: "PP",
+      //     bg: COLORS.habilitadas[50],
+      //     color: "habilitadas",
+      //   },
+      //   {
+      //     nombre: "Prueba de nivel de idioma inglés",
+      //     nombrecorto: "Inglés",
+      //     bg: COLORS.enfinal[50],
+      //     color: "enfinal",
+      //   },
+      // ],
     },
   },
   {
