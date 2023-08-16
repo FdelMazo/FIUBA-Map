@@ -180,9 +180,12 @@ const Graph = (userContext) => {
       showRelevantes();
       network.fit();
     } else {
-      // Si no tengo mapa en la DB, apruebo el CBC y reseteo la metadata y listo
+      // Si no tengo mapa en la DB (porque me desloguee, o porque soy un usuario nuevo en esta carrera),
+      //   reseteo absolutamente todo y solamente apruebo el CBC
+      user.carrera.creditos.checkbox?.forEach((ch) => ch.check = false);
       optativasDispatch({ action: 'override', value: [] })
       setAplazos(0);
+      nodes.update(getters.ALL().map((n) => getNode(n.id).desaprobar().cursando(undefined)));
       aprobar("CBC", 0);
       actualizarNiveles()
       network.fit();
@@ -843,6 +846,7 @@ const Graph = (userContext) => {
       }
       return categorias
     },
+    ALL: () => nodes ? nodes.get() : [],
     MateriasAprobadasCBC: () =>
       nodes ? nodes.get({
         filter: (n) => n.categoria === "*CBC" && n.aprobada && n.nota > 0,

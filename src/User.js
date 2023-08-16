@@ -167,15 +167,9 @@ const Login = () => {
     setLoading(false)
   }
 
-  // En el logout limpiamos el padron, asi ya no esta mas seteada la variable logged
-  // No debería pasar mucho, porque casi nunca te deslogueas, porque no hay casos de uso
-  // donde alguien tenga mas de un usuario
-  // Pero la verdad es que es raro... porque te queda todo el resto setupeado
-  // O sea, me logueo con usuario1, me deslogueo, me logueo con usuario2,
-  // y de la nada usuario2 tiene todos los datos de usuario1 ahí. Si llega a guardar, se le pisan todos los datos
-  // Pero la alternativa es limpiar todo el usuario en logout, y queda feo desloguearte y ver que todo vuelve al estado inicial
+  // En el logout limpiamos el usuario entero, y nos quedamos en la carrera seteada
   const logout = () => {
-    setUser({ ...user, padron: "" });
+    setUser({ ...initialUser, carrera: user.carrera });
     window.localStorage.removeItem("padron");
   };
 
