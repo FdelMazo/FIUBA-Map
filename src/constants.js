@@ -208,6 +208,8 @@ export const CREDITOS = {
     bg: COLORS.electivas[50],
   },
   "Fin de Carrera": {
+    nombrecorto: "Tesis/TPP",
+    nombre: "Fin de Carrera",
     color: "findecarrera",
     bg: COLORS.findecarrera[50],
   }

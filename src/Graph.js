@@ -584,34 +584,43 @@ const Graph = (userContext) => {
 
     // Despues, las electivas, incluyendo las orientaciones no elegidas
     const electivas = getters.ElectivasAprobadas()
+    const electivasCreditosNecesarios = isNaN(getCorrectCreditos()?.electivas) ? getCorrectCreditos()?.electivas[user.finDeCarrera?.id] : getCorrectCreditos()?.electivas
     creditos.push({
       ...CREDITOS['Electivas'],
-      creditosNecesarios: isNaN(getCorrectCreditos()?.electivas)
-        ? getCorrectCreditos()?.electivas[user.finDeCarrera?.id]
-        : getCorrectCreditos()?.electivas,
-
+      creditosNecesarios: electivasCreditosNecesarios,
       nmaterias: electivas.length,
       creditos:
         electivas.reduce(accCreditos, 0) +
         optativas.reduce(accCreditos, 0),
+      helpText: !electivasCreditosNecesarios && `Elegí ${user.carrera.eligeOrientaciones && !user.orientacion ? "orientación" : ""}${user.carrera.eligeOrientaciones && !user.orientacion && !user.finDeCarrera ? " y " : ""}${!user.finDeCarrera ? "entre tesis y tpp" : ""} en la configuración de usuario para saber cuantos necesitás.`
     });
 
     // Despues, orientacion obligatoria (si hay)
     const orientacion = getters.OrientacionAprobadas()
-    if (
-      user.carrera.eligeOrientaciones &&
-      user.orientacion &&
-      user.carrera.creditos.orientacion[user.orientacion?.nombre]
-    )
-      creditos.push({
-        nombre: `Orientación: ${user.orientacion.nombre}`,
-        nombrecorto: "Orientación",
-        bg: COLORS[user.orientacion.colorScheme][50],
-        color: user.orientacion.colorScheme,
-        creditosNecesarios: getCorrectCreditos()?.orientacion,
-        nmaterias: orientacion.length,
-        creditos: orientacion.reduce(accCreditos, 0),
-      });
+    if (user.carrera.eligeOrientaciones)
+      if (user.orientacion && user.carrera.creditos.orientacion[user.orientacion?.nombre]) {
+        creditos.push({
+          nombre: `Orientación: ${user.orientacion.nombre}`,
+          nombrecorto: "Orientación",
+          bg: COLORS[user.orientacion.colorScheme][50],
+          color: user.orientacion.colorScheme,
+          creditosNecesarios: getCorrectCreditos()?.orientacion,
+          nmaterias: orientacion.length,
+          creditos: orientacion.reduce(accCreditos, 0),
+        });
+      } else {
+        creditos.push({
+          nombre: `Orientación`,
+          nombrecorto: "Orientación",
+          color: "orientacion1",
+          bg: COLORS.orientacion1[50],
+          creditosNecesarios: 8,
+          creditos: 0,
+          dummy: true,
+          helpText: "Elegí una orientación en la configuración de usuario"
+        });
+      }
+
 
     // Despues los distintos checkboxes (practica profesional, ingles, etc)
     // aca le setupeamos que tiene 8 creditos para llenar, para tener una barra de progreso
@@ -628,6 +637,7 @@ const Graph = (userContext) => {
           creditos: m.check ? 8 : 0,
           checkbox: true,
           check: m.check,
+          dummy: true,
         });
       });
     }
@@ -652,15 +662,25 @@ const Graph = (userContext) => {
 
     // Si la carrera tiene para elegir entre tesis y tpp, de la misma manera que las materias de arriba
     // agregamos el final de carrera que corresponda
-    if (user.finDeCarrera) {
-      const node = getNode(user.finDeCarrera.materia);
-      creditos.push({
-        ...CREDITOS['Fin de Carrera'],
-        nombre: node.materia,
-        nombrecorto: user.finDeCarrera.id,
-        creditosNecesarios: node.creditos,
-        creditos: node.aprobada ? node.creditos : 0,
-      });
+    if (user.carrera.finDeCarrera) {
+      if (user.finDeCarrera) {
+        const node = getNode(user.finDeCarrera.materia);
+        creditos.push({
+          ...CREDITOS['Fin de Carrera'],
+          nombre: node.materia,
+          nombrecorto: user.finDeCarrera.id,
+          creditosNecesarios: node.creditos,
+          creditos: node.aprobada ? node.creditos : 0,
+        });
+      } else {
+        creditos.push({
+          ...CREDITOS['Fin de Carrera'],
+          creditosNecesarios: 8,
+          creditos: 0,
+          dummy: true,
+          helpText: "Elegí entre tésis o tpp en la configuración de usuario"
+        });
+      }
     }
 
     // Hacemos que el tamaño de las barritas sea proporcional a su peso sobre el total para recibirte
