@@ -48,7 +48,7 @@ const DropdownCarreras = () => {
         return { nombre, nombrecorto };
     }, [user.carrera.id]);
 
-    return (<Box>
+    return (<Box key={user.carrera.id}>
         <Menu placement="bottom" isLazy>
             <Tooltip placement="bottom"
                 label={
