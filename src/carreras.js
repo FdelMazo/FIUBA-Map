@@ -311,21 +311,14 @@ export const CARRERAS = [
       total: 236,
       obligatorias: 162,
       electivas: 24,
-      // TODO: Asegurarse el estado de esto!!
-      // checkbox: [
-      //   {
-      //     nombre: "Práctica Profesional de al menos 200 horas",
-      //     nombrecorto: "PP",
-      //     bg: COLORS.habilitadas[50],
-      //     color: "habilitadas",
-      //   },
-      //   {
-      //     nombre: "Prueba de nivel de idioma inglés",
-      //     nombrecorto: "Inglés",
-      //     bg: COLORS.enfinal[50],
-      //     color: "enfinal",
-      //   },
-      // ],
+      checkbox: [
+        {
+          nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
+          bg: COLORS.enfinal[50],
+          color: "enfinal",
+        },
+      ],
     },
   },
   {
