@@ -14,18 +14,16 @@ import {
     Show,
     Badge,
     MenuItem,
-    Popover,
-    PopoverTrigger,
-    PopoverContent,
-    PopoverBody,
+    useColorModeValue,
 } from "@chakra-ui/react";
 import { CARRERAS, PLANES } from "../../carreras";
 import { GraphContext, UserContext } from "../../MapContext";
 
 const AnoBadge = ({ ano, active, ...rest }) => {
+    const activeVariant = useColorModeValue("solid", "subtle")
     const commonProps = {
         mx: 1,
-        variant: active ? "solid" : "outline",
+        variant: active ? activeVariant : "outline",
         textAlign: "center",
         colorScheme: "gray",
         ...rest,
@@ -80,59 +78,37 @@ const DropdownCarreras = () => {
                 </MenuButton>
             </Tooltip>
             <MenuList>
-                {PLANES.map((p) => {
-                    const Item = (
-                        <MenuItem
-                            key={p.nombrecorto}
-                            display="flex"
-                            justifyContent="space-between"
-                            {...(p.planes.length === 1
-                                ? { onClick: () => { changeCarrera(p.planes[0]) } }
-                                : { cursor: "not-allowed", closeOnSelect: false, }
-                            )}
-                        >
-                            <Text as={p.planes.includes(user.carrera.id) && 'b'}>
-                                {p.nombre}
-                            </Text>
-                            <Box ml={2}>
-                                {p.planes.map((c) => {
-                                    const plan = CARRERAS.find((carrera) => carrera.id === c)
-                                    return <AnoBadge key={c} ano={plan.ano} active={user.carrera.id === c} />
-                                })}
-                            </Box>
-                        </MenuItem>
-                    )
-
-                    if (p.planes.length === 1) {
-                        return Item
-                    } else {
-                        return (
-                            <Popover key={p.nombrecorto} placement="left" trigger="hover" closeOnBlur={false}>
-                                <PopoverTrigger>
-                                    {Item}
-                                </PopoverTrigger>
-                                <PopoverContent w="fit-content">
-                                    <PopoverBody>
-                                        {p.planes.map((c) => {
-                                            const plan = CARRERAS.find((carrera) => carrera.id === c)
-                                            return <Button
-                                                mx={1}
-                                                size="sm"
-                                                variant="outline"
-                                                isActive={user.carrera.id === c}
-                                                colorScheme={plan.ano === 2020 ? "green" : "gray"}
-                                                key={c}
-                                                onClick={() => { changeCarrera(c) }}
-                                            >
-                                                {plan.ano}
-                                            </Button>
-                                        })}
-                                    </PopoverBody>
-                                </PopoverContent>
-                            </Popover>
-                        )
-                    }
-                })}
+                {PLANES.map((p) => (
+                    <MenuItem
+                        key={p.nombrecorto}
+                        display="flex"
+                        justifyContent="space-between"
+                        {...(p.planes.length === 1
+                            ? { onClick: () => { changeCarrera(p.planes[0]) } }
+                            : { cursor: "not-allowed", closeOnSelect: false, }
+                        )}
+                    >
+                        <Text as={p.planes.includes(user.carrera.id) && 'b'}>
+                            {p.nombre}
+                        </Text>
+                        <Box ml={2} >
+                            {p.planes.map((c) => {
+                                const plan = CARRERAS.find((carrera) => carrera.id === c)
+                                const active = user.carrera.id === c
+                                return <AnoBadge
+                                    key={c}
+                                    ano={plan.ano}
+                                    active={active}
+                                    cursor="pointer"
+                                    onClick={() => { changeCarrera(c) }}
+                                    _hover={!active && p.planes.length > 1 && {
+                                        border: "1px",
+                                    }}
+                                />
+                            })}
+                        </Box>
+                    </MenuItem>
+                ))}
             </MenuList>
         </Menu>
         <Hide ssr={false} below="md">
