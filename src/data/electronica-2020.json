@@ -1,0 +1,279 @@
+[
+  {
+    "id": "CBC28",
+    "materia": "Análisis Matemático A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC27",
+    "materia": "Álgebra A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC24",
+    "materia": "Introducción al Conocimiento de la Sociedad y el Estado",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC3",
+    "materia": "Física",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC90",
+    "materia": "Pensamiento Computacional",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC40",
+    "materia": "Introducción al Pensamiento Científico",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC",
+    "materia": "Ciclo Básico Común",
+    "creditos": 0,
+    "categoria": "CBC",
+    "level": 0,
+    "correlativas": "CBC28-CBC27-CBC3-CBC90-CBC24-CBC40"
+  },
+  {
+    "id": "AMII",
+    "materia": "Análisis Matemático II",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "FSP",
+    "materia": "Física de los Sistemas de Partículas",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "IIE",
+    "materia": "Introducción a la Ingeniería Electrónica",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "AP",
+    "materia": "Algoritmos y Programación",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "AL",
+    "materia": "Álgebra Lineal",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "EMC",
+    "materia": "Electricidad, Magnetismo y Calor",
+    "creditos": 6,
+    "correlativas": "AMII-FSP",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "IDE",
+    "materia": "Introducción a los Dispositivos Electrónicos",
+    "creditos": 4,
+    "correlativas": "IIE",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "SD",
+    "materia": "Sistemas Digitales",
+    "creditos": 6,
+    "correlativas": "IIE",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "PYE",
+    "materia": "Probabilidad y Estadística",
+    "creditos": 6,
+    "correlativas": "AMII-AL",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "SS",
+    "materia": "Señales y Sistemas",
+    "creditos": 6,
+    "correlativas": "AMII-AL",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "AC",
+    "materia": "Análisis de Circuitos",
+    "creditos": 6,
+    "correlativas": "IIE-EMC",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "RC",
+    "materia": "Redes de Comunicaciones",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "PP",
+    "materia": "Planificación de Proyectos",
+    "creditos": 2,
+    "correlativas": "IIE",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "CM",
+    "materia": "Circuitos Microelectrónicos",
+    "creditos": 6,
+    "correlativas": "IDE-AC",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "PE",
+    "materia": "Procesos Estocásticos",
+    "creditos": 6,
+    "correlativas": "PYE-SS",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "CA",
+    "materia": "Control Automáticos",
+    "creditos": 6,
+    "correlativas": "EMC-SS",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "TSE",
+    "materia": "Taller de Sistemas Embebidos",
+    "creditos": 6,
+    "correlativas": "AP-IDE-SD",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "QE",
+    "materia": "Química y Electroquímica",
+    "creditos": 6,
+    "correlativas": "EMC",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "EA",
+    "materia": "Electromagnetismo Aplicado",
+    "creditos": 4,
+    "correlativas": "AC",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "TAC",
+    "materia": "Taller de Automatización y Control",
+    "creditos": 6,
+    "correlativas": "AP-CA-SD",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "TPS",
+    "materia": "Taller de Procesamiento de Señales",
+    "creditos": 6,
+    "correlativas": "PE",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "DS",
+    "materia": "Dispositivos Semiconductores",
+    "creditos": 6,
+    "correlativas": "IDE-AC",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "TCD",
+    "materia": "Taller de Comunicaciones Digitales",
+    "creditos": 6,
+    "correlativas": "SS-RC",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "TDCE",
+    "materia": "Taller de Diseño de Circuitos Electrónicos",
+    "creditos": 6,
+    "correlativas": "CM-EA",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "HS",
+    "materia": "Higiene y Seguridad",
+    "creditos": 2,
+    "requiere": 100,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "LEP",
+    "materia": "Legislación y Ejercicio Profesional",
+    "creditos": 2,
+    "requiere": 100,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "GPE",
+    "materia": "Gestión de Proyectos Electrónicos",
+    "creditos": 6,
+    "correlativas": "PP",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "ISADS",
+    "materia": "Impacto Social, Ambiental y Desarrollo Sustentable",
+    "creditos": 4,
+    "requiere": 100,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  }
+]
