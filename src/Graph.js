@@ -311,7 +311,7 @@ const Graph = (userContext) => {
     // Nos fijamos si ya habia algun registro en la db
     const userdata = user.allLogins.find((l) => l.carreraid === id)
     const carrera = CARRERAS.find((c) => c.id === id);
-    let newUser = { ...user, carrera };
+    let newUser = { ...user, carrera, orientacion: null, finDeCarrera: null };
     if (userdata) {
       const orientacion = carrera.orientaciones?.find((c) => c.nombre === userdata.orientacionid);
       const finDeCarrera = carrera.finDeCarrera?.find((c) => c.id === userdata.findecarreraid);
