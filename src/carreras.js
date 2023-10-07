@@ -269,6 +269,36 @@ export const CARRERAS = [
     },
   },
   {
+    id: "electronica-2020",
+    // TODO: cambiar este link cuando este en la pagina de la facultad
+    link: "",
+    ano: 2023,
+    graph: require("./data/electronica-2020.json"),
+    finDeCarrera: [
+      { id: "tesis", materia: "TESIS" },
+      { id: "tpp", materia: "TPP" },
+    ],
+    creditos: {
+      total: 228,
+      obligatorias: 154,
+      electivas: 24,
+      checkbox: [
+        {
+          nombre: "Práctica  Profesional",
+          nombrecorto: "PP",
+          bg: COLORS.habilitadas[50],
+          color: "habilitadas",
+        },
+        {
+          nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
+          bg: COLORS.enfinal[50],
+          color: "enfinal",
+        },
+      ],
+    },
+  },
+  {
     id: "industrial",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-industrial/plan-de-estudios",
     ano: 2011,
