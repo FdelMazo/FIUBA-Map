@@ -480,7 +480,7 @@ export const PLANES = [
   {
     nombre: "Ingeniería Electrónica",
     nombrecorto: "Electrónica",
-    planes: ["electronica"],
+    planes: ["electronica", "electronica-2020"],
   },
   {
     nombre: "Ingeniería en Agrimensura",
