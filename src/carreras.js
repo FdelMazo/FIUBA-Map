@@ -272,7 +272,8 @@ export const CARRERAS = [
     id: "electronica-2020",
     // TODO: cambiar este link cuando este en la pagina de la facultad
     link: "",
-    ano: 2023,
+    beta: true,
+    ano: 2020,
     graph: require("./data/electronica-2020.json"),
     finDeCarrera: [
       { id: "tesis", materia: "TESIS" },
