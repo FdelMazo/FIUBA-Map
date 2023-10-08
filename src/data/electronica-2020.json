@@ -1,13 +1,13 @@
 [
   {
-    "id": "CBC28",
+    "id": "CBC66",
     "materia": "Análisis Matemático A",
     "creditos": 9,
     "categoria": "*CBC",
     "level": -2
   },
   {
-    "id": "CBC27",
+    "id": "CBC62",
     "materia": "Álgebra A",
     "creditos": 9,
     "categoria": "*CBC",
@@ -274,7 +274,7 @@
     "requiere": 100,
     "requiereCBC": true,
     "categoria": "Materias Obligatorias",
-    "level": 8
+    "level": 7
   },
   {
     "id": "CI",
