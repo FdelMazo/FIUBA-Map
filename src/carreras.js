@@ -271,7 +271,7 @@ export const CARRERAS = [
   {
     id: "electronica-2020",
     // TODO: cambiar este link cuando este en la pagina de la facultad
-    link: "",
+    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-en-electr%C3%B3nica",
     beta: true,
     ano: 2020,
     graph: require("./data/electronica-2020.json"),
