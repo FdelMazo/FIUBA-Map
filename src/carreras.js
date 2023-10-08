@@ -285,12 +285,6 @@ export const CARRERAS = [
       electivas: 24,
       checkbox: [
         {
-          nombre: "Práctica  Profesional",
-          nombrecorto: "PP",
-          bg: COLORS.habilitadas[50],
-          color: "habilitadas",
-        },
-        {
           nombre: "Prueba de nivel de idioma inglés",
           nombrecorto: "Inglés",
           bg: COLORS.enfinal[50],
