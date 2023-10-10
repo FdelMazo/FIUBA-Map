@@ -269,6 +269,31 @@ export const CARRERAS = [
     },
   },
   {
+    id: "electronica-2020",
+    // TODO: cambiar este link cuando este en la pagina de la facultad
+    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-en-electr%C3%B3nica",
+    beta: true,
+    ano: 2020,
+    graph: require("./data/electronica-2020.json"),
+    finDeCarrera: [
+      { id: "tesis", materia: "TESIS" },
+      { id: "tpp", materia: "TPP" },
+    ],
+    creditos: {
+      total: 228,
+      obligatorias: 154,
+      electivas: 24,
+      checkbox: [
+        {
+          nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
+          bg: COLORS.enfinal[50],
+          color: "enfinal",
+        },
+      ],
+    },
+  },
+  {
     id: "industrial",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-industrial/plan-de-estudios",
     ano: 2011,
@@ -450,7 +475,7 @@ export const PLANES = [
   {
     nombre: "Ingeniería Electrónica",
     nombrecorto: "Electrónica",
-    planes: ["electronica"],
+    planes: ["electronica", "electronica-2020"],
   },
   {
     nombre: "Ingeniería en Agrimensura",

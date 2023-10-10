@@ -1,0 +1,581 @@
+[
+  {
+    "id": "CBC66",
+    "materia": "Análisis Matemático A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC62",
+    "materia": "Álgebra A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC24",
+    "materia": "Introducción al Conocimiento de la Sociedad y el Estado",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC3",
+    "materia": "Física",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC90",
+    "materia": "Pensamiento Computacional",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC40",
+    "materia": "Introducción al Pensamiento Científico",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC",
+    "materia": "Ciclo Básico Común",
+    "creditos": 0,
+    "categoria": "CBC",
+    "level": 0,
+    "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
+  },
+  {
+    "id": "AMII",
+    "materia": "Análisis Matemático II",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "FSP",
+    "materia": "Física de los Sistemas de Partículas",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "IIE",
+    "materia": "Introducción a la Ingeniería Electrónica",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "AP",
+    "materia": "Algoritmos y Programación",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "AL",
+    "materia": "Álgebra Lineal",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "EMC",
+    "materia": "Electricidad, Magnetismo y Calor",
+    "creditos": 6,
+    "correlativas": "AMII-FSP",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "IDE",
+    "materia": "Introducción a los Dispositivos Electrónicos",
+    "creditos": 4,
+    "correlativas": "IIE",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "SD",
+    "materia": "Sistemas Digitales",
+    "creditos": 6,
+    "correlativas": "IIE",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "PYE",
+    "materia": "Probabilidad y Estadística",
+    "creditos": 6,
+    "correlativas": "AMII-AL",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "SS",
+    "materia": "Señales y Sistemas",
+    "creditos": 6,
+    "correlativas": "AMII-AL",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "AC",
+    "materia": "Análisis de Circuitos",
+    "creditos": 6,
+    "correlativas": "IIE-EMC",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "RC",
+    "materia": "Redes de Comunicaciones",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "PP",
+    "materia": "Planificación de Proyectos",
+    "creditos": 2,
+    "correlativas": "IIE",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "CM",
+    "materia": "Circuitos Microelectrónicos",
+    "creditos": 6,
+    "correlativas": "IDE-AC",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "PE",
+    "materia": "Procesos Estocásticos",
+    "creditos": 6,
+    "correlativas": "PYE-SS",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "CA",
+    "materia": "Control Automáticos",
+    "creditos": 6,
+    "correlativas": "EMC-SS",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "TSE",
+    "materia": "Taller de Sistemas Embebidos",
+    "creditos": 6,
+    "correlativas": "AP-IDE-SD",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "QE",
+    "materia": "Química y Electroquímica",
+    "creditos": 6,
+    "correlativas": "EMC",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "EA",
+    "materia": "Electromagnetismo Aplicado",
+    "creditos": 4,
+    "correlativas": "AC",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "TAC",
+    "materia": "Taller de Automatización y Control",
+    "creditos": 6,
+    "correlativas": "AP-CA-SD",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "TPS",
+    "materia": "Taller de Procesamiento de Señales",
+    "creditos": 6,
+    "correlativas": "PE",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "DS",
+    "materia": "Dispositivos Semiconductores",
+    "creditos": 6,
+    "correlativas": "IDE-AC",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "TCD",
+    "materia": "Taller de Comunicaciones Digitales",
+    "creditos": 6,
+    "correlativas": "SS-RC",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "TDCE",
+    "materia": "Taller de Diseño de Circuitos Electrónicos",
+    "creditos": 6,
+    "correlativas": "CM-EA",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "HS",
+    "materia": "Higiene y Seguridad",
+    "creditos": 2,
+    "requiere": 100,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "LEP",
+    "materia": "Legislación y Ejercicio Profesional",
+    "creditos": 2,
+    "requiere": 100,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "GPE",
+    "materia": "Gestión de Proyectos Electrónicos",
+    "creditos": 6,
+    "correlativas": "PP",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "ISADS",
+    "materia": "Impacto Social, Ambiental y Desarrollo Sustentable",
+    "creditos": 4,
+    "requiere": 100,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "CI",
+    "materia": "Comunicaciones Inalámbricas",
+    "creditos": 4,
+    "correlativas": "EA-TCD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "IEM",
+    "materia": "Instrumentos Electrónicos y Metrología",
+    "creditos": 4,
+    "correlativas": "TDCE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "EAF",
+    "materia": "Electrónica de Alta Frecuencia",
+    "creditos": 4,
+    "correlativas": "TDCE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "IC",
+    "materia": "Internet de las Cosas",
+    "creditos": 4,
+    "correlativas": "TCD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "IR",
+    "materia": "Infraestructura de Redes",
+    "creditos": 4,
+    "correlativas": "TCD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "PSI",
+    "materia": "Propagación y Sistemas Irradiantes",
+    "creditos": 4,
+    "correlativas": "EA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CE",
+    "materia": "Compatibilidad Electromagnética",
+    "creditos": 4,
+    "correlativas": "TDCE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "LC",
+    "materia": "Laboratorio de Comunicaciones",
+    "creditos": 4,
+    "correlativas": "TCD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "RNAP",
+    "materia": "Redes Neuronales y Aprendizaje Profundo",
+    "creditos": 4,
+    "correlativas": "TPS",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AR",
+    "materia": "Aprendizaje por Refuerzo",
+    "creditos": 6,
+    "correlativas": "TPS",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "VC",
+    "materia": "Visión por Computadora",
+    "creditos": 4,
+    "correlativas": "TPS",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "PH",
+    "materia": "Procesamiento del Habla",
+    "creditos": 4,
+    "correlativas": "TPS",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "OC",
+    "materia": "Optimización Convexa",
+    "creditos": 6,
+    "correlativas": "PE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "PES",
+    "materia": "Procesamiento Estadístico de Señales",
+    "creditos": 4,
+    "correlativas": "PE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TSD",
+    "materia": "Taller de Sistemas Digitales",
+    "creditos": 6,
+    "correlativas": "SD-SS",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "DVD",
+    "materia": "Diseño y Verificación Digital",
+    "creditos": 6,
+    "correlativas": "TSE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "SO",
+    "materia": "Sistemas Operativos",
+    "creditos": 6,
+    "correlativas": "TSE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AED",
+    "materia": "Algoritmos y Estructuras de Datos",
+    "creditos": 6,
+    "correlativas": "AP",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "SOE",
+    "materia": "Sistemas Operativos Embebidos",
+    "creditos": 4,
+    "correlativas": "TSE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ICPI",
+    "materia": "Instrumentación y Control de Procesos Industriales",
+    "creditos": 4,
+    "correlativas": "TAC",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CAA",
+    "materia": "Control Automático Avanzado",
+    "creditos": 4,
+    "correlativas": "TAC",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CAM",
+    "materia": "Control Automático Multivariable",
+    "creditos": 4,
+    "correlativas": "TAC",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ICA",
+    "materia": "Identificación y Control Adaptativo",
+    "creditos": 4,
+    "correlativas": "TAC",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "EP",
+    "materia": "Electrónica de Potencia",
+    "creditos": 4,
+    "correlativas": "CM",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AV",
+    "materia": "Accionamientos Variables",
+    "creditos": 6,
+    "correlativas": "CM-CA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "RM",
+    "materia": "Robótica Móvil",
+    "creditos": 4,
+    "correlativas": "PE-AP",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "RI",
+    "materia": "Robótica Industrial",
+    "creditos": 6,
+    "correlativas": "TAC",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ME",
+    "materia": "Microeletrónica",
+    "creditos": 4,
+    "correlativas": "CM-DS",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "LM",
+    "materia": "Laboratorio de Microeletrónica",
+    "creditos": 4,
+    "correlativas": "ME",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CCC",
+    "materia": "Comunicación y Computación Cuántica",
+    "creditos": 4,
+    "correlativas": "TSE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "DOA",
+    "materia": "Dispositivos Optoelectrónicos Avanzados",
+    "creditos": 4,
+    "correlativas": "DS",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "OE",
+    "materia": "Optoelectrónica",
+    "creditos": 4,
+    "correlativas": "DS",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "IIA",
+    "materia": "Introducción a la Ingeniería Acústica",
+    "creditos": 4,
+    "correlativas": "SS",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ADR",
+    "materia": "Acústica de Recintos",
+    "creditos": 4,
+    "correlativas": "SS",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ELA",
+    "materia": "Electroacústica",
+    "creditos": 4,
+    "correlativas": "CM",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "APR",
+    "materia": "Audio Profesional",
+    "creditos": 4,
+    "correlativas": "TDCE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CRIC",
+    "materia": "Ciberseguridad de Redes e Infraestructuras Críticas",
+    "creditos": 4,
+    "correlativas": "AP-TCD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "SG",
+    "materia": "Sistemas Gráficos",
+    "creditos": 4,
+    "correlativas": "AP",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "IISNA",
+    "materia": "Introducción a la Industria, los Sistemas y el Negocio Aeroespacial",
+    "creditos": 6,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TMIAB",
+    "materia": "Tecnología de Materiales para la Industria Aeroespacial B",
+    "creditos": 4,
+    "correlativas": "EMC-QE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CAB",
+    "materia": "Comunicaciones Aeroespaciales B",
+    "creditos": 2,
+    "correlativas": "TCD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TPP",
+    "materia": "Trabajo Profesional de Ingeniería Electrónica",
+    "creditos": 12,
+    "correlativas": "PP",
+    "categoria": "Fin de Carrera"
+  },
+  {
+    "id": "TESIS",
+    "materia": "Tesis de Ingeniería Electrónica",
+    "creditos": 12,
+    "correlativas": "PP",
+    "categoria": "Fin de Carrera"
+  }
+]
