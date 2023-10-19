@@ -95,7 +95,7 @@ export const CARRERAS = [
   {
     id: "informatica-2020",
     // TODO: cambiar este link cuando este en la pagina de la facultad
-    link: "https://mli-fiuba.notion.site/Ingenier-a-en-Inform-tica-48e3eeece07e471dbfe1cd947f7ca245",
+    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-en-inform%C3%A1tica",
     ano: 2020,
     graph: require("./data/informatica-2020.json"),
     finDeCarrera: [
@@ -325,7 +325,7 @@ export const CARRERAS = [
   {
     id: "industrial-2020",
     // TODO: cambiar este link cuando este en la pagina de la facultad
-    link: "https://mli-fiuba.notion.site/Ingenier-a-Industrial-f1bc735b7f1c44afb7d259d7b2d581a2",
+    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-industrial",
     ano: 2020,
     graph: require("./data/industrial-2020.json"),
     finDeCarrera: [
