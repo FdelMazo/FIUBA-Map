@@ -12,7 +12,6 @@ import CategoryTagStack from "./CategoryTagStack";
 import LoadingGraph from "./LoadingGraph";
 import { Fireworks } from '@fireworks-js/react'
 import Controls from "./Controls";
-import Ad from "./Ad";
 
 const today = new Date();
 const start = new Date(today.getFullYear(), 11, 19);
@@ -58,7 +57,6 @@ const Body = () => {
       />
       <CategoryTagStack />
       <Controls />
-      <Ad />
     </Box>
   );
 };
