@@ -573,12 +573,13 @@ const Graph = (userContext) => {
     });
 
     // Despues, las obligatorias
-    const obligatorias = getters.ObligatoriasAprobadas()
+    const allObligatorias = getters.Obligatorias();
+    const obligatorias = getters.ObligatoriasAprobadas();
     creditos.push({
-      ...CREDITOS['Obligatorias'],
-      creditosNecesarios: user.carrera.creditos.obligatorias,
+      ...CREDITOS["Obligatorias"],
+      creditosNecesarios: allObligatorias.reduce(accCreditos, 0),
       nmaterias: obligatorias.length,
-      totalmaterias: getters.Obligatorias().length,
+      totalmaterias: allObligatorias.length,
       creditos: obligatorias.reduce(accCreditos, 0),
     });
 

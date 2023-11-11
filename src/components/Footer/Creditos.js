@@ -54,6 +54,9 @@ const Creditos = () => {
     // TODO: En un mundo ideal esto no esta hardcodeado y se computa
     // pero cada carrera es tan distinta que esto se hace imposible
     // con la estructura actual de carreras.js
+    // Ademas... no tengo forma de obtener los creditos del fin de carrera
+    // de un usuario que no lo configuro, porque el nodo no esta presente en
+    // el grafo
     return user.carrera.creditos.total
   }, [user.carrera])
 

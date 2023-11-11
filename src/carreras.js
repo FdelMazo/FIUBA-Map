@@ -37,7 +37,6 @@ export const CARRERAS = [
     graph: require("./data/sistemas-2014.json"),
     creditos: {
       total: 214,
-      obligatorias: 136,
       electivas: 28,
       checkbox: [
         {
@@ -76,7 +75,6 @@ export const CARRERAS = [
     ],
     creditos: {
       total: 286,
-      obligatorias: 122,
       orientacion: {
         "Gestión Industrial de Sistemas": {
           orientacion: 24,
@@ -105,7 +103,6 @@ export const CARRERAS = [
     ],
     creditos: {
       total: 226,
-      obligatorias: 152,
       electivas: 24,
       checkbox: [
         {
@@ -128,7 +125,6 @@ export const CARRERAS = [
     ],
     creditos: {
       total: 246,
-      obligatorias: 178,
       checkbox: [
         {
           nombre: "Estadía Supervisada de al menos 200 horas",
@@ -161,7 +157,6 @@ export const CARRERAS = [
           color: "findecarrera",
         },
       ],
-      obligatorias: 208,
       electivas: 10,
     },
   },
@@ -172,7 +167,6 @@ export const CARRERAS = [
     graph: require("./data/civil-2009.json"),
     creditos: {
       total: 295,
-      obligatorias: 210,
       electivas: 34,
       materias: [
         {
@@ -210,7 +204,6 @@ export const CARRERAS = [
     ],
     creditos: {
       total: 251,
-      obligatorias: 177,
       electivas: 24,
     },
   },
@@ -225,7 +218,6 @@ export const CARRERAS = [
     ],
     creditos: {
       total: 280,
-      obligatorias: 206,
       checkbox: [
         {
           nombre: "Estadía Supervisada de al menos 200 horas",
@@ -267,7 +259,6 @@ export const CARRERAS = [
     ],
     creditos: {
       total: 278,
-      obligatorias: 166,
       electivas: 56,
       checkbox: [
         {
@@ -297,7 +288,6 @@ export const CARRERAS = [
     ],
     creditos: {
       total: 228,
-      obligatorias: 154,
       electivas: 24,
       checkbox: [
         {
@@ -320,7 +310,6 @@ export const CARRERAS = [
     ],
     creditos: {
       total: 283,
-      obligatorias: 196,
       checkbox: [
         {
           nombre: "Práctica Profesional de al menos 200 horas",
@@ -349,7 +338,6 @@ export const CARRERAS = [
     ],
     creditos: {
       total: 236,
-      obligatorias: 162,
       electivas: 24,
       checkbox: [
         {
@@ -383,7 +371,6 @@ export const CARRERAS = [
     ],
     creditos: {
       total: 298,
-      obligatorias: 190,
       orientacion: {
         "Diseño Mecánico": {
           orientacion: 28,
@@ -408,7 +395,6 @@ export const CARRERAS = [
     ],
     creditos: {
       total: 302,
-      obligatorias: 226,
       electivas: { tesis: 20, tpp: 38 },
     },
   },
@@ -423,7 +409,6 @@ export const CARRERAS = [
     ],
     creditos: {
       total: 284,
-      obligatorias: 216,
       electivas: { tesis: 12, tpp: 16 },
       checkbox: [
         {
@@ -452,7 +437,6 @@ export const CARRERAS = [
     ],
     creditos: {
       total: 290,
-      obligatorias: 216,
       electivas: { tesis: 18, tpp: 24 },
     },
   },
@@ -463,7 +447,6 @@ export const CARRERAS = [
     graph: require("./data/sistemas-1986.json"),
     creditos: {
       total: 208,
-      obligatorias: 130,
       electivas: 40,
     },
   },
