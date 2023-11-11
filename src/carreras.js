@@ -27,6 +27,8 @@ import { COLORS } from "./theme";
 // Pero el fiuba map arranco antes de que existan muchos planes para cada carrera, y
 // ahora quedo que el usuario tiene una "carrera" asociada, aunque sea un plan, así que
 // lo dejamos así
+
+// TODO: cambiar los links de los planes nuevos a medida que aparezcan en la pagina de fiuba
 export const CARRERAS = [
   {
     id: "sistemas",
@@ -94,7 +96,6 @@ export const CARRERAS = [
   },
   {
     id: "informatica-2020",
-    // TODO: cambiar este link cuando este en la pagina de la facultad
     link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-en-inform%C3%A1tica",
     ano: 2020,
     graph: require("./data/informatica-2020.json"),
@@ -198,6 +199,22 @@ export const CARRERAS = [
     },
   },
   {
+    id: "civil-2020",
+    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-civil",
+    beta: true,
+    ano: 2020,
+    graph: require("./data/civil-2020.json"),
+    finDeCarrera: [
+      { id: "tesis", materia: "TESIS" },
+      { id: "tpp", materia: "TPP" },
+    ],
+    creditos: {
+      total: 251,
+      obligatorias: 177,
+      electivas: 24,
+    },
+  },
+  {
     id: "electricista",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-electricista/plan-de-estudios",
     ano: 2009,
@@ -270,7 +287,6 @@ export const CARRERAS = [
   },
   {
     id: "electronica-2020",
-    // TODO: cambiar este link cuando este en la pagina de la facultad
     link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-en-electr%C3%B3nica",
     beta: true,
     ano: 2020,
@@ -324,7 +340,6 @@ export const CARRERAS = [
   },
   {
     id: "industrial-2020",
-    // TODO: cambiar este link cuando este en la pagina de la facultad
     link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-industrial",
     ano: 2020,
     graph: require("./data/industrial-2020.json"),
@@ -460,7 +475,7 @@ export const PLANES = [
   {
     nombre: "Ingeniería Civil",
     nombrecorto: "Civil",
-    planes: ["civil"],
+    planes: ["civil", "civil-2020"],
   },
   {
     nombre: "Ingeniería de Alimentos",
