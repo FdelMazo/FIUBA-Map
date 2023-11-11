@@ -85,7 +85,7 @@ const DropdownCarreras = () => {
                         justifyContent="space-between"
                         {...(p.planes.length === 1
                             ? { onClick: () => { changeCarrera(p.planes[0]) } }
-                            : { cursor: "not-allowed", closeOnSelect: false, }
+                            : { cursor: "default", closeOnSelect: false, }
                         )}
                     >
                         <Text as={p.planes.includes(user.carrera.id) && 'b'}>
