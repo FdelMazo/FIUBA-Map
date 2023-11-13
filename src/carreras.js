@@ -481,6 +481,21 @@ export const CARRERAS = [
     },
   },
   {
+    id: "quimica-2020",
+    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-qu%C3%ADmica",
+    beta: true,
+    ano: 2020,
+    graph: require("./data/quimica-2020.json"),
+    finDeCarrera: [
+      { id: "tesis", materia: "TESIS" },
+      { id: "tpp", materia: "TPP" },
+    ],
+    creditos: {
+      total: 231,
+      electivas: 14,
+    },
+  },
+  {
     id: "sistemasviejo",
     link: "https://www.fi.uba.ar/grado/carreras/lic-en-analisis-de-sistemas/plan-de-estudios",
     ano: 1986,
@@ -548,7 +563,7 @@ export const PLANES = [
   {
     nombre: "Ingeniería Química",
     nombrecorto: "Química",
-    planes: ["quimica"],
+    planes: ["quimica", "quimica-2020"],
   },
   {
     nombre: "Licenciatura en Análisis de Sistemas",
