@@ -1,0 +1,486 @@
+[
+  {
+    "id": "CBC66",
+    "materia": "Análisis Matemático A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC62",
+    "materia": "Álgebra A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC24",
+    "materia": "Introducción al Conocimiento de la Sociedad y el Estado",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC3",
+    "materia": "Física",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC90",
+    "materia": "Pensamiento Computacional",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC40",
+    "materia": "Introducción al Pensamiento Científico",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC",
+    "materia": "Ciclo Básico Común",
+    "creditos": 0,
+    "categoria": "CBC",
+    "level": 0,
+    "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
+  },
+  {
+    "id": "AM2",
+    "materia": "Análisis Matemático II",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "SDC",
+    "materia": "Sistemas de Coordenadas",
+    "creditos": 4,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "SROA",
+    "materia": "Sistemas de Representación Orientado a la Agrimensura",
+    "creditos": 3,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "DCT",
+    "materia": "Dibujo Cartográfico y Topográfico",
+    "creditos": 4,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "IA",
+    "materia": "Introducción a la Ingeniería en Agrimensura",
+    "creditos": 4,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "PROBA",
+    "materia": "Probabilidad y Estadística",
+    "creditos": 6,
+    "correlativas": "AM2-SDC",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "IT",
+    "materia": "Instrumental Topográfico",
+    "creditos": 6,
+    "correlativas": "DCT",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "DA",
+    "materia": "Derecho para Agrimensura",
+    "creditos": 4,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "EO",
+    "materia": "Economía y Organización",
+    "creditos": 6,
+    "correlativas": "IA",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "EC",
+    "materia": "Elementos de Construcción",
+    "creditos": 3,
+    "correlativas": "DCT",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "ICD",
+    "materia": "Introducción a la Ciencia de Datos",
+    "creditos": 3,
+    "correlativas": "SDC",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "MT",
+    "materia": "Métodos Topográficos",
+    "creditos": 6,
+    "correlativas": "IT-SROA",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "CC",
+    "materia": "Cálculo de Compensación",
+    "creditos": 4,
+    "correlativas": "IT-PROBA",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "CAR",
+    "materia": "Cartografía",
+    "creditos": 6,
+    "correlativas": "SDC",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "GAMP",
+    "materia": "Geodesia Astronómica y Mediciones Precisas",
+    "creditos": 4,
+    "correlativas": "IT",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "FSP",
+    "materia": "Física de los Sistemas de Partículas",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "RT",
+    "materia": "Relevamientos Topográficos",
+    "creditos": 8,
+    "correlativas": "MT-CC",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "GGS",
+    "materia": "Geodesia Geométrica y Satelital",
+    "creditos": 4,
+    "correlativas": "GAMP-MT",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "FOT",
+    "materia": "Fotogrametría",
+    "creditos": 4,
+    "correlativas": "CAR-ICD",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "NMPH",
+    "materia": "Normativa de Mensura y Propiedad Horizontal",
+    "creditos": 4,
+    "correlativas": "DA-IT",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "EYM",
+    "materia": "Electricidad y Magnetismo",
+    "creditos": 6,
+    "correlativas": "AM2-FSP",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "GTG",
+    "materia": "Georreferenciación de Trabajos Topográficos y Geodésicos",
+    "creditos": 8,
+    "correlativas": "RT-GGS-CAR",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "FD",
+    "materia": "Fotogrametría Digital",
+    "creditos": 4,
+    "correlativas": "FOT",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "ALA",
+    "materia": "Aplicación Legal de la Agrimensura",
+    "creditos": 4,
+    "correlativas": "NMPH-EO",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "GFG",
+    "materia": "Geografía Física y Geología",
+    "creditos": 4,
+    "correlativas": "FSP",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "SIG",
+    "materia": "Sistemas de Información Geográfica",
+    "creditos": 4,
+    "correlativas": "CAR",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "CAT",
+    "materia": "Catastro",
+    "creditos": 4,
+    "correlativas": "NMPH",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "MNS",
+    "materia": "Mensuras",
+    "creditos": 4,
+    "correlativas": "RT-NMPH",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "TAG",
+    "materia": "Teledetección para Agrimensura",
+    "creditos": 4,
+    "correlativas": "CAR-EYM",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "IR",
+    "materia": "Información Rural",
+    "creditos": 3,
+    "correlativas": "ALA",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "TO",
+    "materia": "Topografía de Obra",
+    "creditos": 3,
+    "correlativas": "RT",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "MA",
+    "materia": "Mensuras Aplicadas",
+    "creditos": 6,
+    "correlativas": "GTG-MNS-ALA",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "VAL",
+    "materia": "Valuaciones",
+    "creditos": 3,
+    "correlativas": "CAT-EC",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "TIG",
+    "materia": "Tecnologías de Información Geoespacial",
+    "creditos": 3,
+    "correlativas": "SIG",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "PUSYA",
+    "materia": "Planeamiento Urbano e Impacto Social y Ambiental",
+    "creditos": 4,
+    "correlativas": "ALA",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "TPP",
+    "materia": "Trabajo Profesional de Ingeniería en Agrimensura",
+    "creditos": 12,
+    "correlativas": "MNS",
+    "categoria": "Fin de Carrera"
+  },
+  {
+    "id": "TESIS",
+    "materia": "Tesis de Ingeniería en Agrimensura",
+    "creditos": 12,
+    "correlativas": "MNS",
+    "categoria": "Fin de Carrera"
+  },
+  {
+    "id": "GE",
+    "materia": "Geoestadística",
+    "creditos": 4,
+    "correlativas": "CC-ICD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "SAS",
+    "materia": "Sistematización Agrícola y Saneamiento",
+    "creditos": 4,
+    "correlativas": "MT",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TA",
+    "materia": "Teledetección Avanzada",
+    "creditos": 4,
+    "correlativas": "TAG",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "OF",
+    "materia": "Oceanografía Física",
+    "creditos": 4,
+    "correlativas": "FSP",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "LH",
+    "materia": "Levantamientos Hidrográficos",
+    "creditos": 4,
+    "correlativas": "MT",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "DGO",
+    "materia": "Diseño Geométrico de Obras Lineales",
+    "creditos": 4,
+    "correlativas": "RT",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "MG",
+    "materia": "Microgeodesia",
+    "creditos": 4,
+    "correlativas": "GAMP-RT",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "HRPD",
+    "materia": "Herramientas para la Representación de Planos Digitales",
+    "creditos": 4,
+    "correlativas": "DCT",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "GG",
+    "materia": "Geología General",
+    "creditos": 4,
+    "correlativas": "GFG",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "GF",
+    "materia": "Geodesia Física",
+    "creditos": 4,
+    "correlativas": "EYM-GGS",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CAMR",
+    "materia": "Cálculo Avanzado de Marcos de Referencia",
+    "creditos": 4,
+    "correlativas": "GTG",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "GA",
+    "materia": "Geomagnetismo y Aeronomía",
+    "creditos": 4,
+    "correlativas": "EYM",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "GC",
+    "materia": "Gerenciamiento de la Calidad",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CHC",
+    "materia": "Capital Humano y Comportamiento Organizacional",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CPS",
+    "materia": "Comercialización de Productos y Servicios",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "EI",
+    "materia": "Emprendimientos en Ingeniería",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "IA",
+    "materia": "Introducción a Inteligencia Artificial",
+    "creditos": 3,
+    "correlativas": "PE-ICD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AD",
+    "materia": "Análisis de Datos",
+    "creditos": 3,
+    "correlativas": "PE-ICD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AM",
+    "materia": "Aprendizaje de Máquina",
+    "creditos": 3,
+    "correlativas": "AD-IA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AMP",
+    "materia": "Aprendizaje de Máquina Profundo",
+    "creditos": 3,
+    "correlativas": "AD-IA",
+    "categoria": "Materias Electivas"
+  }
+]

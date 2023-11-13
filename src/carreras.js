@@ -137,6 +137,21 @@ export const CARRERAS = [
     },
   },
   {
+    id: "agrimensura-2020",
+    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-en-agrimensura",
+    beta: true,
+    ano: 2020,
+    graph: require("./data/agrimensura-2020.json"),
+    finDeCarrera: [
+      { id: "tesis", materia: "TESIS" },
+      { id: "tpp", materia: "TPP" },
+    ],
+    creditos: {
+      total: 227,
+      electivas: 16,
+    },
+  },
+  {
     id: "alimentos",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-de-alimentos/plan-de-estudios",
     ano: 2001,
@@ -478,7 +493,7 @@ export const PLANES = [
   {
     nombre: "Ingeniería en Agrimensura",
     nombrecorto: "Agrimensura",
-    planes: ["agrimensura"],
+    planes: ["agrimensura", "agrimensura-2020"],
   },
   {
     nombre: "Ingeniería en Informática",
