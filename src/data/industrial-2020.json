@@ -117,7 +117,7 @@
     "id": "ECO",
     "materia": "Economía",
     "creditos": 6,
-    "correlativas": "AMII",
+    "correlativas": "AMII-PII",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
