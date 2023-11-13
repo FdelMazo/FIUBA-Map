@@ -442,6 +442,31 @@ export const CARRERAS = [
     },
   },
   {
+    id: "petroleo-2020",
+    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-en-petr%C3%B3leo",
+    beta: true,
+    ano: 2020,
+    graph: require("./data/petroleo-2020.json"),
+    creditos: {
+      total: 241,
+      electivas: 14,
+      materias: [
+        {
+          id: "TPP1",
+          nombrecorto: "TPP1",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
+        },
+        {
+          id: "TPP2",
+          nombrecorto: "TPP2",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
+        },
+      ],
+    },
+  },
+  {
     id: "quimica",
     link: "https://www.fi.uba.ar/grado/carreras/ingenieria-quimica/plan-de-estudios",
     ano: 1986,
@@ -503,7 +528,7 @@ export const PLANES = [
   {
     nombre: "Ingeniería en Petróleo",
     nombrecorto: "Petróleo",
-    planes: ["petroleo"],
+    planes: ["petroleo", "petroleo-2020"],
   },
   {
     nombre: "Ingeniería Industrial",

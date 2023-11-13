@@ -1,0 +1,448 @@
+[
+  {
+    "id": "CBC66",
+    "materia": "Análisis Matemático A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC62",
+    "materia": "Álgebra A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC24",
+    "materia": "Introducción al Conocimiento de la Sociedad y el Estado",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC3",
+    "materia": "Física",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC90",
+    "materia": "Pensamiento Computacional",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC40",
+    "materia": "Introducción al Pensamiento Científico",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC",
+    "materia": "Ciclo Básico Común",
+    "creditos": 0,
+    "categoria": "CBC",
+    "level": 0,
+    "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
+  },
+  {
+    "id": "AM2",
+    "materia": "Análisis Matemático II",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "FSP",
+    "materia": "Física de los Sistemas de Partículas",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "IEP",
+    "materia": "Introducción a la Ingeniería en Petróleo",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "AL",
+    "materia": "Álgebra Lineal",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "GG",
+    "materia": "Geología General",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "QB",
+    "materia": "Química Básica",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "EYM",
+    "materia": "Electricidad y Magnetismo",
+    "creditos": 6,
+    "correlativas": "AM2-FSP",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "FHH",
+    "materia": "Fluidodinámica de los Hidrocarburos",
+    "creditos": 6,
+    "correlativas": "AM2-FSP",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "PROBA",
+    "materia": "Probabilidad y Estadística",
+    "creditos": 6,
+    "correlativas": "AM2-AL",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "QH",
+    "materia": "Química de los Hidrocarburos",
+    "creditos": 6,
+    "correlativas": "QB",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "ICD",
+    "materia": "Introducción a la Ciencia de Datos",
+    "creditos": 3,
+    "correlativas": "AL",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "EO",
+    "materia": "Economía y Organización",
+    "creditos": 6,
+    "correlativas": "IEP",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "GF",
+    "materia": "Geofísica",
+    "creditos": 4,
+    "correlativas": "FSP-IEP-GG",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "MN",
+    "materia": "Modelación Numérica",
+    "creditos": 4,
+    "correlativas": "AM2-AL",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "TH",
+    "materia": "Termodinámica de los Hidrocarburos",
+    "creditos": 6,
+    "correlativas": "AM2-FSP-QB",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "EMIE",
+    "materia": "Electrotecnia, Máquinas e Instalaciones Eléctricas",
+    "creditos": 6,
+    "correlativas": "EYM",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "ERM",
+    "materia": "Estática y Resistencia de Materiales",
+    "creditos": 6,
+    "correlativas": "AM2-FSP",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "GH",
+    "materia": "Geología de los Hidrocarburos",
+    "creditos": 6,
+    "correlativas": "FSP-IEP-GG",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "PRRF",
+    "materia": "Propiedades de la Roca y los Fluidos de Reservorios",
+    "creditos": 6,
+    "correlativas": "TH-GG",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "IR",
+    "materia": "Ingeniería de Reservorios",
+    "creditos": 8,
+    "correlativas": "MN-GH-PRRF",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "PI1",
+    "materia": "Perforación e Intervención de Pozos I",
+    "creditos": 4,
+    "correlativas": "IEP-GG-FHH",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "PHY",
+    "materia": "Procesamiento de Hidrocarburos en Yacimiento",
+    "creditos": 6,
+    "correlativas": "QH-TH-FHH",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "SPH",
+    "materia": "Sustentabilidad de Proyectos de Hidrocarburos",
+    "creditos": 8,
+    "correlativas": "EO",
+    "requiere": 130,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "IRP",
+    "materia": "Interpretación de Registro de Pozos",
+    "creditos": 4,
+    "correlativas": "GH-GF-PRRF-PI1",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "PI2",
+    "materia": "Perforación e Intervención de Pozos II",
+    "creditos": 4,
+    "correlativas": "PI1-ERM",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "PH",
+    "materia": "Producción de Hidrocarburos",
+    "creditos": 4,
+    "correlativas": "EMIE-PRRF-PI1",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "PIS",
+    "materia": "Proyecto de Instalaciones de Superficie",
+    "creditos": 8,
+    "correlativas": "EMIE-ERM-PHY",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "EDF",
+    "materia": "Estimulación de Formaciones",
+    "creditos": 4,
+    "correlativas": "PI2",
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  },
+  {
+    "id": "IRNC",
+    "materia": "Ingeniería de Reservorios No Convencionales",
+    "creditos": 4,
+    "correlativas": "IR",
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  },
+  {
+    "id": "RSAP",
+    "materia": "Recuperación Secundaria y Asistida de Petróleo",
+    "creditos": 4,
+    "correlativas": "IR-QH",
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  },
+  {
+    "id": "IH",
+    "materia": "Industrialización de los Hidrocarburos",
+    "creditos": 4,
+    "correlativas": "QH-TH",
+    "categoria": "Materias Obligatorias",
+    "level": 9
+  },
+  {
+    "id": "TDH",
+    "materia": "Transporte y Distribución de los Hidrocarburos",
+    "creditos": 4,
+    "correlativas": "ERM-TH-FHH",
+    "categoria": "Materias Obligatorias",
+    "level": 9
+  },
+  {
+    "id": "TPP1",
+    "materia": "Trabajo Integrador Final de Ingeniería en Petróleo I",
+    "creditos": 4,
+    "correlativas": "IR-PYE-SPH-PI2",
+    "categoria": "Fin de Carrera (Obligatorio)"
+  },
+  {
+    "id": "TPP2",
+    "materia": "Trabajo Integrador Final de Ingeniería en Petróleo II",
+    "creditos": 8,
+    "correlativas": "TPP1",
+    "categoria": "Fin de Carrera (Obligatorio)"
+  },
+  {
+    "id": "MR",
+    "materia": "Modelado de Reservorios",
+    "creditos": 4,
+    "correlativas": "IR",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "MERP",
+    "materia": "Metodos EOR para Recuperación De Petróleo",
+    "creditos": 4,
+    "correlativas": "IR",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "EPO",
+    "materia": "Exploración y Producción Offshore",
+    "creditos": 4,
+    "correlativas": "IR-PH-SPH",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ITE",
+    "materia": "Introducción a la Transición Energética",
+    "creditos": 4,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ER",
+    "materia": "Energías Renovables",
+    "creditos": 4,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "UEE",
+    "materia": "Uso Eficiente de la Energía",
+    "creditos": 4,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "FCTE",
+    "materia": "Fuentes Convencionales en la Transición Energética",
+    "creditos": 4,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TETE",
+    "materia": "Tecnologías Emergentes en la Transición Energética",
+    "creditos": 4,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "GC",
+    "materia": "Gerenciamiento de la Calidad",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CHCO",
+    "materia": "Capital Humano y Comportamiento Organizacional",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CPYS",
+    "materia": "Comercialización de Productos y Servicios",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "EI",
+    "materia": "Emprendimientos en Ingeniería",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "IA",
+    "materia": "Introducción a la Inteligencia Artificial",
+    "creditos": 3,
+    "correlativas": "PROBA-ICD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AD",
+    "materia": "Análisis de Datos",
+    "creditos": 3,
+    "correlativas": "PROBA-ICD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AM",
+    "materia": "Aprendizaje de Máquina",
+    "creditos": 3,
+    "correlativas": "IA-AD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AMP",
+    "materia": "Aprendizaje de Máquina Profundo",
+    "creditos": 3,
+    "correlativas": "IA-AD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "IAEP",
+    "materia": "Inteligencia Artificial en la Exploración y Producción",
+    "creditos": 3,
+    "correlativas": "IA-AD",
+    "categoria": "Materias Electivas"
+  }
+]
