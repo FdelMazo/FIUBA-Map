@@ -82,7 +82,7 @@
     "level": 1
   },
   {
-    "id": "IA",
+    "id": "IIA",
     "materia": "Introducción a la Ingeniería en Agrimensura",
     "creditos": 4,
     "correlativas": "CBC",
@@ -117,7 +117,7 @@
     "id": "EO",
     "materia": "Economía y Organización",
     "creditos": 6,
-    "correlativas": "IA",
+    "correlativas": "IIA",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
