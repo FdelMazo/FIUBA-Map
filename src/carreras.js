@@ -139,7 +139,6 @@ export const CARRERAS = [
   {
     id: "agrimensura-2020",
     link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-en-agrimensura",
-    beta: true,
     ano: 2020,
     graph: require("./data/agrimensura-2020.json"),
     finDeCarrera: [
@@ -210,7 +209,6 @@ export const CARRERAS = [
   {
     id: "civil-2020",
     link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-civil",
-    beta: true,
     ano: 2020,
     graph: require("./data/civil-2020.json"),
     finDeCarrera: [
@@ -294,7 +292,6 @@ export const CARRERAS = [
   {
     id: "electronica-2020",
     link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-en-electr%C3%B3nica",
-    beta: true,
     ano: 2020,
     graph: require("./data/electronica-2020.json"),
     finDeCarrera: [
@@ -444,7 +441,6 @@ export const CARRERAS = [
   {
     id: "petroleo-2020",
     link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-en-petr%C3%B3leo",
-    beta: true,
     ano: 2020,
     graph: require("./data/petroleo-2020.json"),
     creditos: {
@@ -483,7 +479,6 @@ export const CARRERAS = [
   {
     id: "quimica-2020",
     link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-qu%C3%ADmica",
-    beta: true,
     ano: 2020,
     graph: require("./data/quimica-2020.json"),
     finDeCarrera: [
