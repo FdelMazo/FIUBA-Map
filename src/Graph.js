@@ -528,10 +528,7 @@ const Graph = (userContext) => {
         newstate = prevstate.filter((o) => o.id !== value.id)
         break;
       case 'edit':
-        newstate = [
-          ...prevstate.filter((o) => o.id !== value.id),
-          { ...value }
-        ]
+        newstate = prevstate.map(o => o.id === value.id ? value : o);
         break;
       default:
         return newstate;
