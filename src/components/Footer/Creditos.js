@@ -64,7 +64,7 @@ const Creditos = () => {
     <Box>
       <Popover placement="top" trigger="hover">
         <PopoverTrigger>
-          <Box w="14ch">
+          <Box w="15ch">
             <Stat p="0.4em" color="white" size="sm">
               <StatLabel>
                 Créditos
