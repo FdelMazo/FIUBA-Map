@@ -82,6 +82,35 @@ const Graph = (userContext) => {
 
       network.body.emitter.emit("_dataUpdated");
     }
+
+    // Limitar el zoom-in y el zoom-out
+    const MIN_ZOOM = 0.2
+    const MAX_ZOOM = 1.7
+    let lastZoomPosition = { x: 0, y: 0 }
+    network.on("zoom", () => {
+      let scale = network.getScale()
+      if (scale <= MIN_ZOOM) {
+        network.moveTo({
+          position: lastZoomPosition,
+          scale: MIN_ZOOM
+        });
+      }
+      else if (scale >= MAX_ZOOM) {
+        network.moveTo({
+          position: lastZoomPosition,
+          scale: MAX_ZOOM,
+        });
+      }
+      else {
+        lastZoomPosition = network.getViewPosition()
+      }
+    });
+    network.on("dragEnd", () => {
+      lastZoomPosition = network.getViewPosition()
+    });
+
+
+    // Le pongo una key al network para poder compararla contra la key del graph
     network.key = user.carrera.id;
 
     // Por mas que me encante este efecto, es muy poco performante (probar poner el `extentFactor` en 10)
