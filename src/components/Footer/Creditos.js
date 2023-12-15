@@ -1,6 +1,7 @@
 import {
+  InfoOutlineIcon,
   PlusSquareIcon,
-  SmallCloseIcon,
+  SmallCloseIcon
 } from "@chakra-ui/icons";
 import {
   Badge,
@@ -27,8 +28,7 @@ import {
   StatLabel,
   StatNumber,
   Text,
-  Tooltip,
-  useColorModeValue,
+  Tooltip
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../../MapContext";
@@ -63,15 +63,32 @@ const Creditos = () => {
   return (
     <Box>
       <Popover placement="top" trigger="hover">
-        <LightMode>
-          <PopoverTrigger>
-            <Box w="14ch">
-              <Stat p="0.4em" color="white" size="sm">
-                <StatLabel>
-                  Créditos
-                  <Hide ssr={false} below="md">
+        <PopoverTrigger>
+          <Box w="14ch">
+            <Stat p="0.4em" color="white" size="sm">
+              <StatLabel>
+                Créditos
+                <Tooltip
+                  placement="right"
+                  hasArrow
+                  label="Agregar créditos"
+                >
+                  <PlusSquareIcon
+                    ml={1}
+                    boxSize={4}
+                    color="electivas.400"
+                    cursor="pointer"
+                    onClick={() => {
+                      optativasDispatch({ action: 'create' });
+                    }} />
+                </Tooltip>
+              </StatLabel>
+              <StatNumber>
+                {creditosTotales + " de " + creditosTotalesNecesarios}
+                <Hide ssr={false} below="md">
+                  <LightMode>
                     <Badge
-                      ml={1}
+                      ml={2}
                       colorScheme="green"
                       variant="solid"
                     >
@@ -79,19 +96,17 @@ const Creditos = () => {
                         (creditosTotales / creditosTotalesNecesarios) * 100
                       ) + "%"}
                     </Badge>
-                  </Hide>
-                </StatLabel>
-                <StatNumber>
-                  {creditosTotales + " de " + creditosTotalesNecesarios}
-                </StatNumber>
-              </Stat>
-            </Box>
-          </PopoverTrigger>
-        </LightMode>
+                  </LightMode>
+                </Hide>
+              </StatNumber>
+            </Stat>
+          </Box>
+        </PopoverTrigger>
         <PopoverContent borderColor="electivas.500" width="fit-content">
           <PopoverArrow bg="electivas.500" />
           <PopoverHeader border="none">
             <Flex justifyContent="space-between">
+              <Text mr={4} alignSelf="center"><strong>Créditos por fuera del plan</strong></Text>
               <Tooltip
                 placement="top"
                 hasArrow
@@ -102,17 +117,7 @@ const Creditos = () => {
                   </>
                 }
               >
-                <Text mr={4} alignSelf="center"><strong>Créditos por fuera del plan</strong></Text>
-              </Tooltip>
-
-              <Tooltip
-                placement="top"
-                hasArrow
-                label="Agregar créditos"
-              >
-                <PlusSquareIcon boxSize={5} alignSelf="center" color={useColorModeValue("electivas.600", "electivas.400")} cursor="pointer" onClick={() => {
-                  optativasDispatch({ action: 'create' });
-                }} />
+                <InfoOutlineIcon boxSize={4} alignSelf="center" color={"electivas.600"} />
               </Tooltip>
             </Flex>
           </PopoverHeader>
