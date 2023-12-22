@@ -28,7 +28,8 @@ import {
   StatLabel,
   StatNumber,
   Text,
-  Tooltip
+  Tooltip,
+  useColorModeValue
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../../MapContext";
@@ -117,7 +118,7 @@ const Creditos = () => {
                   </>
                 }
               >
-                <InfoOutlineIcon boxSize={4} alignSelf="center" color={"electivas.600"} />
+                <InfoOutlineIcon boxSize={4} alignSelf="center" color={useColorModeValue("electivas.600", "electivas.400")} />
               </Tooltip>
             </Flex>
           </PopoverHeader>
