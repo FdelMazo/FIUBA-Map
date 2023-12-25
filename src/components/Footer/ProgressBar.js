@@ -77,6 +77,8 @@ const ProgressBar = () => {
                     </Hide>
                   </Flex>
                   <Progress
+                    marginRight={1}
+                    borderRadius={4}
                     hasStripe
                     height={4}
                     css={{
@@ -89,6 +91,7 @@ const ProgressBar = () => {
                     sx={{
                       "& > div:first-of-type": {
                         transitionProperty: "width",
+                        transitionDuration: "1.5s",
                       },
                     }}
                   />

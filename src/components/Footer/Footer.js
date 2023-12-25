@@ -20,6 +20,8 @@ const Footer = () => {
         alignItems="center"
         bg={useColorModeValue("headerbg", "headerbgdark")}
         key={user.carrera.id}
+        margin={1}
+        borderRadius={5}
       >
         <Creditos />
         <ProgressBar />

@@ -42,6 +42,9 @@ const Body = () => {
       flexGrow="1"
       height="1em"
       position="relative"
+      marginLeft={1}
+      marginRight={1}
+      borderRadius={5}
     >
       {isRecibido && <Fireworks options={{ traceSpeed: 1 }} style={{ width: '100%', height: '100%', position: 'fixed' }} />}
       {isChristmasTime && <Snowfall color="lavender" />}

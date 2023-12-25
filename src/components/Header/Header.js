@@ -21,7 +21,10 @@ const Header = () => {
   const { displayedNode } = React.useContext(GraphContext);
   const CommonProps = {
     height: { base: "8.7rem", md: "4.5rem" },
-    bg: useColorModeValue("headerbg", "headerbgdark")
+    bg: useColorModeValue("headerbg", "headerbgdark"),
+    margin: 1,
+    borderRadius: 5,
+    overflow: "hidden",
   }
 
   const FlexProps = {
@@ -31,7 +34,7 @@ const Header = () => {
     align: "center",
     justify: "space-between",
     flexWrap: "wrap",
-    justifyContent: { base: "space-around", md: "space-between" }
+    justifyContent: { base: "space-around", md: "space-between" },
   }
 
   const AntiFlexProps = {
