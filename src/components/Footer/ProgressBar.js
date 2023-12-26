@@ -91,7 +91,6 @@ const ProgressBar = () => {
                     sx={{
                       "& > div:first-of-type": {
                         transitionProperty: "width",
-                        transitionDuration: "1.5s",
                       },
                     }}
                   />
