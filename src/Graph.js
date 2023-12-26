@@ -791,15 +791,15 @@ const Graph = (userContext) => {
     );
   }
 
-  const selectNode = (id) => {
+  const selectNode = (id, display = false) => {
     unblurAll()
     blurOthers(id)
-    setDisplayedNode(id);
+    if (display) setDisplayedNode(id);
   }
 
-  const deselectNode = () => {
+  const deselectNode = (display = false) => {
     unblurAll()
-    if (displayedNode) {
+    if (displayedNode && display) {
       setDisplayedNode("");
     }
   }
@@ -856,11 +856,11 @@ const Graph = (userContext) => {
         network.selectNodes([]);
         return
       }
-      selectNode(id)
+      selectNode(id, true)
     },
     deselectNode: (e) => {
       // click en otro nodo/click en cualquier lado del mapa: deseleccionar lo que teniamos
-      deselectNode()
+      deselectNode(true)
     },
   };
 
