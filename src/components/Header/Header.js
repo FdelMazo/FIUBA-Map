@@ -45,20 +45,23 @@ const Header = () => {
   return (
     <Box {...CommonProps} margin="1">
       <ScaleFade in={displayedNode}>
-        <Flex {...CommonProps} {...(displayedNode && FlexProps)} {...(!displayedNode && AntiFlexProps)}>
+        <Flex
+          {...CommonProps}
+          {...(displayedNode && FlexProps)}
+          {...(!displayedNode && AntiFlexProps)}
+        >
           <MateriaDisplay />
         </Flex>
       </ScaleFade>
-      <ScaleFade in={!displayedNode}>
-        <Flex {...CommonProps} {...(!displayedNode && FlexProps)} {...(displayedNode && AntiFlexProps)}>
-          {logged ? (
-            <UserMenu />
-          ) : (
-            <PadronInput />
-          )}
+      {!displayedNode && (
+        <Flex
+          {...CommonProps}
+          {...(!displayedNode && FlexProps)}
+        >
+          {logged ? <UserMenu /> : <PadronInput />}
           <DropdownCarreras />
         </Flex>
-      </ScaleFade>
+      )}
     </Box>
   );
 };

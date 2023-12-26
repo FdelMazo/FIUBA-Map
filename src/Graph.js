@@ -84,7 +84,7 @@ const Graph = (userContext) => {
     }
 
     // Limitar el zoom-in y el zoom-out
-    const MIN_ZOOM = 0.2
+    const MIN_ZOOM = 0.4
     const MAX_ZOOM = 1.7
     let lastZoomPosition = { x: 0, y: 0 }
     network.on("zoom", () => {
@@ -113,7 +113,7 @@ const Graph = (userContext) => {
     // Le pongo una key al network para poder compararla contra la key del graph
     network.key = user.carrera.id;
 
-    // Por mas que me encante este efecto, es muy poco performante (probar poner el `extentFactor` en 10)
+    // Por mas que me encante este efecto, le agrega mucho tiempo de carga a la pagina antes de abrir
     // Lo dejo comentado nada mas por lo mucho que me gusta
     // https://stackoverflow.com/a/72950605/10728610
     // https://www.seancdavis.com/posts/mutlicolored-dotted-grid-canvas/
@@ -121,9 +121,9 @@ const Graph = (userContext) => {
     // network.on("beforeDrawing", function (ctx) {
     //   var width = ctx.canvas.clientWidth;
     //   var height = ctx.canvas.clientHeight;
-    //   var spacing = 22;
-    //   var gridExtentFactor = 1;
-    //   ctx.fillStyle = "lightgray"
+    //   var spacing = 24;
+    //   var gridExtentFactor = 1.5;
+    //   ctx.fillStyle = "darkgray"
 
     //   for (var x = -width * gridExtentFactor; x <= width * gridExtentFactor; x += spacing) {
     //     for (var y = -height * gridExtentFactor; y <= height * gridExtentFactor; y += spacing) {
@@ -793,15 +793,15 @@ const Graph = (userContext) => {
     );
   }
 
-  const selectNode = (id) => {
+  const selectNode = (id, display = false) => {
     unblurAll()
     blurOthers(id)
-    setDisplayedNode(id);
+    if (display) setDisplayedNode(id);
   }
 
-  const deselectNode = () => {
+  const deselectNode = (display = false) => {
     unblurAll()
-    if (displayedNode) {
+    if (displayedNode && display) {
       setDisplayedNode("");
     }
   }
@@ -858,11 +858,11 @@ const Graph = (userContext) => {
         network.selectNodes([]);
         return
       }
-      selectNode(id)
+      selectNode(id, true)
     },
     deselectNode: (e) => {
       // click en otro nodo/click en cualquier lado del mapa: deseleccionar lo que teniamos
-      deselectNode()
+      deselectNode(true)
     },
   };
 
