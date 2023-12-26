@@ -42,12 +42,12 @@ const Header = () => {
 
   return (
     <Box {...CommonProps}>
-      <ScaleFade in={displayedNode}>
+      <ScaleFade in={displayedNode} unmountOnExit>
         <Flex {...CommonProps} {...(displayedNode && FlexProps)} {...(!displayedNode && AntiFlexProps)}>
           <MateriaDisplay />
         </Flex>
       </ScaleFade>
-      <ScaleFade in={!displayedNode}>
+      <ScaleFade in={!displayedNode} unmountOnExit>
         <Flex {...CommonProps} {...(!displayedNode && FlexProps)} {...(displayedNode && AntiFlexProps)}>
           {logged ? (
             <UserMenu />
