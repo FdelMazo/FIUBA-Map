@@ -42,7 +42,7 @@ const Header = () => {
 
   return (
     <Box {...CommonProps}>
-      <ScaleFade in={displayedNode}>
+      <ScaleFade in={displayedNode} transition={{ enter: { delay: 0.0015 } }}>
         <Flex
           {...CommonProps}
           {...(displayedNode && FlexProps)}
