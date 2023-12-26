@@ -113,24 +113,26 @@ const Graph = (userContext) => {
     // Le pongo una key al network para poder compararla contra la key del graph
     network.key = user.carrera.id;
 
+    // Por mas que me encante este efecto, le agrega mucho tiempo de carga a la pagina antes de abrir
+    // Lo dejo comentado nada mas por lo mucho que me gusta
     // https://stackoverflow.com/a/72950605/10728610
     // https://www.seancdavis.com/posts/mutlicolored-dotted-grid-canvas/
     // https://github.com/open-source-labs/Svelvet/blob/main/src/lib/containers/Background/Background.svelte
-    network.on("beforeDrawing", function (ctx) {
-      var width = ctx.canvas.clientWidth;
-      var height = ctx.canvas.clientHeight;
-      var spacing = 24;
-      var gridExtentFactor = 1.5;
-      ctx.fillStyle = "darkgray"
+    // network.on("beforeDrawing", function (ctx) {
+    //   var width = ctx.canvas.clientWidth;
+    //   var height = ctx.canvas.clientHeight;
+    //   var spacing = 24;
+    //   var gridExtentFactor = 1.5;
+    //   ctx.fillStyle = "darkgray"
 
-      for (var x = -width * gridExtentFactor; x <= width * gridExtentFactor; x += spacing) {
-        for (var y = -height * gridExtentFactor; y <= height * gridExtentFactor; y += spacing) {
-          ctx.beginPath();
-          ctx.arc(x, y, 1, 0, 2 * Math.PI, false);
-          ctx.fill();
-        }
-      }
-    });
+    //   for (var x = -width * gridExtentFactor; x <= width * gridExtentFactor; x += spacing) {
+    //     for (var y = -height * gridExtentFactor; y <= height * gridExtentFactor; y += spacing) {
+    //       ctx.beginPath();
+    //       ctx.arc(x, y, 1, 0, 2 * Math.PI, false);
+    //       ctx.fill();
+    //     }
+    //   }
+    // });
 
     setNetwork(network)
   }
