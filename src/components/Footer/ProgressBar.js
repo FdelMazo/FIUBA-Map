@@ -78,7 +78,7 @@ const ProgressBar = () => {
                   </Flex>
                   <Progress
                     marginRight={1}
-                    borderRadius={4}
+                    borderRadius={3}
                     hasStripe
                     height={4}
                     css={{

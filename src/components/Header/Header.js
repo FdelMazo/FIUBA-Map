@@ -22,8 +22,6 @@ const Header = () => {
   const CommonProps = {
     height: { base: "8.7rem", md: "4.5rem" },
     bg: useColorModeValue("headerbg", "headerbgdark"),
-    borderRadius: 5,
-    overflow: "hidden",
   }
 
   const FlexProps = {
@@ -43,7 +41,7 @@ const Header = () => {
   }
 
   return (
-    <Box {...CommonProps} margin="1">
+    <Box {...CommonProps}>
       <ScaleFade in={displayedNode}>
         <Flex
           {...CommonProps}
