@@ -32,7 +32,7 @@ import { COLORS } from "./theme";
 export const CARRERAS = [
   {
     id: "sistemas",
-    link: "https://www.fi.uba.ar/grado/carreras/lic-en-analisis-de-sistemas/plan-de-estudios",
+    link: "https://fi.uba.ar/grado/carreras/lic-en-analisis-de-sistemas/plan-de-estudios",
     ano: 2014,
     graph: require("./data/sistemas-2014.json"),
     creditos: {
@@ -58,7 +58,7 @@ export const CARRERAS = [
   },
   {
     id: "informatica",
-    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-en-informatica/plan-de-estudios",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-en-informatica/plan-de-estudios",
     ano: 1986,
     graph: require("./data/informatica-1986.json"),
     orientaciones: [
@@ -94,7 +94,7 @@ export const CARRERAS = [
   },
   {
     id: "informatica-2020",
-    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-en-inform%C3%A1tica",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-en-informatica/plan-de-estudios",
     ano: 2020,
     graph: require("./data/informatica-2020.json"),
     finDeCarrera: [
@@ -116,7 +116,7 @@ export const CARRERAS = [
   },
   {
     id: "agrimensura",
-    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-en-agrimensura/plan-de-estudios",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-en-agrimensura/plan-de-estudios",
     ano: 2006,
     graph: require("./data/agrimensura-2006.json"),
     finDeCarrera: [
@@ -138,7 +138,7 @@ export const CARRERAS = [
   },
   {
     id: "agrimensura-2020",
-    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-en-agrimensura",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-en-agrimensura/plan-de-estudios",
     ano: 2020,
     graph: require("./data/agrimensura-2020.json"),
     finDeCarrera: [
@@ -152,7 +152,7 @@ export const CARRERAS = [
   },
   {
     id: "alimentos",
-    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-de-alimentos/plan-de-estudios",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-de-alimentos/plan-de-estudios",
     ano: 2001,
     graph: require("./data/alimentos-2000.json"),
     creditos: {
@@ -176,7 +176,7 @@ export const CARRERAS = [
   },
   {
     id: "civil",
-    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-civil/plan-de-estudios",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-civil/plan-de-estudios",
     ano: 2009,
     graph: require("./data/civil-2009.json"),
     creditos: {
@@ -208,7 +208,7 @@ export const CARRERAS = [
   },
   {
     id: "civil-2020",
-    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-civil",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-civil/plan-de-estudios",
     ano: 2020,
     graph: require("./data/civil-2020.json"),
     finDeCarrera: [
@@ -222,7 +222,7 @@ export const CARRERAS = [
   },
   {
     id: "electricista",
-    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-electricista/plan-de-estudios",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-electricista/plan-de-estudios",
     ano: 2009,
     graph: require("./data/electricista-2009.json"),
     finDeCarrera: [
@@ -250,7 +250,7 @@ export const CARRERAS = [
   },
   {
     id: "electronica",
-    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-electronica/plan-de-estudios",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-electronica/plan-de-estudios",
     ano: 2009,
     graph: require("./data/electronica-2009.json"),
     orientaciones: [
@@ -291,7 +291,7 @@ export const CARRERAS = [
   },
   {
     id: "electronica-2020",
-    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-en-electr%C3%B3nica",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-electronica/plan-de-estudios",
     ano: 2020,
     graph: require("./data/electronica-2020.json"),
     finDeCarrera: [
@@ -313,7 +313,7 @@ export const CARRERAS = [
   },
   {
     id: "industrial",
-    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-industrial/plan-de-estudios",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-industrial/plan-de-estudios",
     ano: 2011,
     graph: require("./data/industrial-2011.json"),
     finDeCarrera: [
@@ -341,7 +341,7 @@ export const CARRERAS = [
   },
   {
     id: "industrial-2020",
-    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-industrial",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-industrial/plan-de-estudios",
     ano: 2020,
     graph: require("./data/industrial-2020.json"),
     finDeCarrera: [
@@ -363,7 +363,7 @@ export const CARRERAS = [
   },
   {
     id: "mecanica",
-    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-mecanica/plan-de-estudios",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-mecanica/plan-de-estudios",
     ano: 1986,
     graph: require("./data/mecanica-1986.json"),
     orientaciones: [
@@ -398,7 +398,7 @@ export const CARRERAS = [
   },
   {
     id: "naval",
-    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-naval-y-mecanica/plan-de-estudios",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-naval-y-mecanica/plan-de-estudios",
     ano: 1986,
     graph: require("./data/naval-1986.json"),
     finDeCarrera: [
@@ -412,7 +412,7 @@ export const CARRERAS = [
   },
   {
     id: "petroleo",
-    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-en-petroleo/plan-de-estudios",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-en-petroleo/plan-de-estudios",
     ano: 2015,
     graph: require("./data/petroleo-2015.json"),
     finDeCarrera: [
@@ -440,7 +440,7 @@ export const CARRERAS = [
   },
   {
     id: "petroleo-2020",
-    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-en-petr%C3%B3leo",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-en-petroleo/plan-de-estudios",
     ano: 2020,
     graph: require("./data/petroleo-2020.json"),
     creditos: {
@@ -464,7 +464,7 @@ export const CARRERAS = [
   },
   {
     id: "quimica",
-    link: "https://www.fi.uba.ar/grado/carreras/ingenieria-quimica/plan-de-estudios",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-quimica/plan-de-estudios",
     ano: 1986,
     graph: require("./data/quimica-1986.json"),
     finDeCarrera: [
@@ -478,7 +478,7 @@ export const CARRERAS = [
   },
   {
     id: "quimica-2020",
-    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-qu%C3%ADmica",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-quimica/plan-de-estudios",
     ano: 2020,
     graph: require("./data/quimica-2020.json"),
     finDeCarrera: [
@@ -492,7 +492,7 @@ export const CARRERAS = [
   },
   {
     id: "sistemasviejo",
-    link: "https://www.fi.uba.ar/grado/carreras/lic-en-analisis-de-sistemas/plan-de-estudios",
+    link: "https://fi.uba.ar/grado/carreras/lic-en-analisis-de-sistemas/plan-de-estudios",
     ano: 1986,
     graph: require("./data/sistemas-1986.json"),
     creditos: {
