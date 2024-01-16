@@ -28,7 +28,6 @@ import { COLORS } from "./theme";
 // ahora quedo que el usuario tiene una "carrera" asociada, aunque sea un plan, así que
 // lo dejamos así
 
-// TODO: cambiar los links de los planes nuevos a medida que aparezcan en la pagina de fiuba
 export const CARRERAS = [
   {
     id: "sistemas",
