@@ -37,6 +37,7 @@ const Controls = () => {
   const { user } = React.useContext(UserContext);
   const toast = useToast();
   const bugToast = React.useRef();
+  const [bugToastOpened, setBugToastOpened] = React.useState(false)
   const [showGracias, setShowGracias] = React.useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
   return (
@@ -103,8 +104,17 @@ const Controls = () => {
             cursor="pointer"
             bg="#e9eaeb"
             onClick={() => {
-              toast.close(bugToast.current);
+              if (bugToastOpened) {
+                  toast.close(bugToast.current);
+                  setBugToastOpened(false);
+                  return;
+              }
+              setBugToastOpened(true);
               return (bugToast.current = toast({
+                status: "info",
+                position: "bottom",
+                duration: null,
+                isClosable: true,
                 render: (props) => (
                   <Alert
                     borderRadius={6}
@@ -142,7 +152,6 @@ const Controls = () => {
                                 }
                               />
                             </Link>
-
                             {" "}y quiero dejar esto de lado.
                           </Text>
                         <Text>
@@ -252,11 +261,7 @@ const Controls = () => {
                       top="8px"
                     />
                   </Alert>
-                ),
-                status: "info",
-                position: "bottom",
-                duration: null,
-                isClosable: true,
+                )
               }));
             }}
           >
