@@ -103,8 +103,15 @@ const Controls = () => {
             cursor="pointer"
             bg="#e9eaeb"
             onClick={() => {
-              toast.close(bugToast.current);
+              if (toast.isActive(bugToast.current)) {
+                  toast.close(bugToast.current);
+                  return;
+              }
               return (bugToast.current = toast({
+                status: "info",
+                position: "bottom",
+                duration: null,
+                isClosable: true,
                 render: (props) => (
                   <Alert
                     borderRadius={6}
@@ -142,7 +149,6 @@ const Controls = () => {
                                 }
                               />
                             </Link>
-
                             {" "}y quiero dejar esto de lado.
                           </Text>
                         <Text>
@@ -252,11 +258,7 @@ const Controls = () => {
                       top="8px"
                     />
                   </Alert>
-                ),
-                status: "info",
-                position: "bottom",
-                duration: null,
-                isClosable: true,
+                )
               }));
             }}
           >
