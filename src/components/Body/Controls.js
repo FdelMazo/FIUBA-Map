@@ -37,7 +37,6 @@ const Controls = () => {
   const { user } = React.useContext(UserContext);
   const toast = useToast();
   const bugToast = React.useRef();
-  const [bugToastOpened, setBugToastOpened] = React.useState(false)
   const [showGracias, setShowGracias] = React.useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
   return (
@@ -104,12 +103,10 @@ const Controls = () => {
             cursor="pointer"
             bg="#e9eaeb"
             onClick={() => {
-              if (bugToastOpened) {
+              if (toast.isActive(bugToast.current)) {
                   toast.close(bugToast.current);
-                  setBugToastOpened(false);
                   return;
               }
-              setBugToastOpened(true);
               return (bugToast.current = toast({
                 status: "info",
                 position: "bottom",
