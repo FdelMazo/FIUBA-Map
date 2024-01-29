@@ -1,16 +1,10 @@
-import {
-  ScaleFade,
-  Flex,
-  Box,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { ScaleFade, Flex, Box, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../../MapContext";
 import MateriaDisplay from "./MateriaDisplay";
 import PadronInput from "./PadronInput";
 import DropdownCarreras from "./DropdownCarreras";
 import UserMenu from "./UserMenu";
-
 
 // Componente toplevel de header
 // Si tengo una materia clickeada, muestra sus controles
@@ -22,7 +16,7 @@ const Header = () => {
   const CommonProps = {
     height: { base: "8.7rem", md: "4.5rem" },
     bg: useColorModeValue("headerbg", "headerbgdark"),
-  }
+  };
 
   const FlexProps = {
     py: { base: 4, md: 2 },
@@ -32,13 +26,13 @@ const Header = () => {
     justify: "space-between",
     flexWrap: "wrap",
     justifyContent: { base: "space-around", md: "space-between" },
-  }
+  };
 
   const AntiFlexProps = {
     height: 0,
     p: 0,
     m: 0,
-  }
+  };
 
   return (
     <Box {...CommonProps}>
@@ -52,10 +46,7 @@ const Header = () => {
         </Flex>
       </ScaleFade>
       {!displayedNode && (
-        <Flex
-          {...CommonProps}
-          {...(!displayedNode && FlexProps)}
-        >
+        <Flex {...CommonProps} {...(!displayedNode && FlexProps)}>
           {logged ? <UserMenu /> : <PadronInput />}
           <DropdownCarreras />
         </Flex>

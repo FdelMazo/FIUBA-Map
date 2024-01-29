@@ -27,10 +27,7 @@ import { GraphContext } from "../../MapContext";
 // Componente con una barra de progresso para mostrar todos los creditos de las
 // materias aprobadas
 const ProgressBar = () => {
-  const {
-    creditos,
-    toggleCheckbox
-  } = React.useContext(GraphContext);
+  const { creditos, toggleCheckbox } = React.useContext(GraphContext);
 
   return (
     <Grid
@@ -46,13 +43,16 @@ const ProgressBar = () => {
                 <Box>
                   <Flex mb={1} mx={1} height={5}>
                     {c.creditos >= c.creditosNecesarios ? (
-                      <Icon as={FaGraduationCap} color={c.bg} alignSelf="center" boxSize={5} />
+                      <Icon
+                        as={FaGraduationCap}
+                        color={c.bg}
+                        alignSelf="center"
+                        boxSize={5}
+                      />
                     ) : (
                       <Badge
                         alignSelf={
-                          c.creditosNecesarios &&
-                          c.creditos !== 0 &&
-                          "baseline"
+                          c.creditosNecesarios && c.creditos !== 0 && "baseline"
                         }
                         colorScheme={c.color}
                         variant="solid"
@@ -60,7 +60,7 @@ const ProgressBar = () => {
                         {c.creditosNecesarios &&
                           c.creditos !== 0 &&
                           (Math.round(
-                            (c.creditos / c.creditosNecesarios) * 100
+                            (c.creditos / c.creditosNecesarios) * 100,
                           ) || 0) + "%"}
                       </Badge>
                     )}
@@ -101,10 +101,29 @@ const ProgressBar = () => {
               <PopoverArrow bg="electivas.500" />
               <PopoverHeader border="none">
                 <Stat size="sm">
-                  <StatLabel><strong>{c.nombre}</strong></StatLabel>
-                  {!c.dummy && <StatNumber fontWeight="normal" fontSize="larger">{c.creditos}{!!c.creditosNecesarios && ` de ${c.creditosNecesarios} `} créditos</StatNumber>}
-                  {!!c.nmaterias && <StatHelpText fontSize="smaller">({c.nmaterias} {c.nmaterias === 1 ? 'materia aprobada' : 'materias aprobadas'}{c.totalmaterias && ` de ${c.totalmaterias}`})</StatHelpText>}
-                  {!!c.helpText && <StatHelpText fontSize="smaller">{c.helpText}</StatHelpText>}
+                  <StatLabel>
+                    <strong>{c.nombre}</strong>
+                  </StatLabel>
+                  {!c.dummy && (
+                    <StatNumber fontWeight="normal" fontSize="larger">
+                      {c.creditos}
+                      {!!c.creditosNecesarios &&
+                        ` de ${c.creditosNecesarios} `}{" "}
+                      créditos
+                    </StatNumber>
+                  )}
+                  {!!c.nmaterias && (
+                    <StatHelpText fontSize="smaller">
+                      ({c.nmaterias}{" "}
+                      {c.nmaterias === 1
+                        ? "materia aprobada"
+                        : "materias aprobadas"}
+                      {c.totalmaterias && ` de ${c.totalmaterias}`})
+                    </StatHelpText>
+                  )}
+                  {!!c.helpText && (
+                    <StatHelpText fontSize="smaller">{c.helpText}</StatHelpText>
+                  )}
                 </Stat>
               </PopoverHeader>
               {!!c.checkbox && (
@@ -122,7 +141,8 @@ const ProgressBar = () => {
                       Marcar como completo
                     </Checkbox>
                   </LightMode>
-                </PopoverBody>)}
+                </PopoverBody>
+              )}
             </PopoverContent>
           </Popover>
         </GridItem>

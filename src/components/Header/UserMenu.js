@@ -23,27 +23,31 @@ const ButtonProps = {
   bg: "teal.500",
   color: "white",
   _hover: { bg: "teal.600" },
-  _active: { 'bg': "teal.600" },
-  size: "sm"
-}
+  _active: { bg: "teal.600" },
+  size: "sm",
+};
 
 const TooltipProps = {
   closeOnClick: true,
   hasArrow: true,
   placement: "bottom",
-  textAlign: "center"
-}
+  textAlign: "center",
+};
 
 // Menu para elegir orientacion y fin de carrera (y para "cerrar sesion")
 // Es un botoncito de settings donde esta el padron, arriba a la izquierda de la app
 // Tambien botones para guardar el grafo, y reiniciar los cuatrimestres planeados
 const UserMenu = () => {
-  const {
-    logout,
-    user,
-  } = React.useContext(UserContext);
+  const { logout, user } = React.useContext(UserContext);
 
-  const { saveGraph, restartGraphCuatris, getters, changeOrientacion, changeFinDeCarrera, getNode } = React.useContext(GraphContext);
+  const {
+    saveGraph,
+    restartGraphCuatris,
+    getters,
+    changeOrientacion,
+    changeFinDeCarrera,
+    getNode,
+  } = React.useContext(GraphContext);
   const [saving, setSaving] = React.useState(false);
 
   const isBeta = user.carrera.beta;
@@ -54,7 +58,8 @@ const UserMenu = () => {
         defaultIsOpen={
           (user.carrera.eligeOrientaciones && !user.orientacion) ||
           (user.carrera.finDeCarrera && !user.finDeCarrera)
-        }>
+        }
+      >
         <MenuButton
           w="20ch"
           textAlign="left"
@@ -62,7 +67,7 @@ const UserMenu = () => {
           leftIcon={<SettingsIcon />}
           {...ButtonProps}
         >
-          <Text overflow='hidden' textOverflow='ellipsis'>
+          <Text overflow="hidden" textOverflow="ellipsis">
             {user.padron}
           </Text>
         </MenuButton>
@@ -89,12 +94,12 @@ const UserMenu = () => {
             </MenuOptionGroup>
           )}
 
-          {user.carrera.eligeOrientaciones &&
-            (<MenuOptionGroup
-            onChange={(value) => {
+          {user.carrera.eligeOrientaciones && (
+            <MenuOptionGroup
+              onChange={(value) => {
                 changeOrientacion(value);
               }}
-            value={user.orientacion?.nombre || "none"}
+              value={user.orientacion?.nombre || "none"}
               title="Orientación"
               type="radio"
             >
@@ -102,24 +107,34 @@ const UserMenu = () => {
                 No me decidí
               </MenuItemOption>
 
-            {user.carrera.orientaciones &&
-              user.carrera.orientaciones
+              {user.carrera.orientaciones &&
+                user.carrera.orientaciones
                   .filter((o) => !o.nonEligible)
                   .map((o) => (
-                    <MenuItemOption type="checkbox" value={o.nombre} key={o.nombre}>
+                    <MenuItemOption
+                      type="checkbox"
+                      value={o.nombre}
+                      key={o.nombre}
+                    >
                       {o.nombre}
                     </MenuItemOption>
                   ))}
-            </MenuOptionGroup>)
-          }
+            </MenuOptionGroup>
+          )}
 
           <MenuItem onClick={logout} icon={<BiLogOut size={"1.8em"} />}>
             <strong>Cerrar Sesión</strong>
           </MenuItem>
-
         </MenuList>
       </Menu>
-      <Tooltip {...TooltipProps} label={isBeta ? "No se pueden guardar datos hasta que se oficialice el plan" : "Guardar datos"}>
+      <Tooltip
+        {...TooltipProps}
+        label={
+          isBeta
+            ? "No se pueden guardar datos hasta que se oficialice el plan"
+            : "Guardar datos"
+        }
+      >
         <IconButton
           {...ButtonProps}
           ml={2}
@@ -137,15 +152,11 @@ const UserMenu = () => {
 
       {getters.Cuatrimestres().length > 0 && (
         <Tooltip {...TooltipProps} label="Limpiar todos los cuatris">
-          <IconButton
-            {...ButtonProps}
-            ml={2}
-            onClick={restartGraphCuatris}
-          >
+          <IconButton {...ButtonProps} ml={2} onClick={restartGraphCuatris}>
             <Icon boxSize={4} as={FaUndo} />
-            </IconButton>
-          </Tooltip>
-        )}
+          </IconButton>
+        </Tooltip>
+      )}
     </Box>
   );
 };

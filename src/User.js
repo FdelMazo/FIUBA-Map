@@ -24,16 +24,19 @@ const Login = () => {
   const [user, setUser] = React.useState(initialUser);
 
   // Inicializamos el padron en lo que hay en el storage, o vacio
-  const [padronInput, setPadronInput] = React.useState(window.localStorage.getItem("padron") || "");
+  const [padronInput, setPadronInput] = React.useState(
+    window.localStorage.getItem("padron") || "",
+  );
   const logged = user.padron !== "";
 
   // Loading es para el spinner del input del padron
   // Si tenemos algo en el storage, directo arrancamos con loading
-  const [loading, setLoading] = React.useState(!!window.localStorage.getItem("padron"));
+  const [loading, setLoading] = React.useState(
+    !!window.localStorage.getItem("padron"),
+  );
 
   // Loggin in es para cuando la pagina entera esta cargando todos los datos del usuario
   const [loggingIn, setLoggingIn] = React.useState(false);
-
 
   // On boot nos fijamos si hay un padron inicial del storage
   // Si existe, lo usamos para loguear al usuario
@@ -41,19 +44,18 @@ const Login = () => {
     if (padronInput) {
       login(padronInput);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // On boot pedimos todos los fiuba repos para poder mostrarlos en el header
   // Un poquito de cross promotion nunca mato a nadie...
-  const [fiubaRepos, setFiubaRepos] = React.useState([])
+  const [fiubaRepos, setFiubaRepos] = React.useState([]);
   React.useEffect(() => {
     const fetchFiubaRepos = async () => {
-      setFiubaRepos(await getFiubaRepos())
+      setFiubaRepos(await getFiubaRepos());
     };
     fetchFiubaRepos();
   }, []);
-
 
   // Login agarra todo lo que sabemos del usuario, de ambas tablas de la db
   // y lo guarda en el estado `user`
@@ -66,7 +68,7 @@ const Login = () => {
     }
 
     const padrones = await fetch(
-      `${C.SPREADSHEET}/${C.SHEETS.user}!B:B?majorDimension=COLUMNS&key=${C.KEY}`
+      `${C.SPREADSHEET}/${C.SHEETS.user}!B:B?majorDimension=COLUMNS&key=${C.KEY}`,
     )
       .then((res) => res.json())
       .then((res) => (!res.error ? res.values[0] : null));
@@ -87,12 +89,12 @@ const Login = () => {
       return false;
     }
 
-    setLoggingIn(true)
+    setLoggingIn(true);
     const ranges = indexes.map(
-      (index) => `&ranges=${C.SHEETS.user}!${index + 1}:${index + 1}`
+      (index) => `&ranges=${C.SHEETS.user}!${index + 1}:${index + 1}`,
     );
     const data = await fetch(
-      `${C.SPREADSHEET}:batchGet?key=${C.KEY}${ranges.join("")}`
+      `${C.SPREADSHEET}:batchGet?key=${C.KEY}${ranges.join("")}`,
     ).then((res) => res.json().then((res) => res.valueRanges));
 
     const allLogins = data.map((d) => ({
@@ -101,20 +103,22 @@ const Login = () => {
       findecarreraid: d.values[0][4],
     }));
 
-    let carrera, orientacion, finDeCarrera
+    let carrera, orientacion, finDeCarrera;
     for (let login of allLogins) {
       const foundCarrera = CARRERAS.find((c) => c.id === login.carreraid);
       if (foundCarrera) {
-        carrera = foundCarrera
+        carrera = foundCarrera;
         orientacion = foundCarrera.orientaciones?.find(
-          (c) => c.nombre === login.orientacionid
-        )
-        finDeCarrera = carrera.finDeCarrera?.find((c) => c.id === login.findecarreraid)
-        break
-      };
+          (c) => c.nombre === login.orientacionid,
+        );
+        finDeCarrera = carrera.finDeCarrera?.find(
+          (c) => c.id === login.findecarreraid,
+        );
+        break;
+      }
     }
 
-    const maps = await getGraphs(padron)
+    const maps = await getGraphs(padron);
 
     setUser({
       padron,
@@ -126,7 +130,7 @@ const Login = () => {
     });
     window.localStorage.setItem("padron", padron);
     setLoading(false);
-    setLoggingIn(false)
+    setLoggingIn(false);
     return true;
   };
 
@@ -137,7 +141,7 @@ const Login = () => {
   const register = async (user) => {
     const addToAllLogins = () => {
       const newAllLogins = user.allLogins.filter(
-        (l) => l.carreraid !== user.carrera.id
+        (l) => l.carreraid !== user.carrera.id,
       );
       newAllLogins.push({
         carreraid: user.carrera.id,
@@ -147,7 +151,7 @@ const Login = () => {
       return newAllLogins;
     };
 
-    await postUser(user)
+    await postUser(user);
     setUser({
       ...user,
       allLogins: [...addToAllLogins()],
@@ -160,12 +164,12 @@ const Login = () => {
     const newUser = {
       ...user,
       padron,
-    }
+    };
     window.localStorage.setItem("padron", padron);
-    setLoading(true)
-    await register(newUser)
-    setLoading(false)
-  }
+    setLoading(true);
+    await register(newUser);
+    setLoading(false);
+  };
 
   // En el logout limpiamos el usuario entero, y nos quedamos en la carrera seteada
   const logout = () => {
@@ -174,25 +178,29 @@ const Login = () => {
   };
 
   // Aca guardamos el mapa y toda la metadata que tiene
-  const saveUserGraph = async (user, materias, checkboxes, optativas, aplazos) => {
+  const saveUserGraph = async (
+    user,
+    materias,
+    checkboxes,
+    optativas,
+    aplazos,
+  ) => {
     const map = {
-      materias
+      materias,
     };
     if (checkboxes) {
       map.checkboxes = checkboxes;
     }
     if (optativas) {
-      map.optativas = optativas
-    };
+      map.optativas = optativas;
+    }
     if (aplazos) {
-      map.aplazos = aplazos
-    };
-    await postGraph(user, map)
+      map.aplazos = aplazos;
+    }
+    await postGraph(user, map);
 
     const addToMaps = () => {
-      const newMaps = user.maps.filter(
-        (l) => l.carreraid !== user.carrera.id
-      );
+      const newMaps = user.maps.filter((l) => l.carreraid !== user.carrera.id);
       newMaps.push({
         carreraid: user.carrera.id,
         map,
@@ -219,7 +227,7 @@ const Login = () => {
     fiubaRepos,
     loggingIn,
     saveUserGraph,
-    signup
+    signup,
   };
 };
 

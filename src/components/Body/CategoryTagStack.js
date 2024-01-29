@@ -15,7 +15,10 @@ import { GraphContext } from "../../MapContext";
 // Componente para mostrar/ocultar grupos de materias
 const CategoryTagStack = () => {
   const { toggleGroup, groupStatus, getters } = React.useContext(GraphContext);
-  const categorias = React.useMemo(() => getters.SelectableCategorias(), [getters]);
+  const categorias = React.useMemo(
+    () => getters.SelectableCategorias(),
+    [getters],
+  );
 
   return (
     <LightMode>
@@ -29,38 +32,36 @@ const CategoryTagStack = () => {
         maxW="60%"
       >
         {categorias.map((c) => (
-            <Tag
-              cursor="pointer"
-              bg={C.GRUPOS[c]?.color}
-              key={c}
-              size={{ base: "sm", md: "md" }}
-              onClick={() => {
-                toggleGroup(c);
+          <Tag
+            cursor="pointer"
+            bg={C.GRUPOS[c]?.color}
+            key={c}
+            size={{ base: "sm", md: "md" }}
+            onClick={() => {
+              toggleGroup(c);
+            }}
+          >
+            <TagLeftIcon
+              as={() => {
+                switch (groupStatus(c)) {
+                  case "hidden":
+                    return <Icon boxSize={"1.3em"} as={BiCircle} mr="0.5rem" />;
+                  case "partial":
+                    return (
+                      <Icon boxSize={"1.3em"} as={RiFocusLine} mr="0.5rem" />
+                    );
+                  case "shown":
+                    return (
+                      <Icon boxSize={"1.3em"} as={RiFocus2Line} mr="0.5rem" />
+                    );
+                  default:
+                    return;
+                }
               }}
-            >
-              <TagLeftIcon
-                as={() => {
-                  switch (groupStatus(c)) {
-                    case "hidden":
-                      return (
-                        <Icon boxSize={"1.3em"} as={BiCircle} mr="0.5rem" />
-                      );
-                    case "partial":
-                      return (
-                        <Icon boxSize={"1.3em"} as={RiFocusLine} mr="0.5rem" />
-                      );
-                    case "shown":
-                      return (
-                        <Icon boxSize={"1.3em"} as={RiFocus2Line} mr="0.5rem" />
-                      );
-                    default:
-                      return;
-                  }
-                }}
-              />
-              <TagLabel>{c}</TagLabel>
-            </Tag>
-          ))}
+            />
+            <TagLabel>{c}</TagLabel>
+          </Tag>
+        ))}
       </SimpleGrid>
     </LightMode>
   );

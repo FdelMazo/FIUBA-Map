@@ -1,9 +1,4 @@
-import {
-  Box,
-  Modal,
-  ModalOverlay,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Modal, ModalOverlay, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 
 const injectStyle = (style) => {
@@ -35,7 +30,12 @@ const LoadingGraph = () => {
   return (
     <Modal isOpen={true}>
       <ModalOverlay />
-      <Box position="fixed" top="25%" left="50%" transform="translate(-50%, -50%)">
+      <Box
+        position="fixed"
+        top="25%"
+        left="50%"
+        transform="translate(-50%, -50%)"
+      >
         <Box
           animation="sk-rotateplane 1.2s infinite ease-in-out"
           bg={useColorModeValue("headerbg", "white")}

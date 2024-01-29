@@ -1,8 +1,12 @@
 import { COLORS } from "./theme";
 import { getCurrentCuatri, promediar } from "./utils";
 
-const FONT_AFUERA = ["CBC", "*CBC"]
-const ALWAYS_SHOW = ["Materias Obligatorias", "CBC", "Fin de Carrera (Obligatorio)"]
+const FONT_AFUERA = ["CBC", "*CBC"];
+const ALWAYS_SHOW = [
+  "Materias Obligatorias",
+  "CBC",
+  "Fin de Carrera (Obligatorio)",
+];
 
 function breakWords(string) {
   let broken = "";
@@ -59,11 +63,11 @@ class Node {
     // - 2020.5 => 2020 segundo cuatri
     this.cuatrimestre = undefined;
     this.originalLevel = this.level;
-    this.level = this.level ?? -3
+    this.level = this.level ?? -3;
 
     // Arrancan escondidas las materias electivas, las de las orientaciones, etc
     // Siempre mostramos el CBC, las obligatorias, y el final de la carrera de las carreras que no pueden elegir entre tesis y tpp
-    this.hidden = !ALWAYS_SHOW.includes(this.categoria)
+    this.hidden = !ALWAYS_SHOW.includes(this.categoria);
   }
 
   aprobar(nota) {
@@ -93,7 +97,7 @@ class Node {
   //  asi que puede no ser 100% fiel a la realidad
   isHabilitada(ctx) {
     const { getters, getNode, creditos } = ctx;
-    const { creditosTotales, creditosCBC } = creditos
+    const { creditosTotales, creditosCBC } = creditos;
     const from = getters.NodesFrom(this.id);
     let todoAprobado = true;
     for (let id of from) {
@@ -104,9 +108,9 @@ class Node {
       if (this.requiereCBC) {
         todoAprobado &= creditosTotales >= this.requiere;
       } else {
-        todoAprobado &= (creditosTotales - creditosCBC) >= this.requiere
+        todoAprobado &= creditosTotales - creditosCBC >= this.requiere;
       }
-    };
+    }
     return todoAprobado;
   }
 
@@ -123,7 +127,8 @@ class Node {
     let grupoDefault = this.categoria;
     if (this.aprobada && this.nota >= 0) grupoDefault = "Aprobadas";
     else if (this.nota === -1) grupoDefault = "En Final";
-    else if (this.cuatrimestre === getCurrentCuatri()) grupoDefault = "Cursando";
+    else if (this.cuatrimestre === getCurrentCuatri())
+      grupoDefault = "Cursando";
     else if (this.isHabilitada(ctx)) grupoDefault = "Habilitadas";
     this.group = grupoDefault;
 
@@ -134,7 +139,8 @@ class Node {
       else if (this.aprobada && this.nota === 0)
         labelDefault += "\n[Equivalencia]";
       else if (this.nota === -1) labelDefault += "\n[En Final]";
-      else if (this.cuatrimestre === getCurrentCuatri()) labelDefault += "\n[Cursando]";
+      else if (this.cuatrimestre === getCurrentCuatri())
+        labelDefault += "\n[Cursando]";
     }
     this.label = labelDefault;
 
@@ -146,7 +152,7 @@ class Node {
 
     if (this.categoria === "CBC") {
       const materiasCBC = getters.MateriasAprobadasCBC();
-      const promedioCBC = promediar(materiasCBC)
+      const promedioCBC = promediar(materiasCBC);
       if (showLabels && promedioCBC) this.label += "\n[" + promedioCBC + "]";
       if (this.isHabilitada(ctx)) {
         this.color = COLORS.aprobadas[400];
