@@ -15,7 +15,7 @@ import Sugerencias from "./Sugerencias";
 
 // Componente con links externos, setupeo de color mode y un toast para reportar bugs
 const Controls = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { toggleColorMode } = useColorMode();
   
   return (
     <Box

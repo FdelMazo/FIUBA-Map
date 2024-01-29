@@ -33,7 +33,7 @@ const Sugerencias = () => {
   const bugToast = React.useRef();
   const [showGracias, setShowGracias] = React.useState(false);
   const toast = useToast();
-  const { colorMode, toggleColorMode } = useColorMode();
+  const { colorMode } = useColorMode();
 
   return (
     <LightMode>
