@@ -8,16 +8,16 @@ import { MapProvider } from "./MapContext";
 const App = () => {
   return (
     <MapProvider>
-        <MainApp />
+      <MainApp />
     </MapProvider>
   );
 };
 
-const container = document.getElementById('root');
+const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
 
 root.render(
   <ChakraProvider theme={customTheme}>
     <App />
-  </ChakraProvider>
+  </ChakraProvider>,
 );

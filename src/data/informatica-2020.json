@@ -1,416 +1,416 @@
 [
-    {
-        "id": "CBC66",
-        "materia": "Análisis Matemático A",
-        "creditos": 9,
-        "categoria": "*CBC",
-        "level": -2
-    },
-    {
-        "id": "CBC62",
-        "materia": "Álgebra A",
-        "creditos": 9,
-        "categoria": "*CBC",
-        "level": -2
-    },
-    {
-        "id": "CBC24",
-        "materia": "Introducción al Conocimiento de la Sociedad y el Estado",
-        "creditos": 4,
-        "categoria": "*CBC",
-        "level": -2
-    },
-    {
-        "id": "CBC3",
-        "materia": "Física",
-        "creditos": 6,
-        "categoria": "*CBC",
-        "level": -1
-    },
-    {
-        "id": "CBC90",
-        "materia": "Pensamiento Computacional",
-        "creditos": 6,
-        "categoria": "*CBC",
-        "level": -1
-    },
-    {
-        "id": "CBC40",
-        "materia": "Introducción al Pensamiento Científico",
-        "creditos": 4,
-        "categoria": "*CBC",
-        "level": -1
-    },
-    {
-        "id": "CBC",
-        "materia": "Ciclo Básico Común",
-        "creditos": 0,
-        "categoria": "CBC",
-        "level": 0,
-        "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
-    },
-    {
-        "id": "AMII",
-        "materia": "Análisis Matemático II",
-        "creditos": 8,
-        "correlativas": "CBC",
-        "categoria": "Materias Obligatorias",
-        "level": 1
-    },
-    {
-        "id": "FDP",
-        "materia": "Fundamentos de Programación",
-        "creditos": 6,
-        "correlativas": "CBC",
-        "categoria": "Materias Obligatorias",
-        "level": 1
-    },
-    {
-        "id": "IDS",
-        "materia": "Introducción al Desarrollo de Software",
-        "creditos": 6,
-        "correlativas": "CBC",
-        "categoria": "Materias Obligatorias",
-        "level": 1
-    },
-    {
-        "id": "AL",
-        "materia": "Álgebra Lineal",
-        "creditos": 8,
-        "correlativas": "CBC",
-        "categoria": "Materias Obligatorias",
-        "level": 2
-    },
-    {
-        "id": "ORGCOMPU",
-        "materia": "Organización del Computador",
-        "creditos": 6,
-        "correlativas": "IDS-FDP",
-        "categoria": "Materias Obligatorias",
-        "level": 2
-    },
-    {
-        "id": "AED",
-        "materia": "Algoritmos y Estructura de Datos",
-        "creditos": 6,
-        "correlativas": "FDP",
-        "categoria": "Materias Obligatorias",
-        "level": 2
-    },
-    {
-        "id": "PDP",
-        "materia": "Paradigmas de Programación",
-        "creditos": 6,
-        "correlativas": "AED-IDS",
-        "categoria": "Materias Obligatorias",
-        "level": 3
-    },
-    {
-        "id": "PYE",
-        "materia": "Probabilidad y Estadística",
-        "creditos": 6,
-        "correlativas": "AMII-AL",
-        "categoria": "Materias Obligatorias",
-        "level": 3
-    },
-    {
-        "id": "SISOPS",
-        "materia": "Sistemas Operativos",
-        "creditos": 6,
-        "correlativas": "ORGCOMPU",
-        "categoria": "Materias Obligatorias",
-        "level": 3
-    },
-    {
-        "id": "TDA",
-        "materia": "Teoría de Algoritmos",
-        "creditos": 6,
-        "correlativas": "AED-IDS",
-        "categoria": "Materias Obligatorias",
-        "level": 3
-    },
-    {
-        "id": "MODNUM",
-        "materia": "Modelación Numérica",
-        "creditos": 4,
-        "correlativas": "AMII-AL-AED",
-        "categoria": "Materias Obligatorias",
-        "level": 4
-    },
-    {
-        "id": "BDD",
-        "materia": "Base de Datos",
-        "creditos": 6,
-        "correlativas": "ORGCOMPU-PDP",
-        "categoria": "Materias Obligatorias",
-        "level": 4
-    },
-    {
-        "id": "TDP",
-        "materia": "Taller de Programación",
-        "creditos": 8,
-        "correlativas": "ORGCOMPU-PDP",
-        "categoria": "Materias Obligatorias",
-        "level": 4
-    },
-    {
-        "id": "INGSOFTI",
-        "materia": "Ingeniería de Software I",
-        "creditos": 8,
-        "correlativas": "PDP",
-        "categoria": "Materias Obligatorias",
-        "level": 4
-    },
-    {
-        "id": "CDD",
-        "materia": "Ciencia de Datos",
-        "creditos": 6,
-        "correlativas": "PYE-BDD-MODNUM-TDA",
-        "categoria": "Materias Obligatorias",
-        "level": 5
-    },
-    {
-        "id": "PROGC",
-        "materia": "Programación Concurrente",
-        "creditos": 6,
-        "correlativas": "SISOPS-TDP",
-        "categoria": "Materias Obligatorias",
-        "level": 5
-    },
-    {
-        "id": "REDES",
-        "materia": "Redes",
-        "creditos": 6,
-        "correlativas": "SISOPS",
-        "categoria": "Materias Obligatorias",
-        "level": 5
-    },
-    {
-        "id": "GDSI",
-        "materia": "Gestión del Desarrollo de Sistemas Informáticos",
-        "creditos": 6,
-        "correlativas": "INGSOFTI",
-        "categoria": "Materias Obligatorias",
-        "level": 5
-    },
-    {
-        "id": "FPI",
-        "materia": "Física para Informática",
-        "creditos": 4,
-        "requiere": 120,
-        "requiereCBC": true,
-        "categoria": "Materias Obligatorias",
-        "level": 6
-    },
-    {
-        "id": "EBTI",
-        "materia": "Empresas de Base Tecnológica I",
-        "creditos": 6,
-        "requiere": 120,
-        "requiereCBC": true,
-        "categoria": "Materias Obligatorias",
-        "level": 6
-    },
-    {
-        "id": "INGSOFTII",
-        "materia": "Ingeniería de Software II",
-        "creditos": 8,
-        "correlativas": "BDD-INGSOFTI-TDP",
-        "categoria": "Materias Obligatorias",
-        "level": 6
-    },
-    {
-        "id": "SDI",
-        "materia": "Sistemas Distribuidos I",
-        "creditos": 6,
-        "correlativas": "PROGC-REDES",
-        "categoria": "Materias Obligatorias",
-        "level": 6
-    },
-    {
-        "id": "EBTII",
-        "materia": "Empresas de Base Tecnológica II",
-        "creditos": 6,
-        "correlativas": "EBTI",
-        "categoria": "Materias Obligatorias",
-        "level": 7
-    },
-    {
-        "id": "TDSINF",
-        "materia": "Taller de Seguridad Informática",
-        "creditos": 8,
-        "correlativas": "REDES",
-        "categoria": "Materias Obligatorias",
-        "level": 7
-    },
-    {
-        "id": "LYCI",
-        "materia": "Lenguajes y Compiladores I",
-        "creditos": 6,
-        "correlativas": "PDP-ORGCOMPU-TDA",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "FMCRIPTO",
-        "materia": "Fundamentos Matemáticos de la Criptografía",
-        "creditos": 6,
-        "correlativas": "AL",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "CRIPTOI",
-        "materia": "Criptografía I",
-        "creditos": 6,
-        "correlativas": "AL-TDA",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "CRIPTOII",
-        "materia": "Criptografía II",
-        "creditos": 6,
-        "correlativas": "FMCRIPTO-CRIPTOI",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "SDII",
-        "materia": "Sistemas Distribuidos II",
-        "creditos": 6,
-        "correlativas": "SDI",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "TII",
-        "materia": "Técnicas de Ingeniería Inversa",
-        "creditos": 6,
-        "correlativas": "CRIPTOI-TDSINF",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "CRIPTOAN",
-        "materia": "Criptoanálisis",
-        "creditos": 6,
-        "correlativas": "CRIPTOI-TDSINF",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "IDD",
-        "materia": "Ingeniería de Datos",
-        "creditos": 6,
-        "correlativas": "CDD-INGSOFTII",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "OPTCONV",
-        "materia": "Optimización Convexa",
-        "creditos": 6,
-        "correlativas": "CDD",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "AA",
-        "materia": "Aprendizaje Automático",
-        "creditos": 6,
-        "correlativas": "CDD",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "AP",
-        "materia": "Aprendizaje Profundo",
-        "creditos": 6,
-        "correlativas": "AA",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "APR",
-        "materia": "Aprendizaje por Refuerzo",
-        "creditos": 6,
-        "correlativas": "AA",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "SIM",
-        "materia": "Simulación",
-        "creditos": 6,
-        "correlativas": "PYE-MODNUM",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "SISTC",
-        "materia": "Sistemas Complejos",
-        "creditos": 6,
-        "correlativas": "PYE-MODNUM",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "REDESC",
-        "materia": "Redes Complejas",
-        "creditos": 6,
-        "correlativas": "SISTC-TADJ",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "TADJ",
-        "materia": "Teoría Algorítmica de Juegos",
-        "creditos": 4,
-        "correlativas": "AMII-AL-TDA",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "TDCOMPU",
-        "materia": "Teoría de Computabilidad",
-        "creditos": 6,
-        "correlativas": "LYCI-TDA",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "TDLI",
-        "materia": "Teoría de la Información",
-        "creditos": 6,
-        "correlativas": "PYE-TDA",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "CC",
-        "materia": "Computación Cuántica",
-        "creditos": 6,
-        "correlativas": "PYE",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "LYCII",
-        "materia": "Lenguajes y Compiladores II",
-        "creditos": 6,
-        "correlativas": "LYCI-SISOPS",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "AMIII",
-        "materia": "Análisis Matemático III",
-        "creditos": 6,
-        "correlativas": "AMII-AL",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "ARQSOFT",
-        "materia": "Arquitectura de Software",
-        "creditos": 4,
-        "correlativas": "INGSOFTI",
-        "categoria": "Materias Electivas"
-    },
-    {
-        "id": "TPP",
-        "materia": "Trabajo Profesional de Ingeniería Informática",
-        "creditos": 12,
-        "requiere": 140,
-        "requiereCBC": true,
-        "categoria": "Fin de Carrera"
-    },
-    {
-        "id": "TESIS",
-        "materia": "Tesis de Ingeniería Informática",
-        "creditos": 12,
-        "requiere": 140,
-        "requiereCBC": true,
-        "categoria": "Fin de Carrera"
-    }
+  {
+    "id": "CBC66",
+    "materia": "Análisis Matemático A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC62",
+    "materia": "Álgebra A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC24",
+    "materia": "Introducción al Conocimiento de la Sociedad y el Estado",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC3",
+    "materia": "Física",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC90",
+    "materia": "Pensamiento Computacional",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC40",
+    "materia": "Introducción al Pensamiento Científico",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC",
+    "materia": "Ciclo Básico Común",
+    "creditos": 0,
+    "categoria": "CBC",
+    "level": 0,
+    "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
+  },
+  {
+    "id": "AMII",
+    "materia": "Análisis Matemático II",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "FDP",
+    "materia": "Fundamentos de Programación",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "IDS",
+    "materia": "Introducción al Desarrollo de Software",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "AL",
+    "materia": "Álgebra Lineal",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "ORGCOMPU",
+    "materia": "Organización del Computador",
+    "creditos": 6,
+    "correlativas": "IDS-FDP",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "AED",
+    "materia": "Algoritmos y Estructura de Datos",
+    "creditos": 6,
+    "correlativas": "FDP",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "PDP",
+    "materia": "Paradigmas de Programación",
+    "creditos": 6,
+    "correlativas": "AED-IDS",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "PYE",
+    "materia": "Probabilidad y Estadística",
+    "creditos": 6,
+    "correlativas": "AMII-AL",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "SISOPS",
+    "materia": "Sistemas Operativos",
+    "creditos": 6,
+    "correlativas": "ORGCOMPU",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "TDA",
+    "materia": "Teoría de Algoritmos",
+    "creditos": 6,
+    "correlativas": "AED-IDS",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "MODNUM",
+    "materia": "Modelación Numérica",
+    "creditos": 4,
+    "correlativas": "AMII-AL-AED",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "BDD",
+    "materia": "Base de Datos",
+    "creditos": 6,
+    "correlativas": "ORGCOMPU-PDP",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "TDP",
+    "materia": "Taller de Programación",
+    "creditos": 8,
+    "correlativas": "ORGCOMPU-PDP",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "INGSOFTI",
+    "materia": "Ingeniería de Software I",
+    "creditos": 8,
+    "correlativas": "PDP",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "CDD",
+    "materia": "Ciencia de Datos",
+    "creditos": 6,
+    "correlativas": "PYE-BDD-MODNUM-TDA",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "PROGC",
+    "materia": "Programación Concurrente",
+    "creditos": 6,
+    "correlativas": "SISOPS-TDP",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "REDES",
+    "materia": "Redes",
+    "creditos": 6,
+    "correlativas": "SISOPS",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "GDSI",
+    "materia": "Gestión del Desarrollo de Sistemas Informáticos",
+    "creditos": 6,
+    "correlativas": "INGSOFTI",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "FPI",
+    "materia": "Física para Informática",
+    "creditos": 4,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "EBTI",
+    "materia": "Empresas de Base Tecnológica I",
+    "creditos": 6,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "INGSOFTII",
+    "materia": "Ingeniería de Software II",
+    "creditos": 8,
+    "correlativas": "BDD-INGSOFTI-TDP",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "SDI",
+    "materia": "Sistemas Distribuidos I",
+    "creditos": 6,
+    "correlativas": "PROGC-REDES",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "EBTII",
+    "materia": "Empresas de Base Tecnológica II",
+    "creditos": 6,
+    "correlativas": "EBTI",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "TDSINF",
+    "materia": "Taller de Seguridad Informática",
+    "creditos": 8,
+    "correlativas": "REDES",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "LYCI",
+    "materia": "Lenguajes y Compiladores I",
+    "creditos": 6,
+    "correlativas": "PDP-ORGCOMPU-TDA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "FMCRIPTO",
+    "materia": "Fundamentos Matemáticos de la Criptografía",
+    "creditos": 6,
+    "correlativas": "AL",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CRIPTOI",
+    "materia": "Criptografía I",
+    "creditos": 6,
+    "correlativas": "AL-TDA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CRIPTOII",
+    "materia": "Criptografía II",
+    "creditos": 6,
+    "correlativas": "FMCRIPTO-CRIPTOI",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "SDII",
+    "materia": "Sistemas Distribuidos II",
+    "creditos": 6,
+    "correlativas": "SDI",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TII",
+    "materia": "Técnicas de Ingeniería Inversa",
+    "creditos": 6,
+    "correlativas": "CRIPTOI-TDSINF",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CRIPTOAN",
+    "materia": "Criptoanálisis",
+    "creditos": 6,
+    "correlativas": "CRIPTOI-TDSINF",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "IDD",
+    "materia": "Ingeniería de Datos",
+    "creditos": 6,
+    "correlativas": "CDD-INGSOFTII",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "OPTCONV",
+    "materia": "Optimización Convexa",
+    "creditos": 6,
+    "correlativas": "CDD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AA",
+    "materia": "Aprendizaje Automático",
+    "creditos": 6,
+    "correlativas": "CDD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AP",
+    "materia": "Aprendizaje Profundo",
+    "creditos": 6,
+    "correlativas": "AA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "APR",
+    "materia": "Aprendizaje por Refuerzo",
+    "creditos": 6,
+    "correlativas": "AA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "SIM",
+    "materia": "Simulación",
+    "creditos": 6,
+    "correlativas": "PYE-MODNUM",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "SISTC",
+    "materia": "Sistemas Complejos",
+    "creditos": 6,
+    "correlativas": "PYE-MODNUM",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "REDESC",
+    "materia": "Redes Complejas",
+    "creditos": 6,
+    "correlativas": "SISTC-TADJ",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TADJ",
+    "materia": "Teoría Algorítmica de Juegos",
+    "creditos": 4,
+    "correlativas": "AMII-AL-TDA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TDCOMPU",
+    "materia": "Teoría de Computabilidad",
+    "creditos": 6,
+    "correlativas": "LYCI-TDA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TDLI",
+    "materia": "Teoría de la Información",
+    "creditos": 6,
+    "correlativas": "PYE-TDA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CC",
+    "materia": "Computación Cuántica",
+    "creditos": 6,
+    "correlativas": "PYE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "LYCII",
+    "materia": "Lenguajes y Compiladores II",
+    "creditos": 6,
+    "correlativas": "LYCI-SISOPS",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AMIII",
+    "materia": "Análisis Matemático III",
+    "creditos": 6,
+    "correlativas": "AMII-AL",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ARQSOFT",
+    "materia": "Arquitectura de Software",
+    "creditos": 4,
+    "correlativas": "INGSOFTI",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TPP",
+    "materia": "Trabajo Profesional de Ingeniería Informática",
+    "creditos": 12,
+    "requiere": 140,
+    "requiereCBC": true,
+    "categoria": "Fin de Carrera"
+  },
+  {
+    "id": "TESIS",
+    "materia": "Tesis de Ingeniería Informática",
+    "creditos": 12,
+    "requiere": 140,
+    "requiereCBC": true,
+    "categoria": "Fin de Carrera"
+  }
 ]

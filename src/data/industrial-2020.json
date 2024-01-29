@@ -503,11 +503,11 @@
     "categoria": "Fin de Carrera"
   },
   {
-      "id": "TESIS",
-      "materia": "Tesis de Ingeniería Industrial",
-      "creditos": 12,
-      "requiere": 140,
-      "requiereCBC": true,
-      "categoria": "Fin de Carrera"
+    "id": "TESIS",
+    "materia": "Tesis de Ingeniería Industrial",
+    "creditos": 12,
+    "requiere": 140,
+    "requiereCBC": true,
+    "categoria": "Fin de Carrera"
   }
 ]

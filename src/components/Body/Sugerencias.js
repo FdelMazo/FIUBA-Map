@@ -1,8 +1,4 @@
-import {
-  ChatIcon,
-  CheckIcon,
-  ExternalLinkIcon,
-} from "@chakra-ui/icons";
+import { ChatIcon, CheckIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   LightMode,
   Tag,
@@ -49,7 +45,7 @@ const Sugerencias = () => {
               toast.close(bugToast.current);
               return;
             }
-            
+
             return (bugToast.current = toast({
               status: "info",
               position: "bottom",
@@ -72,7 +68,9 @@ const Sugerencias = () => {
                     <AlertDescription px={5} display="block">
                       <VStack spacing={2}>
                         <Text>
-                          Este proyecto ya cumplió su ciclo... las últimas actualizaciones que hubo que hacer (Plan 2020) terminaron de quemarme. Sin hablar de que algún día
+                          Este proyecto ya cumplió su ciclo... las últimas
+                          actualizaciones que hubo que hacer (Plan 2020)
+                          terminaron de quemarme. Sin hablar de que algún día
                           <Link
                             isExternal
                             _hover={{
@@ -83,7 +81,8 @@ const Sugerencias = () => {
                             }}
                             href="https://status.fede.dm"
                           >
-                            {" "}me voy a recibir{" "}
+                            {" "}
+                            me voy a recibir{" "}
                             <ExternalLinkIcon
                               color={
                                 colorMode === "dark"
@@ -91,11 +90,14 @@ const Sugerencias = () => {
                                   : "electivas.500"
                               }
                             />
-                          </Link>
-                          {" "}y quiero dejar esto de lado.
+                          </Link>{" "}
+                          y quiero dejar esto de lado.
                         </Text>
-                      <Text>
-                          Actualmente mucho no hay para hacer, pero eventualmente van a salir más planes nuevos y voy a necesitar ayuda. Si te interesa, deja un comentario <Link
+                        <Text>
+                          Actualmente mucho no hay para hacer, pero
+                          eventualmente van a salir más planes nuevos y voy a
+                          necesitar ayuda. Si te interesa, deja un comentario{" "}
+                          <Link
                             isExternal
                             _hover={{
                               color:
@@ -105,7 +107,8 @@ const Sugerencias = () => {
                             }}
                             href="https://github.com/FdelMazo/FIUBA-Map/issues/168"
                           >
-                            {" "}acá.{" "}
+                            {" "}
+                            acá.{" "}
                             <ExternalLinkIcon
                               color={
                                 colorMode === "dark"
@@ -114,23 +117,31 @@ const Sugerencias = () => {
                               }
                             />
                           </Link>
-                      </Text>
-                        <Text>
-                          Más allá de eso, todo lo que sea un bug crítico lo voy a seguir arreglando, así que si encontrás algo que no funciona, avisame!
                         </Text>
                         <Text>
-                          Y si llegaste tan lejos, gracias por usar la herramienta! Espero que te haya servido. Si me querés tirar un cafecito, te lo agradezco mucho!
+                          Más allá de eso, todo lo que sea un bug crítico lo voy
+                          a seguir arreglando, así que si encontrás algo que no
+                          funciona, avisame!
+                        </Text>
+                        <Text>
+                          Y si llegaste tan lejos, gracias por usar la
+                          herramienta! Espero que te haya servido. Si me querés
+                          tirar un cafecito, te lo agradezco mucho!
                           <br />
                           <Text fontSize="xs" as="span">
-                            {" "}(Aunque para ser sincero, aprecio más los mensajes que los cafecitos...)
+                            {" "}
+                            (Aunque para ser sincero, aprecio más los mensajes
+                            que los cafecitos...)
                           </Text>
                         </Text>
                       </VStack>
                       <form
                         onSubmit={async (t) => {
                           t.preventDefault();
-                          await submitBug(user, t.target.elements["bug"].value)
-                            .catch(console.error);
+                          await submitBug(
+                            user,
+                            t.target.elements["bug"].value,
+                          ).catch(console.error);
                           setShowGracias(true);
                           toast.close(bugToast.current);
                         }}
@@ -141,9 +152,7 @@ const Sugerencias = () => {
                             borderColor={
                               colorMode === "dark" ? "textdark" : "text"
                             }
-                            color={
-                              colorMode === "dark" ? "textdark" : "text"
-                            }
+                            color={colorMode === "dark" ? "textdark" : "text"}
                             focusBorderColor={
                               colorMode === "dark"
                                 ? "electivas.400"
@@ -164,8 +173,7 @@ const Sugerencias = () => {
                         </Flex>
                       </form>
                       <Text fontSize="sm" mt={2}>
-                        ¿Usás Github? Me ayudás mucho más levantando un
-                        issue{" "}
+                        ¿Usás Github? Me ayudás mucho más levantando un issue{" "}
                         <Link
                           isExternal
                           _hover={{
@@ -191,9 +199,7 @@ const Sugerencias = () => {
                   </Box>
                   <CloseButton
                     color={
-                      colorMode === "dark"
-                        ? "electivas.400"
-                        : "electivas.500"
+                      colorMode === "dark" ? "electivas.400" : "electivas.500"
                     }
                     onClick={() => toast.close(props.id)}
                     position="absolute"
@@ -201,7 +207,7 @@ const Sugerencias = () => {
                     top="8px"
                   />
                 </Alert>
-              )
+              ),
             }));
           }}
         >

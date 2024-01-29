@@ -1,9 +1,5 @@
 import { CheckCircleIcon } from "@chakra-ui/icons";
-import {
-  Button,
-  Input,
-  Tooltip,
-} from "@chakra-ui/react";
+import { Button, Input, Tooltip } from "@chakra-ui/react";
 import React from "react";
 import { UserContext } from "../../MapContext";
 
@@ -11,15 +7,8 @@ import { UserContext } from "../../MapContext";
 // On boot, si hay un padron en el local storage, usa ese
 // Si el padron se pudo loguear, genial. Si no, te muestra un botoncito de "registrate" para guardar en la db
 const PadronInput = () => {
-  const {
-    login,
-    logged,
-    user,
-    loading,
-    signup,
-    padronInput,
-    setPadronInput,
-  } = React.useContext(UserContext);
+  const { login, logged, user, loading, signup, padronInput, setPadronInput } =
+    React.useContext(UserContext);
 
   const [notRegistered, setNotRegistered] = React.useState(false);
   const [lastInput, setLastInput] = React.useState("");
@@ -41,7 +30,7 @@ const PadronInput = () => {
             setNotRegistered(true);
             setLastInput(padronInput);
           }
-        })
+        });
       }}
     >
       <Input
@@ -64,7 +53,12 @@ const PadronInput = () => {
         isDisabled={loading}
       />
 
-      <Tooltip closeOnClick hasArrow label={showRegisterButton ? undefined : "Ingresar"} placement="bottom-start">
+      <Tooltip
+        closeOnClick
+        hasArrow
+        label={showRegisterButton ? undefined : "Ingresar"}
+        placement="bottom-start"
+      >
         <Button
           colorScheme={"whiteAlpha"}
           color="white"
@@ -80,14 +74,13 @@ const PadronInput = () => {
             variant: "solid",
             bg: "red.500",
             _hover: { bg: "red.600" },
-            size: "sm"
+            size: "sm",
           })}
         >
           {showRegisterButton ? "Registrarse" : <CheckCircleIcon />}
         </Button>
       </Tooltip>
     </form>
-
   );
 };
 

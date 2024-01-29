@@ -31,4 +31,4 @@ export const getCurrentCuatri = () => {
   if (month < 2) cuatri = cuatri - 0.5;
   else if (month > 6) cuatri = cuatri + 0.5;
   return cuatri;
-}
+};

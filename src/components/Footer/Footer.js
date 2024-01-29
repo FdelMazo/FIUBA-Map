@@ -1,8 +1,4 @@
-import {
-  Collapse,
-  Flex,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Collapse, Flex, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 import { UserContext } from "../../MapContext";
 import Creditos from "./Creditos";

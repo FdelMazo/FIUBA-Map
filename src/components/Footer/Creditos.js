@@ -1,7 +1,7 @@
 import {
   InfoOutlineIcon,
   PlusSquareIcon,
-  SmallCloseIcon
+  SmallCloseIcon,
 } from "@chakra-ui/icons";
 import {
   Badge,
@@ -29,7 +29,7 @@ import {
   StatNumber,
   Text,
   Tooltip,
-  useColorModeValue
+  useColorModeValue,
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../../MapContext";
@@ -38,18 +38,15 @@ import { GraphContext, UserContext } from "../../MapContext";
 // y en hover setupear creditos por fuera del plan (materias optativas)
 const Creditos = () => {
   const { user } = React.useContext(UserContext);
-  const {
-    optativas,
-    optativasDispatch,
-    creditos,
-  } = React.useContext(GraphContext);
+  const { optativas, optativasDispatch, creditos } =
+    React.useContext(GraphContext);
 
   const creditosTotales = React.useMemo(() => {
     return creditos.reduce((acc, c) => {
-      if (c.checkbox) return acc
-      return acc + c.creditos
-    }, 0)
-  }, [creditos])
+      if (c.checkbox) return acc;
+      return acc + c.creditos;
+    }, 0);
+  }, [creditos]);
 
   const creditosTotalesNecesarios = React.useMemo(() => {
     // TODO: En un mundo ideal esto no esta hardcodeado y se computa
@@ -58,43 +55,36 @@ const Creditos = () => {
     // Ademas... no tengo forma de obtener los creditos del fin de carrera
     // de un usuario que no lo configuro, porque el nodo no esta presente en
     // el grafo
-    return user.carrera.creditos.total
-  }, [user.carrera])
+    return user.carrera.creditos.total;
+  }, [user.carrera]);
 
   return (
     <Box>
       <Popover placement="top" trigger="hover">
         <PopoverTrigger>
-          <Box w={{base: '12ch', md: '16ch'}}>
+          <Box w={{ base: "12ch", md: "16ch" }}>
             <Stat p="0.4em" color="white" size="sm">
               <StatLabel>
                 Créditos
-                <Tooltip
-                  placement="right"
-                  hasArrow
-                  label="Agregar créditos"
-                >
+                <Tooltip placement="right" hasArrow label="Agregar créditos">
                   <PlusSquareIcon
                     ml={1}
                     boxSize={4}
                     color="electivas.400"
                     cursor="pointer"
                     onClick={() => {
-                      optativasDispatch({ action: 'create' });
-                    }} />
+                      optativasDispatch({ action: "create" });
+                    }}
+                  />
                 </Tooltip>
               </StatLabel>
               <StatNumber>
                 {creditosTotales + " de " + creditosTotalesNecesarios}
                 <Hide ssr={false} below="md">
                   <LightMode>
-                    <Badge
-                      ml={2}
-                      colorScheme="green"
-                      variant="solid"
-                    >
+                    <Badge ml={2} colorScheme="green" variant="solid">
                       {Math.round(
-                        (creditosTotales / creditosTotalesNecesarios) * 100
+                        (creditosTotales / creditosTotalesNecesarios) * 100,
                       ) + "%"}
                     </Badge>
                   </LightMode>
@@ -107,18 +97,32 @@ const Creditos = () => {
           <PopoverArrow bg="electivas.500" />
           <PopoverHeader border="none">
             <Flex justifyContent="space-between">
-              <Text mr={4} alignSelf="center"><strong>Créditos por fuera del plan</strong></Text>
+              <Text mr={4} alignSelf="center">
+                <strong>Créditos por fuera del plan</strong>
+              </Text>
               <Tooltip
                 placement="top"
                 hasArrow
                 label={
                   <>
-                    <Text>Los créditos por fuera del plan contabilizan como materias electivas y no influyen en el promedio.</Text>
-                    <Text>Pueden ser materias optativas (materias dadas en otra facultad o carrera), cursos de posgrado, o créditos otorgados por cualquier otro motivo que la curricular avale.</Text>
+                    <Text>
+                      Los créditos por fuera del plan contabilizan como materias
+                      electivas y no influyen en el promedio.
+                    </Text>
+                    <Text>
+                      Pueden ser materias optativas (materias dadas en otra
+                      facultad o carrera), cursos de posgrado, o créditos
+                      otorgados por cualquier otro motivo que la curricular
+                      avale.
+                    </Text>
                   </>
                 }
               >
-                <InfoOutlineIcon boxSize={4} alignSelf="center" color={useColorModeValue("electivas.600", "electivas.400")} />
+                <InfoOutlineIcon
+                  boxSize={4}
+                  alignSelf="center"
+                  color={useColorModeValue("electivas.600", "electivas.400")}
+                />
               </Tooltip>
             </Flex>
           </PopoverHeader>
@@ -127,14 +131,14 @@ const Creditos = () => {
             <PopoverBody>
               {optativas.map((o) => (
                 <Editable
-                  key={[o.nombre, o.id].join('-')}
+                  key={[o.nombre, o.id].join("-")}
                   m={1}
                   textAlign="left"
                   defaultValue={o.nombre}
                   onSubmit={(nombre) =>
                     optativasDispatch({
-                      action: 'edit',
-                      value: { id: o.id, nombre, creditos: o.creditos }
+                      action: "edit",
+                      value: { id: o.id, nombre, creditos: o.creditos },
                     })
                   }
                   submitOnBlur={true}
@@ -156,11 +160,13 @@ const Creditos = () => {
                         min={0}
                         onChange={(_, creditos) => {
                           optativasDispatch({
-                            action: 'edit',
+                            action: "edit",
                             value: {
-                              id: o.id, nombre: o.nombre, creditos: creditos || 0
-                            }
-                          })
+                              id: o.id,
+                              nombre: o.nombre,
+                              creditos: creditos || 0,
+                            },
+                          });
                         }}
                       >
                         <NumberInputField />
@@ -171,12 +177,17 @@ const Creditos = () => {
                       </NumberInput>
                     </Tooltip>
                     <Tooltip placement="top" label="Eliminar" hasArrow>
-                      <IconButton mx={1} onClick={() => {
-                        optativasDispatch({
-                          action: 'remove',
-                          value: { id: o.id }
-                        })
-                      }} icon={<SmallCloseIcon />} size="sm" />
+                      <IconButton
+                        mx={1}
+                        onClick={() => {
+                          optativasDispatch({
+                            action: "remove",
+                            value: { id: o.id },
+                          });
+                        }}
+                        icon={<SmallCloseIcon />}
+                        size="sm"
+                      />
                     </Tooltip>
                   </Flex>
                 </Editable>

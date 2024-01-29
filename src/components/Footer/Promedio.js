@@ -24,11 +24,7 @@ import { promediar } from "../../utils";
 // Componente para mostrar el promedio general de la carrera
 // y en hover mostrar el promedio con CBC y poder agregar aplazos
 const Promedio = () => {
-  const {
-    getters,
-    aplazos,
-    setAplazos,
-  } = React.useContext(GraphContext);
+  const { getters, aplazos, setAplazos } = React.useContext(GraphContext);
 
   const promedio = React.useMemo(() => {
     return {
@@ -36,10 +32,10 @@ const Promedio = () => {
       promedioConCBC: promediar(getters.MateriasAprobadasConCBC()),
       promedioConAplazos: promediar([
         ...getters.MateriasAprobadasSinEquivalenciasSinCBC(),
-        ...Array(aplazos).fill({ nota: 2 })
+        ...Array(aplazos).fill({ nota: 2 }),
       ]),
-    }
-  }, [aplazos, getters])
+    };
+  }, [aplazos, getters]);
 
   return (
     <Popover placement="top" trigger="hover">
@@ -57,7 +53,7 @@ const Promedio = () => {
         <PopoverArrow bg="electivas.500" />
         <PopoverBody>
           <Flex justifyContent="space-between" alignItems="center">
-            <Text fontSize="md" as={'span'}>
+            <Text fontSize="md" as={"span"}>
               <strong>
                 Promedio con
                 <NumberInput
@@ -76,7 +72,8 @@ const Promedio = () => {
                     }}
                     _focus={{
                       borderColor: "transparent",
-                    }} />
+                    }}
+                  />
                   <NumberInputStepper>
                     <NumberIncrementStepper />
                     <NumberDecrementStepper />

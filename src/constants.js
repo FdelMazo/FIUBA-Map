@@ -39,13 +39,15 @@ export const SHEETS = {
   registros: "registros",
 };
 
-export const FIUBAREPOSJSON = "https://raw.githubusercontent.com/FdelMazo/FIUBA-Repos/85806e2f4ea00e3d1ae4ebbf49465e2b28168011/src/data/materias.json"
+export const FIUBAREPOSJSON =
+  "https://raw.githubusercontent.com/FdelMazo/FIUBA-Repos/85806e2f4ea00e3d1ae4ebbf49465e2b28168011/src/data/materias.json";
 
 // Por default, una google key que solo funciona desde el dominio "fede.dm"
 // para que ande en todos lados (o sea, para poder testear la herramienta) hay que tener un archivo
 // .env solamente con la linea `REACT_APP_FEDE_KEY="<KEY>"` (pedirle la key a algun autor...)
 // (si, por algun motivo la envvar tiene que empezar con `REACT_APP`)
-export const KEY = process.env.REACT_APP_FEDE_KEY || "AIzaSyA9snz4CXDq_K8fJeUXkRtRZAQM90HTFp4";
+export const KEY =
+  process.env.REACT_APP_FEDE_KEY || "AIzaSyA9snz4CXDq_K8fJeUXkRtRZAQM90HTFp4";
 
 // Dibuja un rombo
 const drawFinDeCarrera = ({
@@ -55,12 +57,12 @@ const drawFinDeCarrera = ({
   y,
   state: { selected, hover },
   style,
-  label
+  label,
 }) => {
   let r = style.size;
   const drawNode = () => {
     if (selected || hover) {
-      r += 3
+      r += 3;
     }
     ctx.beginPath();
     const sides = 4;
@@ -73,38 +75,38 @@ const drawFinDeCarrera = ({
     ctx.save();
 
     ctx.fillStyle = style.color;
-    ctx.strokeStyle = selected || hover ? 'black' : 'gray';
+    ctx.strokeStyle = selected || hover ? "black" : "gray";
     ctx.lineWidth = selected || hover ? 3 : 2;
-    ctx.globalAlpha = style.opacity
+    ctx.globalAlpha = style.opacity;
     ctx.fill();
     ctx.stroke();
     ctx.restore();
 
-    ctx.textAlign = 'center'
-    const lines = label.split('\n')
+    ctx.textAlign = "center";
+    const lines = label.split("\n");
     const lineheight = 13;
     let mid = lines.length / 2;
-    let fontSize = 12
-    let maxLineWidth = 0
+    let fontSize = 12;
+    let maxLineWidth = 0;
     for (let i = 0; i < lines.length; i++) {
       if (ctx.measureText(lines[i]).width > maxLineWidth) {
-        maxLineWidth = ctx.measureText(lines[i]).width
+        maxLineWidth = ctx.measureText(lines[i]).width;
       }
     }
     if (maxLineWidth > r * 1.5) {
-      fontSize -= 1
+      fontSize -= 1;
     }
-    let boldness = selected || hover ? 'bold' : '500'
-    ctx.font = `${boldness} ${fontSize}px arial`
-    ctx.fillStyle = selected || hover ? 'black' : '';
+    let boldness = selected || hover ? "bold" : "500";
+    ctx.font = `${boldness} ${fontSize}px arial`;
+    ctx.fillStyle = selected || hover ? "black" : "";
     for (let i = 0; i < lines.length; i++) {
-      ctx.fillText(lines[i], x, y + ((i + 0.5 - mid) * lineheight))
+      ctx.fillText(lines[i], x, y + (i + 0.5 - mid) * lineheight);
     }
   };
   return {
     drawNode,
   };
-}
+};
 
 // Colores y formas de cada grupo
 export const GRUPOS = {
@@ -186,22 +188,21 @@ export const GRAPHOPTIONS = {
   groups: { ...GRUPOS },
 };
 
-
 // Colores asignados a cada barrita de progreso de los creditos
 export const CREDITOS = {
-  "CBC": {
+  CBC: {
     nombrecorto: "CBC",
     nombre: "Ciclo Básico Común",
     bg: COLORS.aprobadas[50],
     color: "aprobadas",
   },
-  "Obligatorias": {
+  Obligatorias: {
     nombrecorto: "Obligatorias",
     nombre: "Materias Obligatorias",
     bg: COLORS.obligatorias[50],
     color: "obligatorias",
   },
-  "Electivas": {
+  Electivas: {
     nombrecorto: "Electivas",
     nombre: "Materias Electivas",
     color: "electivas",
@@ -212,5 +213,5 @@ export const CREDITOS = {
     nombre: "Fin de Carrera",
     color: "findecarrera",
     bg: COLORS.findecarrera[50],
-  }
-}
+  },
+};

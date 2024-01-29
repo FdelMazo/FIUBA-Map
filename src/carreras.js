@@ -13,7 +13,6 @@ import { COLORS } from "./theme";
 
 // Informatica es la peor de todas. En base a las combinaciones de [orientacion,findecarrera], hay que hacer distinta cantidad de creditos de electivas
 
-
 //// Acerca de cada json de las carreras
 // En los jsons se tiene una lista de objetos donde cada uno representa una materia
 //   de cada materia hay que especificar el id (el codigo), el nombre, la cantidad de creditos que da,
@@ -98,7 +97,7 @@ export const CARRERAS = [
     graph: require("./data/informatica-2020.json"),
     finDeCarrera: [
       { id: "tesis", materia: "TESIS" },
-      { id: "tpp", materia: "TPP" }
+      { id: "tpp", materia: "TPP" },
     ],
     creditos: {
       total: 226,
@@ -564,4 +563,4 @@ export const PLANES = [
     nombrecorto: "Sistemas",
     planes: ["sistemasviejo", "sistemas"],
   },
-]
+];

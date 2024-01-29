@@ -15,7 +15,7 @@ const Graph = (userContext) => {
   const [displayedNode, setDisplayedNode] = React.useState("");
 
   // Guardamos cuantos aplazos se tienen para computar en el promedio
-  const [aplazos, setAplazos] = React.useState(0)
+  const [aplazos, setAplazos] = React.useState(0);
 
   // La network es nuestra interfaz con visjs.
   // Nos da acceso a los nodos, las aristas y varias funciones
@@ -26,7 +26,7 @@ const Graph = (userContext) => {
   const { ref: networkRef, width, height } = useResizeObserver();
   React.useEffect(() => {
     if (!network) return;
-    network.redraw()
+    network.redraw();
     network.fit();
   }, [network, width, height]);
 
@@ -81,34 +81,31 @@ const Graph = (userContext) => {
       }
 
       network.body.emitter.emit("_dataUpdated");
-    }
+    };
 
     // Limitar el zoom-in y el zoom-out
-    const MIN_ZOOM = 0.4
-    const MAX_ZOOM = 1.7
-    let lastZoomPosition = { x: 0, y: 0 }
+    const MIN_ZOOM = 0.4;
+    const MAX_ZOOM = 1.7;
+    let lastZoomPosition = { x: 0, y: 0 };
     network.on("zoom", () => {
-      let scale = network.getScale()
+      let scale = network.getScale();
       if (scale <= MIN_ZOOM) {
         network.moveTo({
           position: lastZoomPosition,
-          scale: MIN_ZOOM
+          scale: MIN_ZOOM,
         });
-      }
-      else if (scale >= MAX_ZOOM) {
+      } else if (scale >= MAX_ZOOM) {
         network.moveTo({
           position: lastZoomPosition,
           scale: MAX_ZOOM,
         });
-      }
-      else {
-        lastZoomPosition = network.getViewPosition()
+      } else {
+        lastZoomPosition = network.getViewPosition();
       }
     });
     network.on("dragEnd", () => {
-      lastZoomPosition = network.getViewPosition()
+      lastZoomPosition = network.getViewPosition();
     });
-
 
     // Le pongo una key al network para poder compararla contra la key del graph
     network.key = user.carrera.id;
@@ -134,8 +131,8 @@ const Graph = (userContext) => {
     //   }
     // });
 
-    setNetwork(network)
-  }
+    setNetwork(network);
+  };
 
   // El graph es el contenido de la red. Al cambiar la carrera se rellena con lo que tiene el json
   // y despues, con un useEffect, se rellena con lo que tiene el usuario en la DB
@@ -143,47 +140,52 @@ const Graph = (userContext) => {
     // Esta mal que un useMemo no sea puro...
     // pero cuando se actualiza el grafo, por las dudas, limpiamos el nodo que teniamos elegido
     // test: entrar y clickear un nodo rapido, y esperar a que el usuario se loguee solo
-    setDisplayedNode("")
+    setDisplayedNode("");
     const nodes = user.carrera.graph.map((n) => new Node(n));
     const edges = user.carrera.graph.flatMap((n) => {
       let e = [];
       if (n.correlativas)
         n.correlativas.split("-").forEach((c) => {
-          e.push({ from: c, to: n.id, smooth: { enabled: true, type: "curvedCW", roundness: 0.1 } });
+          e.push({
+            from: c,
+            to: n.id,
+            smooth: { enabled: true, type: "curvedCW", roundness: 0.1 },
+          });
         });
-      if (n.requiere)
-        e.push({ from: "CBC", to: n.id, color: "transparent" });
+      if (n.requiere) e.push({ from: "CBC", to: n.id, color: "transparent" });
       return e;
-    })
+    });
 
-    const groups = Array.from(new Set(user.carrera.graph.map((n) => n.categoria)));
+    const groups = Array.from(
+      new Set(user.carrera.graph.map((n) => n.categoria)),
+    );
 
     // Para evitar que se actualice la red pero no el grafo, guardamos la carrera
     // y despues la usamos para chequear contra la carrera de la network
-    const key = user.carrera.id
-    return { nodes, edges, groups, key }
-  }, [user.carrera.graph, user.carrera.id])
+    const key = user.carrera.id;
+    return { nodes, edges, groups, key };
+  }, [user.carrera.graph, user.carrera.id]);
 
   // Cuando cambia la carrera, poblamos el nuevo grafo con lo que hay en la DB
   // (o, simplemente aprobamos el CBC si el usuario no tenia nada)
   React.useEffect(() => {
-    if (!network || graph.key !== network.key) return
+    if (!network || graph.key !== network.key) return;
 
     // Nos fijamos que el usuario tenga un mapa guardado en la db
-    const map = user.maps.find((map) => map.carreraid === user.carrera.id)?.map
+    const map = user.maps.find((map) => map.carreraid === user.carrera.id)?.map;
     if (map) {
-      const toUpdate = []
+      const toUpdate = [];
 
       // Aprobamos/planeamos todo lo que tenia el usuario en la db
       map.materias.forEach((m) => {
-        let node = getNode(m.id)
+        let node = getNode(m.id);
         if (!node) return;
         if (m.nota >= -1 || m.cuatrimestre) {
           if (m.nota >= -1) {
-            node = node.aprobar(m.nota)
+            node = node.aprobar(m.nota);
           }
           if (m.cuatrimestre) {
-            node = node.cursando(m.cuatrimestre)
+            node = node.cursando(m.cuatrimestre);
           }
           toUpdate.push(node);
         }
@@ -191,18 +193,21 @@ const Graph = (userContext) => {
 
       // Actualizamos su metadata
       map.checkboxes?.forEach((c) => toggleCheckbox(c));
-      optativasDispatch({ action: 'override', value: map.optativas ?? [] })
+      optativasDispatch({ action: "override", value: map.optativas ?? [] });
       setAplazos(map.aplazos || 0);
 
       // Si tiene orientacion setupeada, se lo mostramos
-      if (user.orientacion && groupStatus(user.orientacion.nombre) === "hidden") {
+      if (
+        user.orientacion &&
+        groupStatus(user.orientacion.nombre) === "hidden"
+      ) {
         toggleGroup(user.orientacion.nombre);
       }
 
       nodes.update(toUpdate);
 
       actualizar();
-      actualizarNiveles()
+      actualizarNiveles();
       // Showrelevantes es para mostrar lo que el usuario quiere ver on boot:
       //   todo lo aprobado, todo lo planeado, etc
       // Es para evitar que cada vez que te logueas tengas que ponerte a clickear cosas en la UI hasta ver lo que queres
@@ -211,18 +216,22 @@ const Graph = (userContext) => {
     } else {
       // Si no tengo mapa en la DB (porque me desloguee, o porque soy un usuario nuevo en esta carrera),
       //   reseteo absolutamente todo y solamente apruebo el CBC
-      user.carrera.creditos.checkbox?.forEach((ch) => ch.check = false);
-      optativasDispatch({ action: 'override', value: [] })
+      user.carrera.creditos.checkbox?.forEach((ch) => (ch.check = false));
+      optativasDispatch({ action: "override", value: [] });
       setAplazos(0);
-      nodes.update(getters.ALL().map((n) => getNode(n.id).desaprobar().cursando(undefined)));
+      nodes.update(
+        getters
+          .ALL()
+          .map((n) => getNode(n.id).desaprobar().cursando(undefined)),
+      );
       aprobar("CBC", 0);
-      actualizarNiveles()
+      actualizarNiveles();
       network.fit();
     }
     // Solo queremos poblar el grafo cuando el usuario cambia de carrera
     // o cuando el usuario se loguea y cambia el padron
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user.padron, graph.key, network])
+  }, [user.padron, graph.key, network]);
 
   // Funcion importantisimaaaa, recorre todos los nodos y los actualiza a todos
   // Se llama casi siempre que pasa algo.
@@ -234,9 +243,13 @@ const Graph = (userContext) => {
   // es bastante jodido estar siempre actualizando el callback
   // Eso si... si se refactorizara todo para que la network contenga todos los datos dentro suyo (optativas, creditos, etc), la suscripcion sería una mejor implementación
   const actualizar = () => {
-    if (!network || graph.key !== network.key) return
-    const creditosTotales = [...getters.MateriasAprobadasSinCBC(), ...getters.CBC(), ...optativas].reduce(accCreditos, 0)
-    const creditosCBC = [...getters.CBC()].reduce(accCreditos, 0)
+    if (!network || graph.key !== network.key) return;
+    const creditosTotales = [
+      ...getters.MateriasAprobadasSinCBC(),
+      ...getters.CBC(),
+      ...optativas,
+    ].reduce(accCreditos, 0);
+    const creditosCBC = [...getters.CBC()].reduce(accCreditos, 0);
     nodes.update(
       nodes.map((n) =>
         getNode(n.id).actualizar({
@@ -247,10 +260,10 @@ const Graph = (userContext) => {
           creditos: { creditosTotales, creditosCBC },
           showLabels: logged,
           colorMode,
-        })
-      )
+        }),
+      ),
     );
-    updateCreditos()
+    updateCreditos();
   };
 
   // Funcion incomprensible que recorre todos los nodos y le ordena los levels (las columnas) en base a mil cosas
@@ -259,61 +272,72 @@ const Graph = (userContext) => {
   const actualizarNiveles = () => {
     // A la izq de todo, el CBC. Eso es constante
 
-    const toUpdate = []
-    let lastLevel = Math.max(...getters.AllShown().map(n => n.level))
+    const toUpdate = [];
+    let lastLevel = Math.max(...getters.AllShown().map((n) => n.level));
 
-    const conCuatri = getters.AllShownWithCuatri()
-    const firstCuatri = Math.min(...conCuatri.map(n => n.cuatrimestre))
+    const conCuatri = getters.AllShownWithCuatri();
+    const firstCuatri = Math.min(...conCuatri.map((n) => n.cuatrimestre));
 
     // Despues del CBC, las materias que tienen seteado el cuatrimestre
     // Como un estilo de "lo planeado a la izq, lo por planear a la der"
     // (la realidad es que si no planeas todas las materias obligatorias, queda bastante feo.
     // Tal vez despues de setupear la primera te forzas a setupear todas las demas)
     if (conCuatri.length) {
-      lastLevel = 0
-      toUpdate.push(...conCuatri.map((n) => {
-        n.level = ((n.cuatrimestre - firstCuatri) / 0.5) + lastLevel + 1;
-        return n;
-      }))
-      if (toUpdate.length) lastLevel = Math.max(...toUpdate.map(n => n.level))
-      const sinCuatri = getters.AllShownWithoutCuatri()
-      if (sinCuatri.length) {
-        const firstOffset = Math.min(...sinCuatri.map(n => n.originalLevel))
-        toUpdate.push(...sinCuatri.map((n) => {
-          const offset = isFinite(firstOffset) && n.originalLevel ? n.originalLevel - firstOffset : 0
-          n.level = lastLevel + offset + 1;
+      lastLevel = 0;
+      toUpdate.push(
+        ...conCuatri.map((n) => {
+          n.level = (n.cuatrimestre - firstCuatri) / 0.5 + lastLevel + 1;
           return n;
-        }))
-        if (toUpdate.length) lastLevel = Math.max(...toUpdate.map(n => n.level))
+        }),
+      );
+      if (toUpdate.length)
+        lastLevel = Math.max(...toUpdate.map((n) => n.level));
+      const sinCuatri = getters.AllShownWithoutCuatri();
+      if (sinCuatri.length) {
+        const firstOffset = Math.min(...sinCuatri.map((n) => n.originalLevel));
+        toUpdate.push(
+          ...sinCuatri.map((n) => {
+            const offset =
+              isFinite(firstOffset) && n.originalLevel
+                ? n.originalLevel - firstOffset
+                : 0;
+            n.level = lastLevel + offset + 1;
+            return n;
+          }),
+        );
+        if (toUpdate.length)
+          lastLevel = Math.max(...toUpdate.map((n) => n.level));
       }
     }
 
     // Despues de las planeadas, las obligatorias no planeadas
-    const noElectivasPeroSinNivel = getters.WithoutNivel()
+    const noElectivasPeroSinNivel = getters.WithoutNivel();
     toUpdate.push(...balanceSinNivel(noElectivasPeroSinNivel, lastLevel));
-    if (toUpdate.length) lastLevel = Math.max(...toUpdate.map(n => n.level))
+    if (toUpdate.length) lastLevel = Math.max(...toUpdate.map((n) => n.level));
 
     // Despues las electivas no planeadas
-    const electivas = getters.Electivas()
+    const electivas = getters.Electivas();
     toUpdate.push(...balanceSinNivel(electivas, lastLevel));
 
-    if (toUpdate.length) lastLevel = Math.max(...toUpdate.map(n => n.level))
+    if (toUpdate.length) lastLevel = Math.max(...toUpdate.map((n) => n.level));
     if (!isFinite(lastLevel)) {
-      lastLevel = Math.max(...getters.Levels().map((n) => n.level))
+      lastLevel = Math.max(...getters.Levels().map((n) => n.level));
     }
 
     // Finalmente, si no esta planeado, el final de carrera
-    const findecarrera = getters.FinDeCarrera()
-    toUpdate.push(...findecarrera.map((n) => {
-      n.level = lastLevel + 1;
-      return n
-    }))
+    const findecarrera = getters.FinDeCarrera();
+    toUpdate.push(
+      ...findecarrera.map((n) => {
+        n.level = lastLevel + 1;
+        return n;
+      }),
+    );
 
-    nodes.update(toUpdate)
+    nodes.update(toUpdate);
 
     // Le tiramos un centro a visjs y le pedimos que redibuje
     network.body.emitter.emit("_dataChanged");
-  }
+  };
 
   // Guarda el "mapa" en la base de datos, con toda su metadata:
   // - materias: solo nos importan las materias aprobadas o "planeadas" (con cuatrimestre)
@@ -324,9 +348,10 @@ const Graph = (userContext) => {
     const materias = nodes.get({
       filter: (n) => n.aprobada || n.nota === -1 || n.cuatrimestre,
       fields: ["id", "nota", "cuatrimestre"],
-    })
+    });
     const checkboxes = user.carrera.creditos.checkbox
-      ?.filter((c) => c.check === true).map((c) => c.nombre)
+      ?.filter((c) => c.check === true)
+      .map((c) => c.nombre);
     return saveUserGraph(user, materias, checkboxes, optativas, aplazos);
   };
 
@@ -338,20 +363,26 @@ const Graph = (userContext) => {
   ///
   const changeCarrera = (id) => {
     // Nos fijamos si ya habia algun registro en la db
-    const userdata = user.allLogins.find((l) => l.carreraid === id)
+    const userdata = user.allLogins.find((l) => l.carreraid === id);
     const carrera = CARRERAS.find((c) => c.id === id);
     let newUser = { ...user, carrera, orientacion: null, finDeCarrera: null };
     if (userdata) {
-      const orientacion = carrera.orientaciones?.find((c) => c.nombre === userdata.orientacionid);
-      const finDeCarrera = carrera.finDeCarrera?.find((c) => c.id === userdata.findecarreraid);
+      const orientacion = carrera.orientaciones?.find(
+        (c) => c.nombre === userdata.orientacionid,
+      );
+      const finDeCarrera = carrera.finDeCarrera?.find(
+        (c) => c.id === userdata.findecarreraid,
+      );
       newUser = { ...newUser, orientacion, finDeCarrera };
     }
     if (logged) register(newUser);
     setUser(newUser);
-  }
+  };
 
   const changeOrientacion = (id) => {
-    const orientacion = user.carrera.orientaciones?.find((c) => c.nombre === id);
+    const orientacion = user.carrera.orientaciones?.find(
+      (c) => c.nombre === id,
+    );
     const newUser = { ...user, orientacion };
     if (logged) register(newUser);
     setUser(newUser);
@@ -380,21 +411,23 @@ const Graph = (userContext) => {
   const cursando = (id, cuatrimestre) => {
     nodes.update(getNode(id).cursando(cuatrimestre));
     actualizar();
-    actualizarNiveles()
+    actualizarNiveles();
   };
 
   const restartGraphCuatris = () => {
-    nodes.update(getters.Cuatrimestres().map((n) => getNode(n.id).cursando(undefined)));
+    nodes.update(
+      getters.Cuatrimestres().map((n) => getNode(n.id).cursando(undefined)),
+    );
     actualizar();
-    actualizarNiveles()
+    actualizarNiveles();
   };
 
   const toggleCheckbox = (c) => {
-    const value = !!user.carrera.creditos.checkbox.find((ch) => ch.nombre === c).check;
+    const value = !!user.carrera.creditos.checkbox.find((ch) => ch.nombre === c)
+      .check;
     user.carrera.creditos.checkbox.find((ch) => ch.nombre === c).check = !value;
     actualizar();
   };
-
 
   // Clickear en la materia "CBC" te muestra las materias adentro del CBC
   const toggleCBC = () => {
@@ -405,17 +438,17 @@ const Graph = (userContext) => {
       return node;
     });
     actualizar();
-    actualizarNiveles()
+    actualizarNiveles();
 
-    const isOpening = categoria.some(n => !n.hidden)
-    const { x, y } = network.getViewPosition()
+    const isOpening = categoria.some((n) => !n.hidden);
+    const { x, y } = network.getViewPosition();
 
     // El 150 esta hardcodeado a la dif de la posicion del nodo del CBC
     // cuando se prende y cuando se apaga
     if (isOpening) {
-      network.moveTo({ position: { x: x - 150, y } })
+      network.moveTo({ position: { x: x - 150, y } });
     } else {
-      network.moveTo({ position: { x: x + 150, y } })
+      network.moveTo({ position: { x: x + 150, y } });
     }
   };
 
@@ -431,9 +464,7 @@ const Graph = (userContext) => {
   //  Tal vez habria que agregar para mostrar todas las relevantes y todas sus correlativas
   const groupStatus = (categoria) => {
     const status = [
-      ...new Set(
-        getters.CategoriaOnly(categoria).map((n) => n.hidden)
-      ),
+      ...new Set(getters.CategoriaOnly(categoria).map((n) => n.hidden)),
     ];
     if (status.length === 1) {
       return status[0] ? "hidden" : "shown";
@@ -457,22 +488,20 @@ const Graph = (userContext) => {
         if (group.length) break;
       // eslint-disable-next-line no-fallthrough
       case "partial":
-        group = getters.CategoriaOnly(categoria)
-          .map((n) => {
-            const node = getNode(n.id);
-            node.hidden = false;
-            return node;
-          });
+        group = getters.CategoriaOnly(categoria).map((n) => {
+          const node = getNode(n.id);
+          node.hidden = false;
+          return node;
+        });
         break;
       case "shown":
-        group = getters.CategoriaOnly(categoria)
-          .map((n) => {
-            const node = getNode(n.id);
-            node.hidden = true;
-            return node;
-          });
-        if (group.map(n => n.id).includes(network.getSelectedNodes()[0])) {
-          deselectNode()
+        group = getters.CategoriaOnly(categoria).map((n) => {
+          const node = getNode(n.id);
+          node.hidden = true;
+          return node;
+        });
+        if (group.map((n) => n.id).includes(network.getSelectedNodes()[0])) {
+          deselectNode();
           network.selectNodes([]);
         }
         break;
@@ -496,7 +525,7 @@ const Graph = (userContext) => {
 
     nodes.update(relevantes);
     actualizar();
-    actualizarNiveles()
+    actualizarNiveles();
     network.fit();
   };
 
@@ -530,41 +559,43 @@ const Graph = (userContext) => {
       }
       n.level = lastLevel + addLevel;
     });
-    return electivas
+    return electivas;
   };
 
   // Las optativas son materias que te agregan creditos que no estan en el plan de la carrera
   // Les asignamos solamente el nombre y la cantidad de creditos que otorgan (porque la nota no influye en el promedio)
-  const [optativas, optativasDispatch] = React.useReducer((prevstate, dispatched) => {
-    let newstate = prevstate;
-    const { action, value } = dispatched
-    switch (action) {
-      case 'override':
-        newstate = value;
-        break;
-      case 'create':
-        const lastOptativaId = prevstate.map((o) => o.id).pop() || 0;
-        newstate = [
-          ...newstate,
-          {
-            id: lastOptativaId + 1,
-            nombre: "Materia Optativa",
-            creditos: 4
-          }
-        ]
-        break;
-      case 'remove':
-        newstate = prevstate.filter((o) => o.id !== value.id)
-        break;
-      case 'edit':
-        newstate = prevstate.map(o => o.id === value.id ? value : o);
-        break;
-      default:
-        return newstate;
-    }
-    return newstate;
-  }, []);
-
+  const [optativas, optativasDispatch] = React.useReducer(
+    (prevstate, dispatched) => {
+      let newstate = prevstate;
+      const { action, value } = dispatched;
+      switch (action) {
+        case "override":
+          newstate = value;
+          break;
+        case "create":
+          const lastOptativaId = prevstate.map((o) => o.id).pop() || 0;
+          newstate = [
+            ...newstate,
+            {
+              id: lastOptativaId + 1,
+              nombre: "Materia Optativa",
+              creditos: 4,
+            },
+          ];
+          break;
+        case "remove":
+          newstate = prevstate.filter((o) => o.id !== value.id);
+          break;
+        case "edit":
+          newstate = prevstate.map((o) => (o.id === value.id ? value : o));
+          break;
+        default:
+          return newstate;
+      }
+      return newstate;
+    },
+    [],
+  );
 
   // Hay distintos creditos para almacenar (los de las obligatorias, los de las electivas, etc)
   // Guardamos un array y lo vamos llenando de objetos que contienen:
@@ -590,9 +621,9 @@ const Graph = (userContext) => {
 
     // Primeros creditos a mostrar: los 38 del CBC
     // Lo mostramos como siempre aprobado del todo
-    const cbc = getters.CBC()
+    const cbc = getters.CBC();
     creditos.push({
-      ...CREDITOS['CBC'],
+      ...CREDITOS["CBC"],
       creditosNecesarios: cbc.reduce(accCreditos, 0),
       creditos: cbc.reduce(accCreditos, 0),
       nmaterias: cbc.length,
@@ -610,22 +641,28 @@ const Graph = (userContext) => {
     });
 
     // Despues, las electivas, incluyendo las orientaciones no elegidas
-    const electivas = getters.ElectivasAprobadas()
-    const electivasCreditosNecesarios = isNaN(getCorrectCreditos()?.electivas) ? getCorrectCreditos()?.electivas[user.finDeCarrera?.id] : getCorrectCreditos()?.electivas
+    const electivas = getters.ElectivasAprobadas();
+    const electivasCreditosNecesarios = isNaN(getCorrectCreditos()?.electivas)
+      ? getCorrectCreditos()?.electivas[user.finDeCarrera?.id]
+      : getCorrectCreditos()?.electivas;
     creditos.push({
-      ...CREDITOS['Electivas'],
+      ...CREDITOS["Electivas"],
       creditosNecesarios: electivasCreditosNecesarios,
       nmaterias: electivas.length,
       creditos:
-        electivas.reduce(accCreditos, 0) +
-        optativas.reduce(accCreditos, 0),
-      helpText: !electivasCreditosNecesarios && `Elegí ${user.carrera.eligeOrientaciones && !user.orientacion ? "orientación" : ""}${user.carrera.eligeOrientaciones && !user.orientacion && !user.finDeCarrera ? " y " : ""}${!user.finDeCarrera ? "entre tesis y tpp" : ""} en la configuración de usuario para saber cuantos necesitás.`
+        electivas.reduce(accCreditos, 0) + optativas.reduce(accCreditos, 0),
+      helpText:
+        !electivasCreditosNecesarios &&
+        `Elegí ${user.carrera.eligeOrientaciones && !user.orientacion ? "orientación" : ""}${user.carrera.eligeOrientaciones && !user.orientacion && !user.finDeCarrera ? " y " : ""}${!user.finDeCarrera ? "entre tesis y tpp" : ""} en la configuración de usuario para saber cuantos necesitás.`,
     });
 
     // Despues, orientacion obligatoria (si hay)
-    const orientacion = getters.OrientacionAprobadas()
+    const orientacion = getters.OrientacionAprobadas();
     if (user.carrera.eligeOrientaciones)
-      if (user.orientacion && user.carrera.creditos.orientacion[user.orientacion?.nombre]) {
+      if (
+        user.orientacion &&
+        user.carrera.creditos.orientacion[user.orientacion?.nombre]
+      ) {
         creditos.push({
           nombre: `Orientación: ${user.orientacion.nombre}`,
           nombrecorto: "Orientación",
@@ -644,10 +681,9 @@ const Graph = (userContext) => {
           creditosNecesarios: 8,
           creditos: 0,
           dummy: true,
-          helpText: "Elegí una orientación en la configuración de usuario"
+          helpText: "Elegí una orientación en la configuración de usuario",
         });
       }
-
 
     // Despues los distintos checkboxes (practica profesional, ingles, etc)
     // aca le setupeamos que tiene 8 creditos para llenar, para tener una barra de progreso
@@ -693,7 +729,7 @@ const Graph = (userContext) => {
       if (user.finDeCarrera) {
         const node = getNode(user.finDeCarrera.materia);
         creditos.push({
-          ...CREDITOS['Fin de Carrera'],
+          ...CREDITOS["Fin de Carrera"],
           nombre: node.materia,
           nombrecorto: user.finDeCarrera.id,
           creditosNecesarios: node.creditos,
@@ -701,11 +737,11 @@ const Graph = (userContext) => {
         });
       } else {
         creditos.push({
-          ...CREDITOS['Fin de Carrera'],
+          ...CREDITOS["Fin de Carrera"],
           creditosNecesarios: 8,
           creditos: 0,
           dummy: true,
-          helpText: "Elegí entre tésis o tpp en la configuración de usuario"
+          helpText: "Elegí entre tésis o tpp en la configuración de usuario",
         });
       }
     }
@@ -720,9 +756,8 @@ const Graph = (userContext) => {
     const fullProportion = creditos.reduce(accProportion, 0);
     if (fullProportion > 10) creditos[1].proportion -= fullProportion - 10;
     else if (fullProportion < 10) creditos[1].proportion += 10 - fullProportion;
-    setCreditos(creditos)
+    setCreditos(creditos);
   };
-
 
   ///
   // Logica de eventos (clicks, hovers, etc)
@@ -731,42 +766,46 @@ const Graph = (userContext) => {
   // Cuando tengo un nodo seleccionado, quiero que todos los demas sean mas transparentes
   // y tener foco solamente sobre el nodo, sus aristas, y sus correlativas
   const blurOthers = (id) => {
-    const node = getNode(id)
+    const node = getNode(id);
     if (!node) return;
 
-    let neighborNodes = getters.NeighborNodes(id)
+    let neighborNodes = getters.NeighborNodes(id);
     if (node.requiere) {
       neighborNodes = neighborNodes.filter((node) => node !== "CBC");
     }
 
     const allOtherNodes = nodes.get({
       filter: function (n) {
-        return !neighborNodes.includes(n.id) && !(n.id === node.id) && !n.hidden;
+        return (
+          !neighborNodes.includes(n.id) && !(n.id === node.id) && !n.hidden
+        );
       },
     });
     nodes.update(
       allOtherNodes.map((n) => {
         n.opacity = 0.3;
         return n;
-      })
+      }),
     );
 
-    const neighborEdgesIds = getters.NeighborEdges(id)
+    const neighborEdgesIds = getters.NeighborEdges(id);
     const neighborEdges = edges.get({
       filter: function (edge) {
-        return neighborEdgesIds.includes(edge.id) && edge.color !== "transparent"
+        return (
+          neighborEdgesIds.includes(edge.id) && edge.color !== "transparent"
+        );
       },
     });
     edges.update(
       neighborEdges.map((edge) => {
-        edge.hoverWidth = 2
-        edge.selectionWidth = 2
+        edge.hoverWidth = 2;
+        edge.selectionWidth = 2;
         edge.arrows = { to: { scaleFactor: 0.7 } };
         edge.color = { opacity: 1 };
         return edge;
-      })
+      }),
     );
-  }
+  };
 
   // Reseteamos al estado original: todos los nodos opacos
   const unblurAll = () => {
@@ -774,37 +813,37 @@ const Graph = (userContext) => {
       getters.Shown().map((n) => {
         n.opacity = undefined;
         return n;
-      })
+      }),
     );
 
     const neighborEdges = edges.get({
       filter: function (edge) {
-        return edge.color !== "transparent" && edge.selectionWidth === 2
+        return edge.color !== "transparent" && edge.selectionWidth === 2;
       },
     });
     edges.update(
       neighborEdges.map((edge) => {
-        edge.selectionWidth = undefined
-        edge.hoverWidth = undefined
-        edge.arrows = undefined
-        edge.color = undefined
+        edge.selectionWidth = undefined;
+        edge.hoverWidth = undefined;
+        edge.arrows = undefined;
+        edge.color = undefined;
         return edge;
-      })
+      }),
     );
-  }
+  };
 
   const selectNode = (id, display = false) => {
-    unblurAll()
-    blurOthers(id)
+    unblurAll();
+    blurOthers(id);
     if (display) setDisplayedNode(id);
-  }
+  };
 
   const deselectNode = (display = false) => {
-    unblurAll()
+    unblurAll();
     if (displayedNode && display) {
       setDisplayedNode("");
     }
-  }
+  };
 
   let hovertimer = undefined;
 
@@ -827,14 +866,14 @@ const Graph = (userContext) => {
       // hover: seleccionar nodo para ver sus correlativas facilmente
       const id = e.node;
       if (network.getSelectedNodes().length) {
-        return
+        return;
       }
 
       // Hacemos que esto solo suceda despues de un tiempo, para evitar que
       // cuando pasamos el mouse asi nomas se seleccione el nodo
       clearTimeout(hovertimer);
       hovertimer = setTimeout(() => {
-        selectNode(id)
+        selectNode(id);
       }, 300);
     },
     blurNode: () => {
@@ -843,9 +882,9 @@ const Graph = (userContext) => {
       hovertimer = undefined;
 
       if (network.getSelectedNodes().length) {
-        return
+        return;
       }
-      deselectNode()
+      deselectNode();
     },
     selectNode: (e) => {
       // click: seleccionar un nodo
@@ -854,15 +893,15 @@ const Graph = (userContext) => {
       // Si clickeo el CBC, lo abro/cierro
       if (id === "CBC") {
         toggleCBC();
-        deselectNode()
+        deselectNode();
         network.selectNodes([]);
-        return
+        return;
       }
-      selectNode(id, true)
+      selectNode(id, true);
     },
     deselectNode: (e) => {
       // click en otro nodo/click en cualquier lado del mapa: deseleccionar lo que teniamos
-      deselectNode(true)
+      deselectNode(true);
     },
   };
 
@@ -872,162 +911,219 @@ const Graph = (userContext) => {
     NodesTo: (id) => network.getConnectedNodes(id, "to"),
     NeighborNodes: (id) => network.getConnectedNodes(id),
     NeighborEdges: (id) => network.getConnectedEdges(id),
-    Cuatrimestres: () => nodes ? nodes.get({
-      filter: (n) => n.cuatrimestre,
-      fields: ["id", "cuatrimestre"],
-    }) : [],
+    Cuatrimestres: () =>
+      nodes
+        ? nodes.get({
+            filter: (n) => n.cuatrimestre,
+            fields: ["id", "cuatrimestre"],
+          })
+        : [],
     SelectableCategorias: () => {
-      const categorias = nodes ? nodes
-        .distinct("categoria")
-        .filter(
-          (c) =>
-            c !== "CBC" &&
-            c !== "*CBC" &&
-            c !== "Materias Obligatorias" &&
-            c !== "Fin de Carrera (Obligatorio)" &&
-            c !== "Fin de Carrera"
-        ) : []
-      if (categorias.indexOf('Materias Electivas') > 0) {
-        categorias.splice(categorias.indexOf('Materias Electivas'), 1);
-        categorias.unshift('Materias Electivas');
+      const categorias = nodes
+        ? nodes
+            .distinct("categoria")
+            .filter(
+              (c) =>
+                c !== "CBC" &&
+                c !== "*CBC" &&
+                c !== "Materias Obligatorias" &&
+                c !== "Fin de Carrera (Obligatorio)" &&
+                c !== "Fin de Carrera",
+            )
+        : [];
+      if (categorias.indexOf("Materias Electivas") > 0) {
+        categorias.splice(categorias.indexOf("Materias Electivas"), 1);
+        categorias.unshift("Materias Electivas");
       }
-      return categorias
+      return categorias;
     },
-    ALL: () => nodes ? nodes.get() : [],
+    ALL: () => (nodes ? nodes.get() : []),
     MateriasAprobadasCBC: () =>
-      nodes ? nodes.get({
-        filter: (n) => n.categoria === "*CBC" && n.aprobada && n.nota > 0,
-        fields: ["nota"],
-      }) : [],
+      nodes
+        ? nodes.get({
+            filter: (n) => n.categoria === "*CBC" && n.aprobada && n.nota > 0,
+            fields: ["nota"],
+          })
+        : [],
     MateriasAprobadasSinCBC: () =>
-      nodes ? nodes.get({
-        filter: (n) => n.aprobada && n.nota >= 0 && n.categoria !== "*CBC" && n.categoria !== "CBC",
-        fields: ["nota", "creditos"],
-      }) : [],
+      nodes
+        ? nodes.get({
+            filter: (n) =>
+              n.aprobada &&
+              n.nota >= 0 &&
+              n.categoria !== "*CBC" &&
+              n.categoria !== "CBC",
+            fields: ["nota", "creditos"],
+          })
+        : [],
     MateriasAprobadasSinEquivalenciasSinCBC: () =>
-      nodes ? nodes.get({
-        filter: (n) => n.aprobada && n.nota > 0 && n.categoria !== "*CBC" && n.categoria !== "CBC",
-        fields: ["nota", "creditos"],
-      }) : [],
+      nodes
+        ? nodes.get({
+            filter: (n) =>
+              n.aprobada &&
+              n.nota > 0 &&
+              n.categoria !== "*CBC" &&
+              n.categoria !== "CBC",
+            fields: ["nota", "creditos"],
+          })
+        : [],
     MateriasAprobadasConCBC: () =>
-      nodes ? nodes
-        .get({
-          filter: (n) => n.aprobada && n.nota > 0,
-          fields: ["nota", "creditos"],
-        }) : [],
-    CBC: () => nodes ? nodes
-      .get({
-        filter: (n) =>
-          n.categoria === "*CBC",
-      }) : [],
-    Obligatorias: () => nodes ? nodes
-      .get({
-        filter: (n) =>
-          n.categoria === "Materias Obligatorias",
-        fields: ["creditos"],
-      }) : [],
-    ObligatoriasAprobadas: () => nodes ? nodes
-      .get({
-        filter: (n) =>
-          n.categoria === "Materias Obligatorias" &&
-          n.aprobada &&
-          n.nota >= 0,
-        fields: ["creditos"],
-      }) : [],
-    ElectivasAprobadas: () => nodes ? nodes
-      .get({
-        filter: (n) =>
-          n.categoria !== "CBC" &&
-          n.categoria !== "*CBC" &&
-          n.categoria !== "Materias Obligatorias" &&
-          n.categoria !== "Fin de Carrera" &&
-          n.categoria !== "Fin de Carrera (Obligatorio)" &&
-          n.categoria !== user.orientacion?.nombre &&
-          n.aprobada &&
-          n.nota >= 0,
-        fields: ["creditos"],
-      }) : [],
-    OrientacionAprobadas: () => nodes ? nodes
-      .get({
-        filter: (n) =>
-          n.categoria === user.orientacion?.nombre &&
-          n.aprobada &&
-          n.nota >= 0,
-        fields: ["creditos"],
-      }) : [],
-    CategoriaOnly: (categoria) => nodes ? nodes
-      .get({
-        filter: (n) => n.categoria === categoria,
-      }) : [],
-    CategoriaRelevantes: (categoria) => nodes ? nodes
-      .get({
-        filter: (n) => n.categoria === categoria && (n.cuatrimestre || n.nota >= -1)
-      }) : [],
-    AllRelevantes: () => nodes ? nodes
-      .get({
-        filter: (n) => n.categoria !== "*CBC" && (n.cuatrimestre || n.nota >= -1)
-      }) : [],
-    Shown: () => nodes ? nodes
-      .get({
-        filter: (n) => !n.hidden
-      }) : [],
-    AllShown: () => nodes ? nodes
-      .get({
-        filter: (n) => !n.hidden &&
-          n.categoria !== "CBC" &&
-          n.categoria !== "*CBC" &&
-          n.categoria !== "Fin de Carrera" &&
-          n.categoria !== "Fin de Carrera (Obligatorio)"
-      }) : [],
-    AllShownWithCuatri: () => nodes ? nodes
-      .get({
-        filter: (n) => n.cuatrimestre &&
-          !n.hidden &&
-          n.categoria !== "CBC" &&
-          n.categoria !== "*CBC"
-      }) : [],
-    AllShownWithoutCuatri: () => nodes ? nodes
-      .get({
-        filter: (n) =>
-          !n.cuatrimestre &&
-          !n.hidden &&
-          n.originalLevel &&
-          n.categoria !== "CBC" &&
-          n.categoria !== "*CBC"
-      }) : [],
-    WithoutNivel: () => nodes ? nodes
-      .get({
-        filter: (n) => n.categoria !== "Materias Electivas" &&
-          n.categoria !== "Fin de Carrera" &&
-          n.categoria !== "Fin de Carrera (Obligatorio)" &&
-          !n.hidden &&
-          !n.cuatrimestre &&
-          !n.originalLevel &&
-          n.originalLevel !== 0
-      }) : [],
-    Electivas: () => nodes ? nodes
-      .get({
-        filter: (n) => n.categoria === "Materias Electivas" &&
-          !n.hidden &&
-          !n.cuatrimestre
-      }) : [],
-    Levels: () => nodes ? nodes
-      .get({
-        filter: (n) =>
-          !n.hidden &&
-          n.categoria !== "Fin de Carrera" &&
-          n.categoria !== "Fin de Carrera (Obligatorio)",
-        fields: ["level"],
-        type: { level: "number" },
-      }) : [],
-    FinDeCarrera: () => nodes ? nodes
-      .get({
-        filter: (n) =>
-          (n.categoria === "Fin de Carrera" || n.categoria === "Fin de Carrera (Obligatorio)") &&
-          !n.hidden &&
-          !n.cuatrimestre
-      }) : [],
-  }
+      nodes
+        ? nodes.get({
+            filter: (n) => n.aprobada && n.nota > 0,
+            fields: ["nota", "creditos"],
+          })
+        : [],
+    CBC: () =>
+      nodes
+        ? nodes.get({
+            filter: (n) => n.categoria === "*CBC",
+          })
+        : [],
+    Obligatorias: () =>
+      nodes
+        ? nodes.get({
+            filter: (n) => n.categoria === "Materias Obligatorias",
+            fields: ["creditos"],
+          })
+        : [],
+    ObligatoriasAprobadas: () =>
+      nodes
+        ? nodes.get({
+            filter: (n) =>
+              n.categoria === "Materias Obligatorias" &&
+              n.aprobada &&
+              n.nota >= 0,
+            fields: ["creditos"],
+          })
+        : [],
+    ElectivasAprobadas: () =>
+      nodes
+        ? nodes.get({
+            filter: (n) =>
+              n.categoria !== "CBC" &&
+              n.categoria !== "*CBC" &&
+              n.categoria !== "Materias Obligatorias" &&
+              n.categoria !== "Fin de Carrera" &&
+              n.categoria !== "Fin de Carrera (Obligatorio)" &&
+              n.categoria !== user.orientacion?.nombre &&
+              n.aprobada &&
+              n.nota >= 0,
+            fields: ["creditos"],
+          })
+        : [],
+    OrientacionAprobadas: () =>
+      nodes
+        ? nodes.get({
+            filter: (n) =>
+              n.categoria === user.orientacion?.nombre &&
+              n.aprobada &&
+              n.nota >= 0,
+            fields: ["creditos"],
+          })
+        : [],
+    CategoriaOnly: (categoria) =>
+      nodes
+        ? nodes.get({
+            filter: (n) => n.categoria === categoria,
+          })
+        : [],
+    CategoriaRelevantes: (categoria) =>
+      nodes
+        ? nodes.get({
+            filter: (n) =>
+              n.categoria === categoria && (n.cuatrimestre || n.nota >= -1),
+          })
+        : [],
+    AllRelevantes: () =>
+      nodes
+        ? nodes.get({
+            filter: (n) =>
+              n.categoria !== "*CBC" && (n.cuatrimestre || n.nota >= -1),
+          })
+        : [],
+    Shown: () =>
+      nodes
+        ? nodes.get({
+            filter: (n) => !n.hidden,
+          })
+        : [],
+    AllShown: () =>
+      nodes
+        ? nodes.get({
+            filter: (n) =>
+              !n.hidden &&
+              n.categoria !== "CBC" &&
+              n.categoria !== "*CBC" &&
+              n.categoria !== "Fin de Carrera" &&
+              n.categoria !== "Fin de Carrera (Obligatorio)",
+          })
+        : [],
+    AllShownWithCuatri: () =>
+      nodes
+        ? nodes.get({
+            filter: (n) =>
+              n.cuatrimestre &&
+              !n.hidden &&
+              n.categoria !== "CBC" &&
+              n.categoria !== "*CBC",
+          })
+        : [],
+    AllShownWithoutCuatri: () =>
+      nodes
+        ? nodes.get({
+            filter: (n) =>
+              !n.cuatrimestre &&
+              !n.hidden &&
+              n.originalLevel &&
+              n.categoria !== "CBC" &&
+              n.categoria !== "*CBC",
+          })
+        : [],
+    WithoutNivel: () =>
+      nodes
+        ? nodes.get({
+            filter: (n) =>
+              n.categoria !== "Materias Electivas" &&
+              n.categoria !== "Fin de Carrera" &&
+              n.categoria !== "Fin de Carrera (Obligatorio)" &&
+              !n.hidden &&
+              !n.cuatrimestre &&
+              !n.originalLevel &&
+              n.originalLevel !== 0,
+          })
+        : [],
+    Electivas: () =>
+      nodes
+        ? nodes.get({
+            filter: (n) =>
+              n.categoria === "Materias Electivas" &&
+              !n.hidden &&
+              !n.cuatrimestre,
+          })
+        : [],
+    Levels: () =>
+      nodes
+        ? nodes.get({
+            filter: (n) =>
+              !n.hidden &&
+              n.categoria !== "Fin de Carrera" &&
+              n.categoria !== "Fin de Carrera (Obligatorio)",
+            fields: ["level"],
+            type: { level: "number" },
+          })
+        : [],
+    FinDeCarrera: () =>
+      nodes
+        ? nodes.get({
+            filter: (n) =>
+              (n.categoria === "Fin de Carrera" ||
+                n.categoria === "Fin de Carrera (Obligatorio)") &&
+              !n.hidden &&
+              !n.cuatrimestre,
+          })
+        : [],
+  };
 
   // Escape hatches: forzar actualizaciones
   // - Cuando el usuario se desloguea/loguea, cambian las labels
@@ -1036,12 +1132,18 @@ const Graph = (userContext) => {
   // - Cambiar la orientacion hace que se cambien los creditos
   // - Cambiar el fin de carrera hace que se muestren otras materias
   React.useEffect(() => {
-    if (!network || graph.key !== network.key) return
+    if (!network || graph.key !== network.key) return;
     actualizar();
-    actualizarNiveles()
-  // Sabemos clavado en que momentos queremos forzar una actualización
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [logged, colorMode, optativas, user.orientacion?.nombre, user.finDeCarrera?.id]);
+    actualizarNiveles();
+    // Sabemos clavado en que momentos queremos forzar una actualización
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    logged,
+    colorMode,
+    optativas,
+    user.orientacion?.nombre,
+    user.finDeCarrera?.id,
+  ]);
 
   return {
     graph,
