@@ -1,8 +1,5 @@
 import { ChatIcon, CheckIcon, ExternalLinkIcon } from "@chakra-ui/icons";
 import {
-  LightMode,
-  Tag,
-  TagLabel,
   Alert,
   AlertDescription,
   AlertTitle,
@@ -11,13 +8,15 @@ import {
   DarkMode,
   Flex,
   IconButton,
+  LightMode,
   Link,
+  Tag,
+  TagLabel,
   TagRightIcon,
   Text,
   Textarea,
-  useColorMode,
-  useToast,
   VStack,
+  useToast,
 } from "@chakra-ui/react";
 import React from "react";
 import { UserContext } from "../../MapContext";
@@ -29,7 +28,6 @@ const Sugerencias = () => {
   const bugToast = React.useRef();
   const [showGracias, setShowGracias] = React.useState(false);
   const toast = useToast();
-  const { colorMode } = useColorMode();
 
   return (
     <LightMode>
@@ -56,12 +54,17 @@ const Sugerencias = () => {
                   borderRadius={6}
                   p={6}
                   mb="4em"
-                  borderColor={
-                    colorMode === "dark" ? "electivas.400" : "electivas.500"
-                  }
                   borderWidth={2}
-                  bg={colorMode === "dark" ? "gray.700" : "gray.50"}
-                  color={colorMode === "dark" ? "textdark" : "text"}
+                  _light={{
+                    bg: "gray.50",
+                    borderColor: "electivas.500",
+                    color: "text",
+                  }}
+                  _dark={{
+                    bg: "gray.700",
+                    borderColor: "electivas.400",
+                    color: "textdark",
+                  }}
                 >
                   <Box flex="1">
                     <AlertTitle mb={2}>Hola!</AlertTitle>
@@ -74,21 +77,24 @@ const Sugerencias = () => {
                           <Link
                             isExternal
                             _hover={{
-                              color:
-                                colorMode === "dark"
-                                  ? "electivas.400"
-                                  : "electivas.500",
+                              _light: {
+                                color: "electivas.500",
+                              },
+                              _dark: {
+                                color: "electivas.400",
+                              },
                             }}
                             href="https://status.fede.dm"
                           >
                             {" "}
                             me voy a recibir{" "}
                             <ExternalLinkIcon
-                              color={
-                                colorMode === "dark"
-                                  ? "electivas.400"
-                                  : "electivas.500"
-                              }
+                              _light={{
+                                color: "electivas.500",
+                              }}
+                              _dark={{
+                                color: "electivas.400",
+                              }}
                             />
                           </Link>{" "}
                           y quiero dejar esto de lado.
@@ -100,21 +106,24 @@ const Sugerencias = () => {
                           <Link
                             isExternal
                             _hover={{
-                              color:
-                                colorMode === "dark"
-                                  ? "electivas.400"
-                                  : "electivas.500",
+                              _light: {
+                                color: "electivas.500",
+                              },
+                              _dark: {
+                                color: "electivas.400",
+                              },
                             }}
                             href="https://github.com/FdelMazo/FIUBA-Map/issues/168"
                           >
                             {" "}
                             acá.{" "}
                             <ExternalLinkIcon
-                              color={
-                                colorMode === "dark"
-                                  ? "electivas.400"
-                                  : "electivas.500"
-                              }
+                              _light={{
+                                color: "electivas.500",
+                              }}
+                              _dark={{
+                                color: "electivas.400",
+                              }}
                             />
                           </Link>
                         </Text>
@@ -149,15 +158,16 @@ const Sugerencias = () => {
                         <Flex mt={3} alignItems="flex-end">
                           <Textarea
                             resize="none"
-                            borderColor={
-                              colorMode === "dark" ? "textdark" : "text"
-                            }
-                            color={colorMode === "dark" ? "textdark" : "text"}
-                            focusBorderColor={
-                              colorMode === "dark"
-                                ? "electivas.400"
-                                : "electivas.500"
-                            }
+                            _light={{
+                              focusBorderColor: "electivas.500",
+                              borderColor: "text",
+                              color: "text",
+                            }}
+                            _dark={{
+                              focusBorderColor: "electivas.400",
+                              borderColor: "textdark",
+                              color: "textdark",
+                            }}
                             size="sm"
                             name="bug"
                           />
@@ -177,20 +187,23 @@ const Sugerencias = () => {
                         <Link
                           isExternal
                           _hover={{
-                            color:
-                              colorMode === "dark"
-                                ? "electivas.400"
-                                : "electivas.500",
+                            _light: {
+                              color: "electivas.500",
+                            },
+                            _dark: {
+                              color: "electivas.400",
+                            },
                           }}
                           href="https://github.com/FdelMazo/FIUBA-Map/issues/new"
                         >
                           directamente{" "}
                           <ExternalLinkIcon
-                            color={
-                              colorMode === "dark"
-                                ? "electivas.400"
-                                : "electivas.500"
-                            }
+                            _light={{
+                              color: "electivas.500",
+                            }}
+                            _dark={{
+                              color: "electivas.400",
+                            }}
                             mx="2px"
                           />
                         </Link>
@@ -198,9 +211,12 @@ const Sugerencias = () => {
                     </AlertDescription>
                   </Box>
                   <CloseButton
-                    color={
-                      colorMode === "dark" ? "electivas.400" : "electivas.500"
-                    }
+                    _light={{
+                      color: "electivas.500",
+                    }}
+                    _dark={{
+                      color: "electivas.400",
+                    }}
                     onClick={() => toast.close(props.id)}
                     position="absolute"
                     right="8px"
