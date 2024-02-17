@@ -70,10 +70,8 @@ const Sugerencias = () => {
                     <AlertTitle mb={2}>Hola!</AlertTitle>
                     <AlertDescription px={5} display="block">
                       <VStack spacing={2}>
-                        <Text>
-                          Este proyecto ya cumplió su ciclo... las últimas
-                          actualizaciones que hubo que hacer (Plan 2020)
-                          terminaron de quemarme. Sin hablar de que algún día
+                        <Text w="100%">
+                          Por más que algún día
                           <Link
                             isExternal
                             _hover={{
@@ -97,48 +95,18 @@ const Sugerencias = () => {
                               }}
                             />
                           </Link>{" "}
-                          y quiero dejar esto de lado.
+                          y dejar de agregar funcionalidades nuevas al proyecto,
+                          los bugs criticos los voy a seguir arreglando.
                         </Text>
-                        <Text>
-                          Actualmente mucho no hay para hacer, pero
-                          eventualmente van a salir más planes nuevos y voy a
-                          necesitar ayuda. Si te interesa, deja un comentario{" "}
-                          <Link
-                            isExternal
-                            _hover={{
-                              _light: {
-                                color: "electivas.500",
-                              },
-                              _dark: {
-                                color: "electivas.400",
-                              },
-                            }}
-                            href="https://github.com/FdelMazo/FIUBA-Map/issues/168"
-                          >
-                            {" "}
-                            acá.{" "}
-                            <ExternalLinkIcon
-                              _light={{
-                                color: "electivas.500",
-                              }}
-                              _dark={{
-                                color: "electivas.400",
-                              }}
-                            />
-                          </Link>
+                        <Text w="100%">
+                          Así que si encontrás algo que no funciona, avisame!
                         </Text>
-                        <Text>
-                          Más allá de eso, todo lo que sea un bug crítico lo voy
-                          a seguir arreglando, así que si encontrás algo que no
-                          funciona, avisame!
-                        </Text>
-                        <Text>
-                          Y si llegaste tan lejos, gracias por usar la
-                          herramienta! Espero que te haya servido. Si me querés
-                          tirar un cafecito, te lo agradezco mucho!
+                        <Text w="100%">
+                          Más alla de eso, gracias por usar la herramienta!
+                          Espero que te haya servido. Si me querés tirar un
+                          cafecito, te lo agradezco mucho!
                           <br />
-                          <Text fontSize="xs" as="span">
-                            {" "}
+                          <Text fontSize="xs">
                             (Aunque para ser sincero, aprecio más los mensajes
                             que los cafecitos...)
                           </Text>
