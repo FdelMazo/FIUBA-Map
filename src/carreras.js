@@ -109,6 +109,12 @@ export const CARRERAS = [
           bg: COLORS.enfinal[50],
           color: "enfinal",
         },
+        {
+          nombre: "Actividades profesionales de 192 horas",
+          nombrecorto: "Práctica Profesional",
+          bg: COLORS.habilitadas[50],
+          color: "habilitadas",
+        },
       ],
     },
   },
@@ -146,6 +152,20 @@ export const CARRERAS = [
     creditos: {
       total: 227,
       electivas: 16,
+      checkbox: [
+        {
+          nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
+          bg: COLORS.enfinal[50],
+          color: "enfinal",
+        },
+        {
+          nombre: "Actividades profesionales de 192 horas",
+          nombrecorto: "Práctica Profesional",
+          bg: COLORS.habilitadas[50],
+          color: "habilitadas",
+        },
+      ],
     },
   },
   {
@@ -216,6 +236,20 @@ export const CARRERAS = [
     creditos: {
       total: 251,
       electivas: 24,
+      checkbox: [
+        {
+          nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
+          bg: COLORS.enfinal[50],
+          color: "enfinal",
+        },
+        {
+          nombre: "Actividades profesionales de 192 horas",
+          nombrecorto: "Práctica Profesional",
+          bg: COLORS.habilitadas[50],
+          color: "habilitadas",
+        },
+      ],
     },
   },
   {
@@ -306,6 +340,12 @@ export const CARRERAS = [
           bg: COLORS.enfinal[50],
           color: "enfinal",
         },
+        {
+          nombre: "Actividades profesionales de 192 horas",
+          nombrecorto: "Práctica Profesional",
+          bg: COLORS.habilitadas[50],
+          color: "habilitadas",
+        },
       ],
     },
   },
@@ -355,6 +395,12 @@ export const CARRERAS = [
           nombrecorto: "Inglés",
           bg: COLORS.enfinal[50],
           color: "enfinal",
+        },
+        {
+          nombre: "Actividades profesionales",
+          nombrecorto: "Práctica Profesional",
+          bg: COLORS.habilitadas[50],
+          color: "habilitadas",
         },
       ],
     },
@@ -458,6 +504,20 @@ export const CARRERAS = [
           color: "findecarrera",
         },
       ],
+      checkbox: [
+        {
+          nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
+          bg: COLORS.enfinal[50],
+          color: "enfinal",
+        },
+        {
+          nombre: "Actividades profesionales de 192 horas",
+          nombrecorto: "Práctica Profesional",
+          bg: COLORS.habilitadas[50],
+          color: "habilitadas",
+        },
+      ],
     },
   },
   {
@@ -486,6 +546,20 @@ export const CARRERAS = [
     creditos: {
       total: 231,
       electivas: 14,
+      checkbox: [
+        {
+          nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
+          bg: COLORS.enfinal[50],
+          color: "enfinal",
+        },
+        {
+          nombre: "Actividades profesionales de 192 horas",
+          nombrecorto: "Práctica Profesional",
+          bg: COLORS.habilitadas[50],
+          color: "habilitadas",
+        },
+      ],
     },
   },
   {
