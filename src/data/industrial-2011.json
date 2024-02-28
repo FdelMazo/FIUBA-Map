@@ -341,7 +341,7 @@
   },
   {
     "id": "91.29",
-    "materia": "Ingenería Económica A",
+    "materia": "Ingeniería Económica A",
     "creditos": 4,
     "correlativas": "91.28",
     "categoria": "Materias Obligatorias",
@@ -357,7 +357,7 @@
   },
   {
     "id": "91.22",
-    "materia": "Ingenería Legal para Ingenería Industrial",
+    "materia": "Ingeniería Legal para Ingeniería Industrial",
     "creditos": 4,
     "requiere": 138,
     "requiereCBC": true,
