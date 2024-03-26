@@ -631,6 +631,7 @@ const Graph = (userContext) => {
 
     // Despues, las obligatorias
     const allObligatorias = getters.Obligatorias();
+    // aca cambiar obligatorias a obligatoriasAprobadas mepa que quedaria mejor, mas sencillo de entender, que opinas?
     const obligatorias = getters.ObligatoriasAprobadas();
     creditos.push({
       ...CREDITOS["Obligatorias"],
