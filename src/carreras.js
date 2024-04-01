@@ -193,6 +193,34 @@ export const CARRERAS = [
     },
   },
   {
+    id: "alimentos-2020",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-de-alimentos/plan-de-estudios",
+    ano: 2020,
+    graph: require("./data/alimentos-2020.json"),
+    finDeCarrera: [
+      { id: "tesis", materia: "TESIS" },
+      { id: "tpp", materia: "TPP" },
+    ],
+    creditos: {
+      total: 243,
+      electivas: 12,
+      checkbox: [
+        {
+          nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
+          bg: COLORS.enfinal[50],
+          color: "enfinal",
+        },
+        {
+          nombre: "Actividades profesionales de 192 horas",
+          nombrecorto: "Práctica Profesional",
+          bg: COLORS.habilitadas[50],
+          color: "habilitadas",
+        },
+      ],
+    },
+  },
+  {
     id: "civil",
     link: "https://fi.uba.ar/grado/carreras/ingenieria-civil/plan-de-estudios",
     ano: 2009,
@@ -585,7 +613,7 @@ export const PLANES = [
   {
     nombre: "Ingeniería de Alimentos",
     nombrecorto: "Alimentos",
-    planes: ["alimentos"],
+    planes: ["alimentos", "alimentos-2020"],
   },
   {
     nombre: "Ingeniería Electricista",
