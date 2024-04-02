@@ -1,0 +1,453 @@
+[
+  {
+    "id": "CBC40",
+    "materia": "Introducción al Pensamiento Científico",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC90",
+    "materia": "Pensamiento Computacional",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC66",
+    "materia": "Análisis Matemático A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC24",
+    "materia": "Introducción al Conocimiento de la Sociedad y el Estado",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC3",
+    "materia": "Física",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC62",
+    "materia": "Álgebra A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC",
+    "materia": "Ciclo Básico Común",
+    "creditos": 0,
+    "categoria": "CBC",
+    "level": 0,
+    "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
+  },
+  {
+    "id": "AM2",
+    "materia": "Análisis Matemático II",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "QB",
+    "materia": "Química Básica",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "FSP",
+    "materia": "Física de los Sistemas de Partículas",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "IIA",
+    "materia": "Introducción a la Ingeniería de Alimentos",
+    "creditos": 4,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "EYM",
+    "materia": "Electricidad y Magnetismo",
+    "creditos": 6,
+    "correlativas": "AM2-FSP",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "ON",
+    "materia": "Óptica",
+    "creditos": 2,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "FPSQ",
+    "materia": "Fundamentos de Procesos Químicos",
+    "creditos": 4,
+    "correlativas": "QB-IIA",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "LQ",
+    "materia": "Laboratorio de Química",
+    "creditos": 2,
+    "correlativas": "QB",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "AL",
+    "materia": "Álgebra Lineal",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "QCO",
+    "materia": "Química de los Compuestos Orgánicos",
+    "creditos": 6,
+    "correlativas": "QB",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "TP",
+    "materia": "Termodinámica de los Procesos",
+    "creditos": 8,
+    "correlativas": "FPSQ-AM2",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "PROBA",
+    "materia": "Probabilidad y Estadística",
+    "creditos": 6,
+    "correlativas": "AM2-AL",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "ICD",
+    "materia": "Introducción a la Ciencia de Datos",
+    "creditos": 3,
+    "correlativas": "AL",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "FT",
+    "materia": "Fenómenos de Transporte",
+    "creditos": 8,
+    "correlativas": "TP",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "MNU",
+    "materia": "Modelación Numérica",
+    "creditos": 4,
+    "correlativas": "AM2-AL",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "QFI",
+    "materia": "Química Física",
+    "creditos": 6,
+    "correlativas": "TP-EYM",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "QBA",
+    "materia": "Química Biológica y de Alimentos",
+    "creditos": 6,
+    "correlativas": "QCO-LQ",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "MBGA",
+    "materia": "Microbiología General y de Alimentos",
+    "creditos": 6,
+    "correlativas": "QBA",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "OUPTCM",
+    "materia": "Operaciones Unitarias de Transferencia de Cantidad de Movimiento y Energía",
+    "creditos": 8,
+    "correlativas": "FT-MNU",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "OUTM",
+    "materia": "Operaciones Unitarias de Transferencia de Materia",
+    "creditos": 8,
+    "correlativas": "FT",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "FPA1",
+    "materia": "Fundamentos de la Preservación de Alimentos I",
+    "creditos": 6,
+    "correlativas": "MBGA-OUPTCM-OUTM",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "QAI",
+    "materia": "Química Analítica Instrumental",
+    "creditos": 4,
+    "correlativas": "QCO-ON-PROBA",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "LOP",
+    "materia": "Laboratorio de Operaciones y Procesos",
+    "creditos": 4,
+    "correlativas": "OUPTCM",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "IPP",
+    "materia": "Instalaciones de Plantas de Procesos",
+    "creditos": 6,
+    "correlativas": "OUPTCM",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "FPA2",
+    "materia": "Fundamentos de la Preservación de Alimentos II",
+    "creditos": 6,
+    "correlativas": "FPA1",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "TA1",
+    "materia": "Tecnología de Alimentos I",
+    "creditos": 4,
+    "correlativas": "FPA1-QAI",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "PPA1",
+    "materia": "Planta Piloto de Alimentos I",
+    "creditos": 2,
+    "correlativas": "FPA1-OUTM",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "DCPA",
+    "materia": "Dinámica y Control de Procesos de Alimentos",
+    "creditos": 6,
+    "correlativas": "OUPTCM-OUTM",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "AEJPROF2",
+    "materia": "Legislación y Ejercicio Profesional",
+    "creditos": 2,
+    "requiere": 100,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "TA2",
+    "materia": "Tecnología de Alimentos II",
+    "creditos": 2,
+    "correlativas": "FPA1-QAI",
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  },
+  {
+    "id": "TA3",
+    "materia": "Tecnología de Alimentos III",
+    "creditos": 2,
+    "correlativas": "FPA1-QAI",
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  },
+  {
+    "id": "PPA2",
+    "materia": "Planta Piloto de Alimentos II",
+    "creditos": 2,
+    "correlativas": "FPA1-OUTM",
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  },
+  {
+    "id": "LA",
+    "materia": "Legislación Alimentaria",
+    "creditos": 4,
+    "correlativas": "MBGA",
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  },
+  {
+    "id": "EO",
+    "materia": "Economía y Organización",
+    "creditos": 6,
+    "correlativas": "IIA",
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  },
+  {
+    "id": "BTRIA",
+    "materia": "Biotecnología y Reactores para la Industria de Alimentos",
+    "creditos": 6,
+    "correlativas": "QFI-MBGA-OUTM",
+    "categoria": "Materias Obligatorias",
+    "level": 9
+  },
+  {
+    "id": "GTAIA",
+    "materia": "Gestión del Trabajo y del Ambiente en la Industria Alimentaria",
+    "creditos": 4,
+    "correlativas": "MBGA",
+    "categoria": "Materias Obligatorias",
+    "level": 9
+  },
+  {
+    "id": "TPP",
+    "materia": "Trabajo Profesional de Ingeniería de Alimentos",
+    "creditos": 12,
+    "correlativas": "FPA1-IPP",
+    "categoria": "Fin de Carrera"
+  },
+  {
+    "id": "TESIS",
+    "materia": "Tesis de Ingeniería de Alimentos",
+    "creditos": 12,
+    "correlativas": "FPA1-IPP",
+    "categoria": "Fin de Carrera"
+  },
+  {
+    "id": "DDP",
+    "materia": "Diseño de Producto",
+    "creditos": 4,
+    "correlativas": "FPA2-EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CEP",
+    "materia": "Control Estadístico de Procesos",
+    "creditos": 6,
+    "correlativas": "PROBA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "BI",
+    "materia": "Bioprocesos Industriales",
+    "creditos": 4,
+    "correlativas": "BTRIA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "MBA",
+    "materia": "Microbiología de Alimentos",
+    "creditos": 4,
+    "correlativas": "MBGA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AAA",
+    "materia": "Análisis Avanzado de Alimentos",
+    "creditos": 6,
+    "correlativas": "FPA2",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TA",
+    "materia": "Toxicología de Alimentos",
+    "creditos": 4,
+    "correlativas": "QBA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "NATA",
+    "materia": "Nutrición Aplicada a Tecnología de Alimentos",
+    "creditos": 2,
+    "correlativas": "QBA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "EI",
+    "materia": "Emprendimientos en Ingeniería",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "LSC",
+    "materia": "Logística y Supply Chain",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CPS",
+    "materia": "Comercialización de Productos y Servicios",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CHC",
+    "materia": "Capital Humano y Comportamiento Organizacional",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "GC",
+    "materia": "Gerenciamiento de la Calidad",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "EA",
+    "materia": "Estadística Aplicada",
+    "creditos": 8,
+    "correlativas": "PROBA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "RSIA",
+    "materia": "Revalorización de Subproductos en la Industria Agroalimentaria",
+    "creditos": 6,
+    "correlativas": "FPA2",
+    "categoria": "Materias Electivas"
+  }
+]
