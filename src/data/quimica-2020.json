@@ -276,20 +276,6 @@
     "level": 8
   },
   {
-    "id": "TPP",
-    "materia": "Trabajo Profesional de Ingeniería Química",
-    "creditos": 12,
-    "correlativas": "LOP-EPPQ-DCP",
-    "categoria": "Fin de Carrera"
-  },
-  {
-    "id": "TESIS",
-    "materia": "Tesis de Ingeniería Química",
-    "creditos": 12,
-    "correlativas": "LOP-EPPQ-DCP",
-    "categoria": "Fin de Carrera"
-  },
-  {
     "id": "TMEC",
     "materia": "Tecnologías para la Mitigación de Emisiones de Carbono",
     "creditos": 4,
@@ -449,5 +435,12 @@
     "creditos": 6,
     "correlativas": "QI",
     "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TIF",
+    "materia": "Trabajo Final Integrador",
+    "creditos": 12,
+    "correlativas": "LOP-EPPQ-DCP",
+    "categoria": "Fin de Carrera"
   }
 ]

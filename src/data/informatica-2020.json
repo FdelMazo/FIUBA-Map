@@ -398,16 +398,8 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TPP",
-    "materia": "Trabajo Profesional de Ingeniería Informática",
-    "creditos": 12,
-    "requiere": 140,
-    "requiereCBC": true,
-    "categoria": "Fin de Carrera"
-  },
-  {
-    "id": "TESIS",
-    "materia": "Tesis de Ingeniería Informática",
+    "id": "TIF",
+    "materia": "Trabajo Final Integrador",
     "creditos": 12,
     "requiere": 140,
     "requiereCBC": true,

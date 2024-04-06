@@ -495,16 +495,8 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TPP",
-    "materia": "Trabajo Profesional de Ingeniería Industrial",
-    "creditos": 12,
-    "requiere": 140,
-    "requiereCBC": true,
-    "categoria": "Fin de Carrera"
-  },
-  {
-    "id": "TESIS",
-    "materia": "Tesis de Ingeniería Industrial",
+    "id": "TIF",
+    "materia": "Trabajo Final Integrador",
     "creditos": 12,
     "requiere": 140,
     "requiereCBC": true,

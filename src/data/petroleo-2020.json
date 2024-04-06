@@ -308,20 +308,6 @@
     "level": 9
   },
   {
-    "id": "TPP1",
-    "materia": "Trabajo Integrador Final de Ingeniería en Petróleo I",
-    "creditos": 4,
-    "correlativas": "IR-PYE-SPH-PI2",
-    "categoria": "Fin de Carrera (Obligatorio)"
-  },
-  {
-    "id": "TPP2",
-    "materia": "Trabajo Integrador Final de Ingeniería en Petróleo II",
-    "creditos": 8,
-    "correlativas": "TPP1",
-    "categoria": "Fin de Carrera (Obligatorio)"
-  },
-  {
     "id": "MR",
     "materia": "Modelado de Reservorios",
     "creditos": 4,
@@ -444,5 +430,19 @@
     "creditos": 3,
     "correlativas": "IA-AD",
     "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TIF1",
+    "materia": "Trabajo Integrador Final I",
+    "creditos": 4,
+    "correlativas": "IR-PYE-SPH-PI2",
+    "categoria": "Fin de Carrera"
+  },
+  {
+    "id": "TIF2",
+    "materia": "Trabajo Integrador Final II",
+    "creditos": 8,
+    "correlativas": "TIF1",
+    "categoria": "Fin de Carrera"
   }
 ]

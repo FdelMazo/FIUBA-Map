@@ -350,24 +350,6 @@
     "level": 9
   },
   {
-    "id": "TPP",
-    "materia": "Trabajo Profesional de Ingeniería Civil",
-    "creditos": 12,
-    "correlativas": "ESTR",
-    "requiere": 158,
-    "requiereCBC": true,
-    "categoria": "Fin de Carrera"
-  },
-  {
-    "id": "TESIS",
-    "materia": "Tesis de Ingeniería Civil",
-    "creditos": 12,
-    "correlativas": "ESTR",
-    "requiere": 158,
-    "requiereCBC": true,
-    "categoria": "Fin de Carrera"
-  },
-  {
     "id": "MS",
     "materia": "Mecánica del Sólido",
     "creditos": 6,
@@ -725,5 +707,14 @@
     "creditos": 3,
     "correlativas": "PROBA-IA",
     "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TIF",
+    "materia": "Trabajo Final Inegrador",
+    "creditos": 12,
+    "correlativas": "ESTR",
+    "requiere": 158,
+    "requiereCBC": true,
+    "categoria": "Fin de Carrera"
   }
 ]

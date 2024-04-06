@@ -330,20 +330,6 @@
     "level": 7
   },
   {
-    "id": "TPP",
-    "materia": "Trabajo Profesional de Ingeniería en Agrimensura",
-    "creditos": 12,
-    "correlativas": "MNS",
-    "categoria": "Fin de Carrera"
-  },
-  {
-    "id": "TESIS",
-    "materia": "Tesis de Ingeniería en Agrimensura",
-    "creditos": 12,
-    "correlativas": "MNS",
-    "categoria": "Fin de Carrera"
-  },
-  {
     "id": "GE",
     "materia": "Geoestadística",
     "creditos": 4,
@@ -482,5 +468,12 @@
     "creditos": 3,
     "correlativas": "AD-IA",
     "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TIF",
+    "materia": "Trabajo Final Integrador",
+    "creditos": 12,
+    "correlativas": "MNS",
+    "categoria": "Fin de Carrera"
   }
 ]
