@@ -11,7 +11,7 @@ const ALWAYS_SHOW = [
 function breakWords(string) {
   let broken = "";
   string.split(" ").forEach((element) => {
-    if (element.length < 5) broken += " " + element;
+    if (element.length < 4) broken += " " + element;
     else broken += "\n" + element;
   });
   return broken.trim();
