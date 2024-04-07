@@ -565,17 +565,10 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TPP",
-    "materia": "Trabajo Profesional de Ingeniería Electrónica",
+    "id": "TIF",
+    "materia": "Trabajo Final Integrador",
     "creditos": 12,
     "correlativas": "PP",
-    "categoria": "Fin de Carrera"
-  },
-  {
-    "id": "TESIS",
-    "materia": "Tesis de Ingeniería Electrónica",
-    "creditos": 12,
-    "correlativas": "PP",
-    "categoria": "Fin de Carrera"
+    "categoria": "Fin de Carrera (Obligatorio)"
   }
 ]

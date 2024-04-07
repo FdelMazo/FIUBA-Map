@@ -339,20 +339,6 @@
     "level": 9
   },
   {
-    "id": "TPP",
-    "materia": "Trabajo Profesional de Ingeniería de Alimentos",
-    "creditos": 12,
-    "correlativas": "FPA1-IPP",
-    "categoria": "Fin de Carrera"
-  },
-  {
-    "id": "TESIS",
-    "materia": "Tesis de Ingeniería de Alimentos",
-    "creditos": 12,
-    "correlativas": "FPA1-IPP",
-    "categoria": "Fin de Carrera"
-  },
-  {
     "id": "DDP",
     "materia": "Diseño de Producto",
     "creditos": 4,
@@ -449,5 +435,12 @@
     "creditos": 6,
     "correlativas": "FPA2",
     "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TIF",
+    "materia": "Trabajo Final Integrador",
+    "creditos": 12,
+    "correlativas": "FPA1-IPP",
+    "categoria": "Fin de Carrera (Obligatorio)"
   }
 ]

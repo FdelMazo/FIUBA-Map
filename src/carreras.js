@@ -29,6 +29,16 @@ import { COLORS } from "./theme";
 
 export const CARRERAS = [
   {
+    id: "sistemasviejo",
+    link: "https://fi.uba.ar/grado/carreras/lic-en-analisis-de-sistemas/plan-de-estudios",
+    ano: 1986,
+    graph: require("./data/sistemas-1986.json"),
+    creditos: {
+      total: 208,
+      electivas: 40,
+    },
+  },
+  {
     id: "sistemas",
     link: "https://fi.uba.ar/grado/carreras/lic-en-analisis-de-sistemas/plan-de-estudios",
     ano: 2014,
@@ -95,10 +105,6 @@ export const CARRERAS = [
     link: "https://fi.uba.ar/grado/carreras/ingenieria-en-informatica/plan-de-estudios",
     ano: 2020,
     graph: require("./data/informatica-2020.json"),
-    finDeCarrera: [
-      { id: "tesis", materia: "TESIS" },
-      { id: "tpp", materia: "TPP" },
-    ],
     creditos: {
       total: 226,
       electivas: 24,
@@ -109,11 +115,13 @@ export const CARRERAS = [
           bg: COLORS.enfinal[50],
           color: "enfinal",
         },
+      ],
+      materias: [
         {
-          nombre: "Actividades profesionales de 192 horas",
-          nombrecorto: "Práctica Profesional",
-          bg: COLORS.habilitadas[50],
-          color: "habilitadas",
+          id: "TIF",
+          nombrecorto: "TIF",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
         },
       ],
     },
@@ -145,10 +153,6 @@ export const CARRERAS = [
     link: "https://fi.uba.ar/grado/carreras/ingenieria-en-agrimensura/plan-de-estudios",
     ano: 2020,
     graph: require("./data/agrimensura-2020.json"),
-    finDeCarrera: [
-      { id: "tesis", materia: "TESIS" },
-      { id: "tpp", materia: "TPP" },
-    ],
     creditos: {
       total: 227,
       electivas: 16,
@@ -159,11 +163,13 @@ export const CARRERAS = [
           bg: COLORS.enfinal[50],
           color: "enfinal",
         },
+      ],
+      materias: [
         {
-          nombre: "Actividades profesionales de 192 horas",
-          nombrecorto: "Práctica Profesional",
-          bg: COLORS.habilitadas[50],
-          color: "habilitadas",
+          id: "TIF",
+          nombrecorto: "TIF",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
         },
       ],
     },
@@ -197,10 +203,6 @@ export const CARRERAS = [
     link: "https://fi.uba.ar/grado/carreras/ingenieria-de-alimentos/plan-de-estudios",
     ano: 2020,
     graph: require("./data/alimentos-2020.json"),
-    finDeCarrera: [
-      { id: "tesis", materia: "TESIS" },
-      { id: "tpp", materia: "TPP" },
-    ],
     creditos: {
       total: 243,
       electivas: 12,
@@ -211,11 +213,13 @@ export const CARRERAS = [
           bg: COLORS.enfinal[50],
           color: "enfinal",
         },
+      ],
+      materias: [
         {
-          nombre: "Actividades profesionales de 192 horas",
-          nombrecorto: "Práctica Profesional",
-          bg: COLORS.habilitadas[50],
-          color: "habilitadas",
+          id: "TIF",
+          nombrecorto: "TIF",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
         },
       ],
     },
@@ -257,10 +261,6 @@ export const CARRERAS = [
     link: "https://fi.uba.ar/grado/carreras/ingenieria-civil/plan-de-estudios",
     ano: 2020,
     graph: require("./data/civil-2020.json"),
-    finDeCarrera: [
-      { id: "tesis", materia: "TESIS" },
-      { id: "tpp", materia: "TPP" },
-    ],
     creditos: {
       total: 251,
       electivas: 24,
@@ -271,11 +271,13 @@ export const CARRERAS = [
           bg: COLORS.enfinal[50],
           color: "enfinal",
         },
+      ],
+      materias: [
         {
-          nombre: "Actividades profesionales de 192 horas",
-          nombrecorto: "Práctica Profesional",
-          bg: COLORS.habilitadas[50],
-          color: "habilitadas",
+          id: "TIF",
+          nombrecorto: "TIF",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
         },
       ],
     },
@@ -354,10 +356,6 @@ export const CARRERAS = [
     link: "https://fi.uba.ar/grado/carreras/ingenieria-electronica/plan-de-estudios",
     ano: 2020,
     graph: require("./data/electronica-2020.json"),
-    finDeCarrera: [
-      { id: "tesis", materia: "TESIS" },
-      { id: "tpp", materia: "TPP" },
-    ],
     creditos: {
       total: 228,
       electivas: 24,
@@ -368,11 +366,13 @@ export const CARRERAS = [
           bg: COLORS.enfinal[50],
           color: "enfinal",
         },
+      ],
+      materias: [
         {
-          nombre: "Actividades profesionales de 192 horas",
-          nombrecorto: "Práctica Profesional",
-          bg: COLORS.habilitadas[50],
-          color: "habilitadas",
+          id: "TIF",
+          nombrecorto: "TIF",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
         },
       ],
     },
@@ -410,10 +410,6 @@ export const CARRERAS = [
     link: "https://fi.uba.ar/grado/carreras/ingenieria-industrial/plan-de-estudios",
     ano: 2020,
     graph: require("./data/industrial-2020.json"),
-    finDeCarrera: [
-      { id: "tesis", materia: "TESIS" },
-      { id: "tpp", materia: "TPP" },
-    ],
     creditos: {
       total: 236,
       electivas: 24,
@@ -424,11 +420,13 @@ export const CARRERAS = [
           bg: COLORS.enfinal[50],
           color: "enfinal",
         },
+      ],
+      materias: [
         {
-          nombre: "Actividades profesionales",
-          nombrecorto: "Práctica Profesional",
-          bg: COLORS.habilitadas[50],
-          color: "habilitadas",
+          id: "TIF",
+          nombrecorto: "TIF",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
         },
       ],
     },
@@ -520,14 +518,8 @@ export const CARRERAS = [
       electivas: 14,
       materias: [
         {
-          id: "TPP1",
-          nombrecorto: "TPP1",
-          bg: COLORS.findecarrera[50],
-          color: "findecarrera",
-        },
-        {
-          id: "TPP2",
-          nombrecorto: "TPP2",
+          id: "TIF",
+          nombrecorto: "TIF",
           bg: COLORS.findecarrera[50],
           color: "findecarrera",
         },
@@ -538,12 +530,6 @@ export const CARRERAS = [
           nombrecorto: "Inglés",
           bg: COLORS.enfinal[50],
           color: "enfinal",
-        },
-        {
-          nombre: "Actividades profesionales de 192 horas",
-          nombrecorto: "Práctica Profesional",
-          bg: COLORS.habilitadas[50],
-          color: "habilitadas",
         },
       ],
     },
@@ -567,10 +553,6 @@ export const CARRERAS = [
     link: "https://fi.uba.ar/grado/carreras/ingenieria-quimica/plan-de-estudios",
     ano: 2020,
     graph: require("./data/quimica-2020.json"),
-    finDeCarrera: [
-      { id: "tesis", materia: "TESIS" },
-      { id: "tpp", materia: "TPP" },
-    ],
     creditos: {
       total: 231,
       electivas: 14,
@@ -581,23 +563,15 @@ export const CARRERAS = [
           bg: COLORS.enfinal[50],
           color: "enfinal",
         },
+      ],
+      materias: [
         {
-          nombre: "Actividades profesionales de 192 horas",
-          nombrecorto: "Práctica Profesional",
-          bg: COLORS.habilitadas[50],
-          color: "habilitadas",
+          id: "TIF",
+          nombrecorto: "TIF",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
         },
       ],
-    },
-  },
-  {
-    id: "sistemasviejo",
-    link: "https://fi.uba.ar/grado/carreras/lic-en-analisis-de-sistemas/plan-de-estudios",
-    ano: 1986,
-    graph: require("./data/sistemas-1986.json"),
-    creditos: {
-      total: 208,
-      electivas: 40,
     },
   },
 ];
