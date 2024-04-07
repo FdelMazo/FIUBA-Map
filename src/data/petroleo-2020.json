@@ -432,17 +432,10 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TIF1",
-    "materia": "Trabajo Integrador Final I",
-    "creditos": 4,
-    "correlativas": "IR-PYE-SPH-PI2",
-    "categoria": "Fin de Carrera"
-  },
-  {
-    "id": "TIF2",
-    "materia": "Trabajo Integrador Final II",
-    "creditos": 8,
-    "correlativas": "TIF1",
-    "categoria": "Fin de Carrera"
+    "id": "TIF",
+    "materia": "Trabajo Integrador Final",
+    "creditos": 12,
+    "correlativas": "IR-PROBA-SPH-PI2",
+    "categoria": "Fin de Carrera (Obligatorio)"
   }
 ]
