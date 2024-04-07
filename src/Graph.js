@@ -631,27 +631,28 @@ const Graph = (userContext) => {
 
     // Despues, las obligatorias
     const allObligatorias = getters.Obligatorias();
-    // aca cambiar obligatorias a obligatoriasAprobadas mepa que quedaria mejor, mas sencillo de entender, que opinas?
-    const obligatorias = getters.ObligatoriasAprobadas();
+    const obligatoriasAprobadas = getters.ObligatoriasAprobadas();
     creditos.push({
       ...CREDITOS["Obligatorias"],
       creditosNecesarios: allObligatorias.reduce(accCreditos, 0),
-      nmaterias: obligatorias.length,
+      nmaterias: obligatoriasAprobadas.length,
       totalmaterias: allObligatorias.length,
-      creditos: obligatorias.reduce(accCreditos, 0),
+      creditos: obligatoriasAprobadas.reduce(accCreditos, 0),
     });
 
     // Despues, las electivas, incluyendo las orientaciones no elegidas
     const electivas = getters.ElectivasAprobadas();
+    console.log("getCorrectCreditos linea 645", getCorrectCreditos());
     const electivasCreditosNecesarios = isNaN(getCorrectCreditos()?.electivas)
       ? getCorrectCreditos()?.electivas[user.finDeCarrera?.id]
       : getCorrectCreditos()?.electivas;
     creditos.push({
       ...CREDITOS["Electivas"],
-      creditosNecesarios: electivasCreditosNecesarios,
       nmaterias: electivas.length,
+      creditosNecesarios: electivasCreditosNecesarios,
       creditos:
         electivas.reduce(accCreditos, 0) + optativas.reduce(accCreditos, 0),
+      creditosOptativas: optativas.reduce(accCreditos, 0),
       helpText:
         !electivasCreditosNecesarios &&
         `Elegí ${user.carrera.eligeOrientaciones && !user.orientacion ? "orientación" : ""}${user.carrera.eligeOrientaciones && !user.orientacion && !user.finDeCarrera ? " y " : ""}${!user.finDeCarrera ? "entre tesis y tpp" : ""} en la configuración de usuario para saber cuantos necesitás.`,

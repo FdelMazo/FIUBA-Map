@@ -6,7 +6,6 @@ export const promediar = (materias) => {
   return sum ? (sum / materias.length).toFixed(2) : 0;
 };
 
-// quiza cambiar estas funciones de accNombre a acreditarNombre o sumNombre?, me parece que serian mas informativos
 export const accCreditos = (acc, node) => {
   acc += node.creditos;
   return acc;
