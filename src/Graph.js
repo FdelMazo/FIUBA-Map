@@ -423,6 +423,10 @@ const Graph = (userContext) => {
   };
 
   const toggleCheckbox = (c) => {
+    if (!user.carrera.creditos.checkbox.find((ch) => ch.nombre === c)) {
+      return;
+    }
+
     const value = !!user.carrera.creditos.checkbox.find((ch) => ch.nombre === c)
       .check;
     user.carrera.creditos.checkbox.find((ch) => ch.nombre === c).check = !value;
