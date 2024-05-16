@@ -467,6 +467,32 @@ export const CARRERAS = [
     eligeOrientaciones: true,
   },
   {
+    id: "mecanica-2020",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-mecanica/plan-de-estudios",
+    ano: 2020,
+    graph: require("./data/mecanica-2020.json"),
+    creditos: {
+      total: 250,
+      electivas: 14,
+      checkbox: [
+        {
+          nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
+          bg: COLORS.enfinal[50],
+          color: "enfinal",
+        },
+      ],
+      materias: [
+        {
+          id: "TIF",
+          nombrecorto: "TIF",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
+        },
+      ],
+    },
+  },
+  {
     id: "naval",
     link: "https://fi.uba.ar/grado/carreras/ingenieria-naval-y-mecanica/plan-de-estudios",
     ano: 1986,
@@ -622,7 +648,7 @@ export const PLANES = [
   {
     nombre: "Ingeniería Mecánica",
     nombrecorto: "Mecánica",
-    planes: ["mecanica"],
+    planes: ["mecanica", "mecanica-2020"],
   },
   {
     nombre: "Ingeniería Naval y Mecánica",
