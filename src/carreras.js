@@ -311,6 +311,32 @@ export const CARRERAS = [
     },
   },
   {
+    id: "energia-electrica-2020",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-industrial/plan-de-estudios",
+    ano: 2020,
+    graph: require("./data/energia-electrica-2020.json"),
+    creditos: {
+      total: 250,
+      electivas: 18,
+      checkbox: [
+        {
+          nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
+          bg: COLORS.enfinal[50],
+          color: "enfinal",
+        },
+      ],
+      materias: [
+        {
+          id: "TIF",
+          nombrecorto: "TIF",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
+        },
+      ],
+    },
+  },
+  {
     id: "electronica",
     link: "https://fi.uba.ar/grado/carreras/ingenieria-electronica/plan-de-estudios",
     ano: 2009,
@@ -616,9 +642,9 @@ export const PLANES = [
     planes: ["alimentos", "alimentos-2020"],
   },
   {
-    nombre: "Ingeniería Electricista",
+    nombre: "Ingeniería en Energía Eléctrica",
     nombrecorto: "Electricista",
-    planes: ["electricista"],
+    planes: ["electricista", "energia-electrica-2020"],
   },
   {
     nombre: "Ingeniería Electrónica",
