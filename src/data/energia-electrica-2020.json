@@ -446,6 +446,8 @@
     "id": "TIF",
     "materia": "Trabajo Final Integrador",
     "creditos": 12,
+     "requiere": 150,
+     "requiereCBC": true,
     "correlativas": "IBTL",
     "categoria": "Fin de Carrera (Obligatorio)"
   }
