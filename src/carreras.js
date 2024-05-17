@@ -494,7 +494,8 @@ export const CARRERAS = [
   },
   {
     id: "mecanica-2020",
-    link: "https://fi.uba.ar/grado/carreras/ingenieria-mecanica/plan-de-estudios",
+    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-mec%C3%A1nica/",
+    beta: true,
     ano: 2020,
     graph: require("./data/mecanica-2020.json"),
     creditos: {
