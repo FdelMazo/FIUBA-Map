@@ -1,0 +1,454 @@
+[
+  {
+    "id": "CBC66",
+    "materia": "Análisis Matemático A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC62",
+    "materia": "Álgebra A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC24",
+    "materia": "Introducción al Conocimiento de la Sociedad y el Estado",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC3",
+    "materia": "Física",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC90",
+    "materia": "Pensamiento Computacional",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC40",
+    "materia": "Introducción al Pensamiento Científico",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC",
+    "materia": "Ciclo Básico Común",
+    "creditos": 0,
+    "categoria": "CBC",
+    "level": 0,
+    "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
+  },
+  {
+    "id": "AMII",
+    "materia": "Análisis Matemático II",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "QB",
+    "materia": "Química Básica",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "FSP",
+    "materia": "Física de los Sistemas de Partículas",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "IIEE",
+    "materia": "Introducción a la Ingeniería en Energía Eléctrica",
+    "creditos": 4,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "EMC",
+    "materia": "Electricidad, Magnetismo y Calor",
+    "creditos": 6,
+    "correlativas": "AMII-FSP",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "AL",
+    "materia": "Álgebra Lineal",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "ERM",
+    "materia": "Estática y Resistencia de Materiales",
+    "creditos": 6,
+    "correlativas": "AMII-FSP",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "FSN",
+    "materia": "Física de Sólidos y Nuclear",
+    "creditos": 6,
+    "correlativas": "EMC-QB",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "MN",
+    "materia": "Modelación Numérica",
+    "creditos": 4,
+    "correlativas": "AMII-AL",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "PROBA",
+    "materia": "Probabilidad y Estadística",
+    "creditos": 6,
+    "correlativas": "AMII-AL",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "ELET",
+    "materia": "Electrotecnia",
+    "creditos": 8,
+    "correlativas": "EMC-IIEE",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "AMIII",
+    "materia": "Análisis Matemático III",
+    "creditos": 6,
+    "correlativas": "AMII-AL",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "CEM",
+    "materia": "Campos Electromagnéticos",
+    "creditos": 6,
+    "correlativas": "MN-ELET",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "CSC",
+    "materia": "Circuitos y Sistemas de Control",
+    "creditos": 6,
+    "correlativas": "ELET",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "ME",
+    "materia": "Medidas Eléctricas",
+    "creditos": 6,
+    "correlativas": "PROBA-ELET",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "HS",
+    "materia": "Higiene y Seguridad",
+    "creditos": 2,
+    "requiere": 100,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "TDMFM",
+    "materia": "Termodinámica, Mecánica de Fluidos y Máquinas",
+    "creditos": 6,
+    "correlativas": "EMC",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "MELETI",
+    "materia": "Máquinas Eléctricas I",
+    "creditos": 8,
+    "correlativas": "ELET",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "TME",
+    "materia": "Tecnología de Materiales Eléctricos",
+    "creditos": 6,
+    "correlativas": "FSN-ME",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "TE",
+    "materia": "Taller de Electrónica",
+    "creditos": 3,
+    "correlativas": "ELET",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "DEE",
+    "materia": "Diagnósticos Eléctricos y Ensayos",
+    "creditos": 4,
+    "correlativas": "TME",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "MELETII",
+    "materia": "Máquinas Eléctricas II",
+    "creditos": 8,
+    "correlativas": "CSC-MELETI",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "MA",
+    "materia": "Mecánica Aplicada",
+    "creditos": 4,
+    "correlativas": "ERM",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "IBTL",
+    "materia": "Instalaciones de Baja Tensión y Luminotecnia",
+    "creditos": 6,
+    "correlativas": "MELETI-HS",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "ICD",
+    "materia": "Introducción a la Ciencia de Datos",
+    "creditos": 3,
+    "correlativas": "AL",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "SEP",
+    "materia": "Sistemas Eléctricos de Potencia",
+    "creditos": 6,
+    "correlativas": "MELETI-CEM",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "CEEE",
+    "materia": "Conversión Estática de la Energía Eléctrica",
+    "creditos": 6,
+    "correlativas": "TE-AMIII",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "EEE",
+    "materia": "Economía de la Energía Eléctrica",
+    "creditos": 6,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "LEP",
+    "materia": "Legislación y Ejercicio Profesional",
+    "creditos": 2,
+    "requiere": 100,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "TDEE",
+    "materia": "Transmisión y Distribución de la Energía Eléctrica",
+    "creditos": 6,
+    "correlativas": "MA-DEE",
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  },
+  {
+    "id": "GEE",
+    "materia": "Generación de Energía Eléctrica",
+    "creditos": 8,
+    "correlativas": "TDMFM-MELETI",
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  },
+  {
+    "id": "PEEM",
+    "materia": "Protecciones Eléctricas y Equipos de Maniobra",
+    "creditos": 6,
+    "correlativas": "SEP",
+    "categoria": "Materias Obligatorias",
+    "level": 9
+  },
+  {
+    "id": "ER",
+    "materia": "Energías Renovables",
+    "creditos": 4,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "UEE",
+    "materia": "Uso Eficiente de la Energía",
+    "creditos": 4,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TETE",
+    "materia": "Tecnologías Emergentes en la Transición Energética",
+    "creditos": 4,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ITE",
+    "materia": "Introducción a la Transición Energética",
+    "creditos": 4,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "FCTE",
+    "materia": "Fuentes Convencionales en la Transición Energética",
+    "creditos": 4,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+
+  {
+    "id": "RSP",
+    "materia": "Regulación de Servicios Públicos",
+    "creditos": 4,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "IO",
+    "materia": "Investigación Operativa",
+    "creditos": 8,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AE",
+    "materia": "Accionamientos Eléctricos",
+    "creditos": 4,
+    "correlativas": "MELETII-CEEE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "MTCE",
+    "materia": "Metrología y Técnicas de Calibración Eléctrica",
+    "creditos": 4,
+    "correlativas": "ME",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ETD",
+    "materia": "Estaciones Transformadoras y de Distribución",
+    "creditos": 4,
+    "correlativas": "TDEE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "DSEP",
+    "materia": "Dinámica de Sistemas Eléctricos de Potencia",
+    "creditos": 4,
+    "correlativas": "SEP-MELETII",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TC",
+    "materia": "Telecontrol y Comunicaciones",
+    "creditos": 4,
+    "correlativas": "SEP",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "PCH",
+    "materia": "Proyecto de Centrales Hidroeléctricas",
+    "creditos": 4,
+    "correlativas": "GEE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "PCFE",
+    "materia": "Proyecto de Centrales Fotovoltaicas y Eólicas",
+    "creditos": 4,
+    "correlativas": "GEE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AAEE",
+    "materia": "Abastecimiento Auxiliar de la Energía Eléctrica",
+    "creditos": 4,
+    "correlativas": "IBTL-CEEE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "GC",
+    "materia": "Gerenciamiento de la Calidad",
+    "creditos": 4,
+    "correlativas": "EEE",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "EN",
+    "materia": "Energía Nuclear",
+    "creditos": 4,
+    "correlativas": "FSN",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CONSTEM",
+    "materia": "Construcciones Electromecánicas",
+    "creditos": 4,
+    "correlativas": "DEE-MELETI",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TIF",
+    "materia": "Trabajo Final Integrador",
+    "creditos": 12,
+     "requiere": 150,
+     "requiereCBC": true,
+    "correlativas": "IBTL",
+    "categoria": "Fin de Carrera (Obligatorio)"
+  }
+]

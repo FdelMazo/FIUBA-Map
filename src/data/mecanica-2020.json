@@ -1,0 +1,506 @@
+[
+  {
+    "id": "CBC40",
+    "materia": "Introducción al Pensamiento Científico",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC90",
+    "materia": "Pensamiento Computacional",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC66",
+    "materia": "Análisis Matemático A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC24",
+    "materia": "Introducción al Conocimiento de la Sociedad y el Estado",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC3",
+    "materia": "Física",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC62",
+    "materia": "Álgebra A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC",
+    "materia": "Ciclo Básico Común",
+    "creditos": 0,
+    "categoria": "CBC",
+    "level": 0,
+    "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
+  },
+  {
+    "id": "AM2",
+    "materia": "Análisis Matemático II",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "QB",
+    "materia": "Química Básica",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "FSP",
+    "materia": "Física de los Sistemas de Partículas",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "IIM",
+    "materia": "Introducción a la Ingeniería Mecánica",
+    "creditos": 4,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "CMM",
+    "materia": "Conocimiento de Materiales Metálicos",
+    "creditos": 6,
+    "correlativas": "QB",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "DM",
+    "materia": "Diseño Mecánico",
+    "creditos": 4,
+    "correlativas": "IIM",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "AL",
+    "materia": "Álgebra Lineal",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "MCCR",
+    "materia": "Mecánica Clásica del Cuerpo Rígido",
+    "creditos": 6,
+    "correlativas": "FSP",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "MEC",
+    "materia": "Mecanismos",
+    "creditos": 4,
+    "correlativas": "MCCR",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "ICD",
+    "materia": "Introducción a la Ciencia de Datos",
+    "creditos": 3,
+    "correlativas": "AL",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "IMSD",
+    "materia": "Introducción a la Mecánica del Sólido Deformable",
+    "creditos": 6,
+    "correlativas": "MCCR",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "TD",
+    "materia": "Termodinámica",
+    "creditos": 6,
+    "correlativas": "QB",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "AM3",
+    "materia": "Análisis Matemático III",
+    "creditos": 6,
+    "correlativas": "AM2",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "EM",
+    "materia": "Electricidad y Magnetismo",
+    "creditos": 6,
+    "correlativas": "AM2-FSP",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "MN",
+    "materia": "Modelación Numérica",
+    "creditos": 4,
+    "correlativas": "AM2-AL",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "CMNM",
+    "materia": "Conocimiento de Materiales No Metálicos",
+    "creditos": 6,
+    "correlativas": "QB",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "PROB",
+    "materia": "Probabilidad y Estadística",
+    "creditos": 6,
+    "correlativas": "AM2-AL",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "LEP",
+    "materia": "Legislación y Ejercicio Profesional",
+    "creditos": 2,
+    "requiere": 100,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "EI",
+    "materia": "Ensayos Industriales",
+    "creditos": 4,
+    "correlativas": "IMSD-CMM",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "EG",
+    "materia": "Electrotecnia General",
+    "creditos": 4,
+    "correlativas": "EM",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "EO",
+    "materia": "Economía y Organización",
+    "creditos": 6,
+    "correlativas": "IIM",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "TMM",
+    "materia": "Taller de Manufactura Mecánica",
+    "creditos": 4,
+    "correlativas": "CMM",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "MF",
+    "materia": "Mecánica de Fluidos",
+    "creditos": 6,
+    "correlativas": "IMSD-TD-AM3",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "TE",
+    "materia": "Taller de Electrónica",
+    "creditos": 3,
+    "correlativas": "EM",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "PI",
+    "materia": "Proyecto de Instrumentación",
+    "creditos": 4,
+    "correlativas": "EO-PROB-DM",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "MT",
+    "materia": "Máquinas Térmicas",
+    "creditos": 6,
+    "correlativas": "TD",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "ISADS",
+    "materia": "Impacto Social, Ambiental y Desarrollo Sustentable",
+    "creditos": 4,
+    "requiere": 100,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "TM",
+    "materia": "Tecnología Mecánica",
+    "creditos": 6,
+    "correlativas": "TMM-CMNM",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "SA",
+    "materia": "Sistemas de Almacenamiento",
+    "creditos": 6,
+    "correlativas": "EI",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "TCMI",
+    "materia": "Transferencia de Calor y Masa y sus Instalaciones",
+    "creditos": 4,
+    "correlativas": "MF",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "DFEM",
+    "materia": "Daño y Fractura de Elementos Mecánicos",
+    "creditos": 4,
+    "correlativas": "EI",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "ME",
+    "materia": "Máquinas Eléctricas",
+    "creditos": 4,
+    "correlativas": "EG",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "SCA",
+    "materia": "Sistemas de Control y Automatización",
+    "creditos": 6,
+    "correlativas": "TE-MCCR-AM3",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "TURM",
+    "materia": "Turbomáquinas",
+    "creditos": 4,
+    "correlativas": "MF",
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  },
+  {
+    "id": "PII",
+    "materia": "Proyecto de Instalaciones Industriales",
+    "creditos": 6,
+    "correlativas": "MF-ME",
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  },
+  {
+    "id": "ELEMM",
+    "materia": "Elementos de Máquinas",
+    "creditos": 4,
+    "correlativas": "MEC-IMSD-MN",
+    "categoria": "Materias Obligatorias",
+    "level": 9
+  },
+  {
+    "id": "MC",
+    "materia": "Mantenimiento y Calidad",
+    "creditos": 4,
+    "correlativas": "CMM-EO",
+    "categoria": "Materias Obligatorias",
+    "level": 9
+  },
+  {
+    "id": "PM",
+    "materia": "Proyecto de Máquinas",
+    "creditos": 4,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+
+  {
+    "id": "DMH",
+    "materia": "Diseño de Máquinas Herramientas",
+    "creditos": 4,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CNC",
+    "materia": "Control Numérico Computarizado",
+    "creditos": 3,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "COMB",
+    "materia": "Combustión",
+    "creditos": 3,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TF",
+    "materia": "Tecnología del Frío",
+    "creditos": 4,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TCA",
+    "materia": "Tecnología del Calor Avanzada",
+    "creditos": 4,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TTS",
+    "materia": "Tratamientos Térmicos y de Superficie",
+    "creditos": 4,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "MMA",
+    "materia": "Materiales Metálicos y sus Aplicaciones",
+    "creditos": 4,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ODMO",
+    "materia": "Optimización de Diseños Mecánicos - Opdime",
+    "creditos": 3,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "IMCF",
+    "materia": "Introducción a la Mecánica Computacional en Fluidos",
+    "creditos": 4,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "IMCS",
+    "materia": "Introducción a la Mecánica Computacional en Sólidos",
+    "creditos": 4,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ROBO",
+    "materia": "Robótica",
+    "creditos": 3,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "VC",
+    "materia": "Visión por Computadora",
+    "creditos": 4,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "IBM",
+    "materia": "Introducción a los Biomateriales",
+    "creditos": 4,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "SSBM",
+    "materia": "Simulación de Sistemas Biomecánicos",
+    "creditos": 3,
+    "requiere": 150,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "IIA",
+    "materia": "Introducción a la Inteligencia Artificial",
+    "creditos": 3,
+    "correlativas": "PROB-ICD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AD",
+    "materia": "Análisis de Datos",
+    "creditos": 3,
+    "correlativas": "PROB-ICD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "APM",
+    "materia": "Aprendizaje de Máquina",
+    "creditos": 3,
+    "correlativas": "AD-IIA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "APMP",
+    "materia": "Aprendizaje de Máquina Profundo",
+    "creditos": 3,
+    "correlativas": "AD-IIA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TIF",
+    "materia": "Trabajo Final Integrador",
+    "creditos": 12,
+    "correlativas": "PI-ISADS",
+    "categoria": "Fin de Carrera (Obligatorio)"
+  }
+]

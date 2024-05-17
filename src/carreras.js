@@ -311,6 +311,33 @@ export const CARRERAS = [
     },
   },
   {
+    id: "energia-electrica-2020",
+    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-en-energ%C3%ADa-el%C3%A9ctrica/",
+    beta: true,
+    ano: 2020,
+    graph: require("./data/energia-electrica-2020.json"),
+    creditos: {
+      total: 250,
+      electivas: 18,
+      checkbox: [
+        {
+          nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
+          bg: COLORS.enfinal[50],
+          color: "enfinal",
+        },
+      ],
+      materias: [
+        {
+          id: "TIF",
+          nombrecorto: "TIF",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
+        },
+      ],
+    },
+  },
+  {
     id: "electronica",
     link: "https://fi.uba.ar/grado/carreras/ingenieria-electronica/plan-de-estudios",
     ano: 2009,
@@ -467,6 +494,33 @@ export const CARRERAS = [
     eligeOrientaciones: true,
   },
   {
+    id: "mecanica-2020",
+    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-mec%C3%A1nica/",
+    beta: true,
+    ano: 2020,
+    graph: require("./data/mecanica-2020.json"),
+    creditos: {
+      total: 250,
+      electivas: 14,
+      checkbox: [
+        {
+          nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
+          bg: COLORS.enfinal[50],
+          color: "enfinal",
+        },
+      ],
+      materias: [
+        {
+          id: "TIF",
+          nombrecorto: "TIF",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
+        },
+      ],
+    },
+  },
+  {
     id: "naval",
     link: "https://fi.uba.ar/grado/carreras/ingenieria-naval-y-mecanica/plan-de-estudios",
     ano: 1986,
@@ -590,9 +644,9 @@ export const PLANES = [
     planes: ["alimentos", "alimentos-2020"],
   },
   {
-    nombre: "Ingeniería Electricista",
+    nombre: "Ingeniería en Energía Eléctrica",
     nombrecorto: "Electricista",
-    planes: ["electricista"],
+    planes: ["electricista", "energia-electrica-2020"],
   },
   {
     nombre: "Ingeniería Electrónica",
@@ -622,7 +676,7 @@ export const PLANES = [
   {
     nombre: "Ingeniería Mecánica",
     nombrecorto: "Mecánica",
-    planes: ["mecanica"],
+    planes: ["mecanica", "mecanica-2020"],
   },
   {
     nombre: "Ingeniería Naval y Mecánica",
