@@ -192,7 +192,7 @@ const Graph = (userContext) => {
       });
 
       // Actualizamos su metadata
-      map.checkboxes?.forEach((c) => toggleCheckbox(c));
+      map.checkboxes?.forEach((c) => toggleCheckbox(c, true));
       optativasDispatch({ action: "override", value: map.optativas ?? [] });
       setAplazos(map.aplazos || 0);
 
@@ -422,14 +422,16 @@ const Graph = (userContext) => {
     actualizarNiveles();
   };
 
-  const toggleCheckbox = (c) => {
+  const toggleCheckbox = (c, forceTrue = false) => {
     if (!user.carrera.creditos.checkbox.find((ch) => ch.nombre === c)) {
       return;
     }
 
     const value = !!user.carrera.creditos.checkbox.find((ch) => ch.nombre === c)
       .check;
-    user.carrera.creditos.checkbox.find((ch) => ch.nombre === c).check = !value;
+
+    user.carrera.creditos.checkbox.find((ch) => ch.nombre === c).check =
+      forceTrue ? true : !value;
     actualizar();
   };
 
