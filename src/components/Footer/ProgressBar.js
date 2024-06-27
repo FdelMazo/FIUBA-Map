@@ -28,6 +28,7 @@ import { GraphContext } from "../../MapContext";
 // materias aprobadas
 const ProgressBar = () => {
   const { creditos, toggleCheckbox } = React.useContext(GraphContext);
+  console.log("creditos linea 31", creditos);
 
   return (
     <Grid
@@ -102,7 +103,9 @@ const ProgressBar = () => {
               <PopoverHeader border="none">
                 <Stat size="sm">
                   <StatLabel>
-                    <strong>{c.nombre}</strong>
+                    <strong>
+                      {c.nombre} {c.creditosOptativas && "y Optativas"}
+                    </strong>
                   </StatLabel>
                   {!c.dummy && (
                     <StatNumber fontWeight="normal" fontSize="larger">
