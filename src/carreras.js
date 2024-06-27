@@ -313,7 +313,6 @@ export const CARRERAS = [
   {
     id: "energia-electrica-2020",
     link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-en-energ%C3%ADa-el%C3%A9ctrica/",
-    beta: true,
     ano: 2020,
     graph: require("./data/energia-electrica-2020.json"),
     creditos: {
@@ -496,7 +495,6 @@ export const CARRERAS = [
   {
     id: "mecanica-2020",
     link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-mec%C3%A1nica/",
-    beta: true,
     ano: 2020,
     graph: require("./data/mecanica-2020.json"),
     creditos: {
