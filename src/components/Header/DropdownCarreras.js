@@ -98,7 +98,7 @@ const DropdownCarreras = () => {
             <AnoBadge ano={user.carrera.ano} active={true} />
           </MenuButton>
         </Tooltip>
-        <MenuList>
+        <MenuList overflowY="auto" maxHeight="70vh">
           {PLANES.map((p) => (
             <MenuItem
               key={p.nombrecorto}
