@@ -67,7 +67,7 @@ const Sugerencias = () => {
                   }}
                 >
                   <Box flex="1">
-                    <AlertTitle mb={2}>Hola!</AlertTitle>
+                    <AlertTitle mb={2}>¡Hola!</AlertTitle>
                     <AlertDescription px={5} display="block">
                       <VStack spacing={2}>
                         <Text w="100%">
@@ -96,15 +96,38 @@ const Sugerencias = () => {
                             />
                           </Link>{" "}
                           y dejar de agregar funcionalidades nuevas al proyecto,
-                          los bugs criticos los voy a seguir arreglando.
+                          los <em>bugs</em> críticos los voy a seguir arreglando.
                         </Text>
                         <Text w="100%">
-                          Así que si encontrás algo que no funciona, avisame!
+                          Así que si encontrás algo que no funciona, ¡avisame!
                         </Text>
                         <Text w="100%">
-                          Más alla de eso, gracias por usar la herramienta!
-                          Espero que te haya servido. Si me querés tirar un
-                          cafecito, te lo agradezco mucho!
+                          Más alla de eso, ¡gracias por usar la herramienta!
+                          Espero que te haya servido.
+                          <Link
+                            isExternal
+                            _hover={{
+                              _light: {
+                                color: "electivas.500",
+                              },
+                              _dark: {
+                                color: "electivas.400",
+                              },
+                            }}
+                            href="https://cafecito.app/FdelMazo"
+                          >
+                            {" "}
+                            Si me querés tirar un cafecito{" "}
+                            <ExternalLinkIcon
+                              _light={{
+                                color: "electivas.500",
+                              }}
+                              _dark={{
+                                color: "electivas.400",
+                              }}
+                            />
+                          </Link>{" "}
+                          , ¡te lo agradezco mucho!
                           <br />
                           <Text fontSize="xs">
                             (Aunque para ser sincero, aprecio más los mensajes
@@ -151,7 +174,7 @@ const Sugerencias = () => {
                         </Flex>
                       </form>
                       <Text fontSize="sm" mt={2}>
-                        ¿Usás Github? Me ayudás mucho más levantando un issue{" "}
+                        ¿Usás GitHub? Me ayudás mucho más{" "}
                         <Link
                           isExternal
                           _hover={{
@@ -164,7 +187,7 @@ const Sugerencias = () => {
                           }}
                           href="https://github.com/FdelMazo/FIUBA-Map/issues/new"
                         >
-                          directamente{" "}
+                          levantando un <em>issue</em> directamente.{" "}
                           <ExternalLinkIcon
                             _light={{
                               color: "electivas.500",
@@ -195,7 +218,7 @@ const Sugerencias = () => {
             }));
           }}
         >
-          <TagLabel>{showGracias ? "Gracias!" : "Sugerencias"}</TagLabel>
+          <TagLabel>{showGracias ? "¡Gracias!" : "Sugerencias"}</TagLabel>
           <TagRightIcon as={showGracias ? CheckIcon : ChatIcon} />
         </Tag>
       </Box>
