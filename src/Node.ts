@@ -8,32 +8,34 @@ const ALWAYS_SHOW = [
   "Fin de Carrera (Obligatorio)",
 ];
 
-function breakWords(string) {
+function breakWords(string: string) {
   let broken = "";
+
   string.split(" ").forEach((element) => {
     if (element.length < 4) broken += " " + element;
     else broken += "\n" + element;
   });
+
   return broken.trim();
 }
 
 class Node {
   // Los nodos los creamos en base a lo que hay en los json, y arrancan todos desaprobados
   // Hay varios atributos propios ('categoria', 'cuatrimestre') => Probablemente todos los que estan en español
-  // Hay atributos de visjs que determinan muchas cosas del network => Probablemente todos los que estan en ingles
+  // Hay atributos de vis.js que determinan muchas cosas del network => Probablemente todos los que estan en ingles
   constructor(n) {
     // Guardamos una referencia al nodo mismo para poder manipularlo desde afuera
-    // (porque cuando llenamos el grafo, visjs hace lo que quiere con nuestra estructura de datos)
+    // (porque cuando llenamos el grafo, vis.js hace lo que quiere con nuestra estructura de datos)
     this.nodeRef = this;
 
-    // Si en los jsons hay un campo valido de visjs, lo vamos a tomar
+    // Si en los jsons hay un campo valido de vis.js, lo vamos a tomar
     // Por ejemplo, el campo level lo levantamos directo desde el json
     Object.assign(this, { ...n });
     this.label = breakWords(n.materia);
 
-    // El group de visjs determina los colores y miles de cosas mas
+    // El group de vis.js determina los colores y miles de cosas mas
     // La categoria es FIUBA: cbc, electiva, obligatoria, etc
-    // El grupo es visjs: "habilitada", "aprobada", etc
+    // El grupo es vis.js: "habilitada", "aprobada", etc
     // Las categorias son:
     // - *CBC: Las materias del CBC
     // - CBC: El nodo que abre/cierra el CBC. Tecnicamente, no es una materia
@@ -56,7 +58,7 @@ class Node {
     // Solamente como un shortcut de nota >= 0
     this.aprobada = false;
 
-    // El level de visjs determina en que columna esta cada nodo
+    // El level de vis.js determina en que columna esta cada nodo
     // Con los cuatris podemos "planear" las materias: mostrarlas en la columna que queremos
     // Los cuatris son enteros para los primeros cuatris, y floats para los segundos
     // - 2020 => 2020 primer cuatri.

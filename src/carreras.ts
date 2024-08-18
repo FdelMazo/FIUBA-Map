@@ -23,7 +23,7 @@ import { COLORS } from "./theme";
 // Con el tiempo si hay alguna correlativa esta mal escrita, alguien se da cuenta y lo avisa
 
 // Técnicamente este array no es de carreras, es de planes de estudio de cada carrera
-// Pero el fiuba map arranco antes de que existan muchos planes para cada carrera, y
+// Pero el FIUBA Map arranco antes de que existan muchos planes para cada carrera, y
 // ahora quedo que el usuario tiene una "carrera" asociada, aunque sea un plan, así que
 // lo dejamos así
 
