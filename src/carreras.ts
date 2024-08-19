@@ -27,7 +27,72 @@ import { COLORS } from "./theme";
 // ahora quedo que el usuario tiene una "carrera" asociada, aunque sea un plan, así que
 // lo dejamos así
 
-export const CARRERAS = [
+interface MateriaCredito {
+  id: string;
+  nombrecorto: string;
+  bg: string;
+  color: string;
+}
+
+interface MateriaJSON {
+  id: string;
+  materia: string;
+  creditos: number;
+  categoria: string;
+  level: number;
+  correlativas?: string;
+}
+
+interface Checkbox {
+  nombre: string;
+  nombrecorto: string;
+  bg: string;
+  color: string;
+}
+
+interface Electivas {
+  tesis: number;
+  tpp: number;
+}
+
+interface OrientacionCredito {
+  [key: string]: {
+    orientacion: number;
+    electivas: Electivas;
+  };
+}
+
+interface Creditos {
+  total: number;
+  electivas?: number | Electivas;
+  checkbox?: Checkbox[];
+  materias?: MateriaCredito[];
+  orientacion?: OrientacionCredito;
+}
+
+interface Orientacion {
+  colorScheme: string;
+  nombre: string;
+  nonEligible?: true;
+}
+
+interface FinDeCarrera {
+  id: string;
+  materia: string;
+}
+
+interface Carrera {
+  id: string;
+  link: string;
+  ano: number;
+  graph: MateriaJSON[];
+  creditos: Creditos;
+  eligeOrientaciones?: true;
+  orientaciones?: Orientacion[];
+  finDeCarrera?: FinDeCarrera[];
+}
+
+export const CARRERAS: Carrera[] = [
   {
     id: "sistemasviejo",
     link: "https://fi.uba.ar/grado/carreras/lic-en-analisis-de-sistemas/plan-de-estudios",

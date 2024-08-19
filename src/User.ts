@@ -11,6 +11,36 @@ import { getFiubaRepos, getGraphs, postGraph, postUser } from "./dbutils";
 // El padron se setea una vez que el usuario se loguea exitosamente (O sea, logged = padron !== "")
 // allLogins contiene un array con todas las [carrera,orientacion,findecarrera] que tiene el usuario en la DB
 // maps contiene todos los mapas que tiene el usuario en la DB
+
+// https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values#ValueRange
+interface ValueRange {
+  range: string;
+  majorDimension: string; // Es un enum, pero me parece que no hace falta explicitarlo mas, si no se usa
+  values: Array<Array<string>>;
+}
+
+// https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/batchGet
+// Es necesario BatchGet?
+interface BatchGet {
+  spreadsheetId: string;
+  valueRanges: ValueRange[];
+}
+
+interface LoginType {
+  carreraid: string;
+  orientacionid: string;
+  findecarreraid: string;
+}
+
+interface InitialUser {
+  padron: string;
+  //carrera: ;
+  orientacion: string;
+  finDeCarrera: string;
+  allLogins: LoginType[];
+  //maps: ;
+}
+
 const initialUser = {
   padron: "",
   carrera: CARRERAS.find((c) => c.id === "sistemas"),
@@ -27,6 +57,7 @@ const Login = () => {
   const [padronInput, setPadronInput] = React.useState(
     window.localStorage.getItem("padron") || "",
   );
+  // FIXME: user.padron aca siempre no es ""??, no tendria que chequear padronInput??
   const logged = user.padron !== "";
 
   // Loading es para el spinner del input del padron
@@ -35,10 +66,10 @@ const Login = () => {
     !!window.localStorage.getItem("padron"),
   );
 
-  // Loggin in es para cuando la pagina entera esta cargando todos los datos del usuario
+  // loggingIn es para cuando la pagina entera que esta cargando todos los datos del usuario
   const [loggingIn, setLoggingIn] = React.useState(false);
 
-  // On boot nos fijamos si hay un padron inicial del storage
+  // On boot nos fijamos si hay un padron inicial del localStorage
   // Si existe, lo usamos para loguear al usuario
   React.useEffect(() => {
     if (padronInput) {
@@ -57,10 +88,10 @@ const Login = () => {
     fetchFiubaRepos();
   }, []);
 
-  // Login agarra todo lo que sabemos del usuario, de ambas tablas de la db
+  // Login agarra todo lo que sabemos del usuario, de ambas tablas de la DB
   // y lo guarda en el estado `user`
   // Usamos de carrera la ultima que registro el usuario
-  const login = async (padron) => {
+  const login = async (padron: string) => {
     setLoading(true);
     if (!padron) {
       setLoading(false);
@@ -71,7 +102,7 @@ const Login = () => {
       `${C.SPREADSHEET}/${C.SHEETS.user}!B:B?majorDimension=COLUMNS&key=${C.KEY}`,
     )
       .then((res) => res.json())
-      .then((res) => (!res.error ? res.values[0] : null));
+      .then((res) => (res.error ? null : res.values[0]));
 
     if (!padrones) {
       setLoading(false);
@@ -93,26 +124,31 @@ const Login = () => {
     const ranges = indexes.map(
       (index) => `&ranges=${C.SHEETS.user}!${index + 1}:${index + 1}`,
     );
-    const data = await fetch(
-      `${C.SPREADSHEET}:batchGet?key=${C.KEY}${ranges.join("")}`,
-    ).then((res) => res.json().then((res) => res.valueRanges));
 
-    const allLogins = data.map((d) => ({
+    const data: ValueRange[] = await fetch(
+      `${C.SPREADSHEET}:batchGet?key=${C.KEY}${ranges.join("")}`,
+    )
+      .then((res) => res.json()
+      .then((res: BatchGet) => res.valueRanges));
+
+    const allLogins: LoginType[] = data.map((d) => ({
       carreraid: d.values[0][2],
       orientacionid: d.values[0][3],
       findecarreraid: d.values[0][4],
     }));
 
     let carrera, orientacion, finDeCarrera;
-    for (let login of allLogins) {
-      const foundCarrera = CARRERAS.find((c) => c.id === login.carreraid);
+    // TODO: reformular esto sin usar for junto a break
+    for (const userLogin of allLogins) {
+      const foundCarrera = CARRERAS.find((c) => c.id === userLogin.carreraid);
+
       if (foundCarrera) {
         carrera = foundCarrera;
         orientacion = foundCarrera.orientaciones?.find(
-          (c) => c.nombre === login.orientacionid,
+          (c) => c.nombre === userLogin.orientacionid,
         );
         finDeCarrera = carrera.finDeCarrera?.find(
-          (c) => c.id === login.findecarreraid,
+          (c) => c.id === userLogin.findecarreraid,
         );
         break;
       }

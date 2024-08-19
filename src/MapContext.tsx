@@ -2,8 +2,8 @@ import React from "react";
 import User from "./User";
 import Graph from "./Graph";
 
-export const UserContext = React.createContext();
-export const GraphContext = React.createContext();
+export const UserContext = React.createContext(null);
+export const GraphContext = React.createContext(null);
 
 export const MapProvider = ({ children }) => {
   const user = User();
