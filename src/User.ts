@@ -1,7 +1,9 @@
 import React from "react";
 import { CARRERAS } from "./carreras";
 import * as C from "./constants";
+import { BatchGet, InitialUser, UserType, UserLogin, ValueRange } from "./types/UserType";
 import { getFiubaRepos, getGraphs, postGraph, postUser } from "./dbutils";
+import { Carrera, FinDeCarrera, Orientacion } from "./types/carreras";
 
 // La base de datos se parte en dos tablas (relacional... ponele)
 // La clave que une a las bases de datos es la combinación de padron y carrera
@@ -12,46 +14,17 @@ import { getFiubaRepos, getGraphs, postGraph, postUser } from "./dbutils";
 // allLogins contiene un array con todas las [carrera,orientacion,findecarrera] que tiene el usuario en la DB
 // maps contiene todos los mapas que tiene el usuario en la DB
 
-// https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values#ValueRange
-interface ValueRange {
-  range: string;
-  majorDimension: string; // Es un enum, pero me parece que no hace falta explicitarlo mas, si no se usa
-  values: Array<Array<string>>;
-}
-
-// https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values/batchGet
-// Es necesario BatchGet?
-interface BatchGet {
-  spreadsheetId: string;
-  valueRanges: ValueRange[];
-}
-
-interface LoginType {
-  carreraid: string;
-  orientacionid: string;
-  findecarreraid: string;
-}
-
-interface InitialUser {
-  padron: string;
-  //carrera: ;
-  orientacion: string;
-  finDeCarrera: string;
-  allLogins: LoginType[];
-  //maps: ;
-}
-
-const initialUser = {
-  padron: "",
+const initialUser: InitialUser = {
+  padron: "", // TODO: el valor inicial de padron no tendria que ser null?
   carrera: CARRERAS.find((c) => c.id === "sistemas"),
-  orientacion: null,
-  finDeCarrera: null,
+  orientacion: undefined,
+  finDeCarrera: undefined,
   allLogins: [],
   maps: [],
 };
 
-const Login = () => {
-  const [user, setUser] = React.useState(initialUser);
+const Login = () : UserType => {
+  const [user, setUser] = React.useState<InitialUser>(initialUser);
 
   // Inicializamos el padron en lo que hay en el storage, o vacio
   const [padronInput, setPadronInput] = React.useState(
@@ -88,7 +61,7 @@ const Login = () => {
     fetchFiubaRepos();
   }, []);
 
-  // Login agarra todo lo que sabemos del usuario, de ambas tablas de la DB
+  // login agarra todo lo que sabemos del usuario, de ambas tablas de la DB
   // y lo guarda en el estado `user`
   // Usamos de carrera la ultima que registro el usuario
   const login = async (padron: string) => {
@@ -102,14 +75,14 @@ const Login = () => {
       `${C.SPREADSHEET}/${C.SHEETS.user}!B:B?majorDimension=COLUMNS&key=${C.KEY}`,
     )
       .then((res) => res.json())
-      .then((res) => (res.error ? null : res.values[0]));
+      .then((res: ValueRange) => (res.error ? null : res.values[0]));
 
     if (!padrones) {
       setLoading(false);
       return false;
     }
 
-    const indexes = [];
+    const indexes: number[] = [];
     let j = -1;
     while ((j = padrones.indexOf(padron, j + 1)) !== -1) {
       indexes.push(j);
@@ -125,22 +98,24 @@ const Login = () => {
       (index) => `&ranges=${C.SHEETS.user}!${index + 1}:${index + 1}`,
     );
 
-    const data: ValueRange[] = await fetch(
+    const data = await fetch(
       `${C.SPREADSHEET}:batchGet?key=${C.KEY}${ranges.join("")}`,
     )
       .then((res) => res.json()
       .then((res: BatchGet) => res.valueRanges));
 
-    const allLogins: LoginType[] = data.map((d) => ({
+    const allLogins: UserLogin[] = data.map((d) => ({
       carreraid: d.values[0][2],
       orientacionid: d.values[0][3],
       findecarreraid: d.values[0][4],
     }));
 
-    let carrera, orientacion, finDeCarrera;
+    let carrera: Carrera = CARRERAS.find((c) => c.id === "sistemas");
+    let orientacion: Orientacion | undefined = undefined;
+    let finDeCarrera: FinDeCarrera | undefined = undefined;
     // TODO: reformular esto sin usar for junto a break
     for (const userLogin of allLogins) {
-      const foundCarrera = CARRERAS.find((c) => c.id === userLogin.carreraid);
+      const foundCarrera: Carrera = CARRERAS.find((c) => c.id === userLogin.carreraid);
 
       if (foundCarrera) {
         carrera = foundCarrera;
@@ -170,20 +145,22 @@ const Login = () => {
     return true;
   };
 
-  // Register es para hacer nuevos registros de un usuario en la DB
+  // register es para hacer nuevos registros de un usuario en la DB
   // Solo lidia con [padron, carrera, orientacion, findecarrera], no con mapas
   // Se usa para siempre tener un registro de cual es la ultima carrera que un usuario uso
   // Asi no tenes que a mano guardar un cambio de carrera
-  const register = async (user) => {
+  const register = async (user: InitialUser) => {
     const addToAllLogins = () => {
       const newAllLogins = user.allLogins.filter(
         (l) => l.carreraid !== user.carrera.id,
       );
+
       newAllLogins.push({
         carreraid: user.carrera.id,
         orientacionid: user.orientacion?.nombre,
         findecarreraid: user.finDeCarrera?.id,
       });
+
       return newAllLogins;
     };
 
