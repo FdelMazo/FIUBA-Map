@@ -1,5 +1,6 @@
 import { COLORS } from "./theme";
 import { getCurrentCuatri, promediar } from "./utils";
+import { NodeType } from "./types/Node";
 
 const FONT_AFUERA = ["CBC", "*CBC"];
 const ALWAYS_SHOW = [
@@ -8,6 +9,7 @@ const ALWAYS_SHOW = [
   "Fin de Carrera (Obligatorio)",
 ];
 
+// TODO: documentar breakWords helper funcion de Node.ts
 function breakWords(string: string) {
   let broken = "";
 
@@ -19,7 +21,7 @@ function breakWords(string: string) {
   return broken.trim();
 }
 
-class Node {
+class Node implements NodeType {
   // Los nodos los creamos en base a lo que hay en los json, y arrancan todos desaprobados
   // Hay varios atributos propios ('categoria', 'cuatrimestre') => Probablemente todos los que estan en español
   // Hay atributos de vis.js que determinan muchas cosas del network => Probablemente todos los que estan en ingles
@@ -34,7 +36,7 @@ class Node {
     this.label = breakWords(n.materia);
 
     // El group de vis.js determina los colores y miles de cosas mas
-    // La categoria es FIUBA: cbc, electiva, obligatoria, etc
+    // La categoria es FIUBA: CBC, electiva, obligatoria, etc
     // El grupo es vis.js: "habilitada", "aprobada", etc
     // Las categorias son:
     // - *CBC: Las materias del CBC
@@ -64,29 +66,33 @@ class Node {
     // - 2020 => 2020 primer cuatri.
     // - 2020.5 => 2020 segundo cuatri
     this.cuatrimestre = undefined;
-    this.originalLevel = this.level;
     this.level = this.level ?? -3;
+    this.originalLevel = this.level;
 
     // Arrancan escondidas las materias electivas, las de las orientaciones, etc
     // Siempre mostramos el CBC, las obligatorias, y el final de la carrera de las carreras que no pueden elegir entre tesis y tpp
     this.hidden = !ALWAYS_SHOW.includes(this.categoria);
   }
 
-  aprobar(nota) {
+  aprobar(nota: number) {
     if (nota < -1) return;
+
     this.aprobada = nota > -1 ? true : false;
     this.nota = nota;
+
     return this;
   }
 
   desaprobar() {
     this.aprobada = false;
     this.nota = -2;
+
     return this;
   }
 
-  cursando(cuatri) {
+  cursando(cuatri: number) {
     this.cuatrimestre = cuatri;
+
     return this;
   }
 
@@ -94,14 +100,16 @@ class Node {
   // Tambien, hay materias que "requieren" un minimo de creditos
   // Si "requiereCBC", entonces se consideran los creditos totales
   // Si no, se consideran los creditos totales menos los creditos del CBC
-  // Nota: que se consideren o no los creditos del cbc para esto
-  //  es MUY poco claro en todos los planes de fiuba, y todos varian,
-  //  asi que puede no ser 100% fiel a la realidad
+  //
+  // Nota: que se consideren o no los creditos del CBC para esto
+  // es MUY poco claro en todos los planes de FIUBA, y todos varian,
+  // asi que puede no ser 100% fiel a la realidad
   isHabilitada(ctx) {
     const { getters, getNode, creditos } = ctx;
     const { creditosTotales, creditosCBC } = creditos;
     const from = getters.NodesFrom(this.id);
     let todoAprobado = true;
+
     for (let id of from) {
       const m = getNode(id);
       todoAprobado &= m.aprobada;
@@ -113,6 +121,7 @@ class Node {
         todoAprobado &= creditosTotales - creditosCBC >= this.requiere;
       }
     }
+
     return todoAprobado;
   }
 

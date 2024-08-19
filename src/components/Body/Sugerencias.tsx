@@ -136,11 +136,13 @@ const Sugerencias = () => {
                         </Text>
                       </VStack>
                       <form
-                        onSubmit={async (t) => {
-                          t.preventDefault();
+                        onSubmit={async (event) => {
+                          event.preventDefault();
+
+                          // TODO: acceder de una forma mas type-friendly a esto, ver https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/elements
                           await submitBug(
                             user,
-                            t.target.elements["bug"].value,
+                            event.target.elements["bug"].value,
                           ).catch(console.error);
                           setShowGracias(true);
                           toast.close(bugToast.current);
