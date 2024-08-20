@@ -574,6 +574,7 @@ const Graph = (userContext) => {
     (prevstate, dispatched) => {
       let newstate = prevstate;
       const { action, value } = dispatched;
+
       switch (action) {
         case "override":
           newstate = value;
@@ -598,6 +599,7 @@ const Graph = (userContext) => {
         default:
           return newstate;
       }
+
       return newstate;
     },
     [],
