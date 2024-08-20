@@ -1,4 +1,5 @@
 import { COLORS } from "./theme";
+import { Carrera } from "./types/carreras";
 
 // La estructura de las carreras de FIUBA varía bastante. Es muy poco uniforme
 // Cada carrera tiene un json asociado donde se almacenan las materias

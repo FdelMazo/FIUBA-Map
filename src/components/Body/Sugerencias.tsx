@@ -17,6 +17,7 @@ import {
   Textarea,
   VStack,
   useToast,
+  ToastId
 } from "@chakra-ui/react";
 import React from "react";
 import { UserContext } from "../../MapContext";
@@ -25,7 +26,7 @@ import { submitBug } from "../../dbutils";
 // Toast para reportar bugs
 const Sugerencias = () => {
   const { user } = React.useContext(UserContext);
-  const bugToast = React.useRef();
+  const bugToast = React.useRef<ToastId | undefined>();
   const [showGracias, setShowGracias] = React.useState(false);
   const toast = useToast();
 
@@ -39,7 +40,7 @@ const Sugerencias = () => {
           cursor="pointer"
           bg="#e9eaeb"
           onClick={() => {
-            if (toast.isActive(bugToast.current)) {
+            if (bugToast.current && toast.isActive(bugToast.current)) {
               toast.close(bugToast.current);
               return;
             }
@@ -139,7 +140,7 @@ const Sugerencias = () => {
                         onSubmit={async (event) => {
                           event.preventDefault();
 
-                          // TODO: acceder de una forma mas type-friendly a esto, ver https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/elements
+      // TODO: acceder de una forma mas type-friendly a esto, ver https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/elements
                           await submitBug(
                             user,
                             event.target.elements["bug"].value,

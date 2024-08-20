@@ -1,15 +1,15 @@
 import * as C from "./constants";
-import { InitialUser, ValueRange } from "./types/UserType";
+import { UserInfo, UserCarreraMap, UserMap } from "./types/User";
 import {
   GithubSearchRepo,
   GithubSearchRepoJSON,
   AliasMateriasFIUBARepos,
-  UserMapLogin,
   MateriaFIUBARepo,
-} from "./types/dbutils";
+  RegistrosValueRange,
+} from "./types/externalAPI";
 
 // Le pega al form de bugs
-export const submitBug = async (user: InitialUser, bug) => {
+export const submitBug = async (user: UserInfo, bug) => {
   if (!bug) return;
   const formData = new FormData();
   const padron = user.padron;
@@ -31,7 +31,7 @@ export const submitBug = async (user: InitialUser, bug) => {
 };
 
 // Le pega al form que almacena [padron,carrera,orientacion,findecarrera]
-export const postUser = async (user: InitialUser) => {
+export const postUser = async (user: UserInfo) => {
   const formData = new FormData();
   const padron = user.padron;
   const carreraid = user.carrera.id;
@@ -51,8 +51,8 @@ export const postUser = async (user: InitialUser) => {
 };
 
 // Le pega al form que almacena [padron,carrera,map]
-// el map es un JSON stringifeado que tiene [materias,optativas,aplazos,checkboxes]
-export const postGraph = async (user: InitialUser, map) => {
+// el map es un JSON stringifeado que tiene [materias, optativas, aplazos, checkboxes]
+export const postGraph = async (user: UserInfo, map: UserCarreraMap) => {
   const formData = new FormData();
 
   formData.append(`${C.GRAPH_FORM_ENTRIES.padron}`, user.padron);
@@ -154,12 +154,13 @@ export const getFiubaRepos = async () => {
 };
 
 // Consigue todos los mapas asociados a un padron, de todas las carreras
+// TODO: quiza haya que handlear cuando maps es undefined en vez de permitirlo?,
 export const getGraphs = async (padron: string) => {
   const data = await fetch(
     `${C.SPREADSHEET}/${C.SHEETS.registros}!B:D?majorDimension=COLUMNS&key=${C.KEY}`,
   )
     .then((res) => res.json())
-    .then((res: ValueRange) => (res.error ? null : res.values));
+    .then((res: RegistrosValueRange) => (res.error ? null : res.values));
   if (!data) return;
 
   const [padrones, carreras, maps] = data;
@@ -169,7 +170,7 @@ export const getGraphs = async (padron: string) => {
     indexes.push(j);
   }
 
-  const allLogins: UserMapLogin[] = [];
+  const allLogins: UserMap[] = [];
   for (let i = 0; i < indexes.length; i++) {
     allLogins.push({
       carreraid: carreras[indexes[i]].carreraid,
@@ -178,8 +179,4 @@ export const getGraphs = async (padron: string) => {
   }
 
   return allLogins;
-  // return allLogins.map((l) => ({
-  //   carreraid: l.carreraid,
-  //   map: JSON.parse(l.map),
-  // }));
 };
