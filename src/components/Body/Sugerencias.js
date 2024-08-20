@@ -67,7 +67,7 @@ const Sugerencias = () => {
                   }}
                 >
                   <Box flex="1">
-                    <AlertTitle mb={2}>¡Hola!</AlertTitle>
+                    <AlertTitle mb={2}>Hola!</AlertTitle>
                     <AlertDescription px={5} display="block">
                       <VStack spacing={2}>
                         <Text w="100%">
@@ -99,10 +99,10 @@ const Sugerencias = () => {
                           los <em>bugs</em> críticos los voy a seguir arreglando.
                         </Text>
                         <Text w="100%">
-                          Así que si encontrás algo que no funciona, ¡avisame!
+                          Así que si encontrás algo que no funciona, avisame!
                         </Text>
                         <Text w="100%">
-                          Más alla de eso, ¡gracias por usar la herramienta!
+                          Más alla de eso, gracias por usar la herramienta!
                           Espero que te haya servido.
                           <Link
                             isExternal
@@ -127,7 +127,7 @@ const Sugerencias = () => {
                               }}
                             />
                           </Link>{" "}
-                          , ¡te lo agradezco mucho!
+                          , te lo agradezco mucho!
                           <br />
                           <Text fontSize="xs">
                             (Aunque para ser sincero, aprecio más los mensajes
@@ -218,7 +218,7 @@ const Sugerencias = () => {
             }));
           }}
         >
-          <TagLabel>{showGracias ? "¡Gracias!" : "Sugerencias"}</TagLabel>
+          <TagLabel>{showGracias ? "Gracias!" : "Sugerencias"}</TagLabel>
           <TagRightIcon as={showGracias ? CheckIcon : ChatIcon} />
         </Tag>
       </Box>
