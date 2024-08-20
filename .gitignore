@@ -2,3 +2,5 @@ node_modules/
 build/
 .key
 .env
+# JetBrains editor config
+.idea

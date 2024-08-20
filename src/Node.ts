@@ -1,5 +1,11 @@
 import { COLORS } from "./theme";
 import { getCurrentCuatri, promediar } from "./utils";
+import { NodeType } from "./types/Node";
+import { GraphNode } from "./types/Graph";
+import creditos from "./components/Footer/Creditos";
+import { m } from "framer-motion";
+import user from "./User";
+import { MateriaJSON } from "./types/carreras";
 
 const FONT_AFUERA = ["CBC", "*CBC"];
 const ALWAYS_SHOW = [
@@ -8,32 +14,57 @@ const ALWAYS_SHOW = [
   "Fin de Carrera (Obligatorio)",
 ];
 
-function breakWords(string) {
+// TODO: documentar breakWords helper funcion de Node.ts
+function breakWords(string: string) {
   let broken = "";
+
   string.split(" ").forEach((element) => {
     if (element.length < 4) broken += " " + element;
     else broken += "\n" + element;
   });
+
   return broken.trim();
 }
 
-class Node {
-  // Los nodos los creamos en base a lo que hay en los json, y arrancan todos desaprobados
+class Node implements NodeType {
+  aprobada: boolean;
+  categoria: string;
+  cuatrimestre: number | undefined;
+  group: string;
+  hidden: boolean;
+  label: string;
+  level: number;
+  nodeRef: this;
+  nota: number;
+  originalLevel: number;
+  id: string;
+  creditos: number;
+  requiere?: boolean;
+  materia: string;
+  opacity: number | undefined;
+  // Los nodos los creamos en base a lo que hay en los JSON, y arrancan todos desaprobados
   // Hay varios atributos propios ('categoria', 'cuatrimestre') => Probablemente todos los que estan en español
-  // Hay atributos de visjs que determinan muchas cosas del network => Probablemente todos los que estan en ingles
-  constructor(n) {
+  // Hay atributos de vis.js que determinan muchas cosas del network => Probablemente todos los que estan en ingles
+  constructor(node: MateriaJSON) {
     // Guardamos una referencia al nodo mismo para poder manipularlo desde afuera
-    // (porque cuando llenamos el grafo, visjs hace lo que quiere con nuestra estructura de datos)
+    // (porque cuando llenamos el grafo, vis.js hace lo que quiere con nuestra estructura de datos)
     this.nodeRef = this;
 
-    // Si en los jsons hay un campo valido de visjs, lo vamos a tomar
-    // Por ejemplo, el campo level lo levantamos directo desde el json
-    Object.assign(this, { ...n });
-    this.label = breakWords(n.materia);
+    // Si en los JSONs hay un campo valido de vis.js, lo vamos a tomar
+    // Por ejemplo, el campo level lo levantamos directo desde el JSON
+    this.categoria = node.categoria; // Lo declaramos especificamente porque sino TypeScript no lo reconoce
+    this.creditos = node.creditos;
+    this.materia = node.materia;
+    // TODO: estara bien this.opacity = undefined;?
+    // this.opacity = undefined;
+    this.id = node.id;
+    // TODO: quiza usar Object.assign en Node class no sea muy claro para el lector?
+    Object.assign(this, { ...node });
+    this.label = breakWords(node.materia);
 
-    // El group de visjs determina los colores y miles de cosas mas
-    // La categoria es FIUBA: cbc, electiva, obligatoria, etc
-    // El grupo es visjs: "habilitada", "aprobada", etc
+    // El group de vis.js determina los colores y miles de cosas mas
+    // La categoria es FIUBA: CBC, electiva, obligatoria, etc
+    // El grupo es vis.js: "habilitada", "aprobada", etc
     // Las categorias son:
     // - *CBC: Las materias del CBC
     // - CBC: El nodo que abre/cierra el CBC. Tecnicamente, no es una materia
@@ -56,35 +87,39 @@ class Node {
     // Solamente como un shortcut de nota >= 0
     this.aprobada = false;
 
-    // El level de visjs determina en que columna esta cada nodo
+    // El level de vis.js determina en que columna esta cada nodo
     // Con los cuatris podemos "planear" las materias: mostrarlas en la columna que queremos
     // Los cuatris son enteros para los primeros cuatris, y floats para los segundos
     // - 2020 => 2020 primer cuatri.
     // - 2020.5 => 2020 segundo cuatri
     this.cuatrimestre = undefined;
+    this.level = node.level ?? -3;
     this.originalLevel = this.level;
-    this.level = this.level ?? -3;
 
     // Arrancan escondidas las materias electivas, las de las orientaciones, etc
     // Siempre mostramos el CBC, las obligatorias, y el final de la carrera de las carreras que no pueden elegir entre tesis y tpp
-    this.hidden = !ALWAYS_SHOW.includes(this.categoria);
+    this.hidden = !ALWAYS_SHOW.includes(node.categoria);
   }
 
-  aprobar(nota) {
+  aprobar(nota: number) {
     if (nota < -1) return;
-    this.aprobada = nota > -1 ? true : false;
+
+    this.aprobada = nota > -1;
     this.nota = nota;
+
     return this;
   }
 
   desaprobar() {
     this.aprobada = false;
     this.nota = -2;
+
     return this;
   }
 
-  cursando(cuatri) {
+  cursando(cuatri: number) {
     this.cuatrimestre = cuatri;
+
     return this;
   }
 
@@ -92,14 +127,16 @@ class Node {
   // Tambien, hay materias que "requieren" un minimo de creditos
   // Si "requiereCBC", entonces se consideran los creditos totales
   // Si no, se consideran los creditos totales menos los creditos del CBC
-  // Nota: que se consideren o no los creditos del cbc para esto
-  //  es MUY poco claro en todos los planes de fiuba, y todos varian,
-  //  asi que puede no ser 100% fiel a la realidad
+  //
+  // Nota: que se consideren o no los creditos del CBC para esto
+  // es MUY poco claro en todos los planes de FIUBA, y todos varian,
+  // asi que puede no ser 100% fiel a la realidad
   isHabilitada(ctx) {
     const { getters, getNode, creditos } = ctx;
     const { creditosTotales, creditosCBC } = creditos;
     const from = getters.NodesFrom(this.id);
     let todoAprobado = true;
+
     for (let id of from) {
       const m = getNode(id);
       todoAprobado &= m.aprobada;
@@ -111,6 +148,7 @@ class Node {
         todoAprobado &= creditosTotales - creditosCBC >= this.requiere;
       }
     }
+
     return todoAprobado;
   }
 

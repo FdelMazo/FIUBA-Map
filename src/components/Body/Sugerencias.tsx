@@ -17,6 +17,7 @@ import {
   Textarea,
   VStack,
   useToast,
+  ToastId
 } from "@chakra-ui/react";
 import React from "react";
 import { UserContext } from "../../MapContext";
@@ -25,7 +26,7 @@ import { submitBug } from "../../dbutils";
 // Toast para reportar bugs
 const Sugerencias = () => {
   const { user } = React.useContext(UserContext);
-  const bugToast = React.useRef();
+  const bugToast = React.useRef<ToastId | undefined>();
   const [showGracias, setShowGracias] = React.useState(false);
   const toast = useToast();
 
@@ -39,7 +40,7 @@ const Sugerencias = () => {
           cursor="pointer"
           bg="#e9eaeb"
           onClick={() => {
-            if (toast.isActive(bugToast.current)) {
+            if (bugToast.current && toast.isActive(bugToast.current)) {
               toast.close(bugToast.current);
               return;
             }
@@ -113,14 +114,19 @@ const Sugerencias = () => {
                         </Text>
                       </VStack>
                       <form
-                        onSubmit={async (t) => {
-                          t.preventDefault();
+                        onSubmit={async (event) => {
+                          event.preventDefault();
+                          const bugTextArea = event.currentTarget.elements.namedItem("bug") as HTMLTextAreaElement;
+
+      // TODO: acceder de una forma mas type-friendly a esto, ver https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/elements
                           await submitBug(
                             user,
-                            t.target.elements["bug"].value,
+                            bugTextArea.value,
                           ).catch(console.error);
                           setShowGracias(true);
-                          toast.close(bugToast.current);
+                          if (bugToast.current) {
+                            toast.close(bugToast.current);
+                          }
                         }}
                       >
                         <Flex mt={3} alignItems="flex-end">
@@ -146,6 +152,7 @@ const Sugerencias = () => {
                               size="sm"
                               type="submit"
                               icon={<ChatIcon />}
+                              aria-label="Purple chat icon"
                             />
                           </DarkMode>
                         </Flex>
@@ -185,7 +192,7 @@ const Sugerencias = () => {
                     _dark={{
                       color: "electivas.400",
                     }}
-                    onClick={() => toast.close(props.id)}
+                    onClick={() => props.id && toast.close(props.id)}
                     position="absolute"
                     right="8px"
                     top="8px"
