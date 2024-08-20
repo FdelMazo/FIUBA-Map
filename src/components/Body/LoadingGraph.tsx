@@ -1,11 +1,14 @@
-import { Box, Modal, ModalOverlay, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
+import { Box, Modal, ModalOverlay, useColorModeValue } from "@chakra-ui/react";
 
-const injectStyle = (style) => {
+// Crea un styles element, lo agrega al head del HTML document, y le agrega
+// los estilos pasados por el parametro style
+const injectStyle = (style: string) => {
   const styleElement = document.createElement("style");
   let styleSheet = null;
+
   document.head.appendChild(styleElement);
-  styleSheet = styleElement.sheet;
+  styleSheet = styleElement.sheet as CSSStyleSheet;
   styleSheet.insertRule(style, styleSheet.cssRules.length);
 };
 
@@ -28,6 +31,7 @@ const LoadingGraph = () => {
 
   injectStyle(keyframesStyle);
   return (
+    // TODO: añadir callback obligatorio onClose a LoadingGraph modal
     <Modal isOpen={true}>
       <ModalOverlay />
       <Box

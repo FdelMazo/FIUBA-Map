@@ -1,3 +1,5 @@
+import { COLORS } from "../theme";
+
 export interface MateriaCredito {
   id: string;
   nombrecorto: string;
@@ -12,6 +14,7 @@ export interface MateriaJSON {
   categoria: string;
   level: number;
   correlativas?: string;
+  requiere?: number;
 }
 
 export interface Checkbox {
@@ -19,11 +22,13 @@ export interface Checkbox {
   nombrecorto: string;
   bg: string;
   color: string;
+  check?: boolean;
 }
 
 export interface Electivas {
   tesis: number;
   tpp: number;
+  [key: string]: number;
 }
 
 export interface OrientacionCredito {
@@ -42,7 +47,8 @@ export interface Creditos {
 }
 
 export interface Orientacion {
-  colorScheme: string;
+  // FIXME: mejorar esto del colorScheme de Orientacion type
+  colorScheme: keyof typeof COLORS;
   nombre: string;
   nonEligible?: true;
 }
