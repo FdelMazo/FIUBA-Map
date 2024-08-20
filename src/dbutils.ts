@@ -9,7 +9,7 @@ import {
 } from "./types/externalAPI";
 
 // Le pega al form de bugs
-export const submitBug = async (user: UserInfo, bug) => {
+export const submitBug = async (user: UserInfo, bug: string) => {
   if (!bug) return;
   const formData = new FormData();
   const padron = user.padron;

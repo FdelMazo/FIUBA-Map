@@ -1,5 +1,8 @@
-export const promediar = (materias) => {
-  const sum = materias.reduce((acc, node) => {
+import { NodeType } from "./types/Node";
+import { GraphCredito } from "./types/Graph";
+
+export const promediar = (materias: NodeType[]) => {
+  const sum = materias.reduce((acc, node: NodeType) => {
     acc += node.nota;
 
     return acc;
@@ -8,13 +11,13 @@ export const promediar = (materias) => {
   return sum ? (sum / materias.length).toFixed(2) : 0;
 };
 
-export const accCreditos = (acc, node) => {
+export const accCreditos = (acc: number, node: NodeType) => {
   acc += node.creditos;
 
   return acc;
 };
 
-export const accCreditosNecesarios = (acc, grupo) => {
+export const accCreditosNecesarios = (acc: number, grupo: GraphCredito) => {
   acc += grupo.creditosNecesarios;
 
   return acc;

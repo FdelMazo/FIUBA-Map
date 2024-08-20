@@ -42,6 +42,7 @@ const CategoryTagStack = () => {
             }}
           >
             <TagLeftIcon
+              // TODO: añadir un icono como default en el as switch de TagLeftIcon en CategoryTagStack.tsx
               as={() => {
                 switch (groupStatus(c)) {
                   case "hidden":

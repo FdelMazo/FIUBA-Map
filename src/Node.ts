@@ -1,6 +1,11 @@
 import { COLORS } from "./theme";
 import { getCurrentCuatri, promediar } from "./utils";
 import { NodeType } from "./types/Node";
+import { GraphNode } from "./types/Graph";
+import creditos from "./components/Footer/Creditos";
+import { m } from "framer-motion";
+import user from "./User";
+import { MateriaJSON } from "./types/carreras";
 
 const FONT_AFUERA = ["CBC", "*CBC"];
 const ALWAYS_SHOW = [
@@ -22,18 +27,40 @@ function breakWords(string: string) {
 }
 
 class Node implements NodeType {
-  // Los nodos los creamos en base a lo que hay en los json, y arrancan todos desaprobados
+  aprobada: boolean;
+  categoria: string;
+  cuatrimestre: number | undefined;
+  group: string;
+  hidden: boolean;
+  label: string;
+  level: number;
+  nodeRef: this;
+  nota: number;
+  originalLevel: number;
+  id: string;
+  creditos: number;
+  requiere?: boolean;
+  materia: string;
+  opacity: number | undefined;
+  // Los nodos los creamos en base a lo que hay en los JSON, y arrancan todos desaprobados
   // Hay varios atributos propios ('categoria', 'cuatrimestre') => Probablemente todos los que estan en español
   // Hay atributos de vis.js que determinan muchas cosas del network => Probablemente todos los que estan en ingles
-  constructor(n) {
+  constructor(node: MateriaJSON) {
     // Guardamos una referencia al nodo mismo para poder manipularlo desde afuera
     // (porque cuando llenamos el grafo, vis.js hace lo que quiere con nuestra estructura de datos)
     this.nodeRef = this;
 
-    // Si en los jsons hay un campo valido de vis.js, lo vamos a tomar
-    // Por ejemplo, el campo level lo levantamos directo desde el json
-    Object.assign(this, { ...n });
-    this.label = breakWords(n.materia);
+    // Si en los JSONs hay un campo valido de vis.js, lo vamos a tomar
+    // Por ejemplo, el campo level lo levantamos directo desde el JSON
+    this.categoria = node.categoria; // Lo declaramos especificamente porque sino TypeScript no lo reconoce
+    this.creditos = node.creditos;
+    this.materia = node.materia;
+    // TODO: estara bien this.opacity = undefined;?
+    // this.opacity = undefined;
+    this.id = node.id;
+    // TODO: quiza usar Object.assign en Node class no sea muy claro para el lector?
+    Object.assign(this, { ...node });
+    this.label = breakWords(node.materia);
 
     // El group de vis.js determina los colores y miles de cosas mas
     // La categoria es FIUBA: CBC, electiva, obligatoria, etc
@@ -66,18 +93,18 @@ class Node implements NodeType {
     // - 2020 => 2020 primer cuatri.
     // - 2020.5 => 2020 segundo cuatri
     this.cuatrimestre = undefined;
-    this.level = this.level ?? -3;
+    this.level = node.level ?? -3;
     this.originalLevel = this.level;
 
     // Arrancan escondidas las materias electivas, las de las orientaciones, etc
     // Siempre mostramos el CBC, las obligatorias, y el final de la carrera de las carreras que no pueden elegir entre tesis y tpp
-    this.hidden = !ALWAYS_SHOW.includes(this.categoria);
+    this.hidden = !ALWAYS_SHOW.includes(node.categoria);
   }
 
   aprobar(nota: number) {
     if (nota < -1) return;
 
-    this.aprobada = nota > -1 ? true : false;
+    this.aprobada = nota > -1;
     this.nota = nota;
 
     return this;

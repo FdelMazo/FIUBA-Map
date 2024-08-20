@@ -1,13 +1,17 @@
-import { useColorMode } from "@chakra-ui/color-mode";
 import React from "react";
+import { useColorMode } from "@chakra-ui/color-mode";
+import useResizeObserver from "use-resize-observer";
 import { CARRERAS } from "./carreras";
 import { CREDITOS } from "./constants";
 import Node from "./Node";
 import { COLORS } from "./theme";
 import { accCreditos, accCreditosNecesarios, accProportion } from "./utils";
-import useResizeObserver from "use-resize-observer";
+import { UserLogin } from "./types/User";
+import { ClickEvent, GraphCredito, DeselectEvent, Getters, HoverEvent, Network } from "./types/Graph";
+import { NodeType } from "./types/Node";
+import { Electivas } from "./types/carreras";
 
-const Graph = (userContext) => {
+const Graph = (userContext: UserLogin) => {
   const { user, setUser, logged, saveUserGraph, register } = userContext;
   const { colorMode } = useColorMode();
 
@@ -17,10 +21,10 @@ const Graph = (userContext) => {
   // Guardamos cuantos aplazos se tienen para computar en el promedio
   const [aplazos, setAplazos] = React.useState(0);
 
-  // La network es nuestra interfaz con visjs.
+  // La network es nuestra interfaz con vis.js
   // Nos da acceso a los nodos, las aristas y varias funciones
   // https://visjs.github.io/vis-network/docs/network/
-  const [network, setNetwork] = React.useState(null);
+  const [network, setNetwork] = React.useState<Network>(null!);
 
   // Cuando cambia el tamaño de la pantalla, se redibuja la red. Sin esto, se rompe
   const { ref: networkRef, width, height } = useResizeObserver();
@@ -46,13 +50,14 @@ const Graph = (userContext) => {
   // Cuando cambia la carrera, cambia la key del body.
   // Cuando cambia la key del body, se llama a `createNetwork` que lo que hace es armar una red desde 0
   // Esta red despues se llena con el graph
-  const createNetwork = (network) => {
+  const createNetwork = (network: Network) => {
     // Avoid re-rendering the whole graph when the data changes
     // Copied from https://github.com/visjs/vis-network/blob/2c774997ff234fa93555f36ca8040cf4d489e5df/lib/network/modules/NodesHandler.js#L325
     // Removed the last call to body.emit(datachanged)
     network.nodesHandler.update = (ids, changedData, oldData) => {
       const nodes = network.body.nodes;
       let dataChanged = false;
+
       for (let i = 0; i < ids.length; i++) {
         const id = ids[i];
         let node = nodes[id];
@@ -141,7 +146,7 @@ const Graph = (userContext) => {
     // pero cuando se actualiza el grafo, por las dudas, limpiamos el nodo que teniamos elegido
     // test: entrar y clickear un nodo rapido, y esperar a que el usuario se loguee solo
     setDisplayedNode("");
-    const nodes = user.carrera.graph.map((n) => new Node(n));
+    const nodes: NodeType[] = user.carrera.graph.map((n) => new Node(n));
     const edges = user.carrera.graph.flatMap((n) => {
       let e = [];
       if (n.correlativas)
@@ -613,19 +618,33 @@ const Graph = (userContext) => {
   // Hay que llamar a mano a `updateCreditos` en vez de que sea un useMemo porque
   // visjs no es muy reactivo... si se pudiese, habria que hacer que dependamos solamente de nodes
   // y evitar la llamada a mano
-  const [creditos, setCreditos] = React.useState([]);
+  const [creditos, setCreditos] = React.useState<GraphCredito[]>([]);
 
   const updateCreditos = () => {
     if (!network || graph.key !== network.key) return [];
-    let creditos = [];
+    let creditos: GraphCredito[] = [];
 
     // La estructura de las carreras varia bastante
     // Por ej: algunas carreras dicen que si elegis X orientacion, tenes que hacer otra cantidad de creditos de electivas
     const getCorrectCreditos = () => {
       if (user.carrera.eligeOrientaciones)
-        return user.carrera.creditos.orientacion[user.orientacion?.nombre];
+        return user.carrera.creditos.orientacion![user.orientacion!.nombre];
       return user.carrera.creditos;
     };
+
+    // Retorna los creditos de las electivas, que por defecto son 0 si la
+    // carrera no tiene electivas
+    const getElectivasCreditos = (electivas: number | undefined | Electivas) => {
+      let electivasCreditos = 0;
+
+      if (typeof electivas === "number") {
+        electivasCreditos = electivas;
+      } else if (typeof electivas !== "undefined" && user.finDeCarrera) {
+        electivasCreditos = electivas[user.finDeCarrera.id];
+      }
+
+      return electivasCreditos;
+    }
 
     // Primeros creditos a mostrar: los 38 del CBC
     // Lo mostramos como siempre aprobado del todo
@@ -650,9 +669,8 @@ const Graph = (userContext) => {
 
     // Despues, las electivas, incluyendo las orientaciones no elegidas
     const electivas = getters.ElectivasAprobadas();
-    const electivasCreditosNecesarios = isNaN(getCorrectCreditos()?.electivas)
-      ? getCorrectCreditos()?.electivas[user.finDeCarrera?.id]
-      : getCorrectCreditos()?.electivas;
+    const electivasCreditosNecesarios = getElectivasCreditos(getCorrectCreditos().electivas);
+
     creditos.push({
       ...CREDITOS["Electivas"],
       creditosNecesarios: electivasCreditosNecesarios,
@@ -669,7 +687,8 @@ const Graph = (userContext) => {
     if (user.carrera.eligeOrientaciones)
       if (
         user.orientacion &&
-        user.carrera.creditos.orientacion[user.orientacion?.nombre]
+        user.carrera.creditos.orientacion![user.orientacion?.nombre] &&
+        typeof COLORS[user.orientacion.colorScheme] === "object"
       ) {
         creditos.push({
           nombre: `Orientación: ${user.orientacion.nombre}`,
@@ -698,16 +717,16 @@ const Graph = (userContext) => {
     // pero estos creditos que le pusimos no son reales.
     // Siempre que hay que obtener el numero de creditos que tenemos, hay que sacar los por checkbox: true
     if (user.carrera.creditos.checkbox) {
-      user.carrera.creditos.checkbox.forEach((m) => {
-        creditos.push({
-          nombre: m.nombre,
-          nombrecorto: m.nombrecorto,
-          color: m.color,
-          bg: m.bg,
+      user.carrera.creditos.checkbox.forEach((checkbox) => {
+        return creditos.push({
+          nombre: checkbox.nombre,
+          nombrecorto: checkbox.nombrecorto,
+          color: checkbox.color,
+          bg: checkbox.bg,
           creditosNecesarios: 8,
-          creditos: m.check ? 8 : 0,
+          creditos: checkbox.check ? 8 : 0,
           checkbox: true,
-          check: m.check,
+          check: checkbox.check,
           dummy: true,
         });
       });
@@ -764,6 +783,7 @@ const Graph = (userContext) => {
     const fullProportion = creditos.reduce(accProportion, 0);
     if (fullProportion > 10) creditos[1].proportion -= fullProportion - 10;
     else if (fullProportion < 10) creditos[1].proportion += 10 - fullProportion;
+
     setCreditos(creditos);
   };
 
@@ -773,7 +793,7 @@ const Graph = (userContext) => {
 
   // Cuando tengo un nodo seleccionado, quiero que todos los demas sean mas transparentes
   // y tener foco solamente sobre el nodo, sus aristas, y sus correlativas
-  const blurOthers = (id) => {
+  const blurOthers = (id: string) => {
     const node = getNode(id);
     if (!node) return;
 
@@ -840,7 +860,7 @@ const Graph = (userContext) => {
     );
   };
 
-  const selectNode = (id, display = false) => {
+  const selectNode = (id: string, display = false) => {
     unblurAll();
     blurOthers(id);
     if (display) setDisplayedNode(id);
@@ -853,13 +873,13 @@ const Graph = (userContext) => {
     }
   };
 
-  let hovertimer = undefined;
+  let hovertimer: NodeJS.Timeout | undefined = undefined;
 
   // Interacción con el mouse
   const events = {
-    doubleClick: (e) => {
+    doubleClick: (event: ClickEvent) => {
       // dobleclick: aprobar/desaprobar
-      const id = e.nodes[0];
+      const id = event.nodes[0];
       if (id === "CBC") return;
       const node = getNode(id);
       if (!node) return;
@@ -870,9 +890,9 @@ const Graph = (userContext) => {
         desaprobar(id);
       }
     },
-    hoverNode: (e) => {
+    hoverNode: (event: HoverEvent) => {
       // hover: seleccionar nodo para ver sus correlativas facilmente
-      const id = e.node;
+      const id = event.node;
       if (network.getSelectedNodes().length) {
         return;
       }
@@ -894,9 +914,9 @@ const Graph = (userContext) => {
       }
       deselectNode();
     },
-    selectNode: (e) => {
+    selectNode: (event: ClickEvent) => {
       // click: seleccionar un nodo
-      const id = e.nodes[0];
+      const id = event.nodes[0];
 
       // Si clickeo el CBC, lo abro/cierro
       if (id === "CBC") {
@@ -907,14 +927,14 @@ const Graph = (userContext) => {
       }
       selectNode(id, true);
     },
-    deselectNode: (e) => {
+    deselectNode: (event: DeselectEvent) => {
       // click en otro nodo/click en cualquier lado del mapa: deseleccionar lo que teniamos
       deselectNode(true);
     },
   };
 
   // Definimos muuuuchos getters para tener acceso a todo tipo de nodos y no andar repitiendo todo
-  const getters = {
+  const getters: Getters = {
     NodesFrom: (id) => network.getConnectedNodes(id, "from"),
     NodesTo: (id) => network.getConnectedNodes(id, "to"),
     NeighborNodes: (id) => network.getConnectedNodes(id),
@@ -949,7 +969,7 @@ const Graph = (userContext) => {
     MateriasAprobadasCBC: () =>
       nodes
         ? nodes.get({
-            filter: (n) => n.categoria === "*CBC" && n.aprobada && n.nota > 0,
+            filter: (n) => (n.categoria === "*CBC" && n.aprobada && n.nota > 0),
             fields: ["nota"],
           })
         : [],

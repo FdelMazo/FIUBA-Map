@@ -1,5 +1,5 @@
-import { Carrera, FinDeCarrera, Orientacion } from "./carreras";
 import React from "react";
+import { Carrera, FinDeCarrera, Orientacion } from "./carreras";
 import { Optativa } from "./Graph";
 import { MateriaFIUBARepo } from "./externalAPI";
 
