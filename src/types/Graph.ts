@@ -69,9 +69,7 @@ export interface CTX {
   // colorMode;
 }
 
-export interface GraphType {
-
-}
+export interface GraphType {}
 
 export interface Optativa {
   id: number;
@@ -87,49 +85,65 @@ export interface Optativa {
 // }
 
 export interface ClickEvent {
-  nodes: string[], // FIXME: nodes in clickevent is maybe number[]
-  edges: string[],
-  event: Event, // FIXME: quiza haya algo mas especifico para el clickEvent que Event
+  nodes: string[]; // FIXME: nodes in clickevent is maybe number[]
+  edges: string[];
+  event: Event; // FIXME: quiza haya algo mas especifico para el clickEvent que Event
   pointer: {
-    DOM: Position,
-    canvas: Position
-  }
+    DOM: Position;
+    canvas: Position;
+  };
 }
 
 export interface DeselectEvent extends ClickEvent {
   previousSelection: {
     nodes: string[];
     edges: string[];
-  }
+  };
 }
 
 export interface HoverEvent {
   node: string;
 }
 
+export interface NodesGetQuery {
+  filter: (node: NodeType) => string | number | boolean | undefined;
+  // FIXME: me parece hardcodeado permitir undefined en NodesGetQuery interface
+  fields?: string[];
+  type?: { level: string };
+}
+
+export type NodesGet<T extends string | NodesGetQuery> = T extends string
+  ? NodeType
+  : NodeType[];
+
 export interface Nodes {
-  get(
-    query?: number | {
-      filter: (node: NodeType) => string | number | boolean | undefined,
-      // FIXME: me parece hardcodeado permitir undefined
-      fields?: string[],
-      type?: { level: string }
-    }
-  ): NodeType[];
-  distinct(property: string) : string[];
-  update(nodes: NodeType[]): void;
+  get(): NodeType[];
+
+  get<T extends string | NodesGetQuery>(query: T): NodesGet<T>;
+
+  distinct(property: string): string[];
+
+  update(nodes: NodeType[] | NodeType): void;
+
+  map(callback: (node: NodeType) => NodeType): NodeType[];
+
   [key: number]: NodeType;
+
+  sort(callback: (a: NodeType, b: NodeType) => number): NodeType[];
 }
 
 export interface Edges {
   get(
-    query?: number | {
-      filter: (node: EdgeType) => string | number | boolean | undefined,
-      // FIXME: me parece hardcodeado permitir undefined
-      fields?: string[],
-      type?: { level: string }
-    }
+    query?:
+      | number
+      | {
+          filter: (node: EdgeType) => string | number | boolean | undefined;
+          // FIXME: me parece hardcodeado permitir undefined
+          fields?: string[];
+          type?: { level: string };
+        },
   ): EdgeType[];
+
   update(nodes: EdgeType[]): void;
 }
 
@@ -141,17 +155,41 @@ export interface EdgeType {
   id: string;
 }
 
-export interface NodesHandler {
-  update(
-    ids: number[],
-    changedData: { level: number }[],
-    oldData: { level: number }[]
-  ): void;
+export interface Position {
+  x: number;
+  y: number;
 }
 
-export interface Position {
-  x: number,
-  y: number
+export interface OverrideOptativas {
+  action: "override";
+  value: GraphOptativa[];
+}
+
+export interface EditOptativa {
+  action: "edit";
+  value: GraphOptativa;
+}
+
+export interface CreateOptativa {
+  action: "create";
+  value: undefined;
+}
+
+export interface RemoveOptativa {
+  action: "remove";
+  value: { id: number };
+}
+
+export type OptativasDispatcher =
+  | OverrideOptativas
+  | EditOptativa
+  | CreateOptativa
+  | RemoveOptativa;
+
+export interface GraphOptativa {
+  id: number;
+  nombre: string;
+  creditos: number;
 }
 
 export interface GraphCredito {
@@ -167,6 +205,15 @@ export interface GraphCredito {
   dummy?: boolean;
   helpText?: string | boolean;
   checkbox?: boolean;
+  check?: boolean | undefined;
+}
+
+export interface NodesHandler {
+  update(
+    ids: number[],
+    changedData: { level: number }[],
+    oldData: { level: number }[],
+  ): void;
 }
 
 export interface Network {
@@ -178,7 +225,7 @@ export interface Network {
     nodes: Nodes;
     emitter: {
       emit(string: string): void;
-    }
+    };
   };
   nodesHandler: NodesHandler;
 
@@ -194,18 +241,18 @@ export interface Network {
 
   getScale(): number;
 
-  moveTo(position: {
-    position: Position,
-    scale: number,
-  }): void;
+  moveTo(position: { position: Position; scale?: number }): void;
 
   key: string;
 
-  getConnectedNodes(id: string, direction?: "to" | "from" | undefined): string[];
+  getConnectedNodes(
+    id: string,
+    direction?: "to" | "from" | undefined,
+  ): string[];
 
   getConnectedEdges(id: string): string[];
 
-  getSelectedNodes(): NodeType[];
+  getSelectedNodes(): string[];
 
   selectNodes(query: string[]): void;
 }

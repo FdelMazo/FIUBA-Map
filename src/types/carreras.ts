@@ -32,10 +32,8 @@ export interface Electivas {
 }
 
 export interface OrientacionCredito {
-  [key: string]: {
-    orientacion: number;
-    electivas: Electivas;
-  };
+  orientacion: number;
+  electivas: Electivas;
 }
 
 export interface Creditos {
@@ -43,7 +41,7 @@ export interface Creditos {
   electivas?: number | Electivas;
   checkbox?: Checkbox[];
   materias?: MateriaCredito[];
-  orientacion?: OrientacionCredito;
+  orientacion?: { [key: string]: OrientacionCredito };
 }
 
 export interface Orientacion {

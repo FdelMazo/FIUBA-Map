@@ -6,8 +6,17 @@ import { CREDITOS } from "./constants";
 import Node from "./Node";
 import { COLORS } from "./theme";
 import { accCreditos, accCreditosNecesarios, accProportion } from "./utils";
-import { UserLogin } from "./types/User";
-import { ClickEvent, GraphCredito, DeselectEvent, Getters, HoverEvent, Network } from "./types/Graph";
+import { UserInfo, UserLogin } from "./types/User";
+import {
+  ClickEvent,
+  GraphCredito,
+  DeselectEvent,
+  Getters,
+  HoverEvent,
+  Network,
+  Nodes,
+  GraphOptativa, OptativasDispatcher
+} from "./types/Graph";
 import { NodeType } from "./types/Node";
 import { Electivas } from "./types/carreras";
 
@@ -43,8 +52,8 @@ const Graph = (userContext: UserLogin) => {
   }, [network]);
 
   // Para manipular los nodos, necesitamos acceso a la ref interna que les seteamos en el constructor
-  const getNode = (id) => {
-    return nodes?.get(id)?.nodeRef;
+  const getNode = (id: string): NodeType | undefined => {
+    return nodes.get(id)?.nodeRef;
   };
 
   // Cuando cambia la carrera, cambia la key del body.
@@ -62,6 +71,7 @@ const Graph = (userContext: UserLogin) => {
         const id = ids[i];
         let node = nodes[id];
         const data = changedData[i];
+
         if (node !== undefined) {
           // update node
           if (node.setOptions(data)) {
@@ -139,14 +149,15 @@ const Graph = (userContext: UserLogin) => {
     setNetwork(network);
   };
 
-  // El graph es el contenido de la red. Al cambiar la carrera se rellena con lo que tiene el json
+  // El graph es el contenido de la red. Al cambiar la carrera se rellena con lo que tiene el JSON
   // y despues, con un useEffect, se rellena con lo que tiene el usuario en la DB
   const graph = React.useMemo(() => {
     // Esta mal que un useMemo no sea puro...
     // pero cuando se actualiza el grafo, por las dudas, limpiamos el nodo que teniamos elegido
     // test: entrar y clickear un nodo rapido, y esperar a que el usuario se loguee solo
     setDisplayedNode("");
-    const nodes: NodeType[] = user.carrera.graph.map((n) => new Node(n));
+    // TODO: cambiar variable local nodes con otro nombre, ya que se molesta con la de afuera
+    const graphNodes: Node[] = user.carrera.graph.map((n) => new Node(n));
     const edges = user.carrera.graph.flatMap((n) => {
       let e = [];
       if (n.correlativas)
@@ -168,31 +179,32 @@ const Graph = (userContext: UserLogin) => {
     // Para evitar que se actualice la red pero no el grafo, guardamos la carrera
     // y despues la usamos para chequear contra la carrera de la network
     const key = user.carrera.id;
-    return { nodes, edges, groups, key };
+    return { nodes: graphNodes, edges, groups, key };
   }, [user.carrera.graph, user.carrera.id]);
 
   // Cuando cambia la carrera, poblamos el nuevo grafo con lo que hay en la DB
   // (o, simplemente aprobamos el CBC si el usuario no tenia nada)
   React.useEffect(() => {
-    if (!network || graph.key !== network.key) return;
+    if (!network || graph.key !== network.key || !user.maps) return;
 
     // Nos fijamos que el usuario tenga un mapa guardado en la db
+    // FIXME: esto medio dudoso el optional chaining en linea 191 src/Graph.ts , hacerlo mas safe
     const map = user.maps.find((map) => map.carreraid === user.carrera.id)?.map;
     if (map) {
-      const toUpdate = [];
+      const toUpdate: NodeType[] = [];
 
       // Aprobamos/planeamos todo lo que tenia el usuario en la db
       map.materias.forEach((m) => {
         let node = getNode(m.id);
-        if (!node) return;
-        if (m.nota >= -1 || m.cuatrimestre) {
+
+        if (node && (m.nota >= -1 || m.cuatrimestre)) {
           if (m.nota >= -1) {
             node = node.aprobar(m.nota);
           }
           if (m.cuatrimestre) {
-            node = node.cursando(m.cuatrimestre);
+            node = node!.cursando(m.cuatrimestre);
           }
-          toUpdate.push(node);
+          toUpdate.push(node!);
         }
       });
 
@@ -227,7 +239,7 @@ const Graph = (userContext: UserLogin) => {
       nodes.update(
         getters
           .ALL()
-          .map((n) => getNode(n.id).desaprobar().cursando(undefined)),
+          .map((n) => getNode(n.id)!.desaprobar().cursando(undefined)),
       );
       aprobar("CBC", 0);
       actualizarNiveles();
@@ -257,7 +269,7 @@ const Graph = (userContext: UserLogin) => {
     const creditosCBC = [...getters.CBC()].reduce(accCreditos, 0);
     nodes.update(
       nodes.map((n) =>
-        getNode(n.id).actualizar({
+        getNode(n.id)!.actualizar({
           getters,
           user,
           network,
@@ -281,7 +293,7 @@ const Graph = (userContext: UserLogin) => {
     let lastLevel = Math.max(...getters.AllShown().map((n) => n.level));
 
     const conCuatri = getters.AllShownWithCuatri();
-    const firstCuatri = Math.min(...conCuatri.map((n) => n.cuatrimestre));
+    const firstCuatri = Math.min(...conCuatri.map((n) => n.cuatrimestre!));
 
     // Despues del CBC, las materias que tienen seteado el cuatrimestre
     // Como un estilo de "lo planeado a la izq, lo por planear a la der"
@@ -291,7 +303,7 @@ const Graph = (userContext: UserLogin) => {
       lastLevel = 0;
       toUpdate.push(
         ...conCuatri.map((n) => {
-          n.level = (n.cuatrimestre - firstCuatri) / 0.5 + lastLevel + 1;
+          n.level = (n.cuatrimestre! - firstCuatri) / 0.5 + lastLevel + 1;
           return n;
         }),
       );
@@ -355,8 +367,8 @@ const Graph = (userContext: UserLogin) => {
       fields: ["id", "nota", "cuatrimestre"],
     });
     const checkboxes = user.carrera.creditos.checkbox
-      ?.filter((c) => c.check === true)
-      .map((c) => c.nombre);
+        ?.filter((c) => c.check === true)
+        .map((c) => c.nombre);
     return saveUserGraph(user, materias, checkboxes, optativas, aplazos);
   };
 
@@ -364,13 +376,14 @@ const Graph = (userContext: UserLogin) => {
   // Interfaz de la UI con los cambios del usuario (carrera, orientacion, findecarrera)
   // Cada vez que cambia del usuario, se guarda en la DB para que quede guardado\
   // y la proxima vez que entre vaya directamente a esa carrera
-  // (porque on boot se usa la ultima carrera registrada en la db)
+  // (porque on boot se usa la ultima carrera registrada en la DB)
   ///
-  const changeCarrera = (id) => {
-    // Nos fijamos si ya habia algun registro en la db
+  const changeCarrera = (id: string) => {
+    // Nos fijamos si ya habia algun registro en la DB
     const userdata = user.allLogins.find((l) => l.carreraid === id);
-    const carrera = CARRERAS.find((c) => c.id === id);
-    let newUser = { ...user, carrera, orientacion: null, finDeCarrera: null };
+    const carrera = CARRERAS.find((c) => c.id === id)!;
+    let newUser: UserInfo = { ...user, carrera, orientacion: null, finDeCarrera: null };
+
     if (userdata) {
       const orientacion = carrera.orientaciones?.find(
         (c) => c.nombre === userdata.orientacionid,
@@ -384,7 +397,7 @@ const Graph = (userContext: UserLogin) => {
     setUser(newUser);
   };
 
-  const changeOrientacion = (id) => {
+  const changeOrientacion = (id: string) => {
     const orientacion = user.carrera.orientaciones?.find(
       (c) => c.nombre === id,
     );
@@ -393,7 +406,7 @@ const Graph = (userContext: UserLogin) => {
     setUser(newUser);
   };
 
-  const changeFinDeCarrera = (id) => {
+  const changeFinDeCarrera = (id: string) => {
     const finDeCarrera = user.carrera.finDeCarrera?.find((c) => c.id === id);
     const newUser = { ...user, finDeCarrera };
     if (logged) register(newUser);
@@ -403,48 +416,50 @@ const Graph = (userContext: UserLogin) => {
   ///
   // Interfaz de botones de la UI con los nodos
   ///
-  const aprobar = (id, nota) => {
-    nodes.update(getNode(id).aprobar(nota));
+  // FIXME: esta bien que aprobar, desaprobar y cursando confien que el id que
+  //   les pasan corresponde a un node, o tendria que chequear que exista un
+  //   node con ese id
+  const aprobar = (id: string, nota: number) => {
+    nodes.update(getNode(id)!.aprobar(nota)!);
     actualizar();
   };
 
-  const desaprobar = (id) => {
-    nodes.update(getNode(id).desaprobar());
+  const desaprobar = (id: string) => {
+    nodes.update(getNode(id)!.desaprobar());
     actualizar();
   };
 
-  const cursando = (id, cuatrimestre) => {
-    nodes.update(getNode(id).cursando(cuatrimestre));
+  const cursando = (id: string, cuatrimestre: number) => {
+    nodes.update(getNode(id)!.cursando(cuatrimestre));
     actualizar();
     actualizarNiveles();
   };
 
   const restartGraphCuatris = () => {
     nodes.update(
-      getters.Cuatrimestres().map((n) => getNode(n.id).cursando(undefined)),
+      getters.Cuatrimestres().map((n) => getNode(n.id)!.cursando(undefined)),
     );
     actualizar();
     actualizarNiveles();
   };
 
-  const toggleCheckbox = (c, forceTrue = false) => {
-    if (!user.carrera.creditos.checkbox.find((ch) => ch.nombre === c)) {
-      return;
+  const toggleCheckbox = (c: string, forceTrue = false) => {
+    if (user.carrera.creditos.checkbox) {
+      const checkbox = user.carrera.creditos.checkbox.find((ch) => ch.nombre === c);
+
+      if (checkbox) {
+        const value = !!checkbox.check;
+        checkbox.check = forceTrue ? true : !value;
+        actualizar();
+      }
     }
-
-    const value = !!user.carrera.creditos.checkbox.find((ch) => ch.nombre === c)
-      .check;
-
-    user.carrera.creditos.checkbox.find((ch) => ch.nombre === c).check =
-      forceTrue ? true : !value;
-    actualizar();
   };
 
   // Clickear en la materia "CBC" te muestra las materias adentro del CBC
   const toggleCBC = () => {
     const categoria = getters.CBC();
     categoria.forEach((n) => {
-      const node = getNode(n.id);
+      const node = getNode(n.id)!;
       node.hidden = !node.hidden;
       return node;
     });
@@ -473,7 +488,7 @@ const Graph = (userContext: UserLogin) => {
   // TODO: lo malo de mostrar materias parciales, es que si mostras aprobaste una materia pero no sus correlativas (caso borde),
   //  se va a mostrar una materia flotando, porque sus correlativas no estan presentes
   //  Tal vez habria que agregar para mostrar todas las relevantes y todas sus correlativas
-  const groupStatus = (categoria) => {
+  const groupStatus = (categoria: string) => {
     const status = [
       ...new Set(getters.CategoriaOnly(categoria).map((n) => n.hidden)),
     ];
@@ -486,13 +501,14 @@ const Graph = (userContext: UserLogin) => {
   // Si esta oculto, lo muestro parcialmente
   // Si esta mostrado parcialmente, lo muestro enteramente
   // Si esta mostrado enteramente, lo oculto
-  const toggleGroup = (categoria) => {
+  const toggleGroup = (categoria: string) => {
     const status = groupStatus(categoria);
     let group = null;
+
     switch (status) {
       case "hidden":
         group = getters.CategoriaRelevantes(categoria).map((n) => {
-          const node = getNode(n.id);
+          const node = getNode(n.id)!;
           node.hidden = false;
           return node;
         });
@@ -500,14 +516,14 @@ const Graph = (userContext: UserLogin) => {
       // eslint-disable-next-line no-fallthrough
       case "partial":
         group = getters.CategoriaOnly(categoria).map((n) => {
-          const node = getNode(n.id);
+          const node = getNode(n.id)!;
           node.hidden = false;
           return node;
         });
         break;
       case "shown":
         group = getters.CategoriaOnly(categoria).map((n) => {
-          const node = getNode(n.id);
+          const node = getNode(n.id)!;
           node.hidden = true;
           return node;
         });
@@ -515,8 +531,6 @@ const Graph = (userContext: UserLogin) => {
           deselectNode();
           network.selectNodes([]);
         }
-        break;
-      default:
         break;
     }
 
@@ -529,7 +543,7 @@ const Graph = (userContext: UserLogin) => {
   // Relevantes: aprobadas o planeadas
   const showRelevantes = () => {
     const relevantes = getters.AllRelevantes().map((n) => {
-      const node = getNode(n.id);
+      const node = getNode(n.id)!;
       node.hidden = false;
       return node;
     });
@@ -542,10 +556,10 @@ const Graph = (userContext: UserLogin) => {
 
   // Cuando un grupo tiene muchas materias (por ej: tengo 40 electivas), queremos que no sea una columna de muchas materias al hilo
   // Entonces, hacemos que se muestren en columnas de a 7 materias, ordenadas por prioridad (aprobadas mas arriba que desaprobadas, por ej)
-  const balanceSinNivel = (group, lastLevel) => {
-    const sortByGroup = (a, b) => {
-      const nodeA = getNode(a.id);
-      const nodeB = getNode(b.id);
+  const balanceSinNivel = (group: NodeType[], lastLevel: number) => {
+    const sortByGroup = (a: NodeType, b: NodeType) => {
+      const nodeA = getNode(a.id)!;
+      const nodeB = getNode(b.id)!;
       const groupOrder = [
         "Aprobadas",
         "En Final",
@@ -576,7 +590,7 @@ const Graph = (userContext: UserLogin) => {
   // Las optativas son materias que te agregan creditos que no estan en el plan de la carrera
   // Les asignamos solamente el nombre y la cantidad de creditos que otorgan (porque la nota no influye en el promedio)
   const [optativas, optativasDispatch] = React.useReducer(
-    (prevstate, dispatched) => {
+    (prevstate: GraphOptativa[], dispatched: OptativasDispatcher) => {
       let newstate = prevstate;
       const { action, value } = dispatched;
 
@@ -601,8 +615,6 @@ const Graph = (userContext: UserLogin) => {
         case "edit":
           newstate = prevstate.map((o) => (o.id === value.id ? value : o));
           break;
-        default:
-          return newstate;
       }
 
       return newstate;
@@ -687,15 +699,14 @@ const Graph = (userContext: UserLogin) => {
     if (user.carrera.eligeOrientaciones)
       if (
         user.orientacion &&
-        user.carrera.creditos.orientacion![user.orientacion?.nombre] &&
-        typeof COLORS[user.orientacion.colorScheme] === "object"
+        user.carrera.creditos.orientacion![user.orientacion?.nombre]
       ) {
         creditos.push({
           nombre: `Orientación: ${user.orientacion.nombre}`,
           nombrecorto: "Orientación",
           bg: COLORS[user.orientacion.colorScheme][50],
           color: user.orientacion.colorScheme,
-          creditosNecesarios: getCorrectCreditos()?.orientacion,
+          creditosNecesarios: getCorrectCreditos()?.orientacion as number,
           nmaterias: orientacion.length,
           creditos: orientacion.reduce(accCreditos, 0),
         });
@@ -739,7 +750,8 @@ const Graph = (userContext: UserLogin) => {
     //  habria que asegurarse de que sus creditos no se doble cuenten en el total
     if (user.carrera.creditos.materias)
       user.carrera.creditos.materias.forEach((m) => {
-        const node = getNode(m.id);
+        const node = getNode(m.id)!;
+
         creditos.push({
           nombre: node.materia,
           nombrecorto: m.nombrecorto,
@@ -754,7 +766,7 @@ const Graph = (userContext: UserLogin) => {
     // agregamos el final de carrera que corresponda
     if (user.carrera.finDeCarrera) {
       if (user.finDeCarrera) {
-        const node = getNode(user.finDeCarrera.materia);
+        const node = getNode(user.finDeCarrera.materia)!;
         creditos.push({
           ...CREDITOS["Fin de Carrera"],
           nombre: node.materia,
@@ -781,8 +793,8 @@ const Graph = (userContext: UserLogin) => {
     });
 
     const fullProportion = creditos.reduce(accProportion, 0);
-    if (fullProportion > 10) creditos[1].proportion -= fullProportion - 10;
-    else if (fullProportion < 10) creditos[1].proportion += 10 - fullProportion;
+    if (fullProportion > 10) creditos[1].proportion! -= fullProportion - 10;
+    else if (fullProportion < 10) creditos[1].proportion! += 10 - fullProportion;
 
     setCreditos(creditos);
   };

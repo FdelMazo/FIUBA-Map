@@ -117,7 +117,7 @@ class Node implements NodeType {
     return this;
   }
 
-  cursando(cuatri: number) {
+  cursando(cuatri: number | undefined) {
     this.cuatrimestre = cuatri;
 
     return this;

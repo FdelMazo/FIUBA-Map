@@ -2,8 +2,9 @@ import React from "react";
 import { Carrera, FinDeCarrera, Orientacion } from "./carreras";
 import { Optativa } from "./Graph";
 import { MateriaFIUBARepo } from "./externalAPI";
+import { NodeType } from "./Node";
 
-interface MateriaNodo {
+export interface MateriaNodo {
   id: string;
   nota: number;
   cuatrimestre: number;
@@ -15,11 +16,15 @@ export interface UserCarreraInfo {
   findecarreraid: string | undefined;
 }
 
+// FIXME: a orientacion y finDeCarrera se le otorga a lo largo de la app
+//   valores de null y undefined, undefined cuando se esta definiendo al usuario inicial (src/User.ts initialUser)
+//   y null cuando se especifica que no tiene ni orientacion ni finDeCarrera (src/Graph.ts changeCarrera)
+//   es este el comportamiento esperado????
 export interface UserInfo {
   padron: string;
   carrera: Carrera;
-  orientacion: Orientacion | undefined;
-  finDeCarrera: FinDeCarrera | undefined;
+  orientacion: Orientacion | undefined | null;
+  finDeCarrera: FinDeCarrera | undefined | null;
   allLogins: UserCarreraInfo[];
   maps: UserMap[] | undefined;
 }
@@ -39,8 +44,8 @@ export interface UserMap {
 export interface SaveUserGraph {
   (
     user: UserInfo,
-    materias: MateriaNodo[],
-    checkboxes: string[],
+    materias: NodeType[],
+    checkboxes: string[] | undefined,
     optativas: Optativa[],
     aplazos: number
   ): Promise<void>;
