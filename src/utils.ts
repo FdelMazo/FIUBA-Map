@@ -1,5 +1,5 @@
 import { NodeType } from "./types/Node";
-import { GraphCredito } from "./types/Graph";
+import { GraphCredito, GraphOptativa } from "./types/Graph";
 
 export const promediar = (materias: NodeType[]) => {
   const sum = materias.reduce((acc, node: NodeType) => {
@@ -11,7 +11,8 @@ export const promediar = (materias: NodeType[]) => {
   return sum ? (sum / materias.length).toFixed(2) : 0;
 };
 
-export const accCreditos = (acc: number, node: NodeType) => {
+// FIXME: los tipos de node esta bien que sean especificos, o tendrian que aceptar cualquier objeto que tenga la propiedad creditos????
+export const accCreditos = (acc: number, node: NodeType | GraphOptativa) => {
   acc += node.creditos;
 
   return acc;
@@ -23,8 +24,10 @@ export const accCreditosNecesarios = (acc: number, grupo: GraphCredito) => {
   return acc;
 };
 
-export const accProportion = (acc, grupo) => {
-  acc += grupo.proportion;
+export const accProportion = (acc: number, grupo: GraphCredito) => {
+  if (grupo.proportion) {
+    acc += grupo.proportion;
+  }
 
   return acc;
 };
