@@ -50,13 +50,13 @@ class Node implements NodeType {
     // (porque cuando llenamos el grafo, vis.js hace lo que quiere con nuestra estructura de datos)
     this.nodeRef = this;
 
-    // Si en los JSONs hay un campo valido de vis.js, lo vamos a tomar
-    // Por ejemplo, el campo level lo levantamos directo desde el JSON
-    this.categoria = node.categoria; // Lo declaramos especificamente porque sino TypeScript no lo reconoce
+    // Lo declaramos especificamente porque sino TypeScript no lo reconoce
+    this.categoria = node.categoria;
     this.creditos = node.creditos;
     this.materia = node.materia;
-    // TODO: estara bien this.opacity = undefined;?
-    // this.opacity = undefined;
+
+    // Si en los JSONs hay un campo valido de vis.js, lo vamos a tomar
+    // Por ejemplo, el campo level lo levantamos directo desde el JSON
     this.id = node.id;
     Object.assign(this, { ...node });
     this.label = breakWords(node.materia);
@@ -130,7 +130,6 @@ class Node implements NodeType {
   // Nota: que se consideren o no los creditos del CBC para esto
   // es MUY poco claro en todos los planes de FIUBA, y todos varian,
   // asi que puede no ser 100% fiel a la realidad
-  // FIXME: me parece que ctx no tendria que ser llamada asi en Node class
   isHabilitada(graphInfo: GraphInfo) {
     const { getters, getNode, creditos } = graphInfo;
     const { creditosTotales, creditosCBC } = creditos;

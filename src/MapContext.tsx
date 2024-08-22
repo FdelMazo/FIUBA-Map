@@ -4,8 +4,6 @@ import Graph from "./Graph";
 import { UserContextType } from "./types/User";
 import { GraphContextType } from "./types/Graph";
 
-// FIXME: hacer type assertion con los contexts quiza no sea la mejor opcion?
-// alternativas: https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/context/
 export const UserContext = React.createContext<UserContextType>(null!);
 export const GraphContext = React.createContext<GraphContextType>(null!);
 

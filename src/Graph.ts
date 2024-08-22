@@ -159,7 +159,6 @@ const Graph = (userContext: UserContextType): GraphContextType => {
     // pero cuando se actualiza el grafo, por las dudas, limpiamos el nodo que teniamos elegido
     // test: entrar y clickear un nodo rapido, y esperar a que el usuario se loguee solo
     setDisplayedNode("");
-    // TODO: cambiar variable local nodes con otro nombre, ya que se molesta con la de afuera
     const graphNodes: Node[] = user.carrera.graph.map((n) => new Node(n));
     const edges = user.carrera.graph.flatMap((n) => {
       let e = [];
