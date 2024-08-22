@@ -114,7 +114,6 @@ export const getFiubaRepos = async () => {
     ),
   ];
 
-  // FIXME: quedo muy verboso accumulator, current??
   let allMaterias = Object.keys(ALIAS_MATERIAS).reduce<MateriaFIUBARepo[]>(
     (accumulator, current) => {
       const nombre = ALIAS_MATERIAS[current];
@@ -162,7 +161,6 @@ export const getFiubaRepos = async () => {
 };
 
 // Consigue todos los mapas asociados a un padron, de todas las carreras
-// TODO: quiza haya que handlear cuando maps es undefined en vez de permitirlo?,
 export const getGraphs = async (padron: string) => {
   const data = await fetch(
     `${C.SPREADSHEET}/${C.SHEETS.registros}!B:D?majorDimension=COLUMNS&key=${C.KEY}`,
