@@ -1,11 +1,8 @@
 import { COLORS } from "./theme";
 import { getCurrentCuatri, promediar } from "./utils";
 import { NodeType } from "./types/Node";
-import { GraphNode } from "./types/Graph";
-import creditos from "./components/Footer/Creditos";
-import { m } from "framer-motion";
-import user from "./User";
 import { MateriaJSON } from "./types/carreras";
+import { GraphInfo } from "./types/Graph";
 
 const FONT_AFUERA = ["CBC", "*CBC"];
 const ALWAYS_SHOW = [
@@ -39,9 +36,12 @@ class Node implements NodeType {
   originalLevel: number;
   id: string;
   creditos: number;
-  requiere?: boolean;
+  requiere?: number;
+  requiereCBC?: boolean;
   materia: string;
   opacity: number | undefined;
+  font?: { color: "white" | "black" };
+  color?: string;
   // Los nodos los creamos en base a lo que hay en los JSON, y arrancan todos desaprobados
   // Hay varios atributos propios ('categoria', 'cuatrimestre') => Probablemente todos los que estan en español
   // Hay atributos de vis.js que determinan muchas cosas del network => Probablemente todos los que estan en ingles
@@ -58,7 +58,6 @@ class Node implements NodeType {
     // TODO: estara bien this.opacity = undefined;?
     // this.opacity = undefined;
     this.id = node.id;
-    // TODO: quiza usar Object.assign en Node class no sea muy claro para el lector?
     Object.assign(this, { ...node });
     this.label = breakWords(node.materia);
 
@@ -131,25 +130,26 @@ class Node implements NodeType {
   // Nota: que se consideren o no los creditos del CBC para esto
   // es MUY poco claro en todos los planes de FIUBA, y todos varian,
   // asi que puede no ser 100% fiel a la realidad
-  isHabilitada(ctx) {
-    const { getters, getNode, creditos } = ctx;
+  // FIXME: me parece que ctx no tendria que ser llamada asi en Node class
+  isHabilitada(graphInfo: GraphInfo) {
+    const { getters, getNode, creditos } = graphInfo;
     const { creditosTotales, creditosCBC } = creditos;
     const from = getters.NodesFrom(this.id);
-    let todoAprobado = true;
+    let todoAprobado = 1;
 
     for (let id of from) {
-      const m = getNode(id);
-      todoAprobado &= m.aprobada;
+      const m = getNode(id)!;
+      todoAprobado &= +m.aprobada;
     }
     if (this.requiere) {
       if (this.requiereCBC) {
-        todoAprobado &= creditosTotales >= this.requiere;
+        todoAprobado &= +(creditosTotales >= this.requiere);
       } else {
-        todoAprobado &= creditosTotales - creditosCBC >= this.requiere;
+        todoAprobado &= +(creditosTotales - creditosCBC >= this.requiere);
       }
     }
 
-    return todoAprobado;
+    return !!todoAprobado;
   }
 
   // Actualiza el nodo de acuerdo a tooodas sus propiedades
@@ -159,15 +159,15 @@ class Node implements NodeType {
   // Esta funcion esta pensada para llamarse a todos los nodos juntos cada vez que cambia algo
   // Porque esta todo tan entrelazado que actualizar solamente un nodo no va a ser fiel a la realidad
   // Por ejemplo: si apruebo X materia y paso los 100 creditos, de alguna forma el nodo que requiere 100 creditos tiene que enterarse
-  actualizar(ctx) {
-    const { user, showLabels, colorMode, getters } = ctx;
+  actualizar(graphInfo: GraphInfo) {
+    const { user, showLabels, colorMode, getters } = graphInfo;
 
     let grupoDefault = this.categoria;
     if (this.aprobada && this.nota >= 0) grupoDefault = "Aprobadas";
     else if (this.nota === -1) grupoDefault = "En Final";
     else if (this.cuatrimestre === getCurrentCuatri())
       grupoDefault = "Cursando";
-    else if (this.isHabilitada(ctx)) grupoDefault = "Habilitadas";
+    else if (this.isHabilitada(graphInfo)) grupoDefault = "Habilitadas";
     this.group = grupoDefault;
 
     let labelDefault = breakWords(this.materia);
@@ -192,7 +192,7 @@ class Node implements NodeType {
       const materiasCBC = getters.MateriasAprobadasCBC();
       const promedioCBC = promediar(materiasCBC);
       if (showLabels && promedioCBC) this.label += "\n[" + promedioCBC + "]";
-      if (this.isHabilitada(ctx)) {
+      if (this.isHabilitada(graphInfo)) {
         this.color = COLORS.aprobadas[400];
       } else {
         this.color = COLORS.aprobadas[100];

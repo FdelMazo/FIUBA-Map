@@ -1,5 +1,7 @@
 import { CARRERAS } from "./carreras";
 import { COLORS } from "./theme";
+import { Orientacion } from "./types/carreras";
+import { DrawFinDeCarrera } from "./types/constants";
 
 export const USER_FORM =
   "https://docs.google.com/forms/u/1/d/e/1FAIpQLSedZWz0SJOLsxEscmHo8FDdTQyIF5xTczGBqr1Z6oLwKwiemw/formResponse";
@@ -58,7 +60,7 @@ const drawFinDeCarrera = ({
   state: { selected, hover },
   style,
   label,
-}) => {
+}: DrawFinDeCarrera) => {
   let r = style.size;
   const drawNode = () => {
     if (selected || hover) {
@@ -140,8 +142,13 @@ export const GRUPOS = {
     ctxRenderer: drawFinDeCarrera,
   },
   ...CARRERAS.filter((c) => c.orientaciones)
-    .flatMap((c) => c.orientaciones)
-    .reduce(function (map, obj) {
+    .flatMap((c) => c.orientaciones!)
+    .reduce<{ [key: string]: Orientacion }>(function (
+      map: { [key: string]: Orientacion },
+      obj: Orientacion,
+    ) {
+      // @ts-ignore
+      // FIXME: reparar ts-ignore de GRUPOS en constants
       obj.color = COLORS[obj.colorScheme][500];
       map[obj.nombre] = obj;
       return map;

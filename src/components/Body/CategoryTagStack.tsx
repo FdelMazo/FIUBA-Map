@@ -34,6 +34,8 @@ const CategoryTagStack = () => {
         {categorias.map((c) => (
           <Tag
             cursor="pointer"
+            // @ts-ignore
+            // FIXME: reparar ts-ignore de GRUPOS en categoryTagStack
             bg={C.GRUPOS[c]?.color}
             key={c}
             size={{ base: "sm", md: "md" }}
@@ -42,7 +44,6 @@ const CategoryTagStack = () => {
             }}
           >
             <TagLeftIcon
-              // TODO: añadir un icono como default en el as switch de TagLeftIcon en CategoryTagStack.tsx
               as={() => {
                 switch (groupStatus(c)) {
                   case "hidden":
@@ -56,7 +57,9 @@ const CategoryTagStack = () => {
                       <Icon boxSize={"1.3em"} as={RiFocus2Line} mr="0.5rem" />
                     );
                   default:
-                    return;
+                    return (
+                      <Icon boxSize={"1.3em"} as={RiFocusLine} mr="0.5rem" />
+                    );
                 }
               }}
             />

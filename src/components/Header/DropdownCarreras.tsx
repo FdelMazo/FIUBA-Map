@@ -15,11 +15,16 @@ import {
   Badge,
   MenuItem,
   useColorModeValue,
+  BadgeProps,
 } from "@chakra-ui/react";
 import { CARRERAS, PLANES } from "../../carreras";
 import { GraphContext, UserContext } from "../../MapContext";
 
-const AnoBadge = ({ ano, active, ...rest }) => {
+const AnoBadge = ({
+  ano,
+  active,
+  ...rest
+}: { ano: number; active: boolean } & BadgeProps) => {
   const activeVariant = useColorModeValue("solid", "subtle");
   const commonProps = {
     mx: 1,
@@ -30,12 +35,16 @@ const AnoBadge = ({ ano, active, ...rest }) => {
   };
   if (ano === 2020) {
     return (
+      // Chakra pide que textAlign sea de tipo ResponsiveValue<TextAlign> pero no define TextAlign
+      // @ts-ignore
       <Badge {...commonProps} fontSize="x-small" colorScheme="green">
         PLAN <br /> 2020
       </Badge>
     );
   }
   return (
+    // Chakra pide que textAlign sea de tipo ResponsiveValue<TextAlign> pero no define TextAlign
+    // @ts-ignore
     <Badge {...commonProps} fontSize="small">
       {ano}
     </Badge>
@@ -50,7 +59,7 @@ const DropdownCarreras = () => {
   const carrera = React.useMemo(() => {
     const { nombre, nombrecorto } = PLANES.find((p) =>
       p.planes.includes(user.carrera.id),
-    );
+    )!;
     return { nombre, nombrecorto };
   }, [user.carrera.id]);
 
@@ -112,12 +121,12 @@ const DropdownCarreras = () => {
                   }
                 : { cursor: "default", closeOnSelect: false })}
             >
-              <Text as={p.planes.includes(user.carrera.id) && "b"}>
+              <Text as={p.planes.includes(user.carrera.id) ? "b" : "p"}>
                 {p.nombre}
               </Text>
               <Box ml={2}>
                 {p.planes.map((c) => {
-                  const plan = CARRERAS.find((carrera) => carrera.id === c);
+                  const plan = CARRERAS.find((carrera) => carrera.id === c)!;
                   const active = user.carrera.id === c;
                   return (
                     <AnoBadge
@@ -129,10 +138,7 @@ const DropdownCarreras = () => {
                         changeCarrera(c);
                       }}
                       _hover={
-                        !active &&
-                        p.planes.length > 1 && {
-                          border: "1px",
-                        }
+                        !active && p.planes.length > 1 ? { border: "1px" } : {}
                       }
                     />
                   );

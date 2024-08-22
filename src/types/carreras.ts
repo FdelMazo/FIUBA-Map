@@ -15,6 +15,7 @@ export interface MateriaJSON {
   level: number;
   correlativas?: string;
   requiere?: number;
+  requiereCBC?: boolean;
 }
 
 export interface Checkbox {
@@ -49,6 +50,7 @@ export interface Orientacion {
   colorScheme: keyof typeof COLORS;
   nombre: string;
   nonEligible?: true;
+  color?: string; // FIXME: quiza color (que es utilizado en constants.ts) deba agregarse en otro type?
 }
 
 export interface FinDeCarrera {
@@ -60,6 +62,7 @@ export interface Carrera {
   id: string;
   link: string;
   ano: number;
+  beta?: boolean;
   graph: MateriaJSON[];
   creditos: Creditos;
   eligeOrientaciones?: true;

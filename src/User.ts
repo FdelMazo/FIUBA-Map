@@ -4,14 +4,18 @@ import * as C from "./constants";
 import { getFiubaRepos, getGraphs, postGraph, postUser } from "./dbutils";
 import {
   UserInfo,
-  UserLogin,
+  UserContextType,
   UserCarreraInfo,
   SaveUserGraph,
   UserCarreraMap,
-  UserMap
+  UserMap,
 } from "./types/User";
 import { Carrera, FinDeCarrera, Orientacion } from "./types/carreras";
-import { BatchGet, MateriaFIUBARepo, UserValueRange } from "./types/externalAPI";
+import {
+  BatchGet,
+  MateriaFIUBARepo,
+  UserValueRange,
+} from "./types/externalAPI";
 
 // La base de datos se parte en dos tablas (relacional... ponele)
 // La clave que une a las bases de datos es la combinación de padron y carrera
@@ -31,7 +35,7 @@ const initialUser: UserInfo = {
   maps: [],
 };
 
-const Login = () : UserLogin => {
+const Login = (): UserContextType => {
   const [user, setUser] = React.useState<UserInfo>(initialUser);
 
   // Inicializamos el padron en lo que hay en el storage, o vacio
@@ -108,9 +112,7 @@ const Login = () : UserLogin => {
 
     const data = await fetch(
       `${C.SPREADSHEET}:batchGet?key=${C.KEY}${ranges.join("")}`,
-    )
-      .then((res) => res.json()
-      .then((res: BatchGet) => res.valueRanges));
+    ).then((res) => res.json().then((res: BatchGet) => res.valueRanges));
 
     const allLogins: UserCarreraInfo[] = data.map((d) => ({
       carreraid: d.values[0][2],
@@ -123,7 +125,9 @@ const Login = () : UserLogin => {
     let finDeCarrera: FinDeCarrera | undefined = undefined;
     // TODO: reformular esto sin usar for junto a break
     for (const userLogin of allLogins) {
-      const foundCarrera: Carrera = CARRERAS.find((c) => c.id === userLogin.carreraid)!;
+      const foundCarrera: Carrera = CARRERAS.find(
+        (c) => c.id === userLogin.carreraid,
+      )!;
 
       if (foundCarrera) {
         carrera = foundCarrera;

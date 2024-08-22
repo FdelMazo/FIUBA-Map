@@ -1,3 +1,4 @@
+import React from "react";
 import { SettingsIcon } from "@chakra-ui/icons";
 import {
   Button,
@@ -12,11 +13,10 @@ import {
   Tooltip,
   Text,
   Box,
+  PlacementWithLogical,
 } from "@chakra-ui/react";
 import { BiLogOut } from "react-icons/bi";
 import { FaSave, FaUndo } from "react-icons/fa";
-
-import React from "react";
 import { GraphContext, UserContext } from "../../MapContext";
 
 const ButtonProps = {
@@ -30,7 +30,7 @@ const ButtonProps = {
 const TooltipProps = {
   closeOnClick: true,
   hasArrow: true,
-  placement: "bottom",
+  placement: "bottom" as PlacementWithLogical,
   textAlign: "center",
 };
 
@@ -75,7 +75,7 @@ const UserMenu = () => {
           {user.carrera.finDeCarrera && (
             <MenuOptionGroup
               onChange={(value) => {
-                changeFinDeCarrera(value);
+                changeFinDeCarrera(value as string);
               }}
               value={user.finDeCarrera?.id || "none"}
               title="Fin de Carrera"
@@ -97,7 +97,7 @@ const UserMenu = () => {
           {user.carrera.eligeOrientaciones && (
             <MenuOptionGroup
               onChange={(value) => {
-                changeOrientacion(value);
+                changeOrientacion(value as string);
               }}
               value={user.orientacion?.nombre || "none"}
               title="Orientación"
@@ -127,32 +127,44 @@ const UserMenu = () => {
           </MenuItem>
         </MenuList>
       </Menu>
-      <Tooltip
-        {...TooltipProps}
-        label={
-          isBeta
-            ? "No se pueden guardar datos hasta que se oficialice el plan"
-            : "Guardar datos"
-        }
-      >
-        <IconButton
-          {...ButtonProps}
-          ml={2}
-          isLoading={saving}
-          onClick={async () => {
-            setSaving(true);
-            await saveGraph().catch(console.error);
-            setSaving(false);
-          }}
-          isDisabled={isBeta}
+      {
+        // Chakra pide que textAlign sea de tipo ResponsiveValue<TextAlign> pero no define TextAlign
+        // @ts-ignore
+        <Tooltip
+          {...TooltipProps}
+          label={
+            isBeta
+              ? "No se pueden guardar datos hasta que se oficialice el plan"
+              : "Guardar datos"
+          }
         >
-          <Icon boxSize={5} as={FaSave} />
-        </IconButton>
-      </Tooltip>
+          <IconButton
+            {...ButtonProps}
+            ml={2}
+            isLoading={saving}
+            onClick={async () => {
+              setSaving(true);
+              await saveGraph().catch(console.error);
+              setSaving(false);
+            }}
+            isDisabled={isBeta}
+            aria-label="Icono para guardar los datos del plan"
+          >
+            <Icon boxSize={5} as={FaSave} />
+          </IconButton>
+        </Tooltip>
+      }
 
       {getters.Cuatrimestres().length > 0 && (
+        // Chakra pide que textAlign sea de tipo ResponsiveValue<TextAlign> pero no define TextAlign
+        // @ts-ignore
         <Tooltip {...TooltipProps} label="Limpiar todos los cuatris">
-          <IconButton {...ButtonProps} ml={2} onClick={restartGraphCuatris}>
+          <IconButton
+            {...ButtonProps}
+            ml={2}
+            onClick={restartGraphCuatris}
+            aria-label="Icono para limpiar la data de los cuatrimestres"
+          >
             <Icon boxSize={4} as={FaUndo} />
           </IconButton>
         </Tooltip>
