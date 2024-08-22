@@ -17,7 +17,7 @@ import {
   Textarea,
   VStack,
   useToast,
-  ToastId
+  ToastId,
 } from "@chakra-ui/react";
 import React from "react";
 import { UserContext } from "../../MapContext";
@@ -139,13 +139,14 @@ const Sugerencias = () => {
                       <form
                         onSubmit={async (event) => {
                           event.preventDefault();
-                          const bugTextArea = event.currentTarget.elements.namedItem("bug") as HTMLTextAreaElement;
+                          const bugTextArea =
+                            event.currentTarget.elements.namedItem(
+                              "bug",
+                            ) as HTMLTextAreaElement;
 
-      // TODO: acceder de una forma mas type-friendly a esto, ver https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/elements
-                          await submitBug(
-                            user,
-                            bugTextArea.value,
-                          ).catch(console.error);
+                          await submitBug(user, bugTextArea.value).catch(
+                            console.error,
+                          );
                           setShowGracias(true);
                           if (bugToast.current) {
                             toast.close(bugToast.current);

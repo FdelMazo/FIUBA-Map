@@ -36,16 +36,22 @@ const Header = () => {
 
   return (
     <Box {...CommonProps}>
-      <ScaleFade in={displayedNode} transition={{ enter: { delay: 0.0015 } }}>
-        <Flex
-          {...CommonProps}
-          {...(displayedNode && FlexProps)}
-          {...(!displayedNode && AntiFlexProps)}
-        >
-          <MateriaDisplay />
-        </Flex>
+      <ScaleFade in={!!displayedNode} transition={{ enter: { delay: 0.0015 } }}>
+        {
+          // Chakra pide que textAlign sea de tipo ResponsiveValue<FlexWrap> pero no define FlexWrap
+          // @ts-ignore
+          <Flex
+            {...CommonProps}
+            {...(displayedNode && FlexProps)}
+            {...(!displayedNode && AntiFlexProps)}
+          >
+            <MateriaDisplay />
+          </Flex>
+        }
       </ScaleFade>
       {!displayedNode && (
+        // Chakra pide que textAlign sea de tipo ResponsiveValue<FlexWrap> pero no define FlexWrap
+        // @ts-ignore
         <Flex {...CommonProps} {...(!displayedNode && FlexProps)}>
           {logged ? <UserMenu /> : <PadronInput />}
           <DropdownCarreras />

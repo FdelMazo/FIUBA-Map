@@ -6,7 +6,7 @@ import { CREDITOS } from "./constants";
 import Node from "./Node";
 import { COLORS } from "./theme";
 import { accCreditos, accCreditosNecesarios, accProportion } from "./utils";
-import { UserInfo, UserLogin } from "./types/User";
+import { UserInfo, UserContextType } from "./types/User";
 import {
   ClickEvent,
   GraphCredito,
@@ -14,13 +14,16 @@ import {
   Getters,
   HoverEvent,
   Network,
-  Nodes,
-  GraphOptativa, OptativasDispatcher
+  GraphOptativa,
+  OptativasDispatcher,
+  NodeEvents,
+  GraphType,
+  GraphContextType,
 } from "./types/Graph";
 import { NodeType } from "./types/Node";
 import { Electivas } from "./types/carreras";
 
-const Graph = (userContext: UserLogin) => {
+const Graph = (userContext: UserContextType): GraphContextType => {
   const { user, setUser, logged, saveUserGraph, register } = userContext;
   const { colorMode } = useColorMode();
 
@@ -53,7 +56,7 @@ const Graph = (userContext: UserLogin) => {
 
   // Para manipular los nodos, necesitamos acceso a la ref interna que les seteamos en el constructor
   const getNode = (id: string): NodeType | undefined => {
-    return nodes.get(id)?.nodeRef;
+    return nodes?.get(id)?.nodeRef;
   };
 
   // Cuando cambia la carrera, cambia la key del body.
@@ -74,7 +77,7 @@ const Graph = (userContext: UserLogin) => {
 
         if (node !== undefined) {
           // update node
-          if (node.setOptions(data)) {
+          if (node.setOptions!(data)) {
             dataChanged = true;
           }
         } else {
@@ -151,7 +154,7 @@ const Graph = (userContext: UserLogin) => {
 
   // El graph es el contenido de la red. Al cambiar la carrera se rellena con lo que tiene el JSON
   // y despues, con un useEffect, se rellena con lo que tiene el usuario en la DB
-  const graph = React.useMemo(() => {
+  const graph: GraphType = React.useMemo(() => {
     // Esta mal que un useMemo no sea puro...
     // pero cuando se actualiza el grafo, por las dudas, limpiamos el nodo que teniamos elegido
     // test: entrar y clickear un nodo rapido, y esperar a que el usuario se loguee solo
@@ -254,7 +257,7 @@ const Graph = (userContext: UserLogin) => {
   // Se llama casi siempre que pasa algo.
   // Por ejemplo, cuando apruebo una materia, la llamo para que se actualizen todas las materias que habilita
   // En un mundo ideal, esto seria un useEffect que depende de que si cambian los nodos, se llama solo
-  // Pero como visjs no es muy React-compatible, es mejor llamarlo a mano
+  // Pero como vis.js no es muy React-compatible, es mejor llamarlo a mano
   // Tambien, podría ser una suscripcion a la estructura "nodes" (https://visjs.github.io/vis-data/data/dataset.html#Subscriptions)
   // pero como las suscripciones son con callbacks fijos, y actualizar() depende de cosas extra a la network (como los creditos),
   // es bastante jodido estar siempre actualizando el callback
@@ -367,8 +370,8 @@ const Graph = (userContext: UserLogin) => {
       fields: ["id", "nota", "cuatrimestre"],
     });
     const checkboxes = user.carrera.creditos.checkbox
-        ?.filter((c) => c.check === true)
-        .map((c) => c.nombre);
+      ?.filter((c) => c.check === true)
+      .map((c) => c.nombre);
     return saveUserGraph(user, materias, checkboxes, optativas, aplazos);
   };
 
@@ -382,7 +385,12 @@ const Graph = (userContext: UserLogin) => {
     // Nos fijamos si ya habia algun registro en la DB
     const userdata = user.allLogins.find((l) => l.carreraid === id);
     const carrera = CARRERAS.find((c) => c.id === id)!;
-    let newUser: UserInfo = { ...user, carrera, orientacion: null, finDeCarrera: null };
+    let newUser: UserInfo = {
+      ...user,
+      carrera,
+      orientacion: null,
+      finDeCarrera: null,
+    };
 
     if (userdata) {
       const orientacion = carrera.orientaciones?.find(
@@ -445,7 +453,9 @@ const Graph = (userContext: UserLogin) => {
 
   const toggleCheckbox = (c: string, forceTrue = false) => {
     if (user.carrera.creditos.checkbox) {
-      const checkbox = user.carrera.creditos.checkbox.find((ch) => ch.nombre === c);
+      const checkbox = user.carrera.creditos.checkbox.find(
+        (ch) => ch.nombre === c,
+      );
 
       if (checkbox) {
         const value = !!checkbox.check;
@@ -646,7 +656,9 @@ const Graph = (userContext: UserLogin) => {
 
     // Retorna los creditos de las electivas, que por defecto son 0 si la
     // carrera no tiene electivas
-    const getElectivasCreditos = (electivas: number | undefined | Electivas) => {
+    const getElectivasCreditos = (
+      electivas: number | undefined | Electivas,
+    ) => {
       let electivasCreditos = 0;
 
       if (typeof electivas === "number") {
@@ -656,7 +668,7 @@ const Graph = (userContext: UserLogin) => {
       }
 
       return electivasCreditos;
-    }
+    };
 
     // Primeros creditos a mostrar: los 38 del CBC
     // Lo mostramos como siempre aprobado del todo
@@ -681,7 +693,9 @@ const Graph = (userContext: UserLogin) => {
 
     // Despues, las electivas, incluyendo las orientaciones no elegidas
     const electivas = getters.ElectivasAprobadas();
-    const electivasCreditosNecesarios = getElectivasCreditos(getCorrectCreditos().electivas);
+    const electivasCreditosNecesarios = getElectivasCreditos(
+      getCorrectCreditos().electivas,
+    );
 
     creditos.push({
       ...CREDITOS["Electivas"],
@@ -704,6 +718,8 @@ const Graph = (userContext: UserLogin) => {
         creditos.push({
           nombre: `Orientación: ${user.orientacion.nombre}`,
           nombrecorto: "Orientación",
+          // @ts-ignore
+          // FIXME: reparar ts-ignore de GRUPOS en Graph
           bg: COLORS[user.orientacion.colorScheme][50],
           color: user.orientacion.colorScheme,
           creditosNecesarios: getCorrectCreditos()?.orientacion as number,
@@ -794,7 +810,8 @@ const Graph = (userContext: UserLogin) => {
 
     const fullProportion = creditos.reduce(accProportion, 0);
     if (fullProportion > 10) creditos[1].proportion! -= fullProportion - 10;
-    else if (fullProportion < 10) creditos[1].proportion! += 10 - fullProportion;
+    else if (fullProportion < 10)
+      creditos[1].proportion! += 10 - fullProportion;
 
     setCreditos(creditos);
   };
@@ -888,7 +905,7 @@ const Graph = (userContext: UserLogin) => {
   let hovertimer: NodeJS.Timeout | undefined = undefined;
 
   // Interacción con el mouse
-  const events = {
+  const events: NodeEvents = {
     doubleClick: (event: ClickEvent) => {
       // dobleclick: aprobar/desaprobar
       const id = event.nodes[0];
@@ -981,7 +998,7 @@ const Graph = (userContext: UserLogin) => {
     MateriasAprobadasCBC: () =>
       nodes
         ? nodes.get({
-            filter: (n) => (n.categoria === "*CBC" && n.aprobada && n.nota > 0),
+            filter: (n) => n.categoria === "*CBC" && n.aprobada && n.nota > 0,
             fields: ["nota"],
           })
         : [],

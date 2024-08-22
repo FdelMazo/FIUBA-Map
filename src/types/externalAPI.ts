@@ -1,6 +1,3 @@
-import { Carrera } from "./carreras";
-import { UserCarreraMap } from "./User";
-
 // Tipos de la API de Google Sheet
 
 // Fuente: https://developers.google.com/sheets/api/reference/rest/v4/Dimension

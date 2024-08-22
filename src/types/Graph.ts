@@ -1,6 +1,6 @@
+import React from "react";
 import { NodeType } from "./Node";
-import { COLORS } from "../theme";
-import { accCreditos } from "../utils";
+import { UserInfo } from "./User";
 
 export interface Getters {
   NodesFrom(id: string): string[];
@@ -59,51 +59,14 @@ export interface Getters {
   FinDeCarrera(): NodeType[];
 }
 
-export interface CTX {
-  // getters;
-  // user;
-  // network;
-  // getNode;
-  // creditos: { creditosTotales; creditosCBC };
-  // showLabels: logged;
-  // colorMode;
-}
-
-export interface GraphType {}
-
 export interface Optativa {
   id: number;
   nombre: string;
   creditos: number;
 }
 
-// export interface GraphNode {
-//   nodeRef:;
-//   materia: string;
-//
-//   setOptions(data:): boolean;
-// }
-
-export interface ClickEvent {
-  nodes: string[]; // FIXME: nodes in clickevent is maybe number[]
-  edges: string[];
-  event: Event; // FIXME: quiza haya algo mas especifico para el clickEvent que Event
-  pointer: {
-    DOM: Position;
-    canvas: Position;
-  };
-}
-
-export interface DeselectEvent extends ClickEvent {
-  previousSelection: {
-    nodes: string[];
-    edges: string[];
-  };
-}
-
-export interface HoverEvent {
-  node: string;
-}
+// La interfaz del Node que tenemos respecto vis.js
+// Mas info en https://visjs.github.io/vis-network/docs/network/nodes.html
 
 export interface NodesGetQuery {
   filter: (node: NodeType) => string | number | boolean | undefined;
@@ -132,6 +95,9 @@ export interface Nodes {
   sort(callback: (a: NodeType, b: NodeType) => number): NodeType[];
 }
 
+// La interfaz de los edges que tenemos respecto vis.js
+// Mas info en https://visjs.github.io/vis-network/docs/network/edges.html
+
 export interface Edges {
   get(
     query?:
@@ -155,9 +121,36 @@ export interface EdgeType {
   id: string;
 }
 
-export interface Position {
-  x: number;
-  y: number;
+// Nuestra interfaz sobre los eventos de vis.js
+// Mas info en https://visjs.github.io/vis-network/docs/network/#Events
+
+export interface NodeEvents {
+  doubleClick: (event: ClickEvent) => void;
+  hoverNode: (event: HoverEvent) => void;
+  blurNode: () => void;
+  selectNode: (event: ClickEvent) => void;
+  deselectNode: (event: DeselectEvent) => void;
+}
+
+export interface ClickEvent {
+  nodes: string[];
+  edges: string[];
+  event: Event; // FIXME: quiza haya algo mas especifico para el clickEvent que Event
+  pointer: {
+    DOM: Position;
+    canvas: Position;
+  };
+}
+
+export interface DeselectEvent extends ClickEvent {
+  previousSelection: {
+    nodes: string[];
+    edges: string[];
+  };
+}
+
+export interface HoverEvent {
+  node: string;
 }
 
 export interface OverrideOptativas {
@@ -172,7 +165,7 @@ export interface EditOptativa {
 
 export interface CreateOptativa {
   action: "create";
-  value: undefined;
+  value?: undefined;
 }
 
 export interface RemoveOptativa {
@@ -216,6 +209,10 @@ export interface NodesHandler {
   ): void;
 }
 
+// La network es nuestra interfaz con vis.js
+// Nos da acceso a los nodos, las aristas y varias funciones
+// https://visjs.github.io/vis-network/docs/network/
+
 export interface Network {
   body: {
     data: {
@@ -228,6 +225,7 @@ export interface Network {
     };
   };
   nodesHandler: NodesHandler;
+  key: string;
 
   redraw(): void;
 
@@ -243,8 +241,6 @@ export interface Network {
 
   moveTo(position: { position: Position; scale?: number }): void;
 
-  key: string;
-
   getConnectedNodes(
     id: string,
     direction?: "to" | "from" | undefined,
@@ -255,4 +251,73 @@ export interface Network {
   getSelectedNodes(): string[];
 
   selectNodes(query: string[]): void;
+}
+
+export interface GraphType {
+  nodes: NodeType[];
+  edges: { from: string; to: string; color: string }[];
+  groups: string[];
+  key: string;
+}
+
+// El context del Graph que pasamos a lo largo de la app
+
+export interface GraphContextType {
+  optativas: GraphOptativa[];
+  graph: GraphType;
+  creditos: GraphCredito[];
+  setNetwork: React.Dispatch<React.SetStateAction<Network>>;
+  optativasDispatch: React.Dispatch<OptativasDispatcher>;
+  displayedNode: string;
+  setDisplayedNode: React.Dispatch<React.SetStateAction<string>>;
+  getters: Getters;
+  events: NodeEvents;
+  aplazos: number;
+  setAplazos: React.Dispatch<React.SetStateAction<number>>;
+  networkRef: (instance: Element | null) => void; // TODO: quiza se pueda mejorar el networkRef type
+
+  toggleGroup(categoria: string): void;
+
+  getNode(id: string): NodeType | undefined;
+
+  aprobar(id: string, nota: number): void;
+
+  desaprobar(id: string): void;
+
+  saveGraph(): Promise<void>;
+
+  restartGraphCuatris(): void;
+
+  changeCarrera(id: string): void;
+
+  changeOrientacion(id: string): void;
+
+  changeFinDeCarrera(id: string): void;
+
+  toggleCheckbox(c: string, forceTrue?: boolean): void;
+
+  cursando(id: string, cuatrimestre: number | undefined): void;
+
+  groupStatus(categoria: string): "hidden" | "shown" | "partial";
+
+  createNetwork(network: Network): void;
+}
+
+export interface GraphInfo {
+  creditos: {
+    creditosTotales: number;
+    creditosCBC: number;
+  };
+  showLabels: boolean;
+  colorMode: "light" | "dark";
+  getters: Getters;
+  user: UserInfo;
+  network: Network;
+
+  getNode(id: string): NodeType | undefined;
+}
+
+export interface Position {
+  x: number;
+  y: number;
 }

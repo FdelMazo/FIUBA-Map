@@ -4,12 +4,6 @@ import { Optativa } from "./Graph";
 import { MateriaFIUBARepo } from "./externalAPI";
 import { NodeType } from "./Node";
 
-export interface MateriaNodo {
-  id: string;
-  nota: number;
-  cuatrimestre: number;
-}
-
 export interface UserCarreraInfo {
   carreraid: string;
   orientacionid: string | undefined;
@@ -30,7 +24,7 @@ export interface UserInfo {
 }
 
 export interface UserCarreraMap {
-  materias: MateriaNodo[];
+  materias: NodeType[];
   checkboxes?: string[];
   optativas?: Optativa[];
   aplazos?: number;
@@ -47,22 +41,26 @@ export interface SaveUserGraph {
     materias: NodeType[],
     checkboxes: string[] | undefined,
     optativas: Optativa[],
-    aplazos: number
+    aplazos: number,
   ): Promise<void>;
 }
 
-export interface UserLogin {
+export interface UserContextType {
+  login(padron: string): Promise<boolean>;
+
+  signup(padron: string): Promise<void>;
+
+  register(user: UserInfo): Promise<void>;
+
+  logout(): void;
+
+  loading: boolean;
   user: UserInfo;
   logged: boolean;
-  login(padron: string): Promise<boolean>;
-  loading: boolean;
-  register(user: UserInfo): Promise<void>;
-  logout(): void;
   setUser: React.Dispatch<React.SetStateAction<UserInfo>>;
   padronInput: string;
   setPadronInput: React.Dispatch<React.SetStateAction<string>>;
   fiubaRepos: MateriaFIUBARepo[];
   loggingIn: boolean;
   saveUserGraph: SaveUserGraph;
-  signup(padron: string): Promise<void>;
 }

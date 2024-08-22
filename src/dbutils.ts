@@ -135,22 +135,30 @@ export const getFiubaRepos = async () => {
   );
 
   codigosMaterias.forEach((codigo) => {
-    const materia = allMaterias.find((materia) => materia.codigos.includes(codigo));
+    const materia = allMaterias.find((materia) =>
+      materia.codigos.includes(codigo),
+    );
 
     if (!materia) return;
     if (materia.reponames) {
       materia.reponames = new Set([
         ...materia.reponames,
-        ...repos.filter((repo) => repo.topics.includes(codigo)).map((repo) => repo.full_name),
+        ...repos
+          .filter((repo) => repo.topics.includes(codigo))
+          .map((repo) => repo.full_name),
       ]);
     } else {
       materia.reponames = new Set(
-        repos.filter((repo) => repo.topics.includes(codigo)).map((repo) => repo.full_name),
+        repos
+          .filter((repo) => repo.topics.includes(codigo))
+          .map((repo) => repo.full_name),
       );
     }
   });
 
-  return allMaterias.filter((materia) => materia.reponames && materia.reponames.size > 0);
+  return allMaterias.filter(
+    (materia) => materia.reponames && materia.reponames.size > 0,
+  );
 };
 
 // Consigue todos los mapas asociados a un padron, de todas las carreras

@@ -11,7 +11,7 @@ const Footer = () => {
   const { logged, user } = React.useContext(UserContext);
 
   return (
-    <Collapse in={logged} position="relative" unmountOnExit>
+    <Collapse in={logged} unmountOnExit>
       <Flex
         alignItems="center"
         bg={useColorModeValue("headerbg", "headerbgdark")}
