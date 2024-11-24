@@ -16,7 +16,9 @@ import {
   MenuItem,
   useColorModeValue,
   BadgeProps,
+  ResponsiveValue,
 } from "@chakra-ui/react";
+import { Property } from "csstype";
 import { CARRERAS, PLANES } from "../../carreras";
 import { GraphContext, UserContext } from "../../MapContext";
 
@@ -28,23 +30,18 @@ const AnoBadge = ({
   const activeVariant = useColorModeValue("solid", "subtle");
   const commonProps = {
     mx: 1,
-    variant: active ? activeVariant : "outline",
-    textAlign: "center",
+    textAlign: "center" as ResponsiveValue<Property.TextAlign>,
     colorScheme: "gray",
     ...rest,
   };
   if (ano === 2020) {
     return (
-      // Chakra pide que textAlign sea de tipo ResponsiveValue<TextAlign> pero no define TextAlign
-      // @ts-ignore
       <Badge {...commonProps} fontSize="x-small" colorScheme="green">
         PLAN <br /> 2020
       </Badge>
     );
   }
   return (
-    // Chakra pide que textAlign sea de tipo ResponsiveValue<TextAlign> pero no define TextAlign
-    // @ts-ignore
     <Badge {...commonProps} fontSize="small">
       {ano}
     </Badge>

@@ -14,8 +14,10 @@ import {
   Text,
   Box,
   PlacementWithLogical,
+  ResponsiveValue
 } from "@chakra-ui/react";
 import { BiLogOut } from "react-icons/bi";
+import { Property } from "csstype";
 import { FaSave, FaUndo } from "react-icons/fa";
 import { GraphContext, UserContext } from "../../MapContext";
 
@@ -31,7 +33,7 @@ const TooltipProps = {
   closeOnClick: true,
   hasArrow: true,
   placement: "bottom" as PlacementWithLogical,
-  textAlign: "center",
+  textAlign: "center" as ResponsiveValue<Property.TextAlign>,
 };
 
 // Menu para elegir orientacion y fin de carrera (y para "cerrar sesion")
@@ -128,8 +130,6 @@ const UserMenu = () => {
         </MenuList>
       </Menu>
       {
-        // Chakra pide que textAlign sea de tipo ResponsiveValue<TextAlign> pero no define TextAlign
-        // @ts-ignore
         <Tooltip
           {...TooltipProps}
           label={
@@ -156,8 +156,6 @@ const UserMenu = () => {
       }
 
       {getters.Cuatrimestres().length > 0 && (
-        // Chakra pide que textAlign sea de tipo ResponsiveValue<TextAlign> pero no define TextAlign
-        // @ts-ignore
         <Tooltip {...TooltipProps} label="Limpiar todos los cuatris">
           <IconButton
             {...ButtonProps}

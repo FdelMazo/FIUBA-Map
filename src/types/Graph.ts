@@ -2,6 +2,8 @@ import React from "react";
 import { NodeType } from "./Node";
 import { UserInfo } from "./User";
 
+// La interfaz 'manual' de Graph de react-graph-vis
+
 export interface Getters {
   NodesFrom(id: string): string[];
 
