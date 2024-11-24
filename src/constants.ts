@@ -147,9 +147,10 @@ export const GRUPOS = {
       map: { [key: string]: Orientacion },
       obj: Orientacion,
     ) {
-      // @ts-ignore
-      // FIXME: reparar ts-ignore de GRUPOS en constants
-      obj.color = COLORS[obj.colorScheme][500];
+      const colorScheme = obj.colorScheme as keyof typeof COLORS;
+      // FIXME: quiza medio hardcode, pero le aseguramos a TypeScript, que el colorScheme tiene
+      //        un campo de color 500, habra una mejor manera
+      obj.color = (COLORS[colorScheme] as { 500: string })[500];
       map[obj.nombre] = obj;
       return map;
     }, {}),

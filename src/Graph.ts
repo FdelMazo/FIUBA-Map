@@ -717,8 +717,8 @@ const Graph = (userContext: UserContextType): GraphContextType => {
         creditos.push({
           nombre: `Orientación: ${user.orientacion.nombre}`,
           nombrecorto: "Orientación",
-          // @ts-ignore
           // FIXME: reparar ts-ignore de GRUPOS en Graph
+          // @ts-ignore
           bg: COLORS[user.orientacion.colorScheme][50],
           color: user.orientacion.colorScheme,
           creditosNecesarios: getCorrectCreditos()?.orientacion as number,
