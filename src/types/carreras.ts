@@ -46,11 +46,10 @@ export interface Creditos {
 }
 
 export interface Orientacion {
-  // FIXME: mejorar esto del colorScheme de Orientacion type
   colorScheme: keyof typeof COLORS;
   nombre: string;
   nonEligible?: true;
-  color?: string; // FIXME: quiza color (que es utilizado en constants.ts) deba agregarse en otro type?
+  color?: string;
 }
 
 export interface FinDeCarrera {

@@ -31,9 +31,7 @@ const LoadingGraph = () => {
 
   injectStyle(keyframesStyle);
   return (
-    // TODO: añadir callback onClose a LoadingGraph modal
-    // @ts-ignore
-    <Modal isOpen={true}>
+    <Modal isOpen={true} onClose={() => {}}>
       <ModalOverlay />
       <Box
         position="fixed"

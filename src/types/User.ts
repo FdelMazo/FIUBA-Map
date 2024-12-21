@@ -10,10 +10,6 @@ export interface UserCarreraInfo {
   findecarreraid: string | undefined;
 }
 
-// FIXME: a orientacion y finDeCarrera se le otorga a lo largo de la app
-//   valores de null y undefined, undefined cuando se esta definiendo al usuario inicial (src/User.ts initialUser)
-//   y null cuando se especifica que no tiene ni orientacion ni finDeCarrera (src/Graph.ts changeCarrera)
-//   es este el comportamiento esperado????
 export interface UserInfo {
   padron: string;
   carrera: Carrera;
@@ -46,21 +42,18 @@ export interface SaveUserGraph {
 }
 
 export interface UserContextType {
-  login(padron: string): Promise<boolean>;
-
-  signup(padron: string): Promise<void>;
-
-  register(user: UserInfo): Promise<void>;
-
-  logout(): void;
-
   loading: boolean;
   user: UserInfo;
   logged: boolean;
-  setUser: React.Dispatch<React.SetStateAction<UserInfo>>;
   padronInput: string;
-  setPadronInput: React.Dispatch<React.SetStateAction<string>>;
   fiubaRepos: MateriaFIUBARepo[];
   loggingIn: boolean;
+  
+  login(padron: string): Promise<boolean>;
+  signup(padron: string): Promise<void>;
+  register(user: UserInfo): Promise<void>;
+  logout(): void;
+  setUser: React.Dispatch<React.SetStateAction<UserInfo>>;
+  setPadronInput: React.Dispatch<React.SetStateAction<string>>;
   saveUserGraph: SaveUserGraph;
 }

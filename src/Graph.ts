@@ -190,7 +190,6 @@ const Graph = (userContext: UserContextType): GraphContextType => {
     if (!network || graph.key !== network.key || !user.maps) return;
 
     // Nos fijamos que el usuario tenga un mapa guardado en la db
-    // FIXME: esto medio dudoso el optional chaining en linea 191 src/Graph.ts , hacerlo mas safe
     const map = user.maps.find((map) => map.carreraid === user.carrera.id)?.map;
     if (map) {
       const toUpdate: NodeType[] = [];
@@ -423,9 +422,6 @@ const Graph = (userContext: UserContextType): GraphContextType => {
   ///
   // Interfaz de botones de la UI con los nodos
   ///
-  // FIXME: esta bien que aprobar, desaprobar y cursando confien que el id que
-  //   les pasan corresponde a un node, o tendria que chequear que exista un
-  //   node con ese id
   const aprobar = (id: string, nota: number) => {
     nodes.update(getNode(id)!.aprobar(nota)!);
     actualizar();
@@ -717,9 +713,7 @@ const Graph = (userContext: UserContextType): GraphContextType => {
         creditos.push({
           nombre: `Orientación: ${user.orientacion.nombre}`,
           nombrecorto: "Orientación",
-          // FIXME: reparar ts-ignore de GRUPOS en Graph
-          // @ts-ignore
-          bg: COLORS[user.orientacion.colorScheme][50],
+          bg: (COLORS[user.orientacion.colorScheme] as any)[50],
           color: user.orientacion.colorScheme,
           creditosNecesarios: getCorrectCreditos()?.orientacion as number,
           nmaterias: orientacion.length,

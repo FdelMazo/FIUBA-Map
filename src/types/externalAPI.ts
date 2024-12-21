@@ -12,7 +12,6 @@ enum majorDimensionEnum {
 export interface BatchGet {
   spreadsheetId: string;
   valueRanges: UserValueRange[];
-  // TODO: agregar el formato real del spreadsheet quiza ayude?, en vez de hardcodear values: [string[]];
 }
 
 // Fuente: https://developers.google.com/sheets/api/reference/rest/v4/spreadsheets.values#ValueRange

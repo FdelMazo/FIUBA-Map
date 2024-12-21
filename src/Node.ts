@@ -11,7 +11,12 @@ const ALWAYS_SHOW = [
   "Fin de Carrera (Obligatorio)",
 ];
 
-// TODO: documentar breakWords helper funcion de Node.ts
+/**
+ * Funcion que recibe un string y lo separa en palabras, si la palabra tiene menos de 4 caracteres la deja en la misma
+ * linea, si tiene mas de 4 caracteres la separa en una nueva linea
+ * @param string 
+ * @returns 
+ */
 function breakWords(string: string) {
   let broken = "";
 
@@ -92,8 +97,11 @@ class Node implements NodeType {
     // - 2020 => 2020 primer cuatri.
     // - 2020.5 => 2020 segundo cuatri
     this.cuatrimestre = undefined;
-    this.level = node.level ?? -3;
+    // Aca si definimos originalLevel luego de level, como seria logico, introduce un bug, donde al marcar una materia
+    // como cursando, se mueve mucho a la izquierda, quiza porque se le asigna un level de -3?
+    // @ts-ignore
     this.originalLevel = this.level;
+    this.level = node.level ?? -3;
 
     // Arrancan escondidas las materias electivas, las de las orientaciones, etc
     // Siempre mostramos el CBC, las obligatorias, y el final de la carrera de las carreras que no pueden elegir entre tesis y tpp
@@ -112,13 +120,11 @@ class Node implements NodeType {
   desaprobar() {
     this.aprobada = false;
     this.nota = -2;
-
     return this;
   }
 
   cursando(cuatri: number | undefined) {
     this.cuatrimestre = cuatri;
-
     return this;
   }
 

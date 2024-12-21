@@ -21,17 +21,12 @@ export interface NodeType {
   materia: string;
   font?: { color: "white" | "black" };
   color?: string;
-
+  
   aprobar(nota: number): this | undefined;
-
   desaprobar(): this;
-
   cursando(cuatri: number | undefined): this;
-
   isHabilitada(graphInfo: GraphInfo): boolean;
-
   actualizar(graphInfo: GraphInfo): this;
-
   // Opciones completas estan en https://visjs.github.io/vis-network/docs/network/#options
   // Aca estan solamente las que se usan en la app
   setOptions?(data: { level: number }): boolean;
