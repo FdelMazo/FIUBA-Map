@@ -27,7 +27,7 @@ import {
 // maps contiene todos los mapas que tiene el usuario en la DB
 
 const initialUser: UserInfo = {
-  padron: "", // TODO: el valor inicial de padron no tendria que ser null?
+  padron: "",
   carrera: CARRERAS.find((c) => c.id === "sistemas")!,
   orientacion: undefined,
   finDeCarrera: undefined,
@@ -42,7 +42,6 @@ const Login = (): UserContextType => {
   const [padronInput, setPadronInput] = React.useState(
     window.localStorage.getItem("padron") || "",
   );
-  // FIXME: user.padron aca siempre no es ""??, no tendria que chequear padronInput??
   const logged = user.padron !== "";
 
   // Loading es para el spinner del input del padron
@@ -123,7 +122,6 @@ const Login = (): UserContextType => {
     let carrera: Carrera = CARRERAS.find((c) => c.id === "sistemas")!;
     let orientacion: Orientacion | undefined = undefined;
     let finDeCarrera: FinDeCarrera | undefined = undefined;
-    // TODO: reformular esto sin usar for junto a break
     for (const userLogin of allLogins) {
       const foundCarrera: Carrera = CARRERAS.find(
         (c) => c.id === userLogin.carreraid,

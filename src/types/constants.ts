@@ -10,23 +10,14 @@ export interface Ctx {
   font: string;
 
   beginPath(): void;
-
   moveTo(x: number, y: number): void;
-
   lineTo(x: number, y: number): void;
-
   closePath(): void;
-
   save(): void;
-
   fill(): void;
-
   stroke(): void;
-
   restore(): void;
-
   measureText(text: string): { width: number };
-
   fillText(text: string, x: number, y: number): void;
 }
 

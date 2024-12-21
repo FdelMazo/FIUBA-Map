@@ -147,10 +147,7 @@ export const GRUPOS = {
       map: { [key: string]: Orientacion },
       obj: Orientacion,
     ) {
-      const colorScheme = obj.colorScheme as keyof typeof COLORS;
-      // FIXME: quiza medio hardcode, pero le aseguramos a TypeScript, que el colorScheme tiene
-      //        un campo de color 500, habra una mejor manera
-      obj.color = (COLORS[colorScheme] as { 500: string })[500];
+      obj.color = (COLORS[obj.colorScheme] as any)[500];
       map[obj.nombre] = obj;
       return map;
     }, {}),

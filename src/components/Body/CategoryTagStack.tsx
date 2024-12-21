@@ -34,9 +34,8 @@ const CategoryTagStack = () => {
         {categorias.map((c) => (
           <Tag
             cursor="pointer"
-            // FIXME: reparar ts-ignore de GRUPOS en categoryTagStack
             // @ts-ignore
-            bg={C.GRUPOS[c]?.color}
+            bg={C.GRUPOS[c as keyof typeof C.GRUPOS]?.color}
             key={c}
             size={{ base: "sm", md: "md" }}
             onClick={() => {
