@@ -175,6 +175,34 @@ export const CARRERAS = [
     },
   },
   {
+    id: "bioingenieria-2020",
+    // link: "https://fi.uba.ar/grado/carreras/bioingenieria/plan-de-estudios",
+    link: "https://drive.google.com/file/d/1URSwsBv1VdNoSPfcDUwQjQz2j5AU-3AG/view",
+    beta: true,
+    ano: 2020,
+    graph: require("./data/bioingenieria-2020.json"),
+    creditos: {
+      total: 250,
+      electivas: 16,
+      checkbox: [
+        {
+          nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
+          bg: COLORS.enfinal[50],
+          color: "enfinal",
+        },
+      ],
+      materias: [
+        {
+          id: "TIF",
+          nombrecorto: "TIF",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
+        },
+      ],
+    },
+  },
+  {
     id: "alimentos",
     link: "https://fi.uba.ar/grado/carreras/ingenieria-de-alimentos/plan-de-estudios",
     ano: 2001,
@@ -640,6 +668,11 @@ export const PLANES = [
     nombre: "Ingeniería de Alimentos",
     nombrecorto: "Alimentos",
     planes: ["alimentos", "alimentos-2020"],
+  },
+  {
+    nombre: "Bioingeniería",
+    nombrecorto: "Bioingeniería",
+    planes: ["bioingenieria-2020"],
   },
   {
     nombre: "Ingeniería en Energía Eléctrica",
