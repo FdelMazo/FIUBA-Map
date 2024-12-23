@@ -208,6 +208,12 @@ export const CREDITOS = {
     color: "electivas",
     bg: COLORS.electivas[50],
   },
+  Optativas: {
+    nombrecorto: "Optativas",
+    nombre: "Materias Optativas",
+    color: "electivas",
+    bg: COLORS.electivas[50],
+  },
   "Fin de Carrera": {
     nombrecorto: "Tesis/TPP",
     nombre: "Fin de Carrera",
