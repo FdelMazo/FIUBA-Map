@@ -37,7 +37,7 @@ const Login = (): UserType.Context => {
     !!window.localStorage.getItem("padron"),
   );
 
-  // loggingIn es para cuando la pagina entera que esta cargando todos los datos del usuario
+  // loggingIn es para cuando la pagina esta cargando todos los datos del usuario
   const [loggingIn, setLoggingIn] = React.useState(false);
 
   // On boot nos fijamos si hay un padron inicial del localStorage
