@@ -187,7 +187,7 @@ const Creditos = () => {
                         }}
                         icon={<SmallCloseIcon />}
                         size="sm"
-                        aria-label="Icono para eliminar materia optativa"
+                        aria-label="Eliminar materia optativa"
                       />
                     </Tooltip>
                   </Flex>
