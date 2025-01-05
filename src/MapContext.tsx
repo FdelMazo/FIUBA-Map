@@ -1,11 +1,11 @@
 import React, { PropsWithChildren } from "react";
 import User from "./User";
 import Graph from "./Graph";
-import { UserContextType } from "./types/User";
-import { GraphContextType } from "./types/Graph";
+import { UserType } from "./types/User";
+import { GraphType } from "./types/Graph";
 
-export const UserContext = React.createContext<UserContextType>(null!);
-export const GraphContext = React.createContext<GraphContextType>(null!);
+export const UserContext = React.createContext<UserType.Context>(null!);
+export const GraphContext = React.createContext<GraphType.Context>(null!);
 
 export const MapProvider = ({ children }: PropsWithChildren) => {
   const user = User();

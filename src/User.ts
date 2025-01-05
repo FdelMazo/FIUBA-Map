@@ -2,20 +2,8 @@ import React from "react";
 import { CARRERAS } from "./carreras";
 import * as C from "./constants";
 import { getFiubaRepos, getGraphs, postGraph, postUser } from "./dbutils";
-import {
-  UserInfo,
-  UserContextType,
-  UserCarreraInfo,
-  SaveUserGraph,
-  UserCarreraMap,
-  UserMap,
-} from "./types/User";
-import { Carrera, FinDeCarrera, Orientacion } from "./types/carreras";
-import {
-  BatchGet,
-  MateriaFIUBARepo,
-  UserValueRange,
-} from "./types/externalAPI";
+import { UserType } from "./types/User";
+import { GoogleSheetAPI, GithubAPI } from "./types/externalAPI";
 
 // La base de datos se parte en dos tablas (relacional... ponele)
 // La clave que une a las bases de datos es la combinación de padron y carrera
@@ -26,7 +14,7 @@ import {
 // allLogins contiene un array con todas las [carrera,orientacion,findecarrera] que tiene el usuario en la DB
 // maps contiene todos los mapas que tiene el usuario en la DB
 
-const initialUser: UserInfo = {
+const initialUser: UserType.UserInfo = {
   padron: "",
   carrera: CARRERAS.find((c) => c.id === "sistemas")!,
   orientacion: undefined,
@@ -35,8 +23,8 @@ const initialUser: UserInfo = {
   maps: [],
 };
 
-const Login = (): UserContextType => {
-  const [user, setUser] = React.useState<UserInfo>(initialUser);
+const Login = (): UserType.Context => {
+  const [user, setUser] = React.useState<UserType.UserInfo>(initialUser);
 
   // Inicializamos el padron en lo que hay en el storage, o vacio
   const [padronInput, setPadronInput] = React.useState(
@@ -64,7 +52,7 @@ const Login = (): UserContextType => {
 
   // On boot pedimos todos los fiuba repos para poder mostrarlos en el header
   // Un poquito de cross promotion nunca mato a nadie...
-  const [fiubaRepos, setFiubaRepos] = React.useState<MateriaFIUBARepo[]>([]);
+  const [fiubaRepos, setFiubaRepos] = React.useState<GithubAPI.MateriaFIUBARepo[]>([]);
   React.useEffect(() => {
     const fetchFiubaRepos = async () => {
       setFiubaRepos(await getFiubaRepos());
@@ -86,7 +74,7 @@ const Login = (): UserContextType => {
       `${C.SPREADSHEET}/${C.SHEETS.user}!B:B?majorDimension=COLUMNS&key=${C.KEY}`,
     )
       .then((res) => res.json())
-      .then((res: UserValueRange) => (res.error ? null : res.values[0]));
+      .then((res: GoogleSheetAPI.UserValueRange) => (res.error ? null : res.values[0]));
 
     if (!padrones) {
       setLoading(false);
@@ -111,19 +99,19 @@ const Login = (): UserContextType => {
 
     const data = await fetch(
       `${C.SPREADSHEET}:batchGet?key=${C.KEY}${ranges.join("")}`,
-    ).then((res) => res.json().then((res: BatchGet) => res.valueRanges));
+    ).then((res) => res.json().then((res: GoogleSheetAPI.BatchGet) => res.valueRanges));
 
-    const allLogins: UserCarreraInfo[] = data.map((d) => ({
+    const allLogins: UserType.CarreraInfo[] = data.map((d) => ({
       carreraid: d.values[0][2],
       orientacionid: d.values[0][3],
       findecarreraid: d.values[0][4],
     }));
 
-    let carrera: Carrera = CARRERAS.find((c) => c.id === "sistemas")!;
-    let orientacion: Orientacion | undefined = undefined;
-    let finDeCarrera: FinDeCarrera | undefined = undefined;
+    let carrera: UserType.Carrera = CARRERAS.find((c) => c.id === "sistemas")!;
+    let orientacion: UserType.Orientacion | undefined = undefined;
+    let finDeCarrera: UserType.FinDeCarrera | undefined = undefined;
     for (const userLogin of allLogins) {
-      const foundCarrera: Carrera = CARRERAS.find(
+      const foundCarrera: UserType.Carrera = CARRERAS.find(
         (c) => c.id === userLogin.carreraid,
       )!;
 
@@ -159,7 +147,7 @@ const Login = (): UserContextType => {
   // Solo lidia con [padron, carrera, orientacion, findecarrera], no con mapas
   // Se usa para siempre tener un registro de cual es la ultima carrera que un usuario uso
   // Asi no tenes que a mano guardar un cambio de carrera
-  const register = async (user: UserInfo) => {
+  const register = async (user: UserType.UserInfo) => {
     const addToAllLogins = () => {
       const newAllLogins = user.allLogins.filter(
         (l) => l.carreraid !== user.carrera.id,
@@ -202,14 +190,14 @@ const Login = (): UserContextType => {
   };
 
   // Aca guardamos el mapa y toda la metadata que tiene
-  const saveUserGraph: SaveUserGraph = async (
+  const saveUserGraph: UserType.SaveGraph = async (
     user,
     materias,
     checkboxes,
     optativas,
     aplazos,
   ) => {
-    const map: UserCarreraMap = {
+    const map: UserType.CarreraMap = {
       materias,
     };
     if (checkboxes) {
@@ -224,7 +212,7 @@ const Login = (): UserContextType => {
     await postGraph(user, map);
 
     const addToMaps = () => {
-      let newMaps: UserMap[] = [];
+      let newMaps: UserType.Map[] = [];
 
       if (user.maps) {
         newMaps = user.maps.filter((l) => l.carreraid !== user.carrera.id);

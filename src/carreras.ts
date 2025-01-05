@@ -1,5 +1,5 @@
 import { COLORS } from "./theme";
-import { Carrera } from "./types/carreras";
+import { UserType } from "./types/User";
 
 // La estructura de las carreras de FIUBA varía bastante. Es muy poco uniforme
 // Cada carrera tiene un json asociado donde se almacenan las materias
@@ -28,7 +28,7 @@ import { Carrera } from "./types/carreras";
 // ahora quedo que el usuario tiene una "carrera" asociada, aunque sea un plan, así que
 // lo dejamos así
 
-export const CARRERAS: Carrera[] = [
+export const CARRERAS: UserType.Carrera[] = [
   {
     id: "sistemasviejo",
     link: "https://fi.uba.ar/grado/carreras/lic-en-analisis-de-sistemas/plan-de-estudios",

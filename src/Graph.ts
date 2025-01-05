@@ -6,24 +6,12 @@ import { CREDITOS } from "./constants";
 import Node from "./Node";
 import { COLORS } from "./theme";
 import { accCreditos, accCreditosNecesarios, accProportion } from "./utils";
-import { UserInfo, UserContextType } from "./types/User";
-import {
-  ClickEvent,
-  GraphCredito,
-  DeselectEvent,
-  Getters,
-  HoverEvent,
-  Network,
-  GraphOptativa,
-  OptativasDispatcher,
-  NodeEvents,
-  GraphType,
-  GraphContextType,
-} from "./types/Graph";
+import { UserType } from "./types/User";
+import { GraphType } from "./types/Graph";
+import { ReactGraphVisType } from "./types/ReactGraphVis"
 import { NodeType } from "./types/Node";
-import { Electivas } from "./types/carreras";
 
-const Graph = (userContext: UserContextType): GraphContextType => {
+const Graph = (userContext: UserType.Context): GraphType.Context => {
   const { user, setUser, logged, saveUserGraph, register } = userContext;
   const { colorMode } = useColorMode();
 
@@ -36,7 +24,7 @@ const Graph = (userContext: UserContextType): GraphContextType => {
   // La network es nuestra interfaz con vis.js
   // Nos da acceso a los nodos, las aristas y varias funciones
   // https://visjs.github.io/vis-network/docs/network/
-  const [network, setNetwork] = React.useState<Network>(null!);
+  const [network, setNetwork] = React.useState<ReactGraphVisType.Network>(null!);
 
   // Cuando cambia el tamaño de la pantalla, se redibuja la red. Sin esto, se rompe
   const { ref: networkRef, width, height } = useResizeObserver();
@@ -55,14 +43,14 @@ const Graph = (userContext: UserContextType): GraphContextType => {
   }, [network]);
 
   // Para manipular los nodos, necesitamos acceso a la ref interna que les seteamos en el constructor
-  const getNode = (id: string): NodeType | undefined => {
-    return nodes?.get(id)?.nodeRef;
+  const getNode = (id: string) => {
+    return nodes?.get(id).nodeRef;
   };
 
   // Cuando cambia la carrera, cambia la key del body.
   // Cuando cambia la key del body, se llama a `createNetwork` que lo que hace es armar una red desde 0
   // Esta red despues se llena con el graph
-  const createNetwork = (network: Network) => {
+  const createNetwork = (network: ReactGraphVisType.Network) => {
     // Avoid re-rendering the whole graph when the data changes
     // Copied from https://github.com/visjs/vis-network/blob/2c774997ff234fa93555f36ca8040cf4d489e5df/lib/network/modules/NodesHandler.js#L325
     // Removed the last call to body.emit(datachanged)
@@ -154,12 +142,12 @@ const Graph = (userContext: UserContextType): GraphContextType => {
 
   // El graph es el contenido de la red. Al cambiar la carrera se rellena con lo que tiene el JSON
   // y despues, con un useEffect, se rellena con lo que tiene el usuario en la DB
-  const graph: GraphType = React.useMemo(() => {
+  const graph: GraphType.Content = React.useMemo(() => {
     // Esta mal que un useMemo no sea puro...
     // pero cuando se actualiza el grafo, por las dudas, limpiamos el nodo que teniamos elegido
     // test: entrar y clickear un nodo rapido, y esperar a que el usuario se loguee solo
     setDisplayedNode("");
-    const graphNodes: Node[] = user.carrera.graph.map((n) => new Node(n));
+    const graphNodes = user.carrera.graph.map((n) => new Node(n));
     const edges = user.carrera.graph.flatMap((n) => {
       let e = [];
       if (n.correlativas)
@@ -187,25 +175,25 @@ const Graph = (userContext: UserContextType): GraphContextType => {
   // Cuando cambia la carrera, poblamos el nuevo grafo con lo que hay en la DB
   // (o, simplemente aprobamos el CBC si el usuario no tenia nada)
   React.useEffect(() => {
-    if (!network || graph.key !== network.key || !user.maps) return;
+    if (!network || graph.key !== network.key) return;
 
     // Nos fijamos que el usuario tenga un mapa guardado en la db
-    const map = user.maps.find((map) => map.carreraid === user.carrera.id)?.map;
+    const map = user.maps?.find((map) => map.carreraid === user.carrera.id)?.map;
     if (map) {
       const toUpdate: NodeType[] = [];
 
       // Aprobamos/planeamos todo lo que tenia el usuario en la db
       map.materias.forEach((m) => {
         let node = getNode(m.id);
-
-        if (node && (m.nota >= -1 || m.cuatrimestre)) {
+        if (!node) return;
+        if (m.nota >= -1 || m.cuatrimestre) {
           if (m.nota >= -1) {
-            node = node.aprobar(m.nota);
+            node = node.aprobar(m.nota) ?? node;
           }
           if (m.cuatrimestre) {
-            node = node!.cursando(m.cuatrimestre);
+            node = node.cursando(m.cuatrimestre);
           }
-          toUpdate.push(node!);
+          toUpdate.push(node);
         }
       });
 
@@ -240,7 +228,7 @@ const Graph = (userContext: UserContextType): GraphContextType => {
       nodes.update(
         getters
           .ALL()
-          .map((n) => getNode(n.id)!.desaprobar().cursando(undefined)),
+          .map((n) => getNode(n.id).desaprobar().cursando(undefined)),
       );
       aprobar("CBC", 0);
       actualizarNiveles();
@@ -270,7 +258,7 @@ const Graph = (userContext: UserContextType): GraphContextType => {
     const creditosCBC = [...getters.CBC()].reduce(accCreditos, 0);
     nodes.update(
       nodes.map((n) =>
-        getNode(n.id)!.actualizar({
+        getNode(n.id).actualizar({
           getters,
           user,
           network,
@@ -383,7 +371,7 @@ const Graph = (userContext: UserContextType): GraphContextType => {
     // Nos fijamos si ya habia algun registro en la DB
     const userdata = user.allLogins.find((l) => l.carreraid === id);
     const carrera = CARRERAS.find((c) => c.id === id)!;
-    let newUser: UserInfo = {
+    let newUser: UserType.UserInfo = {
       ...user,
       carrera,
       orientacion: null,
@@ -423,40 +411,38 @@ const Graph = (userContext: UserContextType): GraphContextType => {
   // Interfaz de botones de la UI con los nodos
   ///
   const aprobar = (id: string, nota: number) => {
-    nodes.update(getNode(id)!.aprobar(nota)!);
+    nodes.update(getNode(id).aprobar(nota)!);
     actualizar();
   };
 
   const desaprobar = (id: string) => {
-    nodes.update(getNode(id)!.desaprobar());
+    nodes.update(getNode(id).desaprobar());
     actualizar();
   };
 
   const cursando = (id: string, cuatrimestre: number) => {
-    nodes.update(getNode(id)!.cursando(cuatrimestre));
+    nodes.update(getNode(id).cursando(cuatrimestre));
     actualizar();
     actualizarNiveles();
   };
 
   const restartGraphCuatris = () => {
     nodes.update(
-      getters.Cuatrimestres().map((n) => getNode(n.id)!.cursando(undefined)),
+      getters.Cuatrimestres().map((n) => getNode(n.id).cursando(undefined)),
     );
     actualizar();
     actualizarNiveles();
   };
 
   const toggleCheckbox = (c: string, forceTrue = false) => {
-    if (user.carrera.creditos.checkbox) {
-      const checkbox = user.carrera.creditos.checkbox.find(
-        (ch) => ch.nombre === c,
-      );
-
-      if (checkbox) {
-        const value = !!checkbox.check;
-        checkbox.check = forceTrue ? true : !value;
-        actualizar();
-      }
+    if (!user.carrera.creditos.checkbox) return;
+    const checkbox = user.carrera.creditos.checkbox.find(
+      (ch) => ch.nombre === c,
+    );
+    if (checkbox) {
+      const value = !!checkbox.check;
+      checkbox.check = forceTrue ? true : !value;
+      actualizar();
     }
   };
 
@@ -464,7 +450,7 @@ const Graph = (userContext: UserContextType): GraphContextType => {
   const toggleCBC = () => {
     const categoria = getters.CBC();
     categoria.forEach((n) => {
-      const node = getNode(n.id)!;
+      const node = getNode(n.id);
       node.hidden = !node.hidden;
       return node;
     });
@@ -513,7 +499,7 @@ const Graph = (userContext: UserContextType): GraphContextType => {
     switch (status) {
       case "hidden":
         group = getters.CategoriaRelevantes(categoria).map((n) => {
-          const node = getNode(n.id)!;
+          const node = getNode(n.id);
           node.hidden = false;
           return node;
         });
@@ -521,14 +507,14 @@ const Graph = (userContext: UserContextType): GraphContextType => {
       // eslint-disable-next-line no-fallthrough
       case "partial":
         group = getters.CategoriaOnly(categoria).map((n) => {
-          const node = getNode(n.id)!;
+          const node = getNode(n.id);
           node.hidden = false;
           return node;
         });
         break;
       case "shown":
         group = getters.CategoriaOnly(categoria).map((n) => {
-          const node = getNode(n.id)!;
+          const node = getNode(n.id);
           node.hidden = true;
           return node;
         });
@@ -548,7 +534,7 @@ const Graph = (userContext: UserContextType): GraphContextType => {
   // Relevantes: aprobadas o planeadas
   const showRelevantes = () => {
     const relevantes = getters.AllRelevantes().map((n) => {
-      const node = getNode(n.id)!;
+      const node = getNode(n.id);
       node.hidden = false;
       return node;
     });
@@ -563,8 +549,8 @@ const Graph = (userContext: UserContextType): GraphContextType => {
   // Entonces, hacemos que se muestren en columnas de a 7 materias, ordenadas por prioridad (aprobadas mas arriba que desaprobadas, por ej)
   const balanceSinNivel = (group: NodeType[], lastLevel: number) => {
     const sortByGroup = (a: NodeType, b: NodeType) => {
-      const nodeA = getNode(a.id)!;
-      const nodeB = getNode(b.id)!;
+      const nodeA = getNode(a.id);
+      const nodeB = getNode(b.id);
       const groupOrder = [
         "Aprobadas",
         "En Final",
@@ -595,7 +581,7 @@ const Graph = (userContext: UserContextType): GraphContextType => {
   // Las optativas son materias que te agregan creditos que no estan en el plan de la carrera
   // Les asignamos solamente el nombre y la cantidad de creditos que otorgan (porque la nota no influye en el promedio)
   const [optativas, optativasDispatch] = React.useReducer(
-    (prevstate: GraphOptativa[], dispatched: OptativasDispatcher) => {
+    (prevstate: GraphType.Optativa[], dispatched: GraphType.OptativasDispatcher) => {
       let newstate = prevstate;
       const { action, value } = dispatched;
 
@@ -635,24 +621,23 @@ const Graph = (userContext: UserContextType): GraphContextType => {
   // Hay que llamar a mano a `updateCreditos` en vez de que sea un useMemo porque
   // visjs no es muy reactivo... si se pudiese, habria que hacer que dependamos solamente de nodes
   // y evitar la llamada a mano
-  const [creditos, setCreditos] = React.useState<GraphCredito[]>([]);
+  const [creditos, setCreditos] = React.useState<GraphType.Credito[]>([]);
 
   const updateCreditos = () => {
     if (!network || graph.key !== network.key) return [];
-    let creditos: GraphCredito[] = [];
+    let creditos: GraphType.Credito[] = [];
 
     // La estructura de las carreras varia bastante
     // Por ej: algunas carreras dicen que si elegis X orientacion, tenes que hacer otra cantidad de creditos de electivas
     const getCorrectCreditos = () => {
-      if (user.carrera.eligeOrientaciones)
-        return user.carrera.creditos.orientacion![user.orientacion!.nombre];
+      if (user.carrera.eligeOrientaciones && user.orientacion && user.carrera.creditos.orientacion)
+        return user.carrera.creditos.orientacion[user.orientacion.nombre];
       return user.carrera.creditos;
     };
 
-    // Retorna los creditos de las electivas, que por defecto son 0 si la
-    // carrera no tiene electivas
+    // Retorna los creditos de las electivas, que por defecto son 0 si la carrera no tiene electivas
     const getElectivasCreditos = (
-      electivas: number | undefined | Electivas,
+      electivas: number | undefined | UserType.Electivas,
     ) => {
       let electivasCreditos = 0;
 
@@ -705,10 +690,10 @@ const Graph = (userContext: UserContextType): GraphContextType => {
 
     // Despues, orientacion obligatoria (si hay)
     const orientacion = getters.OrientacionAprobadas();
-    if (user.carrera.eligeOrientaciones)
+    if (user.carrera.eligeOrientaciones && user.carrera.creditos.orientacion)
       if (
         user.orientacion &&
-        user.carrera.creditos.orientacion![user.orientacion?.nombre]
+        user.carrera.creditos.orientacion[user.orientacion?.nombre]
       ) {
         creditos.push({
           nombre: `Orientación: ${user.orientacion.nombre}`,
@@ -759,7 +744,7 @@ const Graph = (userContext: UserContextType): GraphContextType => {
     //  habria que asegurarse de que sus creditos no se doble cuenten en el total
     if (user.carrera.creditos.materias)
       user.carrera.creditos.materias.forEach((m) => {
-        const node = getNode(m.id)!;
+        const node = getNode(m.id);
 
         creditos.push({
           nombre: node.materia,
@@ -775,7 +760,7 @@ const Graph = (userContext: UserContextType): GraphContextType => {
     // agregamos el final de carrera que corresponda
     if (user.carrera.finDeCarrera) {
       if (user.finDeCarrera) {
-        const node = getNode(user.finDeCarrera.materia)!;
+        const node = getNode(user.finDeCarrera.materia);
         creditos.push({
           ...CREDITOS["Fin de Carrera"],
           nombre: node.materia,
@@ -898,8 +883,8 @@ const Graph = (userContext: UserContextType): GraphContextType => {
   let hovertimer: NodeJS.Timeout | undefined = undefined;
 
   // Interacción con el mouse
-  const events: NodeEvents = {
-    doubleClick: (event: ClickEvent) => {
+  const events: ReactGraphVisType.NodeEvents = {
+    doubleClick: (event: ReactGraphVisType.ClickEvent) => {
       // dobleclick: aprobar/desaprobar
       const id = event.nodes[0];
       if (id === "CBC") return;
@@ -912,7 +897,7 @@ const Graph = (userContext: UserContextType): GraphContextType => {
         desaprobar(id);
       }
     },
-    hoverNode: (event: HoverEvent) => {
+    hoverNode: (event: ReactGraphVisType.HoverEvent) => {
       // hover: seleccionar nodo para ver sus correlativas facilmente
       const id = event.node;
       if (network.getSelectedNodes().length) {
@@ -936,7 +921,7 @@ const Graph = (userContext: UserContextType): GraphContextType => {
       }
       deselectNode();
     },
-    selectNode: (event: ClickEvent) => {
+    selectNode: (event: ReactGraphVisType.ClickEvent) => {
       // click: seleccionar un nodo
       const id = event.nodes[0];
 
@@ -949,14 +934,14 @@ const Graph = (userContext: UserContextType): GraphContextType => {
       }
       selectNode(id, true);
     },
-    deselectNode: (event: DeselectEvent) => {
+    deselectNode: (event: ReactGraphVisType.DeselectEvent) => {
       // click en otro nodo/click en cualquier lado del mapa: deseleccionar lo que teniamos
       deselectNode(true);
     },
   };
 
   // Definimos muuuuchos getters para tener acceso a todo tipo de nodos y no andar repitiendo todo
-  const getters: Getters = {
+  const getters: GraphType.Getters = {
     NodesFrom: (id) => network.getConnectedNodes(id, "from"),
     NodesTo: (id) => network.getConnectedNodes(id, "to"),
     NeighborNodes: (id) => network.getConnectedNodes(id),

@@ -129,31 +129,30 @@ const UserMenu = () => {
           </MenuItem>
         </MenuList>
       </Menu>
-      {
-        <Tooltip
-          {...TooltipProps}
-          label={
-            isBeta
-              ? "No se pueden guardar datos hasta que se oficialice el plan"
-              : "Guardar datos"
-          }
+      
+      <Tooltip
+        {...TooltipProps}
+        label={
+          isBeta
+            ? "No se pueden guardar datos hasta que se oficialice el plan"
+            : "Guardar datos"
+        }
+      >
+        <IconButton
+          {...ButtonProps}
+          ml={2}
+          isLoading={saving}
+          onClick={async () => {
+            setSaving(true);
+            await saveGraph().catch(console.error);
+            setSaving(false);
+          }}
+          isDisabled={isBeta}
+          aria-label="Icono para guardar los datos del plan"
         >
-          <IconButton
-            {...ButtonProps}
-            ml={2}
-            isLoading={saving}
-            onClick={async () => {
-              setSaving(true);
-              await saveGraph().catch(console.error);
-              setSaving(false);
-            }}
-            isDisabled={isBeta}
-            aria-label="Icono para guardar los datos del plan"
-          >
-            <Icon boxSize={5} as={FaSave} />
-          </IconButton>
-        </Tooltip>
-      }
+          <Icon boxSize={5} as={FaSave} />
+        </IconButton>
+      </Tooltip>
 
       {getters.Cuatrimestres().length > 0 && (
         <Tooltip {...TooltipProps} label="Limpiar todos los cuatris">

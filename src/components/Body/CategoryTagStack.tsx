@@ -35,7 +35,7 @@ const CategoryTagStack = () => {
           <Tag
             cursor="pointer"
             // @ts-ignore
-            bg={C.GRUPOS[c as keyof typeof C.GRUPOS]?.color}
+            bg={C.GRUPOS[c]?.color}
             key={c}
             size={{ base: "sm", md: "md" }}
             onClick={() => {

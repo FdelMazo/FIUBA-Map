@@ -30,6 +30,7 @@ const AnoBadge = ({
   const activeVariant = useColorModeValue("solid", "subtle");
   const commonProps = {
     mx: 1,
+    variant: active ? activeVariant : "outline",
     textAlign: "center" as ResponsiveValue<Property.TextAlign>,
     colorScheme: "gray",
     ...rest,

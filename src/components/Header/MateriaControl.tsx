@@ -70,7 +70,7 @@ const MateriaControl = () => {
     React.useContext(GraphContext);
 
   const node = React.useMemo(
-    () => getNode(displayedNode),
+    () => displayedNode ? getNode(displayedNode) : undefined,
     [displayedNode, getNode],
   );
   const repos = React.useMemo(
@@ -93,9 +93,9 @@ const MateriaControl = () => {
                 <Box textAlign="center">
                   <Text>
                     Chusmeá{" "}
-                    {repos.reponames!.size === 1
+                    {(repos.reponames) && (repos.reponames.size === 1
                       ? "el FIUBA-Repo"
-                      : `los ${repos.reponames!.size} FIUBA-Repos`}
+                      : `los ${repos.reponames.size} FIUBA-Repos`)}
                   </Text>
                   <Text>de esta materia!</Text>
                 </Box>

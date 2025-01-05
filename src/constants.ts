@@ -1,7 +1,7 @@
 import { CARRERAS } from "./carreras";
 import { COLORS } from "./theme";
-import { Orientacion } from "./types/carreras";
-import { DrawFinDeCarrera } from "./types/constants";
+import { UserType } from "./types/User";
+import { NodeType } from "./types/Node";
 
 export const USER_FORM =
   "https://docs.google.com/forms/u/1/d/e/1FAIpQLSedZWz0SJOLsxEscmHo8FDdTQyIF5xTczGBqr1Z6oLwKwiemw/formResponse";
@@ -60,7 +60,7 @@ const drawFinDeCarrera = ({
   state: { selected, hover },
   style,
   label,
-}: DrawFinDeCarrera) => {
+}: NodeType.DrawFinDeCarrera) => {
   let r = style.size;
   const drawNode = () => {
     if (selected || hover) {
@@ -143,9 +143,9 @@ export const GRUPOS = {
   },
   ...CARRERAS.filter((c) => c.orientaciones)
     .flatMap((c) => c.orientaciones!)
-    .reduce<{ [key: string]: Orientacion }>(function (
-      map: { [key: string]: Orientacion },
-      obj: Orientacion,
+    .reduce<{ [key: string]: UserType.Orientacion }>(function (
+      map: { [key: string]: UserType.Orientacion },
+      obj: UserType.Orientacion,
     ) {
       obj.color = (COLORS[obj.colorScheme] as any)[500];
       map[obj.nombre] = obj;

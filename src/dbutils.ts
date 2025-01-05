@@ -1,15 +1,9 @@
 import * as C from "./constants";
-import { UserInfo, UserCarreraMap, UserMap } from "./types/User";
-import {
-  GithubSearchRepo,
-  GithubSearchRepoJSON,
-  AliasMateriasFIUBARepos,
-  MateriaFIUBARepo,
-  RegistrosValueRange,
-} from "./types/externalAPI";
+import { UserType } from "./types/User";
+import { GithubAPI, GoogleSheetAPI } from "./types/externalAPI";
 
 // Le pega al form de bugs
-export const submitBug = async (user: UserInfo, bug: string) => {
+export const submitBug = async (user: UserType.UserInfo, bug: string) => {
   if (!bug) return;
   const formData = new FormData();
   const padron = user.padron;
@@ -31,7 +25,7 @@ export const submitBug = async (user: UserInfo, bug: string) => {
 };
 
 // Le pega al form que almacena [padron,carrera,orientacion,findecarrera]
-export const postUser = async (user: UserInfo) => {
+export const postUser = async (user: UserType.UserInfo) => {
   const formData = new FormData();
   const padron = user.padron;
   const carreraid = user.carrera.id;
@@ -52,7 +46,7 @@ export const postUser = async (user: UserInfo) => {
 
 // Le pega al form que almacena [padron,carrera,map]
 // el map es un JSON stringifeado que tiene [materias, optativas, aplazos, checkboxes]
-export const postGraph = async (user: UserInfo, map: UserCarreraMap) => {
+export const postGraph = async (user: UserType.UserInfo, map: UserType.CarreraMap) => {
   const formData = new FormData();
 
   formData.append(`${C.GRAPH_FORM_ENTRIES.padron}`, user.padron);
@@ -71,12 +65,12 @@ export const postGraph = async (user: UserInfo, map: UserCarreraMap) => {
 // Despues, con eso, solamente se redirige a FIUBA Repos
 export const getFiubaRepos = async () => {
   // TODO: handlear el caso que haya un error fetcheando la data???
-  const ALIAS_MATERIAS: AliasMateriasFIUBARepos = await fetch(
+  const ALIAS_MATERIAS: GithubAPI.AliasMateriasFIUBARepos = await fetch(
     C.FIUBAREPOSJSON,
   ).then((res) => res.json());
 
   let totalCount = null;
-  const repos: GithubSearchRepo[] = [];
+  const repos: GithubAPI.GithubSearchRepo[] = [];
   let i = 1;
 
   while (!totalCount || repos.length < totalCount) {
@@ -96,7 +90,7 @@ export const getFiubaRepos = async () => {
       },
     );
 
-    const json: GithubSearchRepoJSON = await res.json();
+    const json: GithubAPI.GithubSearchRepoJSON = await res.json();
     if (!json.items || !json.items.length) break;
     totalCount = json.total_count;
     repos.push(...json.items);
@@ -114,7 +108,7 @@ export const getFiubaRepos = async () => {
     ),
   ];
 
-  let allMaterias = Object.keys(ALIAS_MATERIAS).reduce<MateriaFIUBARepo[]>(
+  let allMaterias = Object.keys(ALIAS_MATERIAS).reduce<GithubAPI.MateriaFIUBARepo[]>(
     (accumulator, current) => {
       const nombre = ALIAS_MATERIAS[current];
       let materia = accumulator.find((m) => m.nombre === nombre);
@@ -166,7 +160,7 @@ export const getGraphs = async (padron: string) => {
     `${C.SPREADSHEET}/${C.SHEETS.registros}!B:D?majorDimension=COLUMNS&key=${C.KEY}`,
   )
     .then((res) => res.json())
-    .then((res: RegistrosValueRange) => (res.error ? null : res.values));
+    .then((res: GoogleSheetAPI.RegistrosValueRange) => (res.error ? null : res.values));
   if (!data) return;
 
   const [padrones, carreras, maps] = data;
@@ -176,7 +170,7 @@ export const getGraphs = async (padron: string) => {
     indexes.push(j);
   }
 
-  const allLogins: UserMap[] = [];
+  const allLogins: UserType.Map[] = [];
   for (let i = 0; i < indexes.length; i++) {
     allLogins.push({
       carreraid: carreras[indexes[i]].carreraid,

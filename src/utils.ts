@@ -1,5 +1,5 @@
 import { NodeType } from "./types/Node";
-import { GraphCredito, GraphOptativa } from "./types/Graph";
+import { GraphType } from "./types/Graph";
 
 export const promediar = (materias: NodeType[]) => {
   const sum = materias.reduce((acc, node: NodeType) => {
@@ -10,17 +10,17 @@ export const promediar = (materias: NodeType[]) => {
   return sum ? (sum / materias.length).toFixed(2) : 0;
 };
 
-export const accCreditos = (acc: number, node: NodeType | GraphOptativa) => {
+export const accCreditos = (acc: number, node: NodeType | GraphType.Optativa) => {
   acc += node.creditos;
   return acc;
 };
 
-export const accCreditosNecesarios = (acc: number, grupo: GraphCredito) => {
+export const accCreditosNecesarios = (acc: number, grupo: GraphType.Credito) => {
   acc += grupo.creditosNecesarios;
   return acc;
 };
 
-export const accProportion = (acc: number, grupo: GraphCredito) => {
+export const accProportion = (acc: number, grupo: GraphType.Credito) => {
   if (grupo.proportion) {
     acc += grupo.proportion;
   }

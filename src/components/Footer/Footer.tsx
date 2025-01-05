@@ -14,6 +14,7 @@ const Footer = () => {
     <Collapse in={logged} unmountOnExit>
       <Flex
         alignItems="center"
+        position="relative"
         bg={useColorModeValue("headerbg", "headerbgdark")}
         key={user.carrera.id}
       >

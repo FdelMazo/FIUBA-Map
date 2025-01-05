@@ -18,7 +18,7 @@ const MateriaStatus = () => {
   const { getNode, displayedNode } = React.useContext(GraphContext);
 
   const node = React.useMemo(
-    () => getNode(displayedNode),
+    () => displayedNode ? getNode(displayedNode) : undefined,
     [displayedNode, getNode],
   );
 

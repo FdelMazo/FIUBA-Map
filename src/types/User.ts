@@ -1,59 +1,130 @@
 import React from "react";
-import { Carrera, FinDeCarrera, Orientacion } from "./carreras";
-import { Optativa } from "./Graph";
-import { MateriaFIUBARepo } from "./externalAPI";
+import { GraphType } from "./Graph";
+import { GithubAPI } from "./externalAPI";
 import { NodeType } from "./Node";
+import { COLORS } from "../theme";
 
-export interface UserCarreraInfo {
-  carreraid: string;
-  orientacionid: string | undefined;
-  findecarreraid: string | undefined;
-}
-
-export interface UserInfo {
-  padron: string;
-  carrera: Carrera;
-  orientacion: Orientacion | undefined | null;
-  finDeCarrera: FinDeCarrera | undefined | null;
-  allLogins: UserCarreraInfo[];
-  maps: UserMap[] | undefined;
-}
-
-export interface UserCarreraMap {
-  materias: NodeType[];
-  checkboxes?: string[];
-  optativas?: Optativa[];
-  aplazos?: number;
-}
-
-export interface UserMap {
-  carreraid: string;
-  map: UserCarreraMap;
-}
-
-export interface SaveUserGraph {
-  (
-    user: UserInfo,
-    materias: NodeType[],
-    checkboxes: string[] | undefined,
-    optativas: Optativa[],
-    aplazos: number,
-  ): Promise<void>;
-}
-
-export interface UserContextType {
-  loading: boolean;
-  user: UserInfo;
-  logged: boolean;
-  padronInput: string;
-  fiubaRepos: MateriaFIUBARepo[];
-  loggingIn: boolean;
+export namespace UserType {
+  interface MateriaCredito {
+    id: string;
+    nombrecorto: string;
+    bg: string;
+    color: string;
+  }
   
-  login(padron: string): Promise<boolean>;
-  signup(padron: string): Promise<void>;
-  register(user: UserInfo): Promise<void>;
-  logout(): void;
-  setUser: React.Dispatch<React.SetStateAction<UserInfo>>;
-  setPadronInput: React.Dispatch<React.SetStateAction<string>>;
-  saveUserGraph: SaveUserGraph;
+  interface Checkbox {
+    nombre: string;
+    nombrecorto: string;
+    bg: string;
+    color: string;
+    check?: boolean;
+  }
+  
+  interface OrientacionCredito {
+    orientacion: number;
+    electivas: Electivas;
+  }
+  
+  interface Creditos {
+    total: number;
+    electivas?: number | Electivas;
+    checkbox?: Checkbox[];
+    materias?: MateriaCredito[];
+    orientacion?: { [key: string]: OrientacionCredito };
+  }
+
+  export interface MateriaJSON {
+    id: string;
+    materia: string;
+    creditos: number;
+    categoria: string;
+    level: number;
+    correlativas: string | undefined;
+    requiere: number | undefined;
+    requiereCBC: boolean | undefined;
+  }
+  
+  export interface Electivas {
+    tesis: number;
+    tpp: number;
+    [key: string]: number;
+  }
+  
+  export interface Orientacion {
+    colorScheme: keyof typeof COLORS;
+    nombre: string;
+    nonEligible?: true;
+    color?: string;
+  }
+  
+  export interface FinDeCarrera {
+    id: string;
+    materia: string;
+  }
+  
+  export interface Carrera {
+    id: string;
+    link: string;
+    ano: number;
+    beta?: boolean;
+    graph: MateriaJSON[];
+    creditos: Creditos;
+    eligeOrientaciones?: true;
+    orientaciones?: Orientacion[];
+    finDeCarrera?: FinDeCarrera[];
+  }
+  
+  export interface CarreraInfo {
+    carreraid: string;
+    orientacionid: string | undefined;
+    findecarreraid: string | undefined;
+  }
+  
+  export interface CarreraMap {
+    materias: NodeType[];
+    checkboxes?: string[];
+    optativas?: GraphType.Optativa[];
+    aplazos?: number;
+  }
+  
+  export interface Map {
+    carreraid: string;
+    map: CarreraMap;
+  }
+  
+  export interface SaveGraph {
+    (
+      user: UserInfo,
+      materias: NodeType[],
+      checkboxes: string[] | undefined,
+      optativas: GraphType.Optativa[],
+      aplazos: number,
+    ): Promise<void>;
+  }
+  
+  export interface Context {
+    loading: boolean;
+    user: UserInfo;
+    logged: boolean;
+    padronInput: string;
+    fiubaRepos: GithubAPI.MateriaFIUBARepo[];
+    loggingIn: boolean;
+    
+    login(padron: string): Promise<boolean>;
+    signup(padron: string): Promise<void>;
+    register(user: UserInfo): Promise<void>;
+    logout(): void;
+    setUser: React.Dispatch<React.SetStateAction<UserInfo>>;
+    setPadronInput: React.Dispatch<React.SetStateAction<string>>;
+    saveUserGraph: SaveGraph;
+  }
+
+  export interface UserInfo {
+    padron: string;
+    carrera: Carrera;
+    orientacion: Orientacion | undefined | null;
+    finDeCarrera: FinDeCarrera | undefined | null;
+    allLogins: CarreraInfo[];
+    maps: Map[] | undefined;
+  }
 }

@@ -1,8 +1,8 @@
 import { COLORS } from "./theme";
 import { getCurrentCuatri, promediar } from "./utils";
 import { NodeType } from "./types/Node";
-import { MateriaJSON } from "./types/carreras";
-import { GraphInfo } from "./types/Graph";
+import { UserType } from "./types/User";
+import { GraphType } from "./types/Graph";
 
 const FONT_AFUERA = ["CBC", "*CBC"];
 const ALWAYS_SHOW = [
@@ -41,16 +41,16 @@ class Node implements NodeType {
   originalLevel: number;
   id: string;
   creditos: number;
-  requiere?: number;
-  requiereCBC?: boolean;
+  requiere: number | undefined;
+  requiereCBC: boolean | undefined;
   materia: string;
   opacity: number | undefined;
-  font?: { color: "white" | "black" };
-  color?: string;
+  font: { color: "white" | "black" } | undefined;
+  color: string | undefined;
   // Los nodos los creamos en base a lo que hay en los JSON, y arrancan todos desaprobados
   // Hay varios atributos propios ('categoria', 'cuatrimestre') => Probablemente todos los que estan en español
   // Hay atributos de vis.js que determinan muchas cosas del network => Probablemente todos los que estan en ingles
-  constructor(node: MateriaJSON) {
+  constructor(node: UserType.MateriaJSON) {
     // Guardamos una referencia al nodo mismo para poder manipularlo desde afuera
     // (porque cuando llenamos el grafo, vis.js hace lo que quiere con nuestra estructura de datos)
     this.nodeRef = this;
@@ -136,7 +136,7 @@ class Node implements NodeType {
   // Nota: que se consideren o no los creditos del CBC para esto
   // es MUY poco claro en todos los planes de FIUBA, y todos varian,
   // asi que puede no ser 100% fiel a la realidad
-  isHabilitada(graphInfo: GraphInfo) {
+  isHabilitada(graphInfo: GraphType.Info) {
     const { getters, getNode, creditos } = graphInfo;
     const { creditosTotales, creditosCBC } = creditos;
     const from = getters.NodesFrom(this.id);
@@ -164,7 +164,7 @@ class Node implements NodeType {
   // Esta funcion esta pensada para llamarse a todos los nodos juntos cada vez que cambia algo
   // Porque esta todo tan entrelazado que actualizar solamente un nodo no va a ser fiel a la realidad
   // Por ejemplo: si apruebo X materia y paso los 100 creditos, de alguna forma el nodo que requiere 100 creditos tiene que enterarse
-  actualizar(graphInfo: GraphInfo) {
+  actualizar(graphInfo: GraphType.Info) {
     const { user, showLabels, colorMode, getters } = graphInfo;
 
     let grupoDefault = this.categoria;
