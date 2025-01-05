@@ -175,7 +175,7 @@ const Sugerencias = () => {
                               size="sm"
                               type="submit"
                               icon={<ChatIcon />}
-                              aria-label="Purple chat icon"
+                              aria-label="Enviar sugerencia"
                             />
                           </DarkMode>
                         </Flex>
