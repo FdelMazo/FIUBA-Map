@@ -159,7 +159,7 @@ const UserMenu = () => {
             {...ButtonProps}
             ml={2}
             onClick={restartGraphCuatris}
-            aria-label="Icono para limpiar la data de los cuatrimestres"
+            aria-label="Limpiar la data de los cuatrimestres"
           >
             <Icon boxSize={4} as={FaUndo} />
           </IconButton>
