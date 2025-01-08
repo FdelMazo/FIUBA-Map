@@ -53,9 +53,7 @@ const ProgressBar = () => {
                     ) : (
                       <Badge
                         alignSelf={
-                          c.creditosNecesarios && c.creditos !== 0
-                            ? "baseline"
-                            : "auto"
+                          (c.creditosNecesarios && c.creditos) !== 0 ? "baseline" : "auto"
                         }
                         colorScheme={c.color}
                         variant="solid"

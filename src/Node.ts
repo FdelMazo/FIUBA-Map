@@ -19,12 +19,10 @@ const ALWAYS_SHOW = [
  */
 function breakWords(string: string) {
   let broken = "";
-
   string.split(" ").forEach((element) => {
     if (element.length < 4) broken += " " + element;
     else broken += "\n" + element;
   });
-
   return broken.trim();
 }
 
@@ -132,19 +130,19 @@ class Node implements NodeType {
   // Tambien, hay materias que "requieren" un minimo de creditos
   // Si "requiereCBC", entonces se consideran los creditos totales
   // Si no, se consideran los creditos totales menos los creditos del CBC
-  //
   // Nota: que se consideren o no los creditos del CBC para esto
-  // es MUY poco claro en todos los planes de FIUBA, y todos varian,
-  // asi que puede no ser 100% fiel a la realidad
-  isHabilitada(graphInfo: GraphType.Info) {
-    const { getters, getNode, creditos } = graphInfo;
+  //  es MUY poco claro en todos los planes de FIUBA, y todos varian,
+  //  asi que puede no ser 100% fiel a la realidad
+  isHabilitada(ctx: GraphType.Info) {
+    const { getters, getNode, creditos } = ctx;
     const { creditosTotales, creditosCBC } = creditos;
     const from = getters.NodesFrom(this.id);
     let todoAprobado = 1;
-
     for (let id of from) {
-      const m = getNode(id)!;
-      todoAprobado &= +m.aprobada;
+      const m = getNode(id);
+      if (m) {
+        todoAprobado &= +m.aprobada;
+      }
     }
     if (this.requiere) {
       if (this.requiereCBC) {
@@ -153,7 +151,6 @@ class Node implements NodeType {
         todoAprobado &= +(creditosTotales - creditosCBC >= this.requiere);
       }
     }
-
     return !!todoAprobado;
   }
 
@@ -164,15 +161,15 @@ class Node implements NodeType {
   // Esta funcion esta pensada para llamarse a todos los nodos juntos cada vez que cambia algo
   // Porque esta todo tan entrelazado que actualizar solamente un nodo no va a ser fiel a la realidad
   // Por ejemplo: si apruebo X materia y paso los 100 creditos, de alguna forma el nodo que requiere 100 creditos tiene que enterarse
-  actualizar(graphInfo: GraphType.Info) {
-    const { user, showLabels, colorMode, getters } = graphInfo;
+  actualizar(ctx: GraphType.Info) {
+    const { user, showLabels, colorMode, getters } = ctx;
 
     let grupoDefault = this.categoria;
     if (this.aprobada && this.nota >= 0) grupoDefault = "Aprobadas";
     else if (this.nota === -1) grupoDefault = "En Final";
     else if (this.cuatrimestre === getCurrentCuatri())
       grupoDefault = "Cursando";
-    else if (this.isHabilitada(graphInfo)) grupoDefault = "Habilitadas";
+    else if (this.isHabilitada(ctx)) grupoDefault = "Habilitadas";
     this.group = grupoDefault;
 
     let labelDefault = breakWords(this.materia);
@@ -197,7 +194,7 @@ class Node implements NodeType {
       const materiasCBC = getters.MateriasAprobadasCBC();
       const promedioCBC = promediar(materiasCBC);
       if (showLabels && promedioCBC) this.label += "\n[" + promedioCBC + "]";
-      if (this.isHabilitada(graphInfo)) {
+      if (this.isHabilitada(ctx)) {
         this.color = COLORS.aprobadas[400];
       } else {
         this.color = COLORS.aprobadas[100];

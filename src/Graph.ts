@@ -44,7 +44,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
 
   // Para manipular los nodos, necesitamos acceso a la ref interna que les seteamos en el constructor
   const getNode = (id: string) => {
-    return nodes?.get(id).nodeRef;
+    return nodes.get(id).nodeRef;
   };
 
   // Cuando cambia la carrera, cambia la key del body.
@@ -57,15 +57,13 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     network.nodesHandler.update = (ids, changedData, oldData) => {
       const nodes = network.body.nodes;
       let dataChanged = false;
-
       for (let i = 0; i < ids.length; i++) {
         const id = ids[i];
         let node = nodes[id];
         const data = changedData[i];
-
         if (node !== undefined) {
           // update node
-          if (node.setOptions!(data)) {
+          if (node.setOptions && node.setOptions(data)) {
             dataChanged = true;
           }
         } else {
@@ -147,7 +145,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     // pero cuando se actualiza el grafo, por las dudas, limpiamos el nodo que teniamos elegido
     // test: entrar y clickear un nodo rapido, y esperar a que el usuario se loguee solo
     setDisplayedNode("");
-    const graphNodes = user.carrera.graph.map((n) => new Node(n));
+    const nodes = user.carrera.graph.map((n) => new Node(n));
     const edges = user.carrera.graph.flatMap((n) => {
       let e = [];
       if (n.correlativas)
@@ -169,7 +167,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     // Para evitar que se actualice la red pero no el grafo, guardamos la carrera
     // y despues la usamos para chequear contra la carrera de la network
     const key = user.carrera.id;
-    return { nodes: graphNodes, edges, groups, key };
+    return { nodes: nodes, edges, groups, key };
   }, [user.carrera.graph, user.carrera.id]);
 
   // Cuando cambia la carrera, poblamos el nuevo grafo con lo que hay en la DB
@@ -282,7 +280,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     let lastLevel = Math.max(...getters.AllShown().map((n) => n.level));
 
     const conCuatri = getters.AllShownWithCuatri();
-    const firstCuatri = Math.min(...conCuatri.map((n) => n.cuatrimestre!));
+    const firstCuatri = Math.min(...conCuatri.map((n) => n.cuatrimestre));
 
     // Despues del CBC, las materias que tienen seteado el cuatrimestre
     // Como un estilo de "lo planeado a la izq, lo por planear a la der"
@@ -292,7 +290,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
       lastLevel = 0;
       toUpdate.push(
         ...conCuatri.map((n) => {
-          n.level = (n.cuatrimestre! - firstCuatri) / 0.5 + lastLevel + 1;
+          n.level = (n.cuatrimestre - firstCuatri) / 0.5 + lastLevel + 1;
           return n;
         }),
       );
@@ -370,13 +368,9 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
   const changeCarrera = (id: string) => {
     // Nos fijamos si ya habia algun registro en la DB
     const userdata = user.allLogins.find((l) => l.carreraid === id);
-    const carrera = CARRERAS.find((c) => c.id === id)!;
-    let newUser: UserType.UserInfo = {
-      ...user,
-      carrera,
-      orientacion: null,
-      finDeCarrera: null,
-    };
+    const carrera = CARRERAS.find((c) => c.id === id);
+    if (!carrera) return;
+    let newUser: UserType.Info = { ...user, carrera, orientacion: null, finDeCarrera: null };
 
     if (userdata) {
       const orientacion = carrera.orientaciones?.find(
@@ -411,7 +405,9 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
   // Interfaz de botones de la UI con los nodos
   ///
   const aprobar = (id: string, nota: number) => {
-    nodes.update(getNode(id).aprobar(nota)!);
+    if (nota < -1) return;
+    const node = getNode(id);
+    nodes.update(node.aprobar(nota) ?? node);
     actualizar();
   };
 
@@ -435,15 +431,20 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
   };
 
   const toggleCheckbox = (c: string, forceTrue = false) => {
-    if (!user.carrera.creditos.checkbox) return;
-    const checkbox = user.carrera.creditos.checkbox.find(
-      (ch) => ch.nombre === c,
-    );
-    if (checkbox) {
-      const value = !!checkbox.check;
-      checkbox.check = forceTrue ? true : !value;
-      actualizar();
+    if (!user.carrera.creditos.checkbox) {
+      return
+    };
+    const checkbox = user.carrera.creditos.checkbox.find((ch) => ch.nombre === c);
+    if (!checkbox) {
+      return;
     }
+
+    const value = !!checkbox
+      .check;
+
+    checkbox.check =
+      forceTrue ? true : !value;
+    actualizar();
   };
 
   // Clickear en la materia "CBC" te muestra las materias adentro del CBC
@@ -495,7 +496,6 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
   const toggleGroup = (categoria: string) => {
     const status = groupStatus(categoria);
     let group = null;
-
     switch (status) {
       case "hidden":
         group = getters.CategoriaRelevantes(categoria).map((n) => {
@@ -522,6 +522,8 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
           deselectNode();
           network.selectNodes([]);
         }
+        break;
+      default:
         break;
     }
 
@@ -584,7 +586,6 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     (prevstate: GraphType.Optativa[], dispatched: GraphType.OptativasDispatcher) => {
       let newstate = prevstate;
       const { action, value } = dispatched;
-
       switch (action) {
         case "override":
           newstate = value;
@@ -606,8 +607,9 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
         case "edit":
           newstate = prevstate.map((o) => (o.id === value.id ? value : o));
           break;
+        default:
+            return newstate;
       }
-
       return newstate;
     },
     [],
@@ -722,16 +724,16 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     // pero estos creditos que le pusimos no son reales.
     // Siempre que hay que obtener el numero de creditos que tenemos, hay que sacar los por checkbox: true
     if (user.carrera.creditos.checkbox) {
-      user.carrera.creditos.checkbox.forEach((checkbox) => {
+      user.carrera.creditos.checkbox.forEach((m) => {
         return creditos.push({
-          nombre: checkbox.nombre,
-          nombrecorto: checkbox.nombrecorto,
-          color: checkbox.color,
-          bg: checkbox.bg,
+          nombre: m.nombre,
+          nombrecorto: m.nombrecorto,
+          color: m.color,
+          bg: m.bg,
           creditosNecesarios: 8,
-          creditos: checkbox.check ? 8 : 0,
+          creditos: m.check ? 8 : 0,
           checkbox: true,
-          check: checkbox.check,
+          check: m.check,
           dummy: true,
         });
       });
@@ -745,7 +747,6 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     if (user.carrera.creditos.materias)
       user.carrera.creditos.materias.forEach((m) => {
         const node = getNode(m.id);
-
         creditos.push({
           nombre: node.materia,
           nombrecorto: m.nombrecorto,
@@ -787,10 +788,10 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     });
 
     const fullProportion = creditos.reduce(accProportion, 0);
-    if (fullProportion > 10) creditos[1].proportion! -= fullProportion - 10;
-    else if (fullProportion < 10)
-      creditos[1].proportion! += 10 - fullProportion;
-
+    if (creditos[1].proportion) {
+      if (fullProportion > 10) creditos[1].proportion -= fullProportion - 10;
+      else if (fullProportion < 10) creditos[1].proportion += 10 - fullProportion;
+    }
     setCreditos(creditos);
   };
 
@@ -884,9 +885,9 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
 
   // Interacción con el mouse
   const events: ReactGraphVisType.NodeEvents = {
-    doubleClick: (event: ReactGraphVisType.ClickEvent) => {
+    doubleClick: (e: ReactGraphVisType.ClickEvent) => {
       // dobleclick: aprobar/desaprobar
-      const id = event.nodes[0];
+      const id = e.nodes[0];
       if (id === "CBC") return;
       const node = getNode(id);
       if (!node) return;
@@ -897,9 +898,9 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
         desaprobar(id);
       }
     },
-    hoverNode: (event: ReactGraphVisType.HoverEvent) => {
+    hoverNode: (e: ReactGraphVisType.HoverEvent) => {
       // hover: seleccionar nodo para ver sus correlativas facilmente
-      const id = event.node;
+      const id = e.node;
       if (network.getSelectedNodes().length) {
         return;
       }
@@ -921,9 +922,9 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
       }
       deselectNode();
     },
-    selectNode: (event: ReactGraphVisType.ClickEvent) => {
+    selectNode: (e: ReactGraphVisType.ClickEvent) => {
       // click: seleccionar un nodo
-      const id = event.nodes[0];
+      const id = e.nodes[0];
 
       // Si clickeo el CBC, lo abro/cierro
       if (id === "CBC") {
@@ -934,7 +935,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
       }
       selectNode(id, true);
     },
-    deselectNode: (event: ReactGraphVisType.DeselectEvent) => {
+    deselectNode: (e: ReactGraphVisType.DeselectEvent) => {
       // click en otro nodo/click en cualquier lado del mapa: deseleccionar lo que teniamos
       deselectNode(true);
     },
@@ -1102,7 +1103,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
               !n.hidden &&
               n.categoria !== "CBC" &&
               n.categoria !== "*CBC",
-          })
+          }) as (NodeType & { cuatrimestre: number })[]
         : [],
     AllShownWithoutCuatri: () =>
       nodes
@@ -1113,7 +1114,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
               n.originalLevel &&
               n.categoria !== "CBC" &&
               n.categoria !== "*CBC",
-          })
+          }) as (NodeType & { cuatrimestre: undefined })[]
         : [],
     WithoutNivel: () =>
       nodes

@@ -129,7 +129,6 @@ const UserMenu = () => {
           </MenuItem>
         </MenuList>
       </Menu>
-      
       <Tooltip
         {...TooltipProps}
         label={

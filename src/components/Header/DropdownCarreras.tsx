@@ -22,11 +22,7 @@ import { Property } from "csstype";
 import { CARRERAS, PLANES } from "../../carreras";
 import { GraphContext, UserContext } from "../../MapContext";
 
-const AnoBadge = ({
-  ano,
-  active,
-  ...rest
-}: { ano: number; active: boolean } & BadgeProps) => {
+const AnoBadge = ({ ano, active, ...rest }: { ano: number; active: boolean } & BadgeProps) => {
   const activeVariant = useColorModeValue("solid", "subtle");
   const commonProps = {
     mx: 1,
@@ -55,9 +51,8 @@ const DropdownCarreras = () => {
   const { changeCarrera } = React.useContext(GraphContext);
 
   const carrera = React.useMemo(() => {
-    const { nombre, nombrecorto } = PLANES.find((p) =>
-      p.planes.includes(user.carrera.id),
-    )!;
+    const plan = PLANES.find((p) => p.planes.includes(user.carrera.id));
+    const { nombre, nombrecorto } = plan || { nombre: "", nombrecorto: "" };
     return { nombre, nombrecorto };
   }, [user.carrera.id]);
 
@@ -124,7 +119,8 @@ const DropdownCarreras = () => {
               </Text>
               <Box ml={2}>
                 {p.planes.map((c) => {
-                  const plan = CARRERAS.find((carrera) => carrera.id === c)!;
+                  const plan = CARRERAS.find((carrera) => carrera.id === c);
+                  if (!plan) return null
                   const active = user.carrera.id === c;
                   return (
                     <AnoBadge

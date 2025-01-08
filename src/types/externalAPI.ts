@@ -27,11 +27,10 @@ export namespace GoogleSheetAPI {
   }
   
   export interface RegistrosValueRange extends ValueRange {
-    values: [
-      string[], // padrones
-      { carreraid: string }[],
-      { map: string }[],
-    ];
+    values: {
+      string: string[],
+      [Symbol.iterator](): Iterator<string[]>
+    }
   }
 }
 

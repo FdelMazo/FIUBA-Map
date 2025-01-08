@@ -141,12 +141,9 @@ export const GRUPOS = {
     size: 60,
     ctxRenderer: drawFinDeCarrera,
   },
-  ...CARRERAS.filter((c) => c.orientaciones)
-    .flatMap((c) => c.orientaciones!)
-    .reduce<{ [key: string]: UserType.Orientacion }>(function (
-      map: { [key: string]: UserType.Orientacion },
-      obj: UserType.Orientacion,
-    ) {
+  ...CARRERAS.filter((c): c is UserType.Carrera & {orientaciones: UserType.Orientacion[]} => c.orientaciones !== undefined)
+    .flatMap((c) => c.orientaciones)
+    .reduce<{ [key: string]: UserType.Orientacion }>(function (map, obj) {
       obj.color = (COLORS[obj.colorScheme] as any)[500];
       map[obj.nombre] = obj;
       return map;

@@ -75,13 +75,16 @@ const MateriaControl = () => {
   );
   const repos = React.useMemo(
     () =>
-      fiubaRepos.find(
-        (materia) => node && materia.codigos.includes(node.id.replace(".", "")),
+      node && fiubaRepos.find((materia) =>
+        materia.codigos.includes(node.id.replace(".", "")),
       ),
     [fiubaRepos, node],
   );
 
-  return displayedNode && logged && node?.id !== "CBC" ? (
+  return (
+    displayedNode &&
+    logged &&
+    node?.id !== "CBC" ? (
     <Flex alignItems="center" height="fit-content">
       <Hide ssr={false} below="md">
         {repos && (
@@ -93,7 +96,7 @@ const MateriaControl = () => {
                 <Box textAlign="center">
                   <Text>
                     Chusmeá{" "}
-                    {(repos.reponames) && (repos.reponames.size === 1
+                    {repos.reponames && (repos.reponames.size === 1
                       ? "el FIUBA-Repo"
                       : `los ${repos.reponames.size} FIUBA-Repos`)}
                   </Text>
@@ -283,7 +286,7 @@ const MateriaControl = () => {
     </Flex>
   ) : (
     <></>
-  );
+  ));
 };
 
 export default MateriaControl;

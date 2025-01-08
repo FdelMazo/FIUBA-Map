@@ -13,18 +13,17 @@ import { GoogleSheetAPI, GithubAPI } from "./types/externalAPI";
 // El padron se setea una vez que el usuario se loguea exitosamente (O sea, logged = padron !== "")
 // allLogins contiene un array con todas las [carrera,orientacion,findecarrera] que tiene el usuario en la DB
 // maps contiene todos los mapas que tiene el usuario en la DB
-
-const initialUser: UserType.UserInfo = {
+const initialUser: UserType.Info = {
   padron: "",
   carrera: CARRERAS.find((c) => c.id === "sistemas")!,
-  orientacion: undefined,
-  finDeCarrera: undefined,
+  orientacion: null,
+  finDeCarrera: null,
   allLogins: [],
   maps: [],
 };
 
 const Login = (): UserType.Context => {
-  const [user, setUser] = React.useState<UserType.UserInfo>(initialUser);
+  const [user, setUser] = React.useState<UserType.Info>(initialUser);
 
   // Inicializamos el padron en lo que hay en el storage, o vacio
   const [padronInput, setPadronInput] = React.useState(
@@ -74,7 +73,7 @@ const Login = (): UserType.Context => {
       `${C.SPREADSHEET}/${C.SHEETS.user}!B:B?majorDimension=COLUMNS&key=${C.KEY}`,
     )
       .then((res) => res.json())
-      .then((res: GoogleSheetAPI.UserValueRange) => (res.error ? null : res.values[0]));
+      .then((res: GoogleSheetAPI.UserValueRange) => (!res.error ? res.values[0] : null));
 
     if (!padrones) {
       setLoading(false);
@@ -107,21 +106,21 @@ const Login = (): UserType.Context => {
       findecarreraid: d.values[0][4],
     }));
 
-    let carrera: UserType.Carrera = CARRERAS.find((c) => c.id === "sistemas")!;
+    let carrera: UserType.Carrera | undefined = CARRERAS.find((c) => c.id === "sistemas");
+    if (!carrera) return false;
     let orientacion: UserType.Orientacion | undefined = undefined;
     let finDeCarrera: UserType.FinDeCarrera | undefined = undefined;
-    for (const userLogin of allLogins) {
-      const foundCarrera: UserType.Carrera = CARRERAS.find(
-        (c) => c.id === userLogin.carreraid,
-      )!;
-
+    for (const login of allLogins) {
+      const foundCarrera: UserType.Carrera | undefined = CARRERAS.find(
+        (c) => c.id === login.carreraid,
+      );
       if (foundCarrera) {
         carrera = foundCarrera;
         orientacion = foundCarrera.orientaciones?.find(
-          (c) => c.nombre === userLogin.orientacionid,
+          (c) => c.nombre === login.orientacionid,
         );
         finDeCarrera = carrera.finDeCarrera?.find(
-          (c) => c.id === userLogin.findecarreraid,
+          (c) => c.id === login.findecarreraid,
         );
         break;
       }
@@ -147,18 +146,16 @@ const Login = (): UserType.Context => {
   // Solo lidia con [padron, carrera, orientacion, findecarrera], no con mapas
   // Se usa para siempre tener un registro de cual es la ultima carrera que un usuario uso
   // Asi no tenes que a mano guardar un cambio de carrera
-  const register = async (user: UserType.UserInfo) => {
+  const register = async (user: UserType.Info) => {
     const addToAllLogins = () => {
       const newAllLogins = user.allLogins.filter(
         (l) => l.carreraid !== user.carrera.id,
       );
-
       newAllLogins.push({
         carreraid: user.carrera.id,
         orientacionid: user.orientacion?.nombre,
         findecarreraid: user.finDeCarrera?.id,
       });
-
       return newAllLogins;
     };
 
@@ -176,7 +173,6 @@ const Login = (): UserType.Context => {
       ...user,
       padron,
     };
-
     window.localStorage.setItem("padron", padron);
     setLoading(true);
     await register(newUser);
@@ -212,16 +208,12 @@ const Login = (): UserType.Context => {
     await postGraph(user, map);
 
     const addToMaps = () => {
-      let newMaps: UserType.Map[] = [];
-
-      if (user.maps) {
-        newMaps = user.maps.filter((l) => l.carreraid !== user.carrera.id);
-      }
+      if (!user.maps) return [];
+      const newMaps = user.maps.filter((l) => l.carreraid !== user.carrera.id);
       newMaps.push({
         carreraid: user.carrera.id,
         map,
       });
-
       return newMaps;
     };
 

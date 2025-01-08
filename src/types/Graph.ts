@@ -27,8 +27,8 @@ export namespace GraphType {
     AllRelevantes(): NodeType[];
     Shown(): NodeType[];
     AllShown(): NodeType[];
-    AllShownWithCuatri(): NodeType[];
-    AllShownWithoutCuatri(): NodeType[];
+    AllShownWithCuatri(): (NodeType & { cuatrimestre: number })[];
+    AllShownWithoutCuatri(): (NodeType & { cuatrimestre: undefined })[];
     WithoutNivel(): NodeType[];
     Electivas(): NodeType[];
     Levels(): NodeType[];
@@ -130,7 +130,7 @@ export namespace GraphType {
     showLabels: boolean;
     colorMode: "light" | "dark";
     getters: Getters;
-    user: UserType.UserInfo;
+    user: UserType.Info;
     network: ReactGraphVisType.Network;
   
     getNode(id: string): NodeType | undefined;

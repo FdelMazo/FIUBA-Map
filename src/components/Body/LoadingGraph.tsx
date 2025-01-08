@@ -6,10 +6,11 @@ import { Box, Modal, ModalOverlay, useColorModeValue } from "@chakra-ui/react";
 const injectStyle = (style: string) => {
   const styleElement = document.createElement("style");
   let styleSheet = null;
-
   document.head.appendChild(styleElement);
-  styleSheet = styleElement.sheet as CSSStyleSheet;
-  styleSheet.insertRule(style, styleSheet.cssRules.length);
+  styleSheet = styleElement.sheet;
+  if (styleSheet) {
+    styleSheet.insertRule(style, styleSheet.cssRules.length);
+  }
 };
 
 // El mejor loading component que existe

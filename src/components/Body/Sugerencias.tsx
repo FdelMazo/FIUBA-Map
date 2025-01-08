@@ -137,13 +137,12 @@ const Sugerencias = () => {
                         </Text>
                       </VStack>
                       <form
-                        onSubmit={async (event) => {
-                          event.preventDefault();
+                        onSubmit={async (t) => {
+                          t.preventDefault();
                           const bugTextArea =
-                            event.currentTarget.elements.namedItem(
+                            t.currentTarget.elements.namedItem(
                               "bug",
                             ) as HTMLTextAreaElement;
-
                           await submitBug(user, bugTextArea.value).catch(
                             console.error,
                           );

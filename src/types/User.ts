@@ -94,7 +94,7 @@ export namespace UserType {
   
   export interface SaveGraph {
     (
-      user: UserInfo,
+      user: Info,
       materias: NodeType[],
       checkboxes: string[] | undefined,
       optativas: GraphType.Optativa[],
@@ -104,7 +104,7 @@ export namespace UserType {
   
   export interface Context {
     loading: boolean;
-    user: UserInfo;
+    user: Info;
     logged: boolean;
     padronInput: string;
     fiubaRepos: GithubAPI.MateriaFIUBARepo[];
@@ -112,14 +112,14 @@ export namespace UserType {
     
     login(padron: string): Promise<boolean>;
     signup(padron: string): Promise<void>;
-    register(user: UserInfo): Promise<void>;
+    register(user: Info): Promise<void>;
     logout(): void;
-    setUser: React.Dispatch<React.SetStateAction<UserInfo>>;
+    setUser: React.Dispatch<React.SetStateAction<Info>>;
     setPadronInput: React.Dispatch<React.SetStateAction<string>>;
     saveUserGraph: SaveGraph;
   }
 
-  export interface UserInfo {
+  export interface Info {
     padron: string;
     carrera: Carrera;
     orientacion: Orientacion | undefined | null;
