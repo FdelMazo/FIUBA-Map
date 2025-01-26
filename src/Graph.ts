@@ -44,7 +44,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
 
   // Para manipular los nodos, necesitamos acceso a la ref interna que les seteamos en el constructor
   const getNode = (id: string) => {
-    return nodes.get(id).nodeRef;
+    return nodes?.get(id)?.nodeRef;
   };
 
   // Cuando cambia la carrera, cambia la key del body.
