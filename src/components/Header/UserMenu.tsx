@@ -147,7 +147,7 @@ const UserMenu = () => {
             setSaving(false);
           }}
           isDisabled={isBeta}
-          aria-label="Icono para guardar los datos del plan"
+          aria-label="Guardar los datos del plan"
         >
           <Icon boxSize={5} as={FaSave} />
         </IconButton>
