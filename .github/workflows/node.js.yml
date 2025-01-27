@@ -12,4 +12,4 @@ jobs:
       - id: node-to-gh
         uses: fdelmazo/node-to-gh-action@v2
       - id: typescript check
-        uses: npx tsc --noEmit
+        run: npx tsc --noEmit
