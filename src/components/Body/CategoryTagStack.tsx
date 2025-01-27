@@ -56,9 +56,7 @@ const CategoryTagStack = () => {
                       <Icon boxSize={"1.3em"} as={RiFocus2Line} mr="0.5rem" />
                     );
                   default:
-                    return (
-                      <Icon boxSize={"1.3em"} as={RiFocusLine} mr="0.5rem" />
-                    );
+                    return <></>;
                 }
               }}
             />
