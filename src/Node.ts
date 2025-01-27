@@ -137,21 +137,21 @@ class Node implements NodeType {
     const { getters, getNode, creditos } = ctx;
     const { creditosTotales, creditosCBC } = creditos;
     const from = getters.NodesFrom(this.id);
-    let todoAprobado = 1;
+    let todoAprobado = true;
     for (let id of from) {
       const m = getNode(id);
       if (m) {
-        todoAprobado &= +m.aprobada;
+        todoAprobado = todoAprobado && m.aprobada;
       }
     }
     if (this.requiere) {
       if (this.requiereCBC) {
-        todoAprobado &= +(creditosTotales >= this.requiere);
+        todoAprobado = todoAprobado && (creditosTotales >= this.requiere);
       } else {
-        todoAprobado &= +(creditosTotales - creditosCBC >= this.requiere);
+        todoAprobado = todoAprobado && (creditosTotales - creditosCBC >= this.requiere);
       }
     }
-    return !!todoAprobado;
+    return todoAprobado;
   }
 
   // Actualiza el nodo de acuerdo a tooodas sus propiedades
