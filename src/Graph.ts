@@ -725,7 +725,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     // Siempre que hay que obtener el numero de creditos que tenemos, hay que sacar los por checkbox: true
     if (user.carrera.creditos.checkbox) {
       user.carrera.creditos.checkbox.forEach((m) => {
-        return creditos.push({
+        creditos.push({
           nombre: m.nombre,
           nombrecorto: m.nombrecorto,
           color: m.color,
