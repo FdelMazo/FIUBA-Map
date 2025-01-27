@@ -167,7 +167,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     // Para evitar que se actualice la red pero no el grafo, guardamos la carrera
     // y despues la usamos para chequear contra la carrera de la network
     const key = user.carrera.id;
-    return { nodes: nodes, edges, groups, key };
+    return { nodes, edges, groups, key };
   }, [user.carrera.graph, user.carrera.id]);
 
   // Cuando cambia la carrera, poblamos el nuevo grafo con lo que hay en la DB
