@@ -106,8 +106,7 @@ const Login = (): UserType.Context => {
       findecarreraid: d.values[0][4],
     }));
 
-    let carrera: UserType.Carrera | undefined = CARRERAS.find((c) => c.id === "sistemas");
-    if (!carrera) return false;
+    let carrera = CARRERAS.find((c) => c.id === "sistemas")!;
     let orientacion: UserType.Orientacion | undefined = undefined;
     let finDeCarrera: UserType.FinDeCarrera | undefined = undefined;
     for (const login of allLogins) {
