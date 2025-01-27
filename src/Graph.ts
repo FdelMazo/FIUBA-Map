@@ -608,7 +608,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
           newstate = prevstate.map((o) => (o.id === value.id ? value : o));
           break;
         default:
-            return newstate;
+          return newstate;
       }
       return newstate;
     },
