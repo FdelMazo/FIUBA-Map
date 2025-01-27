@@ -32,8 +32,6 @@ const ProgressBar = () => {
   return (
     <Grid
       flexGrow={1}
-      column={creditos.length}
-      // templateColumns={`repeat(${creditos.length}, 1fr)`}
       templateColumns="repeat(10, 1fr)"
     >
       {creditos.map((c) => (
