@@ -15,16 +15,19 @@ import {
   Badge,
   MenuItem,
   useColorModeValue,
+  BadgeProps,
+  ResponsiveValue,
 } from "@chakra-ui/react";
+import { Property } from "csstype";
 import { CARRERAS, PLANES } from "../../carreras";
 import { GraphContext, UserContext } from "../../MapContext";
 
-const AnoBadge = ({ ano, active, ...rest }) => {
+const AnoBadge = ({ ano, active, ...rest }: { ano: number; active: boolean } & BadgeProps) => {
   const activeVariant = useColorModeValue("solid", "subtle");
   const commonProps = {
     mx: 1,
     variant: active ? activeVariant : "outline",
-    textAlign: "center",
+    textAlign: "center" as ResponsiveValue<Property.TextAlign>,
     colorScheme: "gray",
     ...rest,
   };
@@ -48,9 +51,8 @@ const DropdownCarreras = () => {
   const { changeCarrera } = React.useContext(GraphContext);
 
   const carrera = React.useMemo(() => {
-    const { nombre, nombrecorto } = PLANES.find((p) =>
-      p.planes.includes(user.carrera.id),
-    );
+    const plan = PLANES.find((p) => p.planes.includes(user.carrera.id));
+    const { nombre = "", nombrecorto = "" } = plan || {};
     return { nombre, nombrecorto };
   }, [user.carrera.id]);
 
@@ -112,12 +114,13 @@ const DropdownCarreras = () => {
                   }
                 : { cursor: "default", closeOnSelect: false })}
             >
-              <Text as={p.planes.includes(user.carrera.id) && "b"}>
+              <Text as={p.planes.includes(user.carrera.id) ? "b" : "p"}>
                 {p.nombre}
               </Text>
               <Box ml={2}>
                 {p.planes.map((c) => {
                   const plan = CARRERAS.find((carrera) => carrera.id === c);
+                  if (!plan) return null
                   const active = user.carrera.id === c;
                   return (
                     <AnoBadge
@@ -129,10 +132,7 @@ const DropdownCarreras = () => {
                         changeCarrera(c);
                       }}
                       _hover={
-                        !active &&
-                        p.planes.length > 1 && {
-                          border: "1px",
-                        }
+                        !active && p.planes.length > 1 ? { border: "1px" } : {}
                       }
                     />
                   );

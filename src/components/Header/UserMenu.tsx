@@ -1,3 +1,4 @@
+import React from "react";
 import { SettingsIcon } from "@chakra-ui/icons";
 import {
   Button,
@@ -12,11 +13,12 @@ import {
   Tooltip,
   Text,
   Box,
+  PlacementWithLogical,
+  ResponsiveValue
 } from "@chakra-ui/react";
 import { BiLogOut } from "react-icons/bi";
+import { Property } from "csstype";
 import { FaSave, FaUndo } from "react-icons/fa";
-
-import React from "react";
 import { GraphContext, UserContext } from "../../MapContext";
 
 const ButtonProps = {
@@ -30,8 +32,8 @@ const ButtonProps = {
 const TooltipProps = {
   closeOnClick: true,
   hasArrow: true,
-  placement: "bottom",
-  textAlign: "center",
+  placement: "bottom" as PlacementWithLogical,
+  textAlign: "center" as ResponsiveValue<Property.TextAlign>,
 };
 
 // Menu para elegir orientacion y fin de carrera (y para "cerrar sesion")
@@ -75,7 +77,7 @@ const UserMenu = () => {
           {user.carrera.finDeCarrera && (
             <MenuOptionGroup
               onChange={(value) => {
-                changeFinDeCarrera(value);
+                changeFinDeCarrera(value as string);
               }}
               value={user.finDeCarrera?.id || "none"}
               title="Fin de Carrera"
@@ -97,7 +99,7 @@ const UserMenu = () => {
           {user.carrera.eligeOrientaciones && (
             <MenuOptionGroup
               onChange={(value) => {
-                changeOrientacion(value);
+                changeOrientacion(value as string);
               }}
               value={user.orientacion?.nombre || "none"}
               title="Orientación"
@@ -145,6 +147,7 @@ const UserMenu = () => {
             setSaving(false);
           }}
           isDisabled={isBeta}
+          aria-label="Guardar los datos del plan"
         >
           <Icon boxSize={5} as={FaSave} />
         </IconButton>
@@ -152,7 +155,12 @@ const UserMenu = () => {
 
       {getters.Cuatrimestres().length > 0 && (
         <Tooltip {...TooltipProps} label="Limpiar todos los cuatris">
-          <IconButton {...ButtonProps} ml={2} onClick={restartGraphCuatris}>
+          <IconButton
+            {...ButtonProps}
+            ml={2}
+            onClick={restartGraphCuatris}
+            aria-label="Limpiar la data de los cuatrimestres"
+          >
             <Icon boxSize={4} as={FaUndo} />
           </IconButton>
         </Tooltip>

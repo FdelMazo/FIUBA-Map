@@ -1,0 +1,12 @@
+name: Verify TypeScript Pull Request
+on: pull_request
+
+jobs:
+  verify-ts-pr:
+    runs-on: ubuntu-latest
+    name: Verify TypeScript PR
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v4
+      - run: npm install
+      - run: npx tsc --noEmit

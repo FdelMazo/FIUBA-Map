@@ -1,12 +1,16 @@
-import { Box, Modal, ModalOverlay, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
+import { Box, Modal, ModalOverlay, useColorModeValue } from "@chakra-ui/react";
 
-const injectStyle = (style) => {
+// Crea un styles element, lo agrega al head del HTML document, y le agrega
+// los estilos pasados por el parametro style
+const injectStyle = (style: string) => {
   const styleElement = document.createElement("style");
   let styleSheet = null;
   document.head.appendChild(styleElement);
   styleSheet = styleElement.sheet;
-  styleSheet.insertRule(style, styleSheet.cssRules.length);
+  if (styleSheet) {
+    styleSheet.insertRule(style, styleSheet.cssRules.length);
+  }
 };
 
 // El mejor loading component que existe
@@ -28,7 +32,7 @@ const LoadingGraph = () => {
 
   injectStyle(keyframesStyle);
   return (
-    <Modal isOpen={true}>
+    <Modal isOpen={true} onClose={() => {}}>
       <ModalOverlay />
       <Box
         position="fixed"

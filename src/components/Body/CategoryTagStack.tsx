@@ -34,6 +34,7 @@ const CategoryTagStack = () => {
         {categorias.map((c) => (
           <Tag
             cursor="pointer"
+            // @ts-ignore
             bg={C.GRUPOS[c]?.color}
             key={c}
             size={{ base: "sm", md: "md" }}
@@ -55,7 +56,7 @@ const CategoryTagStack = () => {
                       <Icon boxSize={"1.3em"} as={RiFocus2Line} mr="0.5rem" />
                     );
                   default:
-                    return;
+                    return <></>;
                 }
               }}
             />

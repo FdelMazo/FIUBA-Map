@@ -1,5 +1,8 @@
 import { COLORS } from "./theme";
 import { getCurrentCuatri, promediar } from "./utils";
+import { NodeType } from "./types/Node";
+import { UserType } from "./types/User";
+import { GraphType } from "./types/Graph";
 
 const FONT_AFUERA = ["CBC", "*CBC"];
 const ALWAYS_SHOW = [
@@ -8,7 +11,13 @@ const ALWAYS_SHOW = [
   "Fin de Carrera (Obligatorio)",
 ];
 
-function breakWords(string) {
+/**
+ * Funcion que recibe un string y lo separa en palabras, si la palabra tiene menos de 4 caracteres la deja en la misma
+ * linea, si tiene mas de 4 caracteres la separa en una nueva linea
+ * @param string 
+ * @returns 
+ */
+function breakWords(string: string) {
   let broken = "";
   string.split(" ").forEach((element) => {
     if (element.length < 4) broken += " " + element;
@@ -17,23 +26,47 @@ function breakWords(string) {
   return broken.trim();
 }
 
-class Node {
-  // Los nodos los creamos en base a lo que hay en los json, y arrancan todos desaprobados
+class Node implements NodeType {
+  aprobada: boolean;
+  categoria: string;
+  cuatrimestre: number | undefined;
+  group: string;
+  hidden: boolean;
+  label: string;
+  level: number;
+  nodeRef: this;
+  nota: number;
+  originalLevel: number;
+  id: string;
+  creditos: number;
+  requiere: number | undefined;
+  requiereCBC: boolean | undefined;
+  materia: string;
+  opacity: number | undefined;
+  font: { color: "white" | "black" } | undefined;
+  color: string | undefined;
+  // Los nodos los creamos en base a lo que hay en los JSON, y arrancan todos desaprobados
   // Hay varios atributos propios ('categoria', 'cuatrimestre') => Probablemente todos los que estan en español
-  // Hay atributos de visjs que determinan muchas cosas del network => Probablemente todos los que estan en ingles
-  constructor(n) {
+  // Hay atributos de vis.js que determinan muchas cosas del network => Probablemente todos los que estan en ingles
+  constructor(node: UserType.MateriaJSON) {
     // Guardamos una referencia al nodo mismo para poder manipularlo desde afuera
-    // (porque cuando llenamos el grafo, visjs hace lo que quiere con nuestra estructura de datos)
+    // (porque cuando llenamos el grafo, vis.js hace lo que quiere con nuestra estructura de datos)
     this.nodeRef = this;
 
-    // Si en los jsons hay un campo valido de visjs, lo vamos a tomar
-    // Por ejemplo, el campo level lo levantamos directo desde el json
-    Object.assign(this, { ...n });
-    this.label = breakWords(n.materia);
+    // Lo declaramos especificamente porque sino TypeScript no lo reconoce
+    this.categoria = node.categoria;
+    this.creditos = node.creditos;
+    this.materia = node.materia;
 
-    // El group de visjs determina los colores y miles de cosas mas
-    // La categoria es FIUBA: cbc, electiva, obligatoria, etc
-    // El grupo es visjs: "habilitada", "aprobada", etc
+    // Si en los JSONs hay un campo valido de vis.js, lo vamos a tomar
+    // Por ejemplo, el campo level lo levantamos directo desde el JSON
+    this.id = node.id;
+    Object.assign(this, { ...node });
+    this.label = breakWords(node.materia);
+
+    // El group de vis.js determina los colores y miles de cosas mas
+    // La categoria es FIUBA: CBC, electiva, obligatoria, etc
+    // El grupo es vis.js: "habilitada", "aprobada", etc
     // Las categorias son:
     // - *CBC: Las materias del CBC
     // - CBC: El nodo que abre/cierra el CBC. Tecnicamente, no es una materia
@@ -56,24 +89,29 @@ class Node {
     // Solamente como un shortcut de nota >= 0
     this.aprobada = false;
 
-    // El level de visjs determina en que columna esta cada nodo
+    // El level de vis.js determina en que columna esta cada nodo
     // Con los cuatris podemos "planear" las materias: mostrarlas en la columna que queremos
     // Los cuatris son enteros para los primeros cuatris, y floats para los segundos
     // - 2020 => 2020 primer cuatri.
     // - 2020.5 => 2020 segundo cuatri
     this.cuatrimestre = undefined;
+    // Aca si definimos originalLevel luego de level, como seria logico, introduce un bug, donde al marcar una materia
+    // como cursando, se mueve mucho a la izquierda, quiza porque se le asigna un level de -3?
+    // @ts-ignore
     this.originalLevel = this.level;
-    this.level = this.level ?? -3;
+    this.level = node.level ?? -3;
 
     // Arrancan escondidas las materias electivas, las de las orientaciones, etc
     // Siempre mostramos el CBC, las obligatorias, y el final de la carrera de las carreras que no pueden elegir entre tesis y tpp
-    this.hidden = !ALWAYS_SHOW.includes(this.categoria);
+    this.hidden = !ALWAYS_SHOW.includes(node.categoria);
   }
 
-  aprobar(nota) {
+  aprobar(nota: number) {
     if (nota < -1) return;
-    this.aprobada = nota > -1 ? true : false;
+
+    this.aprobada = nota > -1;
     this.nota = nota;
+
     return this;
   }
 
@@ -83,7 +121,7 @@ class Node {
     return this;
   }
 
-  cursando(cuatri) {
+  cursando(cuatri: number | undefined) {
     this.cuatrimestre = cuatri;
     return this;
   }
@@ -92,23 +130,25 @@ class Node {
   // Tambien, hay materias que "requieren" un minimo de creditos
   // Si "requiereCBC", entonces se consideran los creditos totales
   // Si no, se consideran los creditos totales menos los creditos del CBC
-  // Nota: que se consideren o no los creditos del cbc para esto
-  //  es MUY poco claro en todos los planes de fiuba, y todos varian,
+  // Nota: que se consideren o no los creditos del CBC para esto
+  //  es MUY poco claro en todos los planes de FIUBA, y todos varian,
   //  asi que puede no ser 100% fiel a la realidad
-  isHabilitada(ctx) {
+  isHabilitada(ctx: GraphType.Info) {
     const { getters, getNode, creditos } = ctx;
     const { creditosTotales, creditosCBC } = creditos;
     const from = getters.NodesFrom(this.id);
     let todoAprobado = true;
     for (let id of from) {
       const m = getNode(id);
-      todoAprobado &= m.aprobada;
+      if (m) {
+        todoAprobado = todoAprobado && m.aprobada;
+      }
     }
     if (this.requiere) {
       if (this.requiereCBC) {
-        todoAprobado &= creditosTotales >= this.requiere;
+        todoAprobado = todoAprobado && (creditosTotales >= this.requiere);
       } else {
-        todoAprobado &= creditosTotales - creditosCBC >= this.requiere;
+        todoAprobado = todoAprobado && (creditosTotales - creditosCBC >= this.requiere);
       }
     }
     return todoAprobado;
@@ -121,7 +161,7 @@ class Node {
   // Esta funcion esta pensada para llamarse a todos los nodos juntos cada vez que cambia algo
   // Porque esta todo tan entrelazado que actualizar solamente un nodo no va a ser fiel a la realidad
   // Por ejemplo: si apruebo X materia y paso los 100 creditos, de alguna forma el nodo que requiere 100 creditos tiene que enterarse
-  actualizar(ctx) {
+  actualizar(ctx: GraphType.Info) {
     const { user, showLabels, colorMode, getters } = ctx;
 
     let grupoDefault = this.categoria;

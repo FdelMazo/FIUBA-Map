@@ -32,7 +32,6 @@ const ProgressBar = () => {
   return (
     <Grid
       flexGrow={1}
-      columns={creditos.length}
       templateColumns="repeat(10, 1fr)"
     >
       {creditos.map((c) => (
@@ -52,7 +51,7 @@ const ProgressBar = () => {
                     ) : (
                       <Badge
                         alignSelf={
-                          c.creditosNecesarios && c.creditos !== 0 && "baseline"
+                          (c.creditosNecesarios && c.creditos) !== 0 ? "baseline" : "auto"
                         }
                         colorScheme={c.color}
                         variant="solid"

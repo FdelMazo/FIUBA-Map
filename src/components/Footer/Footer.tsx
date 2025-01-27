@@ -11,7 +11,8 @@ const Footer = () => {
   const { logged, user } = React.useContext(UserContext);
 
   return (
-    <Collapse in={logged} position="relative" unmountOnExit>
+    // @ts-expect-error el position relative nos asegura que los popups se vean
+    <Collapse in={logged} unmountOnExit position="relative">
       <Flex
         alignItems="center"
         bg={useColorModeValue("headerbg", "headerbgdark")}

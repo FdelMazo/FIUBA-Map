@@ -1,6 +1,7 @@
 import { Box, Icon, SlideFade, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
-import Graph from "react-graph-vis";
+// @ts-ignore ignoramos porque react-graph-vis no tiene soporte para TypeScript
+import Graph  from "react-graph-vis";
 import Snowfall from "react-snowfall";
 import * as C from "../../constants";
 import { GraphContext, UserContext } from "../../MapContext";
@@ -17,7 +18,7 @@ const isChristmasTime = today >= start && today <= end;
 
 // Muestra el grafo y un par de pavadas mas
 const Body = () => {
-  const { graph, createNetwork, networkRef, loadingGraph, creditos, events } =
+  const { graph, createNetwork, networkRef, creditos, events } =
     React.useContext(GraphContext);
   const { user, loggingIn } = React.useContext(UserContext);
   const [snowfall, setSnowfall] = React.useState(true);
@@ -44,7 +45,7 @@ const Body = () => {
           style={{ width: "100%", height: "100%", position: "fixed" }}
         />
       )}
-      <SlideFade in={loadingGraph || loggingIn} unmountOnExit>
+      <SlideFade in={loggingIn} unmountOnExit>
         <LoadingGraph />
       </SlideFade>
       <Graph
