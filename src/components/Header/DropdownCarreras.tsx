@@ -52,7 +52,7 @@ const DropdownCarreras = () => {
 
   const carrera = React.useMemo(() => {
     const plan = PLANES.find((p) => p.planes.includes(user.carrera.id));
-    const { nombre, nombrecorto } = plan || { nombre: "", nombrecorto: "" };
+    const { nombre = "", nombrecorto = "" } = plan || {};
     return { nombre, nombrecorto };
   }, [user.carrera.id]);
 
