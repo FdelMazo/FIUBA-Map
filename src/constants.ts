@@ -4,7 +4,7 @@ import { UserType } from "./types/User";
 import { NodeType } from "./types/Node";
 
 export const USER_FORM =
-  "https://docs.google.com/forms/u/1/d/e/1FAIpQLSedZWz0SJOLsxEscmHo8FDdTQyIF5xTczGBqr1Z6oLwKwiemw/formResponse";
+  "https://docs.google.com/forms/u/1/d/e/1FAIpQLSfDKMLIYm0ivpDsOwOJFvCp1U0zyRDF9V5dHj7cdsKdt61FsA/formResponse";
 
 export const USER_FORM_ENTRIES = {
   padron: "entry.1608351524",
@@ -14,7 +14,7 @@ export const USER_FORM_ENTRIES = {
 };
 
 export const GRAPH_FORM =
-  "https://docs.google.com/forms/d/e/1FAIpQLScEomNxSEdv07ifB9ep5olsemzRjdPoMMhWL6GLGhswm93shg/formResponse";
+  "https://docs.google.com/forms/d/e/1FAIpQLScF6ZGJqwUexxlqXBg-yAjjlZa7QKJbZTfPx0U-54U8iyqJUw/formResponse";
 
 export const GRAPH_FORM_ENTRIES = {
   padron: "entry.2064135385",
