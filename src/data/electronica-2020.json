@@ -50,7 +50,7 @@
     "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
   },
   {
-    "id": "AMII",
+    "id": "CB001",
     "materia": "Análisis Matemático II",
     "creditos": 8,
     "correlativas": "CBC",
@@ -58,7 +58,7 @@
     "level": 1
   },
   {
-    "id": "FSP",
+    "id": "CB020",
     "materia": "Física de los Sistemas de Partículas",
     "creditos": 6,
     "correlativas": "CBC",
@@ -66,7 +66,7 @@
     "level": 1
   },
   {
-    "id": "IIE",
+    "id": "TB063",
     "materia": "Introducción a la Ingeniería Electrónica",
     "creditos": 6,
     "correlativas": "CBC",
@@ -74,7 +74,7 @@
     "level": 1
   },
   {
-    "id": "AP",
+    "id": "TA130",
     "materia": "Algoritmos y Programación",
     "creditos": 6,
     "correlativas": "CBC",
@@ -82,7 +82,7 @@
     "level": 1
   },
   {
-    "id": "AL",
+    "id": "CB002",
     "materia": "Álgebra Lineal",
     "creditos": 8,
     "correlativas": "CBC",
@@ -90,55 +90,55 @@
     "level": 2
   },
   {
-    "id": "EMC",
+    "id": "CB025",
     "materia": "Electricidad, Magnetismo y Calor",
     "creditos": 6,
-    "correlativas": "AMII-FSP",
+    "correlativas": "CB001-CB020",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "IDE",
+    "id": "TB064",
     "materia": "Introducción a los Dispositivos Electrónicos",
     "creditos": 4,
-    "correlativas": "IIE",
+    "correlativas": "TB063",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "SD",
+    "id": "TA131",
     "materia": "Sistemas Digitales",
     "creditos": 6,
-    "correlativas": "IIE",
+    "correlativas": "TB063",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "PYE",
+    "id": "CB003",
     "materia": "Probabilidad y Estadística",
     "creditos": 6,
-    "correlativas": "AMII-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "SS",
+    "id": "TB065",
     "materia": "Señales y Sistemas",
     "creditos": 6,
-    "correlativas": "AMII-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "AC",
+    "id": "TB066",
     "materia": "Análisis de Circuitos",
     "creditos": 6,
-    "correlativas": "IIE-EMC",
+    "correlativas": "TB063-CB025",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "RC",
+    "id": "TB067",
     "materia": "Redes de Comunicaciones",
     "creditos": 6,
     "correlativas": "CBC",
@@ -146,103 +146,103 @@
     "level": 3
   },
   {
-    "id": "PP",
+    "id": "TC023",
     "materia": "Planificación de Proyectos",
     "creditos": 2,
-    "correlativas": "IIE",
+    "correlativas": "TB063",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "CM",
+    "id": "TB068",
     "materia": "Circuitos Microelectrónicos",
     "creditos": 6,
-    "correlativas": "IDE-AC",
+    "correlativas": "TB064-TB066",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "PE",
+    "id": "TA132",
     "materia": "Procesos Estocásticos",
     "creditos": 6,
-    "correlativas": "PYE-SS",
+    "correlativas": "CB003-TB065",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "CA",
+    "id": "TA133",
     "materia": "Control Automáticos",
     "creditos": 6,
-    "correlativas": "EMC-SS",
+    "correlativas": "CB025-TB065",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "TSE",
+    "id": "TA134",
     "materia": "Taller de Sistemas Embebidos",
     "creditos": 6,
-    "correlativas": "AP-IDE-SD",
+    "correlativas": "TA130-TB064-TA131",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "QE",
+    "id": "CB041",
     "materia": "Química y Electroquímica",
     "creditos": 6,
-    "correlativas": "EMC",
+    "correlativas": "CB025",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "EA",
+    "id": "TB069",
     "materia": "Electromagnetismo Aplicado",
     "creditos": 4,
-    "correlativas": "AC",
+    "correlativas": "TB066",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "TAC",
+    "id": "TA135",
     "materia": "Taller de Automatización y Control",
     "creditos": 6,
-    "correlativas": "AP-CA-SD",
+    "correlativas": "TA130-TA133-TA131",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "TPS",
+    "id": "TA136",
     "materia": "Taller de Procesamiento de Señales",
     "creditos": 6,
-    "correlativas": "PE",
+    "correlativas": "TA132",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "DS",
+    "id": "TB070",
     "materia": "Dispositivos Semiconductores",
     "creditos": 6,
-    "correlativas": "IDE-AC",
+    "correlativas": "TB064-TB066",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "TCD",
+    "id": "TA137",
     "materia": "Taller de Comunicaciones Digitales",
     "creditos": 6,
-    "correlativas": "SS-RC",
+    "correlativas": "TB065-TB067",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "TDCE",
+    "id": "TA138",
     "materia": "Taller de Diseño de Circuitos Electrónicos",
     "creditos": 6,
-    "correlativas": "CM-EA",
+    "correlativas": "TB068-TB069",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "HS",
+    "id": "TC003",
     "materia": "Higiene y Seguridad",
     "creditos": 2,
     "requiere": 100,
@@ -251,7 +251,7 @@
     "level": 6
   },
   {
-    "id": "LEP",
+    "id": "TC002",
     "materia": "Legislación y Ejercicio Profesional",
     "creditos": 2,
     "requiere": 100,
@@ -260,15 +260,15 @@
     "level": 7
   },
   {
-    "id": "GPE",
+    "id": "TC024",
     "materia": "Gestión de Proyectos Electrónicos",
     "creditos": 6,
-    "correlativas": "PP",
+    "correlativas": "TC023",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "ISADS",
+    "id": "TC005",
     "materia": "Impacto Social, Ambiental y Desarrollo Sustentable",
     "creditos": 4,
     "requiere": 100,
@@ -277,273 +277,273 @@
     "level": 7
   },
   {
-    "id": "CI",
+    "id": "TA141",
     "materia": "Comunicaciones Inalámbricas",
     "creditos": 4,
-    "correlativas": "EA-TCD",
+    "correlativas": "TB069-TA137",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IEM",
+    "id": "TB071",
     "materia": "Instrumentos Electrónicos y Metrología",
     "creditos": 4,
-    "correlativas": "TDCE",
+    "correlativas": "TA138",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "EAF",
+    "id": "TB072",
     "materia": "Electrónica de Alta Frecuencia",
     "creditos": 4,
-    "correlativas": "TDCE",
+    "correlativas": "TA138",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IC",
+    "id": "TA142",
     "materia": "Internet de las Cosas",
     "creditos": 4,
-    "correlativas": "TCD",
+    "correlativas": "TA137",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IR",
+    "id": "TA143",
     "materia": "Infraestructura de Redes",
     "creditos": 4,
-    "correlativas": "TCD",
+    "correlativas": "TA137",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "PSI",
+    "id": "TB073",
     "materia": "Propagación y Sistemas Irradiantes",
     "creditos": 4,
-    "correlativas": "EA",
+    "correlativas": "TB069",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CE",
+    "id": "TB074",
     "materia": "Compatibilidad Electromagnética",
     "creditos": 4,
-    "correlativas": "TDCE",
+    "correlativas": "TA138",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "LC",
+    "id": "TA144",
     "materia": "Laboratorio de Comunicaciones",
     "creditos": 4,
-    "correlativas": "TCD",
+    "correlativas": "TA137",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "RNAP",
+    "id": "TA145",
     "materia": "Redes Neuronales y Aprendizaje Profundo",
     "creditos": 4,
-    "correlativas": "TPS",
+    "correlativas": "TA136",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AR",
+    "id": "TA063",
     "materia": "Aprendizaje por Refuerzo",
     "creditos": 6,
-    "correlativas": "TPS",
+    "correlativas": "TA136",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "VC",
+    "id": "TA146",
     "materia": "Visión por Computadora",
     "creditos": 4,
-    "correlativas": "TPS",
+    "correlativas": "TA136",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "PH",
+    "id": "TB075",
     "materia": "Procesamiento del Habla",
     "creditos": 4,
-    "correlativas": "TPS",
+    "correlativas": "TA136",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "OC",
+    "id": "TA060",
     "materia": "Optimización Convexa",
     "creditos": 6,
-    "correlativas": "PE",
+    "correlativas": "TA132",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "PES",
+    "id": "TB076",
     "materia": "Procesamiento Estadístico de Señales",
     "creditos": 4,
-    "correlativas": "PE",
+    "correlativas": "TA132",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TSD",
+    "id": "TA147",
     "materia": "Taller de Sistemas Digitales",
     "creditos": 6,
-    "correlativas": "SD-SS",
+    "correlativas": "TA131-TB065",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "DVD",
+    "id": "TA148",
     "materia": "Diseño y Verificación Digital",
     "creditos": 6,
-    "correlativas": "TSE",
+    "correlativas": "TA134",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "SO",
+    "id": "TA043",
     "materia": "Sistemas Operativos",
     "creditos": 6,
-    "correlativas": "TSE",
+    "correlativas": "TA134",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AED",
+    "id": "CB100",
     "materia": "Algoritmos y Estructuras de Datos",
     "creditos": 6,
-    "correlativas": "AP",
+    "correlativas": "TA130",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "SOE",
+    "id": "TA149",
     "materia": "Sistemas Operativos Embebidos",
     "creditos": 4,
-    "correlativas": "TSE",
+    "correlativas": "TA134",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ICPI",
+    "id": "TA150",
     "materia": "Instrumentación y Control de Procesos Industriales",
     "creditos": 4,
-    "correlativas": "TAC",
+    "correlativas": "TA135",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CAA",
+    "id": "TA151",
     "materia": "Control Automático Avanzado",
     "creditos": 4,
-    "correlativas": "TAC",
+    "correlativas": "TA135",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CAM",
+    "id": "TA152",
     "materia": "Control Automático Multivariable",
     "creditos": 4,
-    "correlativas": "TAC",
+    "correlativas": "TA135",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ICA",
+    "id": "TA153",
     "materia": "Identificación y Control Adaptativo",
     "creditos": 4,
-    "correlativas": "TAC",
+    "correlativas": "TA135",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "EP",
+    "id": "TB077",
     "materia": "Electrónica de Potencia",
     "creditos": 4,
-    "correlativas": "CM",
+    "correlativas": "TB068",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AV",
+    "id": "TB078",
     "materia": "Accionamientos Variables",
     "creditos": 6,
-    "correlativas": "CM-CA",
+    "correlativas": "TB068-TA133",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "RM",
+    "id": "TA154",
     "materia": "Robótica Móvil",
     "creditos": 4,
-    "correlativas": "PE-AP",
+    "correlativas": "TA132-TA130",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "RI",
+    "id": "TA155",
     "materia": "Robótica Industrial",
     "creditos": 6,
-    "correlativas": "TAC",
+    "correlativas": "TA135",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ME",
+    "id": "TB079",
     "materia": "Microeletrónica",
     "creditos": 4,
-    "correlativas": "CM-DS",
+    "correlativas": "TB068-TB070",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "LM",
+    "id": "TB080",
     "materia": "Laboratorio de Microeletrónica",
     "creditos": 4,
-    "correlativas": "ME",
+    "correlativas": "TB079",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CCC",
+    "id": "TA156",
     "materia": "Comunicación y Computación Cuántica",
     "creditos": 4,
-    "correlativas": "TSE",
+    "correlativas": "TA134",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "DOA",
+    "id": "TB081",
     "materia": "Dispositivos Optoelectrónicos Avanzados",
     "creditos": 4,
-    "correlativas": "DS",
+    "correlativas": "TB070",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "OE",
+    "id": "TB082",
     "materia": "Optoelectrónica",
     "creditos": 4,
-    "correlativas": "DS",
+    "correlativas": "TB070",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IIA",
+    "id": "TB083",
     "materia": "Introducción a la Ingeniería Acústica",
     "creditos": 4,
-    "correlativas": "SS",
+    "correlativas": "TB065",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ADR",
+    "id": "TB084",
     "materia": "Acústica de Recintos",
     "creditos": 4,
-    "correlativas": "SS",
+    "correlativas": "TB065",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ELA",
+    "id": "TB085",
     "materia": "Electroacústica",
     "creditos": 4,
-    "correlativas": "CM",
+    "correlativas": "TB068",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "APR",
+    "id": "TA157",
     "materia": "Audio Profesional",
     "creditos": 4,
-    "correlativas": "TDCE",
+    "correlativas": "TA138",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CRIC",
+    "id": "TA158",
     "materia": "Ciberseguridad de Redes e Infraestructuras Críticas",
     "creditos": 4,
-    "correlativas": "AP-TCD",
+    "correlativas": "TA130-TA137",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "SG",
+    "id": "TA159",
     "materia": "Sistemas Gráficos",
     "creditos": 4,
-    "correlativas": "AP",
+    "correlativas": "TA130",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IISNA",
+    "id": "TC025",
     "materia": "Introducción a la Industria, los Sistemas y el Negocio Aeroespacial",
     "creditos": 6,
     "requiere": 120,
@@ -551,24 +551,24 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TMIAB",
+    "id": "TB086",
     "materia": "Tecnología de Materiales para la Industria Aeroespacial B",
     "creditos": 4,
-    "correlativas": "EMC-QE",
+    "correlativas": "CB025-CB041",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CAB",
+    "id": "TA160",
     "materia": "Comunicaciones Aeroespaciales B",
     "creditos": 2,
-    "correlativas": "TCD",
+    "correlativas": "TA137",
     "categoria": "Materias Electivas"
   },
   {
     "id": "TIF",
     "materia": "Trabajo Final Integrador",
     "creditos": 12,
-    "correlativas": "PP",
+    "correlativas": "TC023",
     "categoria": "Fin de Carrera (Obligatorio)"
   }
 ]
