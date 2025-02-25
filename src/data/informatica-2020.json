@@ -50,7 +50,7 @@
     "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
   },
   {
-    "id": "AMII",
+    "id": "CB001",
     "materia": "Análisis Matemático II",
     "creditos": 8,
     "correlativas": "CBC",
@@ -58,7 +58,7 @@
     "level": 1
   },
   {
-    "id": "FDP",
+    "id": "TB021",
     "materia": "Fundamentos de Programación",
     "creditos": 6,
     "correlativas": "CBC",
@@ -66,7 +66,7 @@
     "level": 1
   },
   {
-    "id": "IDS",
+    "id": "TB022",
     "materia": "Introducción al Desarrollo de Software",
     "creditos": 6,
     "correlativas": "CBC",
@@ -74,7 +74,7 @@
     "level": 1
   },
   {
-    "id": "AL",
+    "id": "CB002",
     "materia": "Álgebra Lineal",
     "creditos": 8,
     "correlativas": "CBC",
@@ -82,119 +82,119 @@
     "level": 2
   },
   {
-    "id": "ORGCOMPU",
+    "id": "TB023",
     "materia": "Organización del Computador",
     "creditos": 6,
-    "correlativas": "IDS-FDP",
+    "correlativas": "TB022-TB021",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "AED",
+    "id": "CB100",
     "materia": "Algoritmos y Estructuras de Datos",
     "creditos": 6,
-    "correlativas": "FDP",
+    "correlativas": "TB021",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "PDP",
+    "id": "TB025",
     "materia": "Paradigmas de Programación",
     "creditos": 6,
-    "correlativas": "AED-IDS",
+    "correlativas": "CB100-TB022",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "PYE",
+    "id": "CB003",
     "materia": "Probabilidad y Estadística",
     "creditos": 6,
-    "correlativas": "AMII-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "SISOPS",
+    "id": "TA043",
     "materia": "Sistemas Operativos",
     "creditos": 6,
-    "correlativas": "ORGCOMPU",
+    "correlativas": "TB023",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "TDA",
+    "id": "TB024",
     "materia": "Teoría de Algoritmos",
     "creditos": 6,
-    "correlativas": "AED-IDS",
+    "correlativas": "CB100-TB022",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "MODNUM",
+    "id": "CB051",
     "materia": "Modelación Numérica",
     "creditos": 4,
-    "correlativas": "AMII-AL-AED",
+    "correlativas": "CB001-CB002-CB100",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "BDD",
+    "id": "TA044",
     "materia": "Base de Datos",
     "creditos": 6,
-    "correlativas": "ORGCOMPU-PDP",
+    "correlativas": "TB023-TB025",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "TDP",
+    "id": "TA045",
     "materia": "Taller de Programación",
     "creditos": 8,
-    "correlativas": "ORGCOMPU-PDP",
+    "correlativas": "TB023-TB025",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "INGSOFTI",
+    "id": "TA046",
     "materia": "Ingeniería de Software I",
     "creditos": 8,
-    "correlativas": "PDP",
+    "correlativas": "TB025",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "CDD",
+    "id": "TA047",
     "materia": "Ciencia de Datos",
     "creditos": 6,
-    "correlativas": "PYE-BDD-MODNUM-TDA",
+    "correlativas": "CB003-TA044-CB051-TB024",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "PROGC",
+    "id": "TB026",
     "materia": "Programación Concurrente",
     "creditos": 6,
-    "correlativas": "SISOPS-TDP",
+    "correlativas": "TA043-TA045",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "REDES",
+    "id": "TA048",
     "materia": "Redes",
     "creditos": 6,
-    "correlativas": "SISOPS",
+    "correlativas": "TA043",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "GDSI",
+    "id": "TC017",
     "materia": "Gestión del Desarrollo de Sistemas Informáticos",
     "creditos": 6,
-    "correlativas": "INGSOFTI",
+    "correlativas": "TA046",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "FPI",
+    "id": "CB024",
     "materia": "Física para Informática",
     "creditos": 4,
     "requiere": 120,
@@ -203,7 +203,7 @@
     "level": 6
   },
   {
-    "id": "EBTI",
+    "id": "TC018",
     "materia": "Empresas de Base Tecnológica I",
     "creditos": 6,
     "requiere": 120,
@@ -212,189 +212,189 @@
     "level": 6
   },
   {
-    "id": "INGSOFTII",
+    "id": "TA049",
     "materia": "Ingeniería de Software II",
     "creditos": 8,
-    "correlativas": "BDD-INGSOFTI-TDP",
+    "correlativas": "TA044-TA046-TA045",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "SDI",
+    "id": "TA050",
     "materia": "Sistemas Distribuidos I",
     "creditos": 6,
-    "correlativas": "PROGC-REDES",
+    "correlativas": "TB026-TA048",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "EBTII",
+    "id": "TC019",
     "materia": "Empresas de Base Tecnológica II",
     "creditos": 6,
-    "correlativas": "EBTI",
+    "correlativas": "TC018",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "TDSINF",
+    "id": "TA051",
     "materia": "Taller de Seguridad Informática",
     "creditos": 8,
-    "correlativas": "REDES",
+    "correlativas": "TA048",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "LYCI",
+    "id": "TB027",
     "materia": "Lenguajes y Compiladores I",
     "creditos": 6,
-    "correlativas": "PDP-ORGCOMPU-TDA",
+    "correlativas": "TB025-TB023-TB024",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "FMCRIPTO",
+    "id": "CB101",
     "materia": "Fundamentos Matemáticos de la Criptografía",
     "creditos": 6,
-    "correlativas": "AL",
+    "correlativas": "CB002",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CRIPTOI",
+    "id": "TA054",
     "materia": "Criptografía I",
     "creditos": 6,
-    "correlativas": "AL-TDA",
+    "correlativas": "CB002-TB024",
     "categoria": "Materias Electivas"
   },
   {
     "id": "CRIPTOII",
     "materia": "Criptografía II",
     "creditos": 6,
-    "correlativas": "FMCRIPTO-CRIPTOI",
+    "correlativas": "CB101-TA054",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "SDII",
+    "id": "TA056",
     "materia": "Sistemas Distribuidos II",
     "creditos": 6,
-    "correlativas": "SDI",
+    "correlativas": "TA050",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TII",
+    "id": "TA057",
     "materia": "Técnicas de Ingeniería Inversa",
     "creditos": 6,
-    "correlativas": "CRIPTOI-TDSINF",
+    "correlativas": "TA054-TA051",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CRIPTOAN",
+    "id": "TA058",
     "materia": "Criptoanálisis",
     "creditos": 6,
-    "correlativas": "CRIPTOI-TDSINF",
+    "correlativas": "TA054-TA051",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IDD",
+    "id": "TA059",
     "materia": "Ingeniería de Datos",
     "creditos": 6,
-    "correlativas": "CDD-INGSOFTII",
+    "correlativas": "TA047-TA049",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "OPTCONV",
+    "id": "TA060",
     "materia": "Optimización Convexa",
     "creditos": 6,
-    "correlativas": "CDD",
+    "correlativas": "TA047",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AA",
+    "id": "TA061",
     "materia": "Aprendizaje Automático",
     "creditos": 6,
-    "correlativas": "CDD",
+    "correlativas": "TA047",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AP",
+    "id": "TA062",
     "materia": "Aprendizaje Profundo",
     "creditos": 6,
-    "correlativas": "AA",
+    "correlativas": "TA061",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "APR",
+    "id": "TA063",
     "materia": "Aprendizaje por Refuerzo",
     "creditos": 6,
-    "correlativas": "AA",
+    "correlativas": "TA061",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "SIM",
+    "id": "TB028",
     "materia": "Simulación",
     "creditos": 6,
-    "correlativas": "PYE-MODNUM",
+    "correlativas": "CB003-CB051",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "SISTC",
+    "id": "TA064",
     "materia": "Sistemas Complejos",
     "creditos": 6,
-    "correlativas": "PYE-MODNUM",
+    "correlativas": "CB003-CB051",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "REDESC",
+    "id": "TA065",
     "materia": "Redes Complejas",
     "creditos": 6,
-    "correlativas": "SISTC-TADJ",
+    "correlativas": "TA064-TB029",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TADJ",
+    "id": "TB029",
     "materia": "Teoría Algorítmica de Juegos",
     "creditos": 4,
-    "correlativas": "AMII-AL-TDA",
+    "correlativas": "CB001-CB002-TB024",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TDCOMPU",
+    "id": "TB030",
     "materia": "Teoría de Computabilidad",
     "creditos": 6,
-    "correlativas": "LYCI-TDA",
+    "correlativas": "TB027-TB024",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TDLI",
+    "id": "TB031",
     "materia": "Teoría de la Información",
     "creditos": 6,
-    "correlativas": "PYE-TDA",
+    "correlativas": "CB003-TB024",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CC",
+    "id": "TB032",
     "materia": "Computación Cuántica",
     "creditos": 6,
-    "correlativas": "PYE",
+    "correlativas": "CB003",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "LYCII",
+    "id": "TB033",
     "materia": "Lenguajes y Compiladores II",
     "creditos": 6,
-    "correlativas": "LYCI-SISOPS",
+    "correlativas": "TB027-TA043",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AMIII",
+    "id": "CB005",
     "materia": "Análisis Matemático III",
     "creditos": 6,
-    "correlativas": "AMII-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ARQSOFT",
+    "id": "TB034",
     "materia": "Arquitectura de Software",
     "creditos": 4,
-    "correlativas": "INGSOFTI",
+    "correlativas": "TA046",
     "categoria": "Materias Electivas"
   },
   {
