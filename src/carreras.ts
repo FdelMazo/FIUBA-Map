@@ -666,7 +666,7 @@ export const PLANES = [
     planes: ["civil", "civil-2020"],
   },
   {
-    nombre: "Ingeniería de Alimentos",
+    nombre: "Ingeniería en Alimentos",
     nombrecorto: "Alimentos",
     planes: ["alimentos", "alimentos-2020"],
   },
@@ -711,7 +711,7 @@ export const PLANES = [
     planes: ["mecanica", "mecanica-2020"],
   },
   {
-    nombre: "Ingeniería Naval y Mecánica",
+    nombre: "Ingeniería Naval",
     nombrecorto: "Naval",
     planes: ["naval"],
   },
