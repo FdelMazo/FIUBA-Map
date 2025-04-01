@@ -341,7 +341,7 @@ export const CARRERAS: UserType.Carrera[] = [
   },
   {
     id: "energia-electrica-2020",
-    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-en-energ%C3%ADa-el%C3%A9ctrica/",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-electricista/plan-de-estudios",
     ano: 2020,
     graph: require("./data/energia-electrica-2020.json"),
     creditos: {
@@ -523,7 +523,7 @@ export const CARRERAS: UserType.Carrera[] = [
   },
   {
     id: "mecanica-2020",
-    link: "https://sites.google.com/fi.uba.ar/academica/nuevos-planes-de-estudio/plan-ing-mec%C3%A1nica/",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-mecanica/plan-de-estudios",
     ano: 2020,
     graph: require("./data/mecanica-2020.json"),
     creditos: {
@@ -549,7 +549,7 @@ export const CARRERAS: UserType.Carrera[] = [
   },
   {
     id: "naval",
-    link: "https://fi.uba.ar/grado/carreras/ingenieria-naval-y-mecanica/plan-de-estudios",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-naval/plan-de-estudios",
     ano: 1986,
     graph: require("./data/naval-1986.json"),
     finDeCarrera: [
