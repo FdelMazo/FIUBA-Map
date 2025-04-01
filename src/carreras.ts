@@ -177,9 +177,7 @@ export const CARRERAS: UserType.Carrera[] = [
   },
   {
     id: "bioingenieria-2020",
-    // link: "https://fi.uba.ar/grado/carreras/bioingenieria/plan-de-estudios",
-    link: "https://drive.google.com/file/d/1URSwsBv1VdNoSPfcDUwQjQz2j5AU-3AG/view",
-    beta: true,
+    link: "https://fi.uba.ar/grado/carreras/bioingenieria/plan-de-estudios",
     ano: 2020,
     graph: require("./data/bioingenieria-2020.json"),
     creditos: {
