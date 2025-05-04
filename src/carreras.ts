@@ -203,7 +203,7 @@ export const CARRERAS: UserType.Carrera[] = [
   },
   {
     id: "alimentos",
-    link: "https://fi.uba.ar/grado/carreras/ingenieria-de-alimentos/plan-de-estudios",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-en-alimentos/plan-de-estudios",
     ano: 2001,
     graph: require("./data/alimentos-2000.json"),
     creditos: {
@@ -227,7 +227,7 @@ export const CARRERAS: UserType.Carrera[] = [
   },
   {
     id: "alimentos-2020",
-    link: "https://fi.uba.ar/grado/carreras/ingenieria-de-alimentos/plan-de-estudios",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-en-alimentos/plan-de-estudios",
     ano: 2020,
     graph: require("./data/alimentos-2020.json"),
     creditos: {
