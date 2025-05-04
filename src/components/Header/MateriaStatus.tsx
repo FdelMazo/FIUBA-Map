@@ -11,11 +11,13 @@ import {
 } from "@chakra-ui/react";
 import { QuestionIcon } from "@chakra-ui/icons";
 import React from "react";
-import { GraphContext } from "../../MapContext";
+import { GraphContext, UserContext } from "../../MapContext";
 
 // Cuando hay una materia seleccionada, te muestra el codigo, cuantos creditos da, etc
 const MateriaStatus = () => {
   const { getNode, displayedNode } = React.useContext(GraphContext);
+  const { user } = React.useContext(UserContext);
+  const isPlan2020 = user.carrera.ano === 2020;
 
   const node = React.useMemo(
     () => (displayedNode ? getNode(displayedNode) : undefined),
@@ -33,13 +35,15 @@ const MateriaStatus = () => {
           px={8}
           color="white"
         >
-          <strong>[{node?.id}]</strong> {node?.materia}
+          {!isPlan2020 && <strong>[{node?.id}]</strong>} {node?.materia}
         </Text>
       </Show>
       <Hide ssr={false} breakpoint="(max-width: 48em)">
         <Stat color="white" minWidth="16ch" maxWidth="30ch" mr="1">
-          <StatLabel>[{node?.id}]</StatLabel>
-          <StatHelpText noOfLines={1}>{node?.materia}</StatHelpText>
+          {!isPlan2020 && <StatLabel>[{node?.id}]</StatLabel>}
+          <StatHelpText mb={0} noOfLines={1}>
+            {node?.materia}
+          </StatHelpText>
         </Stat>
       </Hide>
 
