@@ -14,8 +14,8 @@ const ALWAYS_SHOW = [
 /**
  * Funcion que recibe un string y lo separa en palabras, si la palabra tiene menos de 4 caracteres la deja en la misma
  * linea, si tiene mas de 4 caracteres la separa en una nueva linea
- * @param string 
- * @returns 
+ * @param string
+ * @returns
  */
 function breakWords(string: string) {
   let broken = "";
@@ -146,9 +146,10 @@ class Node implements NodeType {
     }
     if (this.requiere) {
       if (this.requiereCBC) {
-        todoAprobado = todoAprobado && (creditosTotales >= this.requiere);
+        todoAprobado = todoAprobado && creditosTotales >= this.requiere;
       } else {
-        todoAprobado = todoAprobado && (creditosTotales - creditosCBC >= this.requiere);
+        todoAprobado =
+          todoAprobado && creditosTotales - creditosCBC >= this.requiere;
       }
     }
     return todoAprobado;

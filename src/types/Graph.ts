@@ -34,39 +34,39 @@ export namespace GraphType {
     Levels(): NodeType[];
     FinDeCarrera(): NodeType[];
   }
-  
+
   interface OverrideOptativas {
     action: "override";
     value: Optativa[];
   }
-  
+
   interface EditOptativa {
     action: "edit";
     value: Optativa;
   }
-  
+
   interface CreateOptativa {
     action: "create";
     value?: undefined;
   }
-  
+
   interface RemoveOptativa {
     action: "remove";
     value: { id: number };
   }
-  
+
   export type OptativasDispatcher =
     | OverrideOptativas
     | EditOptativa
     | CreateOptativa
     | RemoveOptativa;
-  
+
   export interface Optativa {
     id: number;
     nombre: string;
     creditos: number;
   }
-  
+
   export interface Credito {
     nombrecorto: string;
     nombre: string;
@@ -82,16 +82,16 @@ export namespace GraphType {
     checkbox?: boolean;
     check?: boolean;
   }
-  
+
   export interface Content {
     nodes: NodeType[];
     edges: { from: string; to: string; color: string }[];
     groups: string[];
     key: string;
   }
-  
+
   // El context del Graph que pasamos a lo largo de la app
-  
+
   export interface Context {
     optativas: Optativa[];
     graph: Content;
@@ -100,12 +100,12 @@ export namespace GraphType {
     getters: Getters;
     events: ReactGraphVisType.NodeEvents;
     aplazos: number;
-  
+
     setDisplayedNode: React.Dispatch<React.SetStateAction<string>>;
     setNetwork: React.Dispatch<React.SetStateAction<ReactGraphVisType.Network>>;
     optativasDispatch: React.Dispatch<OptativasDispatcher>;
     setAplazos: React.Dispatch<React.SetStateAction<number>>;
-    
+
     networkRef: (instance: Element | null) => void;
     toggleGroup(categoria: string): void;
     getNode(id: string): NodeType | undefined;
@@ -132,7 +132,7 @@ export namespace GraphType {
     getters: Getters;
     user: UserType.Info;
     network: ReactGraphVisType.Network;
-  
+
     getNode(id: string): NodeType | undefined;
   }
 }

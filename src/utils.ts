@@ -9,12 +9,18 @@ export const promediar = (materias: NodeType[]) => {
   return sum ? (sum / materias.length).toFixed(2) : 0;
 };
 
-export const accCreditos = (acc: number, node: NodeType | GraphType.Optativa) => {
+export const accCreditos = (
+  acc: number,
+  node: NodeType | GraphType.Optativa,
+) => {
   acc += node.creditos;
   return acc;
 };
 
-export const accCreditosNecesarios = (acc: number, grupo: GraphType.Credito) => {
+export const accCreditosNecesarios = (
+  acc: number,
+  grupo: GraphType.Credito,
+) => {
   acc += grupo.creditosNecesarios;
   return acc;
 };

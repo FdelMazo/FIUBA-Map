@@ -1,4 +1,10 @@
-import { ScaleFade, Flex, Box, useColorModeValue, ResponsiveValue } from "@chakra-ui/react";
+import {
+  ScaleFade,
+  Flex,
+  Box,
+  useColorModeValue,
+  ResponsiveValue,
+} from "@chakra-ui/react";
 import { GraphContext, UserContext } from "../../MapContext";
 import MateriaDisplay from "./MateriaDisplay";
 import PadronInput from "./PadronInput";

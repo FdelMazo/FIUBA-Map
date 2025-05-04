@@ -21,7 +21,7 @@ export interface NodeType {
   materia: string;
   font: { color: "white" | "black" } | undefined;
   color: string | undefined;
-  
+
   aprobar(nota: number): this | undefined;
   desaprobar(): this;
   cursando(cuatri: number | undefined): this;
@@ -43,7 +43,7 @@ export namespace NodeType {
     globalAlpha: number;
     textAlign: string;
     font: string;
-  
+
     beginPath(): void;
     moveTo(x: number, y: number): void;
     lineTo(x: number, y: number): void;
@@ -55,7 +55,7 @@ export namespace NodeType {
     measureText(text: string): { width: number };
     fillText(text: string, x: number, y: number): void;
   }
-  
+
   export interface DrawFinDeCarrera {
     ctx: Ctx;
     id: string;

@@ -63,7 +63,9 @@ const Login = (): UserType.Context => {
       `${C.SPREADSHEET}/${C.SHEETS.user}!B:B?majorDimension=COLUMNS&key=${C.KEY}`,
     )
       .then((res) => res.json())
-      .then((res: GoogleSheetAPI.UserValueRange) => (!res.error ? res.values[0] : null));
+      .then((res: GoogleSheetAPI.UserValueRange) =>
+        !res.error ? res.values[0] : null,
+      );
 
     if (!padrones) {
       setLoading(false);
@@ -88,7 +90,9 @@ const Login = (): UserType.Context => {
 
     const data = await fetch(
       `${C.SPREADSHEET}:batchGet?key=${C.KEY}${ranges.join("")}`,
-    ).then((res) => res.json().then((res: GoogleSheetAPI.BatchGet) => res.valueRanges));
+    ).then((res) =>
+      res.json().then((res: GoogleSheetAPI.BatchGet) => res.valueRanges),
+    );
 
     const allLogins: UserType.CarreraInfo[] = data.map((d) => ({
       carreraid: d.values[0][2],
@@ -100,9 +104,7 @@ const Login = (): UserType.Context => {
     let orientacion: UserType.Orientacion | undefined = undefined;
     let finDeCarrera: UserType.FinDeCarrera | undefined = undefined;
     for (const login of allLogins) {
-      const foundCarrera = CARRERAS.find(
-        (c) => c.id === login.carreraid,
-      );
+      const foundCarrera = CARRERAS.find((c) => c.id === login.carreraid);
       if (foundCarrera) {
         carrera = foundCarrera;
         orientacion = foundCarrera.orientaciones?.find(

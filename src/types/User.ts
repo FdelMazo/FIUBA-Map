@@ -10,7 +10,7 @@ export namespace UserType {
     bg: string;
     color: string;
   }
-  
+
   interface Checkbox {
     nombre: string;
     nombrecorto: string;
@@ -18,12 +18,12 @@ export namespace UserType {
     color: string;
     check?: boolean;
   }
-  
+
   interface OrientacionCredito {
     orientacion: number;
     electivas: Electivas;
   }
-  
+
   interface Creditos {
     total: number;
     electivas?: number | Electivas;
@@ -42,25 +42,25 @@ export namespace UserType {
     requiere: number | undefined;
     requiereCBC: boolean | undefined;
   }
-  
+
   export interface Electivas {
     tesis: number;
     tpp: number;
     [key: string]: number;
   }
-  
+
   export interface Orientacion {
     colorScheme: keyof typeof COLORS;
     nombre: string;
     nonEligible?: true;
     color?: string;
   }
-  
+
   export interface FinDeCarrera {
     id: string;
     materia: string;
   }
-  
+
   export interface Carrera {
     id: string;
     link: string;
@@ -72,25 +72,25 @@ export namespace UserType {
     orientaciones?: Orientacion[];
     finDeCarrera?: FinDeCarrera[];
   }
-  
+
   export interface CarreraInfo {
     carreraid: string;
     orientacionid: string | undefined;
     findecarreraid: string | undefined;
   }
-  
+
   export interface CarreraMap {
     materias: NodeType[];
     checkboxes?: string[];
     optativas?: GraphType.Optativa[];
     aplazos?: number;
   }
-  
+
   export interface Map {
     carreraid: string;
     map: CarreraMap;
   }
-  
+
   export interface SaveGraph {
     (
       user: Info,
@@ -100,14 +100,14 @@ export namespace UserType {
       aplazos: number,
     ): Promise<void>;
   }
-  
+
   export interface Context {
     loading: boolean;
     user: Info;
     logged: boolean;
     padronInput: string;
     loggingIn: boolean;
-    
+
     login(padron: string): Promise<boolean>;
     signup(padron: string): Promise<void>;
     register(user: Info): Promise<void>;

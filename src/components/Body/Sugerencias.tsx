@@ -97,7 +97,8 @@ const Sugerencias = () => {
                             />
                           </Link>{" "}
                           y dejar de agregar funcionalidades nuevas al proyecto,
-                          los <em>bugs</em> críticos los voy a seguir arreglando.
+                          los <em>bugs</em> críticos los voy a seguir
+                          arreglando.
                         </Text>
                         <Text w="100%">
                           Así que si encontrás algo que no funciona, avisame!

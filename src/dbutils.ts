@@ -42,7 +42,10 @@ export const postUser = async (user: UserType.Info) => {
 
 // Le pega al form que almacena [padron,carrera,map]
 // el map es un JSON stringifeado que tiene [materias, optativas, aplazos, checkboxes]
-export const postGraph = async (user: UserType.Info, map: UserType.CarreraMap) => {
+export const postGraph = async (
+  user: UserType.Info,
+  map: UserType.CarreraMap,
+) => {
   const formData = new FormData();
   formData.append(`${C.GRAPH_FORM_ENTRIES.padron}`, user.padron);
   formData.append(`${C.GRAPH_FORM_ENTRIES.carrera}`, user.carrera.id);
@@ -60,7 +63,9 @@ export const getGraphs = async (padron: string) => {
     `${C.SPREADSHEET}/${C.SHEETS.registros}!B:D?majorDimension=COLUMNS&key=${C.KEY}`,
   )
     .then((res) => res.json())
-    .then((res: GoogleSheetAPI.RegistrosValueRange) => (!res.error ? res.values : null));
+    .then((res: GoogleSheetAPI.RegistrosValueRange) =>
+      !res.error ? res.values : null,
+    );
   if (!data) return;
 
   const [padrones, carreras, maps] = data;
@@ -70,7 +75,7 @@ export const getGraphs = async (padron: string) => {
     indexes.push(j);
   }
 
-  const allLogins: {carreraid: string, map: string}[] = [];
+  const allLogins: { carreraid: string; map: string }[] = [];
   for (let i = 0; i < indexes.length; i++) {
     allLogins.push({
       carreraid: carreras[indexes[i]],

@@ -18,11 +18,11 @@ const MateriaStatus = () => {
   const { getNode, displayedNode } = React.useContext(GraphContext);
 
   const node = React.useMemo(
-    () => displayedNode ? getNode(displayedNode) : undefined,
+    () => (displayedNode ? getNode(displayedNode) : undefined),
     [displayedNode, getNode],
   );
 
-  return (displayedNode ? (
+  return displayedNode ? (
     <Flex height="fit-content" flexWrap="wrap" gap={2}>
       {/* Hardcoded to chakra md breakpoint */}
       <Show ssr={false} breakpoint="(max-width: 48em)">
@@ -77,7 +77,7 @@ const MateriaStatus = () => {
     </Flex>
   ) : (
     <></>
-  ));
+  );
 };
 
 export default MateriaStatus;

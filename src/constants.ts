@@ -138,7 +138,10 @@ export const GRUPOS = {
     size: 60,
     ctxRenderer: drawFinDeCarrera,
   },
-  ...CARRERAS.filter((c): c is UserType.Carrera & {orientaciones: UserType.Orientacion[]} => c.orientaciones !== undefined)
+  ...CARRERAS.filter(
+    (c): c is UserType.Carrera & { orientaciones: UserType.Orientacion[] } =>
+      c.orientaciones !== undefined,
+  )
     .flatMap((c) => c.orientaciones)
     .reduce<{ [key: string]: UserType.Orientacion }>(function (map, obj) {
       obj.color = (COLORS[obj.colorScheme] as any)[500];

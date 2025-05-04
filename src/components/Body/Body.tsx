@@ -1,7 +1,7 @@
 import { Box, Icon, SlideFade, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 // @ts-ignore ignoramos porque react-graph-vis no tiene soporte para TypeScript
-import Graph  from "react-graph-vis";
+import Graph from "react-graph-vis";
 import Snowfall from "react-snowfall";
 import * as C from "../../constants";
 import { GraphContext, UserContext } from "../../MapContext";

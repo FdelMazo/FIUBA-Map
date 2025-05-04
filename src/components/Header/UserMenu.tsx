@@ -14,7 +14,7 @@ import {
   Text,
   Box,
   PlacementWithLogical,
-  ResponsiveValue
+  ResponsiveValue,
 } from "@chakra-ui/react";
 import { BiLogOut } from "react-icons/bi";
 import { Property } from "csstype";

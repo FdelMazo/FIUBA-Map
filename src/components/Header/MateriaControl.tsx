@@ -66,14 +66,11 @@ const MateriaControl = () => {
     React.useContext(GraphContext);
 
   const node = React.useMemo(
-    () => displayedNode ? getNode(displayedNode) : undefined,
+    () => (displayedNode ? getNode(displayedNode) : undefined),
     [displayedNode, getNode],
   );
 
-  return (
-    displayedNode &&
-    logged &&
-    node?.id !== "CBC" ? (
+  return displayedNode && logged && node?.id !== "CBC" ? (
     <Flex alignItems="center" height="fit-content">
       <Flex {...ControlProps} alignItems="center" p={1}>
         {node && node.nota > 0 ? (
@@ -240,7 +237,7 @@ const MateriaControl = () => {
     </Flex>
   ) : (
     <></>
-  ));
+  );
 };
 
 export default MateriaControl;

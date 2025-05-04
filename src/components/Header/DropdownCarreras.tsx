@@ -22,7 +22,11 @@ import { Property } from "csstype";
 import { CARRERAS, PLANES } from "../../carreras";
 import { GraphContext, UserContext } from "../../MapContext";
 
-const AnoBadge = ({ ano, active, ...rest }: { ano: number; active: boolean } & BadgeProps) => {
+const AnoBadge = ({
+  ano,
+  active,
+  ...rest
+}: { ano: number; active: boolean } & BadgeProps) => {
   const activeVariant = useColorModeValue("solid", "subtle");
   const commonProps = {
     mx: 1,
@@ -120,7 +124,7 @@ const DropdownCarreras = () => {
               <Box ml={2}>
                 {p.planes.map((c) => {
                   const plan = CARRERAS.find((carrera) => carrera.id === c);
-                  if (!plan) return null
+                  if (!plan) return null;
                   const active = user.carrera.id === c;
                   return (
                     <AnoBadge

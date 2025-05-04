@@ -30,10 +30,7 @@ const ProgressBar = () => {
   const { creditos, toggleCheckbox } = React.useContext(GraphContext);
 
   return (
-    <Grid
-      flexGrow={1}
-      templateColumns="repeat(10, 1fr)"
-    >
+    <Grid flexGrow={1} templateColumns="repeat(10, 1fr)">
       {creditos.map((c) => (
         <GridItem colSpan={c.proportion} key={c.nombre}>
           <Popover placement="top" trigger="hover">
@@ -51,7 +48,9 @@ const ProgressBar = () => {
                     ) : (
                       <Badge
                         alignSelf={
-                          (c.creditosNecesarios && c.creditos) !== 0 ? "baseline" : "auto"
+                          (c.creditosNecesarios && c.creditos) !== 0
+                            ? "baseline"
+                            : "auto"
                         }
                         colorScheme={c.color}
                         variant="solid"

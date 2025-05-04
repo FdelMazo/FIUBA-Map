@@ -8,7 +8,7 @@ import { COLORS } from "./theme";
 import { accCreditos, accCreditosNecesarios, accProportion } from "./utils";
 import { UserType } from "./types/User";
 import { GraphType } from "./types/Graph";
-import { ReactGraphVisType } from "./types/ReactGraphVis"
+import { ReactGraphVisType } from "./types/ReactGraphVis";
 import { NodeType } from "./types/Node";
 
 const Graph = (userContext: UserType.Context): GraphType.Context => {
@@ -24,7 +24,9 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
   // La network es nuestra interfaz con vis.js
   // Nos da acceso a los nodos, las aristas y varias funciones
   // https://visjs.github.io/vis-network/docs/network/
-  const [network, setNetwork] = React.useState<ReactGraphVisType.Network>(null!);
+  const [network, setNetwork] = React.useState<ReactGraphVisType.Network>(
+    null!,
+  );
 
   // Cuando cambia el tamaño de la pantalla, se redibuja la red. Sin esto, se rompe
   const { ref: networkRef, width, height } = useResizeObserver();
@@ -176,7 +178,9 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     if (!network || graph.key !== network.key) return;
 
     // Nos fijamos que el usuario tenga un mapa guardado en la db
-    const map = user.maps?.find((map) => map.carreraid === user.carrera.id)?.map;
+    const map = user.maps?.find(
+      (map) => map.carreraid === user.carrera.id,
+    )?.map;
     if (map) {
       const toUpdate: NodeType[] = [];
 
@@ -370,7 +374,12 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     const userdata = user.allLogins.find((l) => l.carreraid === id);
     const carrera = CARRERAS.find((c) => c.id === id);
     if (!carrera) return;
-    let newUser: UserType.Info = { ...user, carrera, orientacion: null, finDeCarrera: null };
+    let newUser: UserType.Info = {
+      ...user,
+      carrera,
+      orientacion: null,
+      finDeCarrera: null,
+    };
 
     if (userdata) {
       const orientacion = carrera.orientaciones?.find(
@@ -432,18 +441,18 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
 
   const toggleCheckbox = (c: string, forceTrue = false) => {
     if (!user.carrera.creditos.checkbox) {
-      return
-    };
-    const checkbox = user.carrera.creditos.checkbox.find((ch) => ch.nombre === c);
+      return;
+    }
+    const checkbox = user.carrera.creditos.checkbox.find(
+      (ch) => ch.nombre === c,
+    );
     if (!checkbox) {
       return;
     }
 
-    const value = !!checkbox
-      .check;
+    const value = !!checkbox.check;
 
-    checkbox.check =
-      forceTrue ? true : !value;
+    checkbox.check = forceTrue ? true : !value;
     actualizar();
   };
 
@@ -583,7 +592,10 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
   // Las optativas son materias que te agregan creditos que no estan en el plan de la carrera
   // Les asignamos solamente el nombre y la cantidad de creditos que otorgan (porque la nota no influye en el promedio)
   const [optativas, optativasDispatch] = React.useReducer(
-    (prevstate: GraphType.Optativa[], dispatched: GraphType.OptativasDispatcher) => {
+    (
+      prevstate: GraphType.Optativa[],
+      dispatched: GraphType.OptativasDispatcher,
+    ) => {
       let newstate = prevstate;
       const { action, value } = dispatched;
       switch (action) {
@@ -632,7 +644,11 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     // La estructura de las carreras varia bastante
     // Por ej: algunas carreras dicen que si elegis X orientacion, tenes que hacer otra cantidad de creditos de electivas
     const getCorrectCreditos = () => {
-      if (user.carrera.eligeOrientaciones && user.orientacion && user.carrera.creditos.orientacion)
+      if (
+        user.carrera.eligeOrientaciones &&
+        user.orientacion &&
+        user.carrera.creditos.orientacion
+      )
         return user.carrera.creditos.orientacion[user.orientacion.nombre];
       return user.carrera.creditos;
     };
@@ -790,7 +806,8 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     const fullProportion = creditos.reduce(accProportion, 0);
     if (creditos[1].proportion) {
       if (fullProportion > 10) creditos[1].proportion -= fullProportion - 10;
-      else if (fullProportion < 10) creditos[1].proportion += 10 - fullProportion;
+      else if (fullProportion < 10)
+        creditos[1].proportion += 10 - fullProportion;
     }
     setCreditos(creditos);
   };
@@ -1097,24 +1114,24 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
         : [],
     AllShownWithCuatri: () =>
       nodes
-        ? nodes.get({
+        ? (nodes.get({
             filter: (n) =>
               n.cuatrimestre &&
               !n.hidden &&
               n.categoria !== "CBC" &&
               n.categoria !== "*CBC",
-          }) as (NodeType & { cuatrimestre: number })[]
+          }) as (NodeType & { cuatrimestre: number })[])
         : [],
     AllShownWithoutCuatri: () =>
       nodes
-        ? nodes.get({
+        ? (nodes.get({
             filter: (n) =>
               !n.cuatrimestre &&
               !n.hidden &&
               n.originalLevel &&
               n.categoria !== "CBC" &&
               n.categoria !== "*CBC",
-          }) as (NodeType & { cuatrimestre: undefined })[]
+          }) as (NodeType & { cuatrimestre: undefined })[])
         : [],
     WithoutNivel: () =>
       nodes

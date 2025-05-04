@@ -16,7 +16,7 @@ const MateriaDisplay = () => {
   const { getNode, aprobar, displayedNode, desaprobar, cursando } =
     React.useContext(GraphContext);
   const node = React.useMemo(
-    () => displayedNode ? getNode(displayedNode) : undefined,
+    () => (displayedNode ? getNode(displayedNode) : undefined),
     [displayedNode, getNode],
   );
 
