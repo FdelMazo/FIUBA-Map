@@ -1,4 +1,6 @@
 export default async function handler(req: any, res: any) {
+  res.setHeader("Access-Control-Allow-Origin", "https://fede.dm");
+
   const { binId } = req.query;
   const MASTER_KEY = process.env.JSONBIN_MASTER_KEY;
 
