@@ -41,9 +41,6 @@ export const SHEETS = {
   registros: "registros",
 };
 
-export const FIUBAREPOSJSON =
-  "https://raw.githubusercontent.com/FdelMazo/FIUBA-Repos/85806e2f4ea00e3d1ae4ebbf49465e2b28168011/src/data/materias.json";
-
 // Por default, una google key que solo funciona desde el dominio "fede.dm"
 // para que ande en todos lados (o sea, para poder testear la herramienta) hay que tener un archivo
 // .env solamente con la linea `REACT_APP_FEDE_KEY="<KEY>"` (pedirle la key a algun autor...)

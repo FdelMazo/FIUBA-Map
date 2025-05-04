@@ -1,6 +1,5 @@
 import React from "react";
 import { GraphType } from "./Graph";
-import { GithubAPI } from "./externalAPI";
 import { NodeType } from "./Node";
 import { COLORS } from "../theme";
 
@@ -107,7 +106,6 @@ export namespace UserType {
     user: Info;
     logged: boolean;
     padronInput: string;
-    fiubaRepos: GithubAPI.MateriaFIUBARepo[];
     loggingIn: boolean;
     
     login(padron: string): Promise<boolean>;

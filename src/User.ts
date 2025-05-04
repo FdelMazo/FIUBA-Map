@@ -1,9 +1,9 @@
 import React from "react";
 import { CARRERAS } from "./carreras";
 import * as C from "./constants";
-import { getFiubaRepos, getGraphs, postGraph, postUser } from "./dbutils";
+import { getGraphs, postGraph, postUser } from "./dbutils";
 import { UserType } from "./types/User";
-import { GoogleSheetAPI, GithubAPI } from "./types/externalAPI";
+import { GoogleSheetAPI } from "./types/externalAPI";
 
 // La base de datos se parte en dos tablas (relacional... ponele)
 // La clave que une a las bases de datos es la combinación de padron y carrera
@@ -47,16 +47,6 @@ const Login = (): UserType.Context => {
       login(padronInput);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // On boot pedimos todos los fiuba repos para poder mostrarlos en el header
-  // Un poquito de cross promotion nunca mato a nadie...
-  const [fiubaRepos, setFiubaRepos] = React.useState<GithubAPI.MateriaFIUBARepo[]>([]);
-  React.useEffect(() => {
-    const fetchFiubaRepos = async () => {
-      setFiubaRepos(await getFiubaRepos());
-    };
-    fetchFiubaRepos();
   }, []);
 
   // login agarra todo lo que sabemos del usuario, de ambas tablas de la DB
@@ -232,7 +222,6 @@ const Login = (): UserType.Context => {
     setUser,
     padronInput,
     setPadronInput,
-    fiubaRepos,
     loggingIn,
     saveUserGraph,
     signup,
