@@ -59,6 +59,15 @@ const Login = (): UserType.Context => {
       return false;
     }
 
+    const userMaps = await fetch(
+      `https://fiuba-map-backend.vercel.app/api/load?binId=6817f2cb8561e97a500de00d`,
+      {
+        method: "GET",
+      },
+    ).then((res) => res.json());
+
+    console.log("Fede Test", userMaps);
+
     const padrones = await fetch(
       `${C.SPREADSHEET}/${C.SHEETS.user}!B:B?majorDimension=COLUMNS&key=${C.KEY}`,
     )
