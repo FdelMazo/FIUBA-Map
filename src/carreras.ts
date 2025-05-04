@@ -560,6 +560,32 @@ export const CARRERAS: UserType.Carrera[] = [
     },
   },
   {
+    id: "naval-2020",
+    link: "https://fi.uba.ar/grado/carreras/ingenieria-naval/plan-de-estudios",
+    ano: 2020,
+    graph: require("./data/naval-2020.json"),
+    creditos: {
+      total: 260,
+      electivas: 18,
+      materias: [
+        {
+          id: "TIF",
+          nombrecorto: "TIF",
+          bg: COLORS.findecarrera[50],
+          color: "findecarrera",
+        },
+      ],
+      checkbox: [
+        {
+          nombre: "Prueba de nivel de idioma inglés",
+          nombrecorto: "Inglés",
+          bg: COLORS.enfinal[50],
+          color: "enfinal",
+        },
+      ],
+    },
+  },
+  {
     id: "petroleo",
     link: "https://fi.uba.ar/grado/carreras/ingenieria-en-petroleo/plan-de-estudios",
     ano: 2015,
@@ -711,7 +737,7 @@ export const PLANES = [
   {
     nombre: "Ingeniería Naval",
     nombrecorto: "Naval",
-    planes: ["naval"],
+    planes: ["naval", "naval-2020"],
   },
   {
     nombre: "Ingeniería Química",

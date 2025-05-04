@@ -1,0 +1,575 @@
+[
+  {
+    "id": "CBC66",
+    "materia": "Análisis Matemático A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC62",
+    "materia": "Álgebra A",
+    "creditos": 9,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC24",
+    "materia": "Introducción al Conocimiento de la Sociedad y el Estado",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -2
+  },
+  {
+    "id": "CBC3",
+    "materia": "Física",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC90",
+    "materia": "Pensamiento Computacional",
+    "creditos": 6,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC40",
+    "materia": "Introducción al Pensamiento Científico",
+    "creditos": 4,
+    "categoria": "*CBC",
+    "level": -1
+  },
+  {
+    "id": "CBC",
+    "materia": "Ciclo Básico Común",
+    "creditos": 0,
+    "categoria": "CBC",
+    "level": 0,
+    "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
+  },
+  {
+    "id": "AM2",
+    "materia": "Análisis Matemático II",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "FSP",
+    "materia": "Física de los Sistemas de Partículas",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "OPT",
+    "materia": "Óptica",
+    "creditos": 2,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "IIN",
+    "materia": "Introducción a la Ingeniería Naval",
+    "creditos": 4,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "MR",
+    "materia": "Medios de Representación",
+    "creditos": 4,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 1
+  },
+  {
+    "id": "AL",
+    "materia": "Álgebra Lineal",
+    "creditos": 8,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "EM",
+    "materia": "Electricidad y Magnetismo",
+    "creditos": 6,
+    "correlativas": "AM2-FSP",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "QB",
+    "materia": "Química Básica",
+    "creditos": 6,
+    "correlativas": "CBC",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "EST",
+    "materia": "Estática",
+    "creditos": 4,
+    "correlativas": "FSP",
+    "categoria": "Materias Obligatorias",
+    "level": 2
+  },
+  {
+    "id": "DNM",
+    "materia": "Dibujo Naval y Mecánico",
+    "creditos": 4,
+    "correlativas": "MR-IIN",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "ICD",
+    "materia": "Introducción a la Ciencia de Datos",
+    "creditos": 3,
+    "correlativas": "AL",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "MN",
+    "materia": "Modelación Numérica",
+    "creditos": 4,
+    "correlativas": "AM2-AL",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "RM",
+    "materia": "Resistencia de Materiales",
+    "creditos": 8,
+    "correlativas": "AM2-EST",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "TD",
+    "materia": "Termodinámica",
+    "creditos": 6,
+    "correlativas": "QB",
+    "categoria": "Materias Obligatorias",
+    "level": 3
+  },
+  {
+    "id": "CM",
+    "materia": "Conocimiento de Materiales",
+    "creditos": 6,
+    "correlativas": "QB",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "EMIEE",
+    "materia": "Electrotecnia, Máquinas e Instalaciones Eléctricas",
+    "creditos": 6,
+    "correlativas": "EM-IIN",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "EB",
+    "materia": "Estabilidad del Buque",
+    "creditos": 6,
+    "correlativas": "EST-DNM",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "HS",
+    "materia": "Higiene y Seguridad",
+    "creditos": 2,
+    "correlativas": "QB",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "MF",
+    "materia": "Mecánica de Fluidos",
+    "creditos": 6,
+    "correlativas": "AL-TD-RM",
+    "categoria": "Materias Obligatorias",
+    "level": 4
+  },
+  {
+    "id": "TE",
+    "materia": "Teoría de Estructuras",
+    "creditos": 6,
+    "correlativas": "AL-RM",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "DEB",
+    "materia": "Diseño de Estructuras de Buques",
+    "creditos": 4,
+    "correlativas": "RM-EB",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "PROBA",
+    "materia": "Probabilidad y Estadística",
+    "creditos": 6,
+    "correlativas": "AM2-AL",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "SAN",
+    "materia": "Sistemas Auxiliares Navales",
+    "creditos": 6,
+    "correlativas": "MF-DNM",
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "ISA",
+    "materia": "Impacto Social, Ambiental y Desarrollo Sustentable",
+    "creditos": 4,
+    "requiere": 100,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 5
+  },
+  {
+    "id": "TELEC",
+    "materia": "Taller de Electrónica",
+    "creditos": 3,
+    "correlativas": "EM-IIN",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "MEM",
+    "materia": "Mecanismos y Elementos de Máquinas",
+    "creditos": 6,
+    "correlativas": "RM",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "RPB",
+    "materia": "Resistencia y Propulsión de Buques",
+    "creditos": 6,
+    "correlativas": "EB-MF",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "SIOB",
+    "materia": "Sistemas Inherentes a la Operación del Buque",
+    "creditos": 6,
+    "correlativas": "DEB-SAN",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "TA",
+    "materia": "Tecnología de Astilleros",
+    "creditos": 4,
+    "correlativas": "SAN-DEB-CM",
+    "categoria": "Materias Obligatorias",
+    "level": 6
+  },
+  {
+    "id": "AEB",
+    "materia": "Análisis Estructural de Buques",
+    "creditos": 6,
+    "correlativas": "DEB-TE-PROBA-MN",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "EO",
+    "materia": "Economía y Organización",
+    "creditos": 6,
+    "correlativas": "IIN",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "MCCR",
+    "materia": "Mecánica Clásica del Cuerpo Rígido",
+    "creditos": 6,
+    "correlativas": "FSP-AM2",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "PP",
+    "materia": "Plantas Propulsoras",
+    "creditos": 6,
+    "correlativas": "MEM-SAN-EMIEE",
+    "categoria": "Materias Obligatorias",
+    "level": 7
+  },
+  {
+    "id": "PBM",
+    "materia": "Proyecto de Buques Mercantes",
+    "creditos": 6,
+    "correlativas": "SIOB-PP-RPB",
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  },
+  {
+    "id": "PA",
+    "materia": "Prácticas en Astilleros",
+    "creditos": 6,
+    "correlativas": "TA-EO-HS",
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  },
+  {
+    "id": "LEP",
+    "materia": "Legislación y Ejercicio Profesional",
+    "creditos": 2,
+    "requiere": 100,
+    "requiereCBC": true,
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  },
+  {
+    "id": "DESB",
+    "materia": "Dinámica de Estructuras de Buques",
+    "creditos": 4,
+    "correlativas": "TE-MCCR",
+    "categoria": "Materias Obligatorias",
+    "level": 8
+  },
+  {
+    "id": "CAO",
+    "materia": "Comportamiento de Artefactos Oceánicos",
+    "creditos": 4,
+    "correlativas": "RPB-PROBA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "MCE",
+    "materia": "Maniobrabilidad y Control de Embarcaciones",
+    "creditos": 4,
+    "correlativas": "RPB-PROBA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AVE",
+    "materia": "Aprovechamiento del Viento para la Propulsión",
+    "creditos": 2,
+    "correlativas": "RPB",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "MFCHN",
+    "materia": "Mecánica de Fluidos Computacional Aplicada a Hidrodinámica Naval",
+    "creditos": 2,
+    "correlativas": "RPB-MN",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "MPN",
+    "materia": "Máquinas Propulsoras Navales",
+    "creditos": 6,
+    "correlativas": "PP",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "DASAN",
+    "materia": "Diseño Avanzado de Sistemas Auxiliares Navales",
+    "creditos": 3,
+    "correlativas": "SAN",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TEP",
+    "materia": "Transición Energética de la Propulsión",
+    "creditos": 3,
+    "correlativas": "PP",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "PBTSM",
+    "materia": "Proyecto de Buques de Trabajo, Servicio y Militares",
+    "creditos": 6,
+    "correlativas": "PBM",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "HAB",
+    "materia": "Habitabilidad",
+    "creditos": 3,
+    "correlativas": "SIOB",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "DPN",
+    "materia": "Diseño de Puente de Navegación",
+    "creditos": 3,
+    "requiere": 180,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "GCAL",
+    "materia": "Gerenciamiento de la Calidad",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CHCO",
+    "materia": "Capital Humano y Comportamiento Organizacional",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "CPS",
+    "materia": "Comercialización de Productos y Servicios",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "EMPR",
+    "materia": "Emprendimientos en Ingeniería",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "GFP",
+    "materia": "Gestión Financiera y Presupuestaria",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "LOG",
+    "materia": "Logística y Supply Chain",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "IGP",
+    "materia": "Innovación y Gestión de Proyectos",
+    "creditos": 4,
+    "correlativas": "EO",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ITE",
+    "materia": "Introducción a la Transición Energética",
+    "creditos": 4,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "EREN",
+    "materia": "Energías Renovables",
+    "creditos": 4,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "UEE",
+    "materia": "Uso Eficiente de la Energía",
+    "creditos": 4,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "FCTE",
+    "materia": "Fuentes Convencionales en la Transición Energética",
+    "creditos": 4,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TEEM",
+    "materia": "Tecnologías Emergentes en la Transición Energética",
+    "creditos": 4,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AERO1",
+    "materia": "Introducción a la Industria, los Sistemas y el Negocio Aeroespacial",
+    "creditos": 6,
+    "requiere": 120,
+    "requiereCBC": true,
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "MATIA",
+    "materia": "Tecnología de Materiales para la Industria Aeroespacial A",
+    "creditos": 2,
+    "correlativas": "CM",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "COMAERO",
+    "materia": "Comunicaciones Aeroespaciales A",
+    "creditos": 4,
+    "correlativas": "PROBA-EM",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "IA",
+    "materia": "Introducción a Inteligencia Artificial",
+    "creditos": 3,
+    "correlativas": "PROBA-ICD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ADATOS",
+    "materia": "Análisis de Datos",
+    "creditos": 3,
+    "correlativas": "PROBA-ICD",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "ML",
+    "materia": "Aprendizaje de Máquina",
+    "creditos": 3,
+    "correlativas": "ADATOS-IA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "DML",
+    "materia": "Aprendizaje de Máquina Profundo",
+    "creditos": 3,
+    "correlativas": "ADATOS-IA",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "AM3",
+    "materia": "Análisis Matemático III",
+    "creditos": 6,
+    "correlativas": "AM2-AL",
+    "categoria": "Materias Electivas"
+  },
+  {
+    "id": "TIF",
+    "materia": "Trabajo Integrador Final",
+    "creditos": 12,
+    "requiere": 180,
+    "requiereCBC": true,
+    "categoria": "Fin de Carrera (Obligatorio)"
+  }
+]
