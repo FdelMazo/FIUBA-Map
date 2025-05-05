@@ -60,7 +60,8 @@ const Login = (): UserType.Context => {
     }
 
     const userMaps = await fetch(
-      `https://fiuba-map-backend.vercel.app/api/load?binId=6817f2cb8561e97a500de00d`,
+      // `https://fiuba-map-backend.vercel.app/api/load?binId=6817f2cb8561e97a500de00d`,
+      `http://localhost:3001/api/load?binId=6817f2cb8561e97a500de00d`,
       {
         method: "GET",
       },

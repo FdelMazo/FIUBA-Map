@@ -22,8 +22,9 @@ La idea de este proyecto es presentar de una manera interactiva el plan de estud
 
 ## Desarrollo
 
-Para agregar un feature o fixear un issue hay que clonar el repositorio, instalar las dependencias con `npm install` y después correr la aplicación con `npm start`. En `localhost:3000/` va a estar corriendo la aplicación constantemente, y toda modificación que se haga al código se va a ver reflejada en la página.
+La base de datos del FIUBA-Map es solamente una lista de registros almacenados en [jsonbin.io](https://jsonbin.io/). Para poder interactuar con estos datos hace falta tener un mínimo servidor que haga de pasamanos entre el FIUBA-Map y jsonbin. Localmente no se va a poder acceder a la base de datos a menos que se tenga el archivo `.env` con las credenciales correspondientes.
 
-Una vez terminados los cambios, con solo hacer un PR basta (porque la aplicación se compila automáticamente con cada push a master).
-
-Hay que tener en cuenta que localmente no funciona la base de datos, para evitar que se le pueda pegar desde cualquier lado. Si se necesita arreglar algo que interactua con la db, pedirle a algún autor la API key correspondiente.
+```sh
+npm install # dependencias
+npm start # levanta el servidor de desarrollo en localhost:3001 y el cliente en localhost:3000
+```

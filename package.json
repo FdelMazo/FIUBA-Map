@@ -30,7 +30,7 @@
   },
   "homepage": "https://fede.dm/FIUBA-Map",
   "scripts": {
-    "start": "npm run serve --prefix ./backend & react-scripts start",
+    "start": "NODE_ENV=development npm run serve --prefix ./backend & react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject"
   },
