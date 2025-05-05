@@ -23,12 +23,14 @@
     "@types/node": "^22.4.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "dotenv": "^16.5.0",
+    "node-fetch": "^2.7.0",
     "prettier": "^3.2.4",
     "typescript": "^4.9.5"
   },
   "homepage": "https://fede.dm/FIUBA-Map",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run serve --prefix ./backend & react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject"
   },
