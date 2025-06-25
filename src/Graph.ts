@@ -605,45 +605,13 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
           break;
         case "create":
           const lastOptativaId = prevstate.map((o) => o.id).pop() || 0;
-          const currentCreditos = prevstate.reduce((acc, o) => acc + o.creditos, 0);
-          const maxCreditosOptativas = (() => {
-            const getCorrectCreditos = () => {
-              if (
-                user.carrera.eligeOrientaciones &&
-                user.orientacion &&
-                user.carrera.creditos.orientacion
-              )
-                return user.carrera.creditos.orientacion[user.orientacion.nombre];
-              return user.carrera.creditos;
-            };
-
-            const getElectivasCreditos = (
-              electivas: number | undefined | UserType.Electivas,
-            ) => {
-              let electivasCreditos = 0;
-
-              if (typeof electivas === "number") {
-                electivasCreditos = electivas;
-              } else if (typeof electivas !== "undefined" && user.finDeCarrera) {
-                electivasCreditos = electivas[user.finDeCarrera.id];
-              }
-
-              return electivasCreditos;
-            };
-
-            return getElectivasCreditos(getCorrectCreditos().electivas);
-          })();
-          
-          // Calcular cuántos créditos se pueden agregar sin exceder el límite
-          const creditosDisponibles = maxCreditosOptativas - currentCreditos;
-          const creditosPorDefecto = Math.min(4, Math.max(1, creditosDisponibles));
           
           newstate = [
             ...newstate,
             {
               id: lastOptativaId + 1,
               nombre: "Materia Optativa",
-              creditos: creditosDisponibles > 0 ? creditosPorDefecto : 0,
+              creditos: 4,
             },
           ];
           break;
@@ -1236,34 +1204,6 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     return optativas.reduce((acc, o) => acc + o.creditos, 0);
   }, [optativas]);
 
-  const maxCreditosOptativas = React.useMemo(() => {
-    const getCorrectCreditos = () => {
-      if (
-        user.carrera.eligeOrientaciones &&
-        user.orientacion &&
-        user.carrera.creditos.orientacion
-      )
-        return user.carrera.creditos.orientacion[user.orientacion.nombre];
-      return user.carrera.creditos;
-    };
-
-    const getElectivasCreditos = (
-      electivas: number | undefined | UserType.Electivas,
-    ) => {
-      let electivasCreditos = 0;
-
-      if (typeof electivas === "number") {
-        electivasCreditos = electivas;
-      } else if (typeof electivas !== "undefined" && user.finDeCarrera) {
-        electivasCreditos = electivas[user.finDeCarrera.id];
-      }
-
-      return electivasCreditos;
-    };
-
-    return getElectivasCreditos(getCorrectCreditos().electivas);
-  }, [user.carrera, user.orientacion, user.finDeCarrera]);
-
   return {
     graph,
     toggleGroup,
@@ -1291,7 +1231,6 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     createNetwork,
     networkRef,
     creditosOptativas,
-    maxCreditosOptativas,
   };
 };
 
