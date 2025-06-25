@@ -193,7 +193,12 @@ const Creditos = () => {
             </PopoverBody>
           )}
 
-          <PopoverHeader border="none" borderTop="1px solid" borderColor="electivas.200">
+    <PopoverHeader
+        border="none"
+        borderTop="1px solid"
+        borderColor="electivas.50"
+        mx={1}
+      >
             <Flex justifyContent="space-between">
               <Text mr={4} alignSelf="center">
                 <strong>Créditos por fuera del plan: {creditosOptativas}</strong>
