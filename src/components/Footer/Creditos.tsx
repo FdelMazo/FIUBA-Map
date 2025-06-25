@@ -43,9 +43,7 @@ const Creditos = () => {
     React.useContext(GraphContext);
   const [isOpen, setIsOpen] = React.useState(false);
 
-  const textColor = useColorModeValue("black", "white");
   const electivasColor = useColorModeValue("electivas.600", "electivas.400");
-  const electivasBgHover = useColorModeValue("electivas.50", "electivas.900");
 
   const creditosTotales = React.useMemo(() => {
     return creditos.reduce((acc, c) => {
@@ -68,11 +66,6 @@ const Creditos = () => {
     return user.carrera.creditos.total;
   }, [user.carrera]);
 
-  const handleCreateOptativa = () => {
-    optativasDispatch({ action: "create" });
-    // Mantener el popover abierto cuando se crea una nueva optativa
-    setIsOpen(true);
-  };
 
   const handleEditOptativa = (id: number, nombre: string, creditos: number) => {
     optativasDispatch({
@@ -105,7 +98,9 @@ const Creditos = () => {
                     boxSize={4}
                     color="electivas.400"
                     cursor="pointer"
-                    onClick={handleCreateOptativa}
+                    onClick={() => {
+                      optativasDispatch({ action: "create" });
+                    }}
                   />
                 </Tooltip>
               </StatLabel>
@@ -128,7 +123,7 @@ const Creditos = () => {
           <PopoverArrow bg="electivas.500" />
           {optativas.length === 0 && (
             <Box p={3}>
-              <Text fontSize="sm" color={textColor} textAlign="center">
+              <Text fontSize="sm" textAlign="center">
                 Puedes agregar créditos de optativas
               </Text>
             </Box>
@@ -210,8 +205,6 @@ const Creditos = () => {
                       size="sm"
                       icon={<DeleteIcon />}
                       color={electivasColor}
-                      bg="transparent"
-                      _hover={{ bg: electivasBgHover }}
                       variant="ghost"
                       onClick={() => {
                         optativasDispatch({ action: "override", value: [] });

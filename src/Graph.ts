@@ -598,14 +598,12 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     ) => {
       let newstate = prevstate;
       const { action, value } = dispatched;
-      
       switch (action) {
         case "override":
           newstate = value;
           break;
         case "create":
           const lastOptativaId = prevstate.map((o) => o.id).pop() || 0;
-          
           newstate = [
             ...newstate,
             {
@@ -1200,9 +1198,6 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     user.finDeCarrera?.id,
   ]);
 
-  const creditosOptativas = React.useMemo(() => {
-    return optativas.reduce((acc, o) => acc + o.creditos, 0);
-  }, [optativas]);
 
   return {
     graph,
@@ -1230,7 +1225,6 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     setAplazos,
     createNetwork,
     networkRef,
-    creditosOptativas,
   };
 };
 
