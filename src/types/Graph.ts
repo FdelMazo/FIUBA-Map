@@ -100,7 +100,6 @@ export namespace GraphType {
     getters: Getters;
     events: ReactGraphVisType.NodeEvents;
     aplazos: number;
-    creditosOptativas: number;
 
     setDisplayedNode: React.Dispatch<React.SetStateAction<string>>;
     setNetwork: React.Dispatch<React.SetStateAction<ReactGraphVisType.Network>>;
