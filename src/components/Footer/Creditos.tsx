@@ -31,7 +31,6 @@ import {
   Text,
   Tooltip,
   useColorModeValue,
-  Progress,
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../../MapContext";
@@ -40,11 +39,13 @@ import { GraphContext, UserContext } from "../../MapContext";
 // y en hover setupear creditos por fuera del plan (materias optativas)
 const Creditos = () => {
   const { user } = React.useContext(UserContext);
-  const { optativas, optativasDispatch, creditos, maxCreditosOptativas } =
+  const { optativas, optativasDispatch, creditos } =
     React.useContext(GraphContext);
   const [isOpen, setIsOpen] = React.useState(false);
 
   const textColor = useColorModeValue("black", "white");
+  const electivasColor = useColorModeValue("electivas.600", "electivas.400");
+  const electivasBgHover = useColorModeValue("electivas.50", "electivas.900");
 
   const creditosTotales = React.useMemo(() => {
     return creditos.reduce((acc, c) => {
@@ -68,22 +69,12 @@ const Creditos = () => {
   }, [user.carrera]);
 
   const handleCreateOptativa = () => {
-    if (creditosOptativas >= maxCreditosOptativas) {
-      return; // No permitir crear más optativas si ya se alcanzó el límite
-    }
     optativasDispatch({ action: "create" });
     // Mantener el popover abierto cuando se crea una nueva optativa
     setIsOpen(true);
   };
 
   const handleEditOptativa = (id: number, nombre: string, creditos: number) => {
-    const currentOptativas = optativas.filter(o => o.id !== id);
-    const currentCreditos = currentOptativas.reduce((acc, o) => acc + o.creditos, 0);
-    
-    if (currentCreditos + creditos > maxCreditosOptativas) {
-      return; // No permitir editar si excedería el límite
-    }
-    
     optativasDispatch({
       action: "edit",
       value: { id, nombre, creditos },
@@ -107,17 +98,13 @@ const Creditos = () => {
                 <Tooltip 
                   placement="right" 
                   hasArrow 
-                  label={
-                    creditosOptativas >= maxCreditosOptativas 
-                      ? "Límite máximo de créditos alcanzado" 
-                      : `Agregar créditos (máximo ${maxCreditosOptativas} total)`
-                  }
+                  label="Agregar créditos de optativas"
                 >
                   <PlusSquareIcon
                     ml={1}
                     boxSize={4}
-                    color={creditosOptativas >= maxCreditosOptativas ? "gray.400" : "electivas.400"}
-                    cursor={creditosOptativas >= maxCreditosOptativas ? "not-allowed" : "pointer"}
+                    color="electivas.400"
+                    cursor="pointer"
                     onClick={handleCreateOptativa}
                   />
                 </Tooltip>
@@ -139,36 +126,10 @@ const Creditos = () => {
         </PopoverTrigger>
         <PopoverContent borderColor="electivas.500" width="fit-content">
           <PopoverArrow bg="electivas.500" />
-          {creditosOptativas > 0 && (
-            <Box p={3}>
-              <Flex justifyContent="space-between" alignItems="center" mb={2}>
-                <Text fontSize="sm" color={textColor}>
-                  <strong>Créditos de optativas: {creditosOptativas} / {maxCreditosOptativas}</strong>
-                </Text>
-              </Flex>
-              <Progress
-                value={(creditosOptativas / maxCreditosOptativas) * 100}
-                size="sm"
-                borderRadius={3}
-                bg="electivas.100"
-                sx={{
-                  "& > div": {
-                    backgroundColor: creditosOptativas >= maxCreditosOptativas ? "red.400" : "electivas.400",
-                  },
-                }}
-              />
-              {creditosOptativas >= maxCreditosOptativas && (
-                <Text fontSize="xs" color="red.500" mt={1}>
-                  Límite máximo alcanzado
-                </Text>
-              )}
-            </Box>
-          )}
-
-          {optativas.length === 0 && maxCreditosOptativas > 0 && (
+          {optativas.length === 0 && (
             <Box p={3}>
               <Text fontSize="sm" color={textColor} textAlign="center">
-                Puedes agregar hasta <strong>{maxCreditosOptativas} créditos</strong> de optativas
+                Puedes agregar créditos de optativas
               </Text>
             </Box>
           )}
@@ -235,7 +196,7 @@ const Creditos = () => {
           <PopoverHeader border="none" borderTop="1px solid" borderColor="electivas.200">
             <Flex justifyContent="space-between">
               <Text mr={4} alignSelf="center">
-                <strong>Créditos por fuera del plan</strong>
+                <strong>Créditos por fuera del plan: {creditosOptativas}</strong>
               </Text>
               <Flex gap={2}>
                 {optativas.length > 0 && (
@@ -243,7 +204,9 @@ const Creditos = () => {
                     <IconButton
                       size="sm"
                       icon={<DeleteIcon />}
-                      colorScheme="red"
+                      color={electivasColor}
+                      bg="transparent"
+                      _hover={{ bg: electivasBgHover }}
                       variant="ghost"
                       onClick={() => {
                         optativasDispatch({ action: "override", value: [] });
@@ -273,7 +236,7 @@ const Creditos = () => {
                   <InfoOutlineIcon
                     boxSize={4}
                     alignSelf="center"
-                    color={useColorModeValue("electivas.600", "electivas.400")}
+                    color={electivasColor}
                   />
                 </Tooltip>
               </Flex>
