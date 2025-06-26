@@ -66,7 +66,6 @@ const Creditos = () => {
     return user.carrera.creditos.total;
   }, [user.carrera]);
 
-
   const handleEditOptativa = (id: number, nombre: string, creditos: number) => {
     optativasDispatch({
       action: "edit",
@@ -76,8 +75,8 @@ const Creditos = () => {
 
   return (
     <Box>
-      <Popover 
-        placement="top" 
+      <Popover
+        placement="top"
         trigger="hover"
         isOpen={isOpen}
         onOpen={() => setIsOpen(true)}
@@ -88,9 +87,9 @@ const Creditos = () => {
             <Stat p="0.4em" color="white" size="sm">
               <StatLabel>
                 Créditos
-                <Tooltip 
-                  placement="right" 
-                  hasArrow 
+                <Tooltip
+                  placement="right"
+                  hasArrow
                   label="Agregar créditos de optativas"
                 >
                   <PlusSquareIcon
@@ -180,19 +179,25 @@ const Creditos = () => {
             </PopoverBody>
           )}
 
-    <PopoverHeader
-        border="none"
-        borderTop={optativas.length > 0 ? "1px solid" : undefined}
-        borderColor="electivas.50"
-        mx={1}
-      >
+          <PopoverHeader
+            border="none"
+            borderTop={optativas.length > 0 ? "1px solid" : undefined}
+            borderColor="electivas.50"
+            mx={1}
+          >
             <Flex justifyContent="space-between">
               <Text mr={4} alignSelf="center">
-                <strong>Créditos por fuera del plan: {creditosOptativas}</strong>
+                <strong>
+                  Créditos por fuera del plan: {creditosOptativas}
+                </strong>
               </Text>
               <Flex gap={2}>
                 {optativas.length > 0 && (
-                  <Tooltip placement="top" hasArrow label="Eliminar todas las optativas">
+                  <Tooltip
+                    placement="top"
+                    hasArrow
+                    label="Eliminar todas las optativas"
+                  >
                     <IconButton
                       size="sm"
                       icon={<DeleteIcon />}
@@ -211,8 +216,8 @@ const Creditos = () => {
                   label={
                     <>
                       <Text>
-                        Los créditos por fuera del plan contabilizan como materias
-                        electivas y no influyen en el promedio.
+                        Los créditos por fuera del plan contabilizan como
+                        materias electivas y no influyen en el promedio.
                       </Text>
                       <Text>
                         Pueden ser materias optativas (materias dadas en otra
