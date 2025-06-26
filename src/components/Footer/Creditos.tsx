@@ -121,14 +121,6 @@ const Creditos = () => {
         </PopoverTrigger>
         <PopoverContent borderColor="electivas.500" width="fit-content">
           <PopoverArrow bg="electivas.500" />
-          {optativas.length === 0 && (
-            <Box p={3}>
-              <Text fontSize="sm" textAlign="center">
-                Puedes agregar créditos de optativas
-              </Text>
-            </Box>
-          )}
-
           {optativas.length > 0 && (
             <PopoverBody>
               {optativas.map((o) => (
@@ -190,7 +182,7 @@ const Creditos = () => {
 
     <PopoverHeader
         border="none"
-        borderTop="1px solid"
+        borderTop={optativas.length > 0 ? "1px solid" : undefined}
         borderColor="electivas.50"
         mx={1}
       >
