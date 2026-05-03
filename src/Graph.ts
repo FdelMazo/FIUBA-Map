@@ -132,7 +132,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
       isDark: boolean | null
     } = { pattern: null, isDark: null };
 
-    const createDotPattern: (ctx: CanvasRenderingContext2D) => CanvasPattern = (ctx: CanvasRenderingContext2D) => {
+    const createDotPattern: (ctx: CanvasRenderingContext2D) => CanvasPattern| null = (ctx: CanvasRenderingContext2D) => {
       const { spacing, radius } = DOT_PATTERN_CONFIG;
       const patternCanvas = document.createElement("canvas");
       patternCanvas.width = spacing;
@@ -141,7 +141,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
       const patternCtx: CanvasRenderingContext2D | null = patternCanvas.getContext("2d", { alpha: true });
 
       if (!patternCtx) {
-        throw new Error("Could not create pattern context");
+        return null;
       }
 
       patternCtx.fillStyle = getDotColor();
@@ -170,7 +170,12 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
       if (zoom < zoomThreshold) {
         // ZOOM OUT: patrón repetido cacheado
         if (patternCache.isDark !== isDark || !patternCache.pattern) {
-          patternCache.pattern = createDotPattern(ctx);
+          const dot_pattern = createDotPattern(ctx);
+          if (!dot_pattern) {
+            return null;
+          }
+
+          patternCache.pattern = dot_pattern;
           patternCache.isDark = isDark;
         }
         ctx.fillStyle = patternCache.pattern;
