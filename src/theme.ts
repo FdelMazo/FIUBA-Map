@@ -77,7 +77,7 @@ export const COLORS = {
 };
 
 export const DOT_PATTERN_CONFIG = {
-  spacing: 20,              // Distance between dots in pixels (at zoom level 1)
+  spacing: 25,              // Distance between dots in pixels (at zoom level 1)
   radius: 1,                // Radius of each dot in pixels (at zoom level 1)
   zoomThreshold: 1,         // Zoom level where the pattern stops being a CanvasPattern, and starts being drawn manually
                             // This is because at zoom > 1, the pattern becomes blurry.
