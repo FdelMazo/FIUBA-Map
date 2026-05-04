@@ -1,4 +1,4 @@
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme, LightMode } from "@chakra-ui/react";
 
 export const COLORS = {
   // https://nipponcolors.com/
@@ -73,6 +73,19 @@ export const COLORS = {
   },
   orientacion8: {
     500: "#ccae62",
+  },
+};
+
+export const DOT_PATTERN_CONFIG = {
+  spacing: 25,              // Distance between dots in pixels (at zoom level 1)
+  radius: 1,                // Radius of each dot in pixels (at zoom level 1)
+  zoomThreshold: 1,         // Zoom level where the pattern stops being a CanvasPattern, and starts being drawn manually
+                            // This is because at zoom > 1, the pattern becomes blurry.
+                            // Drawing manually mantains pixel-perfect dots, but is more expensive than CanvasPattern.
+  infiniteBounds: 50000,    // The CanvasPattern will be drawn in a square of size infiniteBounds centered on the viewport.
+  colors: {                 // Colors for the dot pattern, depending on the color mode
+    dark: "#4a4a4a",  
+    light: "#929292",
   },
 };
 

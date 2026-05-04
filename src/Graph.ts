@@ -4,7 +4,7 @@ import useResizeObserver from "use-resize-observer";
 import { CARRERAS } from "./carreras";
 import { CREDITOS } from "./constants";
 import Node from "./Node";
-import { COLORS } from "./theme";
+import { COLORS, DOT_PATTERN_CONFIG } from "./theme";
 import { accCreditos, accCreditosNecesarios, accProportion } from "./utils";
 import { UserType } from "./types/User";
 import { GraphType } from "./types/Graph";
@@ -14,6 +14,12 @@ import { NodeType } from "./types/Node";
 const Graph = (userContext: UserType.Context): GraphType.Context => {
   const { user, setUser, logged, saveUserGraph, register } = userContext;
   const { colorMode } = useColorMode();
+
+    // Usar un ref para capturar el colorMode actual dinámicamente
+  const colorModeRef = React.useRef(colorMode);
+  React.useEffect(() => {
+    colorModeRef.current = colorMode;
+  }, [colorMode]);
 
   // Guardamos en el estado que nodo esta clickeado, para mostrarlo en el header
   const [displayedNode, setDisplayedNode] = React.useState("");
@@ -116,26 +122,120 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     // Le pongo una key al network para poder compararla contra la key del graph
     network.key = user.carrera.id;
 
-    // Por mas que me encante este efecto, le agrega mucho tiempo de carga a la pagina antes de abrir
-    // Lo dejo comentado nada mas por lo mucho que me gusta
-    // https://stackoverflow.com/a/72950605/10728610
-    // https://www.seancdavis.com/posts/mutlicolored-dotted-grid-canvas/
-    // https://github.com/open-source-labs/Svelvet/blob/main/src/lib/containers/Background/Background.svelte
-    // network.on("beforeDrawing", function (ctx) {
-    //   var width = ctx.canvas.clientWidth;
-    //   var height = ctx.canvas.clientHeight;
-    //   var spacing = 24;
-    //   var gridExtentFactor = 1.5;
-    //   ctx.fillStyle = "darkgray"
+    // Funcion para obtener el color del punteado del fondo.
+    const getDotColor = (isDark: boolean) => {
+      return DOT_PATTERN_CONFIG.colors[isDark ? "dark" : "light"];
+    };
 
-    //   for (var x = -width * gridExtentFactor; x <= width * gridExtentFactor; x += spacing) {
-    //     for (var y = -height * gridExtentFactor; y <= height * gridExtentFactor; y += spacing) {
-    //       ctx.beginPath();
-    //       ctx.arc(x, y, 1, 0, 2 * Math.PI, false);
-    //       ctx.fill();
-    //     }
-    //   }
-    // });
+    // Estructura donde se van a guardar los patrones, para poder crearlos una sola vez.
+    const patternCache: {
+      light: CanvasPattern | null;
+      dark: CanvasPattern | null;
+    } = { light: null, dark: null };
+
+    // Crea un CanvasPattern, usado como mosaico para el fondo del mapa.
+    // Renderiza un canvas con un único punto en el centro.
+    const createDotPattern = (
+      ctx: CanvasRenderingContext2D,
+      isDark: boolean,
+    ): CanvasPattern | null => {
+      const { spacing, radius } = DOT_PATTERN_CONFIG;
+      const patternCanvas = document.createElement("canvas");
+      patternCanvas.width = spacing;
+      patternCanvas.height = spacing;
+
+      const patternCtx: CanvasRenderingContext2D | null = patternCanvas.getContext("2d", { alpha: true });
+
+      if (!patternCtx) {
+        return null;
+      }
+
+      patternCtx.fillStyle = getDotColor(isDark);
+      patternCtx.beginPath();
+      patternCtx.arc(spacing / 2, spacing / 2, radius, 0, Math.PI * 2);
+      patternCtx.fill();
+
+      const return_pattern = ctx.createPattern(patternCanvas, "repeat");
+
+      return return_pattern;
+    };
+
+    // Pre-crear ambos patrones al inicio de la red para que esten en cache.
+    const bootstrapCanvas = document.createElement("canvas");
+    const bootstrapCtx = bootstrapCanvas.getContext("2d", { alpha: true });
+    if (bootstrapCtx) {
+      patternCache.light = createDotPattern(bootstrapCtx, false);
+      patternCache.dark = createDotPattern(bootstrapCtx, true);
+    }
+
+    // Evento donde se dibuja el fondo con el patrón de puntos.
+    // Internamente se hace de 2 modos distintos, utilizando el CanvasPattern cacheado para zooms pequeños,
+    // y dibujando manualmente los puntos para zooms grandes (para evitar que se vean borrosos).
+    // @ts-expect-error - la librería está mal tipada, sí recibe ctx
+    network.on("beforeDrawing", function (ctx: CanvasRenderingContext2D) { 
+      const isDark = colorModeRef.current === "dark";
+      const zoom = network.getScale();
+      const { spacing, radius, zoomThreshold, infiniteBounds } = DOT_PATTERN_CONFIG;
+
+      // Se chequea si en nivel de zoom actual es muy alto o muy bajo (usando como limite el threshold definido en la configuración).
+      if (zoom < zoomThreshold) {
+        // ZOOM OUT: patrón repetido cacheado.
+        // Utiliza el canvas pattern pre-renderizado para llenar el fondo.
+        // El patrón se dibuja en un área grande centrada en el viewport para asegurar que siempre haya puntos visibles, incluso al mover la vista.
+        // Este metodo no se puede utilizar cuando hay mucho zoom, porque el patrón se escala y se ve borroso. Por eso, para zooms grandes, se dibujan los puntos manualmente.
+
+        // Obtener el patrón correspondiente al modo de color actual
+        const canvas_pattern_to_use = isDark ? patternCache.dark : patternCache.light;
+        if (!canvas_pattern_to_use) {
+          return null;
+        }
+
+        ctx.fillStyle = canvas_pattern_to_use;
+        ctx.fillRect(-infiniteBounds, -infiniteBounds, infiniteBounds * 2, infiniteBounds * 2);
+      } else {
+        // ZOOM IN: dibujo directo en el canvas los puntos, pero unicamente los que si sean visibles.
+        // Para evitar que se vean borrosos, se dibujan círculos individuales en las posiciones correspondientes a los puntos del patrón, en lugar de usar un CanvasPattern escalado.
+        // Este metodo no se usa cuando esta muy alejado porque es muy ineficiente dibujar cada punto individualmente, pero para zooms cercanos, mantiene los puntos nítidos y definidos.
+
+        const viewPos = network.getViewPosition();
+        const { width, height } = ctx.canvas;
+        
+        const halfSpacing = spacing / 2;
+
+        // Calcular viewport en coordenadas del mundo
+        // Extendemos los bounds por el radius de los puntos para asegurar que
+        // los puntos que están parcialmente en el viewport se rendericen
+        const worldBounds = {
+          left: viewPos.x - width / 2 / zoom - radius / zoom,
+          right: viewPos.x + width / 2 / zoom + radius / zoom,
+          top: viewPos.y - height / 2 / zoom - radius / zoom,
+          bottom: viewPos.y + height / 2 / zoom + radius / zoom
+        };
+
+        // Alinear puntos al grid, dibujando unicamente los puntos que serían visibles en el viewport actual
+        const startX = Math.floor((worldBounds.left + halfSpacing) / spacing) * spacing + halfSpacing;
+        const endX = Math.ceil((worldBounds.right + halfSpacing) / spacing) * spacing + halfSpacing - 2*spacing;
+        const startY = Math.floor((worldBounds.top + halfSpacing) / spacing) * spacing + halfSpacing;
+        const endY = Math.ceil((worldBounds.bottom + halfSpacing) / spacing) * spacing + halfSpacing - 2*spacing;
+
+        ctx.fillStyle = getDotColor(isDark);
+
+        // Genera un Path2D, para generar una fila de puntos.
+        const rowPath = new Path2D();
+        for (let y = startY; y <= endY; y += spacing) {
+          rowPath.arc(0, y - startY, radius, 0, Math.PI * 2);
+        }
+
+        // Utiliza la fila de puntos generada recien, para ir moviendola, y dibujando cada fila subsiguiente.
+        // Esto resulta mucho más rapido que dibujar cada uno de los puntos individualmente.
+        for (let x = startX; x <= endX; x += spacing) {
+          ctx.save();
+          ctx.translate(x, startY);
+          ctx.fill(rowPath);
+          ctx.restore();
+        }
+      }
+    });
 
     setNetwork(network);
   };
