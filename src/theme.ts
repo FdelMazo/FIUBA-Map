@@ -1,4 +1,4 @@
-import { extendTheme, LightMode } from "@chakra-ui/react";
+import { extendTheme } from "@chakra-ui/react";
 
 export const COLORS = {
   // https://nipponcolors.com/

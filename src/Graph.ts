@@ -172,7 +172,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     // Internamente se hace de 2 modos distintos, utilizando el CanvasPattern cacheado para zooms pequeños,
     // y dibujando manualmente los puntos para zooms grandes (para evitar que se vean borrosos).
     // @ts-expect-error - la librería está mal tipada, sí recibe ctx
-    network.on("beforeDrawing", function (ctx: CanvasRenderingContext2D) { 
+    network.on("beforeDrawing", function (ctx: CanvasRenderingContext2D) {
       const isDark = colorModeRef.current === "dark";
       const zoom = network.getScale();
       const { spacing, radius, zoomThreshold, infiniteBounds } = DOT_PATTERN_CONFIG;
@@ -199,7 +199,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
 
         const viewPos = network.getViewPosition();
         const { width, height } = ctx.canvas;
-        
+
         const halfSpacing = spacing / 2;
 
         // Calcular viewport en coordenadas del mundo
