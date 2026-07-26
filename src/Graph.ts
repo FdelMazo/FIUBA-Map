@@ -172,7 +172,6 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     // Evento donde se dibuja el fondo con el patrón de puntos.
     // Internamente se hace de 2 modos distintos, utilizando el CanvasPattern cacheado para zooms pequeños,
     // y dibujando manualmente los puntos para zooms grandes (para evitar que se vean borrosos).
-    // @ts-expect-error - la librería está mal tipada, sí recibe ctx
     // network.on("beforeDrawing", function (ctx: CanvasRenderingContext2D) {
     //   const isDark = colorModeRef.current === "dark";
     //   const zoom = network.getScale();
