@@ -15,7 +15,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
   const { user, setUser, logged, saveUserGraph, register } = userContext;
   const { colorMode } = useColorMode();
 
-    // Usar un ref para capturar el colorMode actual dinámicamente
+  // Usar un ref para capturar el colorMode actual dinámicamente
   const colorModeRef = React.useRef(colorMode);
   React.useEffect(() => {
     colorModeRef.current = colorMode;
@@ -144,7 +144,8 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
       patternCanvas.width = spacing;
       patternCanvas.height = spacing;
 
-      const patternCtx: CanvasRenderingContext2D | null = patternCanvas.getContext("2d", { alpha: true });
+      const patternCtx: CanvasRenderingContext2D | null =
+        patternCanvas.getContext("2d", { alpha: true });
 
       if (!patternCtx) {
         return null;
@@ -172,70 +173,88 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     // Internamente se hace de 2 modos distintos, utilizando el CanvasPattern cacheado para zooms pequeños,
     // y dibujando manualmente los puntos para zooms grandes (para evitar que se vean borrosos).
     // @ts-expect-error - la librería está mal tipada, sí recibe ctx
-    network.on("beforeDrawing", function (ctx: CanvasRenderingContext2D) {
-      const isDark = colorModeRef.current === "dark";
-      const zoom = network.getScale();
-      const { spacing, radius, zoomThreshold, infiniteBounds } = DOT_PATTERN_CONFIG;
+    // network.on("beforeDrawing", function (ctx: CanvasRenderingContext2D) {
+    //   const isDark = colorModeRef.current === "dark";
+    //   const zoom = network.getScale();
+    //   const { spacing, radius, zoomThreshold, infiniteBounds } =
+    //     DOT_PATTERN_CONFIG;
 
-      // Se chequea si en nivel de zoom actual es muy alto o muy bajo (usando como limite el threshold definido en la configuración).
-      if (zoom < zoomThreshold) {
-        // ZOOM OUT: patrón repetido cacheado.
-        // Utiliza el canvas pattern pre-renderizado para llenar el fondo.
-        // El patrón se dibuja en un área grande centrada en el viewport para asegurar que siempre haya puntos visibles, incluso al mover la vista.
-        // Este metodo no se puede utilizar cuando hay mucho zoom, porque el patrón se escala y se ve borroso. Por eso, para zooms grandes, se dibujan los puntos manualmente.
+    //   // Se chequea si en nivel de zoom actual es muy alto o muy bajo (usando como limite el threshold definido en la configuración).
+    //   if (zoom < zoomThreshold) {
+    //     // ZOOM OUT: patrón repetido cacheado.
+    //     // Utiliza el canvas pattern pre-renderizado para llenar el fondo.
+    //     // El patrón se dibuja en un área grande centrada en el viewport para asegurar que siempre haya puntos visibles, incluso al mover la vista.
+    //     // Este metodo no se puede utilizar cuando hay mucho zoom, porque el patrón se escala y se ve borroso. Por eso, para zooms grandes, se dibujan los puntos manualmente.
 
-        // Obtener el patrón correspondiente al modo de color actual
-        const canvas_pattern_to_use = isDark ? patternCache.dark : patternCache.light;
-        if (!canvas_pattern_to_use) {
-          return null;
-        }
+    //     // Obtener el patrón correspondiente al modo de color actual
+    //     const canvas_pattern_to_use = isDark
+    //       ? patternCache.dark
+    //       : patternCache.light;
+    //     if (!canvas_pattern_to_use) {
+    //       return null;
+    //     }
 
-        ctx.fillStyle = canvas_pattern_to_use;
-        ctx.fillRect(-infiniteBounds, -infiniteBounds, infiniteBounds * 2, infiniteBounds * 2);
-      } else {
-        // ZOOM IN: dibujo directo en el canvas los puntos, pero unicamente los que si sean visibles.
-        // Para evitar que se vean borrosos, se dibujan círculos individuales en las posiciones correspondientes a los puntos del patrón, en lugar de usar un CanvasPattern escalado.
-        // Este metodo no se usa cuando esta muy alejado porque es muy ineficiente dibujar cada punto individualmente, pero para zooms cercanos, mantiene los puntos nítidos y definidos.
+    //     ctx.fillStyle = canvas_pattern_to_use;
+    //     ctx.fillRect(
+    //       -infiniteBounds,
+    //       -infiniteBounds,
+    //       infiniteBounds * 2,
+    //       infiniteBounds * 2,
+    //     );
+    //   } else {
+    //     // ZOOM IN: dibujo directo en el canvas los puntos, pero unicamente los que si sean visibles.
+    //     // Para evitar que se vean borrosos, se dibujan círculos individuales en las posiciones correspondientes a los puntos del patrón, en lugar de usar un CanvasPattern escalado.
+    //     // Este metodo no se usa cuando esta muy alejado porque es muy ineficiente dibujar cada punto individualmente, pero para zooms cercanos, mantiene los puntos nítidos y definidos.
 
-        const viewPos = network.getViewPosition();
-        const { width, height } = ctx.canvas;
+    //     const viewPos = network.getViewPosition();
+    //     const { width, height } = ctx.canvas;
 
-        const halfSpacing = spacing / 2;
+    //     const halfSpacing = spacing / 2;
 
-        // Calcular viewport en coordenadas del mundo
-        // Extendemos los bounds por el radius de los puntos para asegurar que
-        // los puntos que están parcialmente en el viewport se rendericen
-        const worldBounds = {
-          left: viewPos.x - width / 2 / zoom - radius / zoom,
-          right: viewPos.x + width / 2 / zoom + radius / zoom,
-          top: viewPos.y - height / 2 / zoom - radius / zoom,
-          bottom: viewPos.y + height / 2 / zoom + radius / zoom
-        };
+    //     // Calcular viewport en coordenadas del mundo
+    //     // Extendemos los bounds por el radius de los puntos para asegurar que
+    //     // los puntos que están parcialmente en el viewport se rendericen
+    //     const worldBounds = {
+    //       left: viewPos.x - width / 2 / zoom - radius / zoom,
+    //       right: viewPos.x + width / 2 / zoom + radius / zoom,
+    //       top: viewPos.y - height / 2 / zoom - radius / zoom,
+    //       bottom: viewPos.y + height / 2 / zoom + radius / zoom,
+    //     };
 
-        // Alinear puntos al grid, dibujando unicamente los puntos que serían visibles en el viewport actual
-        const startX = Math.floor((worldBounds.left + halfSpacing) / spacing) * spacing + halfSpacing;
-        const endX = Math.ceil((worldBounds.right + halfSpacing) / spacing) * spacing + halfSpacing - 2*spacing;
-        const startY = Math.floor((worldBounds.top + halfSpacing) / spacing) * spacing + halfSpacing;
-        const endY = Math.ceil((worldBounds.bottom + halfSpacing) / spacing) * spacing + halfSpacing - 2*spacing;
+    //     // Alinear puntos al grid, dibujando unicamente los puntos que serían visibles en el viewport actual
+    //     const startX =
+    //       Math.floor((worldBounds.left + halfSpacing) / spacing) * spacing +
+    //       halfSpacing;
+    //     const endX =
+    //       Math.ceil((worldBounds.right + halfSpacing) / spacing) * spacing +
+    //       halfSpacing -
+    //       2 * spacing;
+    //     const startY =
+    //       Math.floor((worldBounds.top + halfSpacing) / spacing) * spacing +
+    //       halfSpacing;
+    //     const endY =
+    //       Math.ceil((worldBounds.bottom + halfSpacing) / spacing) * spacing +
+    //       halfSpacing -
+    //       2 * spacing;
 
-        ctx.fillStyle = getDotColor(isDark);
+    //     ctx.fillStyle = getDotColor(isDark);
 
-        // Genera un Path2D, para generar una fila de puntos.
-        const rowPath = new Path2D();
-        for (let y = startY; y <= endY; y += spacing) {
-          rowPath.arc(0, y - startY, radius, 0, Math.PI * 2);
-        }
+    //     // Genera un Path2D, para generar una fila de puntos.
+    //     const rowPath = new Path2D();
+    //     for (let y = startY; y <= endY; y += spacing) {
+    //       rowPath.arc(0, y - startY, radius, 0, Math.PI * 2);
+    //     }
 
-        // Utiliza la fila de puntos generada recien, para ir moviendola, y dibujando cada fila subsiguiente.
-        // Esto resulta mucho más rapido que dibujar cada uno de los puntos individualmente.
-        for (let x = startX; x <= endX; x += spacing) {
-          ctx.save();
-          ctx.translate(x, startY);
-          ctx.fill(rowPath);
-          ctx.restore();
-        }
-      }
-    });
+    //     // Utiliza la fila de puntos generada recien, para ir moviendola, y dibujando cada fila subsiguiente.
+    //     // Esto resulta mucho más rapido que dibujar cada uno de los puntos individualmente.
+    //     for (let x = startX; x <= endX; x += spacing) {
+    //       ctx.save();
+    //       ctx.translate(x, startY);
+    //       ctx.fill(rowPath);
+    //       ctx.restore();
+    //     }
+    //   }
+    // });
 
     setNetwork(network);
   };
@@ -1297,7 +1316,6 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     user.orientacion?.nombre,
     user.finDeCarrera?.id,
   ]);
-
 
   return {
     graph,
