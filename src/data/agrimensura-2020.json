@@ -445,14 +445,14 @@
     "id": "IA",
     "materia": "Introducción a Inteligencia Artificial",
     "creditos": 3,
-    "correlativas": "PE-ICD",
+    "correlativas": "PROBA-ICD",
     "categoria": "Materias Electivas"
   },
   {
     "id": "AD",
     "materia": "Análisis de Datos",
     "creditos": 3,
-    "correlativas": "PE-ICD",
+    "correlativas": "PROBA-ICD",
     "categoria": "Materias Electivas"
   },
   {

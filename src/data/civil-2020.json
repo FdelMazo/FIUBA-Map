@@ -698,14 +698,14 @@
     "id": "AM",
     "materia": "Aprendizaje de Máquina",
     "creditos": 3,
-    "correlativas": "PROBA-IA",
+    "correlativas": "AD-IA",
     "categoria": "Materias Electivas"
   },
   {
     "id": "AMP",
     "materia": "Aprendizaje de Máquina Profundo",
     "creditos": 3,
-    "correlativas": "PROBA-IA",
+    "correlativas": "AD-IA",
     "categoria": "Materias Electivas"
   },
   {
