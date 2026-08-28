@@ -489,14 +489,14 @@
   },
   {
     "id": "TALL",
-    "materia": "Taller",
-    "creditos": 4,
+    "materia": "Taller de Manufactura",
+    "creditos": 3,
     "correlativas": "PII-MAI",
     "categoria": "Materias Electivas"
   },
   {
     "id": "TIF",
-    "materia": "Trabajo Final Integrador",
+    "materia": "Trabajo Integrador Final",
     "creditos": 12,
     "requiere": 140,
     "requiereCBC": true,

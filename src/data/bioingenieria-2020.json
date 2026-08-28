@@ -360,7 +360,7 @@
     "id": "PIMGB",
     "materia": "Procesamiento de Imágenes Biomédicas",
     "creditos": 6,
-    "correlativas": "CA",
+    "correlativas": "IMGBI",
     "categoria": "Materias Electivas"
   },
   {
@@ -484,7 +484,7 @@
   },
   {
     "id": "TIF",
-    "materia": "Trabajo Final Integrador",
+    "materia": "Trabajo Integrador Final",
     "creditos": 12,
     "correlativas": "GP-IEDT-TPS-IBM",
     "categoria": "Fin de Carrera (Obligatorio)"

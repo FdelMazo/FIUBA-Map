@@ -301,7 +301,7 @@
   },
   {
     "id": "TDH",
-    "materia": "Transporte y Distribución de los Hidrocarburos",
+    "materia": "Transporte y Distribución de Hidrocarburos",
     "creditos": 4,
     "correlativas": "ERM-TH-FHH",
     "categoria": "Materias Obligatorias",
@@ -316,7 +316,7 @@
   },
   {
     "id": "MERP",
-    "materia": "Metodos EOR para Recuperación De Petróleo",
+    "materia": "Métodos EOR para Recuperación de Petróleo",
     "creditos": 4,
     "correlativas": "IR",
     "categoria": "Materias Electivas"
@@ -426,7 +426,7 @@
   },
   {
     "id": "IAEP",
-    "materia": "Inteligencia Artificial en la Exploración y Producción",
+    "materia": "Inteligencia Artificial en la Exploración y Producción de Hidrocarburos",
     "creditos": 3,
     "correlativas": "IA-AD",
     "categoria": "Materias Electivas"

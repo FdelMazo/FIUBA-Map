@@ -344,7 +344,7 @@
   {
     "id": "REDESC",
     "materia": "Redes Complejas",
-    "creditos": 6,
+    "creditos": 4,
     "correlativas": "SISTC-TADJ",
     "categoria": "Materias Electivas"
   },
@@ -399,7 +399,7 @@
   },
   {
     "id": "TIF",
-    "materia": "Trabajo Final Integrador",
+    "materia": "Trabajo Integrador Final",
     "creditos": 12,
     "requiere": 140,
     "requiereCBC": true,

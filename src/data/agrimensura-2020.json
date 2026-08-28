@@ -367,7 +367,7 @@
   {
     "id": "DGO",
     "materia": "Diseño Geométrico de Obras Lineales",
-    "creditos": 4,
+    "creditos": 3,
     "correlativas": "RT",
     "categoria": "Materias Electivas"
   },
@@ -388,7 +388,7 @@
   {
     "id": "GG",
     "materia": "Geología General",
-    "creditos": 4,
+    "creditos": 6,
     "correlativas": "GFG",
     "categoria": "Materias Electivas"
   },
@@ -443,7 +443,7 @@
   },
   {
     "id": "IA",
-    "materia": "Introducción a Inteligencia Artificial",
+    "materia": "Introducción a la Inteligencia Artificial",
     "creditos": 3,
     "correlativas": "PROBA-ICD",
     "categoria": "Materias Electivas"
@@ -471,7 +471,7 @@
   },
   {
     "id": "TIF",
-    "materia": "Trabajo Final Integrador",
+    "materia": "Trabajo Integrador Final",
     "creditos": 12,
     "correlativas": "MNS",
     "categoria": "Fin de Carrera (Obligatorio)"

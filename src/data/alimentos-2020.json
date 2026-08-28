@@ -383,7 +383,7 @@
   {
     "id": "NATA",
     "materia": "Nutrición Aplicada a Tecnología de Alimentos",
-    "creditos": 2,
+    "creditos": 4,
     "correlativas": "QBA",
     "categoria": "Materias Electivas"
   },
@@ -438,7 +438,7 @@
   },
   {
     "id": "TIF",
-    "materia": "Trabajo Final Integrador",
+    "materia": "Trabajo Integrador Final",
     "creditos": 12,
     "correlativas": "FPA1-IPP",
     "categoria": "Fin de Carrera (Obligatorio)"

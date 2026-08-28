@@ -171,7 +171,7 @@
   },
   {
     "id": "CA",
-    "materia": "Control Automáticos",
+    "materia": "Control Automático",
     "creditos": 6,
     "correlativas": "EMC-SS",
     "categoria": "Materias Obligatorias",
@@ -467,14 +467,14 @@
   },
   {
     "id": "ME",
-    "materia": "Microeletrónica",
+    "materia": "Microelectrónica",
     "creditos": 4,
     "correlativas": "CM-DS",
     "categoria": "Materias Electivas"
   },
   {
     "id": "LM",
-    "materia": "Laboratorio de Microeletrónica",
+    "materia": "Laboratorio de Microelectrónica",
     "creditos": 4,
     "correlativas": "ME",
     "categoria": "Materias Electivas"
@@ -566,7 +566,7 @@
   },
   {
     "id": "TIF",
-    "materia": "Trabajo Final Integrador",
+    "materia": "Trabajo Integrador Final",
     "creditos": 12,
     "correlativas": "PP",
     "categoria": "Fin de Carrera (Obligatorio)"

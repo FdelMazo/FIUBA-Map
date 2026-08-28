@@ -252,7 +252,7 @@
   },
   {
     "id": "STG1",
-    "materia": "Sistemas de Transporte Guiados I",
+    "materia": "Sistemas de Transporte Guiado I",
     "creditos": 3,
     "correlativas": "DGO-MSG-CMA",
     "categoria": "Materias Obligatorias",
@@ -428,7 +428,7 @@
   },
   {
     "id": "STG2",
-    "materia": "Sistemas de Transporte Guiados II",
+    "materia": "Sistemas de Transporte Guiado II",
     "creditos": 3,
     "correlativas": "STG1",
     "categoria": "Materias Electivas"
@@ -509,7 +509,7 @@
   },
   {
     "id": "PRH",
-    "materia": "Planificación de recursos hídricos",
+    "materia": "Planificación de Recursos Hídricos",
     "creditos": 4,
     "correlativas": "HDA",
     "categoria": "Materias Electivas"
@@ -710,7 +710,7 @@
   },
   {
     "id": "TIF",
-    "materia": "Trabajo Final Integrador",
+    "materia": "Trabajo Integrador Final",
     "creditos": 12,
     "correlativas": "ESTR",
     "requiere": 158,
