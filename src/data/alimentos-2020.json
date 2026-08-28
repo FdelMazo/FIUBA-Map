@@ -258,14 +258,6 @@
     "level": 7
   },
   {
-    "id": "PPA1",
-    "materia": "Planta Piloto de Alimentos I",
-    "creditos": 2,
-    "correlativas": "FPA1-OUTM",
-    "categoria": "Materias Obligatorias",
-    "level": 7
-  },
-  {
     "id": "DCPA",
     "materia": "Dinámica y Control de Procesos de Alimentos",
     "creditos": 6,
@@ -299,9 +291,9 @@
     "level": 8
   },
   {
-    "id": "PPA2",
-    "materia": "Planta Piloto de Alimentos II",
-    "creditos": 2,
+    "id": "PPA1",
+    "materia": "Procesamiento de Alimentos en Planta Piloto",
+    "creditos": 4,
     "correlativas": "FPA1-OUTM",
     "categoria": "Materias Obligatorias",
     "level": 8
