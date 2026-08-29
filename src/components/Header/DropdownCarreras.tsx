@@ -113,7 +113,7 @@ const DropdownCarreras = () => {
               {...(p.planes.length === 1
                 ? {
                     onClick: () => {
-                      changeCarrera(p.planes[0]);
+                      changeCarrera(p.planes[0]!);
                     },
                   }
                 : { cursor: "default", closeOnSelect: false })}

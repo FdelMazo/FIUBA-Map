@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Modal, ModalOverlay, useColorModeValue } from "@chakra-ui/react";
 
 // Crea un styles element, lo agrega al head del HTML document, y le agrega

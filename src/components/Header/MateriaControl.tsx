@@ -184,8 +184,9 @@ const MateriaControl = () => {
                   }}
                   parse={(cuatristr) => {
                     const [y, c] = cuatristr.split("C");
+                    if (!y) return cuatristr;
                     if (c === "1") return y;
-                    return y + 0.5;
+                    return String(Number(y) + 0.5);
                   }}
                   step={0.5}
                   precision={1}

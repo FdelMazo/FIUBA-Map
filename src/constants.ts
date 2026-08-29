@@ -51,7 +51,6 @@ export const KEY =
 // Dibuja un rombo
 const drawFinDeCarrera = ({
   ctx,
-  id,
   x,
   y,
   state: { selected, hover },
@@ -87,9 +86,9 @@ const drawFinDeCarrera = ({
     let mid = lines.length / 2;
     let fontSize = 12;
     let maxLineWidth = 0;
-    for (let i = 0; i < lines.length; i++) {
-      if (ctx.measureText(lines[i]).width > maxLineWidth) {
-        maxLineWidth = ctx.measureText(lines[i]).width;
+    for (const line of lines) {
+      if (ctx.measureText(line).width > maxLineWidth) {
+        maxLineWidth = ctx.measureText(line).width;
       }
     }
     if (maxLineWidth > r * 1.5) {
@@ -98,9 +97,9 @@ const drawFinDeCarrera = ({
     let boldness = selected || hover ? "bold" : "500";
     ctx.font = `${boldness} ${fontSize}px arial`;
     ctx.fillStyle = selected || hover ? "black" : "";
-    for (let i = 0; i < lines.length; i++) {
-      ctx.fillText(lines[i], x, y + (i + 0.5 - mid) * lineheight);
-    }
+    lines.forEach((line, i) => {
+      ctx.fillText(line, x, y + (i + 0.5 - mid) * lineheight);
+    });
   };
   return {
     drawNode,

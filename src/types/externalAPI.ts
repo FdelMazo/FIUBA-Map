@@ -27,9 +27,6 @@ export namespace GoogleSheetAPI {
   }
 
   export interface RegistrosValueRange extends ValueRange {
-    values: {
-      string: string[];
-      [Symbol.iterator](): Iterator<string[]>;
-    };
+    values: [string[], string[], string[]];
   }
 }

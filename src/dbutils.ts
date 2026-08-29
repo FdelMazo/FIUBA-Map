@@ -76,11 +76,11 @@ export const getGraphs = async (padron: string) => {
   }
 
   const allLogins: { carreraid: string; map: string }[] = [];
-  for (let i = 0; i < indexes.length; i++) {
-    allLogins.push({
-      carreraid: carreras[indexes[i]],
-      map: maps[indexes[i]],
-    });
+  for (const index of indexes) {
+    const carreraid = carreras[index];
+    const map = maps[index];
+    if (carreraid === undefined || map === undefined) continue;
+    allLogins.push({ carreraid, map });
   }
 
   return allLogins.map((l) => ({

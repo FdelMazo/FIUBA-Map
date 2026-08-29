@@ -94,11 +94,17 @@ const Login = (): UserType.Context => {
       res.json().then((res: GoogleSheetAPI.BatchGet) => res.valueRanges),
     );
 
-    const allLogins: UserType.CarreraInfo[] = data.map((d) => ({
-      carreraid: d.values[0][2],
-      orientacionid: d.values[0][3],
-      findecarreraid: d.values[0][4],
-    }));
+    const allLogins: UserType.CarreraInfo[] = data.flatMap((d) => {
+      const carreraid = d.values[0][2];
+      if (!carreraid) return [];
+      return [
+        {
+          carreraid,
+          orientacionid: d.values[0][3],
+          findecarreraid: d.values[0][4],
+        },
+      ];
+    });
 
     let carrera = CARRERAS.find((c) => c.id === "informatica-2020")!;
     let orientacion: UserType.Orientacion | undefined = undefined;

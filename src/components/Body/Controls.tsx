@@ -6,7 +6,6 @@ import {
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import React from "react";
 import Sugerencias from "./Sugerencias";
 
 // Componente con links externos, setupeo de color mode y un toast para reportar bugs

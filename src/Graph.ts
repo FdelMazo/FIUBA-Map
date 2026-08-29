@@ -66,9 +66,9 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
       const nodes = network.body.nodes;
       let dataChanged = false;
       for (let i = 0; i < ids.length; i++) {
-        const id = ids[i];
+        const id = ids[i]!;
         let node = nodes[id];
-        const data = changedData[i];
+        const data = changedData[i]!;
         if (node !== undefined) {
           // update node
           if (node.setOptions && node.setOptions(data)) {
@@ -617,41 +617,42 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     return "partial";
   };
 
+  // Muestra todas las materias de una categoria, sin importar si son relevantes o no
+  const mostrarCategoria = (categoria: string) =>
+    getters.CategoriaOnly(categoria).map((n) => {
+      const node = getNode(n.id);
+      node.hidden = false;
+      return node;
+    });
+
   // Si esta oculto, lo muestro parcialmente
   // Si esta mostrado parcialmente, lo muestro enteramente
   // Si esta mostrado enteramente, lo oculto
   const toggleGroup = (categoria: string) => {
     const status = groupStatus(categoria);
-    let group = null;
-    switch (status) {
-      case "hidden":
-        group = getters.CategoriaRelevantes(categoria).map((n) => {
-          const node = getNode(n.id);
-          node.hidden = false;
-          return node;
-        });
-        if (group.length) break;
-      // eslint-disable-next-line no-fallthrough
-      case "partial":
-        group = getters.CategoriaOnly(categoria).map((n) => {
-          const node = getNode(n.id);
-          node.hidden = false;
-          return node;
-        });
-        break;
-      case "shown":
-        group = getters.CategoriaOnly(categoria).map((n) => {
-          const node = getNode(n.id);
-          node.hidden = true;
-          return node;
-        });
-        if (group.map((n) => n.id).includes(network.getSelectedNodes()[0])) {
-          deselectNode();
-          network.selectNodes([]);
-        }
-        break;
-      default:
-        break;
+    let group: NodeType[] = [];
+    if (status === "hidden") {
+      group = getters.CategoriaRelevantes(categoria).map((n) => {
+        const node = getNode(n.id);
+        node.hidden = false;
+        return node;
+      });
+      if (!group.length) {
+        group = mostrarCategoria(categoria);
+      }
+    } else if (status === "partial") {
+      group = mostrarCategoria(categoria);
+    } else if (status === "shown") {
+      group = getters.CategoriaOnly(categoria).map((n) => {
+        const node = getNode(n.id);
+        node.hidden = true;
+        return node;
+      });
+      const [selectedId] = network.getSelectedNodes();
+      if (selectedId && group.map((n) => n.id).includes(selectedId)) {
+        deselectNode();
+        network.selectNodes([]);
+      }
     }
 
     actualizar();
@@ -767,7 +768,10 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
         user.orientacion &&
         user.carrera.creditos.orientacion
       )
-        return user.carrera.creditos.orientacion[user.orientacion.nombre];
+        return (
+          user.carrera.creditos.orientacion[user.orientacion.nombre] ??
+          user.carrera.creditos
+        );
       return user.carrera.creditos;
     };
 
@@ -780,7 +784,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
       if (typeof electivas === "number") {
         electivasCreditos = electivas;
       } else if (typeof electivas !== "undefined" && user.finDeCarrera) {
-        electivasCreditos = electivas[user.finDeCarrera.id];
+        electivasCreditos = electivas[user.finDeCarrera.id] ?? 0;
       }
 
       return electivasCreditos;
@@ -922,10 +926,12 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     });
 
     const fullProportion = creditos.reduce(accProportion, 0);
-    if (creditos[1].proportion) {
-      if (fullProportion > 10) creditos[1].proportion -= fullProportion - 10;
+    const obligatoriasCredito = creditos[1]!;
+    if (obligatoriasCredito.proportion) {
+      if (fullProportion > 10)
+        obligatoriasCredito.proportion -= fullProportion - 10;
       else if (fullProportion < 10)
-        creditos[1].proportion += 10 - fullProportion;
+        obligatoriasCredito.proportion += 10 - fullProportion;
     }
     setCreditos(creditos);
   };
@@ -1016,14 +1022,17 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     }
   };
 
-  let hovertimer: NodeJS.Timeout | undefined = undefined;
+  // ReturnType<typeof setTimeout>, no NodeJS.Timeout: esto corre en el browser,
+  // donde setTimeout devuelve un number. NodeJS.Timeout solo tipa bien porque
+  // @types/node esta instalado y su declaracion global pisa a la del DOM.
+  let hovertimer: ReturnType<typeof setTimeout> | undefined = undefined;
 
   // Interacción con el mouse
   const events: ReactGraphVisType.NodeEvents = {
     doubleClick: (e: ReactGraphVisType.ClickEvent) => {
       // dobleclick: aprobar/desaprobar
       const id = e.nodes[0];
-      if (id === "CBC") return;
+      if (!id || id === "CBC") return;
       const node = getNode(id);
       if (!node) return;
 
@@ -1060,6 +1069,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     selectNode: (e: ReactGraphVisType.ClickEvent) => {
       // click: seleccionar un nodo
       const id = e.nodes[0];
+      if (!id) return;
 
       // Si clickeo el CBC, lo abro/cierro
       if (id === "CBC") {
