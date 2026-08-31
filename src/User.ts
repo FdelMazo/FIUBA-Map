@@ -104,47 +104,9 @@ const Login = (): UserType.Context => {
     return created.binId;
   };
 
-  // register guarda [orientacion, findecarrera] y actualiza ultimaCarrera
-  // Se usa para siempre tener un registro de cual es la ultima carrera que un usuario uso
-  // Asi no tenes que a mano guardar un cambio de carrera
-  const register = async (user: UserType.Info) => {
-    const orientacion = user.orientacion?.nombre;
-    const finDeCarrera = user.finDeCarrera?.id;
-    const existing = user.record.carreras[user.carrera.id];
-
-    // Si no cambio nada de lo que le importa a la DB, no gastamos un request
-    // (UserMenu abre el menu solo para usuarios nuevos, y eso puede generar
-    // varias re-selecciones de la misma orientacion/carrera)
-    if (
-      user.record.ultimaCarrera === user.carrera.id &&
-      (existing?.orientacion || undefined) === orientacion &&
-      (existing?.finDeCarrera || undefined) === finDeCarrera
-    ) {
-      setUser(user);
-      return;
-    }
-
-    const carreraData: UserType.CarreraData = {
-      ...(existing ?? { materias: [] }),
-      orientacion,
-      finDeCarrera,
-    };
-    if (!carreraData.orientacion) delete carreraData.orientacion;
-    if (!carreraData.finDeCarrera) delete carreraData.finDeCarrera;
-
-    const record: UserType.DBRecord = {
-      ...user.record,
-      ultimaCarrera: user.carrera.id,
-      carreras: { ...user.record.carreras, [user.carrera.id]: carreraData },
-    };
-
-    await persist(user.padron, record);
-    setUser({ ...user, record });
-  };
-
   // Signup es para registrar usuarios nuevos. No hace ningun request: solo guarda el
-  // padron localmente. El bin se crea recien en el primer guardado real (register o
-  // saveUserGraph), asi que una cuenta que nunca hace nada nunca ocupa un bin
+  // padron localmente. El bin se crea recien en el primer guardado real (saveUserGraph),
+  // asi que una cuenta que nunca hace nada nunca ocupa un bin
   const signup = (padron: string) => {
     window.localStorage.setItem("padron", padron);
     window.localStorage.removeItem("binId");
@@ -165,7 +127,9 @@ const Login = (): UserType.Context => {
     window.localStorage.removeItem("binId");
   };
 
-  // Aca guardamos el mapa y toda la metadata que tiene
+  // Aca guardamos el mapa y toda la metadata que tiene, incluyendo ultimaCarrera y
+  // la orientacion/findecarrera actualmente elegidas -- este es el unico momento en el
+  // que se persiste algo: navegar carreras/orientaciones sin guardar no gasta requests
   const saveUserGraph: UserType.SaveGraph = async (
     user,
     materias,
@@ -174,24 +138,31 @@ const Login = (): UserType.Context => {
     aplazos,
   ) => {
     const carreras = { ...user.record.carreras };
-    const existing = carreras[user.carrera.id];
 
     // Si no guardo más de una materia (el CBC por defecto), le borramos el mapa
-    if (materias.length === 1) {
+    if (materias.length <= 1) {
       delete carreras[user.carrera.id];
     } else {
       carreras[user.carrera.id] = {
         materias,
-        ...(existing?.orientacion && { orientacion: existing.orientacion }),
-        ...(existing?.finDeCarrera && { finDeCarrera: existing.finDeCarrera }),
+        ...(user.orientacion && { orientacion: user.orientacion.nombre }),
+        ...(user.finDeCarrera && { finDeCarrera: user.finDeCarrera.id }),
         ...(checkboxes?.length && { checkboxes }),
         ...(optativas.length && { optativas }),
         ...(aplazos && { aplazos }),
       };
     }
 
-    const record: UserType.DBRecord = { ...user.record, carreras };
-    await persist(user.padron, record);
+    const record: UserType.DBRecord = {
+      ...user.record,
+      ultimaCarrera: user.carrera.id,
+      carreras,
+    };
+
+    // Si nada cambio respecto a lo que ya esta guardado, no gastamos un request
+    if (JSON.stringify(record) !== JSON.stringify(user.record)) {
+      await persist(user.padron, record);
+    }
     setUser({ ...user, record });
   };
 
@@ -200,7 +171,6 @@ const Login = (): UserType.Context => {
     logged,
     login,
     loading,
-    register,
     logout,
     setUser,
     padronInput,

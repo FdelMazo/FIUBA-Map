@@ -115,7 +115,6 @@ export namespace UserType {
 
     login(padron: string): Promise<LoginResult>;
     signup(padron: string): void;
-    register(user: Info): Promise<void>;
     logout(): void;
     setUser: React.Dispatch<React.SetStateAction<Info>>;
     setPadronInput: React.Dispatch<React.SetStateAction<string>>;

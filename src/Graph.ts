@@ -12,7 +12,7 @@ import { ReactGraphVisType } from "./types/ReactGraphVis";
 import { NodeType } from "./types/Node";
 
 const Graph = (userContext: UserType.Context): GraphType.Context => {
-  const { user, setUser, logged, saveUserGraph, register } = userContext;
+  const { user, setUser, logged, saveUserGraph } = userContext;
   const { colorMode } = useColorMode();
 
   // Usar un ref para capturar el colorMode actual dinámicamente
@@ -481,9 +481,6 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
 
   ///
   // Interfaz de la UI con los cambios del usuario (carrera, orientacion, findecarrera)
-  // Cada vez que cambia del usuario, se guarda en la DB para que quede guardado\
-  // y la proxima vez que entre vaya directamente a esa carrera
-  // (porque on boot se usa la ultima carrera registrada en la DB)
   ///
   const changeCarrera = (id: string) => {
     // Nos fijamos si ya habia algun registro en la DB para esta carrera
@@ -506,7 +503,6 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
       );
       newUser = { ...newUser, orientacion, finDeCarrera };
     }
-    if (logged) register(newUser).catch(console.error);
     setUser(newUser);
   };
 
@@ -514,16 +510,12 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     const orientacion = user.carrera.orientaciones?.find(
       (c) => c.nombre === id,
     );
-    const newUser = { ...user, orientacion };
-    if (logged) register(newUser).catch(console.error);
-    setUser(newUser);
+    setUser({ ...user, orientacion });
   };
 
   const changeFinDeCarrera = (id: string) => {
     const finDeCarrera = user.carrera.finDeCarrera?.find((c) => c.id === id);
-    const newUser = { ...user, finDeCarrera };
-    if (logged) register(newUser).catch(console.error);
-    setUser(newUser);
+    setUser({ ...user, finDeCarrera });
   };
 
   ///
