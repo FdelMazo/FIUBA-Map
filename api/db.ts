@@ -2,6 +2,7 @@ export const config = { runtime: "edge" };
 
 const JSONBIN_API = "https://api.jsonbin.io/v3/b";
 const JSONBIN_INDEX_BIN = "6a95c0eff5f4af5e2958dca2";
+const JSONBIN_COLLECTION_ID = "6a95d5feda38895dfe27a4a7";
 const JSONBIN_MASTER_KEY = process.env.JSONBIN_MASTER_KEY!;
 
 interface DBRecord {
@@ -157,7 +158,10 @@ export default async function handler(req: Request): Promise<Response> {
       const createRes = ensureOk(
         await jsonbinreq("", {
           method: "POST",
-          headers: { "X-Bin-Name": body.padron },
+          headers: {
+            "X-Bin-Name": body.padron,
+            "X-Collection-Id": JSONBIN_COLLECTION_ID,
+          },
           body: JSON.stringify(body.record),
         }),
         "could not create new bin",
