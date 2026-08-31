@@ -140,7 +140,7 @@ export default async function handler(req: Request): Promise<Response> {
       const index = await readIndex();
       const binId = index[body.padron];
       const found = binId && (await tryLogin(binId, body.padron));
-      if (!found) return jsonres({ status: "notfound" }, 404);
+      if (!found) return jsonres({ status: "notfound" });
       return jsonres({ status: "ok", ...found });
     }
 
