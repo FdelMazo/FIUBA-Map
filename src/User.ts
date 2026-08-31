@@ -1,33 +1,26 @@
 import React from "react";
 import { CARRERAS } from "./carreras";
-import * as C from "./constants";
-import { getGraphs, postGraph, postUser } from "./dbutils";
+import { dbCreate, dbLogin, dbSave } from "./dbutils";
 import { UserType } from "./types/User";
-import { GoogleSheetAPI } from "./types/externalAPI";
-
-// La base de datos se parte en dos tablas (relacional... ponele)
-// La clave que une a las bases de datos es la combinación de padron y carrera
-// Por un lado, se guarda en allLogins [padron, carrera, orientacion, findecarrera]
-// Por el otro, se guarda en maps [padron, carrera, mapa]
 
 // El padron se setea una vez que el usuario se loguea exitosamente (O sea, logged = padron !== "")
-// allLogins contiene un array con todas las [carrera,orientacion,findecarrera] que tiene el usuario en la DB
-// maps contiene todos los mapas que tiene el usuario en la DB
 const initialUser: UserType.Info = {
   padron: "",
   carrera: CARRERAS.find((c) => c.id === "informatica-2020")!,
   orientacion: null,
   finDeCarrera: null,
-  allLogins: [],
-  maps: [],
+  record: { padron: "", ultimaCarrera: "informatica-2020", carreras: {} },
 };
 
 const Login = (): UserType.Context => {
   const [user, setUser] = React.useState<UserType.Info>(initialUser);
 
-  // Inicializamos el padron en lo que hay en el storage, o vacio
+  // Inicializamos el padron (y el binId cacheado, si hay uno) con lo que hay en el storage
   const [padronInput, setPadronInput] = React.useState(
     window.localStorage.getItem("padron") || "",
+  );
+  const [binId, setBinId] = React.useState<string | undefined>(
+    window.localStorage.getItem("binId") || undefined,
   );
   const logged = user.padron !== "";
 
@@ -40,6 +33,9 @@ const Login = (): UserType.Context => {
   // loggingIn es para cuando la pagina esta cargando todos los datos del usuario
   const [loggingIn, setLoggingIn] = React.useState(false);
 
+  // Si el proxy no responde, no intentamos auto-loguear a nadie
+  const [dbUnavailable, setDbUnavailable] = React.useState(false);
+
   // On boot nos fijamos si hay un padron inicial del localStorage
   // Si existe, lo usamos para loguear al usuario
   React.useEffect(() => {
@@ -49,137 +45,124 @@ const Login = (): UserType.Context => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // login agarra todo lo que sabemos del usuario, de ambas tablas de la DB
-  // y lo guarda en el estado `user`
-  // Usamos de carrera la ultima que registro el usuario
-  const login = async (padron: string) => {
+  // login le pregunta al proxy todo lo que sabe de un padron, y lo guarda en el estado `user`
+  const login = async (padron: string): Promise<UserType.LoginResult> => {
+    if (!padron) return "error";
+
     setLoading(true);
-    if (!padron) {
-      setLoading(false);
-      return false;
-    }
-
-    const padrones = await fetch(
-      `${C.SPREADSHEET}/${C.SHEETS.user}!B:B?majorDimension=COLUMNS&key=${C.KEY}`,
-    )
-      .then((res) => res.json())
-      .then((res: GoogleSheetAPI.UserValueRange) =>
-        !res.error ? res.values[0] : null,
-      );
-
-    if (!padrones) {
-      setLoading(false);
-      return false;
-    }
-
-    const indexes: number[] = [];
-    let j = -1;
-    while ((j = padrones.indexOf(padron, j + 1)) !== -1) {
-      indexes.push(j);
-    }
-
-    if (!indexes.length) {
-      setLoading(false);
-      return false;
-    }
-
     setLoggingIn(true);
-    const ranges = indexes.map(
-      (index) => `&ranges=${C.SHEETS.user}!${index + 1}:${index + 1}`,
-    );
 
-    const data = await fetch(
-      `${C.SPREADSHEET}:batchGet?key=${C.KEY}${ranges.join("")}`,
-    ).then((res) =>
-      res.json().then((res: GoogleSheetAPI.BatchGet) => res.valueRanges),
-    );
-
-    const allLogins: UserType.CarreraInfo[] = data.flatMap((d) => {
-      const carreraid = d.values[0][2];
-      if (!carreraid) return [];
-      return [
-        {
-          carreraid,
-          orientacionid: d.values[0][3],
-          findecarreraid: d.values[0][4],
-        },
-      ];
-    });
-
-    let carrera = CARRERAS.find((c) => c.id === "informatica-2020")!;
-    let orientacion: UserType.Orientacion | undefined = undefined;
-    let finDeCarrera: UserType.FinDeCarrera | undefined = undefined;
-    for (const login of allLogins) {
-      const foundCarrera = CARRERAS.find((c) => c.id === login.carreraid);
-      if (foundCarrera) {
-        carrera = foundCarrera;
-        orientacion = foundCarrera.orientaciones?.find(
-          (c) => c.nombre === login.orientacionid,
-        );
-        finDeCarrera = carrera.finDeCarrera?.find(
-          (c) => c.id === login.findecarreraid,
-        );
-        break;
-      }
+    let res;
+    try {
+      res = await dbLogin(padron, binId);
+      setDbUnavailable(false);
+    } catch {
+      setDbUnavailable(true);
+      setLoading(false);
+      setLoggingIn(false);
+      return "error";
     }
 
-    const maps = await getGraphs(padron);
+    if (res.status === "notfound") {
+      setLoading(false);
+      setLoggingIn(false);
+      return "notfound";
+    }
 
-    setUser({
-      padron,
-      carrera,
-      orientacion,
-      finDeCarrera,
-      allLogins,
-      maps,
-    });
+    const { record, binId: foundBinId } = res;
+    const carrera =
+      CARRERAS.find((c) => c.id === record.ultimaCarrera) ??
+      CARRERAS.find((c) => c.id === "informatica-2020")!;
+    const carreraData = record.carreras[carrera.id];
+    const orientacion = carreraData?.orientacion
+      ? carrera.orientaciones?.find((o) => o.nombre === carreraData.orientacion)
+      : undefined;
+    const finDeCarrera = carreraData?.finDeCarrera
+      ? carrera.finDeCarrera?.find((f) => f.id === carreraData.finDeCarrera)
+      : undefined;
+
+    setUser({ padron, carrera, orientacion, finDeCarrera, record });
+    setBinId(foundBinId);
     window.localStorage.setItem("padron", padron);
+    window.localStorage.setItem("binId", foundBinId);
     setLoading(false);
     setLoggingIn(false);
-    return true;
+    return "ok";
   };
 
-  // register es para hacer nuevos registros de un usuario en la DB
-  // Solo lidia con [padron, carrera, orientacion, findecarrera], no con mapas
+  // Guarda en jsonbin, creando el bin del padron si todavia no existe (primer
+  // guardado real de una cuenta nueva). El bin se crea con el record ya adentro,
+  // asi el primer guardado no necesita un segundo request
+  const persist = async (padron: string, record: UserType.DBRecord) => {
+    if (binId) {
+      await dbSave(padron, binId, record);
+      return binId;
+    }
+    const created = await dbCreate(padron, record);
+    setBinId(created.binId);
+    window.localStorage.setItem("binId", created.binId);
+    return created.binId;
+  };
+
+  // register guarda [orientacion, findecarrera] y actualiza ultimaCarrera
   // Se usa para siempre tener un registro de cual es la ultima carrera que un usuario uso
   // Asi no tenes que a mano guardar un cambio de carrera
   const register = async (user: UserType.Info) => {
-    const addToAllLogins = () => {
-      const newAllLogins = user.allLogins.filter(
-        (l) => l.carreraid !== user.carrera.id,
-      );
-      newAllLogins.push({
-        carreraid: user.carrera.id,
-        orientacionid: user.orientacion?.nombre,
-        findecarreraid: user.finDeCarrera?.id,
-      });
-      return newAllLogins;
+    const orientacion = user.orientacion?.nombre;
+    const finDeCarrera = user.finDeCarrera?.id;
+    const existing = user.record.carreras[user.carrera.id];
+
+    // Si no cambio nada de lo que le importa a la DB, no gastamos un request
+    // (UserMenu abre el menu solo para usuarios nuevos, y eso puede generar
+    // varias re-selecciones de la misma orientacion/carrera)
+    if (
+      user.record.ultimaCarrera === user.carrera.id &&
+      (existing?.orientacion || undefined) === orientacion &&
+      (existing?.finDeCarrera || undefined) === finDeCarrera
+    ) {
+      setUser(user);
+      return;
+    }
+
+    const carreraData: UserType.CarreraData = {
+      ...(existing ?? { materias: [] }),
+      orientacion,
+      finDeCarrera,
+    };
+    if (!carreraData.orientacion) delete carreraData.orientacion;
+    if (!carreraData.finDeCarrera) delete carreraData.finDeCarrera;
+
+    const record: UserType.DBRecord = {
+      ...user.record,
+      ultimaCarrera: user.carrera.id,
+      carreras: { ...user.record.carreras, [user.carrera.id]: carreraData },
     };
 
-    await postUser(user);
-    setUser({
-      ...user,
-      allLogins: [...addToAllLogins()],
-    });
+    await persist(user.padron, record);
+    setUser({ ...user, record });
   };
 
-  // Signup es para registrar usuarios nuevos
-  // no hace mas que guardar en el storage el padron, y llamar a register
-  const signup = async (padron: string) => {
-    const newUser = {
-      ...user,
-      padron,
-    };
+  // Signup es para registrar usuarios nuevos. No hace ningun request: solo guarda el
+  // padron localmente. El bin se crea recien en el primer guardado real (register o
+  // saveUserGraph), asi que una cuenta que nunca hace nada nunca ocupa un bin
+  const signup = (padron: string) => {
     window.localStorage.setItem("padron", padron);
-    setLoading(true);
-    await register(newUser);
-    setLoading(false);
+    window.localStorage.removeItem("binId");
+    setBinId(undefined);
+    setUser({
+      ...initialUser,
+      padron,
+      carrera: user.carrera,
+      record: { padron, ultimaCarrera: user.carrera.id, carreras: {} },
+    });
   };
 
   // En el logout limpiamos el usuario entero, y nos quedamos en la carrera seteada
   const logout = () => {
     setUser({ ...initialUser, carrera: user.carrera });
+    setBinId(undefined);
     window.localStorage.removeItem("padron");
+    window.localStorage.removeItem("binId");
   };
 
   // Aca guardamos el mapa y toda la metadata que tiene
@@ -190,34 +173,26 @@ const Login = (): UserType.Context => {
     optativas,
     aplazos,
   ) => {
-    const map: UserType.CarreraMap = {
-      materias,
-    };
-    if (checkboxes) {
-      map.checkboxes = checkboxes;
-    }
-    if (optativas) {
-      map.optativas = optativas;
-    }
-    if (aplazos) {
-      map.aplazos = aplazos;
-    }
-    await postGraph(user, map);
+    const carreras = { ...user.record.carreras };
+    const existing = carreras[user.carrera.id];
 
-    const addToMaps = () => {
-      if (!user.maps) return [];
-      const newMaps = user.maps.filter((l) => l.carreraid !== user.carrera.id);
-      newMaps.push({
-        carreraid: user.carrera.id,
-        map,
-      });
-      return newMaps;
-    };
+    // Si no guardo más de una materia (el CBC por defecto), le borramos el mapa
+    if (materias.length === 1) {
+      delete carreras[user.carrera.id];
+    } else {
+      carreras[user.carrera.id] = {
+        materias,
+        ...(existing?.orientacion && { orientacion: existing.orientacion }),
+        ...(existing?.finDeCarrera && { finDeCarrera: existing.finDeCarrera }),
+        ...(checkboxes?.length && { checkboxes }),
+        ...(optativas.length && { optativas }),
+        ...(aplazos && { aplazos }),
+      };
+    }
 
-    setUser({
-      ...user,
-      maps: [...addToMaps()],
-    });
+    const record: UserType.DBRecord = { ...user.record, carreras };
+    await persist(user.padron, record);
+    setUser({ ...user, record });
   };
 
   return {
@@ -231,6 +206,7 @@ const Login = (): UserType.Context => {
     padronInput,
     setPadronInput,
     loggingIn,
+    dbUnavailable,
     saveUserGraph,
     signup,
   };

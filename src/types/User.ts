@@ -1,6 +1,5 @@
 import React from "react";
 import { GraphType } from "./Graph";
-import { NodeType } from "./Node";
 import { COLORS } from "../theme";
 
 export namespace UserType {
@@ -73,33 +72,38 @@ export namespace UserType {
     finDeCarrera?: FinDeCarrera[];
   }
 
-  export interface CarreraInfo {
-    carreraid: string;
-    orientacionid: string | undefined;
-    findecarreraid: string | undefined;
+  export interface Materia {
+    id: string;
+    nota: number;
+    cuatrimestre?: number;
   }
 
-  export interface CarreraMap {
-    materias: NodeType[];
+  export interface CarreraData {
+    orientacion?: string;
+    finDeCarrera?: string;
+    materias: Materia[];
     checkboxes?: string[];
     optativas?: GraphType.Optativa[];
     aplazos?: number;
   }
 
-  export interface Map {
-    carreraid: string;
-    map: CarreraMap;
+  export interface DBRecord {
+    padron: string;
+    ultimaCarrera: string;
+    carreras: { [carreraid: string]: CarreraData };
   }
 
   export interface SaveGraph {
     (
       user: Info,
-      materias: NodeType[],
+      materias: Materia[],
       checkboxes: string[] | undefined,
       optativas: GraphType.Optativa[],
       aplazos: number,
     ): Promise<void>;
   }
+
+  export type LoginResult = "ok" | "notfound" | "error";
 
   export interface Context {
     loading: boolean;
@@ -107,9 +111,10 @@ export namespace UserType {
     logged: boolean;
     padronInput: string;
     loggingIn: boolean;
+    dbUnavailable: boolean;
 
-    login(padron: string): Promise<boolean>;
-    signup(padron: string): Promise<void>;
+    login(padron: string): Promise<LoginResult>;
+    signup(padron: string): void;
     register(user: Info): Promise<void>;
     logout(): void;
     setUser: React.Dispatch<React.SetStateAction<Info>>;
@@ -122,7 +127,6 @@ export namespace UserType {
     carrera: Carrera;
     orientacion: Orientacion | undefined | null;
     finDeCarrera: FinDeCarrera | undefined | null;
-    allLogins: CarreraInfo[];
-    maps: Map[] | undefined;
+    record: DBRecord;
   }
 }

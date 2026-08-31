@@ -296,9 +296,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     if (!network || graph.key !== network.key) return;
 
     // Nos fijamos que el usuario tenga un mapa guardado en la db
-    const map = user.maps?.find(
-      (map) => map.carreraid === user.carrera.id,
-    )?.map;
+    const map = user.record.carreras[user.carrera.id];
     if (map) {
       const toUpdate: NodeType[] = [];
 
@@ -488,8 +486,8 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
   // (porque on boot se usa la ultima carrera registrada en la DB)
   ///
   const changeCarrera = (id: string) => {
-    // Nos fijamos si ya habia algun registro en la DB
-    const userdata = user.allLogins.find((l) => l.carreraid === id);
+    // Nos fijamos si ya habia algun registro en la DB para esta carrera
+    const userdata = user.record.carreras[id];
     const carrera = CARRERAS.find((c) => c.id === id);
     if (!carrera) return;
     let newUser: UserType.Info = {
@@ -501,14 +499,14 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
 
     if (userdata) {
       const orientacion = carrera.orientaciones?.find(
-        (c) => c.nombre === userdata.orientacionid,
+        (c) => c.nombre === userdata.orientacion,
       );
       const finDeCarrera = carrera.finDeCarrera?.find(
-        (c) => c.id === userdata.findecarreraid,
+        (c) => c.id === userdata.finDeCarrera,
       );
       newUser = { ...newUser, orientacion, finDeCarrera };
     }
-    if (logged) register(newUser);
+    if (logged) register(newUser).catch(console.error);
     setUser(newUser);
   };
 
@@ -517,14 +515,14 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
       (c) => c.nombre === id,
     );
     const newUser = { ...user, orientacion };
-    if (logged) register(newUser);
+    if (logged) register(newUser).catch(console.error);
     setUser(newUser);
   };
 
   const changeFinDeCarrera = (id: string) => {
     const finDeCarrera = user.carrera.finDeCarrera?.find((c) => c.id === id);
     const newUser = { ...user, finDeCarrera };
-    if (logged) register(newUser);
+    if (logged) register(newUser).catch(console.error);
     setUser(newUser);
   };
 

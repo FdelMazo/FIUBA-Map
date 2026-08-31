@@ -15,6 +15,7 @@ import {
   Box,
   PlacementWithLogical,
   ResponsiveValue,
+  useToast,
 } from "@chakra-ui/react";
 import { BiLogOut } from "react-icons/bi";
 import { Property } from "csstype";
@@ -51,6 +52,7 @@ const UserMenu = () => {
     getNode,
   } = React.useContext(GraphContext);
   const [saving, setSaving] = React.useState(false);
+  const toast = useToast();
 
   const isBeta = user.carrera.beta;
   return (
@@ -143,7 +145,15 @@ const UserMenu = () => {
           isLoading={saving}
           onClick={async () => {
             setSaving(true);
-            await saveGraph().catch(console.error);
+            await saveGraph().catch((err) => {
+              console.error(err);
+              toast({
+                status: "error",
+                title: "Error al guardar los datos",
+                duration: 4000,
+                isClosable: true,
+              });
+            });
             setSaving(false);
           }}
           isDisabled={isBeta}

@@ -17,5 +17,5 @@
     "jsx": "react-jsx",
     "noUncheckedIndexedAccess": true
   },
-  "include": ["src"]
+  "include": ["src", "api"]
 }

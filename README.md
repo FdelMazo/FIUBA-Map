@@ -26,5 +26,3 @@ La idea de este proyecto es presentar de una manera interactiva el plan de estud
 npm install
 npm start # localhost:3000
 ```
-
-Localmente no funciona la base de datos, para evitar que se le pueda pegar desde cualquier lado. Si se necesita arreglar algo que interactua con la db, pedirle a algún autor la API key correspondiente.
