@@ -1,6 +1,5 @@
 export const config = { runtime: "edge" };
 
-const ALLOWED_ORIGIN = "https://fede.dm";
 const JSONBIN_API = "https://api.jsonbin.io/v3/b";
 const JSONBIN_INDEX_BIN = "6a95c0eff5f4af5e2958dca2";
 const JSONBIN_MASTER_KEY = process.env.JSONBIN_MASTER_KEY!;
@@ -16,18 +15,17 @@ type Body =
   | { action: "create"; padron: string; record: DBRecord }
   | { action: "save"; padron: string; binId: string; record: DBRecord };
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
+const isAllowedOrigin = (origin: string) =>
+  origin.startsWith("https://fede.dm") ||
+  origin.startsWith("http://localhost:");
+
+const corsHeadersFor = (origin: string) => ({
+  "Access-Control-Allow-Origin": isAllowedOrigin(origin)
+    ? origin
+    : "https://fede.dm",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type",
-};
-
-const jsonres = (body: unknown, status = 200) => {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { "Content-Type": "application/json", ...corsHeaders },
-  });
-};
+});
 
 const jsonbinreq = (path: string, init?: RequestInit) => {
   return fetch(`${JSONBIN_API}${path}`, {
@@ -100,15 +98,19 @@ const tryLogin = async (binId: string, padron: string) => {
 };
 
 export default async function handler(req: Request): Promise<Response> {
+  const origin = req.headers.get("origin") ?? req.headers.get("referer") ?? "";
+  const corsHeaders = corsHeadersFor(origin);
+  const jsonres = (body: unknown, status = 200) =>
+    new Response(JSON.stringify(body), {
+      status,
+      headers: { "Content-Type": "application/json", ...corsHeaders },
+    });
+
   if (req.method === "OPTIONS") {
     return new Response(null, { status: 204, headers: corsHeaders });
   }
 
-  const origin = req.headers.get("origin") ?? req.headers.get("referer") ?? "";
-  if (
-    !origin.startsWith(ALLOWED_ORIGIN) &&
-    process.env.VERCEL_ENV !== "development"
-  ) {
+  if (!isAllowedOrigin(origin)) {
     return new Response("Forbidden", { status: 403, headers: corsHeaders });
   }
 
