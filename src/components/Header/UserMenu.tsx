@@ -149,6 +149,7 @@ const UserMenu = () => {
               console.error(err);
               toast({
                 status: "error",
+                variant: "subtle",
                 title: "Error al guardar los datos",
                 duration: 4000,
                 isClosable: true,

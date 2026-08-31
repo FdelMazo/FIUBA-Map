@@ -42,6 +42,7 @@ const PadronInput = () => {
         } else if (res === "error") {
           toast({
             status: "error",
+            variant: "subtle",
             title: "No se pudo conectar con la base de datos",
             duration: 4000,
             isClosable: true,
