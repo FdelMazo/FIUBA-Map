@@ -37,7 +37,8 @@ const ProgressBar = () => {
               <PopoverTrigger>
                 <Box>
                   <Flex mb={1} mx={1} height={5}>
-                    {c.creditos >= c.creditosNecesarios ? (
+                    {c.creditosNecesarios > 0 &&
+                    c.creditos >= c.creditosNecesarios ? (
                       <Icon
                         as={FaGraduationCap}
                         color={c.bg}
@@ -54,7 +55,7 @@ const ProgressBar = () => {
                         colorScheme={c.color}
                         variant="solid"
                       >
-                        {c.creditosNecesarios &&
+                        {!!c.creditosNecesarios &&
                           c.creditos !== 0 &&
                           (Math.round(
                             (c.creditos / c.creditosNecesarios) * 100,
