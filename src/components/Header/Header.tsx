@@ -27,11 +27,7 @@ const Header = () => {
     <Box bg={useColorModeValue("headerbg", "headerbgdark")} flexShrink={0}>
       {displayedNode ? (
         <ScaleFade in initialScale={0.9}>
-          <Flex
-            {...FlexProps}
-            flexWrap="wrap"
-            justify={{ base: "space-around", md: "space-between" }}
-          >
+          <Flex {...FlexProps} flexWrap="nowrap">
             <MateriaDisplay />
           </Flex>
         </ScaleFade>

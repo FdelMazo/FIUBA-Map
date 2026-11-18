@@ -1,12 +1,4 @@
-import {
-  Badge,
-  Flex,
-  Stat,
-  StatHelpText,
-  StatLabel,
-  Tooltip,
-  Text,
-} from "@chakra-ui/react";
+import { Badge, Flex, Tooltip, Text } from "@chakra-ui/react";
 import { QuestionIcon } from "@chakra-ui/icons";
 import React from "react";
 import { GraphContext, UserContext } from "../../MapContext";
@@ -22,39 +14,30 @@ const MateriaStatus = () => {
     [displayedNode, getNode],
   );
 
-  return displayedNode ? (
-    <Flex height="fit-content" flexWrap="wrap" gap={2}>
-      <Text
-        display={{ base: "block", md: "none" }}
-        textAlign="center"
-        noOfLines={1}
-        width="100vw"
-        px={8}
-        color="white"
-      >
-        {!isPlan2020 && <strong>[{node?.id}]</strong>} {node?.materia}
-      </Text>
-      <Stat
-        display={{ base: "none", md: "block" }}
-        color="white"
-        minWidth="16ch"
-        maxWidth="30ch"
-        mr="1"
-      >
-        {!isPlan2020 && <StatLabel>[{node?.id}]</StatLabel>}
-        <StatHelpText mb={0} noOfLines={1}>
-          {node?.materia}
-        </StatHelpText>
-      </Stat>
+  // Para el tooltip nativo (hover) cuando el nombre queda cortado
+  const fullTitle = `${!isPlan2020 ? `[${node?.id}] ` : ""}${node?.materia}`;
 
-      <Flex
-        direction={{ base: "row", md: "column" }}
-        m="auto"
-        gap={2}
-        textAlign="center"
-        alignSelf="center"
+  // Mismo layout en todos los tamaños: "[codigo] nombre" en una linea (cortado si es largo)
+  // y abajo los badges de creditos
+  return displayedNode ? (
+    <Flex direction="column" align="flex-start" flex={1} minW={0} gap={1}>
+      <Text
+        noOfLines={1}
+        maxWidth={{ base: "30ch", md: "50ch" }}
+        fontSize="sm"
+        color="white"
+        title={fullTitle}
       >
-        <Badge width="100%" px={2} colorScheme="green" variant="outline">
+        {!isPlan2020 && (
+          <Text as="span" fontWeight="semibold">
+            [{node?.id}]
+          </Text>
+        )}{" "}
+        {node?.materia}
+      </Text>
+
+      <Flex gap={1} flexWrap="wrap">
+        <Badge fontSize="2xs" px={1} colorScheme="green" variant="outline">
           {node?.id === "CBC"
             ? `Clickealo para ver las materias!`
             : `Otorga ${node?.creditos} créditos`}
@@ -65,7 +48,7 @@ const MateriaStatus = () => {
             placement="bottom"
             label="El plan de estudios no es muy claro de si hay que contabilizar los créditos del CBC para esto, entonces no estoy seguro de que es válido acá. Además, los docentes suelen hacer lo que quieren con esto, así que toma todo con pinzas y asegurate de poder cursar la materia antes de anotarte."
           >
-            <Badge width="100%" px={2} colorScheme="orange" variant="outline">
+            <Badge fontSize="2xs" px={1} colorScheme="orange" variant="outline">
               Requiere {node?.requiere} créditos{" "}
               {node?.requiereCBC ? (
                 "(con CBC)"

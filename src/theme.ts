@@ -101,4 +101,19 @@ export const customTheme = extendTheme({
   },
   colors: COLORS,
   config,
+  // Los defaults de Chakra (md) quedan muy grandes para menus y popovers
+  components: {
+    Menu: {
+      baseStyle: {
+        list: { fontSize: "sm" },
+        item: { fontSize: "sm" },
+        groupTitle: { fontSize: "xs" },
+      },
+    },
+    Popover: {
+      baseStyle: {
+        content: { fontSize: "sm" },
+      },
+    },
+  },
 });

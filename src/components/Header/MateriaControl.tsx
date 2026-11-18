@@ -25,7 +25,7 @@ const ControlProps = {
   height: "fit-content",
   borderRadius: "md",
   border: "2px solid white",
-  mx: 3,
+  mx: { base: 1, md: 3 },
 };
 
 const TooltipProps = {
@@ -71,8 +71,8 @@ const MateriaControl = () => {
   );
 
   return displayedNode && logged && node?.id !== "CBC" ? (
-    <Flex alignItems="center" height="fit-content">
-      <Flex {...ControlProps} alignItems="center" p={1}>
+    <Flex alignItems="center" height="fit-content" flexShrink={0}>
+      <Flex {...ControlProps} alignItems="center" p={{ base: 0.5, md: 1 }}>
         {node && node.nota > 0 ? (
           <>
             <Tooltip closeOnClick hasArrow label="Nota">
