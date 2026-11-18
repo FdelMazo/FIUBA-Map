@@ -4,15 +4,21 @@ import { UserType } from "./types/User";
 // La estructura de las carreras de FIUBA varía bastante. Es muy poco uniforme
 // Cada carrera tiene un json asociado donde se almacenan las materias
 
-// Algunas carreras tienen orientaciones
-// - Algunas carreras tienen orientaciones obligatorias (hay que elegirla y aprobar todas las materias que tienen) => `eligeOrientaciones`
-// - Otras, tienen orientaciones que son solamente un conjunto de materias electivas (o sea, son una sugerencia, algo asi como "si te gusta termodinamica, cursate estas 3 materias")
+// Grupos de materias
+// - Son solo visuales: cada grupo tiene su etiqueta y color en el mapa, y se puede abrir/cerrar
+// - En el json, cada materia tiene su `categoria` (como cuenta: obligatoria, electiva...) y opcionalmente su `grupo`
+//   (por ej: electivas agrupadas por area, como en electronica 2009)
+// - Los colores se asignan solos, en el orden en que aparecen los grupos en el json
+// Algunas carreras te hacen elegir una orientacion => `creditos.orientaciones`, por nombre
+// - Sus materias tienen `categoria: "Orientacion:<nombre>"` (por ej: "Orientacion:Termomecánica"), sin `grupo`
+// - Cada orientacion pide sus propios creditos, y cambia cuantos de electivas hay que hacer
+// - Las materias de las orientaciones no elegidas cuentan como electivas
 
 // Algunas carreras te hacen elegir entre tesis y tpp, otras no => `creditos.findecarrera`
 // Algunas carreras tienen materias que si o si necesitas para recibirte (practica profesional) => `creditos.materias`
 // Algunas carreras tienen cosas que no son materias que si o si necesitas para recibirte (examen de ingles) => `creditos.checkbox`
 
-// Informatica es la peor de todas. En base a las combinaciones de [orientacion,findecarrera], hay que hacer distinta cantidad de creditos de electivas
+// Informatica 1986 es la peor de todas. En base a las combinaciones de [orientacion,findecarrera], hay que hacer distinta cantidad de creditos de electivas
 
 //// Acerca de cada json de las carreras
 // En los jsons se tiene una lista de objetos donde cada uno representa una materia
@@ -68,35 +74,26 @@ export const CARRERAS: UserType.Carrera[] = [
     link: "https://fi.uba.ar/grado/carreras/ingenieria-en-informatica/plan-de-estudios",
     ano: 1986,
     graph: require("./data/informatica-1986.json"),
-    orientaciones: [
-      {
-        nombre: "Gestión Industrial de Sistemas",
-        colorScheme: "orientacion1",
-      },
-      { nombre: "Sistemas Distribuidos", colorScheme: "orientacion2" },
-      { nombre: "Sistemas de Producción", colorScheme: "orientacion3" },
-    ],
     finDeCarrera: [
       { id: "tesis", materia: "75.00" },
       { id: "tpp", materia: "75.99" },
     ],
     creditos: {
-      orientacion: {
+      orientaciones: {
         "Gestión Industrial de Sistemas": {
-          orientacion: 24,
+          creditos: 24,
           electivas: { tesis: 78, tpp: 90 },
         },
         "Sistemas de Producción": {
-          orientacion: 22,
+          creditos: 22,
           electivas: { tesis: 80, tpp: 92 },
         },
         "Sistemas Distribuidos": {
-          orientacion: 18,
+          creditos: 18,
           electivas: { tesis: 84, tpp: 96 },
         },
       },
     },
-    eligeOrientaciones: true,
   },
   {
     id: "informatica-2020",
@@ -355,19 +352,6 @@ export const CARRERAS: UserType.Carrera[] = [
     link: "https://fi.uba.ar/grado/carreras/ingenieria-electronica/plan-de-estudios",
     ano: 2009,
     graph: require("./data/electronica-2009.json"),
-    orientaciones: [
-      { nombre: "Procesamiento de Señales", colorScheme: "orientacion1" },
-      { nombre: "Automatización y Control", colorScheme: "orientacion2" },
-      { nombre: "Física Electrónica", colorScheme: "orientacion3" },
-      { nombre: "Telecomunicaciones", colorScheme: "orientacion4" },
-      {
-        nombre: "Sistemas Digitales y Computación",
-        colorScheme: "orientacion5",
-      },
-      { nombre: "Multimedia", colorScheme: "orientacion6" },
-      { nombre: "Instrumentación Biomédica", colorScheme: "orientacion7" },
-      { nombre: "Multiples Orientaciones", colorScheme: "orientacion8" },
-    ],
     finDeCarrera: [
       { id: "tesis", materia: "86.00" },
       { id: "tpp", materia: "86.99" },
@@ -472,34 +456,22 @@ export const CARRERAS: UserType.Carrera[] = [
     link: "https://fi.uba.ar/grado/carreras/ingenieria-mecanica/plan-de-estudios",
     ano: 1986,
     graph: require("./data/mecanica-1986.json"),
-    orientaciones: [
-      { nombre: "Diseño Mecánico", colorScheme: "orientacion1" },
-      { nombre: "Termomecánica", colorScheme: "orientacion2" },
-      { nombre: "Metalúrgica", colorScheme: "orientacion3", nonEligible: true },
-      {
-        nombre: "Computación Aplicada",
-        colorScheme: "orientacion4",
-        nonEligible: true,
-      },
-      { nombre: "Industrias", colorScheme: "orientacion5", nonEligible: true },
-    ],
     finDeCarrera: [
       { id: "tesis", materia: "67.00" },
       { id: "tpp", materia: "67.98" },
     ],
     creditos: {
-      orientacion: {
+      orientaciones: {
         "Diseño Mecánico": {
-          orientacion: 28,
+          creditos: 28,
           electivas: { tesis: 24, tpp: 28 },
         },
         Termomecánica: {
-          orientacion: 28,
+          creditos: 28,
           electivas: { tesis: 24, tpp: 28 },
         },
       },
     },
-    eligeOrientaciones: true,
   },
   {
     id: "mecanica-2020",

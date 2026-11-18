@@ -1,5 +1,10 @@
 import { COLORS } from "./theme";
-import { getCurrentCuatri, promediar } from "./utils";
+import {
+  getCurrentCuatri,
+  getGrupo,
+  getOrientacionDeCategoria,
+  promediar,
+} from "./utils";
 import { UserType } from "./types/User";
 import { GraphType } from "./types/Graph";
 
@@ -28,6 +33,9 @@ function breakWords(string: string) {
 class Node {
   aprobada: boolean;
   categoria: string;
+  grupo: string;
+  // El nombre de la orientacion, si la categoria es "Orientacion:<nombre>"
+  orientacion: string | undefined;
   cuatrimestre: number | undefined;
   group: string;
   hidden: boolean;
@@ -54,6 +62,8 @@ class Node {
 
     // Lo declaramos especificamente porque sino TypeScript no lo reconoce
     this.categoria = node.categoria;
+    this.orientacion = getOrientacionDeCategoria(node.categoria);
+    this.grupo = getGrupo(node);
     this.creditos = node.creditos;
     this.materia = node.materia;
 
@@ -64,20 +74,20 @@ class Node {
     this.label = breakWords(node.materia);
 
     // El group de vis.js determina los colores y miles de cosas mas
-    // La categoria es FIUBA: CBC, electiva, obligatoria, etc
-    // El grupo es vis.js: "habilitada", "aprobada", etc
+    // La categoria es FIUBA, y define como cuenta la materia: CBC, electiva, obligatoria, etc
+    // El grupo es visual: la etiqueta/color con la que se muestra y se abre/cierra. Si el json no lo trae, es la categoria
+    //   (por ej: las electivas de electronica 2009 tienen categoria "Materias Electivas" y grupo "Multimedia")
+    // El group de vis.js arranca siendo el grupo, y despues pasa a ser el estado: "habilitada", "aprobada", etc
     // Las categorias son:
     // - *CBC: Las materias del CBC
     // - CBC: El nodo que abre/cierra el CBC. Tecnicamente, no es una materia
     // - Materias Obligatorias: Las materias obligatorias de la carrera
     // - Materias Electivas: Las materias electivas de la carrera
-    // - <Orientaciones>: Distintas orientaciones de las carreras.
-    //   - en algunas carreras son solamente maneras de clasificar las materias electivas
-    //   - en otras, son materias que hay que hacer si o si porque tenes que elegir una orientacion para recibirte
-    // - Multiples Orientaciones: Materias que se clasifican en varias orientaciones a la vez (solo pasa en electronica)
+    // - Orientacion:<nombre>: Materias de una orientacion elegible (solo en las carreras con `creditos.orientaciones`)
+    //   Su grupo es la orientacion. Si el usuario la eligio, cuentan para la orientacion; sino, como electivas
     // - Fin de Carrera: Tesis/TPP, etc. Hay que si o si elegirlo para recibirte
     // - Fin de Carrera (Obligatorio): Tesis/TPP de las carreras que no te dejan elegir
-    this.group = this.categoria;
+    this.group = this.grupo;
 
     // Nota = -2 => desaprobada
     // Nota = -1 => en final
@@ -164,7 +174,7 @@ class Node {
   actualizar(ctx: GraphType.Info) {
     const { user, showLabels, colorMode, getters } = ctx;
 
-    let grupoDefault = this.categoria;
+    let grupoDefault = this.grupo;
     if (this.aprobada && this.nota >= 0) grupoDefault = "Aprobadas";
     else if (this.nota === -1) grupoDefault = "En Final";
     else if (this.cuatrimestre === getCurrentCuatri())

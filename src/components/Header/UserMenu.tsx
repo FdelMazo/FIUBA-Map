@@ -18,6 +18,7 @@ import {
 import { BiLogOut } from "react-icons/bi";
 import { FaSave, FaUndo } from "react-icons/fa";
 import { GraphContext, UserContext } from "../../MapContext";
+import { getOrientaciones } from "../../utils";
 
 const ButtonProps = {
   bg: "teal.500",
@@ -52,12 +53,13 @@ const UserMenu = () => {
   const toast = useToast();
 
   const isBeta = user.carrera.beta;
+  const orientaciones = getOrientaciones(user.carrera);
   return (
     <Flex minW={0} flexShrink={1} gap={2}>
       <Menu
         closeOnSelect={false}
         defaultIsOpen={
-          (user.carrera.eligeOrientaciones && !user.orientacion) ||
+          (orientaciones.length > 0 && !user.orientacion) ||
           (user.carrera.finDeCarrera && !user.finDeCarrera)
         }
       >
@@ -97,7 +99,7 @@ const UserMenu = () => {
             </MenuOptionGroup>
           )}
 
-          {user.carrera.eligeOrientaciones && (
+          {orientaciones.length > 0 && (
             <MenuOptionGroup
               onChange={(value) => {
                 changeOrientacion(value as string);
@@ -110,18 +112,11 @@ const UserMenu = () => {
                 No me decidí
               </MenuItemOption>
 
-              {user.carrera.orientaciones &&
-                user.carrera.orientaciones
-                  .filter((o) => !o.nonEligible)
-                  .map((o) => (
-                    <MenuItemOption
-                      type="checkbox"
-                      value={o.nombre}
-                      key={o.nombre}
-                    >
-                      {o.nombre}
-                    </MenuItemOption>
-                  ))}
+              {orientaciones.map((o) => (
+                <MenuItemOption type="checkbox" value={o.nombre} key={o.nombre}>
+                  {o.nombre}
+                </MenuItemOption>
+              ))}
             </MenuOptionGroup>
           )}
 

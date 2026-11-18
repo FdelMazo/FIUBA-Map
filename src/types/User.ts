@@ -17,8 +17,9 @@ export namespace UserType {
     check?: boolean;
   }
 
+  // Lo que pide cada orientacion elegible: sus creditos propios, y los de electivas que quedan
   interface OrientacionCredito {
-    orientacion: number;
+    creditos: number;
     electivas: Electivas;
   }
 
@@ -26,7 +27,8 @@ export namespace UserType {
     electivas?: number | Electivas;
     checkbox?: Checkbox[];
     materias?: MateriaCredito[];
-    orientacion?: { [key: string]: OrientacionCredito };
+    // Solo en las carreras que te hacen elegir orientacion. Las claves son los nombres de los grupos elegibles
+    orientaciones?: { [nombre: string]: OrientacionCredito };
   }
 
   export interface MateriaJSON {
@@ -34,6 +36,7 @@ export namespace UserType {
     materia: string;
     creditos: number;
     categoria: string;
+    grupo?: string;
     level: number;
     correlativas: string | undefined;
     requiere: number | undefined;
@@ -46,11 +49,9 @@ export namespace UserType {
     [key: string]: number;
   }
 
-  export interface Orientacion {
+  export interface Grupo {
     colorScheme: ColorScheme;
     nombre: string;
-    nonEligible?: true;
-    color?: string;
   }
 
   export interface FinDeCarrera {
@@ -65,8 +66,6 @@ export namespace UserType {
     beta?: boolean;
     graph: MateriaJSON[];
     creditos: Creditos;
-    eligeOrientaciones?: true;
-    orientaciones?: Orientacion[];
     finDeCarrera?: FinDeCarrera[];
   }
 
@@ -94,7 +93,7 @@ export namespace UserType {
   export interface Info {
     padron: string;
     carrera: Carrera;
-    orientacion: Orientacion | undefined | null;
+    orientacion: Grupo | undefined | null;
     finDeCarrera: FinDeCarrera | undefined | null;
     record: DBRecord;
   }

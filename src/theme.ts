@@ -47,37 +47,37 @@ export const COLORS = {
     500: "#E1C252",
   },
   // https://color.adobe.com/create/color-wheel starting from #FF9999
-  orientacion1: {
+  grupo1: {
     50: "#FFE5E5",
     500: "#FF9999",
   },
-  orientacion2: {
+  grupo2: {
     50: "#B8FFFD",
     500: "#00cec9",
   },
-  orientacion3: {
+  grupo3: {
     50: "#FFE5FF",
     500: "#FF8AFF",
   },
-  orientacion4: {
+  grupo4: {
     500: "#C9EEED",
   },
-  orientacion5: {
+  grupo5: {
     500: "#E2A6B8",
   },
-  orientacion6: {
+  grupo6: {
     500: "#DCFFC9",
   },
-  orientacion7: {
+  grupo7: {
     500: "#f19066",
   },
-  orientacion8: {
+  grupo8: {
     500: "#ccae62",
   },
 } as const;
 
 type Colors = typeof COLORS;
-// Las escalas de COLORS (electivas, aprobadas, orientacion1...) que tienen un tono dado
+
 type ScaleWith<Tono extends number> = {
   [K in keyof Colors]: Colors[K] extends Record<Tono, string> ? K : never;
 }[keyof Colors];

@@ -1,6 +1,7 @@
 import React from "react";
 import { CARRERAS } from "./carreras";
 import { dbCreate, dbLogin, dbSave } from "./dbutils";
+import { getOrientacion } from "./utils";
 import { UserType } from "./types/User";
 import { GraphType } from "./types/Graph";
 
@@ -75,9 +76,7 @@ const Login = () => {
       CARRERAS.find((c) => c.id === record.ultimaCarrera) ??
       CARRERAS.find((c) => c.id === "informatica-2020")!;
     const carreraData = record.carreras[carrera.id];
-    const orientacion = carreraData?.orientacion
-      ? carrera.orientaciones?.find((o) => o.nombre === carreraData.orientacion)
-      : undefined;
+    const orientacion = getOrientacion(carrera, carreraData?.orientacion);
     const finDeCarrera = carreraData?.finDeCarrera
       ? carrera.finDeCarrera?.find((f) => f.id === carreraData.finDeCarrera)
       : undefined;

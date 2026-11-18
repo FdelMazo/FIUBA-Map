@@ -1,4 +1,5 @@
 import { GraphType } from "./types/Graph";
+import type { ColorScheme } from "./theme";
 import { UserType } from "./types/User";
 
 export const promediar = (materias: { nota: number }[]) => {
@@ -41,6 +42,58 @@ export const getCurrentCuatri = () => {
   return cuatri;
 };
 
+// Las materias de una orientacion tienen categoria "Orientacion:<nombre del grupo>"
+const PREFIJO_ORIENTACION = "Orientacion:";
+
+// El nombre de la orientacion de una categoria, o undefined si no es de orientacion
+export const getOrientacionDeCategoria = (categoria: string) =>
+  categoria.startsWith(PREFIJO_ORIENTACION)
+    ? categoria.slice(PREFIJO_ORIENTACION.length)
+    : undefined;
+
+// El grupo visual de una materia: el del json, el de su orientacion, o su categoria
+export const getGrupo = (materia: { categoria: string; grupo?: string }) =>
+  materia.grupo ??
+  getOrientacionDeCategoria(materia.categoria) ??
+  materia.categoria;
+
+const COLORES_GRUPOS: ColorScheme[] = [
+  "grupo1",
+  "grupo2",
+  "grupo3",
+  "grupo4",
+  "grupo5",
+  "grupo6",
+  "grupo7",
+  "grupo8",
+];
+
+// Los grupos de la carrera (los del json y las orientaciones), con un color cada uno
+// en el orden en que aparecen. Si hay mas grupos que colores, se repiten
+export const getGrupos = (carrera: UserType.Carrera): UserType.Grupo[] => {
+  const nombres = new Set<string>();
+  carrera.graph.forEach((m) => {
+    const grupo = m.grupo ?? getOrientacionDeCategoria(m.categoria);
+    if (grupo) nombres.add(grupo);
+  });
+  return [...nombres].map((nombre, i) => ({
+    nombre,
+    colorScheme: COLORES_GRUPOS[i % COLORES_GRUPOS.length]!,
+  }));
+};
+
+// Las orientaciones que se pueden elegir en la carrera (vacio si no te hace elegir)
+export const getOrientaciones = (carrera: UserType.Carrera) =>
+  getGrupos(carrera).filter(
+    (g) => carrera.creditos.orientaciones?.[g.nombre] !== undefined,
+  );
+
+// La orientacion `nombre`, si la carrera la tiene como elegible
+export const getOrientacion = (
+  carrera: UserType.Carrera,
+  nombre: string | undefined,
+) => getOrientaciones(carrera).find((o) => o.nombre === nombre);
+
 // Creditos totales necesarios para recibirse en la carrera.
 // Cada plan tiene distintas combinaciones de orientacion y fin de carrera, pero
 // el total es el mismo para todas. Lo calculamos con la primera combinacion elegible, sin
@@ -52,15 +105,8 @@ export const getCreditosTotalesNecesarios = (carrera: UserType.Carrera) => {
   const creditosCategoria = (categoria: string) =>
     graph.filter((m) => m.categoria === categoria).reduce(accCreditos, 0);
 
-  const orientacion = carrera.orientaciones?.find(
-    (o) => !o.nonEligible,
-  )?.nombre;
+  const [creditosOrientacion] = Object.values(creditos.orientaciones ?? {});
   const finDeCarrera = carrera.finDeCarrera?.[0];
-  const creditosOrientacion =
-    (carrera.eligeOrientaciones &&
-      orientacion &&
-      creditos.orientacion?.[orientacion]) ||
-    undefined;
 
   const electivas = (creditosOrientacion ?? creditos).electivas;
   const creditosElectivas =
@@ -72,7 +118,7 @@ export const getCreditosTotalesNecesarios = (carrera: UserType.Carrera) => {
     creditosCategoria("*CBC") +
     creditosCategoria("Materias Obligatorias") +
     creditosElectivas +
-    (creditosOrientacion?.orientacion ?? 0) +
+    (creditosOrientacion?.creditos ?? 0) +
     (creditos.materias ?? []).reduce((acc, m) => acc + creditosDe(m.id), 0) +
     (finDeCarrera ? creditosDe(finDeCarrera.materia) : 0)
   );

@@ -15,15 +15,12 @@ import { GraphContext } from "../../MapContext";
 // Componente para mostrar/ocultar grupos de materias
 const CategoryTagStack = () => {
   const { toggleGroup, groupStatus, getters } = React.useContext(GraphContext);
-  const categorias = React.useMemo(
-    () => getters.SelectableCategorias(),
-    [getters],
-  );
+  const grupos = React.useMemo(() => getters.SelectableGrupos(), [getters]);
 
   return (
     <LightMode>
       <SimpleGrid
-        columns={categorias.length > 4 ? 2 : 1}
+        columns={grupos.length > 4 ? 2 : 1}
         mb={2}
         ml={2}
         spacing={2}
@@ -31,7 +28,7 @@ const CategoryTagStack = () => {
         position="absolute"
         maxW="60%"
       >
-        {categorias.map((c) => (
+        {grupos.map((c) => (
           <Tag
             cursor="pointer"
             // @ts-ignore

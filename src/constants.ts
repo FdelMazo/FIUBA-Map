@@ -1,7 +1,7 @@
 import type { Options } from "vis-network";
 import { CARRERAS } from "./carreras";
 import { COLORS } from "./theme";
-import { UserType } from "./types/User";
+import { getGrupos } from "./utils";
 
 export const DB_PROXY = "https://fiuba-map-db.vercel.app/api/db";
 
@@ -116,16 +116,12 @@ export const GRUPOS = {
     size: 60,
     ctxRenderer: drawFinDeCarrera,
   },
-  ...CARRERAS.filter(
-    (c): c is UserType.Carrera & { orientaciones: UserType.Orientacion[] } =>
-      c.orientaciones !== undefined,
-  )
-    .flatMap((c) => c.orientaciones)
-    .reduce<{ [key: string]: UserType.Orientacion }>(function (map, obj) {
-      obj.color = COLORS[obj.colorScheme][500];
-      map[obj.nombre] = obj;
-      return map;
-    }, {}),
+  ...Object.fromEntries(
+    CARRERAS.flatMap(getGrupos).map((g) => [
+      g.nombre,
+      { color: COLORS[g.colorScheme][500] },
+    ]),
+  ),
 };
 
 // Muchas opciones de la network

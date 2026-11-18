@@ -6,7 +6,13 @@ import { CARRERAS } from "./carreras";
 import { CREDITOS } from "./constants";
 import Node from "./Node";
 import { COLORS, DOT_PATTERN_CONFIG } from "./theme";
-import { accCreditos, accCreditosNecesarios, accProportion } from "./utils";
+import {
+  accCreditos,
+  accCreditosNecesarios,
+  accProportion,
+  getGrupo,
+  getOrientacion,
+} from "./utils";
 import { UserType } from "./types/User";
 import type User from "./User";
 import { GraphType } from "./types/Graph";
@@ -278,9 +284,7 @@ const Graph = (userContext: ReturnType<typeof User>) => {
       return e;
     });
 
-    const groups = Array.from(
-      new Set(user.carrera.graph.map((n) => n.categoria)),
-    );
+    const groups = Array.from(new Set(user.carrera.graph.map(getGrupo)));
 
     // Para evitar que se actualice la red pero no el grafo, guardamos la carrera
     // y despues la usamos para chequear contra la carrera de la network
@@ -494,9 +498,7 @@ const Graph = (userContext: ReturnType<typeof User>) => {
     };
 
     if (userdata) {
-      const orientacion = carrera.orientaciones?.find(
-        (c) => c.nombre === userdata.orientacion,
-      );
+      const orientacion = getOrientacion(carrera, userdata.orientacion);
       const finDeCarrera = carrera.finDeCarrera?.find(
         (c) => c.id === userdata.finDeCarrera,
       );
@@ -505,10 +507,8 @@ const Graph = (userContext: ReturnType<typeof User>) => {
     setUser(newUser);
   };
 
-  const changeOrientacion = (id: string) => {
-    const orientacion = user.carrera.orientaciones?.find(
-      (c) => c.nombre === id,
-    );
+  const changeOrientacion = (nombre: string) => {
+    const orientacion = getOrientacion(user.carrera, nombre);
     setUser({ ...user, orientacion });
   };
 
@@ -596,19 +596,17 @@ const Graph = (userContext: ReturnType<typeof User>) => {
   // TODO: lo malo de mostrar materias parciales, es que si mostras aprobaste una materia pero no sus correlativas (caso borde),
   //  se va a mostrar una materia flotando, porque sus correlativas no estan presentes
   //  Tal vez habria que agregar para mostrar todas las relevantes y todas sus correlativas
-  const groupStatus = (categoria: string) => {
-    const status = [
-      ...new Set(getters.CategoriaOnly(categoria).map((n) => n.hidden)),
-    ];
+  const groupStatus = (grupo: string) => {
+    const status = [...new Set(getters.GrupoOnly(grupo).map((n) => n.hidden))];
     if (status.length === 1) {
       return status[0] ? "hidden" : "shown";
     }
     return "partial";
   };
 
-  // Muestra todas las materias de una categoria, sin importar si son relevantes o no
-  const mostrarCategoria = (categoria: string) =>
-    getters.CategoriaOnly(categoria).map((n) => {
+  // Muestra todas las materias de un grupo, sin importar si son relevantes o no
+  const mostrarGrupo = (grupo: string) =>
+    getters.GrupoOnly(grupo).map((n) => {
       const node = getNode(n.id);
       node.hidden = false;
       return node;
@@ -617,22 +615,22 @@ const Graph = (userContext: ReturnType<typeof User>) => {
   // Si esta oculto, lo muestro parcialmente
   // Si esta mostrado parcialmente, lo muestro enteramente
   // Si esta mostrado enteramente, lo oculto
-  const toggleGroup = (categoria: string) => {
-    const status = groupStatus(categoria);
+  const toggleGroup = (grupo: string) => {
+    const status = groupStatus(grupo);
     let group: Node[] = [];
     if (status === "hidden") {
-      group = getters.CategoriaRelevantes(categoria).map((n) => {
+      group = getters.GrupoRelevantes(grupo).map((n) => {
         const node = getNode(n.id);
         node.hidden = false;
         return node;
       });
       if (!group.length) {
-        group = mostrarCategoria(categoria);
+        group = mostrarGrupo(grupo);
       }
     } else if (status === "partial") {
-      group = mostrarCategoria(categoria);
+      group = mostrarGrupo(grupo);
     } else if (status === "shown") {
-      group = getters.CategoriaOnly(categoria).map((n) => {
+      group = getters.GrupoOnly(grupo).map((n) => {
         const node = getNode(n.id);
         node.hidden = true;
         return node;
@@ -751,18 +749,11 @@ const Graph = (userContext: ReturnType<typeof User>) => {
 
     // La estructura de las carreras varia bastante
     // Por ej: algunas carreras dicen que si elegis X orientacion, tenes que hacer otra cantidad de creditos de electivas
-    const getCorrectCreditos = () => {
-      if (
-        user.carrera.eligeOrientaciones &&
-        user.orientacion &&
-        user.carrera.creditos.orientacion
-      )
-        return (
-          user.carrera.creditos.orientacion[user.orientacion.nombre] ??
-          user.carrera.creditos
-        );
-      return user.carrera.creditos;
-    };
+    const orientaciones = user.carrera.creditos.orientaciones;
+    const creditosOrientacion =
+      user.orientacion && orientaciones?.[user.orientacion.nombre];
+    const getCorrectCreditos = () =>
+      creditosOrientacion ?? user.carrera.creditos;
 
     // Retorna los creditos de las electivas, que por defecto son 0 si la carrera no tiene electivas
     const getElectivasCreditos = (
@@ -814,15 +805,12 @@ const Graph = (userContext: ReturnType<typeof User>) => {
         electivas.reduce(accCreditos, 0) + optativas.reduce(accCreditos, 0),
       helpText:
         !electivasCreditosNecesarios &&
-        `Elegí ${user.carrera.eligeOrientaciones && !user.orientacion ? "orientación" : ""}${user.carrera.eligeOrientaciones && !user.orientacion && !user.finDeCarrera ? " y " : ""}${!user.finDeCarrera ? "entre tesis y tpp" : ""} en la configuración de usuario para saber cuantos necesitás.`,
+        `Elegí ${orientaciones && !user.orientacion ? "orientación" : ""}${orientaciones && !user.orientacion && !user.finDeCarrera ? " y " : ""}${!user.finDeCarrera ? "entre tesis y tpp" : ""} en la configuración de usuario para saber cuantos necesitás.`,
     });
 
     // Despues, orientacion obligatoria (si hay)
     const orientacion = getters.OrientacionAprobadas();
-    const creditosOrientacion =
-      user.orientacion &&
-      user.carrera.creditos.orientacion?.[user.orientacion.nombre];
-    if (user.carrera.eligeOrientaciones && user.carrera.creditos.orientacion)
+    if (orientaciones)
       if (user.orientacion && creditosOrientacion) {
         // No todas las escalas de orientacion tienen tono 50: sin fondo, la barra queda con el default
         const escala = COLORS[user.orientacion.colorScheme];
@@ -831,7 +819,7 @@ const Graph = (userContext: ReturnType<typeof User>) => {
           nombrecorto: "Orientación",
           bg: 50 in escala ? escala[50] : undefined,
           color: user.orientacion.colorScheme,
-          creditosNecesarios: creditosOrientacion.orientacion,
+          creditosNecesarios: creditosOrientacion.creditos,
           nmaterias: orientacion.length,
           creditos: orientacion.reduce(accCreditos, 0),
         });
@@ -839,8 +827,8 @@ const Graph = (userContext: ReturnType<typeof User>) => {
         creditos.push({
           nombre: `Orientación`,
           nombrecorto: "Orientación",
-          color: "orientacion1",
-          bg: COLORS.orientacion1[50],
+          color: "grupo1",
+          bg: COLORS.grupo1[50],
           creditosNecesarios: 8,
           creditos: 0,
           dummy: true,
@@ -1091,10 +1079,11 @@ const Graph = (userContext: ReturnType<typeof User>) => {
             fields: ["id", "cuatrimestre"],
           })
         : [],
-    SelectableCategorias: () => {
-      const categorias = nodes
+    // Los grupos que se pueden abrir/cerrar desde el mapa
+    SelectableGrupos: () => {
+      const grupos = nodes
         ? nodes
-            .distinct("categoria")
+            .distinct("grupo")
             .filter(
               (c) =>
                 c !== "CBC" &&
@@ -1104,11 +1093,11 @@ const Graph = (userContext: ReturnType<typeof User>) => {
                 c !== "Fin de Carrera",
             )
         : [];
-      if (categorias.indexOf("Materias Electivas") > 0) {
-        categorias.splice(categorias.indexOf("Materias Electivas"), 1);
-        categorias.unshift("Materias Electivas");
+      if (grupos.indexOf("Materias Electivas") > 0) {
+        grupos.splice(grupos.indexOf("Materias Electivas"), 1);
+        grupos.unshift("Materias Electivas");
       }
-      return categorias;
+      return grupos;
     },
     ALL: () => (nodes ? nodes.get() : []),
     MateriasAprobadasCBC: () =>
@@ -1179,7 +1168,7 @@ const Graph = (userContext: ReturnType<typeof User>) => {
               n.categoria !== "Materias Obligatorias" &&
               n.categoria !== "Fin de Carrera" &&
               n.categoria !== "Fin de Carrera (Obligatorio)" &&
-              n.categoria !== user.orientacion?.nombre &&
+              (!n.orientacion || n.orientacion !== user.orientacion?.nombre) &&
               n.aprobada &&
               n.nota >= 0,
             fields: ["creditos"],
@@ -1189,23 +1178,24 @@ const Graph = (userContext: ReturnType<typeof User>) => {
       nodes
         ? nodes.get({
             filter: (n) =>
-              n.categoria === user.orientacion?.nombre &&
+              !!n.orientacion &&
+              n.orientacion === user.orientacion?.nombre &&
               n.aprobada &&
               n.nota >= 0,
             fields: ["creditos"],
           })
         : [],
-    CategoriaOnly: (categoria: string) =>
+    GrupoOnly: (grupo: string) =>
       nodes
         ? nodes.get({
-            filter: (n) => n.categoria === categoria,
+            filter: (n) => n.grupo === grupo,
           })
         : [],
-    CategoriaRelevantes: (categoria: string) =>
+    GrupoRelevantes: (grupo: string) =>
       nodes
         ? nodes.get({
             filter: (n) =>
-              n.categoria === categoria && (!!n.cuatrimestre || n.nota >= -1),
+              n.grupo === grupo && (!!n.cuatrimestre || n.nota >= -1),
           })
         : [],
     AllRelevantes: () =>
