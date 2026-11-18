@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Build & Deploy to Github Pages
     steps:
+      - uses: actions/checkout@v4
+      - id: validate-data
+        run: node scripts/validate-data.mjs
       - id: node-to-gh
         uses: fdelmazo/node-to-gh-action@v2
       - id: typescript-check
