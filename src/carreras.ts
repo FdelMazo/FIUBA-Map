@@ -35,7 +35,6 @@ export const CARRERAS: UserType.Carrera[] = [
     ano: 1986,
     graph: require("./data/sistemas-1986.json"),
     creditos: {
-      total: 208,
       electivas: 40,
     },
   },
@@ -45,7 +44,6 @@ export const CARRERAS: UserType.Carrera[] = [
     ano: 2014,
     graph: require("./data/sistemas-2014.json"),
     creditos: {
-      total: 214,
       electivas: 28,
       checkbox: [
         {
@@ -83,7 +81,6 @@ export const CARRERAS: UserType.Carrera[] = [
       { id: "tpp", materia: "75.99" },
     ],
     creditos: {
-      total: 286,
       orientacion: {
         "Gestión Industrial de Sistemas": {
           orientacion: 24,
@@ -107,7 +104,6 @@ export const CARRERAS: UserType.Carrera[] = [
     ano: 2020,
     graph: require("./data/informatica-2020.json"),
     creditos: {
-      total: 226,
       electivas: 24,
       checkbox: [
         {
@@ -137,7 +133,6 @@ export const CARRERAS: UserType.Carrera[] = [
       { id: "tpp", materia: "70.99" },
     ],
     creditos: {
-      total: 246,
       checkbox: [
         {
           nombre: "Estadía Supervisada de al menos 200 horas",
@@ -155,7 +150,6 @@ export const CARRERAS: UserType.Carrera[] = [
     ano: 2020,
     graph: require("./data/agrimensura-2020.json"),
     creditos: {
-      total: 227,
       electivas: 16,
       checkbox: [
         {
@@ -181,7 +175,6 @@ export const CARRERAS: UserType.Carrera[] = [
     ano: 2020,
     graph: require("./data/bioingenieria-2020.json"),
     creditos: {
-      total: 250,
       electivas: 16,
       checkbox: [
         {
@@ -207,7 +200,6 @@ export const CARRERAS: UserType.Carrera[] = [
     ano: 2001,
     graph: require("./data/alimentos-2000.json"),
     creditos: {
-      total: 272,
       materias: [
         {
           id: "76.44",
@@ -231,7 +223,6 @@ export const CARRERAS: UserType.Carrera[] = [
     ano: 2020,
     graph: require("./data/alimentos-2020.json"),
     creditos: {
-      total: 243,
       electivas: 12,
       checkbox: [
         {
@@ -257,7 +248,6 @@ export const CARRERAS: UserType.Carrera[] = [
     ano: 2009,
     graph: require("./data/civil-2009.json"),
     creditos: {
-      total: 295,
       electivas: 34,
       materias: [
         {
@@ -289,7 +279,6 @@ export const CARRERAS: UserType.Carrera[] = [
     ano: 2020,
     graph: require("./data/civil-2020.json"),
     creditos: {
-      total: 251,
       electivas: 24,
       checkbox: [
         {
@@ -319,7 +308,6 @@ export const CARRERAS: UserType.Carrera[] = [
       { id: "tpp", materia: "85.99" },
     ],
     creditos: {
-      total: 280,
       checkbox: [
         {
           nombre: "Estadía Supervisada de al menos 200 horas",
@@ -343,7 +331,6 @@ export const CARRERAS: UserType.Carrera[] = [
     ano: 2020,
     graph: require("./data/energia-electrica-2020.json"),
     creditos: {
-      total: 250,
       electivas: 18,
       checkbox: [
         {
@@ -386,7 +373,6 @@ export const CARRERAS: UserType.Carrera[] = [
       { id: "tpp", materia: "86.99" },
     ],
     creditos: {
-      total: 278,
       electivas: 56,
       checkbox: [
         {
@@ -410,7 +396,6 @@ export const CARRERAS: UserType.Carrera[] = [
     ano: 2020,
     graph: require("./data/electronica-2020.json"),
     creditos: {
-      total: 228,
       electivas: 24,
       checkbox: [
         {
@@ -440,7 +425,6 @@ export const CARRERAS: UserType.Carrera[] = [
       { id: "tpp", materia: "92.99" },
     ],
     creditos: {
-      total: 283,
       checkbox: [
         {
           nombre: "Práctica Profesional de al menos 200 horas",
@@ -464,7 +448,6 @@ export const CARRERAS: UserType.Carrera[] = [
     ano: 2020,
     graph: require("./data/industrial-2020.json"),
     creditos: {
-      total: 236,
       electivas: 24,
       checkbox: [
         {
@@ -505,7 +488,6 @@ export const CARRERAS: UserType.Carrera[] = [
       { id: "tpp", materia: "67.98" },
     ],
     creditos: {
-      total: 298,
       orientacion: {
         "Diseño Mecánico": {
           orientacion: 28,
@@ -525,7 +507,6 @@ export const CARRERAS: UserType.Carrera[] = [
     ano: 2020,
     graph: require("./data/mecanica-2020.json"),
     creditos: {
-      total: 250,
       electivas: 14,
       checkbox: [
         {
@@ -555,7 +536,6 @@ export const CARRERAS: UserType.Carrera[] = [
       { id: "tpp", materia: "73.99" },
     ],
     creditos: {
-      total: 302,
       electivas: { tesis: 20, tpp: 38 },
     },
   },
@@ -565,7 +545,6 @@ export const CARRERAS: UserType.Carrera[] = [
     ano: 2020,
     graph: require("./data/naval-2020.json"),
     creditos: {
-      total: 260,
       electivas: 18,
       materias: [
         {
@@ -595,7 +574,6 @@ export const CARRERAS: UserType.Carrera[] = [
       { id: "tpp", materia: "79.99" },
     ],
     creditos: {
-      total: 284,
       electivas: { tesis: 12, tpp: 16 },
       checkbox: [
         {
@@ -619,7 +597,6 @@ export const CARRERAS: UserType.Carrera[] = [
     ano: 2020,
     graph: require("./data/petroleo-2020.json"),
     creditos: {
-      total: 241,
       electivas: 14,
       materias: [
         {
@@ -649,7 +626,6 @@ export const CARRERAS: UserType.Carrera[] = [
       { id: "tpp", materia: "76.59-76.62" },
     ],
     creditos: {
-      total: 290,
       electivas: { tesis: 18, tpp: 24 },
     },
   },
@@ -659,7 +635,6 @@ export const CARRERAS: UserType.Carrera[] = [
     ano: 2020,
     graph: require("./data/quimica-2020.json"),
     creditos: {
-      total: 231,
       electivas: 14,
       checkbox: [
         {

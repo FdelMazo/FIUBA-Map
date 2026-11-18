@@ -33,6 +33,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { GraphContext, UserContext } from "../../MapContext";
+import { getCreditosTotalesNecesarios } from "../../utils";
 
 // Componente para mostrar los creditos totales de la carrera
 // y en hover setupear creditos por fuera del plan (materias optativas)
@@ -55,15 +56,10 @@ const Creditos = () => {
     return optativas.reduce((acc, o) => acc + o.creditos, 0);
   }, [optativas]);
 
-  const creditosTotalesNecesarios = React.useMemo(() => {
-    // TODO: En un mundo ideal esto no esta hardcodeado y se computa
-    // pero cada carrera es tan distinta que esto se hace imposible
-    // con la estructura actual de carreras.ts
-    // Ademas... no tengo forma de obtener los creditos del fin de carrera
-    // de un usuario que no lo configuro, porque el nodo no esta presente en
-    // el grafo
-    return user.carrera.creditos.total;
-  }, [user.carrera]);
+  const creditosTotalesNecesarios = React.useMemo(
+    () => getCreditosTotalesNecesarios(user.carrera),
+    [user.carrera],
+  );
 
   const handleEditOptativa = (id: number, nombre: string, creditos: number) => {
     optativasDispatch({

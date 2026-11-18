@@ -24,7 +24,6 @@ export namespace UserType {
   }
 
   interface Creditos {
-    total: number;
     electivas?: number | Electivas;
     checkbox?: Checkbox[];
     materias?: MateriaCredito[];
