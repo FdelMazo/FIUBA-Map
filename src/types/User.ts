@@ -1,19 +1,18 @@
-import React from "react";
 import { GraphType } from "./Graph";
-import { COLORS } from "../theme";
+import type { BgColor, ColorScheme } from "../theme";
 
 export namespace UserType {
   interface MateriaCredito {
     id: string;
     nombrecorto: string;
-    bg: string;
+    bg: BgColor;
     color: string;
   }
 
   interface Checkbox {
     nombre: string;
     nombrecorto: string;
-    bg: string;
+    bg: BgColor;
     color: string;
     check?: boolean;
   }
@@ -48,7 +47,7 @@ export namespace UserType {
   }
 
   export interface Orientacion {
-    colorScheme: keyof typeof COLORS;
+    colorScheme: ColorScheme;
     nombre: string;
     nonEligible?: true;
     color?: string;
@@ -77,47 +76,19 @@ export namespace UserType {
     cuatrimestre?: number;
   }
 
-  export interface CarreraData {
-    orientacion?: string;
-    finDeCarrera?: string;
-    materias: Materia[];
-    checkboxes?: string[];
-    optativas?: GraphType.Optativa[];
-    aplazos?: number;
-  }
-
   export interface DBRecord {
     padron: string;
     ultimaCarrera: string;
-    carreras: { [carreraid: string]: CarreraData };
-  }
-
-  export interface SaveGraph {
-    (
-      user: Info,
-      materias: Materia[],
-      checkboxes: string[] | undefined,
-      optativas: GraphType.Optativa[],
-      aplazos: number,
-    ): Promise<void>;
-  }
-
-  export type LoginResult = "ok" | "notfound" | "error";
-
-  export interface Context {
-    loading: boolean;
-    user: Info;
-    logged: boolean;
-    padronInput: string;
-    loggingIn: boolean;
-    dbUnavailable: boolean;
-
-    login(padron: string): Promise<LoginResult>;
-    signup(padron: string): void;
-    logout(): void;
-    setUser: React.Dispatch<React.SetStateAction<Info>>;
-    setPadronInput: React.Dispatch<React.SetStateAction<string>>;
-    saveUserGraph: SaveGraph;
+    carreras: {
+      [carreraid: string]: {
+        orientacion?: string;
+        finDeCarrera?: string;
+        materias: Materia[];
+        checkboxes?: string[];
+        optativas?: GraphType.Optativa[];
+        aplazos?: number;
+      };
+    };
   }
 
   export interface Info {

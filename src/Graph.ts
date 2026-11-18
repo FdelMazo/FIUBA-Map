@@ -1,4 +1,5 @@
 import React from "react";
+import type { Edge, Network } from "vis-network";
 import { useColorMode } from "@chakra-ui/color-mode";
 import useResizeObserver from "use-resize-observer";
 import { CARRERAS } from "./carreras";
@@ -7,11 +8,10 @@ import Node from "./Node";
 import { COLORS, DOT_PATTERN_CONFIG } from "./theme";
 import { accCreditos, accCreditosNecesarios, accProportion } from "./utils";
 import { UserType } from "./types/User";
+import type User from "./User";
 import { GraphType } from "./types/Graph";
-import { ReactGraphVisType } from "./types/ReactGraphVis";
-import { NodeType } from "./types/Node";
 
-const Graph = (userContext: UserType.Context): GraphType.Context => {
+const Graph = (userContext: ReturnType<typeof User>) => {
   const { user, setUser, logged, saveUserGraph } = userContext;
   const { colorMode } = useColorMode();
 
@@ -30,9 +30,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
   // La network es nuestra interfaz con vis.js
   // Nos da acceso a los nodos, las aristas y varias funciones
   // https://visjs.github.io/vis-network/docs/network/
-  const [network, setNetwork] = React.useState<ReactGraphVisType.Network>(
-    null!,
-  );
+  const [network, setNetwork] = React.useState<Network>(null!);
 
   // Cuando cambia el tamaño de la pantalla, se redibuja la red. Sin esto, se rompe
   const { ref: networkRef, width, height } = useResizeObserver();
@@ -52,13 +50,13 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
 
   // Para manipular los nodos, necesitamos acceso a la ref interna que les seteamos en el constructor
   const getNode = (id: string) => {
-    return nodes?.get(id)?.nodeRef;
+    return nodes?.get(id)?.nodeRef as Node;
   };
 
   // Cuando cambia la carrera, cambia la key del body.
   // Cuando cambia la key del body, se llama a `createNetwork` que lo que hace es armar una red desde 0
   // Esta red despues se llena con el graph
-  const createNetwork = (network: ReactGraphVisType.Network) => {
+  const createNetwork = (network: Network) => {
     // Avoid re-rendering the whole graph when the data changes
     // Copied from https://github.com/visjs/vis-network/blob/2c774997ff234fa93555f36ca8040cf4d489e5df/lib/network/modules/NodesHandler.js#L325
     // Removed the last call to body.emit(datachanged)
@@ -71,13 +69,13 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
         const data = changedData[i]!;
         if (node !== undefined) {
           // update node
-          if (node.setOptions && node.setOptions(data)) {
+          if (node.setOptions(data)) {
             dataChanged = true;
           }
         } else {
           dataChanged = true;
           // create node
-          node = network.create(data);
+          node = network.nodesHandler.create(data);
           nodes[id] = node;
         }
       }
@@ -260,14 +258,14 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
 
   // El graph es el contenido de la red. Al cambiar la carrera se rellena con lo que tiene el JSON
   // y despues, con un useEffect, se rellena con lo que tiene el usuario en la DB
-  const graph: GraphType.Content = React.useMemo(() => {
+  const graph = React.useMemo(() => {
     // Esta mal que un useMemo no sea puro...
     // pero cuando se actualiza el grafo, por las dudas, limpiamos el nodo que teniamos elegido
     // test: entrar y clickear un nodo rapido, y esperar a que el usuario se loguee solo
     setDisplayedNode("");
     const nodes = user.carrera.graph.map((n) => new Node(n));
     const edges = user.carrera.graph.flatMap((n) => {
-      let e = [];
+      const e: Edge[] = [];
       if (n.correlativas)
         n.correlativas.split("-").forEach((c) => {
           e.push({
@@ -292,13 +290,15 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
 
   // Cuando cambia la carrera, poblamos el nuevo grafo con lo que hay en la DB
   // (o, simplemente aprobamos el CBC si el usuario no tenia nada)
-  React.useEffect(() => {
+  // Es un layout effect para que el grafo y los creditos se actualicen antes de que el navegador pinte:
+  // con un useEffect se llega a ver un frame con el grafo/creditos sin poblar
+  React.useLayoutEffect(() => {
     if (!network || graph.key !== network.key) return;
 
     // Nos fijamos que el usuario tenga un mapa guardado en la db
     const map = user.record.carreras[user.carrera.id];
     if (map) {
-      const toUpdate: NodeType[] = [];
+      const toUpdate: Node[] = [];
 
       // Aprobamos/planeamos todo lo que tenia el usuario en la db
       map.materias.forEach((m) => {
@@ -379,7 +379,6 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
         getNode(n.id).actualizar({
           getters,
           user,
-          network,
           getNode,
           creditos: { creditosTotales, creditosCBC },
           showLabels: logged,
@@ -470,7 +469,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
   // - aplazos: la cantidad de aplazos seteado
   const saveGraph = async () => {
     const materias = nodes.get({
-      filter: (n) => n.aprobada || n.nota === -1 || n.cuatrimestre,
+      filter: (n) => n.aprobada || n.nota === -1 || !!n.cuatrimestre,
       fields: ["id", "nota", "cuatrimestre"],
     });
     const checkboxes = user.carrera.creditos.checkbox
@@ -533,7 +532,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
     actualizar();
   };
 
-  const cursando = (id: string, cuatrimestre: number) => {
+  const cursando = (id: string, cuatrimestre: number | undefined) => {
     nodes.update(getNode(id).cursando(cuatrimestre));
     actualizar();
     actualizarNiveles();
@@ -620,7 +619,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
   // Si esta mostrado enteramente, lo oculto
   const toggleGroup = (categoria: string) => {
     const status = groupStatus(categoria);
-    let group: NodeType[] = [];
+    let group: Node[] = [];
     if (status === "hidden") {
       group = getters.CategoriaRelevantes(categoria).map((n) => {
         const node = getNode(n.id);
@@ -638,7 +637,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
         node.hidden = true;
         return node;
       });
-      const [selectedId] = network.getSelectedNodes();
+      const [selectedId] = network.getSelectedNodes().map(String);
       if (selectedId && group.map((n) => n.id).includes(selectedId)) {
         deselectNode();
         network.selectNodes([]);
@@ -667,8 +666,8 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
 
   // Cuando un grupo tiene muchas materias (por ej: tengo 40 electivas), queremos que no sea una columna de muchas materias al hilo
   // Entonces, hacemos que se muestren en columnas de a 7 materias, ordenadas por prioridad (aprobadas mas arriba que desaprobadas, por ej)
-  const balanceSinNivel = (group: NodeType[], lastLevel: number) => {
-    const sortByGroup = (a: NodeType, b: NodeType) => {
+  const balanceSinNivel = (group: Node[], lastLevel: number) => {
+    const sortByGroup = (a: Node, b: Node) => {
       const nodeA = getNode(a.id);
       const nodeB = getNode(b.id);
       const groupOrder = [
@@ -820,17 +819,19 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
 
     // Despues, orientacion obligatoria (si hay)
     const orientacion = getters.OrientacionAprobadas();
+    const creditosOrientacion =
+      user.orientacion &&
+      user.carrera.creditos.orientacion?.[user.orientacion.nombre];
     if (user.carrera.eligeOrientaciones && user.carrera.creditos.orientacion)
-      if (
-        user.orientacion &&
-        user.carrera.creditos.orientacion[user.orientacion?.nombre]
-      ) {
+      if (user.orientacion && creditosOrientacion) {
+        // No todas las escalas de orientacion tienen tono 50: sin fondo, la barra queda con el default
+        const escala = COLORS[user.orientacion.colorScheme];
         creditos.push({
           nombre: `Orientación: ${user.orientacion.nombre}`,
           nombrecorto: "Orientación",
-          bg: (COLORS[user.orientacion.colorScheme] as any)[50],
+          bg: 50 in escala ? escala[50] : undefined,
           color: user.orientacion.colorScheme,
-          creditosNecesarios: getCorrectCreditos()?.orientacion as number,
+          creditosNecesarios: creditosOrientacion.orientacion,
           nmaterias: orientacion.length,
           creditos: orientacion.reduce(accCreditos, 0),
         });
@@ -1018,8 +1019,8 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
   let hovertimer: ReturnType<typeof setTimeout> | undefined = undefined;
 
   // Interacción con el mouse
-  const events: ReactGraphVisType.NodeEvents = {
-    doubleClick: (e: ReactGraphVisType.ClickEvent) => {
+  const events = {
+    doubleClick: (e: { nodes: string[] }) => {
       // dobleclick: aprobar/desaprobar
       const id = e.nodes[0];
       if (!id || id === "CBC") return;
@@ -1032,7 +1033,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
         desaprobar(id);
       }
     },
-    hoverNode: (e: ReactGraphVisType.HoverEvent) => {
+    hoverNode: (e: { node: string }) => {
       // hover: seleccionar nodo para ver sus correlativas facilmente
       const id = e.node;
       if (network.getSelectedNodes().length) {
@@ -1056,7 +1057,7 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
       }
       deselectNode();
     },
-    selectNode: (e: ReactGraphVisType.ClickEvent) => {
+    selectNode: (e: { nodes: string[] }) => {
       // click: seleccionar un nodo
       const id = e.nodes[0];
       if (!id) return;
@@ -1070,22 +1071,23 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
       }
       selectNode(id, true);
     },
-    deselectNode: (e: ReactGraphVisType.DeselectEvent) => {
+    deselectNode: () => {
       // click en otro nodo/click en cualquier lado del mapa: deseleccionar lo que teniamos
       deselectNode(true);
     },
   };
 
   // Definimos muuuuchos getters para tener acceso a todo tipo de nodos y no andar repitiendo todo
-  const getters: GraphType.Getters = {
-    NodesFrom: (id) => network.getConnectedNodes(id, "from"),
-    NodesTo: (id) => network.getConnectedNodes(id, "to"),
-    NeighborNodes: (id) => network.getConnectedNodes(id),
-    NeighborEdges: (id) => network.getConnectedEdges(id),
+  const getters = {
+    NodesFrom: (id: string) =>
+      network.getConnectedNodes(id, "from").map(String),
+    NodesTo: (id: string) => network.getConnectedNodes(id, "to").map(String),
+    NeighborNodes: (id: string) => network.getConnectedNodes(id).map(String),
+    NeighborEdges: (id: string) => network.getConnectedEdges(id).map(String),
     Cuatrimestres: () =>
       nodes
         ? nodes.get({
-            filter: (n) => n.cuatrimestre,
+            filter: (n) => !!n.cuatrimestre,
             fields: ["id", "cuatrimestre"],
           })
         : [],
@@ -1193,24 +1195,24 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
             fields: ["creditos"],
           })
         : [],
-    CategoriaOnly: (categoria) =>
+    CategoriaOnly: (categoria: string) =>
       nodes
         ? nodes.get({
             filter: (n) => n.categoria === categoria,
           })
         : [],
-    CategoriaRelevantes: (categoria) =>
+    CategoriaRelevantes: (categoria: string) =>
       nodes
         ? nodes.get({
             filter: (n) =>
-              n.categoria === categoria && (n.cuatrimestre || n.nota >= -1),
+              n.categoria === categoria && (!!n.cuatrimestre || n.nota >= -1),
           })
         : [],
     AllRelevantes: () =>
       nodes
         ? nodes.get({
             filter: (n) =>
-              n.categoria !== "*CBC" && (n.cuatrimestre || n.nota >= -1),
+              n.categoria !== "*CBC" && (!!n.cuatrimestre || n.nota >= -1),
           })
         : [],
     Shown: () =>
@@ -1234,11 +1236,11 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
       nodes
         ? (nodes.get({
             filter: (n) =>
-              n.cuatrimestre &&
+              !!n.cuatrimestre &&
               !n.hidden &&
               n.categoria !== "CBC" &&
               n.categoria !== "*CBC",
-          }) as (NodeType & { cuatrimestre: number })[])
+          }) as (Node & { cuatrimestre: number })[])
         : [],
     AllShownWithoutCuatri: () =>
       nodes
@@ -1246,10 +1248,10 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
             filter: (n) =>
               !n.cuatrimestre &&
               !n.hidden &&
-              n.originalLevel &&
+              !!n.originalLevel &&
               n.categoria !== "CBC" &&
               n.categoria !== "*CBC",
-          }) as (NodeType & { cuatrimestre: undefined })[])
+          }) as (Node & { cuatrimestre: undefined })[])
         : [],
     WithoutNivel: () =>
       nodes
@@ -1281,7 +1283,6 @@ const Graph = (userContext: UserType.Context): GraphType.Context => {
               n.categoria !== "Fin de Carrera" &&
               n.categoria !== "Fin de Carrera (Obligatorio)",
             fields: ["level"],
-            type: { level: "number" },
           })
         : [],
     FinDeCarrera: () =>

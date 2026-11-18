@@ -13,12 +13,9 @@ import {
   Tooltip,
   Text,
   Flex,
-  PlacementWithLogical,
-  ResponsiveValue,
   useToast,
 } from "@chakra-ui/react";
 import { BiLogOut } from "react-icons/bi";
-import { Property } from "csstype";
 import { FaSave, FaUndo } from "react-icons/fa";
 import { GraphContext, UserContext } from "../../MapContext";
 
@@ -33,9 +30,9 @@ const ButtonProps = {
 const TooltipProps = {
   closeOnClick: true,
   hasArrow: true,
-  placement: "bottom" as PlacementWithLogical,
-  textAlign: "center" as ResponsiveValue<Property.TextAlign>,
-};
+  placement: "bottom",
+  textAlign: "center",
+} as const;
 
 // Menu para elegir orientacion y fin de carrera (y para "cerrar sesion")
 // Es un botoncito de settings donde esta el padron, arriba a la izquierda de la app

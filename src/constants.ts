@@ -1,7 +1,7 @@
+import type { Options } from "vis-network";
 import { CARRERAS } from "./carreras";
 import { COLORS } from "./theme";
 import { UserType } from "./types/User";
-import { NodeType } from "./types/Node";
 
 export const DB_PROXY = "https://fiuba-map-db.vercel.app/api/db";
 
@@ -16,6 +16,17 @@ export const BUGS_FORM_ENTRIES = {
   bug: "entry.817568535",
 };
 
+// Lo que vis.js le pasa al ctxRenderer de un nodo custom
+// https://visjs.github.io/vis-network/docs/network/nodes.html
+interface CtxRendererArgs {
+  ctx: CanvasRenderingContext2D;
+  x: number;
+  y: number;
+  state: { selected: boolean; hover: boolean };
+  style: { size: number; opacity: number; color: string };
+  label: string;
+}
+
 // Dibuja un rombo
 const drawFinDeCarrera = ({
   ctx,
@@ -24,7 +35,7 @@ const drawFinDeCarrera = ({
   state: { selected, hover },
   style,
   label,
-}: NodeType.DrawFinDeCarrera) => {
+}: CtxRendererArgs) => {
   let r = style.size;
   const drawNode = () => {
     if (selected || hover) {
@@ -111,7 +122,7 @@ export const GRUPOS = {
   )
     .flatMap((c) => c.orientaciones)
     .reduce<{ [key: string]: UserType.Orientacion }>(function (map, obj) {
-      obj.color = (COLORS[obj.colorScheme] as any)[500];
+      obj.color = COLORS[obj.colorScheme][500];
       map[obj.nombre] = obj;
       return map;
     }, {}),
@@ -119,7 +130,9 @@ export const GRUPOS = {
 
 // Muchas opciones de la network
 // tiene buenas cosas para tunear y experimentar
-export const GRAPHOPTIONS = {
+export const GRAPHOPTIONS: Options = {
+  // El resize lo manejamos a mano en Graph.ts
+  autoResize: false,
   nodes: { shape: "box" },
   interaction: {
     hover: true,

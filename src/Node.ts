@@ -1,6 +1,5 @@
 import { COLORS } from "./theme";
 import { getCurrentCuatri, promediar } from "./utils";
-import { NodeType } from "./types/Node";
 import { UserType } from "./types/User";
 import { GraphType } from "./types/Graph";
 
@@ -26,7 +25,7 @@ function breakWords(string: string) {
   return broken.trim();
 }
 
-class Node implements NodeType {
+class Node {
   aprobada: boolean;
   categoria: string;
   cuatrimestre: number | undefined;

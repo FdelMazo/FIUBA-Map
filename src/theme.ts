@@ -74,7 +74,18 @@ export const COLORS = {
   orientacion8: {
     500: "#ccae62",
   },
-};
+} as const;
+
+type Colors = typeof COLORS;
+// Las escalas de COLORS (electivas, aprobadas, orientacion1...) que tienen un tono dado
+type ScaleWith<Tono extends number> = {
+  [K in keyof Colors]: Colors[K] extends Record<Tono, string> ? K : never;
+}[keyof Colors];
+
+// Las escalas que se pueden usar como colorScheme (necesitan el 500)
+export type ColorScheme = ScaleWith<500>;
+// Los fondos clarito de las barras de creditos: el tono 50 de alguna escala
+export type BgColor = Colors[ScaleWith<50>][50];
 
 export const DOT_PATTERN_CONFIG = {
   spacing: 25,              // Distance between dots in pixels (at zoom level 1)

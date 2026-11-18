@@ -2,6 +2,7 @@ import React from "react";
 import { CARRERAS } from "./carreras";
 import { dbCreate, dbLogin, dbSave } from "./dbutils";
 import { UserType } from "./types/User";
+import { GraphType } from "./types/Graph";
 
 // El padron se setea una vez que el usuario se loguea exitosamente (O sea, logged = padron !== "")
 const initialUser: UserType.Info = {
@@ -12,8 +13,8 @@ const initialUser: UserType.Info = {
   record: { padron: "", ultimaCarrera: "informatica-2020", carreras: {} },
 };
 
-const Login = (): UserType.Context => {
-  const [user, setUser] = React.useState<UserType.Info>(initialUser);
+const Login = () => {
+  const [user, setUser] = React.useState(initialUser);
 
   // Inicializamos el padron (y el binId cacheado, si hay uno) con lo que hay en el storage
   const [padronInput, setPadronInput] = React.useState(
@@ -46,7 +47,7 @@ const Login = (): UserType.Context => {
   }, []);
 
   // login le pregunta al proxy todo lo que sabe de un padron, y lo guarda en el estado `user`
-  const login = async (padron: string): Promise<UserType.LoginResult> => {
+  const login = async (padron: string) => {
     if (!padron) return "error";
 
     setLoading(true);
@@ -130,12 +131,12 @@ const Login = (): UserType.Context => {
   // Aca guardamos el mapa y toda la metadata que tiene, incluyendo ultimaCarrera y
   // la orientacion/findecarrera actualmente elegidas -- este es el unico momento en el
   // que se persiste algo: navegar carreras/orientaciones sin guardar no gasta requests
-  const saveUserGraph: UserType.SaveGraph = async (
-    user,
-    materias,
-    checkboxes,
-    optativas,
-    aplazos,
+  const saveUserGraph = async (
+    user: UserType.Info,
+    materias: UserType.Materia[],
+    checkboxes: string[] | undefined,
+    optativas: GraphType.Optativa[],
+    aplazos: number,
   ) => {
     const carreras = { ...user.record.carreras };
 

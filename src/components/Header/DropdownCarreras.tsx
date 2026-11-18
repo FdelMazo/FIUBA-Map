@@ -14,9 +14,7 @@ import {
   MenuItem,
   useColorModeValue,
   BadgeProps,
-  ResponsiveValue,
 } from "@chakra-ui/react";
-import { Property } from "csstype";
 import { CARRERAS, PLANES } from "../../carreras";
 import { GraphContext, UserContext } from "../../MapContext";
 
@@ -29,7 +27,7 @@ const AnoBadge = ({
   const commonProps = {
     mx: 1,
     variant: active ? activeVariant : "outline",
-    textAlign: "center" as ResponsiveValue<Property.TextAlign>,
+    textAlign: "center" as const,
     colorScheme: "gray",
     ...rest,
   };
