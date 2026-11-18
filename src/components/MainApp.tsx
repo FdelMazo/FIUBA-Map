@@ -5,7 +5,14 @@ import Header from "./Header/Header";
 
 const MainApp = () => {
   return (
-    <Flex direction="column" h="100vh" overflow="hidden">
+    <Flex
+      direction="column"
+      overflow="hidden"
+      sx={{
+        height: "100vh",
+        "@supports (height: 100dvh)": { height: "100dvh" },
+      }}
+    >
       <Header />
       <Body />
       <Footer />
