@@ -115,6 +115,7 @@ const DropdownCarreras = () => {
           {PLANES.map((p) => (
             <MenuItem
               key={p.nombrecorto}
+              fontSize="md"
               display="flex"
               justifyContent="space-between"
               {...(p.planes.length === 1
