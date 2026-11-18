@@ -65,8 +65,8 @@
  *
  * Manage unstructured data using DataSet. Add, update, and remove data, and listen for changes in the data.
  *
- * @version 7.1.9
- * @date    2023-11-24T17:53:34.179Z
+ * @version 7.1.10
+ * @date    2025-07-06T08:42:20.006Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -91,8 +91,8 @@
  *
  * A dynamic, browser-based visualization library.
  *
- * @version 9.1.9
- * @date    2023-11-03T01:42:27.418Z
+ * @version 9.1.13
+ * @date    2025-06-28T12:43:17.849Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
