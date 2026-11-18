@@ -21,6 +21,8 @@ const PadronInput = () => {
 
   const [notRegistered, setNotRegistered] = React.useState(false);
   const [lastInput, setLastInput] = React.useState("");
+  // El tooltip solo con hover: el de Chakra tambien abre con foco, y el input tiene autoFocus
+  const [hover, setHover] = React.useState(false);
 
   const showRegisterButton =
     notRegistered && padronInput === lastInput && !dbUnavailable;
@@ -53,27 +55,36 @@ const PadronInput = () => {
         }
       }}
     >
-      <Input
-        css={{
-          "&::placeholder": {
-            color: "LightGray",
-          },
-        }}
-        borderRadius={"md"}
-        size="sm"
-        w="20ch"
-        minW="8ch"
-        flexShrink={1}
-        borderColor="white"
-        color="white"
-        name="padron"
-        placeholder="Padrón"
-        value={user.padron || padronInput}
-        autoFocus={true}
-        isReadOnly={loading || logged}
-        onChange={(e) => setPadronInput(e.target.value)}
-        isDisabled={loading}
-      />
+      <Tooltip
+        hasArrow
+        label="Padrón, DNI, o una palabra que no te olvides"
+        placement="bottom-start"
+        isOpen={hover && !logged}
+      >
+        <Input
+          onMouseEnter={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+          css={{
+            "&::placeholder": {
+              color: "LightGray",
+            },
+          }}
+          borderRadius={"md"}
+          size="sm"
+          w="20ch"
+          minW="8ch"
+          flexShrink={1}
+          borderColor="white"
+          color="white"
+          name="padron"
+          placeholder="Padrón"
+          value={user.padron || padronInput}
+          autoFocus={true}
+          isReadOnly={loading || logged}
+          onChange={(e) => setPadronInput(e.target.value)}
+          isDisabled={loading}
+        />
+      </Tooltip>
 
       {!dbUnavailable && (
         <Tooltip
