@@ -12,7 +12,7 @@ import {
   IconButton,
   Tooltip,
   Text,
-  Box,
+  Flex,
   PlacementWithLogical,
   ResponsiveValue,
   useToast,
@@ -56,7 +56,7 @@ const UserMenu = () => {
 
   const isBeta = user.carrera.beta;
   return (
-    <Box>
+    <Flex minW={0} flexShrink={1} gap={2}>
       <Menu
         closeOnSelect={false}
         defaultIsOpen={
@@ -66,6 +66,8 @@ const UserMenu = () => {
       >
         <MenuButton
           w="20ch"
+          minW="8ch"
+          flexShrink={1}
           textAlign="left"
           as={Button}
           leftIcon={<SettingsIcon />}
@@ -141,7 +143,6 @@ const UserMenu = () => {
       >
         <IconButton
           {...ButtonProps}
-          ml={2}
           isLoading={saving}
           onClick={async () => {
             setSaving(true);
@@ -168,7 +169,6 @@ const UserMenu = () => {
         <Tooltip {...TooltipProps} label="Limpiar todos los cuatris">
           <IconButton
             {...ButtonProps}
-            ml={2}
             onClick={restartGraphCuatris}
             aria-label="Limpiar la data de los cuatrimestres"
           >
@@ -176,7 +176,7 @@ const UserMenu = () => {
           </IconButton>
         </Tooltip>
       )}
-    </Box>
+    </Flex>
   );
 };
 

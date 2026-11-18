@@ -6,8 +6,6 @@ import {
   StatLabel,
   Tooltip,
   Text,
-  Show,
-  Hide,
 } from "@chakra-ui/react";
 import { QuestionIcon } from "@chakra-ui/icons";
 import React from "react";
@@ -26,26 +24,28 @@ const MateriaStatus = () => {
 
   return displayedNode ? (
     <Flex height="fit-content" flexWrap="wrap" gap={2}>
-      {/* Hardcoded to chakra md breakpoint */}
-      <Show ssr={false} breakpoint="(max-width: 48em)">
-        <Text
-          textAlign="center"
-          noOfLines={1}
-          width="100vw"
-          px={8}
-          color="white"
-        >
-          {!isPlan2020 && <strong>[{node?.id}]</strong>} {node?.materia}
-        </Text>
-      </Show>
-      <Hide ssr={false} breakpoint="(max-width: 48em)">
-        <Stat color="white" minWidth="16ch" maxWidth="30ch" mr="1">
-          {!isPlan2020 && <StatLabel>[{node?.id}]</StatLabel>}
-          <StatHelpText mb={0} noOfLines={1}>
-            {node?.materia}
-          </StatHelpText>
-        </Stat>
-      </Hide>
+      <Text
+        display={{ base: "block", md: "none" }}
+        textAlign="center"
+        noOfLines={1}
+        width="100vw"
+        px={8}
+        color="white"
+      >
+        {!isPlan2020 && <strong>[{node?.id}]</strong>} {node?.materia}
+      </Text>
+      <Stat
+        display={{ base: "none", md: "block" }}
+        color="white"
+        minWidth="16ch"
+        maxWidth="30ch"
+        mr="1"
+      >
+        {!isPlan2020 && <StatLabel>[{node?.id}]</StatLabel>}
+        <StatHelpText mb={0} noOfLines={1}>
+          {node?.materia}
+        </StatHelpText>
+      </Stat>
 
       <Flex
         direction={{ base: "row", md: "column" }}

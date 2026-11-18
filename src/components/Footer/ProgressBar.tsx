@@ -5,7 +5,6 @@ import {
   Flex,
   Grid,
   GridItem,
-  Hide,
   Icon,
   LightMode,
   Popover,
@@ -62,17 +61,16 @@ const ProgressBar = () => {
                           ) || 0) + "%"}
                       </Badge>
                     )}
-                    <Hide ssr={false} below="md">
-                      <Badge
-                        fontSize="x-small"
-                        ml={1}
-                        colorScheme={"whiteAlpha"}
-                        variant="subtle"
-                        alignSelf="center"
-                      >
-                        {c.nombrecorto}
-                      </Badge>
-                    </Hide>
+                    <Badge
+                      display={{ base: "none", md: "inline-block" }}
+                      fontSize="x-small"
+                      ml={1}
+                      colorScheme={"whiteAlpha"}
+                      variant="subtle"
+                      alignSelf="center"
+                    >
+                      {c.nombrecorto}
+                    </Badge>
                   </Flex>
                   <Progress
                     marginRight={1}
@@ -103,7 +101,7 @@ const ProgressBar = () => {
                     <strong>{c.nombre}</strong>
                   </StatLabel>
                   {!c.dummy && (
-                    <StatNumber fontWeight="normal" fontSize="larger">
+                    <StatNumber fontWeight="normal" fontSize="md">
                       {c.creditos}
                       {!!c.creditosNecesarios &&
                         ` de ${c.creditosNecesarios} `}{" "}

@@ -1,5 +1,5 @@
 import { CheckCircleIcon } from "@chakra-ui/icons";
-import { Button, Input, Tooltip, useToast } from "@chakra-ui/react";
+import { Button, Flex, Input, Tooltip, useToast } from "@chakra-ui/react";
 import React from "react";
 import { UserContext } from "../../MapContext";
 
@@ -26,7 +26,10 @@ const PadronInput = () => {
     notRegistered && padronInput === lastInput && !dbUnavailable;
 
   return (
-    <form
+    <Flex
+      as="form"
+      minW={0}
+      flexShrink={1}
       onSubmit={async (t) => {
         t.preventDefault();
         if (showRegisterButton) {
@@ -59,6 +62,8 @@ const PadronInput = () => {
         borderRadius={"md"}
         size="sm"
         w="20ch"
+        minW="8ch"
+        flexShrink={1}
         borderColor="white"
         color="white"
         name="padron"
@@ -84,6 +89,7 @@ const PadronInput = () => {
             size="sm"
             ml={2}
             px={0}
+            flexShrink={0}
             isLoading={loading}
             isDisabled={padronInput === ""}
             type="submit"
@@ -99,7 +105,7 @@ const PadronInput = () => {
           </Button>
         </Tooltip>
       )}
-    </form>
+    </Flex>
   );
 };
 

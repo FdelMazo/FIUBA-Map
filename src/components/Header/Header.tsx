@@ -1,17 +1,10 @@
-import {
-  ScaleFade,
-  Flex,
-  Box,
-  useColorModeValue,
-  ResponsiveValue,
-} from "@chakra-ui/react";
+import { ScaleFade, Flex, Box, useColorModeValue } from "@chakra-ui/react";
 import { GraphContext, UserContext } from "../../MapContext";
 import MateriaDisplay from "./MateriaDisplay";
 import PadronInput from "./PadronInput";
 import DropdownCarreras from "./DropdownCarreras";
 import UserMenu from "./UserMenu";
 import React from "react";
-import { Property } from "csstype";
 
 // Componente toplevel de header
 // Si tengo una materia clickeada, muestra sus controles
@@ -20,40 +13,30 @@ import { Property } from "csstype";
 const Header = () => {
   const { logged } = React.useContext(UserContext);
   const { displayedNode } = React.useContext(GraphContext);
-  const CommonProps = {
-    height: { base: "8.7rem", md: "4.5rem" },
-    bg: useColorModeValue("headerbg", "headerbgdark"),
-  };
 
   const FlexProps = {
-    py: { base: 4, md: 2 },
+    minHeight: { base: "3.5rem", md: "4.5rem" },
+    py: 2,
     px: 4,
-    gap: 4,
+    gap: { base: 2, md: 4 },
     align: "center",
     justify: "space-between",
-    flexWrap: "wrap" as ResponsiveValue<Property.FlexWrap>,
-    justifyContent: { base: "space-around", md: "space-between" },
-  };
-
-  const AntiFlexProps = {
-    height: 0,
-    p: 0,
-    m: 0,
   };
 
   return (
-    <Box {...CommonProps}>
-      <ScaleFade in={!!displayedNode} transition={{ enter: { delay: 0.0015 } }}>
-        <Flex
-          {...CommonProps}
-          {...(displayedNode && FlexProps)}
-          {...(!displayedNode && AntiFlexProps)}
-        >
-          <MateriaDisplay />
-        </Flex>
-      </ScaleFade>
-      {!displayedNode && (
-        <Flex {...CommonProps} {...(!displayedNode && FlexProps)}>
+    <Box bg={useColorModeValue("headerbg", "headerbgdark")} flexShrink={0}>
+      {displayedNode ? (
+        <ScaleFade in initialScale={0.9}>
+          <Flex
+            {...FlexProps}
+            flexWrap="wrap"
+            justify={{ base: "space-around", md: "space-between" }}
+          >
+            <MateriaDisplay />
+          </Flex>
+        </ScaleFade>
+      ) : (
+        <Flex {...FlexProps} flexWrap="nowrap">
           {logged ? <UserMenu /> : <PadronInput />}
           <DropdownCarreras />
         </Flex>

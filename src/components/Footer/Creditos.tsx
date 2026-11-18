@@ -11,7 +11,6 @@ import {
   EditableInput,
   EditablePreview,
   Flex,
-  Hide,
   IconButton,
   LightMode,
   NumberDecrementStepper,
@@ -105,15 +104,18 @@ const Creditos = () => {
               </StatLabel>
               <StatNumber>
                 {creditosTotales + " de " + creditosTotalesNecesarios}
-                <Hide ssr={false} below="md">
-                  <LightMode>
-                    <Badge ml={2} colorScheme="green" variant="solid">
-                      {Math.round(
-                        (creditosTotales / creditosTotalesNecesarios) * 100,
-                      ) + "%"}
-                    </Badge>
-                  </LightMode>
-                </Hide>
+                <LightMode>
+                  <Badge
+                    display={{ base: "none", md: "inline-block" }}
+                    ml={2}
+                    colorScheme="green"
+                    variant="solid"
+                  >
+                    {Math.round(
+                      (creditosTotales / creditosTotalesNecesarios) * 100,
+                    ) + "%"}
+                  </Badge>
+                </LightMode>
               </StatNumber>
             </Stat>
           </Box>
