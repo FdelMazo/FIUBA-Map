@@ -25,7 +25,7 @@ const callProxy = async <T>(body: object): Promise<T> => {
   const res = await fetch(C.DB_PROXY, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
+    body: JSON.stringify({ ...body, app: C.DB_APP }),
   });
   if (!res.ok) {
     throw new Error(`db proxy respondio ${res.status}`);

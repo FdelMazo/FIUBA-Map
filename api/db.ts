@@ -1,8 +1,19 @@
 export const config = { runtime: "edge" };
 
 const JSONBIN_API = "https://api.jsonbin.io/v3/b";
-const JSONBIN_INDEX_BIN = "6a95c0eff5f4af5e2958dca2";
-const JSONBIN_COLLECTION_ID = "6a95d5feda38895dfe27a4a7";
+
+const APPS = {
+  fiuba: {
+    index: "6a95c0eff5f4af5e2958dca2",
+    collection: "6a95d5feda38895dfe27a4a7",
+  },
+  uba: {
+    index: "6afdc7e5ac6210605a9219de",
+    collection: "6afdc7c0ac6210605a92195b",
+  },
+} as const;
+
+type App = (typeof APPS)[keyof typeof APPS];
 const JSONBIN_MASTER_KEY = process.env.JSONBIN_MASTER_KEY!;
 
 interface DBRecord {
@@ -11,10 +22,11 @@ interface DBRecord {
   carreras: Record<string, unknown>;
 }
 
-type Body =
+type Body = { app: string } & (
   | { action: "login"; padron: string; binId?: string }
   | { action: "create"; padron: string; record: DBRecord }
-  | { action: "save"; padron: string; binId: string; record: DBRecord };
+  | { action: "save"; padron: string; binId: string; record: DBRecord }
+);
 
 const isAllowedOrigin = (origin: string) =>
   origin.startsWith("https://fede.dm") ||
@@ -50,8 +62,8 @@ const readBin = async (binId: string) => {
   return record;
 };
 
-const readIndex = async () => {
-  const index = await readBin(JSONBIN_INDEX_BIN);
+const readIndex = async (app: App) => {
+  const index = await readBin(app.index);
   if (!index) {
     throw new Error("could not read JSONBin index");
   }
@@ -64,6 +76,7 @@ const ensureOk = (res: Response, message: string) => {
 };
 
 const writeIndex = async (
+  app: App,
   index: Record<string, string>,
   newEntry: { padron: string; binId: string },
 ) => {
@@ -73,7 +86,7 @@ const writeIndex = async (
   }
 
   ensureOk(
-    await jsonbinreq(`/${JSONBIN_INDEX_BIN}`, {
+    await jsonbinreq(`/${app.index}`, {
       method: "PUT",
       body: JSON.stringify(updated),
     }),
@@ -133,12 +146,17 @@ export default async function handler(req: Request): Promise<Response> {
     return jsonres({ error: "bad request" }, 400);
   }
 
+  if (typeof body.app !== "string" || !Object.hasOwn(APPS, body.app)) {
+    return jsonres({ error: "unknown app" }, 400);
+  }
+  const app = APPS[body.app as keyof typeof APPS];
+
   try {
     if (body.action === "login") {
       const cached = body.binId && (await tryLogin(body.binId, body.padron));
       if (cached) return jsonres({ status: "ok", ...cached });
 
-      const index = await readIndex();
+      const index = await readIndex(app);
       const binId = index[body.padron];
       const found = binId && (await tryLogin(binId, body.padron));
       if (!found) return jsonres({ status: "notfound" });
@@ -150,7 +168,7 @@ export default async function handler(req: Request): Promise<Response> {
         return jsonres({ error: "bad request" }, 400);
       }
 
-      const index = await readIndex();
+      const index = await readIndex(app);
       if (index[body.padron]) {
         return jsonres({ error: "padron already registered" }, 409);
       }
@@ -160,7 +178,7 @@ export default async function handler(req: Request): Promise<Response> {
           method: "POST",
           headers: {
             "X-Bin-Name": body.padron,
-            "X-Collection-Id": JSONBIN_COLLECTION_ID,
+            "X-Collection-Id": app.collection,
           },
           body: JSON.stringify(body.record),
         }),
@@ -170,13 +188,18 @@ export default async function handler(req: Request): Promise<Response> {
       const { metadata } = await createRes.json();
       const binId = metadata.id as string;
 
-      await writeIndex(index, { padron: body.padron, binId });
+      await writeIndex(app, index, { padron: body.padron, binId });
       return jsonres({ status: "ok", binId, record: body.record });
     }
 
     if (body.action === "save") {
       if (!body.binId || !isValidRecord(body.record, body.padron)) {
         return jsonres({ error: "bad request" }, 400);
+      }
+
+      const index = await readIndex(app);
+      if (index[body.padron] !== body.binId) {
+        return jsonres({ error: "forbidden" }, 403);
       }
 
       ensureOk(
