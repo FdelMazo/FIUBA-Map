@@ -1,12 +1,17 @@
 import { Icon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
   Box,
+  LightMode,
   Link,
+  Tag,
+  TagLabel,
+  TagRightIcon,
   Tooltip,
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
-import Sugerencias from "./Sugerencias";
+import { FaUniversity } from "react-icons/fa";
+import Sugerencias, { BADGE_WIDTH } from "./Sugerencias";
 
 // Componente con links externos, setupeo de color mode y un toast para reportar bugs
 const Controls = () => {
@@ -65,6 +70,31 @@ const Controls = () => {
         </Link>
       </Tooltip>
       <Sugerencias />
+      <LightMode>
+        <Box>
+          <Link
+            isExternal
+            href="https://fede.dm/UBA-Map/"
+            _hover={{ textDecoration: "none" }}
+          >
+            <Tag
+              mt={2}
+              size={{ base: "sm", md: "md" }}
+              w={BADGE_WIDTH}
+              justifyContent="space-between"
+              variant="subtle"
+              bg="obligatorias.50"
+              color="headerbg"
+              fontWeight="bold"
+              transition="background 0.2s"
+              _hover={{ bg: "obligatorias.400" }}
+            >
+              <TagLabel>UBA-Map</TagLabel>
+              <TagRightIcon as={FaUniversity} />
+            </Tag>
+          </Link>
+        </Box>
+      </LightMode>
     </Box>
   );
 };
