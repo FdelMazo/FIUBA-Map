@@ -127,5 +127,11 @@ export const customTheme = extendTheme({
         content: { fontSize: "sm" },
       },
     },
+    // TagLabel trae noOfLines=1 (overflow hidden) y lineHeight 1.2: corta los descendentes (la g)
+    Tag: {
+      baseStyle: {
+        label: { lineHeight: "normal" },
+      },
+    },
   },
 });
