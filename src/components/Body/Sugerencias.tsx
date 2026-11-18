@@ -23,6 +23,8 @@ import React from "react";
 import { UserContext } from "../../MapContext";
 import { submitBug } from "../../dbutils";
 
+export const BADGE_WIDTH = { base: "106px", md: "128px" };
+
 // Toast para reportar bugs
 const Sugerencias = () => {
   const { user } = React.useContext(UserContext);
@@ -36,9 +38,13 @@ const Sugerencias = () => {
         <Tag
           mt={2}
           size={{ base: "sm", md: "md" }}
+          w={BADGE_WIDTH}
+          justifyContent="space-between"
           variant="subtle"
           cursor="pointer"
-          bg="#e9eaeb"
+          bg="gray.100"
+          transition="background 0.2s"
+          _hover={{ bg: "gray.200" }}
           onClick={() => {
             if (bugToast.current && toast.isActive(bugToast.current)) {
               toast.close(bugToast.current);
