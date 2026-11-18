@@ -53,42 +53,38 @@ const Promedio = () => {
         <PopoverArrow bg="electivas.500" />
         <PopoverBody>
           <Flex justifyContent="space-between" alignItems="center">
-            <Text fontSize="md" as={"span"}>
-              <strong>
-                Promedio con
-                <NumberInput
-                  display="inline-block"
-                  borderRadius={5}
-                  mx={2}
-                  size="xs"
-                  width="6ch"
-                  value={aplazos}
-                  min={0}
-                  onChange={(v) => setAplazos(parseFloat(v) || 0)}
-                >
-                  <NumberInputField
-                    _hover={{
-                      borderColor: "transparent",
-                    }}
-                    _focus={{
-                      borderColor: "transparent",
-                    }}
-                  />
-                  <NumberInputStepper>
-                    <NumberIncrementStepper />
-                    <NumberDecrementStepper />
-                  </NumberInputStepper>
-                </NumberInput>
-                aplazos
-              </strong>
+            <Text as={"span"} fontWeight="semibold">
+              Promedio con
+              <NumberInput
+                display="inline-block"
+                borderRadius={5}
+                mx={2}
+                size="xs"
+                width="3.25rem"
+                value={aplazos}
+                min={0}
+                onChange={(v) => setAplazos(parseFloat(v) || 0)}
+              >
+                <NumberInputField
+                  _hover={{
+                    borderColor: "transparent",
+                  }}
+                  _focus={{
+                    borderColor: "transparent",
+                  }}
+                />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+              aplazos
             </Text>
-            <Text fontSize="md">{promedio.promedioConAplazos}</Text>
+            <Text>{promedio.promedioConAplazos}</Text>
           </Flex>
           <Flex justifyContent="space-between" alignItems="center">
-            <Text fontSize="md">
-              <strong>Promedio con CBC</strong>
-            </Text>
-            <Text fontSize="md">{promedio.promedioConCBC}</Text>
+            <Text fontWeight="semibold">Promedio con CBC</Text>
+            <Text>{promedio.promedioConCBC}</Text>
           </Flex>
         </PopoverBody>
       </PopoverContent>

@@ -97,9 +97,7 @@ const ProgressBar = () => {
               <PopoverArrow bg="electivas.500" />
               <PopoverHeader border="none">
                 <Stat size="sm">
-                  <StatLabel>
-                    <strong>{c.nombre}</strong>
-                  </StatLabel>
+                  <StatLabel fontWeight="semibold">{c.nombre}</StatLabel>
                   {!c.dummy && (
                     <StatNumber fontWeight="normal" fontSize="md">
                       {c.creditos}

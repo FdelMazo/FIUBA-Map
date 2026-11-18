@@ -189,9 +189,10 @@ const Creditos = () => {
           >
             <Flex justifyContent="space-between">
               <Text mr={4} alignSelf="center">
-                <strong>
-                  Créditos por fuera del plan: {creditosOptativas}
-                </strong>
+                <Text as="span" fontWeight="semibold">
+                  Créditos por fuera del plan:{" "}
+                </Text>
+                <Text as="span">{creditosOptativas}</Text>
               </Text>
               <Flex gap={2}>
                 {optativas.length > 0 && (

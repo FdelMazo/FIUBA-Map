@@ -128,8 +128,12 @@ const UserMenu = () => {
             </MenuOptionGroup>
           )}
 
-          <MenuItem onClick={logout} icon={<BiLogOut size={"1.8em"} />}>
-            <strong>Cerrar Sesión</strong>
+          <MenuItem
+            onClick={logout}
+            icon={<BiLogOut size={"1.4em"} />}
+            fontWeight="semibold"
+          >
+            Cerrar Sesión
           </MenuItem>
         </MenuList>
       </Menu>
