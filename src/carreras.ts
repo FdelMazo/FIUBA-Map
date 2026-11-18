@@ -14,8 +14,8 @@ import { UserType } from "./types/User";
 // - Cada orientacion pide sus propios creditos, y cambia cuantos de electivas hay que hacer
 // - Las materias de las orientaciones no elegidas cuentan como electivas
 
-// Algunas carreras te hacen elegir entre tesis y tpp, otras no => `creditos.findecarrera`
-// Algunas carreras tienen materias que si o si necesitas para recibirte (practica profesional) => `creditos.materias`
+// Algunas carreras te hacen elegir entre tesis y tpp, otras no => `finDeCarrera`
+// Las que no te dejan elegir tienen un fin de carrera obligatorio (TIF, TPP...): el que no esta en `finDeCarrera`
 // Algunas carreras tienen cosas que no son materias que si o si necesitas para recibirte (examen de ingles) => `creditos.checkbox`
 
 // Informatica 1986 es la peor de todas. En base a las combinaciones de [orientacion,findecarrera], hay que hacer distinta cantidad de creditos de electivas
@@ -57,14 +57,6 @@ export const CARRERAS: UserType.Carrera[] = [
           nombrecorto: "Inglés",
           bg: COLORS.enfinal[50],
           color: "enfinal",
-        },
-      ],
-      materias: [
-        {
-          id: "95.61",
-          nombrecorto: "TPP",
-          bg: COLORS.findecarrera[50],
-          color: "findecarrera",
         },
       ],
     },
@@ -110,14 +102,6 @@ export const CARRERAS: UserType.Carrera[] = [
           color: "enfinal",
         },
       ],
-      materias: [
-        {
-          id: "TIF",
-          nombrecorto: "TIF",
-          bg: COLORS.findecarrera[50],
-          color: "findecarrera",
-        },
-      ],
     },
   },
   {
@@ -156,14 +140,6 @@ export const CARRERAS: UserType.Carrera[] = [
           color: "enfinal",
         },
       ],
-      materias: [
-        {
-          id: "TIF",
-          nombrecorto: "TIF",
-          bg: COLORS.findecarrera[50],
-          color: "findecarrera",
-        },
-      ],
     },
   },
   {
@@ -181,14 +157,6 @@ export const CARRERAS: UserType.Carrera[] = [
           color: "enfinal",
         },
       ],
-      materias: [
-        {
-          id: "TIF",
-          nombrecorto: "TIF",
-          bg: COLORS.findecarrera[50],
-          color: "findecarrera",
-        },
-      ],
     },
   },
   {
@@ -197,20 +165,6 @@ export const CARRERAS: UserType.Carrera[] = [
     ano: 2001,
     graph: require("./data/alimentos-2000.json"),
     creditos: {
-      materias: [
-        {
-          id: "76.44",
-          nombrecorto: "pp",
-          bg: COLORS.habilitadas[50],
-          color: "habilitadas",
-        },
-        {
-          id: "76.90",
-          nombrecorto: "tesis",
-          bg: COLORS.findecarrera[50],
-          color: "findecarrera",
-        },
-      ],
       electivas: 10,
     },
   },
@@ -229,14 +183,6 @@ export const CARRERAS: UserType.Carrera[] = [
           color: "enfinal",
         },
       ],
-      materias: [
-        {
-          id: "TIF",
-          nombrecorto: "TIF",
-          bg: COLORS.findecarrera[50],
-          color: "findecarrera",
-        },
-      ],
     },
   },
   {
@@ -246,14 +192,6 @@ export const CARRERAS: UserType.Carrera[] = [
     graph: require("./data/civil-2009.json"),
     creditos: {
       electivas: 34,
-      materias: [
-        {
-          id: "84.99",
-          nombrecorto: "TPP",
-          bg: COLORS.findecarrera[50],
-          color: "findecarrera",
-        },
-      ],
       checkbox: [
         {
           nombre: "Estadía Supervisada de al menos 200 horas",
@@ -283,14 +221,6 @@ export const CARRERAS: UserType.Carrera[] = [
           nombrecorto: "Inglés",
           bg: COLORS.enfinal[50],
           color: "enfinal",
-        },
-      ],
-      materias: [
-        {
-          id: "TIF",
-          nombrecorto: "TIF",
-          bg: COLORS.findecarrera[50],
-          color: "findecarrera",
         },
       ],
     },
@@ -337,14 +267,6 @@ export const CARRERAS: UserType.Carrera[] = [
           color: "enfinal",
         },
       ],
-      materias: [
-        {
-          id: "TIF",
-          nombrecorto: "TIF",
-          bg: COLORS.findecarrera[50],
-          color: "findecarrera",
-        },
-      ],
     },
   },
   {
@@ -387,14 +309,6 @@ export const CARRERAS: UserType.Carrera[] = [
           nombrecorto: "Inglés",
           bg: COLORS.enfinal[50],
           color: "enfinal",
-        },
-      ],
-      materias: [
-        {
-          id: "TIF",
-          nombrecorto: "TIF",
-          bg: COLORS.findecarrera[50],
-          color: "findecarrera",
         },
       ],
     },
@@ -441,14 +355,6 @@ export const CARRERAS: UserType.Carrera[] = [
           color: "enfinal",
         },
       ],
-      materias: [
-        {
-          id: "TIF",
-          nombrecorto: "TIF",
-          bg: COLORS.findecarrera[50],
-          color: "findecarrera",
-        },
-      ],
     },
   },
   {
@@ -488,14 +394,6 @@ export const CARRERAS: UserType.Carrera[] = [
           color: "enfinal",
         },
       ],
-      materias: [
-        {
-          id: "TIF",
-          nombrecorto: "TIF",
-          bg: COLORS.findecarrera[50],
-          color: "findecarrera",
-        },
-      ],
     },
   },
   {
@@ -518,14 +416,6 @@ export const CARRERAS: UserType.Carrera[] = [
     graph: require("./data/naval-2020.json"),
     creditos: {
       electivas: 18,
-      materias: [
-        {
-          id: "TIF",
-          nombrecorto: "TIF",
-          bg: COLORS.findecarrera[50],
-          color: "findecarrera",
-        },
-      ],
       checkbox: [
         {
           nombre: "Prueba de nivel de idioma inglés",
@@ -570,14 +460,6 @@ export const CARRERAS: UserType.Carrera[] = [
     graph: require("./data/petroleo-2020.json"),
     creditos: {
       electivas: 14,
-      materias: [
-        {
-          id: "TIF",
-          nombrecorto: "TIF",
-          bg: COLORS.findecarrera[50],
-          color: "findecarrera",
-        },
-      ],
       checkbox: [
         {
           nombre: "Prueba de nivel de idioma inglés",
@@ -614,14 +496,6 @@ export const CARRERAS: UserType.Carrera[] = [
           nombrecorto: "Inglés",
           bg: COLORS.enfinal[50],
           color: "enfinal",
-        },
-      ],
-      materias: [
-        {
-          id: "TIF",
-          nombrecorto: "TIF",
-          bg: COLORS.findecarrera[50],
-          color: "findecarrera",
         },
       ],
     },

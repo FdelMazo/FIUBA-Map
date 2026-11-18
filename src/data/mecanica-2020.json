@@ -355,7 +355,6 @@
     "requiereCBC": true,
     "categoria": "Materias Electivas"
   },
-
   {
     "id": "DMH",
     "materia": "Diseño de Máquinas Herramientas",
@@ -501,6 +500,6 @@
     "materia": "Trabajo Integrador Final",
     "creditos": 12,
     "correlativas": "PI-ISADS",
-    "categoria": "Fin de Carrera (Obligatorio)"
+    "categoria": "Fin de Carrera"
   }
 ]

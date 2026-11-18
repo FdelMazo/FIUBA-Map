@@ -2,13 +2,6 @@ import { GraphType } from "./Graph";
 import type { BgColor, ColorScheme } from "../theme";
 
 export namespace UserType {
-  interface MateriaCredito {
-    id: string;
-    nombrecorto: string;
-    bg: BgColor;
-    color: string;
-  }
-
   interface Checkbox {
     nombre: string;
     nombrecorto: string;
@@ -26,7 +19,6 @@ export namespace UserType {
   interface Creditos {
     electivas?: number | Electivas;
     checkbox?: Checkbox[];
-    materias?: MateriaCredito[];
     // Solo en las carreras que te hacen elegir orientacion. Las claves son los nombres de los grupos elegibles
     orientaciones?: { [nombre: string]: OrientacionCredito };
   }

@@ -348,7 +348,6 @@
     "requiereCBC": true,
     "categoria": "Materias Electivas"
   },
-
   {
     "id": "RSP",
     "materia": "Regulación de Servicios Públicos",
@@ -449,6 +448,6 @@
     "requiere": 150,
     "requiereCBC": true,
     "correlativas": "IBTL",
-    "categoria": "Fin de Carrera (Obligatorio)"
+    "categoria": "Fin de Carrera"
   }
 ]

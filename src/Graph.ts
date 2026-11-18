@@ -10,6 +10,7 @@ import {
   accCreditos,
   accCreditosNecesarios,
   accProportion,
+  getFinesDeCarreraObligatorios,
   getGrupo,
   getOrientacion,
 } from "./utils";
@@ -856,23 +857,16 @@ const Graph = (userContext: ReturnType<typeof User>) => {
       });
     }
 
-    // Despues, las materias obligatorias para recibirte (final de carrera obligatorio)
-    // Esto incluye los finales de carrera de las carreras que NO pueden elegir entre tesis/tpp
-    // OJO: si el día de mañana se quisiese dar un lugar especial a X materia,
-    //  por ejemplo: aprobar la materia electiva ingles cuenta como aprobar el examen de ingles
-    //  habria que asegurarse de que sus creditos no se doble cuenten en el total
-    if (user.carrera.creditos.materias)
-      user.carrera.creditos.materias.forEach((m) => {
-        const node = getNode(m.id);
-        creditos.push({
-          nombre: node.materia,
-          nombrecorto: m.nombrecorto,
-          color: m.color,
-          bg: m.bg,
-          creditosNecesarios: node.creditos,
-          creditos: node.aprobada ? node.creditos : 0,
-        });
+    // Despues, los finales de carrera obligatorios (los de las carreras que NO te dejan elegir entre tesis/tpp)
+    getFinesDeCarreraObligatorios(user.carrera).forEach((m) => {
+      const node = getNode(m.id);
+      creditos.push({
+        ...CREDITOS["Fin de Carrera"],
+        nombre: node.materia,
+        creditosNecesarios: node.creditos,
+        creditos: node.aprobada ? node.creditos : 0,
       });
+    });
 
     // Si la carrera tiene para elegir entre tesis y tpp, de la misma manera que las materias de arriba
     // agregamos el final de carrera que corresponda
@@ -882,7 +876,6 @@ const Graph = (userContext: ReturnType<typeof User>) => {
         creditos.push({
           ...CREDITOS["Fin de Carrera"],
           nombre: node.materia,
-          nombrecorto: user.finDeCarrera.id,
           creditosNecesarios: node.creditos,
           creditos: node.aprobada ? node.creditos : 0,
         });
@@ -1089,7 +1082,6 @@ const Graph = (userContext: ReturnType<typeof User>) => {
                 c !== "CBC" &&
                 c !== "*CBC" &&
                 c !== "Materias Obligatorias" &&
-                c !== "Fin de Carrera (Obligatorio)" &&
                 c !== "Fin de Carrera",
             )
         : [];
@@ -1167,7 +1159,6 @@ const Graph = (userContext: ReturnType<typeof User>) => {
               n.categoria !== "*CBC" &&
               n.categoria !== "Materias Obligatorias" &&
               n.categoria !== "Fin de Carrera" &&
-              n.categoria !== "Fin de Carrera (Obligatorio)" &&
               (!n.orientacion || n.orientacion !== user.orientacion?.nombre) &&
               n.aprobada &&
               n.nota >= 0,
@@ -1218,8 +1209,7 @@ const Graph = (userContext: ReturnType<typeof User>) => {
               !n.hidden &&
               n.categoria !== "CBC" &&
               n.categoria !== "*CBC" &&
-              n.categoria !== "Fin de Carrera" &&
-              n.categoria !== "Fin de Carrera (Obligatorio)",
+              n.categoria !== "Fin de Carrera",
           })
         : [],
     AllShownWithCuatri: () =>
@@ -1249,7 +1239,6 @@ const Graph = (userContext: ReturnType<typeof User>) => {
             filter: (n) =>
               n.categoria !== "Materias Electivas" &&
               n.categoria !== "Fin de Carrera" &&
-              n.categoria !== "Fin de Carrera (Obligatorio)" &&
               !n.hidden &&
               !n.cuatrimestre &&
               !n.originalLevel &&
@@ -1268,10 +1257,7 @@ const Graph = (userContext: ReturnType<typeof User>) => {
     Levels: () =>
       nodes
         ? nodes.get({
-            filter: (n) =>
-              !n.hidden &&
-              n.categoria !== "Fin de Carrera" &&
-              n.categoria !== "Fin de Carrera (Obligatorio)",
+            filter: (n) => !n.hidden && n.categoria !== "Fin de Carrera",
             fields: ["level"],
           })
         : [],
@@ -1279,10 +1265,7 @@ const Graph = (userContext: ReturnType<typeof User>) => {
       nodes
         ? nodes.get({
             filter: (n) =>
-              (n.categoria === "Fin de Carrera" ||
-                n.categoria === "Fin de Carrera (Obligatorio)") &&
-              !n.hidden &&
-              !n.cuatrimestre,
+              n.categoria === "Fin de Carrera" && !n.hidden && !n.cuatrimestre,
           })
         : [],
   };

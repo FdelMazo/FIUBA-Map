@@ -94,6 +94,15 @@ export const getOrientacion = (
   nombre: string | undefined,
 ) => getOrientaciones(carrera).find((o) => o.nombre === nombre);
 
+// Los finales de carrera obligatorios: los que no estan para elegir en `carrera.finDeCarrera`
+// (el TIF de los planes 2020)
+export const getFinesDeCarreraObligatorios = (carrera: UserType.Carrera) =>
+  carrera.graph.filter(
+    (m) =>
+      m.categoria === "Fin de Carrera" &&
+      !carrera.finDeCarrera?.some((f) => f.materia === m.id),
+  );
+
 // Creditos totales necesarios para recibirse en la carrera.
 // Cada plan tiene distintas combinaciones de orientacion y fin de carrera, pero
 // el total es el mismo para todas. Lo calculamos con la primera combinacion elegible, sin
@@ -119,7 +128,7 @@ export const getCreditosTotalesNecesarios = (carrera: UserType.Carrera) => {
     creditosCategoria("Materias Obligatorias") +
     creditosElectivas +
     (creditosOrientacion?.creditos ?? 0) +
-    (creditos.materias ?? []).reduce((acc, m) => acc + creditosDe(m.id), 0) +
+    getFinesDeCarreraObligatorios(carrera).reduce(accCreditos, 0) +
     (finDeCarrera ? creditosDe(finDeCarrera.materia) : 0)
   );
 };

@@ -109,13 +109,6 @@ export const GRUPOS = {
     size: 60,
     ctxRenderer: drawFinDeCarrera,
   },
-  "Fin de Carrera (Obligatorio)": {
-    color: COLORS.findecarrera[400],
-    label: "custom",
-    shape: "custom",
-    size: 60,
-    ctxRenderer: drawFinDeCarrera,
-  },
   ...Object.fromEntries(
     CARRERAS.flatMap(getGrupos).map((g) => [
       g.nombre,
@@ -187,7 +180,7 @@ export const CREDITOS = {
     bg: COLORS.electivas[50],
   },
   "Fin de Carrera": {
-    nombrecorto: "Tesis/TPP",
+    nombrecorto: "Fin de Carrera",
     nombre: "Fin de Carrera",
     color: "findecarrera",
     bg: COLORS.findecarrera[50],

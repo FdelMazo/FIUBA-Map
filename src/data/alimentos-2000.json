@@ -417,13 +417,14 @@
     "materia": "Práctica Profesional",
     "creditos": 4,
     "correlativas": "CEX1",
-    "categoria": "Fin de Carrera (Obligatorio)"
+    "categoria": "Materias Obligatorias",
+    "level": 9
   },
   {
     "id": "76.90",
     "materia": "Tesis de Grado de Ingeniería de Alimentos",
     "creditos": 12,
     "correlativas": "CEX1",
-    "categoria": "Fin de Carrera (Obligatorio)"
+    "categoria": "Fin de Carrera"
   }
 ]
