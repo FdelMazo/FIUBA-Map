@@ -1,21 +1,18 @@
 import { Badge, Flex, Tooltip, Text } from "@chakra-ui/react";
 import { QuestionIcon } from "@chakra-ui/icons";
 import React from "react";
-import { GraphContext, UserContext } from "../../MapContext";
+import { GraphContext } from "../../MapContext";
 
 // Cuando hay una materia seleccionada, te muestra el codigo, cuantos creditos da, etc
 const MateriaStatus = () => {
   const { getNode, displayedNode } = React.useContext(GraphContext);
-  const { user } = React.useContext(UserContext);
-  const isPlan2020 = user.carrera.ano === 2020;
-
   const node = React.useMemo(
     () => (displayedNode ? getNode(displayedNode) : undefined),
     [displayedNode, getNode],
   );
 
   // Para el tooltip nativo (hover) cuando el nombre queda cortado
-  const fullTitle = `${!isPlan2020 ? `[${node?.id}] ` : ""}${node?.materia}`;
+  const fullTitle = `[${node?.id}] ${node?.materia}`;
 
   // Mismo layout en todos los tamaños: "[codigo] nombre" en una linea (cortado si es largo)
   // y abajo los badges de creditos
@@ -28,11 +25,9 @@ const MateriaStatus = () => {
         color="white"
         title={fullTitle}
       >
-        {!isPlan2020 && (
-          <Text as="span" fontWeight="semibold">
-            [{node?.id}]
-          </Text>
-        )}{" "}
+        <Text as="span" fontWeight="semibold">
+          [{node?.id}]
+        </Text>{" "}
         {node?.materia}
       </Text>
 

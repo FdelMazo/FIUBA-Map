@@ -50,7 +50,7 @@
     "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
   },
   {
-    "id": "AM2",
+    "id": "CB001",
     "materia": "Análisis Matemático II",
     "creditos": 8,
     "correlativas": "CBC",
@@ -58,7 +58,7 @@
     "level": 1
   },
   {
-    "id": "QB",
+    "id": "CB040",
     "materia": "Química Básica",
     "creditos": 6,
     "correlativas": "CBC",
@@ -66,7 +66,7 @@
     "level": 1
   },
   {
-    "id": "FSP",
+    "id": "CB020",
     "materia": "Física de los Sistemas de Partículas",
     "creditos": 6,
     "correlativas": "CBC",
@@ -74,7 +74,7 @@
     "level": 1
   },
   {
-    "id": "IIM",
+    "id": "TB115",
     "materia": "Introducción a la Ingeniería Mecánica",
     "creditos": 4,
     "correlativas": "CBC",
@@ -82,23 +82,23 @@
     "level": 1
   },
   {
-    "id": "CMM",
+    "id": "TB099",
     "materia": "Conocimiento de Materiales Metálicos",
     "creditos": 6,
-    "correlativas": "QB",
+    "correlativas": "CB040",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "DM",
+    "id": "TB116",
     "materia": "Diseño Mecánico",
     "creditos": 4,
-    "correlativas": "IIM",
+    "correlativas": "TB115",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "AL",
+    "id": "CB002",
     "materia": "Álgebra Lineal",
     "creditos": 8,
     "correlativas": "CBC",
@@ -106,87 +106,87 @@
     "level": 2
   },
   {
-    "id": "MCCR",
+    "id": "TB117",
     "materia": "Mecánica Clásica del Cuerpo Rígido",
     "creditos": 6,
-    "correlativas": "FSP",
+    "correlativas": "CB020",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "MEC",
+    "id": "TB118",
     "materia": "Mecanismos",
     "creditos": 4,
-    "correlativas": "MCCR",
+    "correlativas": "TB117",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "ICD",
+    "id": "CB050",
     "materia": "Introducción a la Ciencia de Datos",
     "creditos": 3,
-    "correlativas": "AL",
+    "correlativas": "CB002",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "IMSD",
+    "id": "TB119",
     "materia": "Introducción a la Mecánica del Sólido Deformable",
     "creditos": 6,
-    "correlativas": "MCCR",
+    "correlativas": "TB117",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "TD",
+    "id": "TB120",
     "materia": "Termodinámica",
     "creditos": 6,
-    "correlativas": "QB",
+    "correlativas": "CB040",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "AM3",
+    "id": "CB005",
     "materia": "Análisis Matemático III",
     "creditos": 6,
-    "correlativas": "AM2",
+    "correlativas": "CB001",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "EM",
+    "id": "CB022",
     "materia": "Electricidad y Magnetismo",
     "creditos": 6,
-    "correlativas": "AM2-FSP",
+    "correlativas": "CB001-CB020",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "MN",
+    "id": "CB051",
     "materia": "Modelación Numérica",
     "creditos": 4,
-    "correlativas": "AM2-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "CMNM",
+    "id": "TB121",
     "materia": "Conocimiento de Materiales No Metálicos",
     "creditos": 6,
-    "correlativas": "QB",
+    "correlativas": "CB040",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "PROB",
+    "id": "CB003",
     "materia": "Probabilidad y Estadística",
     "creditos": 6,
-    "correlativas": "AM2-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "LEP",
+    "id": "TC002",
     "materia": "Legislación y Ejercicio Profesional",
     "creditos": 2,
     "requiere": 100,
@@ -195,71 +195,71 @@
     "level": 4
   },
   {
-    "id": "EI",
+    "id": "TB122",
     "materia": "Ensayos Industriales",
     "creditos": 4,
-    "correlativas": "IMSD-CMM",
+    "correlativas": "TB119-TB099",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "EG",
+    "id": "TB123",
     "materia": "Electrotecnia General",
     "creditos": 4,
-    "correlativas": "EM",
+    "correlativas": "CB022",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "EO",
+    "id": "TC001",
     "materia": "Economía y Organización",
     "creditos": 6,
-    "correlativas": "IIM",
+    "correlativas": "TB115",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "TMM",
+    "id": "TA201",
     "materia": "Taller de Manufactura Mecánica",
     "creditos": 4,
-    "correlativas": "CMM",
+    "correlativas": "TB099",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "MF",
+    "id": "TB124",
     "materia": "Mecánica de Fluidos",
     "creditos": 6,
-    "correlativas": "IMSD-TD-AM3",
+    "correlativas": "TB119-TB120-CB005",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "TE",
+    "id": "TB125",
     "materia": "Taller de Electrónica",
     "creditos": 3,
-    "correlativas": "EM",
+    "correlativas": "CB022",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "PI",
+    "id": "TB126",
     "materia": "Proyecto de Instrumentación",
     "creditos": 4,
-    "correlativas": "EO-PROB-DM",
+    "correlativas": "TC001-CB003-TB116",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "MT",
+    "id": "TB127",
     "materia": "Máquinas Térmicas",
     "creditos": 6,
-    "correlativas": "TD",
+    "correlativas": "TB120",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "ISADS",
+    "id": "TC005",
     "materia": "Impacto Social, Ambiental y Desarrollo Sustentable",
     "creditos": 4,
     "requiere": 100,
@@ -268,87 +268,87 @@
     "level": 6
   },
   {
-    "id": "TM",
+    "id": "TA202",
     "materia": "Tecnología Mecánica",
     "creditos": 6,
-    "correlativas": "TMM-CMNM",
+    "correlativas": "TA201-TB121",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "SA",
+    "id": "TB128",
     "materia": "Sistemas de Almacenamiento",
     "creditos": 6,
-    "correlativas": "EI",
+    "correlativas": "TB122",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "TCMI",
+    "id": "TA203",
     "materia": "Transferencia de Calor y Masa y sus Instalaciones",
     "creditos": 4,
-    "correlativas": "MF",
+    "correlativas": "TB124",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "DFEM",
+    "id": "TB129",
     "materia": "Daño y Fractura de Elementos Mecánicos",
     "creditos": 4,
-    "correlativas": "EI",
+    "correlativas": "TB122",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "ME",
+    "id": "TB130",
     "materia": "Máquinas Eléctricas",
     "creditos": 4,
-    "correlativas": "EG",
+    "correlativas": "TB123",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "SCA",
+    "id": "TA204",
     "materia": "Sistemas de Control y Automatización",
     "creditos": 6,
-    "correlativas": "TE-MCCR-AM3",
+    "correlativas": "TB125-TB117-CB005",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "TURM",
+    "id": "TA205",
     "materia": "Turbomáquinas",
     "creditos": 4,
-    "correlativas": "MF",
+    "correlativas": "TB124",
     "categoria": "Materias Obligatorias",
     "level": 8
   },
   {
-    "id": "PII",
+    "id": "TA206",
     "materia": "Proyecto de Instalaciones Industriales",
     "creditos": 6,
-    "correlativas": "MF-ME",
+    "correlativas": "TB124-TB130",
     "categoria": "Materias Obligatorias",
     "level": 8
   },
   {
-    "id": "ELEMM",
+    "id": "TA209",
     "materia": "Elementos de Máquinas",
     "creditos": 4,
-    "correlativas": "MEC-IMSD-MN",
+    "correlativas": "TB118-TB119-CB051",
     "categoria": "Materias Obligatorias",
     "level": 9
   },
   {
-    "id": "MC",
+    "id": "TA210",
     "materia": "Mantenimiento y Calidad",
     "creditos": 4,
-    "correlativas": "CMM-EO",
+    "correlativas": "TB099-TC001",
     "categoria": "Materias Obligatorias",
     "level": 9
   },
   {
-    "id": "PM",
+    "id": "TA211",
     "materia": "Proyecto de Máquinas",
     "creditos": 4,
     "requiere": 150,
@@ -356,7 +356,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "DMH",
+    "id": "TA212",
     "materia": "Diseño de Máquinas Herramientas",
     "creditos": 4,
     "requiere": 150,
@@ -364,7 +364,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CNC",
+    "id": "TA213",
     "materia": "Control Numérico Computarizado",
     "creditos": 3,
     "requiere": 150,
@@ -372,7 +372,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "COMB",
+    "id": "TA214",
     "materia": "Combustión",
     "creditos": 3,
     "requiere": 150,
@@ -380,7 +380,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TF",
+    "id": "TA215",
     "materia": "Tecnología del Frío",
     "creditos": 4,
     "requiere": 150,
@@ -388,7 +388,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TCA",
+    "id": "TA216",
     "materia": "Tecnología del Calor Avanzada",
     "creditos": 4,
     "requiere": 150,
@@ -396,7 +396,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TTS",
+    "id": "TB131",
     "materia": "Tratamientos Térmicos y de Superficie",
     "creditos": 4,
     "requiere": 150,
@@ -404,7 +404,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "MMA",
+    "id": "TB132",
     "materia": "Materiales Metálicos y sus Aplicaciones",
     "creditos": 4,
     "requiere": 150,
@@ -412,7 +412,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ODMO",
+    "id": "TA217",
     "materia": "Optimización de Diseños Mecánicos - Opdime",
     "creditos": 3,
     "requiere": 150,
@@ -420,7 +420,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IMCF",
+    "id": "TB133",
     "materia": "Introducción a la Mecánica Computacional en Fluidos",
     "creditos": 4,
     "requiere": 150,
@@ -428,7 +428,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IMCS",
+    "id": "TB134",
     "materia": "Introducción a la Mecánica Computacional en Sólidos",
     "creditos": 4,
     "requiere": 150,
@@ -436,7 +436,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ROBO",
+    "id": "TA218",
     "materia": "Robótica",
     "creditos": 3,
     "requiere": 150,
@@ -444,7 +444,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "VC",
+    "id": "TA146",
     "materia": "Visión por Computadora",
     "creditos": 4,
     "requiere": 150,
@@ -452,7 +452,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IBM",
+    "id": "TB135",
     "materia": "Introducción a los Biomateriales",
     "creditos": 4,
     "requiere": 150,
@@ -460,7 +460,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "SSBM",
+    "id": "TB136",
     "materia": "Simulación de Sistemas Biomecánicos",
     "creditos": 3,
     "requiere": 150,
@@ -468,38 +468,38 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IIA",
+    "id": "TB056",
     "materia": "Introducción a la Inteligencia Artificial",
     "creditos": 3,
-    "correlativas": "PROB-ICD",
+    "correlativas": "CB003-CB050",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AD",
+    "id": "TB057",
     "materia": "Análisis de Datos",
     "creditos": 3,
-    "correlativas": "PROB-ICD",
+    "correlativas": "CB003-CB050",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "APM",
+    "id": "TA108",
     "materia": "Aprendizaje de Máquina",
     "creditos": 3,
-    "correlativas": "AD-IIA",
+    "correlativas": "TB057-TB056",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "APMP",
+    "id": "TA109",
     "materia": "Aprendizaje de Máquina Profundo",
     "creditos": 3,
-    "correlativas": "AD-IIA",
+    "correlativas": "TB057-TB056",
     "categoria": "Materias Electivas"
   },
   {
     "id": "TIF",
     "materia": "Trabajo Integrador Final",
     "creditos": 12,
-    "correlativas": "PI-ISADS",
+    "correlativas": "TB126-TC005",
     "categoria": "Fin de Carrera"
   }
 ]

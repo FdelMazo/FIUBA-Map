@@ -50,7 +50,7 @@
     "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
   },
   {
-    "id": "AM2",
+    "id": "CB001",
     "materia": "Análisis Matemático II",
     "creditos": 8,
     "correlativas": "CBC",
@@ -58,7 +58,7 @@
     "level": 1
   },
   {
-    "id": "FSP",
+    "id": "CB020",
     "materia": "Física de los Sistemas de Partículas",
     "creditos": 6,
     "correlativas": "CBC",
@@ -66,7 +66,7 @@
     "level": 1
   },
   {
-    "id": "OPT",
+    "id": "CB021",
     "materia": "Óptica",
     "creditos": 2,
     "correlativas": "CBC",
@@ -74,7 +74,7 @@
     "level": 1
   },
   {
-    "id": "IIN",
+    "id": "TB146",
     "materia": "Introducción a la Ingeniería Naval",
     "creditos": 4,
     "correlativas": "CBC",
@@ -82,7 +82,7 @@
     "level": 1
   },
   {
-    "id": "MR",
+    "id": "CB109",
     "materia": "Medios de Representación",
     "creditos": 4,
     "correlativas": "CBC",
@@ -90,7 +90,7 @@
     "level": 1
   },
   {
-    "id": "AL",
+    "id": "CB002",
     "materia": "Álgebra Lineal",
     "creditos": 8,
     "correlativas": "CBC",
@@ -98,15 +98,15 @@
     "level": 2
   },
   {
-    "id": "EM",
+    "id": "CB022",
     "materia": "Electricidad y Magnetismo",
     "creditos": 6,
-    "correlativas": "AM2-FSP",
+    "correlativas": "CB001-CB020",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "QB",
+    "id": "CB040",
     "materia": "Química Básica",
     "creditos": 6,
     "correlativas": "CBC",
@@ -114,127 +114,127 @@
     "level": 2
   },
   {
-    "id": "EST",
+    "id": "TB036",
     "materia": "Estática",
     "creditos": 4,
-    "correlativas": "FSP",
+    "correlativas": "CB020",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "DNM",
+    "id": "TB147",
     "materia": "Dibujo Naval y Mecánico",
     "creditos": 4,
-    "correlativas": "MR-IIN",
+    "correlativas": "CB109-TB146",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "ICD",
+    "id": "CB050",
     "materia": "Introducción a la Ciencia de Datos",
     "creditos": 3,
-    "correlativas": "AL",
+    "correlativas": "CB002",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "MN",
+    "id": "CB051",
     "materia": "Modelación Numérica",
     "creditos": 4,
-    "correlativas": "AM2-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "RM",
+    "id": "TB037",
     "materia": "Resistencia de Materiales",
     "creditos": 8,
-    "correlativas": "AM2-EST",
+    "correlativas": "CB001-TB036",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "TD",
+    "id": "TB120",
     "materia": "Termodinámica",
     "creditos": 6,
-    "correlativas": "QB",
+    "correlativas": "CB040",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "CM",
+    "id": "TB148",
     "materia": "Conocimiento de Materiales",
     "creditos": 6,
-    "correlativas": "QB",
+    "correlativas": "CB040",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "EMIEE",
+    "id": "TB015",
     "materia": "Electrotecnia, Máquinas e Instalaciones Eléctricas",
     "creditos": 6,
-    "correlativas": "EM-IIN",
+    "correlativas": "CB022-TB146",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "EB",
+    "id": "TA238",
     "materia": "Estabilidad del Buque",
     "creditos": 6,
-    "correlativas": "EST-DNM",
+    "correlativas": "TB036-TB147",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "HS",
+    "id": "TC003",
     "materia": "Higiene y Seguridad",
     "creditos": 2,
-    "correlativas": "QB",
+    "correlativas": "CB040",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "MF",
+    "id": "TB124",
     "materia": "Mecánica de Fluidos",
     "creditos": 6,
-    "correlativas": "AL-TD-RM",
+    "correlativas": "CB002-TB120-TB037",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "TE",
+    "id": "TB149",
     "materia": "Teoría de Estructuras",
     "creditos": 6,
-    "correlativas": "AL-RM",
+    "correlativas": "CB002-TB037",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "DEB",
+    "id": "TA239",
     "materia": "Diseño de Estructuras de Buques",
     "creditos": 4,
-    "correlativas": "RM-EB",
+    "correlativas": "TB037-TA238",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "PROBA",
+    "id": "CB003",
     "materia": "Probabilidad y Estadística",
     "creditos": 6,
-    "correlativas": "AM2-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "SAN",
+    "id": "TA240",
     "materia": "Sistemas Auxiliares Navales",
     "creditos": 6,
-    "correlativas": "MF-DNM",
+    "correlativas": "TB124-TB147",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "ISA",
+    "id": "TC005",
     "materia": "Impacto Social, Ambiental y Desarrollo Sustentable",
     "creditos": 4,
     "requiere": 100,
@@ -243,95 +243,95 @@
     "level": 5
   },
   {
-    "id": "TELEC",
+    "id": "TB125",
     "materia": "Taller de Electrónica",
     "creditos": 3,
-    "correlativas": "EM-IIN",
+    "correlativas": "CB022-TB146",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "MEM",
+    "id": "TB150",
     "materia": "Mecanismos y Elementos de Máquinas",
     "creditos": 6,
-    "correlativas": "RM",
+    "correlativas": "TB037",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "RPB",
+    "id": "TA241",
     "materia": "Resistencia y Propulsión de Buques",
     "creditos": 6,
-    "correlativas": "EB-MF",
+    "correlativas": "TA238-TB124",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "SIOB",
+    "id": "TA242",
     "materia": "Sistemas Inherentes a la Operación del Buque",
     "creditos": 6,
-    "correlativas": "DEB-SAN",
+    "correlativas": "TA239-TA240",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "TA",
+    "id": "TA243",
     "materia": "Tecnología de Astilleros",
     "creditos": 4,
-    "correlativas": "SAN-DEB-CM",
+    "correlativas": "TA240-TA239-TB148",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "AEB",
+    "id": "TB151",
     "materia": "Análisis Estructural de Buques",
     "creditos": 6,
-    "correlativas": "DEB-TE-PROBA-MN",
+    "correlativas": "TA239-TB149-CB003-CB051",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "EO",
+    "id": "TC001",
     "materia": "Economía y Organización",
     "creditos": 6,
-    "correlativas": "IIN",
+    "correlativas": "TB146",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "MCCR",
+    "id": "TB117",
     "materia": "Mecánica Clásica del Cuerpo Rígido",
     "creditos": 6,
-    "correlativas": "FSP-AM2",
+    "correlativas": "CB020-CB001",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "PP",
+    "id": "TA244",
     "materia": "Plantas Propulsoras",
     "creditos": 6,
-    "correlativas": "MEM-SAN-EMIEE",
+    "correlativas": "TB150-TA240-TB015",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "PBM",
+    "id": "TA245",
     "materia": "Proyecto de Buques Mercantes",
     "creditos": 6,
-    "correlativas": "SIOB-PP-RPB",
+    "correlativas": "TA242-TA244-TA241",
     "categoria": "Materias Obligatorias",
     "level": 8
   },
   {
-    "id": "PA",
+    "id": "TA246",
     "materia": "Prácticas en Astilleros",
     "creditos": 6,
-    "correlativas": "TA-EO-HS",
+    "correlativas": "TA243-TC001-TC003",
     "categoria": "Materias Obligatorias",
     "level": 8
   },
   {
-    "id": "LEP",
+    "id": "TC002",
     "materia": "Legislación y Ejercicio Profesional",
     "creditos": 2,
     "requiere": 100,
@@ -340,78 +340,78 @@
     "level": 8
   },
   {
-    "id": "DESB",
+    "id": "TB152",
     "materia": "Dinámica de Estructuras de Buques",
     "creditos": 4,
-    "correlativas": "TE-MCCR",
+    "correlativas": "TB149-TB117",
     "categoria": "Materias Obligatorias",
     "level": 8
   },
   {
-    "id": "CAO",
+    "id": "TA249",
     "materia": "Comportamiento de Artefactos Oceánicos",
     "creditos": 4,
-    "correlativas": "RPB-PROBA",
+    "correlativas": "TA241-CB003",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "MCE",
+    "id": "TB153",
     "materia": "Maniobrabilidad y Control de Embarcaciones",
     "creditos": 4,
-    "correlativas": "RPB-PROBA",
+    "correlativas": "TA241-CB003",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AVE",
+    "id": "TA250",
     "materia": "Aprovechamiento del Viento para la Propulsión",
     "creditos": 2,
-    "correlativas": "RPB",
+    "correlativas": "TA241",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "MFCHN",
+    "id": "TB154",
     "materia": "Mecánica de Fluidos Computacional Aplicada a Hidrodinámica Naval",
     "creditos": 2,
-    "correlativas": "RPB-MN",
+    "correlativas": "TA241-CB051",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "MPN",
+    "id": "TA251",
     "materia": "Máquinas Propulsoras Navales",
     "creditos": 6,
-    "correlativas": "PP",
+    "correlativas": "TA244",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "DASAN",
+    "id": "TA252",
     "materia": "Diseño Avanzado de Sistemas Auxiliares Navales",
     "creditos": 3,
-    "correlativas": "SAN",
+    "correlativas": "TA240",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TEP",
+    "id": "TA253",
     "materia": "Transición Energética de la Propulsión",
     "creditos": 3,
-    "correlativas": "PP",
+    "correlativas": "TA244",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "PBTSM",
+    "id": "TA254",
     "materia": "Proyecto de Buques de Trabajo, Servicio y Militares",
     "creditos": 6,
-    "correlativas": "PBM",
+    "correlativas": "TA245",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "HAB",
+    "id": "TA255",
     "materia": "Habitabilidad",
     "creditos": 3,
-    "correlativas": "SIOB",
+    "correlativas": "TA242",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "DPN",
+    "id": "TA256",
     "materia": "Diseño de Puente de Navegación",
     "creditos": 3,
     "requiere": 180,
@@ -419,56 +419,56 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "GCAL",
+    "id": "TA024",
     "materia": "Gerenciamiento de la Calidad",
     "creditos": 4,
-    "correlativas": "EO",
+    "correlativas": "TC001",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CHCO",
+    "id": "TC013",
     "materia": "Capital Humano y Comportamiento Organizacional",
     "creditos": 4,
-    "correlativas": "EO",
+    "correlativas": "TC001",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CPS",
+    "id": "TA023",
     "materia": "Comercialización de Productos y Servicios",
     "creditos": 4,
-    "correlativas": "EO",
+    "correlativas": "TC001",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "EMPR",
+    "id": "TC015",
     "materia": "Emprendimientos en Ingeniería",
     "creditos": 4,
-    "correlativas": "EO",
+    "correlativas": "TC001",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "GFP",
+    "id": "TA020",
     "materia": "Gestión Financiera y Presupuestaria",
     "creditos": 4,
-    "correlativas": "EO",
+    "correlativas": "TC001",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "LOG",
+    "id": "TA025",
     "materia": "Logística y Supply Chain",
     "creditos": 4,
-    "correlativas": "EO",
+    "correlativas": "TC001",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IGP",
+    "id": "TA026",
     "materia": "Innovación y Gestión de Proyectos",
     "creditos": 4,
-    "correlativas": "EO",
+    "correlativas": "TC001",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ITE",
+    "id": "TC016",
     "materia": "Introducción a la Transición Energética",
     "creditos": 4,
     "requiere": 120,
@@ -476,7 +476,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "EREN",
+    "id": "TA039",
     "materia": "Energías Renovables",
     "creditos": 4,
     "requiere": 120,
@@ -484,7 +484,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "UEE",
+    "id": "TA040",
     "materia": "Uso Eficiente de la Energía",
     "creditos": 4,
     "requiere": 120,
@@ -492,7 +492,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "FCTE",
+    "id": "TA041",
     "materia": "Fuentes Convencionales en la Transición Energética",
     "creditos": 4,
     "requiere": 120,
@@ -500,7 +500,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TEEM",
+    "id": "TA042",
     "materia": "Tecnologías Emergentes en la Transición Energética",
     "creditos": 4,
     "requiere": 120,
@@ -508,7 +508,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AERO1",
+    "id": "TC025",
     "materia": "Introducción a la Industria, los Sistemas y el Negocio Aeroespacial",
     "creditos": 6,
     "requiere": 120,
@@ -516,52 +516,52 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "MATIA",
+    "id": "TB155",
     "materia": "Tecnología de Materiales para la Industria Aeroespacial A",
     "creditos": 2,
-    "correlativas": "CM",
+    "correlativas": "TB148",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "COMAERO",
+    "id": "TB156",
     "materia": "Comunicaciones Aeroespaciales A",
     "creditos": 4,
-    "correlativas": "PROBA-EM",
+    "correlativas": "CB003-CB022",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IA",
+    "id": "TB056",
     "materia": "Introducción a la Inteligencia Artificial",
     "creditos": 3,
-    "correlativas": "PROBA-ICD",
+    "correlativas": "CB003-CB050",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ADATOS",
+    "id": "TB057",
     "materia": "Análisis de Datos",
     "creditos": 3,
-    "correlativas": "PROBA-ICD",
+    "correlativas": "CB003-CB050",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ML",
+    "id": "TA108",
     "materia": "Aprendizaje de Máquina",
     "creditos": 3,
-    "correlativas": "ADATOS-IA",
+    "correlativas": "TB057-TB056",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "DML",
+    "id": "TA109",
     "materia": "Aprendizaje de Máquina Profundo",
     "creditos": 3,
-    "correlativas": "ADATOS-IA",
+    "correlativas": "TB057-TB056",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AM3",
+    "id": "CB005",
     "materia": "Análisis Matemático III",
     "creditos": 6,
-    "correlativas": "AM2-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Electivas"
   },
   {

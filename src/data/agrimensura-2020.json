@@ -50,7 +50,7 @@
     "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
   },
   {
-    "id": "AM2",
+    "id": "CB001",
     "materia": "Análisis Matemático II",
     "creditos": 8,
     "correlativas": "CBC",
@@ -58,7 +58,7 @@
     "level": 1
   },
   {
-    "id": "SDC",
+    "id": "CB104",
     "materia": "Sistemas de Coordenadas",
     "creditos": 4,
     "correlativas": "CBC",
@@ -66,7 +66,7 @@
     "level": 1
   },
   {
-    "id": "SROA",
+    "id": "CB105",
     "materia": "Sistemas de Representación Orientado a la Agrimensura",
     "creditos": 3,
     "correlativas": "CBC",
@@ -74,7 +74,7 @@
     "level": 1
   },
   {
-    "id": "DCT",
+    "id": "TB100",
     "materia": "Dibujo Cartográfico y Topográfico",
     "creditos": 4,
     "correlativas": "CBC",
@@ -82,7 +82,7 @@
     "level": 1
   },
   {
-    "id": "IIA",
+    "id": "TB101",
     "materia": "Introducción a la Ingeniería en Agrimensura",
     "creditos": 4,
     "correlativas": "CBC",
@@ -90,23 +90,23 @@
     "level": 1
   },
   {
-    "id": "PROBA",
+    "id": "CB003",
     "materia": "Probabilidad y Estadística",
     "creditos": 6,
-    "correlativas": "AM2-SDC",
+    "correlativas": "CB001-CB104",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "IT",
+    "id": "TB102",
     "materia": "Instrumental Topográfico",
     "creditos": 6,
-    "correlativas": "DCT",
+    "correlativas": "TB100",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "DA",
+    "id": "TB103",
     "materia": "Derecho para Agrimensura",
     "creditos": 4,
     "correlativas": "CBC",
@@ -114,63 +114,63 @@
     "level": 2
   },
   {
-    "id": "EO",
+    "id": "TC001",
     "materia": "Economía y Organización",
     "creditos": 6,
-    "correlativas": "IIA",
+    "correlativas": "TB101",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "EC",
+    "id": "TC031",
     "materia": "Elementos de Construcción",
     "creditos": 3,
-    "correlativas": "DCT",
+    "correlativas": "TB100",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "ICD",
+    "id": "CB050",
     "materia": "Introducción a la Ciencia de Datos",
     "creditos": 3,
-    "correlativas": "SDC",
+    "correlativas": "CB104",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "MT",
+    "id": "TB104",
     "materia": "Métodos Topográficos",
     "creditos": 6,
-    "correlativas": "IT-SROA",
+    "correlativas": "TB102-CB105",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "CC",
+    "id": "TB105",
     "materia": "Cálculo de Compensación",
     "creditos": 4,
-    "correlativas": "IT-PROBA",
+    "correlativas": "TB102-CB003",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "CAR",
+    "id": "TB106",
     "materia": "Cartografía",
     "creditos": 6,
-    "correlativas": "SDC",
+    "correlativas": "CB104",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "GAMP",
+    "id": "TA180",
     "materia": "Geodesia Astronómica y Mediciones Precisas",
     "creditos": 4,
-    "correlativas": "IT",
+    "correlativas": "TB102",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "FSP",
+    "id": "CB020",
     "materia": "Física de los Sistemas de Partículas",
     "creditos": 6,
     "correlativas": "CBC",
@@ -178,302 +178,302 @@
     "level": 4
   },
   {
-    "id": "RT",
+    "id": "TB107",
     "materia": "Relevamientos Topográficos",
     "creditos": 8,
-    "correlativas": "MT-CC",
+    "correlativas": "TB104-TB105",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "GGS",
+    "id": "TA181",
     "materia": "Geodesia Geométrica y Satelital",
     "creditos": 4,
-    "correlativas": "GAMP-MT",
+    "correlativas": "TA180-TB104",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "FOT",
+    "id": "TA182",
     "materia": "Fotogrametría",
     "creditos": 4,
-    "correlativas": "CAR-ICD",
+    "correlativas": "TB106-CB050",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "NMPH",
+    "id": "TA183",
     "materia": "Normativa de Mensura y Propiedad Horizontal",
     "creditos": 4,
-    "correlativas": "DA-IT",
+    "correlativas": "TB103-TB102",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "EYM",
+    "id": "CB022",
     "materia": "Electricidad y Magnetismo",
     "creditos": 6,
-    "correlativas": "AM2-FSP",
+    "correlativas": "CB001-CB020",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "GTG",
+    "id": "TA184",
     "materia": "Georreferenciación de Trabajos Topográficos y Geodésicos",
     "creditos": 8,
-    "correlativas": "RT-GGS-CAR",
+    "correlativas": "TB107-TA181-TB106",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "FD",
+    "id": "TA185",
     "materia": "Fotogrametría Digital",
     "creditos": 4,
-    "correlativas": "FOT",
+    "correlativas": "TA182",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "ALA",
+    "id": "TA186",
     "materia": "Aplicación Legal de la Agrimensura",
     "creditos": 4,
-    "correlativas": "NMPH-EO",
+    "correlativas": "TA183-TC001",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "GFG",
+    "id": "TC032",
     "materia": "Geografía Física y Geología",
     "creditos": 4,
-    "correlativas": "FSP",
+    "correlativas": "CB020",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "SIG",
+    "id": "TB108",
     "materia": "Sistemas de Información Geográfica",
     "creditos": 4,
-    "correlativas": "CAR",
+    "correlativas": "TB106",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "CAT",
+    "id": "TA187",
     "materia": "Catastro",
     "creditos": 4,
-    "correlativas": "NMPH",
+    "correlativas": "TA183",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "MNS",
+    "id": "TA188",
     "materia": "Mensuras",
     "creditos": 4,
-    "correlativas": "RT-NMPH",
+    "correlativas": "TB107-TA183",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "TAG",
+    "id": "TA189",
     "materia": "Teledetección para Agrimensura",
     "creditos": 4,
-    "correlativas": "CAR-EYM",
+    "correlativas": "TB106-CB022",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "IR",
+    "id": "TC033",
     "materia": "Información Rural",
     "creditos": 3,
-    "correlativas": "ALA",
+    "correlativas": "TA186",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "TO",
+    "id": "TC034",
     "materia": "Topografía de Obra",
     "creditos": 3,
-    "correlativas": "RT",
+    "correlativas": "TB107",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "MA",
+    "id": "TA190",
     "materia": "Mensuras Aplicadas",
     "creditos": 6,
-    "correlativas": "GTG-MNS-ALA",
+    "correlativas": "TA184-TA188-TA186",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "VAL",
+    "id": "TA191",
     "materia": "Valuaciones",
     "creditos": 3,
-    "correlativas": "CAT-EC",
+    "correlativas": "TA187-TC031",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "TIG",
+    "id": "TA192",
     "materia": "Tecnologías de Información Geoespacial",
     "creditos": 3,
-    "correlativas": "SIG",
+    "correlativas": "TB108",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "PUSYA",
+    "id": "TC035",
     "materia": "Planeamiento Urbano e Impacto Social y Ambiental",
     "creditos": 4,
-    "correlativas": "ALA",
+    "correlativas": "TA186",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "GE",
+    "id": "CB106",
     "materia": "Geoestadística",
     "creditos": 4,
-    "correlativas": "CC-ICD",
+    "correlativas": "TB105-CB050",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "SAS",
+    "id": "TC036",
     "materia": "Sistematización Agrícola y Saneamiento",
     "creditos": 4,
-    "correlativas": "MT",
+    "correlativas": "TB104",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TA",
+    "id": "TC037",
     "materia": "Teledetección Avanzada",
     "creditos": 4,
-    "correlativas": "TAG",
+    "correlativas": "TA189",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "OF",
+    "id": "TC038",
     "materia": "Oceanografía Física",
     "creditos": 4,
-    "correlativas": "FSP",
+    "correlativas": "CB020",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "LH",
+    "id": "TC039",
     "materia": "Levantamientos Hidrográficos",
     "creditos": 4,
-    "correlativas": "MT",
+    "correlativas": "TB104",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "DGO",
+    "id": "TA068",
     "materia": "Diseño Geométrico de Obras Lineales",
     "creditos": 3,
-    "correlativas": "RT",
+    "correlativas": "TB107",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "MG",
+    "id": "TA194",
     "materia": "Microgeodesia",
     "creditos": 4,
-    "correlativas": "GAMP-RT",
+    "correlativas": "TA180-TB107",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "HRPD",
+    "id": "TB109",
     "materia": "Herramientas para la Representación de Planos Digitales",
     "creditos": 4,
-    "correlativas": "DCT",
+    "correlativas": "TB100",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "GG",
+    "id": "CB102",
     "materia": "Geología General",
     "creditos": 6,
-    "correlativas": "GFG",
+    "correlativas": "TC032",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "GF",
+    "id": "TA195",
     "materia": "Geodesia Física",
     "creditos": 4,
-    "correlativas": "EYM-GGS",
+    "correlativas": "CB022-TA181",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CAMR",
+    "id": "TB110",
     "materia": "Cálculo Avanzado de Marcos de Referencia",
     "creditos": 4,
-    "correlativas": "GTG",
+    "correlativas": "TA184",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "GA",
+    "id": "TA196",
     "materia": "Geomagnetismo y Aeronomía",
     "creditos": 4,
-    "correlativas": "EYM",
+    "correlativas": "CB022",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "GC",
+    "id": "TA024",
     "materia": "Gerenciamiento de la Calidad",
     "creditos": 4,
-    "correlativas": "EO",
+    "correlativas": "TC001",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CHC",
+    "id": "TC013",
     "materia": "Capital Humano y Comportamiento Organizacional",
     "creditos": 4,
-    "correlativas": "EO",
+    "correlativas": "TC001",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CPS",
+    "id": "TA023",
     "materia": "Comercialización de Productos y Servicios",
     "creditos": 4,
-    "correlativas": "EO",
+    "correlativas": "TC001",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "EI",
+    "id": "TC015",
     "materia": "Emprendimientos en Ingeniería",
     "creditos": 4,
-    "correlativas": "EO",
+    "correlativas": "TC001",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IA",
+    "id": "TB056",
     "materia": "Introducción a la Inteligencia Artificial",
     "creditos": 3,
-    "correlativas": "PROBA-ICD",
+    "correlativas": "CB003-CB050",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AD",
+    "id": "TB057",
     "materia": "Análisis de Datos",
     "creditos": 3,
-    "correlativas": "PROBA-ICD",
+    "correlativas": "CB003-CB050",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AM",
+    "id": "TA108",
     "materia": "Aprendizaje de Máquina",
     "creditos": 3,
-    "correlativas": "AD-IA",
+    "correlativas": "TB057-TB056",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AMP",
+    "id": "TA109",
     "materia": "Aprendizaje de Máquina Profundo",
     "creditos": 3,
-    "correlativas": "AD-IA",
+    "correlativas": "TB057-TB056",
     "categoria": "Materias Electivas"
   },
   {
     "id": "TIF",
     "materia": "Trabajo Integrador Final",
     "creditos": 12,
-    "correlativas": "MNS",
+    "correlativas": "TA188",
     "categoria": "Fin de Carrera"
   }
 ]

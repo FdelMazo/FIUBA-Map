@@ -50,7 +50,7 @@
     "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
   },
   {
-    "id": "AM2",
+    "id": "CB001",
     "materia": "Análisis Matemático II",
     "creditos": 8,
     "correlativas": "CBC",
@@ -58,7 +58,7 @@
     "level": 1
   },
   {
-    "id": "QG",
+    "id": "CB103",
     "materia": "Química General",
     "creditos": 8,
     "correlativas": "CBC",
@@ -66,7 +66,7 @@
     "level": 1
   },
   {
-    "id": "IIQ",
+    "id": "TB087",
     "materia": "Introducción a Ingeniería Química",
     "creditos": 4,
     "correlativas": "CBC",
@@ -74,7 +74,7 @@
     "level": 1
   },
   {
-    "id": "AL",
+    "id": "CB002",
     "materia": "Álgebra Lineal",
     "creditos": 8,
     "correlativas": "CBC",
@@ -82,23 +82,23 @@
     "level": 2
   },
   {
-    "id": "QI",
+    "id": "TB088",
     "materia": "Química Inorgánica",
     "creditos": 6,
-    "correlativas": "QG",
+    "correlativas": "CB103",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "FPSQ",
+    "id": "TB089",
     "materia": "Fundamentos de Procesos Químicos",
     "creditos": 4,
-    "correlativas": "IIQ-QG",
+    "correlativas": "TB087-CB103",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "FSP",
+    "id": "CB020",
     "materia": "Física de los Sistemas de Partículas",
     "creditos": 6,
     "correlativas": "CBC",
@@ -106,15 +106,15 @@
     "level": 2
   },
   {
-    "id": "EM",
+    "id": "CB022",
     "materia": "Electricidad y Magnetismo",
     "creditos": 6,
-    "correlativas": "AM2-FSP",
+    "correlativas": "CB001-CB020",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "ON",
+    "id": "CB021",
     "materia": "Óptica",
     "creditos": 2,
     "correlativas": "CBC",
@@ -122,119 +122,119 @@
     "level": 3
   },
   {
-    "id": "MN",
+    "id": "CB051",
     "materia": "Modelación Numérica",
     "creditos": 4,
-    "correlativas": "AM2-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "TP",
+    "id": "TB090",
     "materia": "Termodinámica de los Procesos",
     "creditos": 8,
-    "correlativas": "AM2-FPSQ",
+    "correlativas": "CB001-TB089",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "QO",
+    "id": "TB091",
     "materia": "Química Orgánica",
     "creditos": 8,
-    "correlativas": "QI",
+    "correlativas": "TB088",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "PROBA",
+    "id": "CB003",
     "materia": "Probabilidad y Estadística",
     "creditos": 6,
-    "correlativas": "AM2-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "FT",
+    "id": "TA161",
     "materia": "Fenómenos de Transporte",
     "creditos": 8,
-    "correlativas": "TP",
+    "correlativas": "TB090",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "OUPTCM",
+    "id": "TA162",
     "materia": "Operaciones Unitarias de Transferencia de Cantidad de Movimiento y Energía",
     "creditos": 8,
-    "correlativas": "MN-FT",
+    "correlativas": "CB051-TA161",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "QFI",
+    "id": "TB092",
     "materia": "Química Física",
     "creditos": 6,
-    "correlativas": "TP-EM",
+    "correlativas": "TB090-CB022",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "ICD",
+    "id": "CB050",
     "materia": "Introducción a la Ciencia de Datos",
     "creditos": 3,
-    "correlativas": "AL",
+    "correlativas": "CB002",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "QAI",
+    "id": "TB093",
     "materia": "Química Analítica Instrumental",
     "creditos": 4,
-    "correlativas": "ON-QO-PROBA",
+    "correlativas": "CB021-TB091-CB003",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "LOP",
+    "id": "TA163",
     "materia": "Laboratorio de Operaciones y Procesos",
     "creditos": 4,
-    "correlativas": "OUPTCM",
+    "correlativas": "TA162",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "OUTM",
+    "id": "TA164",
     "materia": "Operaciones Unitarias de Transferencia de Materia",
     "creditos": 8,
-    "correlativas": "FT",
+    "correlativas": "TA161",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "IPP",
+    "id": "TA165",
     "materia": "Instalaciones de Plantas de Procesos",
     "creditos": 6,
-    "correlativas": "OUPTCM",
+    "correlativas": "TA162",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "DR",
+    "id": "TA166",
     "materia": "Diseño de Reactores",
     "creditos": 8,
-    "correlativas": "MN-QFI",
+    "correlativas": "CB051-TB092",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "DCP",
+    "id": "TA167",
     "materia": "Dinámica y Control de Procesos",
     "creditos": 8,
-    "correlativas": "OUPTCM-OUTM",
+    "correlativas": "TA162-TA164",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "EPPQ",
+    "id": "TC026",
     "materia": "Evaluación de Proyectos de Plantas Químicas",
     "creditos": 6,
     "requiere": 120,
@@ -243,31 +243,31 @@
     "level": 7
   },
   {
-    "id": "IBP",
+    "id": "TA168",
     "materia": "Ingeniería de Bioprocesos",
     "creditos": 6,
-    "correlativas": "DR-QO",
+    "correlativas": "TA166-TB091",
     "categoria": "Materias Obligatorias",
     "level": 8
   },
   {
-    "id": "DP",
+    "id": "TA169",
     "materia": "Diseño de Procesos",
     "creditos": 6,
-    "correlativas": "OUTM",
+    "correlativas": "TA164",
     "categoria": "Materias Obligatorias",
     "level": 8
   },
   {
-    "id": "ECQB",
+    "id": "TC027",
     "materia": "Emisiones de Contaminantes Químicos y Biológicos",
     "creditos": 6,
-    "correlativas": "OUTM",
+    "correlativas": "TA164",
     "categoria": "Materias Obligatorias",
     "level": 8
   },
   {
-    "id": "LEP",
+    "id": "TC002",
     "materia": "Legislación y Ejercicio Profesional",
     "creditos": 2,
     "requiere": 100,
@@ -276,7 +276,7 @@
     "level": 8
   },
   {
-    "id": "TMEC",
+    "id": "TA172",
     "materia": "Tecnologías para la Mitigación de Emisiones de Carbono",
     "creditos": 4,
     "requiere": 140,
@@ -284,49 +284,49 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IEEP",
+    "id": "TA173",
     "materia": "Integración y Eficiencia Energética de Procesos",
     "creditos": 6,
-    "correlativas": "OUPTCM",
+    "correlativas": "TA162",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "HVYAAI",
+    "id": "TA174",
     "materia": "Hidrógeno como Vector Energético y Aplicaciones Industriales",
     "creditos": 4,
-    "correlativas": "FT-QFI",
+    "correlativas": "TA161-TB092",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "BIO",
+    "id": "TB094",
     "materia": "Biopolímeros",
     "creditos": 4,
-    "correlativas": "FT",
+    "correlativas": "TA161",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "DARQ",
+    "id": "TA175",
     "materia": "Diseño Avanzado de Reactores Químicos",
     "creditos": 6,
-    "correlativas": "DR",
+    "correlativas": "TA166",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "BI",
+    "id": "TA176",
     "materia": "Bioprocesos Industriales",
     "creditos": 4,
-    "correlativas": "IBP",
+    "correlativas": "TA168",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "MI",
+    "id": "TB095",
     "materia": "Microbiología Industrial",
     "creditos": 4,
-    "correlativas": "QO",
+    "correlativas": "TB091",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IPI",
+    "id": "TC028",
     "materia": "Introducción a la Planificación Interactiva",
     "creditos": 4,
     "requiere": 120,
@@ -334,28 +334,28 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "GR",
+    "id": "TC029",
     "materia": "Gestión de Recursos",
     "creditos": 4,
-    "correlativas": "EPPQ",
+    "correlativas": "TC026",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CEP",
+    "id": "TA177",
     "materia": "Control Estadístico de Procesos",
     "creditos": 6,
-    "correlativas": "PROBA",
+    "correlativas": "CB003",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "SSDE",
+    "id": "TC030",
     "materia": "Seis Sigma y Diseño de Experimentos",
     "creditos": 6,
-    "correlativas": "PROBA",
+    "correlativas": "CB003",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ITE",
+    "id": "TC016",
     "materia": "Introducción a la Transición Energética",
     "creditos": 4,
     "requiere": 120,
@@ -363,7 +363,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ER",
+    "id": "TA039",
     "materia": "Energías Renovables",
     "creditos": 4,
     "requiere": 120,
@@ -371,7 +371,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "UEE",
+    "id": "TA040",
     "materia": "Uso Eficiente de la Energía",
     "creditos": 4,
     "requiere": 120,
@@ -379,7 +379,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "FCTE",
+    "id": "TA041",
     "materia": "Fuentes Convencionales en la Transición Energética",
     "creditos": 4,
     "requiere": 120,
@@ -387,7 +387,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TETE",
+    "id": "TA042",
     "materia": "Tecnologías Emergentes en la Transición Energética",
     "creditos": 4,
     "requiere": 120,
@@ -395,52 +395,52 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TE",
+    "id": "TB096",
     "materia": "Termodinámica Estadística",
     "creditos": 6,
-    "correlativas": "QFI",
+    "correlativas": "TB092",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TNE",
+    "id": "TB097",
     "materia": "Termodinámica de No-Equilibrio",
     "creditos": 4,
-    "correlativas": "FT-QFI",
+    "correlativas": "TA161-TB092",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "EQ",
+    "id": "TB098",
     "materia": "Electroquímica",
     "creditos": 6,
-    "correlativas": "FT-QFI",
+    "correlativas": "TA161-TB092",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IQP",
+    "id": "TA178",
     "materia": "Industrias Químicas y Petroquímica",
     "creditos": 4,
-    "correlativas": "OUTM",
+    "correlativas": "TA164",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IA",
+    "id": "TA179",
     "materia": "Industrias Alimentarias",
     "creditos": 4,
-    "correlativas": "OUPTCM",
+    "correlativas": "TA162",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CM1",
+    "id": "TB148",
     "materia": "Conocimiento de Materiales I",
     "creditos": 6,
-    "correlativas": "QI",
+    "correlativas": "TB088",
     "categoria": "Materias Electivas"
   },
   {
     "id": "TIF",
     "materia": "Trabajo Integrador Final",
     "creditos": 12,
-    "correlativas": "LOP-EPPQ-DCP",
+    "correlativas": "TA163-TC026-TA167",
     "categoria": "Fin de Carrera"
   }
 ]

@@ -50,7 +50,7 @@
     "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
   },
   {
-    "id": "AM2",
+    "id": "CB001",
     "materia": "Análisis Matemático II",
     "creditos": 8,
     "correlativas": "CBC",
@@ -58,7 +58,7 @@
     "level": 1
   },
   {
-    "id": "FSP",
+    "id": "CB020",
     "materia": "Física de los Sistemas de Partículas",
     "creditos": 6,
     "correlativas": "CBC",
@@ -66,7 +66,7 @@
     "level": 1
   },
   {
-    "id": "IEP",
+    "id": "TB058",
     "materia": "Introducción a la Ingeniería en Petróleo",
     "creditos": 6,
     "correlativas": "CBC",
@@ -74,7 +74,7 @@
     "level": 1
   },
   {
-    "id": "AL",
+    "id": "CB002",
     "materia": "Álgebra Lineal",
     "creditos": 8,
     "correlativas": "CBC",
@@ -82,7 +82,7 @@
     "level": 2
   },
   {
-    "id": "GG",
+    "id": "CB102",
     "materia": "Geología General",
     "creditos": 6,
     "correlativas": "CBC",
@@ -90,7 +90,7 @@
     "level": 2
   },
   {
-    "id": "QB",
+    "id": "CB040",
     "materia": "Química Básica",
     "creditos": 6,
     "correlativas": "CBC",
@@ -98,238 +98,238 @@
     "level": 2
   },
   {
-    "id": "EYM",
+    "id": "CB022",
     "materia": "Electricidad y Magnetismo",
     "creditos": 6,
-    "correlativas": "AM2-FSP",
+    "correlativas": "CB001-CB020",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "FHH",
+    "id": "TB059",
     "materia": "Fluidodinámica de los Hidrocarburos",
     "creditos": 6,
-    "correlativas": "AM2-FSP",
+    "correlativas": "CB001-CB020",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "PROBA",
+    "id": "CB003",
     "materia": "Probabilidad y Estadística",
     "creditos": 6,
-    "correlativas": "AM2-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "QH",
+    "id": "TB060",
     "materia": "Química de los Hidrocarburos",
     "creditos": 6,
-    "correlativas": "QB",
+    "correlativas": "CB040",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "ICD",
+    "id": "CB050",
     "materia": "Introducción a la Ciencia de Datos",
     "creditos": 3,
-    "correlativas": "AL",
+    "correlativas": "CB002",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "EO",
+    "id": "TC001",
     "materia": "Economía y Organización",
     "creditos": 6,
-    "correlativas": "IEP",
+    "correlativas": "TB058",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "GF",
+    "id": "TA110",
     "materia": "Geofísica",
     "creditos": 4,
-    "correlativas": "FSP-IEP-GG",
+    "correlativas": "CB020-TB058-CB102",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "MN",
+    "id": "CB051",
     "materia": "Modelación Numérica",
     "creditos": 4,
-    "correlativas": "AM2-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "TH",
+    "id": "TB061",
     "materia": "Termodinámica de los Hidrocarburos",
     "creditos": 6,
-    "correlativas": "AM2-FSP-QB",
+    "correlativas": "CB001-CB020-CB040",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "EMIE",
+    "id": "TB015",
     "materia": "Electrotecnia, Máquinas e Instalaciones Eléctricas",
     "creditos": 6,
-    "correlativas": "EYM",
+    "correlativas": "CB022",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "ERM",
+    "id": "TB011",
     "materia": "Estática y Resistencia de Materiales",
     "creditos": 6,
-    "correlativas": "AM2-FSP",
+    "correlativas": "CB001-CB020",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "GH",
+    "id": "TB062",
     "materia": "Geología de los Hidrocarburos",
     "creditos": 6,
-    "correlativas": "FSP-IEP-GG",
+    "correlativas": "CB020-TB058-CB102",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "PRRF",
+    "id": "TA111",
     "materia": "Propiedades de la Roca y los Fluidos de Reservorios",
     "creditos": 6,
-    "correlativas": "TH-GG",
+    "correlativas": "TB061-CB102",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "IR",
+    "id": "TA112",
     "materia": "Ingeniería de Reservorios",
     "creditos": 8,
-    "correlativas": "MN-GH-PRRF",
+    "correlativas": "CB051-TB062-TA111",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "PI1",
+    "id": "TA113",
     "materia": "Perforación e Intervención de Pozos I",
     "creditos": 4,
-    "correlativas": "IEP-GG-FHH",
+    "correlativas": "TB058-CB102-TB059",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "PHY",
+    "id": "TA114",
     "materia": "Procesamiento de Hidrocarburos en Yacimiento",
     "creditos": 6,
-    "correlativas": "QH-TH-FHH",
+    "correlativas": "TB060-TB061-TB059",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "SPH",
+    "id": "TC022",
     "materia": "Sustentabilidad de Proyectos de Hidrocarburos",
     "creditos": 8,
-    "correlativas": "EO",
+    "correlativas": "TC001",
     "requiere": 130,
     "requiereCBC": true,
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "IRP",
+    "id": "TA115",
     "materia": "Interpretación de Registro de Pozos",
     "creditos": 4,
-    "correlativas": "GH-GF-PRRF-PI1",
+    "correlativas": "TB062-TA110-TA111-TA113",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "PI2",
+    "id": "TA116",
     "materia": "Perforación e Intervención de Pozos II",
     "creditos": 4,
-    "correlativas": "PI1-ERM",
+    "correlativas": "TA113-TB011",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "PH",
+    "id": "TA117",
     "materia": "Producción de Hidrocarburos",
     "creditos": 4,
-    "correlativas": "EMIE-PRRF-PI1",
+    "correlativas": "TB015-TA111-TA113",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "PIS",
+    "id": "TA118",
     "materia": "Proyecto de Instalaciones de Superficie",
     "creditos": 8,
-    "correlativas": "EMIE-ERM-PHY",
+    "correlativas": "TB015-TB011-TA114",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "EDF",
+    "id": "TA119",
     "materia": "Estimulación de Formaciones",
     "creditos": 4,
-    "correlativas": "PI2",
+    "correlativas": "TA116",
     "categoria": "Materias Obligatorias",
     "level": 8
   },
   {
-    "id": "IRNC",
+    "id": "TA120",
     "materia": "Ingeniería de Reservorios No Convencionales",
     "creditos": 4,
-    "correlativas": "IR",
+    "correlativas": "TA112",
     "categoria": "Materias Obligatorias",
     "level": 8
   },
   {
-    "id": "RSAP",
+    "id": "TA121",
     "materia": "Recuperación Secundaria y Asistida de Petróleo",
     "creditos": 4,
-    "correlativas": "IR-QH",
+    "correlativas": "TA112-TB060",
     "categoria": "Materias Obligatorias",
     "level": 8
   },
   {
-    "id": "IH",
+    "id": "TA123",
     "materia": "Industrialización de los Hidrocarburos",
     "creditos": 4,
-    "correlativas": "QH-TH",
+    "correlativas": "TB060-TB061",
     "categoria": "Materias Obligatorias",
     "level": 9
   },
   {
-    "id": "TDH",
+    "id": "TA124",
     "materia": "Transporte y Distribución de Hidrocarburos",
     "creditos": 4,
-    "correlativas": "ERM-TH-FHH",
+    "correlativas": "TB011-TB061-TB059",
     "categoria": "Materias Obligatorias",
     "level": 9
   },
   {
-    "id": "MR",
+    "id": "TA126",
     "materia": "Modelado de Reservorios",
     "creditos": 4,
-    "correlativas": "IR",
+    "correlativas": "TA112",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "MERP",
+    "id": "TA127",
     "materia": "Métodos EOR para Recuperación de Petróleo",
     "creditos": 4,
-    "correlativas": "IR",
+    "correlativas": "TA112",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "EPO",
+    "id": "TA128",
     "materia": "Exploración y Producción Offshore",
     "creditos": 4,
-    "correlativas": "IR-PH-SPH",
+    "correlativas": "TA112-TA117-TC022",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ITE",
+    "id": "TC016",
     "materia": "Introducción a la Transición Energética",
     "creditos": 4,
     "requiere": 120,
@@ -337,7 +337,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ER",
+    "id": "TA039",
     "materia": "Energías Renovables",
     "creditos": 4,
     "requiere": 120,
@@ -345,7 +345,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "UEE",
+    "id": "TA040",
     "materia": "Uso Eficiente de la Energía",
     "creditos": 4,
     "requiere": 120,
@@ -353,7 +353,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "FCTE",
+    "id": "TA041",
     "materia": "Fuentes Convencionales en la Transición Energética",
     "creditos": 4,
     "requiere": 120,
@@ -361,7 +361,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TETE",
+    "id": "TA042",
     "materia": "Tecnologías Emergentes en la Transición Energética",
     "creditos": 4,
     "requiere": 120,
@@ -369,73 +369,73 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "GC",
+    "id": "TA024",
     "materia": "Gerenciamiento de la Calidad",
     "creditos": 4,
-    "correlativas": "EO",
+    "correlativas": "TC001",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CHCO",
+    "id": "TC013",
     "materia": "Capital Humano y Comportamiento Organizacional",
     "creditos": 4,
-    "correlativas": "EO",
+    "correlativas": "TC001",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CPYS",
+    "id": "TA023",
     "materia": "Comercialización de Productos y Servicios",
     "creditos": 4,
-    "correlativas": "EO",
+    "correlativas": "TC001",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "EI",
+    "id": "TC015",
     "materia": "Emprendimientos en Ingeniería",
     "creditos": 4,
-    "correlativas": "EO",
+    "correlativas": "TC001",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IA",
+    "id": "TB056",
     "materia": "Introducción a la Inteligencia Artificial",
     "creditos": 3,
-    "correlativas": "PROBA-ICD",
+    "correlativas": "CB003-CB050",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AD",
+    "id": "TB057",
     "materia": "Análisis de Datos",
     "creditos": 3,
-    "correlativas": "PROBA-ICD",
+    "correlativas": "CB003-CB050",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AM",
+    "id": "TA108",
     "materia": "Aprendizaje de Máquina",
     "creditos": 3,
-    "correlativas": "IA-AD",
+    "correlativas": "TB056-TB057",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AMP",
+    "id": "TA109",
     "materia": "Aprendizaje de Máquina Profundo",
     "creditos": 3,
-    "correlativas": "IA-AD",
+    "correlativas": "TB056-TB057",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IAEP",
+    "id": "TA129",
     "materia": "Inteligencia Artificial en la Exploración y Producción de Hidrocarburos",
     "creditos": 3,
-    "correlativas": "IA-AD",
+    "correlativas": "TB056-TB057",
     "categoria": "Materias Electivas"
   },
   {
     "id": "TIF",
     "materia": "Trabajo Integrador Final",
     "creditos": 12,
-    "correlativas": "IR-PROBA-SPH-PH-PIS",
+    "correlativas": "TA112-CB003-TC022-TA117-TA118",
     "categoria": "Fin de Carrera"
   }
 ]

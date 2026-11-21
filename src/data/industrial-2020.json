@@ -50,7 +50,7 @@
     "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
   },
   {
-    "id": "AMII",
+    "id": "CB001",
     "materia": "Análisis Matemático II",
     "creditos": 8,
     "correlativas": "CBC",
@@ -58,7 +58,7 @@
     "level": 1
   },
   {
-    "id": "FSP",
+    "id": "CB020",
     "materia": "Física de los Sistemas de Partículas",
     "creditos": 6,
     "correlativas": "CBC",
@@ -66,7 +66,7 @@
     "level": 1
   },
   {
-    "id": "PII",
+    "id": "TB010",
     "materia": "Principios de Ingeniería Industrial",
     "creditos": 6,
     "correlativas": "CBC",
@@ -74,7 +74,7 @@
     "level": 1
   },
   {
-    "id": "QB",
+    "id": "CB040",
     "materia": "Química Básica",
     "creditos": 6,
     "correlativas": "CBC",
@@ -82,7 +82,7 @@
     "level": 2
   },
   {
-    "id": "AL",
+    "id": "CB002",
     "materia": "Álgebra Lineal",
     "creditos": 8,
     "correlativas": "CBC",
@@ -90,119 +90,119 @@
     "level": 2
   },
   {
-    "id": "ERM",
+    "id": "TB011",
     "materia": "Estática y Resistencia de Materiales",
     "creditos": 6,
-    "correlativas": "AMII-FSP",
+    "correlativas": "CB001-CB020",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "ODE",
+    "id": "TA010",
     "materia": "Organización y Dirección Empresaria",
     "creditos": 6,
-    "correlativas": "PII",
+    "correlativas": "TB010",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "PROBA",
+    "id": "CB004",
     "materia": "Probabilidad",
     "creditos": 6,
-    "correlativas": "AMII",
+    "correlativas": "CB001",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "ECO",
+    "id": "TC010",
     "materia": "Economía",
     "creditos": 6,
-    "correlativas": "AMII-PII",
+    "correlativas": "CB001-TB010",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "TDE",
+    "id": "TB013",
     "materia": "Transformación de la Energía",
     "creditos": 8,
-    "correlativas": "AMII-FSP-QB",
+    "correlativas": "CB001-CB020-CB040",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "MAI",
+    "id": "TB012",
     "materia": "Materiales y Aplicaciones I",
     "creditos": 6,
-    "correlativas": "QB-ERM-PII",
+    "correlativas": "CB040-TB011-TB010",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "EYM",
+    "id": "CB022",
     "materia": "Electricidad y Magnetismo",
     "creditos": 6,
-    "correlativas": "AMII-FSP",
+    "correlativas": "CB001-CB020",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "DE",
+    "id": "TC011",
     "materia": "Desarrollo Económico",
     "creditos": 4,
-    "correlativas": "ECO",
+    "correlativas": "TC010",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "EA",
+    "id": "TB014",
     "materia": "Estadística Aplicada",
     "creditos": 8,
-    "correlativas": "PROBA",
+    "correlativas": "CB004",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "GICV",
+    "id": "TA011",
     "materia": "Gestión Integral de la Cadena de Valor",
     "creditos": 8,
-    "correlativas": "ODE",
+    "correlativas": "TA010",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "EMIE",
+    "id": "TB015",
     "materia": "Electrotecnia, Máquinas e Instalaciones Eléctricas",
     "creditos": 6,
-    "correlativas": "EYM",
+    "correlativas": "CB022",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "INVOP",
+    "id": "TA012",
     "materia": "Investigación Operativa",
     "creditos": 8,
-    "correlativas": "AL-PROBA",
+    "correlativas": "CB002-CB004",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "SCGC",
+    "id": "TA013",
     "materia": "Sistemas Contables y Gestión de Costos",
     "creditos": 4,
-    "correlativas": "ECO-GICV",
+    "correlativas": "TC010-TA011",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "INDDIG",
+    "id": "TC012",
     "materia": "Industrias Digitales",
     "creditos": 4,
-    "correlativas": "EA",
+    "correlativas": "TB014",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "IASCP",
+    "id": "TC004",
     "materia": "Ingeniería Ambiental, Sustentabilidad y Cuidado del Planeta",
     "creditos": 4,
     "requiere": 100,
@@ -211,39 +211,39 @@
     "level": 5
   },
   {
-    "id": "INGECO",
+    "id": "TA014",
     "materia": "Ingeniería Económica",
     "creditos": 4,
-    "correlativas": "DE-SCGC",
+    "correlativas": "TC011-TA013",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "ESAI",
+    "id": "TB016",
     "materia": "Equipos y Sistemas para Automatización Industrial",
     "creditos": 6,
-    "correlativas": "EMIE-MAI",
+    "correlativas": "TB015-TB012",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "INDQUI",
+    "id": "TA015",
     "materia": "Industrias Químicas",
     "creditos": 4,
-    "correlativas": "TDE-MAI",
+    "correlativas": "TB013-TB012",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "TDM",
+    "id": "TB017",
     "materia": "Transformación de Materiales",
     "creditos": 8,
-    "correlativas": "MAI",
+    "correlativas": "TB012",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "HYS",
+    "id": "TC003",
     "materia": "Higiene y Seguridad",
     "creditos": 2,
     "requiere": 100,
@@ -252,23 +252,23 @@
     "level": 6
   },
   {
-    "id": "INDEXT",
+    "id": "TA016",
     "materia": "Industrias Extractivas",
     "creditos": 4,
-    "correlativas": "TDE-MAI",
+    "correlativas": "TB013-TB012",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "PROYIND",
+    "id": "TA017",
     "materia": "Proyecto Industrial",
     "creditos": 8,
-    "correlativas": "EMIE-TDE-MAI-HYS-IASCP",
+    "correlativas": "TB015-TB013-TB012-TC003-TC004",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "EJPROF",
+    "id": "TC002",
     "materia": "Legislación y Ejercicio Profesional",
     "creditos": 2,
     "requiere": 100,
@@ -277,84 +277,84 @@
     "level": 8
   },
   {
-    "id": "GFP",
+    "id": "TA020",
     "materia": "Gestión Financiera y Presupuestaria",
     "creditos": 4,
-    "correlativas": "SCGC",
+    "correlativas": "TA013",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ADC",
+    "id": "TA021",
     "materia": "Análisis de Casos",
     "creditos": 4,
-    "correlativas": "INVOP",
+    "correlativas": "TA012",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CDTD",
+    "id": "TB018",
     "materia": "Ciencia de Datos para la Toma de Decisiones",
     "creditos": 4,
-    "correlativas": "EA",
+    "correlativas": "TB014",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "EAS",
+    "id": "TB019",
     "materia": "Estadística Aplicada Superior",
     "creditos": 4,
-    "correlativas": "EA",
+    "correlativas": "TB014",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "INVOPS",
+    "id": "TA022",
     "materia": "Investigación Operativa Superior",
     "creditos": 4,
-    "correlativas": "INVOP",
+    "correlativas": "TA012",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CHCO",
+    "id": "TC013",
     "materia": "Capital Humano y Comportamiento Organizacional",
     "creditos": 4,
-    "correlativas": "ODE",
+    "correlativas": "TA010",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CPS",
+    "id": "TA023",
     "materia": "Comercialización de Productos y Servicios",
     "creditos": 4,
-    "correlativas": "GICV",
+    "correlativas": "TA011",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "GDC",
+    "id": "TA024",
     "materia": "Gerenciamiento de la Calidad",
     "creditos": 4,
-    "correlativas": "GICV",
+    "correlativas": "TA011",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IPGE",
+    "id": "TC014",
     "materia": "Informática para la Gestión de Empresas",
     "creditos": 4,
-    "correlativas": "INDDIG",
+    "correlativas": "TC012",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "LSC",
+    "id": "TA025",
     "materia": "Logística y Supply Chain",
     "creditos": 4,
-    "correlativas": "GICV",
+    "correlativas": "TA011",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IGP",
+    "id": "TA026",
     "materia": "Innovación y Gestión de Proyectos",
     "creditos": 4,
-    "correlativas": "DE-GICV",
+    "correlativas": "TC011-TA011",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "EEING",
+    "id": "TC015",
     "materia": "Emprendimientos en Ingeniería",
     "creditos": 4,
     "requiere": 100,
@@ -362,21 +362,21 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "DDP",
+    "id": "TA027",
     "materia": "Diseño de Producto",
     "creditos": 4,
-    "correlativas": "GICV-MAI",
+    "correlativas": "TA011-TB012",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "DDPD",
+    "id": "TA028",
     "materia": "Diseño de Producto Digital",
     "creditos": 4,
-    "correlativas": "INDDIG",
+    "correlativas": "TC012",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IDEE",
+    "id": "TA029",
     "materia": "Ingeniería y Desarrollo de Envases y Embalajes",
     "creditos": 4,
     "requiere": 100,
@@ -384,7 +384,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AGROBIO",
+    "id": "TA030",
     "materia": "Agroindustria y Bioeconomía",
     "creditos": 4,
     "requiere": 100,
@@ -392,63 +392,63 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "BEIP",
+    "id": "TA031",
     "materia": "Biopolímeros e Industrias Plásticas",
     "creditos": 4,
-    "correlativas": "INDQUI",
+    "correlativas": "TA015",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "INDAUTO",
+    "id": "TA032",
     "materia": "Industria Automotriz",
     "creditos": 4,
-    "correlativas": "GICV",
+    "correlativas": "TA011",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "INDCP",
+    "id": "TA033",
     "materia": "Industrias de Celulosa y Papel",
     "creditos": 4,
-    "correlativas": "INDQUI",
+    "correlativas": "TA015",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "INDALIM",
+    "id": "TA034",
     "materia": "Industrias de la Alimentación",
     "creditos": 4,
-    "correlativas": "INDQUI",
+    "correlativas": "TA015",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "INDPETRO",
+    "id": "TA035",
     "materia": "Industrias Petrolíferas",
     "creditos": 4,
-    "correlativas": "INDQUI",
+    "correlativas": "TA015",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "INDTEXT",
+    "id": "TA036",
     "materia": "Industrias Textiles",
     "creditos": 4,
-    "correlativas": "GICV",
+    "correlativas": "TA011",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "MEIP",
+    "id": "TA037",
     "materia": "Mantenimiento e Ingeniería de Planta",
     "creditos": 4,
-    "correlativas": "GICV",
+    "correlativas": "TA011",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "MAII",
+    "id": "TB020",
     "materia": "Materiales y Aplicaciones II",
     "creditos": 4,
-    "correlativas": "MAI",
+    "correlativas": "TB012",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "INTROTE",
+    "id": "TC016",
     "materia": "Introducción a la Transición Energética",
     "creditos": 4,
     "requiere": 120,
@@ -456,7 +456,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ENEGRENO",
+    "id": "TA039",
     "materia": "Energías Renovables",
     "creditos": 4,
     "requiere": 120,
@@ -464,7 +464,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "UEDE",
+    "id": "TA040",
     "materia": "Uso Eficiente de la Energía",
     "creditos": 4,
     "requiere": 120,
@@ -472,7 +472,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "FCTE",
+    "id": "TA041",
     "materia": "Fuentes Convencionales en la Transición Energética",
     "creditos": 4,
     "requiere": 120,
@@ -480,7 +480,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TETE",
+    "id": "TA042",
     "materia": "Tecnologías Emergentes en la Transición Energética",
     "creditos": 4,
     "requiere": 120,
@@ -488,10 +488,10 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TALL",
+    "id": "TA038",
     "materia": "Taller de Manufactura",
     "creditos": 3,
-    "correlativas": "PII-MAI",
+    "correlativas": "TB010-TB012",
     "categoria": "Materias Electivas"
   },
   {

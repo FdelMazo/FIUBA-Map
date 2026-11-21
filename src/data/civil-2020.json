@@ -50,7 +50,7 @@
     "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
   },
   {
-    "id": "AM2",
+    "id": "CB001",
     "materia": "Análisis Matemático II",
     "creditos": 8,
     "correlativas": "CBC",
@@ -58,7 +58,7 @@
     "level": 1
   },
   {
-    "id": "IIC",
+    "id": "TB035",
     "materia": "Introducción a la Ingeniería Civil",
     "creditos": 4,
     "correlativas": "CBC",
@@ -66,7 +66,7 @@
     "level": 1
   },
   {
-    "id": "FSP",
+    "id": "CB020",
     "materia": "Física de los Sistemas de Partículas",
     "creditos": 6,
     "correlativas": "CBC",
@@ -74,7 +74,7 @@
     "level": 1
   },
   {
-    "id": "AL",
+    "id": "CB002",
     "materia": "Álgebra Lineal",
     "creditos": 8,
     "correlativas": "CBC",
@@ -82,7 +82,7 @@
     "level": 2
   },
   {
-    "id": "QB",
+    "id": "CB040",
     "materia": "Química Básica",
     "creditos": 6,
     "correlativas": "CBC",
@@ -90,135 +90,135 @@
     "level": 2
   },
   {
-    "id": "EST",
+    "id": "TB036",
     "materia": "Estática",
     "creditos": 4,
-    "correlativas": "FSP",
+    "correlativas": "CB020",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "ITMU",
+    "id": "TA066",
     "materia": "Introducción al Transporte, la Movilidad y el Urbanismo",
     "creditos": 4,
-    "correlativas": "IIC",
+    "correlativas": "TB035",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "PROBA",
+    "id": "CB003",
     "materia": "Probabilidad y Estadística",
     "creditos": 6,
-    "correlativas": "AM2-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "RMA",
+    "id": "TB037",
     "materia": "Resistencia de Materiales",
     "creditos": 8,
-    "correlativas": "EST-AM2",
+    "correlativas": "TB036-CB001",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "HGE",
+    "id": "TB038",
     "materia": "Hidráulica General",
     "creditos": 6,
-    "correlativas": "AM2-FSP",
+    "correlativas": "CB001-CB020",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "MNU",
+    "id": "CB051",
     "materia": "Modelación Numérica",
     "creditos": 4,
-    "correlativas": "AM2-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "EYM",
+    "id": "CB022",
     "materia": "Electricidad y Magnetismo",
     "creditos": 6,
-    "correlativas": "AM2-FSP",
+    "correlativas": "CB001-CB020",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "CTE",
+    "id": "CB023",
     "materia": "Calor y Termodinámica",
     "creditos": 2,
-    "correlativas": "AM2-FSP",
+    "correlativas": "CB001-CB020",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "ESTR",
+    "id": "TB039",
     "materia": "Análisis Estructural",
     "creditos": 6,
-    "correlativas": "RMA",
+    "correlativas": "TB037",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "CMA",
+    "id": "TB040",
     "materia": "Comportamiento de Materiales",
     "creditos": 8,
-    "correlativas": "QB-RMA",
+    "correlativas": "CB040-TB037",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "HAP",
+    "id": "TA067",
     "materia": "Hidráulica Aplicada",
     "creditos": 4,
-    "correlativas": "HGE",
+    "correlativas": "TB038",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "MSG",
+    "id": "TB041",
     "materia": "Mecánica de Suelos y Geología",
     "creditos": 8,
-    "correlativas": "RMA-HGE",
+    "correlativas": "TB037-TB038",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "ICD",
+    "id": "TB042",
     "materia": "Introducción a la Ciencia de Datos para Ingeniería Civil",
     "creditos": 3,
-    "correlativas": "PROBA",
+    "correlativas": "CB003",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "DGO",
+    "id": "TA068",
     "materia": "Diseño Geométrico de Obras Lineales",
     "creditos": 3,
-    "correlativas": "ITMU",
+    "correlativas": "TA066",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "CCA",
+    "id": "TA069",
     "materia": "Construcciones Civiles y Arquitectura",
     "creditos": 6,
-    "correlativas": "EYM",
+    "correlativas": "CB022",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "TYG",
+    "id": "TB043",
     "materia": "Topografía y Geodesia",
     "creditos": 4,
-    "correlativas": "IIC",
+    "correlativas": "TB035",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "EEP",
+    "id": "TC020",
     "materia": "Economía y Evaluación de Proyectos de Ingeniería Civil",
     "creditos": 4,
     "requiere": 118,
@@ -227,95 +227,95 @@
     "level": 6
   },
   {
-    "id": "MVP1",
+    "id": "TB044",
     "materia": "Materiales Viales y Pavimentos I",
     "creditos": 3,
-    "correlativas": "ITMU-MSG-CMA",
+    "correlativas": "TA066-TB041-TB040",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "HDA",
+    "id": "TB045",
     "materia": "Hidrología Aplicada",
     "creditos": 6,
-    "correlativas": "ICD-HAP-MNU",
+    "correlativas": "TB042-TA067-CB051",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "HM1",
+    "id": "TA070",
     "materia": "Hormigón I",
     "creditos": 8,
-    "correlativas": "ESTR-CMA",
+    "correlativas": "TB039-TB040",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "STG1",
+    "id": "TA071",
     "materia": "Sistemas de Transporte Guiado I",
     "creditos": 3,
-    "correlativas": "DGO-MSG-CMA",
+    "correlativas": "TA068-TB041-TB040",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "PVN1",
+    "id": "TA072",
     "materia": "Puertos y Vías Navegables I",
     "creditos": 3,
-    "correlativas": "ITMU-MSG",
+    "correlativas": "TA066-TB041",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "AP1",
+    "id": "TA073",
     "materia": "Aeropuertos I",
     "creditos": 2,
-    "correlativas": "DGO-MVP1-TYG",
+    "correlativas": "TA068-TB044-TB043",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "IS1",
+    "id": "TA074",
     "materia": "Ingeniería Sanitaria I",
     "creditos": 4,
-    "correlativas": "QB-HAP",
+    "correlativas": "CB040-TA067",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "EME",
+    "id": "TA075",
     "materia": "Estructuras Metálicas",
     "creditos": 6,
-    "correlativas": "ESTR-CMA",
+    "correlativas": "TB039-TB040",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "IOC",
+    "id": "TA078",
     "materia": "Instalaciones de las Obras Civiles",
     "creditos": 6,
-    "correlativas": "CCA-CTE",
+    "correlativas": "TA069-CB023",
     "categoria": "Materias Obligatorias",
     "level": 8
   },
   {
-    "id": "CIME",
+    "id": "TA079",
     "materia": "Cimentaciones",
     "creditos": 3,
-    "correlativas": "HM1-MSG",
+    "correlativas": "TA070-TB041",
     "categoria": "Materias Obligatorias",
     "level": 8
   },
   {
-    "id": "HM2",
+    "id": "TA080",
     "materia": "Hormigón II",
     "creditos": 4,
-    "correlativas": "HM1",
+    "correlativas": "TA070",
     "categoria": "Materias Obligatorias",
     "level": 8
   },
   {
-    "id": "EJPROF",
+    "id": "TC002",
     "materia": "Legislación y Ejercicio Profesional",
     "creditos": 2,
     "requiere": 138,
@@ -324,7 +324,7 @@
     "level": 9
   },
   {
-    "id": "HYS",
+    "id": "TC003",
     "materia": "Higiene y Seguridad",
     "creditos": 2,
     "requiere": 138,
@@ -333,7 +333,7 @@
     "level": 9
   },
   {
-    "id": "GSOC",
+    "id": "TA081",
     "materia": "Gestión Socioambiental de las Obras Civiles",
     "creditos": 3,
     "requiere": 138,
@@ -342,306 +342,306 @@
     "level": 9
   },
   {
-    "id": "GOOC",
+    "id": "TC021",
     "materia": "Gerenciamiento y Organización de Obras Civiles",
     "creditos": 4,
-    "correlativas": "EEP",
+    "correlativas": "TC020",
     "categoria": "Materias Obligatorias",
     "level": 9
   },
   {
-    "id": "MS",
+    "id": "TB046",
     "materia": "Mecánica del Sólido",
     "creditos": 6,
-    "correlativas": "ESTR",
+    "correlativas": "TB039",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "DES",
+    "id": "TB047",
     "materia": "Dinámica de las Estructuras",
     "creditos": 4,
-    "correlativas": "ESTR",
+    "correlativas": "TB039",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ASE",
+    "id": "TB048",
     "materia": "Análisis Sísmico de Estructuras",
     "creditos": 4,
-    "correlativas": "HM1",
+    "correlativas": "TA070",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "MEF",
+    "id": "TB049",
     "materia": "Método de los Elementos Finitos",
     "creditos": 6,
-    "correlativas": "ESTR",
+    "correlativas": "TB039",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "SEG",
+    "id": "TB050",
     "materia": "Seguridad Estructural",
     "creditos": 4,
-    "correlativas": "PROBA-HM1",
+    "correlativas": "CB003-TA070",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AEE",
+    "id": "TB051",
     "materia": "Análisis Experimental de Estructuras",
     "creditos": 4,
-    "correlativas": "ESTR",
+    "correlativas": "TB039",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ITE",
+    "id": "TB052",
     "materia": "Interacción Terreno-Estructura",
     "creditos": 4,
-    "correlativas": "MSG",
+    "correlativas": "TB041",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "GN",
+    "id": "TB053",
     "materia": "Geotecnia Numérica",
     "creditos": 4,
-    "correlativas": "MSG-MNU",
+    "correlativas": "TB041-CB051",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "MVP2",
+    "id": "TB054",
     "materia": "Materiales Viales y Pavimentos II",
     "creditos": 4,
-    "correlativas": "MVP1",
+    "correlativas": "TB044",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "DVRYU",
+    "id": "TA082",
     "materia": "Diseño Vial Rural y Urbano",
     "creditos": 4,
-    "correlativas": "DGO",
+    "correlativas": "TA068",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "PVN2",
+    "id": "TA083",
     "materia": "Puertos y Vías Navegables II",
     "creditos": 3,
-    "correlativas": "PVN1",
+    "correlativas": "TA072",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "STG2",
+    "id": "TA084",
     "materia": "Sistemas de Transporte Guiado II",
     "creditos": 3,
-    "correlativas": "STG1",
+    "correlativas": "TA071",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AP2",
+    "id": "TA085",
     "materia": "Aeropuertos II",
     "creditos": 4,
-    "correlativas": "AP1",
+    "correlativas": "TA073",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "PTT",
+    "id": "TA086",
     "materia": "Planeamiento del Transporte",
     "creditos": 4,
-    "correlativas": "ITMU-EEP",
+    "correlativas": "TA066-TC020",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TSV",
+    "id": "TA087",
     "materia": "Tránsito y Seguridad Vial",
     "creditos": 4,
-    "correlativas": "DGO",
+    "correlativas": "TA068",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ITU",
+    "id": "TA088",
     "materia": "Ingeniería Territorial y Urbana",
     "creditos": 4,
     "requiere": 118,
     "requiereCBC": true,
-    "correlativas": "ITMU",
+    "correlativas": "TA066",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "SIT",
+    "id": "TA089",
     "materia": "Sistemas Inteligentes de Transporte",
     "creditos": 3,
     "requiere": 118,
     "requiereCBC": true,
-    "correlativas": "ITMU",
+    "correlativas": "TA066",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CDAT",
+    "id": "TA090",
     "materia": "Ciencia de Datos Aplicada al Transporte",
     "creditos": 3,
-    "correlativas": "ITMU-ICD",
+    "correlativas": "TA066-TB042",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CH",
+    "id": "TA091",
     "materia": "Centrales Hidráulicas",
     "creditos": 6,
-    "correlativas": "HDA",
+    "correlativas": "TB045",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "MH",
+    "id": "TA092",
     "materia": "Modelos Hidráulicos",
     "creditos": 4,
-    "correlativas": "HDA",
+    "correlativas": "TB045",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "HF",
+    "id": "TA093",
     "materia": "Hidráulica Fluvial",
     "creditos": 4,
-    "correlativas": "HDA-MSG",
+    "correlativas": "TB045-TB041",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "HM",
+    "id": "TA094",
     "materia": "Hidráulica Marítima",
     "creditos": 4,
-    "correlativas": "HAP-MSG",
+    "correlativas": "TA067-TB041",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "PRH",
+    "id": "TA095",
     "materia": "Planificación de Recursos Hídricos",
     "creditos": 4,
-    "correlativas": "HDA",
+    "correlativas": "TB045",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CHA",
+    "id": "TA096",
     "materia": "Construcciones Hidráulicas",
     "creditos": 4,
-    "correlativas": "HDA",
+    "correlativas": "TB045",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AH",
+    "id": "TA097",
     "materia": "Aprovechamientos Hidráulicos",
     "creditos": 4,
-    "correlativas": "HAP",
+    "correlativas": "TA067",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ISA",
+    "id": "TA098",
     "materia": "Ingeniería Sanitaria Aplicada",
     "creditos": 4,
-    "correlativas": "IS1",
+    "correlativas": "TA074",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "PRES",
+    "id": "TA099",
     "materia": "Presas",
     "creditos": 6,
-    "correlativas": "HDA",
+    "correlativas": "TB045",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AYU",
+    "id": "TA100",
     "materia": "Arquitectura y Urbanismo",
     "creditos": 6,
-    "correlativas": "CCA",
+    "correlativas": "TA069",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "EMA",
+    "id": "TA101",
     "materia": "Estructuras Metálicas Avanzadas",
     "creditos": 6,
-    "correlativas": "EME",
+    "correlativas": "TA075",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TH",
+    "id": "TB055",
     "materia": "Tecnología del Hormigón",
     "creditos": 4,
-    "correlativas": "CMA",
+    "correlativas": "TB040",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "PC",
+    "id": "TA102",
     "materia": "Patología de la Construcción",
     "creditos": 4,
-    "correlativas": "CCA-HM2",
+    "correlativas": "TA069-TA080",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "EMD",
+    "id": "TA103",
     "materia": "Estructuras de Madera",
     "creditos": 4,
-    "correlativas": "CMA-EME",
+    "correlativas": "TB040-TA075",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "SC",
+    "id": "TA104",
     "materia": "Sistemas Constructivos",
     "creditos": 4,
-    "correlativas": "CCA",
+    "correlativas": "TA069",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "SE",
+    "id": "TA105",
     "materia": "Sistemas Estructurales",
     "creditos": 6,
-    "correlativas": "HM2-EME",
+    "correlativas": "TA080-TA075",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "DE",
+    "id": "TA106",
     "materia": "Diseño Estructural",
     "creditos": 6,
-    "correlativas": "MSG-HM1",
+    "correlativas": "TB041-TA070",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IEEH",
+    "id": "TA107",
     "materia": "Inspección y Ejecución de Estructuras de Hormigón",
     "creditos": 6,
-    "correlativas": "HM1",
+    "correlativas": "TA070",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AM3",
+    "id": "CB005",
     "materia": "Análisis Matemático III",
     "creditos": 6,
-    "correlativas": "AM2-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "GC",
+    "id": "TA024",
     "materia": "Gerenciamiento de la Calidad",
     "creditos": 4,
-    "correlativas": "EEP",
+    "correlativas": "TC020",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CHCO",
+    "id": "TC013",
     "materia": "Capital Humano y comportamiento organizacional",
     "creditos": 4,
-    "correlativas": "EEP",
+    "correlativas": "TC020",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CPPS",
+    "id": "TA023",
     "materia": "Comercialización de productos y servicios",
     "creditos": 4,
-    "correlativas": "EEP",
+    "correlativas": "TC020",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "EI",
+    "id": "TC015",
     "materia": "Emprendimientos en Ingeniería",
     "creditos": 4,
-    "correlativas": "EEP",
+    "correlativas": "TC020",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ITE2",
+    "id": "TC016",
     "materia": "Introducción a la Transición Energética",
     "creditos": 4,
     "requiere": 120,
@@ -649,7 +649,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "ER",
+    "id": "TA039",
     "materia": "Energías Renovables",
     "creditos": 4,
     "requiere": 120,
@@ -657,7 +657,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "UEE",
+    "id": "TA040",
     "materia": "Uso Eficiente de la Energía",
     "creditos": 4,
     "requiere": 120,
@@ -665,7 +665,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "FCTE",
+    "id": "TA041",
     "materia": "Fuentes Convencionales en la Transición Energética",
     "creditos": 4,
     "requiere": 120,
@@ -673,7 +673,7 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TETE",
+    "id": "TA042",
     "materia": "Tecnologías Emergentes en la Transición Energética",
     "creditos": 4,
     "requiere": 120,
@@ -681,38 +681,38 @@
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IA",
+    "id": "TB056",
     "materia": "Introducción a la Inteligencia Artificial",
     "creditos": 3,
-    "correlativas": "PROBA-ICD",
+    "correlativas": "CB003-TB042",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AD",
+    "id": "TB057",
     "materia": "Análisis de Datos",
     "creditos": 3,
-    "correlativas": "PROBA-ICD",
+    "correlativas": "CB003-TB042",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AM",
+    "id": "TA108",
     "materia": "Aprendizaje de Máquina",
     "creditos": 3,
-    "correlativas": "AD-IA",
+    "correlativas": "TB057-TB056",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AMP",
+    "id": "TA109",
     "materia": "Aprendizaje de Máquina Profundo",
     "creditos": 3,
-    "correlativas": "AD-IA",
+    "correlativas": "TB057-TB056",
     "categoria": "Materias Electivas"
   },
   {
     "id": "TIF",
     "materia": "Trabajo Integrador Final",
     "creditos": 12,
-    "correlativas": "ESTR",
+    "correlativas": "TB039",
     "requiere": 158,
     "requiereCBC": true,
     "categoria": "Fin de Carrera"

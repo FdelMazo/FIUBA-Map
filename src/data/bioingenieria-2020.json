@@ -50,7 +50,7 @@
     "correlativas": "CBC66-CBC62-CBC3-CBC90-CBC24-CBC40"
   },
   {
-    "id": "AM2",
+    "id": "CB001",
     "materia": "Análisis Matemático II",
     "creditos": 8,
     "correlativas": "CBC",
@@ -58,7 +58,7 @@
     "level": 1
   },
   {
-    "id": "QB",
+    "id": "CB040",
     "materia": "Química Básica",
     "creditos": 6,
     "correlativas": "CBC",
@@ -66,7 +66,7 @@
     "level": 1
   },
   {
-    "id": "IBI",
+    "id": "TB157",
     "materia": "Introducción a la Bioingeniería",
     "creditos": 6,
     "correlativas": "CBC",
@@ -74,7 +74,7 @@
     "level": 1
   },
   {
-    "id": "AHF",
+    "id": "CB110",
     "materia": "Anatomía e Histología Funcional",
     "creditos": 4,
     "correlativas": "CBC",
@@ -82,7 +82,7 @@
     "level": 1
   },
   {
-    "id": "FSP",
+    "id": "CB020",
     "materia": "Física de los Sistemas de Partículas",
     "creditos": 6,
     "correlativas": "CBC",
@@ -90,7 +90,7 @@
     "level": 2
   },
   {
-    "id": "AYP",
+    "id": "TA130",
     "materia": "Algoritmos y Programación",
     "creditos": 6,
     "correlativas": "CBC",
@@ -98,15 +98,15 @@
     "level": 2
   },
   {
-    "id": "PP",
+    "id": "TC023",
     "materia": "Planificación de Proyectos",
     "creditos": 2,
-    "correlativas": "IBI",
+    "correlativas": "TB157",
     "categoria": "Materias Obligatorias",
     "level": 2
   },
   {
-    "id": "AL",
+    "id": "CB002",
     "materia": "Álgebra Lineal",
     "creditos": 8,
     "correlativas": "CBC",
@@ -114,135 +114,135 @@
     "level": 2
   },
   {
-    "id": "QCO",
+    "id": "TB112",
     "materia": "Química de los Compuestos Orgánicos",
     "creditos": 6,
-    "correlativas": "QB",
+    "correlativas": "CB040",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "PROBA",
+    "id": "CB003",
     "materia": "Probabilidad y Estadística",
     "creditos": 6,
-    "correlativas": "AM2-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "SS",
+    "id": "TB065",
     "materia": "Señales y Sistemas",
     "creditos": 6,
-    "correlativas": "AM2-AL",
+    "correlativas": "CB001-CB002",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "EMC",
+    "id": "CB025",
     "materia": "Electricidad, Magnetismo y Calor",
     "creditos": 6,
-    "correlativas": "AM2-FSP",
+    "correlativas": "CB001-CB020",
     "categoria": "Materias Obligatorias",
     "level": 3
   },
   {
-    "id": "SMCT",
+    "id": "CB111",
     "materia": "Sistemas Moleculares, Celulares y Tisulares",
     "creditos": 6,
-    "correlativas": "QCO-AHF",
+    "correlativas": "TB112-CB110",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "FSN",
+    "id": "CB108",
     "materia": "Física de Sólidos y Nuclear",
     "creditos": 6,
-    "correlativas": "EMC-QB-PROBA",
+    "correlativas": "CB025-CB040-CB003",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "CA",
+    "id": "TA133",
     "materia": "Control Automático",
     "creditos": 6,
-    "correlativas": "EMC-SS",
+    "correlativas": "CB025-TB065",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "AC",
+    "id": "TB066",
     "materia": "Análisis de Circuitos",
     "creditos": 6,
-    "correlativas": "IBI-EMC",
+    "correlativas": "TB157-CB025",
     "categoria": "Materias Obligatorias",
     "level": 4
   },
   {
-    "id": "PE",
+    "id": "TA132",
     "materia": "Procesos Estocásticos",
     "creditos": 6,
-    "correlativas": "PROBA-SS",
+    "correlativas": "CB003-TB065",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "IDE",
+    "id": "TB064",
     "materia": "Introducción a los Dispositivos Electrónicos",
     "creditos": 4,
-    "correlativas": "IBI",
+    "correlativas": "TB157",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "SFM",
+    "id": "CB112",
     "materia": "Sistemas Fisiológicos y sus Modelos",
     "creditos": 8,
-    "correlativas": "SMCT-CA",
+    "correlativas": "CB111-TA133",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "IMC",
+    "id": "TB158",
     "materia": "Introducción a la Mecánica del Continuo",
     "creditos": 6,
-    "correlativas": "AL-EMC",
+    "correlativas": "CB002-CB025",
     "categoria": "Materias Obligatorias",
     "level": 5
   },
   {
-    "id": "TPS",
+    "id": "TA136",
     "materia": "Taller de Procesamiento de Señales",
     "creditos": 6,
-    "correlativas": "PE",
+    "correlativas": "TA132",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "CM",
+    "id": "TB068",
     "materia": "Circuitos Microelectrónicos",
     "creditos": 6,
-    "correlativas": "IDE-AC",
+    "correlativas": "TB064-TB066",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "ISE",
+    "id": "TB159",
     "materia": "Introducción a los Sistemas Embebidos",
     "creditos": 6,
-    "correlativas": "AYP-AC",
+    "correlativas": "TA130-TB066",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "GP",
+    "id": "TA026",
     "materia": "Gestión de Proyectos",
     "creditos": 6,
-    "correlativas": "PP",
+    "correlativas": "TC023",
     "categoria": "Materias Obligatorias",
     "level": 6
   },
   {
-    "id": "LEP",
+    "id": "TC002",
     "materia": "Legislación y Ejercicio Profesional",
     "creditos": 2,
     "requiere": 100,
@@ -251,242 +251,242 @@
     "level": 6
   },
   {
-    "id": "IBMC",
+    "id": "TB160",
     "materia": "Introducción a la Biomecánica",
     "creditos": 4,
-    "correlativas": "SFM-IMC",
+    "correlativas": "CB112-TB158",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "IEDT",
+    "id": "TA257",
     "materia": "Instrumentación y Equipamiento para Diagnóstico y Tratamiento",
     "creditos": 6,
-    "correlativas": "SFM-CM",
+    "correlativas": "CB112-TB068",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "IBM",
+    "id": "TB135",
     "materia": "Introducción a los Biomateriales",
     "creditos": 4,
-    "correlativas": "SFM-FSN",
+    "correlativas": "CB112-CB108",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "APSBI",
+    "id": "TB161",
     "materia": "Análisis y Procesamiento de Señales en Bioingeniería",
     "creditos": 6,
-    "correlativas": "SFM-PE",
+    "correlativas": "CB112-TA132",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "HS",
+    "id": "TC003",
     "materia": "Higiene y Seguridad",
     "creditos": 2,
-    "correlativas": "QB",
+    "correlativas": "CB040",
     "categoria": "Materias Obligatorias",
     "level": 7
   },
   {
-    "id": "IMGBI",
+    "id": "TA258",
     "materia": "Imágenes en Bioingeniería",
     "creditos": 6,
-    "correlativas": "SFM-SS-FSN",
+    "correlativas": "CB112-TB065-CB108",
     "categoria": "Materias Obligatorias",
     "level": 8
   },
   {
-    "id": "QBA",
+    "id": "TA259",
     "materia": "Tecnología de Asistencia y Prótesis",
     "creditos": 6,
-    "correlativas": "IBMC-IBM-ISE-CM",
+    "correlativas": "TB160-TB135-TB159-TB068",
     "categoria": "Materias Obligatorias",
     "level": 8
   },
   {
-    "id": "ICH",
+    "id": "TA262",
     "materia": "Ingeniería Clínica y Hospitalaria",
     "creditos": 6,
-    "correlativas": "IEDT-LEP-HS-IMGBI",
+    "correlativas": "TA257-TC002-TC003-TA258",
     "categoria": "Materias Obligatorias",
     "level": 8
   },
   {
-    "id": "ICT",
+    "id": "TB162",
     "materia": "Ingeniería Celular y de Tejidos",
     "creditos": 6,
-    "correlativas": "SMCT",
+    "correlativas": "CB111",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "BIRRT",
+    "id": "TA263",
     "materia": "Biomateriales e Implantes para Rehabilitación y Regeneración de Tejidos",
     "creditos": 6,
-    "correlativas": "IBM",
+    "correlativas": "TB135",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "BMCAB",
+    "id": "TA264",
     "materia": "Biomecánica y Aplicaciones Biomédicas",
     "creditos": 6,
-    "correlativas": "IBMC",
+    "correlativas": "TB160",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "EBI",
+    "id": "TB163",
     "materia": "Estadística para Bioingeniería",
     "creditos": 4,
-    "correlativas": "PROBA",
+    "correlativas": "CB003",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "NTBI",
+    "id": "TB164",
     "materia": "Nanotecnología en Bioingeniería",
     "creditos": 6,
-    "correlativas": "FSN-QCO-IBM",
+    "correlativas": "CB108-TB112-TB135",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IRAS",
+    "id": "TB165",
     "materia": "Introducción a la Robótica, Actuadores y Sensores",
     "creditos": 6,
-    "correlativas": "CA",
+    "correlativas": "TA133",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "PIMGB",
+    "id": "TB166",
     "materia": "Procesamiento de Imágenes Biomédicas",
     "creditos": 6,
-    "correlativas": "IMGBI",
+    "correlativas": "TA258",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "NIIHC",
+    "id": "TA265",
     "materia": "Neuroingeniería e Interfaces Humano Computadora",
     "creditos": 4,
-    "correlativas": "PE-SFM-AYP",
+    "correlativas": "TA132-CB112-TA130",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "BINF",
+    "id": "TA266",
     "materia": "Bioinformática",
     "creditos": 4,
-    "correlativas": "SMCT-AYP-PROBA",
+    "correlativas": "CB111-TA130-CB003",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "INCM",
+    "id": "TB167",
     "materia": "Introducción a las Neurociencias y sus Modelos",
     "creditos": 6,
-    "correlativas": "PE-SFM-AYP",
+    "correlativas": "TA132-CB112-TA130",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "GEP",
+    "id": "TB168",
     "materia": "Genómica y Proteómica",
     "creditos": 4,
-    "correlativas": "SMCT-AYP-PROBA",
+    "correlativas": "CB111-TA130-CB003",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "RNBA",
+    "id": "TA267",
     "materia": "Redes Neuronales Biológicas y Artificiales",
     "creditos": 6,
-    "correlativas": "PE-AYP",
+    "correlativas": "TA132-TA130",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "PH",
+    "id": "TB075",
     "materia": "Procesamiento del Habla",
     "creditos": 4,
-    "correlativas": "TPS",
+    "correlativas": "TA136",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "TEIC",
+    "id": "TA268",
     "materia": "Tecnologías y Equipamiento de la Ingeniería Clínica",
     "creditos": 6,
-    "correlativas": "ICH",
+    "correlativas": "TA262",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "GEICIM",
+    "id": "TC044",
     "materia": "Gestión y Estándares de la Ingeniería Clínica e Informática Médica",
     "creditos": 6,
-    "correlativas": "ICH",
+    "correlativas": "TA262",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IIH",
+    "id": "TA269",
     "materia": "Infraestructura e Instalaciones Hospitalarias",
     "creditos": 4,
-    "correlativas": "ICH",
+    "correlativas": "TA262",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "GC",
+    "id": "TA024",
     "materia": "Gerenciamiento de la Calidad",
     "creditos": 4,
-    "correlativas": "GP",
+    "correlativas": "TA026",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CHC",
+    "id": "TC013",
     "materia": "Capital Humano y Comportamiento Organizacional",
     "creditos": 4,
-    "correlativas": "GP",
+    "correlativas": "TA026",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "CPS",
+    "id": "TA023",
     "materia": "Comercialización de Productos y Servicios",
     "creditos": 4,
-    "correlativas": "GP",
+    "correlativas": "TA026",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "EI",
+    "id": "TC015",
     "materia": "Emprendimientos en Ingeniería",
     "creditos": 4,
-    "correlativas": "GP",
+    "correlativas": "TA026",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "IIA",
+    "id": "TB056",
     "materia": "Introducción a la Inteligencia Artificial",
     "creditos": 3,
-    "correlativas": "TPS",
+    "correlativas": "TA136",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "AD",
+    "id": "TB057",
     "materia": "Análisis de Datos",
     "creditos": 3,
-    "correlativas": "TPS",
+    "correlativas": "TA136",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "APM",
+    "id": "TA108",
     "materia": "Aprendizaje de Máquina",
     "creditos": 3,
-    "correlativas": "AD-IIA",
+    "correlativas": "TB057-TB056",
     "categoria": "Materias Electivas"
   },
   {
-    "id": "APMP",
+    "id": "TA109",
     "materia": "Aprendizaje de Máquina Profundo",
     "creditos": 3,
-    "correlativas": "AD-IIA",
+    "correlativas": "TB057-TB056",
     "categoria": "Materias Electivas"
   },
   {
     "id": "TIF",
     "materia": "Trabajo Integrador Final",
     "creditos": 12,
-    "correlativas": "GP-IEDT-TPS-IBM",
+    "correlativas": "TA026-TA257-TA136-TB135",
     "categoria": "Fin de Carrera"
   }
 ]
