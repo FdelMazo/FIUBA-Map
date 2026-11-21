@@ -28,6 +28,7 @@ const AnoBadge = ({
     mx: 1,
     variant: active ? activeVariant : "outline",
     textAlign: "center" as const,
+    verticalAlign: "middle",
     colorScheme: "gray",
     ...rest,
   };
