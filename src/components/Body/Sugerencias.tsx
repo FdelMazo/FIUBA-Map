@@ -168,7 +168,7 @@ const Sugerencias = () => {
                           }}
                           href="https://github.com/FdelMazo/FIUBA-Map/issues/new"
                         >
-                          levantando un <em>issue</em> directamente.{" "}
+                          levantando un issue directamente.{" "}
                           <ExternalLinkIcon
                             _light={{
                               color: "electivas.500",
