@@ -205,6 +205,7 @@ export default async function handler(req: Request): Promise<Response> {
       ensureOk(
         await jsonbinreq(`/${body.binId}`, {
           method: "PUT",
+          headers: { "X-Bin-Versioning": "true" },
           body: JSON.stringify(body.record),
         }),
         "could not save record",
