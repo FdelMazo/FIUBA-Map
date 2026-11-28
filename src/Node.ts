@@ -9,8 +9,12 @@ import { UserType } from "./types/User";
 import { GraphType } from "./types/Graph";
 
 const FONT_AFUERA = ["CBC", "*CBC"];
-// El fin de carrera tambien se muestra siempre, salvo tesis/tpp sin elegir: eso se resuelve en `actualizar`
-const ALWAYS_SHOW = ["Materias Obligatorias", "CBC", "Fin de Carrera"];
+const ALWAYS_SHOW = [
+  "CBC",
+  "Materias Obligatorias",
+  "Fin de Carrera",
+  "Materias Optativas",
+];
 
 /**
  * Funcion que recibe un string y lo separa en palabras, si la palabra tiene menos de 4 caracteres la deja en la misma
@@ -82,6 +86,7 @@ class Node {
     // - Materias Electivas: Las materias electivas de la carrera
     // - Orientacion:<nombre>: Materias de una orientacion elegible (solo en las carreras con `creditos.orientaciones`)
     //   Su grupo es la orientacion. Si el usuario la eligio, cuentan para la orientacion; sino, como electivas
+    // - Materias Optativas: Materias por fuera del plan que agrega el usuario. Cuentan como electivas
     // - Fin de Carrera: Tesis/TPP/TIF, etc. Si esta en `carrera.finDeCarrera`, es para elegir (tesis o tpp)
     //   y solo se muestra la elegida. Sino, es obligatorio y se muestra siempre
     this.group = this.grupo;

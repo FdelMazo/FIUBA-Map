@@ -139,8 +139,8 @@ const Login = () => {
   ) => {
     const carreras = { ...user.record.carreras };
 
-    // Si no guardo más de una materia (el CBC por defecto), le borramos el mapa
-    if (materias.length <= 1) {
+    // Si no guardo más de una materia (el CBC por defecto) ni optativas, le borramos el mapa
+    if (materias.length <= 1 && !optativas.length) {
       delete carreras[user.carrera.id];
     } else {
       carreras[user.carrera.id] = {

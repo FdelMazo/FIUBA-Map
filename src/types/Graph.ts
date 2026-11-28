@@ -4,16 +4,16 @@ import { UserType } from "./User";
 import type { BgColor } from "../theme";
 
 export namespace GraphType {
-  export type OptativasDispatcher =
-    | { action: "override"; value: Optativa[] }
-    | { action: "edit"; value: Optativa }
-    | { action: "create"; value?: undefined }
-    | { action: "remove"; value: { id: number } };
-
   export interface Optativa {
-    id: number;
+    // Las guardadas antes de que fueran nodos tienen id numerico,
+    // ahora las guardamos como `OPT-1`, `OPT-2`, etc.
+    id: string | number;
     nombre: string;
     creditos: number;
+    // Las guardadas antes de que fueran nodos no tienen nota,
+    // pero desde entonces es obligatorio
+    nota?: number;
+    cuatrimestre?: number;
   }
 
   export interface Credito {

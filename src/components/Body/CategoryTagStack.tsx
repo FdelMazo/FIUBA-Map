@@ -19,15 +19,7 @@ const CategoryTagStack = () => {
 
   return (
     <LightMode>
-      <SimpleGrid
-        columns={grupos.length > 4 ? 2 : 1}
-        mb={2}
-        ml={2}
-        spacing={2}
-        bottom={0}
-        position="absolute"
-        maxW="60%"
-      >
+      <SimpleGrid columns={grupos.length > 4 ? 2 : 1} spacing={2}>
         {grupos.map((c) => (
           <Tag
             cursor="pointer"

@@ -103,6 +103,7 @@ export const GRUPOS = {
   "En Final": { color: COLORS.enfinal[400] },
   "Materias Obligatorias": { color: COLORS.obligatorias[400] },
   "Materias Electivas": { color: COLORS.electivas[400] },
+  "Materias Optativas": { color: COLORS.electivas[400] },
   "Fin de Carrera": {
     color: COLORS.findecarrera[400],
     label: "custom",

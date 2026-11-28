@@ -322,7 +322,11 @@ const Graph = (userContext: ReturnType<typeof User>) => {
 
       // Actualizamos su metadata
       map.checkboxes?.forEach((c) => toggleCheckbox(c, true));
-      optativasDispatch({ action: "override", value: map.optativas ?? [] });
+      // Sacamos las optativas que ya estaban en el grafo
+      const viejas = getters.Optativas().map((n) => n.id);
+      nodes.remove(viejas);
+      edges.remove(viejas);
+      agregarOptativas(map.optativas ?? []);
       setAplazos(map.aplazos || 0);
 
       // Si tiene orientacion setupeada, se lo mostramos
@@ -346,7 +350,10 @@ const Graph = (userContext: ReturnType<typeof User>) => {
       // Si no tengo mapa en la DB (porque me desloguee, o porque soy un usuario nuevo en esta carrera),
       //   reseteo absolutamente todo y solamente apruebo el CBC
       user.carrera.creditos.checkbox?.forEach((ch) => (ch.check = false));
-      optativasDispatch({ action: "override", value: [] });
+      // Sacamos las optativas que ya estaban en el grafo
+      const viejas = getters.Optativas().map((n) => n.id);
+      nodes.remove(viejas);
+      edges.remove(viejas);
       setAplazos(0);
       nodes.update(
         getters
@@ -376,7 +383,6 @@ const Graph = (userContext: ReturnType<typeof User>) => {
     const creditosTotales = [
       ...getters.MateriasAprobadasSinCBC(),
       ...getters.CBC(),
-      ...optativas,
     ].reduce(accCreditos, 0);
     const creditosCBC = [...getters.CBC()].reduce(accCreditos, 0);
     nodes.update(
@@ -470,13 +476,22 @@ const Graph = (userContext: ReturnType<typeof User>) => {
   // Guarda el "mapa" en la base de datos, con toda su metadata:
   // - materias: solo nos importan las materias aprobadas o "planeadas" (con cuatrimestre)
   // - checkboxes: los booleanos tipo "aprobe ingles"
-  // - optativas: los creditos que no estan en el plan que se agregaron
+  // - optativas: las materias por fuera del plan que agrego el usuario
   // - aplazos: la cantidad de aplazos seteado
   const saveGraph = async () => {
     const materias = nodes.get({
-      filter: (n) => n.aprobada || n.nota === -1 || !!n.cuatrimestre,
+      filter: (n) =>
+        n.categoria !== "Materias Optativas" &&
+        (n.aprobada || n.nota === -1 || !!n.cuatrimestre),
       fields: ["id", "nota", "cuatrimestre"],
     });
+    const optativas: GraphType.Optativa[] = getters.Optativas().map((n) => ({
+      id: n.id,
+      nombre: n.materia,
+      creditos: n.creditos,
+      nota: n.nota,
+      ...(n.cuatrimestre && { cuatrimestre: n.cuatrimestre }),
+    }));
     const checkboxes = user.carrera.creditos.checkbox
       ?.filter((c) => c.check === true)
       .map((c) => c.nombre);
@@ -674,6 +689,7 @@ const Graph = (userContext: ReturnType<typeof User>) => {
         "En Final",
         "Habilitadas",
         "Materias Electivas",
+        "Materias Optativas",
         ...graph.groups,
       ];
       if (nodeA.creditos && nodeB.creditos && nodeA.group === nodeB.group) {
@@ -696,43 +712,65 @@ const Graph = (userContext: ReturnType<typeof User>) => {
     return electivas;
   };
 
-  // Las optativas son materias que te agregan creditos que no estan en el plan de la carrera
-  // Les asignamos solamente el nombre y la cantidad de creditos que otorgan (porque la nota no influye en el promedio)
-  const [optativas, optativasDispatch] = React.useReducer(
-    (
-      prevstate: GraphType.Optativa[],
-      dispatched: GraphType.OptativasDispatcher,
-    ) => {
-      let newstate = prevstate;
-      const { action, value } = dispatched;
-      switch (action) {
-        case "override":
-          newstate = value;
-          break;
-        case "create":
-          const lastOptativaId = prevstate.map((o) => o.id).pop() || 0;
-          newstate = [
-            ...newstate,
-            {
-              id: lastOptativaId + 1,
-              nombre: "Materia Optativa",
-              creditos: 4,
-            },
-          ];
-          break;
-        case "remove":
-          newstate = prevstate.filter((o) => o.id !== value.id);
-          break;
-        case "edit":
-          newstate = prevstate.map((o) => (o.id === value.id ? value : o));
-          break;
-        default:
-          return newstate;
-      }
-      return newstate;
-    },
-    [],
-  );
+  // Las optativas son materias por fuera del plan (de otra carrera/facultad, cursos, etc) que agrega el usuario
+  // Son nodos como cualquier otro (se aprueban, se planean, tienen nota), pero con nombre y creditos editables
+  // Al no ser obligatorias, cuentan como electivas
+  const agregarOptativas = (optativas: GraphType.Optativa[]) => {
+    const nuevas = optativas.map((o) => {
+      const node = new Node({
+        // Las viejas se guardaron con id numerico (1, 2, etc), las nuevas ya son OPT-1, OPT-2, etc
+        id: typeof o.id === "number" ? `OPT-${o.id}` : o.id,
+        materia: o.nombre,
+        creditos: Number(o.creditos) || 0,
+        categoria: "Materias Optativas",
+      } as UserType.MateriaJSON);
+
+      node.aprobar(o.nota ?? 0);
+      node.cursando(o.cuatrimestre);
+      return node;
+    });
+
+    nodes.add(nuevas);
+    edges.add(
+      nuevas.map((n) => ({
+        id: n.id,
+        from: "CBC",
+        to: n.id,
+        color: "transparent",
+      })),
+    );
+  };
+
+  const crearOptativa = () => {
+    const n = getters.Optativas().map((o) => Number(o.id.replace("OPT-", "")));
+    const id = `OPT-${Math.max(0, ...n) + 1}`;
+    agregarOptativas([
+      { id, nombre: "Materia Optativa", creditos: 4, nota: 4 },
+    ]);
+    actualizar();
+    actualizarNiveles();
+    network.fit();
+
+    // La autoseleccionamos despues de crearla
+    network.selectNodes([id]);
+    selectNode(id, true);
+  };
+
+  const editarOptativa = (id: string, nombre: string, creditos: number) => {
+    const node = getNode(id);
+    node.materia = nombre;
+    node.creditos = creditos;
+    nodes.update(node);
+    actualizar();
+  };
+
+  const borrarOptativa = (id: string) => {
+    if (id === displayedNode) setDisplayedNode("");
+    nodes.remove(id);
+    edges.remove(id);
+    actualizar();
+    actualizarNiveles();
+  };
 
   // Hay distintos creditos para almacenar (los de las obligatorias, los de las electivas, etc)
   // Guardamos un array y lo vamos llenando de objetos que contienen:
@@ -802,8 +840,7 @@ const Graph = (userContext: ReturnType<typeof User>) => {
       ...CREDITOS["Electivas"],
       creditosNecesarios: electivasCreditosNecesarios,
       nmaterias: electivas.length,
-      creditos:
-        electivas.reduce(accCreditos, 0) + optativas.reduce(accCreditos, 0),
+      creditos: electivas.reduce(accCreditos, 0),
       helpText:
         !electivasCreditosNecesarios &&
         `Elegí ${orientaciones && !user.orientacion ? "orientación" : ""}${orientaciones && !user.orientacion && !user.finDeCarrera ? " y " : ""}${!user.finDeCarrera ? "entre tesis y tpp" : ""} en la configuración de usuario para saber cuantos necesitás.`,
@@ -919,7 +956,7 @@ const Graph = (userContext: ReturnType<typeof User>) => {
     if (!node) return;
 
     let neighborNodes = getters.NeighborNodes(id);
-    if (node.requiere) {
+    if (node.requiere || node.categoria === "Materias Optativas") {
       neighborNodes = neighborNodes.filter((node) => node !== "CBC");
     }
 
@@ -1082,6 +1119,7 @@ const Graph = (userContext: ReturnType<typeof User>) => {
                 c !== "CBC" &&
                 c !== "*CBC" &&
                 c !== "Materias Obligatorias" &&
+                c !== "Materias Optativas" &&
                 c !== "Fin de Carrera",
             )
         : [];
@@ -1238,6 +1276,7 @@ const Graph = (userContext: ReturnType<typeof User>) => {
         ? nodes.get({
             filter: (n) =>
               n.categoria !== "Materias Electivas" &&
+              n.categoria !== "Materias Optativas" &&
               n.categoria !== "Fin de Carrera" &&
               !n.hidden &&
               !n.cuatrimestre &&
@@ -1249,9 +1288,16 @@ const Graph = (userContext: ReturnType<typeof User>) => {
       nodes
         ? nodes.get({
             filter: (n) =>
-              n.categoria === "Materias Electivas" &&
+              (n.categoria === "Materias Electivas" ||
+                n.categoria === "Materias Optativas") &&
               !n.hidden &&
               !n.cuatrimestre,
+          })
+        : [],
+    Optativas: () =>
+      nodes
+        ? nodes.get({
+            filter: (n) => n.categoria === "Materias Optativas",
           })
         : [],
     Levels: () =>
@@ -1272,7 +1318,6 @@ const Graph = (userContext: ReturnType<typeof User>) => {
 
   // Escape hatches: forzar actualizaciones
   // - Cuando el usuario se desloguea/loguea, cambian las labels
-  // - Cambiar las optativas agrega creditos, lo cual puede habilitar materias
   // - Cambiar el colorMode cambia el color de la label
   // - Cambiar la orientacion hace que se cambien los creditos
   // - Cambiar el fin de carrera hace que se muestren otras materias
@@ -1282,13 +1327,7 @@ const Graph = (userContext: ReturnType<typeof User>) => {
     actualizarNiveles();
     // Sabemos clavado en que momentos queremos forzar una actualización
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    logged,
-    colorMode,
-    optativas,
-    user.orientacion?.nombre,
-    user.finDeCarrera?.id,
-  ]);
+  }, [logged, colorMode, user.orientacion?.nombre, user.finDeCarrera?.id]);
 
   return {
     graph,
@@ -1306,8 +1345,9 @@ const Graph = (userContext: ReturnType<typeof User>) => {
     toggleCheckbox,
     cursando,
     groupStatus,
-    optativas,
-    optativasDispatch,
+    crearOptativa,
+    editarOptativa,
+    borrarOptativa,
     displayedNode,
     setDisplayedNode,
     getters,

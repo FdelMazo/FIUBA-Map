@@ -1,4 +1,10 @@
-import { Box, Icon, SlideFade, useColorModeValue } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Icon,
+  SlideFade,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import React from "react";
 import { DataSet } from "vis-data";
 import { Network, NetworkEvents } from "vis-network";
@@ -6,6 +12,7 @@ import Snowfall from "react-snowfall";
 import * as C from "../../constants";
 import { GraphContext, UserContext } from "../../MapContext";
 import CategoryTagStack from "./CategoryTagStack";
+import AddOptativaButton from "./AddOptativaButton";
 import LoadingGraph from "./LoadingGraph";
 import { Fireworks } from "@fireworks-js/react";
 import Controls from "./Controls";
@@ -80,7 +87,18 @@ const Body = () => {
         <LoadingGraph />
       </SlideFade>
       <VisGraph key={user.carrera.id} />
-      <CategoryTagStack />
+      <Flex
+        direction="column"
+        gap={2}
+        mb={2}
+        ml={2}
+        bottom={0}
+        position="absolute"
+        maxW="60%"
+      >
+        <AddOptativaButton />
+        <CategoryTagStack />
+      </Flex>
       <Controls />
       {isChristmasTime && (
         <>
